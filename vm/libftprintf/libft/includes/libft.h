@@ -17,6 +17,15 @@
 # include <wchar.h>
 # define BUFF_SIZE 32
 
+typedef struct		s_gnl
+{
+	void			*rest;
+	void			*start;
+	int				rm;
+	int				fd;
+	struct s_gnl	*next;
+}					t_gnl;
+
 typedef struct		s_list
 {
 	void			*content;

@@ -14,89 +14,133 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-static t_list		*get_correct_file(t_list **file, int fd)
+void		*ft_memjoin(void *des, int counter, void *add, int value)
 {
-	t_list			*tmp;
+	void	*join;
+	void	*tmp;
 
-	tmp = *file;
-	while (tmp)
+	join = (void *)malloc((counter + value + 1));
+	if (!(des))
 	{
-		if (tmp->content_size == (size_t)fd)
-			return (tmp);
-		tmp = tmp->next;
+		join = ft_memcpy(join, add, value);
+		((unsigned char *)join)[counter + value] = '\0';
+		return (join);
 	}
-	tmp = (t_list *)malloc(sizeof(t_list));
-	tmp->content = ft_strnew(0);
-	tmp->content_size = fd;
-	tmp->next = *file;
-	*file = tmp;
-	return (tmp);
-}
-
-static void			ft_cut(t_list *entry, int split)
-{
-	char			*new_str;
-	int				len;
-
-	len = (int)ft_strlen(entry->content);
-	new_str = ft_strnew(len - split);
-	ft_strcpy(new_str, entry->content + split);
-	free(entry->content);
-	entry->content = new_str;
-}
-
-static int			ft_copyuntil(char **line, t_list *entry, char c)
-{
-	int				i;
-
-	i = -1;
-	while (((char *)(entry->content))[++i])
-		if (((char *)(entry->content))[i] == c)
-			break ;
-	if (!(*line = ft_strnew(i)))
-		return (-1);
-	ft_strncpy(*line, entry->content, i);
-	if (!(*line))
-		return (-1);
-	if (i < (int)ft_strlen(entry->content))
-		ft_cut(entry, i + 1);
+	else if (!add)
+	{
+		join = ft_memcpy(join, des, counter);
+		((unsigned char *)join)[counter] = '\0';
+	}
 	else
-		ft_strclr(entry->content);
+	{
+		tmp = join;
+		ft_memcpy(join, des, counter);
+		tmp += counter;
+		ft_memcpy(tmp, add, value);
+		((unsigned char *)join)[counter + value] = '\0';
+	}
+	free(des);
+	return (join);
+}
+
+int			is_nl(void **rest, int *rm, void **gline, int *counter)
+{
+	int		dif;
+	void	*tmp;
+
+	if (ft_memchr(*rest, '\n', *rm))
+	{
+		dif = ((ft_memchr(*rest, '\n', *rm) - *rest) + 1);
+		*gline = ft_memjoin(*gline, *counter, *rest, (dif - 1));
+		*counter += dif;
+		if ((*rm = (*rm - dif)))
+		{
+			tmp = *rest;
+			*rest = ft_memjoin(NULL, 0, (*rest + dif), *rm);
+			ft_bzero(tmp, (*rm + dif));
+			free(tmp);
+		}
+		else
+			ft_memdel(rest);
+		return (1);
+	}
+	*gline = ft_memjoin(*gline, *counter, *rest, *rm);
+	*counter += *rm;
+	ft_memdel(rest);
 	return (0);
 }
 
-static int			ft_strjoin_clean(t_list *entry, char *add)
+t_gnl		*lst_fd(void *rest, int rm, int fd)
 {
-	char			*del;
+	t_gnl	*newlist;
 
-	del = entry->content;
-	if (!(entry->content = ft_strjoin(del, add)))
-		return (0);
-	ft_strdel(&del);
-	return (1);
+	newlist = (t_gnl *)malloc(sizeof(t_gnl));
+	if (newlist == NULL)
+		return (NULL);
+	if (rest == NULL)
+	{
+		newlist->rest = NULL;
+		newlist->rm = 0;
+		newlist->fd = fd;
+	}
+	else
+	{
+		newlist->rest = (void *)malloc(sizeof(rest));
+		if (newlist->rest == NULL)
+			return (NULL);
+		ft_memcpy((newlist->rest), rest, rm);
+		newlist->rm = rm;
+		newlist->fd = fd;
+	}
+	newlist->next = NULL;
+	return (newlist);
 }
 
-int					get_next_line(const int fd, char **line)
+t_gnl		*get_right_list(t_gnl *lst, int fd)
 {
-	char			buf[BUFF_SIZE + 1];
-	static t_list	*file;
-	int				ret;
-	t_list			*text;
+	t_gnl	*l;
 
-	if ((fd < 0 || !line || read(fd, buf, 0) < 0))
-		return (-1);
-	text = get_correct_file(&file, fd);
-	while ((ret = read(fd, buf, BUFF_SIZE)))
+	while (lst)
 	{
-		buf[ret] = '\0';
-		if (!ft_strjoin_clean(text, buf))
-			return (-1);
-		if (ft_strchr(buf, '\n'))
+		if ((lst)->fd == fd)
+		{
+			l = lst;
+			return (l);
+		}
+		if ((lst)->next)
+			lst = (lst)->next;
+		else
 			break ;
 	}
-	if (ret < BUFF_SIZE && !ft_strlen(text->content))
-		return (0);
-	if (ft_copyuntil(line, text, '\n') == -1)
+	(lst)->next = lst_fd(NULL, 0, fd);
+	l = (lst)->next;
+	return (l);
+}
+
+int			get_next_line(const int fd, char **line)
+{
+	static t_gnl	*pl;
+	t_gnl			*l;
+	int				counter;
+	unsigned char	tmp[BUFF_SIZE];
+	void			*gline;
+
+	if ((fd < 0) || !(line) || read(fd, 0, 0) < 0 || BUFF_SIZE <= 0)
 		return (-1);
-	return (1);
+	if (!(pl))
+		pl = lst_fd(NULL, 0, fd);
+	l = get_right_list(pl, fd);
+	counter = 0;
+	gline = NULL;
+	if (!(l->rest && is_nl(&(l->rest), &(l->rm), &gline, &counter)))
+		while ((l->rm = read(fd, tmp, BUFF_SIZE)))
+		{
+			if (l->rm < 0)
+				return (-1);
+			l->rest = ft_memjoin(l->rest, 0, tmp, l->rm);
+			if (is_nl(&(l->rest), &(l->rm), &gline, &counter))
+				break ;
+		}
+	*line = (char *)gline;
+	return ((counter > 0) ? 1 : 0);
 }

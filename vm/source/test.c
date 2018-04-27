@@ -2,18 +2,21 @@
 
 int main(void)
 {
-	srand(time(NULL));
+	char *name;
+	char *last_name;
 
-	int i = 0;
-	int main = 0;
-	int back = 0;
+	ft_printf("write name      -> ");
+	get_next_line(0, &name);
+	ft_printf("write last name -> ");
+	get_next_line(0, &last_name);
 
-	while (i < 100)
-	{
-		ft_printf("%[*]{*}s\n", main, back, "Hello world");
-		main = (rand() % 2147483647 + 1);
-		back = (rand() % 2147483647 + 1);
-		i++;
-	}
-    return (0);
+	ft_putchar('\n');
+	ft_printf("name is           :%s\n", name);
+	ft_printf("last name is      :%s\n", last_name);
+	ft_putchar('\n');
+
+	free(name);
+	free(last_name);
+	system("leaks -quiet a.out");
+	return (0);
 }
