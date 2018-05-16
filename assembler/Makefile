@@ -12,7 +12,7 @@
 
 NAME	=	asm
 
-FLGS	=	gcc -Wall -Wextra -Werror
+FLGS	=	gcc -g -Wall -Wextra -Werror
 SRCS	=	./srcs/
 INCL	=	./includes/ ../libft/includes/
 OBJS	=	./obj/

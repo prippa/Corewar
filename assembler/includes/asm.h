@@ -14,19 +14,32 @@
 # define ASM_H
 
 # include "../../libft/includes/libft.h"
+# include "op.h"
 
-typedef struct		s_asm
+typedef struct			s_command
 {
-	char			*name;
-	char			*comment;
-	char			*bn;
-	char			*cmd;
-	int				x;
-	int				y;
-}					t_asm;
+	int					cmd;
+	char				*cod;
+	struct s_command	*next;
+}						t_command;
 
-void				errors_man(t_asm *am, char *s, int o);
-void				check_form(char *s, t_asm *am, int i);
-void				conver_bn(t_asm *am, char *s, int i, int j);
+typedef struct			s_label
+{
+	char				*name;
+	int					bit;
+	t_command			*cmd;
+	struct s_label		*next;
+}						t_label;
+
+typedef struct			s_asm
+{
+	int					x;
+	int					y;
+	header_t			hd;
+	t_label				*lb;
+}						t_asm;
+
+void					errors_man(t_asm *am, char *s, int o);
+void					check_form(char *s, t_asm *am, int i, int j);
 
 #endif

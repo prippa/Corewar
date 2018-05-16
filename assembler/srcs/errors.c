@@ -12,18 +12,6 @@
 
 #include "asm.h"
 
-static int	all_clear(t_asm *am, char *s)
-{
-	if (am->name)
-		free(am->name);
-	if (am->comment)
-		free(am->comment);
-	if (am->bn)
-		free(am->bn);
-	free(s);
-	return (0);
-}
-
 static void	errors_sec(t_asm *am, char *s, int o, int i)
 {
 	if (o == 4)
@@ -39,15 +27,19 @@ static void	errors_sec(t_asm *am, char *s, int o, int i)
 			am->y, am->x);
 		am->x--;
 		while (s[am->x] && s[am->x] != ' ' && s[am->x] != '\t' && s[am->x]
-			!= ';' && s[am->x] != '\"')
+			!= ';' && s[am->x] != '\"' && s[am->x] != COMMENT_CHAR)
 			write(1, s + am->x++, 1);
 		write(1, "\"\n", 2);
 	}
+	if (o == 10)
+		ft_printf("malloc ERROR");
 }
 
 void		errors_man(t_asm *am, char *s, int o)
 {
-	if (o == 1)
+	if (!o)
+		exit(ft_printf("need flags\n"));
+	else if (o == 1)
 		ft_printf("Syntax error at token [TOKEN]\
 [%.3d:001] COMMAND_NAME \".name\"\n", am->y);
 	else if (o == 2)
@@ -67,5 +59,6 @@ void		errors_man(t_asm *am, char *s, int o)
 		ft_printf("Champion comment too long (Max length 2048)\n");
 	else
 		errors_sec(am, s, o, 0);
-	exit(all_clear(am, s));
+	// all_clear(am, s);
+	exit(1);
 }
