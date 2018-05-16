@@ -3,7 +3,6 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}",
                 "${workspaceFolder}/vm/includes",
                 "${workspaceFolder}/vm/libftprintf/includes",
                 "${workspaceFolder}/vm/libftprintf/libft/includes",

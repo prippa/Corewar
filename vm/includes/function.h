@@ -13,6 +13,13 @@
 #ifndef FUNCTION_H
 # define FUNCTION_H
 
+void		cw_exit(char *message, int error_number);
+void		cw_perror_exit(char *message, int error_number);
 
+void		cw_init(void);
+
+void		cw_free(void);
+
+void		cw_parser(void);
 
 #endif

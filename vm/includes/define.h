@@ -13,6 +13,6 @@
 #ifndef DEFINE_H
 # define DEFINE_H
 
-
+extern struct s_corewar *g_cw;
 
 #endif

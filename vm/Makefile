@@ -12,7 +12,7 @@
 
 NAME		=	corewar
 
-FLAGS		= 	-Wall -Werror -Wextra
+#FLAGS		= 	-Wall -Werror -Wextra
 
 CC			=	gcc
 
@@ -22,15 +22,19 @@ DIR_LIB_INC	=	$(DIR_LIB)libft/includes/
 DIR_FPF_INC	=	$(DIR_LIB)includes/
 DIR_VM_INC	=	./includes/
 DIR_VM		=	./source/
+DIR_PARSER	=	./source/parser/
 DIR_OBJ		= 	./obj/
 
 HEAD_VM		=	corewar.h define.h function.h struct.h
 
-C_VM		=	test.c
+C_VM		=	main.c cw_init.c cw_free.c cw_exit.c
+
+C_PARSER	=	cw_parser.c
 
 
 OBJ_VM 		= 	$(C_VM:.c=.o)
-OBJ 		= 	$(addprefix $(DIR_OBJ), $(OBJ_VM))
+OBJ_PARSER	= 	$(C_PARSER:.c=.o)
+OBJ 		= 	$(addprefix $(DIR_OBJ), $(OBJ_VM) $(OBJ_PARSER))
 INC 		= 	$(addprefix -I, $(DIR_VM_INC) $(DIR_LIB_INC) $(DIR_FPF_INC))
 INC_VM 		= 	$(addprefix $(DIR_VM_INC), $(HEAD_VM))
 
@@ -48,7 +52,13 @@ $(NAME): $(OBJ) $(LIBFT)
 	@$(CC) -o $(NAME) $(OBJ) $(LIBFT)
 	@echo "Compiling" [ $(NAME) ]
 
+#---source---
 $(DIR_OBJ)%.o: $(DIR_VM)%.c $(INC_VM)
+	@$(CC) $(FLAGS) $(INC) -c -o $@ $<
+	@echo "Linking" [ $< ]
+
+#---parser---
+$(DIR_OBJ)%.o: $(DIR_PARSER)%.c $(INC_VM)
 	@$(CC) $(FLAGS) $(INC) -c -o $@ $<
 	@echo "Linking" [ $< ]
 #---------------------------------------------------------------
