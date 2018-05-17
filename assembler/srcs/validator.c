@@ -6,65 +6,23 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 23:33:49 by vgladush          #+#    #+#             */
-/*   Updated: 2018/04/23 19:14:43 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/17 13:01:34 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int		ch_cmd_sec(char *cmd)
+static t_label	*fill_struct(t_label *lb, int i)
 {
-	if (!ft_strcmp(cmd, "or"))
-		return (7);
-	if (!ft_strcmp(cmd, "xor"))
-		return (8);
-	if (!ft_strcmp(cmd, "zjmp"))
-		return (9);
-	if (!ft_strcmp(cmd, "ldi"))
-		return (10);
-	if (!ft_strcmp(cmd, "sti"))
-		return (11);
-	if (!ft_strcmp(cmd, "fork"))
-		return (12);
-	if (!ft_strcmp(cmd, "lld"))
-		return (13);
-	if (!ft_strcmp(cmd, "lldi"))
-		return (14);
-	if (!ft_strcmp(cmd, "lfork"))
-		return (15);
-	if (!ft_strcmp(cmd, "aff"))
-		return (16);
-	free(cmd);
-	return (0);
-}
-
-static int		check_cmd(char *s, int j, int i)
-{
-	int		l;
-	char	*cmd;
-
-	l = 0;
-	if (!(cmd = ft_strnew(j - i + 1)))
-		return (-1);
-	while (i < j)
-		cmd[l++] = s[i++];
-	l = 0;
-	if (!ft_strcmp(cmd, "live"))
-		l = 1;
-	else if (!ft_strcmp(cmd, "ld"))
-		l = 2;
-	else if (!ft_strcmp(cmd, "st"))
-		l = 3;
-	else if (!ft_strcmp(cmd, "add"))
-		l = 4;
-	else if (!ft_strcmp(cmd, "sub"))
-		l = 5;
-	else if (!ft_strcmp(cmd, "and"))
-		l = 6;
-	else if (!(l = ch_cmd_sec(cmd)))
+	if (!(lb->next = (t_label *)malloc(sizeof(t_label))))
 		return (0);
-	free(cmd);
-	return (l);
+	lb = lb->next;
+	if (!(lb->name = ft_strnew(i)))
+		return (0);
+	lb->next = 0;
+	lb->bit = 0;
+	lb->cmd = 0;
+	return (lb);
 }
 
 static t_label	*crt_label(char *s, t_asm *am, int i, int *j)
@@ -74,11 +32,7 @@ static t_label	*crt_label(char *s, t_asm *am, int i, int *j)
 	lb = am->lb;
 	while (lb->next)
 		lb = lb->next;
-	if (!(lb->next = (t_label *)malloc(sizeof(t_label))))
-		errors_man(am, s, 10);;
-	lb = lb->next;
-	lb->next = 0;
-	if (!(lb->name = ft_strnew(am->x - i + 1)))
+	if (!(lb = fill_struct(lb, am->x - i)))
 		errors_man(am, s, 10);
 	while (i < am->x)
 		lb->name[j[0]++] = s[i++];
@@ -92,6 +46,9 @@ static t_label	*crt_label(char *s, t_asm *am, int i, int *j)
 		i++;
 	if (!(*j = check_cmd(s, i, am->x - 1)))
 		errors_man(am, s, 9);
+	if (*j == -1)
+		errors_man(am, s, 10);
+	am->x = i;
 	return (lb);
 }
 
@@ -100,7 +57,7 @@ static void		new_label(char *s, int i, t_asm *am, int *j)
 	t_label		*lb;
 
 	lb = am->lb;
-	if (!(lb->name = ft_strnew(am->x - i + 1)))
+	if (!(lb->name = ft_strnew(am->x - i)))
 		errors_man(am, s, 10);
 	while (i < am->x)
 		lb->name[j[0]++] = s[i++];
@@ -119,11 +76,7 @@ static void		new_label(char *s, int i, t_asm *am, int *j)
 		errors_man(am, s, 9);
 	if (*j == -1)
 		errors_man(am, s, 10);
-}
-
-void			write_cod(char *s, t_asm *am, int i)
-{
-
+	am->x = i;
 }
 
 static void		wriite_cmd(char *s, t_asm *am, int i, int j)
@@ -146,13 +99,10 @@ static void		wriite_cmd(char *s, t_asm *am, int i, int j)
 	else if (j)
 		while (lab->next)
 			lab = lab->next;
-	else
-	{
-		if(!(lab = crt_label(s, am, i, &j)))
+	else if(!(lab = crt_label(s, am, i, &j)))
 			return ;
-	}
 	if (j)
-		write_cod(s, am, j);
+		write_cod(s, am, j, lab);
 }
 
 void			check_form(char *s, t_asm *am, int i, int j)

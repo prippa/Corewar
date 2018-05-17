@@ -2,8 +2,8 @@
 .comment        "Just a basic Winner Program" ;sfsf
 
 entree:
-live	%42	
-	zjmp	%:entree 
+live %4
+	zjmp	%:lab
 
 lab: 
 live	%42	

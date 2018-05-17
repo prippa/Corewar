@@ -1,18 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   write_command2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/18 13:21:21 by vgladush          #+#    #+#             */
-/*   Updated: 2018/04/20 17:38:59 by vgladush         ###   ########.fr       */
+/*   Created: 2018/05/17 11:43:00 by vgladush          #+#    #+#             */
+/*   Updated: 2018/05/17 16:04:02 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "asm.h"
 
-# include "../../libft/includes/libft.h"
+static void		write_cod8(char *s, t_asm *am, char *cmd, t_label *lb)
+{
 
-#endif
+}
+
+static void		write_cod7(char *s, t_asm *am, char *cmd, t_label *lb)
+{
+	if (i != 11)
+		write_cod8(s, am, i, lb);
+	else
+	{
+
+	}
+}
+
+void			write_cod6(char *s, t_asm *am, char *cmd, t_label *lb)
+{
+	if (i != 10 && i != 14)
+		write_cod7(s, am, i, lb);
+	else
+	{
+		
+	}
+}
