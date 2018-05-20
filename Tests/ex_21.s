@@ -9,12 +9,11 @@ gobepc:	st r1,:buff
 debut:	ld %0,r7
 	zjmp %:suite
 
-goboucle0:live %66
-ldi %-5 ,  r3 , r1 
+goboucle0:	live %66
+		ldi %-5,r3,r1
 		sti r1,%-173,r3
 		add r3,r4,r3
 		xor r5,r3,r6
-		qqwer
 		zjmp %:finboucle0
 		ld %0,r7
 		zjmp %:goboucle0
@@ -29,7 +28,7 @@ livel:	live %66
 	ld %4,r4
 	st r2,512
 go:	ld %48,r5
-	sti r1,%:goboucle0,%1
+	sti r18,%:goboucle0,%1
 	sti r1,%:goboucle1,%1
 	sti r1,%:live0,%1
 	sti r1,%:live1,%1
