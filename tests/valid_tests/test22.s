@@ -1,3 +1,0 @@
-; Comment
-; Once again
-exit
