@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../libft/ft_printf.h"
+#include <fcntl.h>
 
 int		ft_string_size(char *str)
 {
@@ -48,10 +49,12 @@ char	*create_name_string(char *str)
 
 int		main(int argc, char **argv)
 {
-	(void)argc;
+	(void)argc;	
+	ft_printf("%s\n", "check");
 	char *name = create_name_string(argv[1]);
-
 	ft_printf("name for the file->%s\n", name);
+
+	// int fd = open(name, O_WRONLY | O_CREAT | O_EXCL);
 
 	system("leaks -q corewar");
 }
