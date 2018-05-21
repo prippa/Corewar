@@ -20,6 +20,6 @@ void		cw_init(void);
 
 void		cw_free(void);
 
-void		cw_parser(void);
+void		cw_parser(int argc, char **argv);
 
 #endif

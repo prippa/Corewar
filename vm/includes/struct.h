@@ -13,11 +13,6 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
-typedef enum	e_error_numbers
-{
-	MALLOC = 1
-}				t_error_numbers;
-
 typedef struct		s_parse_data
 {
 	int				num;

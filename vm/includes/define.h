@@ -15,4 +15,29 @@
 
 extern struct s_corewar *g_cw;
 
+typedef enum	e_error_numbers
+{
+	MALLOC = 1
+}				t_error_numbers;
+
+typedef enum	e_op_code
+{
+	LIVE = 1,
+	ID,
+	ST,
+	ADD,
+	SUB,
+	AND,
+	OR,
+	XOR,
+	ZJMP,
+	LDI,
+	STI,
+	FORK,
+	LLD,
+	LLDI,
+	LFORK,
+	AFF
+}				t_op_code;
+
 #endif

@@ -1,6 +1,7 @@
 #include "corewar.h"
 
-void		cw_parser(void)
+void		cw_parser(int argc, char **argv)
 {
-	ft_printf("HI FROM PARSER!\n");
+	if (argc > 1)
+		ft_printf("%s\n", argv[1]);
 }
