@@ -26,6 +26,7 @@ int		ft_string_size(char *str)
 void	create_name_string(char *str)
 {
 	int len;
+	int fd;
 	char *tmp;
 	char *cor;
 	char *res;
@@ -37,9 +38,9 @@ void	create_name_string(char *str)
 	res = ft_strjoin(tmp, cor);
 	free(tmp);
 
-	char *data="123456";
+	char *data = "123456";
+	fd = open(res, O_WRONLY | O_CREAT | O_EXCL, 0777);
 
-	int fd = open(res, O_WRONLY | O_CREAT | O_EXCL, 0777);
 	write(fd, data, ft_strlen(data));
 	close(fd);
 	free(res);
