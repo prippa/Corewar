@@ -35,17 +35,14 @@ void	create_name_string(char *str)
 	tmp = ft_strnew(len);
 	ft_strncpy(tmp, str, len);
 	res = ft_strjoin(tmp, cor);
-
 	free(tmp);
 
+	char *data="123456";
+
 	int fd = open(res, O_WRONLY | O_CREAT | O_EXCL, 0777);
-
-	write(fd, "Hello world", ft_strlen("Hello_world"));
-
+	write(fd, data, ft_strlen(data));
 	close(fd);
-
 	free(res);
-
 }
 
 
@@ -54,9 +51,6 @@ int		main(int argc, char **argv)
 	(void)argc;	
 
 	create_name_string(argv[1]);
-
-
-	
 
 	system("leaks -q corewar");
 }
