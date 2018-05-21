@@ -34,8 +34,7 @@ char	*create_name_string(char *str)
 	ft_printf("len->%d\n", len);
 
 	// allocate memory for the name and .cor (4 symbols);
-	if (!(tmp = (char *)malloc(sizeof(char) * (len + 1))))
-		return (NULL);
+	tmp = ft_strnew(len);
 
 	ft_strncpy(tmp, str, len);
 
