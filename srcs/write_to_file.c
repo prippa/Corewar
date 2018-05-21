@@ -38,7 +38,7 @@ void	create_name_string(char *file_name_to_open, char *data_to_be_written)
 
 	fd = open(res, O_WRONLY | O_CREAT, 0777);
 
-	write(fd, data_to_be_written, ft_strlen(data_to_be_written));
+	write(fd, data_to_be_written, ft_strlen(data_to_be_written)); // can be int value;
 
 	close(fd);
 	free(res);
