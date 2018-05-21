@@ -23,25 +23,23 @@ int		ft_string_size(char *str)
 	return (i);
 }
 
-void	create_name_string(char *str)
+void	create_name_string(char *file_name_to_open, char *data_to_be_written)
 {
-	int len;
-	int fd;
-	char *tmp;
-	char *cor;
-	char *res;
+	int len; 	// len till '.';
+	int fd; 	// file descriptor;
+	char *tmp; 	// buf;
+	char *res; 	// string after join;
 
-	cor = ".cor";
-	len = ft_string_size(str);
+	len = ft_string_size(file_name_to_open);
 	tmp = ft_strnew(len);
-	ft_strncpy(tmp, str, len);
-	res = ft_strjoin(tmp, cor);
+	ft_strncpy(tmp, file_name_to_open, len);
+	res = ft_strjoin(tmp, ".cor");
 	free(tmp);
 
-	char *data = "123456";
 	fd = open(res, O_WRONLY | O_CREAT | O_EXCL, 0777);
 
-	write(fd, data, ft_strlen(data));
+	write(fd, data_to_be_written, ft_strlen(data_to_be_written));
+	
 	close(fd);
 	free(res);
 }
@@ -51,7 +49,7 @@ int		main(int argc, char **argv)
 {
 	(void)argc;	
 
-	create_name_string(argv[1]);
+	create_name_string(argv[1], "12345");
 
 	system("leaks -q corewar");
 }
