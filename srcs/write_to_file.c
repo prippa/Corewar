@@ -23,42 +23,40 @@ int		ft_string_size(char *str)
 	return (i);
 }
 
-char	*create_name_string(char *str)
+void	create_name_string(char *str)
 {
 	int len;
-	char *tmp = NULL;
-	char *cor = ".cor";
-	char *res = NULL;
+	char *tmp;
+	char *cor;
+	char *res;
 
-	// ft_string size to one func;
+	cor = ".cor";
 	len = ft_string_size(str);
-	ft_printf("len->%d\n", len);
-
-	// allocate memory for the name and .cor (4 symbols);
 	tmp = ft_strnew(len);
-	// copy to string till '.'
 	ft_strncpy(tmp, str, len);
-	// join string a .cor;
 	res = ft_strjoin(tmp, cor);
 
 	free(tmp);
 
-	return (res);
+	int fd = open(res, O_WRONLY | O_CREAT | O_EXCL, 0777);
+
+	write(fd, "Hello world", ft_strlen("Hello_world"));
+
+	close(fd);
+
+	free(res);
+
 }
 
 
 int		main(int argc, char **argv)
 {
 	(void)argc;	
-	ft_printf("%s\n", "check");
 
-	char *name = create_name_string(argv[1]);
+	create_name_string(argv[1]);
 
-	ft_printf("name for the file->%s\n", name);
 
-	int fd = open(name, O_WRONLY | O_CREAT | O_EXCL);
-
-	close(fd);
+	
 
 	system("leaks -q corewar");
 }
