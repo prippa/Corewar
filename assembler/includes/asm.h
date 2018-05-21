@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:21:21 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/17 15:13:11 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/21 15:44:11 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ typedef struct			s_command
 {
 	int					cmd;
 	int					bit;
+	int					val;
+	int					dcb;
 	char				*cod;
-	struct s_command	*next;
 }						t_command;
 
 typedef struct			s_label
 {
 	char				*name;
-	int					bit;
 	t_command			*cmd;
+	int					bit;
 	struct s_label		*next;
 }						t_label;
 
@@ -36,6 +37,7 @@ typedef struct			s_asm
 {
 	int					x;
 	int					y;
+	int					bit;
 	header_t			hd;
 	t_label				*lb;
 }						t_asm;

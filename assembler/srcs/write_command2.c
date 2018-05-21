@@ -6,11 +6,16 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 11:43:00 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/17 16:04:02 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/21 14:05:56 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+void			t_check(char *s, t_asm *am, t_label *lb)
+{
+	
+}
 
 static void		write_cod8(char *s, t_asm *am, char *cmd, t_label *lb)
 {

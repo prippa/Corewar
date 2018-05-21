@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 11:39:41 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/17 16:50:44 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/21 14:02:22 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void			write_cod(char *s, t_asm *am, char *cmd, t_label *lb)
 		write_cod2(s, am, i, lb);
 	else
 	{
-		if (s[am->x] == ':' || (s[am->x] > 47 && s[am->x] < 58) || s[am->x] == 'r')
+		if (s[am->x] == ':' || ft_isdigit(s[am->x]) || s[am->x] == 'r')
 			errors_mans(am, s, 1, tran_str(i));
 		if ((s[am->x] == ';' || s[am->x] == '#' || !s[am->x]) && (am->x = ft_strlen(s)))
 			errors_man(am, s, 5);

@@ -6,30 +6,11 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:06:25 by vgladush          #+#    #+#             */
-/*   Updated: 2018/04/23 19:13:21 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/21 14:14:35 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-// static void	name_cor(char *nm, char *s)
-// {
-// 	char	*name;
-// 	int		i;
-
-// 	i = ft_strlen(nm) - 1;
-// 	while (--i && (nm[i] != '.' || nm[i] != '/'))
-// 		;
-// 	name = ft_strnew(i);
-// 	while (i--)
-// 		name[i] = nm[i];
-// 	name = ft_joinfree(name, ".cor", 1);
-// 	ft_printf("Writing output program to %s\n", name);
-// 	name = ft_joinfree(s, name, 3);
-// 	system(name);
-// 	free(name);
-// }
-
 
 static void	crt_nm_cmt(t_asm *am, char *s, int i)
 {

@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 13:58:44 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/17 15:14:07 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/21 14:45:27 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	errors_sec(t_asm *am, char *s, int o, int i)
 	if (o == 4)
 	{
 		ft_printf("Syntax error at token [TOKEN][%.3d:001] LABEL \"", am->y);
-		while (s[i] && s[i] != ' ' && s[i] != '\t')
+		while (s[i] && ft_strchr(LABEL_CHARS, s[i]))
 			write(1, s + i++, 1);
 		write(1, "\"\n", 2);
 	}

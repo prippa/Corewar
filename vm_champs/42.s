@@ -3,14 +3,10 @@
   ;asfasf
 .comment		 "nner ProgramJust a basic Winner Program"   #sdfdasd
 
-entree:live	%42		;      j afsasfafs asdfasdg fsddf ;asdf
-#
-;
-                        ld	%0, r5
-ld	%0, r5
-	zjmp	%:bite
+entree: 
+	zjmp	%15
 
-tir:	sti	r1,%:tirb,%1
+tir:	sti	r1,  %:tirb,%1
 	ld	%2304,r10
 	ld	%1,r5
 	ld	%0,r11
@@ -24,7 +20,7 @@ tirf:	live	%42
 	ld	%0,r11
 	fork	%:tirvd
 	live	%42
-	sti	r10,%-510,%0
+	sti	r10,r10,r0
 	sti	r10,%-404,%0
 	sti	r10,%-303,%0
 	sti	r10,%-202,%0
@@ -46,7 +42,7 @@ tirb:	live	%1
 	zjmp	%:tirb
 	zjmp	%:infi
 
-p32deb:	zjmp	%0
+p32deb:	zjmp	%:p32deb
 	zjmp	%0
 	zjmp	%0
 	zjmp	%0
