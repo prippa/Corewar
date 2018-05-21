@@ -51,10 +51,14 @@ int		main(int argc, char **argv)
 {
 	(void)argc;	
 	ft_printf("%s\n", "check");
+
 	char *name = create_name_string(argv[1]);
+
 	ft_printf("name for the file->%s\n", name);
 
-	// int fd = open(name, O_WRONLY | O_CREAT | O_EXCL);
+	int fd = open(name, O_WRONLY | O_CREAT | O_EXCL);
+
+	close(fd);
 
 	system("leaks -q corewar");
 }
