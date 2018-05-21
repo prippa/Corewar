@@ -49,7 +49,7 @@ void	create_name_string(char *file_name_to_open, char *data_to_be_written)
 	free(res);
 }
 
-void	create_name_struct(char *file_name_to_open, t_toto sample)
+void	create_name_struct(char *file_name_to_open, t_toto *sample)
 {
 	int len; 	// len till '.';
 	int fd; 	// file descriptor;
@@ -64,9 +64,14 @@ void	create_name_struct(char *file_name_to_open, t_toto sample)
 
 	fd = open(res, O_WRONLY | O_CREAT, 0777);
 
-	write(fd, &sample, 5); // can be int value;
+	write(fd, sample, 5 + sizeof(sample));
 
 	close(fd);
+
+
+
+
+
 	free(res);
 }
 
@@ -79,7 +84,7 @@ int		main(int argc, char **argv)
 
 	sample.str = ft_strdup("12345");
 
-	create_name_struct(argv[1], sample);
+	create_name_struct(argv[1], &sample);
 
 	system("leaks -q corewar");
 }
