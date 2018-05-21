@@ -35,9 +35,9 @@ char	*create_name_string(char *str)
 
 	// allocate memory for the name and .cor (4 symbols);
 	tmp = ft_strnew(len);
-
+	// copy to string till '.'
 	ft_strncpy(tmp, str, len);
-
+	// join string a .cor;
 	res = ft_strjoin(tmp, cor);
 
 	free(tmp);
@@ -46,16 +46,12 @@ char	*create_name_string(char *str)
 }
 
 
-int		main(void)
+int		main(int argc, char **argv)
 {
-	char str[100] = "asdfasdfasdfasdfsdasdasdswerwerwe.s";
-	char *name = create_name_string(str);
-
-	free(name);
+	(void)argc;
+	char *name = create_name_string(argv[1]);
 
 	ft_printf("name for the file->%s\n", name);
-
-
 
 	system("leaks -q corewar");
 }
