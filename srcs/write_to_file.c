@@ -95,11 +95,12 @@ void	create_name_struct(char *file_name_to_open, t_toto *sample)
 	res = ft_strjoin(tmp, ".cor");
 	free(tmp);
 
-	fd = open(res, O_WRONLY | O_CREAT, 0777);
+	fd = open(res, O_WRONLY | O_CREAT, 0777); //current position of the |;
 
 	ft_printf("%d\n", sample->x);
 
-	// sample->x = reverseBits(sample->x);
+
+	// hex = reverseBits(sample->x);
 	
 	ft_printf("%d\n", sample->x);
 
