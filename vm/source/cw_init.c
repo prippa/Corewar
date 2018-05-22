@@ -4,8 +4,7 @@ struct s_corewar *g_cw;
 
 static void	cw_parse_data_init(t_parse_data *pd)
 {
-	pd->num = 0;
-	pd->name = NULL;
+	pd->champs = NULL;
 }
 
 void		cw_init(void)

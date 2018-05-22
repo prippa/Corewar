@@ -2,7 +2,7 @@
 
 static void	cw_parse_data_free(t_parse_data *pd)
 {
-	ft_strdel(&pd->name);
+	t_champ_free(&pd->champs);
 }
 
 void		cw_free(void)

@@ -23,18 +23,23 @@ DIR_FPF_INC	=	$(DIR_LIB)includes/
 DIR_VM_INC	=	./includes/
 DIR_VM		=	./source/
 DIR_PARSER	=	./source/parser/
+DIR_LIST_MP	=	./source/list_manipulations/
 DIR_OBJ		= 	./obj/
 
 HEAD_VM		=	corewar.h define.h function.h struct.h
 
 C_VM		=	main.c cw_init.c cw_free.c cw_exit.c
 
-C_PARSER	=	cw_parser.c
+C_PARSER	=	cw_parser.c cw_parse_args.c
+
+C_LIST_MP	=	t_champ.c
 
 
 OBJ_VM 		= 	$(C_VM:.c=.o)
 OBJ_PARSER	= 	$(C_PARSER:.c=.o)
-OBJ 		= 	$(addprefix $(DIR_OBJ), $(OBJ_VM) $(OBJ_PARSER))
+OBJ_LIST_MP	= 	$(C_LIST_MP:.c=.o)
+
+OBJ 		= 	$(addprefix $(DIR_OBJ), $(OBJ_VM) $(OBJ_PARSER) $(OBJ_LIST_MP))
 INC 		= 	$(addprefix -I, $(DIR_VM_INC) $(DIR_LIB_INC) $(DIR_FPF_INC))
 INC_VM 		= 	$(addprefix $(DIR_VM_INC), $(HEAD_VM))
 
@@ -59,6 +64,11 @@ $(DIR_OBJ)%.o: $(DIR_VM)%.c $(INC_VM)
 
 #---parser---
 $(DIR_OBJ)%.o: $(DIR_PARSER)%.c $(INC_VM)
+	@$(CC) $(FLAGS) $(INC) -c -o $@ $<
+	@echo "Linking" [ $< ]
+
+#---list_manipulations---
+$(DIR_OBJ)%.o: $(DIR_LIST_MP)%.c $(INC_VM)
 	@$(CC) $(FLAGS) $(INC) -c -o $@ $<
 	@echo "Linking" [ $< ]
 #---------------------------------------------------------------

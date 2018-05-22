@@ -20,6 +20,18 @@ void		cw_init(void);
 
 void		cw_free(void);
 
-void		cw_parser(int argc, char **argv);
+void		cw_parse_args(int argc, char **argv);
+void		cw_parser(void);
+
+/*
+** List Manipulations
+*/
+
+void		t_champ_add(t_champ **champs);
+void		t_champ_free(t_champ **champs);
+
+/*
+**
+*/
 
 #endif
