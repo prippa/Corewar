@@ -115,10 +115,12 @@ void	create_name_struct(char *file_name_to_open, t_toto *sample)
 	free(res);
 }
 
-void decToHexa(int n)
+void decToHexa(unsigned int n)
 {   
     // char array to store hexadecimal number
-    char hexaDeciNum[100];
+    char hexaDeciNum[8];
+
+    ft_bzero(hexaDeciNum, 8);
      
     // counter for hexadecimal number array
     int i = 0;
@@ -146,8 +148,12 @@ void decToHexa(int n)
     }
      
     // printing hexadecimal number array in reverse order
-    for(int j=i-1; j>=0; j--)
-       ft_printf("%c", hexaDeciNum[j]);
+    int j = 0;
+    while (j < 8)
+       ft_printf("%c", hexaDeciNum[j++]);
+
+
+   ft_printf("\n");
 }
 
 int		main(int argc, char **argv)
@@ -161,7 +167,7 @@ int		main(int argc, char **argv)
 	ft_bzero(sample.str, sizeof(sample.str)); //
 	ft_strcpy(sample.str, "abcde");
 
-	sample.x = 2147483647; //reverse bits;
+	sample.x = 7; //reverse bits;
 
 	decToHexa(sample.x);
 
