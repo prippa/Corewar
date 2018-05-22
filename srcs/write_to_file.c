@@ -91,9 +91,9 @@ char	*dec_to_hexa(unsigned int n)
 	buf = ft_strnew(8);
 	init(buf);
 	ft_write_hex(buf, hexadecimal);
-	ft_printf("buf before reverse -> %s\n", buf);
+	// ft_printf("buf before reverse -> %s\n", buf);
 	ft_reverse(buf);
-	ft_printf("buf after  reverse -> %s\n", buf);
+	// ft_printf("buf after  reverse -> %s\n", buf);
 	return (buf);
 }
 
