@@ -95,7 +95,7 @@ void	create_name_struct(char *file_name_to_open, t_toto *sample)
 	res = ft_strjoin(tmp, ".cor");
 	free(tmp);
 
-	fd = open(res, O_WRONLY | O_CREAT, 0777); //current position of the |;
+	fd = open(res, O_WRONLY | O_CREAT | O_TRUNC, 0777); //current position of the |;
 
 	ft_printf("%d\n", sample->x);
 
@@ -131,7 +131,7 @@ int		main(int argc, char **argv)
 
 	sample.x = 7; //reverse bits;
 
-
+	ft_printf("%d\n", reversebits(sample.x));
 
 	// ft_printf("sizeof struct in main-> %d\n", sizeof(sample));
 
