@@ -39,7 +39,7 @@ int		ft_string_size(char *str)
 	int i;
 
 	i = 0;
-	while (str[i] && str[i] != '.')
+	while (str[i] && str[i] != '.') // / / / / /.s
 		i++;
 	return (i);
 }
@@ -65,6 +65,23 @@ void	create_name_string(char *file_name_to_open, char *data_to_be_written)
 	free(res);
 }
 
+unsigned int reverseBits(unsigned int num)
+{
+    unsigned int count = sizeof(num) * 8 - 1;
+    unsigned int reverse_num = num;
+     
+    num >>= 1; 
+    while(num)
+    {
+       reverse_num <<= 1;       
+       reverse_num |= num & 1;
+       num >>= 1;
+       count--;
+    }
+    reverse_num <<= count;
+    return reverse_num;
+}
+
 void	create_name_struct(char *file_name_to_open, t_toto *sample)
 {
 	int len; 	// len till '.';
@@ -80,7 +97,13 @@ void	create_name_struct(char *file_name_to_open, t_toto *sample)
 
 	fd = open(res, O_WRONLY | O_CREAT, 0777);
 
-	write(fd, sample, sizeof(sample->str) +sizeof(sample->x));
+	ft_printf("%d\n", sample->x);
+
+	// sample->x = reverseBits(sample->x);
+	
+	ft_printf("%d\n", sample->x);
+
+	write(fd, sample, sizeof(sample->str) + sizeof(sample->x));
 
 	// ft_printf("sizeof struct in func -> %d\n", sizeof(sample->str) + sizeof(sample->x));
 
@@ -105,7 +128,7 @@ int		main(int argc, char **argv)
 	ft_bzero(sample.str, sizeof(sample.str)); //
 	ft_strcpy(sample.str, "abcde");
 
-	sample.x = 12345; //reverse bits;
+	sample.x = 7; //reverse bits;
 
 
 
