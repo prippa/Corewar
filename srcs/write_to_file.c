@@ -103,6 +103,22 @@ void init(char *str)
     	str[a++] = '0';
 }
 
+void	ft_reverse(char *str)
+{
+	char buf[3];
+	ft_bzero(buf, 3);
+	// buf[2] = '\0';
+
+	ft_strncpy(buf, &str[0], 2);
+	ft_strncpy(&str[0], &str[6], 2);
+	ft_strncpy(&str[6], buf, 2);
+
+
+	ft_strncpy(buf, &str[2], 2);
+	ft_strncpy(&str[2], &str[4], 2);
+	ft_strncpy(&str[4], buf, 2);
+}
+
 char *decToHexa(unsigned int n)
 {   
     int i;
@@ -127,6 +143,7 @@ char *decToHexa(unsigned int n)
 	init(buf);
 
     ft_write_hex(buf, hexadecimal);
+    ft_reverse(buf);
     //reverse; here
     return (buf);
 }
@@ -175,19 +192,16 @@ int		main(int argc, char **argv)
 
 	t_toto sample;
 
-	ft_bzero(sample.str, sizeof(sample.str)); //
+	ft_bzero(sample.str, sizeof(sample.str));
 	ft_strcpy(sample.str, "abcde");
 	
 
 
-	sample.x = 4093706240;
+	sample.x = 654;
 
 	char *test = decToHexa(sample.x);
 
 	sample.x = hexadecimalToDecimal(test);
-
-
-
 
 	create_name_struct(argv[1], &sample);
 
