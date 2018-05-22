@@ -19,21 +19,6 @@ typedef struct s_toto
 	char str[5];
 }				t_toto;
 
-int reversebits(int num)
-{
-    int NO_OF_BITS = sizeof(num) * 8;
-    int reverse_num = 0, i, temp;
- 
-    for (i = 0; i < NO_OF_BITS; i++)
-    {
-        temp = (num & (1 << i));
-        if(temp)
-            reverse_num |= (1 << ((NO_OF_BITS - 1) - i));
-    }
-  
-    return reverse_num;
-}
-
 int		ft_string_size(char *str)
 {
 	int i;
@@ -65,23 +50,6 @@ void	create_name_string(char *file_name_to_open, char *data_to_be_written)
 	free(res);
 }
 
-unsigned int reverseBits(unsigned int num)
-{
-    unsigned int count = sizeof(num) * 8 - 1;
-    unsigned int reverse_num = num;
-     
-    num >>= 1; 
-    while(num)
-    {
-       reverse_num <<= 1;       
-       reverse_num |= num & 1;
-       num >>= 1;
-       count--;
-    }
-    reverse_num <<= count;
-    return reverse_num;
-}
-
 void	create_name_struct(char *file_name_to_open, t_toto *sample)
 {
 	int len; 	// len till '.';
@@ -110,56 +78,22 @@ void	create_name_struct(char *file_name_to_open, t_toto *sample)
 
 
 	// ft_printf("sizeof struct in func -> %d\n", sizeof(sample->str) + sizeof(sample->x));
-
 	close(fd);
-
-
-
-
-
 	free(res);
 }
-
-void rvereseArray(char *arr, int start, int end)
-{
-    while (start < end)
-    {
-        char temp = arr[start]; 
-        arr[start] = arr[end];
-        arr[end] = temp;
-        start++;
-        end--;
-    } 
-}  
-
-// int 	len(char *str)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while (str[i] != '\0')
-// 	{
-// 		i++;
-// 	}
-// 	return(i);
-// }
 
 void	ft_write_hex(char *to, char *what)
 {
 	int i;
 	int j;
 
-	// ft_putstr(what);
 	if (ft_strlen(what) == 8)
 		i = 0;
 	else
 		i = 8 - ft_strlen(what) -1;
 	j = ft_strlen(what) -1;
-
 	while (to[i] != '\0')
-	{
 		to[i++] = what[j--];
-	}
 }
 
 void decToHexa(unsigned int n)
@@ -167,35 +101,26 @@ void decToHexa(unsigned int n)
     int i;
     int temp;
     char hexadecimal[100];
+    char *buf;
+    size_t a;
 
     ft_bzero(hexadecimal, 100);
-
     i = 0;
+    a = 0;
     while(n)
     {   
-         
         temp = n % 16;
         if(temp < 10)
-        {
-            hexadecimal[i] = temp + 48;
-            i++;
-        }
+            hexadecimal[i++] = temp + 48;
         else
-        {
-            hexadecimal[i] = temp + 55;
-            i++;
-        }
+            hexadecimal[i++] = temp + 55;
         n = n/16;
     }
-    char *buf = ft_strnew(8);
-    size_t a = 0;
+    buf = ft_strnew(8);
     while (a < 8)
     	buf[a++] = '0';
-    ft_printf("%s\n", hexadecimal);
-
     ft_write_hex(buf, hexadecimal);
-
-    ft_printf("%s\n", buf);
+    ft_printf("%s\n", buf); // del;
 }
 
 int		main(int argc, char **argv)
