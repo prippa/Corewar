@@ -6,19 +6,11 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 13:58:44 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/21 14:45:27 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/22 13:28:16 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-void		errors_mans(t_asm *am, char *s, int o, char *cmd)
-{
-	if (o == 1)
-		ft_printf("Invalid parameter 0 type indirect for instruction %s", cmd);
-	free(s);
-	exit(1);
-}
 
 static void	errors_sec(t_asm *am, char *s, int o, int i)
 {
