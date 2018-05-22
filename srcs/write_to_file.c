@@ -161,5 +161,5 @@ int		main(int argc, char **argv)
 	sample.magic = 15369203;
 	sample.prog_size = 23;
 	write_to_struct(argv[1], &sample);
-	system("leaks -q asm");
+	// system("leaks -q asm");
 }
