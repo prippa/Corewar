@@ -150,15 +150,13 @@ void	ft_write_hex(char *to, char *what)
 	int j;
 
 	// ft_putstr(what);
-	i = 8 - ft_strlen(what);
-	ft_printf("int hexadecimal strlen->%d\n", i);
+	if (ft_strlen(what) == 8)
+		i = 0;
+	else
+		i = 8 - ft_strlen(what) -1;
 	j = ft_strlen(what) -1;
-	ft_printf("int buf strlen->%d\n", j);
-	ft_printf("to->%s\n", to);
-	ft_printf("to[i]->%c\n", to[i]);
-	ft_printf("what[j]->%c\n", to[j]);
 
-	while (to[i -1] != '\0')
+	while (to[i] != '\0')
 	{
 		to[i++] = what[j--];
 	}
@@ -168,11 +166,12 @@ void decToHexa(unsigned int n)
 {   
     int i;
     int temp;
-    char hexadecimal[8];
-    ft_bzero(hexadecimal, 8);
+    char hexadecimal[100];
+
+    ft_bzero(hexadecimal, 100);
 
     i = 0;
-    while(n!=0)
+    while(n)
     {   
          
         temp = n % 16;
@@ -189,30 +188,14 @@ void decToHexa(unsigned int n)
         n = n/16;
     }
     char *buf = ft_strnew(8);
-
     size_t a = 0;
-
     while (a < 8)
     	buf[a++] = '0';
-
-    // ft_printf("i->%d\n", i);
-
-    // ft_strcpy(&buf[8 -i], hexadecimal);
-
-    ft_printf("inverted hex->%s\n", hexadecimal);
-    ft_printf("%s\n", buf);
     ft_printf("%s\n", hexadecimal);
-
 
     ft_write_hex(buf, hexadecimal);
 
     ft_printf("%s\n", buf);
-
-
-    // rvereseArray(buf, 0, ft_strlen(buf));
-
-
-   ft_printf("\n");
 }
 
 int		main(int argc, char **argv)
@@ -221,22 +204,15 @@ int		main(int argc, char **argv)
 
 	t_toto sample;
 
-	// sample.str = ft_strdup("12345");
+
 
 	ft_bzero(sample.str, sizeof(sample.str)); //
 	ft_strcpy(sample.str, "abcde");
 
-	sample.x = 123456; //reverse bits;
+	sample.x = 7000; //reverse bits;
 
 	decToHexa(sample.x);
 
-	// unsigned int magic;
-	// unsigned int prog_size;
-
-
-	// ft_printf("%d\n", reversebits(sample.x));
-
-	// ft_printf("sizeof struct in main-> %d\n", sizeof(sample));
 
 	create_name_struct(argv[1], &sample);
 
