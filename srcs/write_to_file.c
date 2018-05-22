@@ -15,9 +15,24 @@
 
 typedef struct s_toto
 {
-	char *str;
 	int x;
+	char str[5];
 }				t_toto;
+
+int reversebits(int num)
+{
+    int NO_OF_BITS = sizeof(num) * 8;
+    int reverse_num = 0, i, temp;
+ 
+    for (i = 0; i < NO_OF_BITS; i++)
+    {
+        temp = (num & (1 << i));
+        if(temp)
+            reverse_num |= (1 << ((NO_OF_BITS - 1) - i));
+    }
+  
+    return reverse_num;
+}
 
 int		ft_string_size(char *str)
 {
@@ -65,7 +80,7 @@ void	create_name_struct(char *file_name_to_open, t_toto *sample)
 
 	fd = open(res, O_WRONLY | O_CREAT, 0777);
 
-	write(fd, sample, 5);
+	write(fd, sample, sizeof(sample->str) +sizeof(sample->x));
 
 	// ft_printf("sizeof struct in func -> %d\n", sizeof(sample->str) + sizeof(sample->x));
 
@@ -85,12 +100,16 @@ int		main(int argc, char **argv)
 
 	t_toto sample;
 
-	sample.str = ft_strdup("12345");
-	sample.x = 7;
+	// sample.str = ft_strdup("12345");
+
+	ft_bzero(sample.str, sizeof(sample.str)); //
+	ft_strcpy(sample.str, "abcde");
+
+	sample.x = 12345; //reverse bits;
+
 
 
 	// ft_printf("sizeof struct in main-> %d\n", sizeof(sample));
-
 
 	create_name_struct(argv[1], &sample);
 
