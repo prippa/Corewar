@@ -13,10 +13,19 @@
 #include "../libft/ft_printf.h"
 #include <fcntl.h>
 
+// unsigned int		magic;
+//   char				prog_name[PROG_NAME_LENGTH + 1];
+//   unsigned int		prog_size; //2215
+//   char				comment[COMMENT_LENGTH + 1];
+
+
 typedef struct		s_toto
 {
-	unsigned int	x;
-	char			str[5];
+	unsigned int	magic;
+	char			prog_name[128 +1];
+ 	unsigned int	prog_size; //2215
+
+	char			comment[2048 + 1];
 }					t_toto;
 
 int		ft_string_size(char *str)
@@ -88,15 +97,18 @@ char	*dec_to_hexa(unsigned int n)
 	buf = ft_strnew(8);
 	init(buf);
 	ft_write_hex(buf, hexadecimal);
+	ft_printf("buf before reverse -> %s\n", buf);
 	ft_reverse(buf);
+	ft_printf("buf after  reverse -> %s\n", buf);
+
 	return (buf);
 }
 
-int		hexadecimal_to_decimal(char *hexval)
+unsigned int		hexadecimal_to_decimal(char *hexval)
 {
 	int len;
-	int base;
-	int dec_val;
+	unsigned int base;
+	unsigned int dec_val;
 	int i;
 	char *str;
 
@@ -134,9 +146,16 @@ void	write_to_struct(char *file_name_to_open, t_toto *sample)
 	ft_strncpy(tmp, file_name_to_open, len);
 	res = ft_strjoin(tmp, ".cor");
 	free(tmp);
-	fd = open(res, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	sample->x = hexadecimal_to_decimal(dec_to_hexa(sample->x));
-	write(fd, sample, sizeof(sample->str) + sizeof(sample->x));
+	fd = open(res, O_WRONLY | O_CREAT | O_TRUNC, 0600);
+	sample->magic = hexadecimal_to_decimal(dec_to_hexa(sample->magic));
+	sample->prog_size = hexadecimal_to_decimal(dec_to_hexa(sample->prog_size));
+	ft_printf("unsigned int ->%u\n", sample->magic);
+
+	ft_printf("str size -> %d\n", sizeof(sample->prog_name));
+	ft_printf("unsigned int size -> %d\n", sizeof(sample->magic));
+	// ft_printf("size of struct -> %d\n", sizeof(sample));
+
+	write(fd, sample, sizeof(sample->magic) + sizeof(sample->prog_name) + sizeof(sample->prog_size) +sizeof(sample->comment));
 	close(fd);
 	free(res);
 }
@@ -146,9 +165,15 @@ int		main(int argc, char **argv)
 	t_toto	sample;
 
 	(void)argc;
-	ft_bzero(sample.str, sizeof(sample.str));
-	ft_strcpy(sample.str, "abcde");
-	sample.x = 429496729503;
+	ft_bzero(sample.prog_name, sizeof(sample.prog_name));
+	ft_strcpy(sample.prog_name, "zork");
+
+	ft_bzero(sample.comment, sizeof(sample.comment));
+	ft_strcpy(sample.comment, "just a basic living prog");
+
+	sample.magic = 15369203;
+	sample.prog_size = 23;
+
 	write_to_struct(argv[1], &sample);
 	system("leaks -q asm");
 }
