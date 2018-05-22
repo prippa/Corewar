@@ -17,7 +17,8 @@ typedef struct		s_toto
 {
 	unsigned int	magic;
 	char			prog_name[128 + 1];
-	unsigned int	prog_size; // size of the commands;
+	unsigned int	prog_size;
+	// size of the commands of program itself (not the whole file);
 	char			comment[2048 + 1];
 }					t_toto;
 
@@ -139,9 +140,9 @@ void	write_to_struct(char *file_name_to_open, t_toto *sample)
 	fd = open(res, O_WRONLY | O_CREAT | O_TRUNC, 0600);
 	sample->magic = hexadecimal_to_decimal(dec_to_hexa(sample->magic));
 	sample->prog_size = hexadecimal_to_decimal(dec_to_hexa(sample->prog_size));
-	ft_printf("unsigned int ->%u\n", sample->magic);
-	ft_printf("str size -> %d\n", sizeof(sample->prog_name));
-	ft_printf("unsigned int size -> %d\n", sizeof(sample->magic));
+	// ft_printf("unsigned int ->%u\n", sample->magic);
+	// ft_printf("str size -> %d\n", sizeof(sample->prog_name));
+	// ft_printf("unsigned int size -> %d\n", sizeof(sample->magic));
 	write(fd, sample, sizeof(sample->magic) + sizeof(sample->prog_name)
 			+ sizeof(sample->prog_size) + sizeof(sample->comment));
 	close(fd);
