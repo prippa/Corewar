@@ -13,18 +13,11 @@
 #include "../libft/ft_printf.h"
 #include <fcntl.h>
 
-// unsigned int		magic;
-//   char				prog_name[PROG_NAME_LENGTH + 1];
-//   unsigned int		prog_size; //2215
-//   char				comment[COMMENT_LENGTH + 1];
-
-
 typedef struct		s_toto
 {
 	unsigned int	magic;
-	char			prog_name[128 +1];
- 	unsigned int	prog_size; //2215
-
+	char			prog_name[128 + 1];
+	unsigned int	prog_size; // size of the commands;
 	char			comment[2048 + 1];
 }					t_toto;
 
@@ -100,22 +93,19 @@ char	*dec_to_hexa(unsigned int n)
 	ft_printf("buf before reverse -> %s\n", buf);
 	ft_reverse(buf);
 	ft_printf("buf after  reverse -> %s\n", buf);
-
 	return (buf);
 }
 
 unsigned int		hexadecimal_to_decimal(char *hexval)
 {
-	int len;
-	unsigned int base;
-	unsigned int dec_val;
-	int i;
-	char *str;
+	unsigned int	base;
+	unsigned int	dec_val;
+	int				i;
+	char			*str;
 
-	len = 8;
 	base = 1;
 	dec_val = 0;
-	i = len - 1;
+	i = 7;
 	str = hexval;
 	while (i >= 0)
 	{
@@ -150,12 +140,10 @@ void	write_to_struct(char *file_name_to_open, t_toto *sample)
 	sample->magic = hexadecimal_to_decimal(dec_to_hexa(sample->magic));
 	sample->prog_size = hexadecimal_to_decimal(dec_to_hexa(sample->prog_size));
 	ft_printf("unsigned int ->%u\n", sample->magic);
-
 	ft_printf("str size -> %d\n", sizeof(sample->prog_name));
 	ft_printf("unsigned int size -> %d\n", sizeof(sample->magic));
-	// ft_printf("size of struct -> %d\n", sizeof(sample));
-
-	write(fd, sample, sizeof(sample->magic) + sizeof(sample->prog_name) + sizeof(sample->prog_size) +sizeof(sample->comment));
+	write(fd, sample, sizeof(sample->magic) + sizeof(sample->prog_name)
+			+ sizeof(sample->prog_size) + sizeof(sample->comment));
 	close(fd);
 	free(res);
 }
@@ -167,13 +155,10 @@ int		main(int argc, char **argv)
 	(void)argc;
 	ft_bzero(sample.prog_name, sizeof(sample.prog_name));
 	ft_strcpy(sample.prog_name, "zork");
-
 	ft_bzero(sample.comment, sizeof(sample.comment));
 	ft_strcpy(sample.comment, "just a basic living prog");
-
 	sample.magic = 15369203;
 	sample.prog_size = 23;
-
 	write_to_struct(argv[1], &sample);
 	system("leaks -q asm");
 }
