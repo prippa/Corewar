@@ -16,6 +16,7 @@
 typedef struct s_toto
 {
 	char *str;
+	int x;
 }				t_toto;
 
 int		ft_string_size(char *str)
@@ -64,7 +65,9 @@ void	create_name_struct(char *file_name_to_open, t_toto *sample)
 
 	fd = open(res, O_WRONLY | O_CREAT, 0777);
 
-	write(fd, sample, 5 + sizeof(sample));
+	write(fd, sample, 5);
+
+	// ft_printf("sizeof struct in func -> %d\n", sizeof(sample->str) + sizeof(sample->x));
 
 	close(fd);
 
@@ -83,6 +86,11 @@ int		main(int argc, char **argv)
 	t_toto sample;
 
 	sample.str = ft_strdup("12345");
+	sample.x = 7;
+
+
+	// ft_printf("sizeof struct in main-> %d\n", sizeof(sample));
+
 
 	create_name_struct(argv[1], &sample);
 
