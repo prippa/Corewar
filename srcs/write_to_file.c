@@ -90,13 +90,20 @@ void	ft_write_hex(char *to, char *what)
 	if (ft_strlen(what) == 8)
 		i = 0;
 	else
-		i = 8 - ft_strlen(what) -1;
-	j = ft_strlen(what) -1;
+		i = 8 - ft_strlen(what);
+	j = ft_strlen(what) - 1;
+
 	while (to[i] != '\0')
 		to[i++] = what[j--];
 }
+void init(char *str)
+{
+	int a = 0;
+	while (a < 8)
+    	str[a++] = '0';
+}
 
-void decToHexa(unsigned int n)
+char *decToHexa(unsigned int n)
 {   
     int i;
     int temp;
@@ -117,10 +124,49 @@ void decToHexa(unsigned int n)
         n = n/16;
     }
     buf = ft_strnew(8);
-    while (a < 8)
-    	buf[a++] = '0';
+	init(buf);
+
     ft_write_hex(buf, hexadecimal);
-    ft_printf("%s\n", buf); // del;
+    //reverse;
+    return (buf);
+}
+
+int hexadecimalToDecimal(char hexVal[])
+{   
+    int len = 8;
+     
+    // Initializing base value to 1, i.e 16^0
+    int base = 1;
+     
+    int dec_val = 0;
+     
+    // Extracting characters as digits from last character
+    for (int i=len-1; i>=0; i--)
+    {   
+        // if character lies in '0'-'9', converting 
+        // it to integral 0-9 by subtracting 48 from
+        // ASCII value.
+        if (hexVal[i]>='0' && hexVal[i]<='9')
+        {
+            dec_val += (hexVal[i] - 48)*base;
+                 
+            // incrementing base by power
+            base = base * 16;
+        }
+ 
+        // if character lies in 'A'-'F' , converting 
+        // it to integral 10 - 15 by subtracting 55 
+        // from ASCII value
+        else if (hexVal[i]>='A' && hexVal[i]<='F')
+        {
+            dec_val += (hexVal[i] - 55)*base;
+         
+            // incrementing base by power
+            base = base*16;
+        }
+    }
+     
+    return dec_val;
 }
 
 int		main(int argc, char **argv)
@@ -129,14 +175,18 @@ int		main(int argc, char **argv)
 
 	t_toto sample;
 
-
-
 	ft_bzero(sample.str, sizeof(sample.str)); //
 	ft_strcpy(sample.str, "abcde");
+	
 
-	sample.x = 7000; //reverse bits;
 
-	decToHexa(sample.x);
+	sample.x = 123456;
+
+	char *test = decToHexa(sample.x);
+
+	sample.x = hexadecimalToDecimal(test);
+
+
 
 
 	create_name_struct(argv[1], &sample);
