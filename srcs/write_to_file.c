@@ -15,7 +15,7 @@
 
 typedef struct s_toto
 {
-	int x;
+	unsigned int x;
 	char str[5];
 }				t_toto;
 
@@ -129,7 +129,11 @@ int		main(int argc, char **argv)
 	ft_bzero(sample.str, sizeof(sample.str)); //
 	ft_strcpy(sample.str, "abcde");
 
-	sample.x = 7; //reverse bits;
+	sample.x = 123456; //reverse bits;
+
+	// unsigned int magic;
+	// unsigned int prog_size;
+
 
 	ft_printf("%d\n", reversebits(sample.x));
 
@@ -137,5 +141,5 @@ int		main(int argc, char **argv)
 
 	create_name_struct(argv[1], &sample);
 
-	system("leaks -q corewar");
+	system("leaks -q asm");
 }
