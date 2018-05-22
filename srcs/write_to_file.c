@@ -97,12 +97,10 @@ void	create_name_struct(char *file_name_to_open, t_toto *sample)
 
 	fd = open(res, O_WRONLY | O_CREAT | O_TRUNC, 0777); //current position of the |;
 
-	ft_printf("%d\n", sample->x);
 
 
 	// hex = reverseBits(sample->x);
 	
-	ft_printf("%d\n", sample->x);
 
 	write(fd, sample, sizeof(sample->str) + sizeof(sample->x));
 
@@ -117,6 +115,40 @@ void	create_name_struct(char *file_name_to_open, t_toto *sample)
 	free(res);
 }
 
+void decToHexa(int n)
+{   
+    // char array to store hexadecimal number
+    char hexaDeciNum[100];
+     
+    // counter for hexadecimal number array
+    int i = 0;
+    while(n!=0)
+    {   
+        // temporary variable to store remainder
+        int temp  = 0;
+         
+        // storing remainder in temp variable.
+        temp = n % 16;
+         
+        // check if temp < 10
+        if(temp < 10)
+        {
+            hexaDeciNum[i] = temp + 48;
+            i++;
+        }
+        else
+        {
+            hexaDeciNum[i] = temp + 55;
+            i++;
+        }
+         
+        n = n/16;
+    }
+     
+    // printing hexadecimal number array in reverse order
+    for(int j=i-1; j>=0; j--)
+       ft_printf("%c", hexaDeciNum[j]);
+}
 
 int		main(int argc, char **argv)
 {
@@ -129,13 +161,15 @@ int		main(int argc, char **argv)
 	ft_bzero(sample.str, sizeof(sample.str)); //
 	ft_strcpy(sample.str, "abcde");
 
-	sample.x = 123456; //reverse bits;
+	sample.x = 2147483647; //reverse bits;
+
+	decToHexa(sample.x);
 
 	// unsigned int magic;
 	// unsigned int prog_size;
 
 
-	ft_printf("%d\n", reversebits(sample.x));
+	// ft_printf("%d\n", reversebits(sample.x));
 
 	// ft_printf("sizeof struct in main-> %d\n", sizeof(sample));
 
