@@ -127,7 +127,7 @@ char *decToHexa(unsigned int n)
 	init(buf);
 
     ft_write_hex(buf, hexadecimal);
-    //reverse;
+    //reverse; here
     return (buf);
 }
 
@@ -180,7 +180,7 @@ int		main(int argc, char **argv)
 	
 
 
-	sample.x = 123456;
+	sample.x = 4093706240;
 
 	char *test = decToHexa(sample.x);
 
