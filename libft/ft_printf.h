@@ -15,6 +15,7 @@
 
 # include "libft/libft.h"
 # include <stdarg.h>
+# include <fcntl.h>
 
 /*
 **-------------------------   types   -------------------------

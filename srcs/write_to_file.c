@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../libft/ft_printf.h"
-#include <fcntl.h>
 
 typedef struct		s_toto
 {
