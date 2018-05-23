@@ -34,7 +34,7 @@ int		ft_string_size(char *str)
 		i++;
 		len--;
 	}
-	ft_printf("i -> %d", i);
+	// ft_printf("i -> %d", i);
 	return (i);
 }
 
@@ -138,13 +138,15 @@ int		len_to_copy(char *str)
 
 	i = 0;
 	len = ft_strlen(str) - 1;
-	while (str[len] && str[len] != '.')
+	while (str[len] && str[len] != '.' && str[len] != '/')
 	{
 		i++;
 		len--;
 	}
-	ft_printf("i -> %d", i);
-	
+	// ft_printf("i -> %d\n", i);
+	// ft_printf("len -> %d\n", ft_string_size(str));
+	if (ft_string_size(str) == i)
+		return (0);
 	return (i + 1);
 }
 
@@ -158,8 +160,9 @@ void	write_to_struct(char *file_name, t_toto *sample)
 
 	len = ft_string_size(file_name);
 	copy_start = ft_strlen(file_name) - len;
+	// ft_printf("copy_start -> %d\n", copy_start);
 	tmp = ft_strnew(len - len_to_copy(file_name));
-	ft_printf("%s\n", "Check");
+	// ft_printf("%s\n", "Check");
 	ft_strncpy(tmp, &file_name[copy_start], len - len_to_copy(file_name));
 	res = ft_strjoin(tmp, ".cor");
 	free(tmp);
