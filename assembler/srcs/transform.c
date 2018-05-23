@@ -6,16 +6,19 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 11:45:18 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/17 15:14:43 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/23 21:03:25 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static char		*tran_str2(int i)
+static char		*tran_str2(char i)
 {
 	char		*s;
 
+	s = 0;
+	if (i == 9)
+		s = ft_strdup("zjmp");
 	if (i == 10)
 		s = ft_strdup("ldi");
 	else if (i == 11)
@@ -33,11 +36,12 @@ static char		*tran_str2(int i)
 	return (s);
 }
 
-char			*tran_str(int i)
+char			*tran_str(char i)
 {
 	char		*s;
 
-	if (i > 9)
+	s = 0;
+	if (i > 8)
 		s = tran_str2(i);
 	else if (i == 1)
 		s = ft_strdup("live");
@@ -55,8 +59,6 @@ char			*tran_str(int i)
 		s = ft_strdup("or");
 	else if (i == 8)
 		s = ft_strdup("xor");
-	else if (i == 9)
-		s = ft_strdup("zjmp");
 	return (s);
 }
 
@@ -82,21 +84,18 @@ static int		ch_cmd_sec(char *cmd)
 		return (15);
 	if (!ft_strcmp(cmd, "aff"))
 		return (16);
-	free(cmd);
 	return (0);
 }
 
-int			check_cmd(char *s, int j, int i)
+int			check_cmd(char *s, int j, int i, int l)
 {
-	int		l;
-	char	*cmd;
+	char	cmd[6];
 
-	l = 0;
-	if (!(cmd = ft_strnew(j - i + 1)))
-		return (-1);
+	ft_bzero(cmd, 6);
+	if (j - i > 5)
+		return (0);
 	while (i < j)
 		cmd[l++] = s[i++];
-	l = 0;
 	if (!ft_strcmp(cmd, "live"))
 		l = 1;
 	else if (!ft_strcmp(cmd, "ld"))
@@ -109,8 +108,7 @@ int			check_cmd(char *s, int j, int i)
 		l = 5;
 	else if (!ft_strcmp(cmd, "and"))
 		l = 6;
-	else if (!(l = ch_cmd_sec(cmd)))
-		return (0);
-	free(cmd);
+	else
+		return (ch_cmd_sec(cmd));
 	return (l);
 }

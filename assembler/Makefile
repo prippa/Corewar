@@ -6,7 +6,7 @@
 #    By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/16 13:38:18 by vgladush          #+#    #+#              #
-#    Updated: 2018/05/17 13:34:15 by vgladush         ###   ########.fr        #
+#    Updated: 2018/05/23 22:00:26 by vgladush         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ INCL	=	./includes/ ../libft/includes/
 OBJS	=	./obj/
 LB_LK	=	-L ../libft -lft
 
-FUNC	=	asm.c errors.c validator.c write_command.c write_command2.c write_command3.c  transform.c
+FUNC	=	asm.c errors.c validator.c transform.c write_command.c \
+			correct_cmd.c write_command2.c 
 
 OBJCS	=	$(FUNC:.c=.o)
 

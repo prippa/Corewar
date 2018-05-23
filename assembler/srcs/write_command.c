@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 11:39:41 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/22 19:01:05 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/24 00:15:27 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,35 +52,9 @@ static void		write_cod2(char *s, t_asm *am, char cmd, t_label *lb)
 	}
 }
 
-void			t_check(char *s, t_asm *am, t_label *lb)
-{
-	
-}
-
-t_label			find_label(t_label *lb)
-{
-	t_command	*tmp;
-
-	if (lb->cmd)
-	{
-		tmp = lb->cmd;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = (t_command *)malloc(sizeof(t_command));
-		tmp = tmp->next;
-	}
-	else
-	{
-		lb->cmd = (t_command *)malloc(sizeof(t_command));
-		tmp = lb->cmd;
-	}
-	tmp->next = 0;
-	return (tmp);
-}
-
 void			write_cod(char *s, t_asm *am, char cmd, t_label *lb)
 {
-	t_label 	*tmp;
+	t_command 	*tmp;
 
 	while (s[am->x] == ' ' || s[am->x] == '\t')
 		am->x++;
@@ -88,20 +62,15 @@ void			write_cod(char *s, t_asm *am, char cmd, t_label *lb)
 		write_cod2(s, am, cmd, lb);
 	else
 	{
-		if ((s[am->x] == ';' || s[am->x] == '#' || !s[am->x]) && (am->x = ft_strlen(s)))
-			errors_man(am, s, 5); // конец строки не достаточно аргументов
-		if (s[am->x] != '%')
-			errors_man(am, s, 1, tran_str(cmd)); //// не правильный аргумент
-		am->x++;
-		tmp = find_label(lb);
-
-		if (s[am->x] == ':')
-
-		else
-
-
-		while (s[am->x] == ' ' || s[am->x] == '\t')
-			am->x++;
-		if ()
+		if (s[am->x++] != DIRECT_CHAR)
+			bef_error(s, am, cmd, 1);
+		if (!(tmp = find_lb_cmd(lb, am->hd.prog_size)))
+			errors_man(am, s, 10);
+		tmp->codage = 0;
+		tmp->arg1.tp = T_DIR;
+		tmp->arg2 = 0;
+		tmp->arg3 = 0;
+		crt_arg(s, am, &tmp->arg1, cmd);
+		bef_error(s, am, cmd, 0);
 	}
 }
