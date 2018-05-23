@@ -17,7 +17,8 @@ extern struct s_corewar *g_cw;
 
 typedef enum	e_error_numbers
 {
-	MALLOC = 1
+	MALLOC = 1,
+	OPEN_FILE
 }				t_error_numbers;
 
 typedef enum	e_op_code
@@ -40,7 +41,7 @@ typedef enum	e_op_code
 	AFF
 }				t_op_code;
 
-# define FILE_NAME_MAX			255
+# define FILE_NAME_MAX			4096
 
 /*			
 ** op.h defines
