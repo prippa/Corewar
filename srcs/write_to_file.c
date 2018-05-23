@@ -25,10 +25,16 @@ typedef struct		s_toto
 int		ft_string_size(char *str)
 {
 	int i;
+	int len;
 
 	i = 0;
-	while (str[i] && str[i] != '.')
+	len = ft_strlen(str) - 1;
+	while (str[len] && str[len] != '/')
+	{
 		i++;
+		len--;
+	}
+	ft_printf("string size -> %d\n", i);
 	return (i);
 }
 
@@ -134,7 +140,8 @@ void	write_to_struct(char *file_name_to_open, t_toto *sample)
 
 	len = ft_string_size(file_name_to_open);
 	tmp = ft_strnew(len);
-	ft_strncpy(tmp, file_name_to_open, len);
+	ft_printf("file_name_to_open -> %s\n", file_name_to_open);
+	ft_strncpy(tmp, &file_name_to_open[ft_strlen(file_name_to_open) - len], len);
 	res = ft_strjoin(tmp, ".cor");
 	free(tmp);
 	fd = open(res, O_WRONLY | O_CREAT | O_TRUNC, 0600);
