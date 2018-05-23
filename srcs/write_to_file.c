@@ -34,7 +34,7 @@ int		ft_string_size(char *str)
 		i++;
 		len--;
 	}
-	ft_printf("string size -> %d\n", i);
+	ft_printf("i -> %d", i);
 	return (i);
 }
 
@@ -131,17 +131,36 @@ unsigned int		hexadecimal_to_decimal(char *hexval)
 	return (dec_val);
 }
 
-void	write_to_struct(char *file_name_to_open, t_toto *sample)
+int		len_to_copy(char *str)
+{
+	int i;
+	int len;
+
+	i = 0;
+	len = ft_strlen(str) - 1;
+	while (str[len] && str[len] != '.')
+	{
+		i++;
+		len--;
+	}
+	ft_printf("i -> %d", i);
+	
+	return (i + 1);
+}
+
+void	write_to_struct(char *file_name, t_toto *sample)
 {
 	int		len;
 	int		fd;
+	int		copy_start;
 	char	*tmp;
 	char	*res;
 
-	len = ft_string_size(file_name_to_open);
-	tmp = ft_strnew(len);
-	ft_printf("file_name_to_open -> %s\n", file_name_to_open);
-	ft_strncpy(tmp, &file_name_to_open[ft_strlen(file_name_to_open) - len], len);
+	len = ft_string_size(file_name);
+	copy_start = ft_strlen(file_name) - len;
+	tmp = ft_strnew(len - len_to_copy(file_name));
+	ft_printf("%s\n", "Check");
+	ft_strncpy(tmp, &file_name[copy_start], len - len_to_copy(file_name));
 	res = ft_strjoin(tmp, ".cor");
 	free(tmp);
 	fd = open(res, O_WRONLY | O_CREAT | O_TRUNC, 0600);
