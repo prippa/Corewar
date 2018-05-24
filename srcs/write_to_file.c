@@ -156,6 +156,23 @@ void	write_to_struct(char *file_name, t_toto *sample)
 	int		copy_start;
 	char	*tmp;
 	char	*res;
+	void	*ar;
+	unsigned int 	asd;
+
+
+	asd = 1792; // inverted value = 1792;
+
+	// asd = hexadecimal_to_decimal(dec_to_hexa(asd));
+	// ft_printf("%u\n", asd);
+	// short buf = asd;
+	ar = &asd;
+
+	// short x = *(short *)ar;
+
+	// ft_printf("%u\n",x);
+
+
+	// int -> short | char'
 
 	len = ft_string_size(file_name);
 	copy_start = ft_strlen(file_name) - len;
@@ -174,6 +191,9 @@ void	write_to_struct(char *file_name, t_toto *sample)
 	// ft_printf("unsigned int size -> %d\n", sizeof(sample->magic));
 	write(fd, sample, sizeof(sample->magic) + sizeof(sample->prog_name)
 			+ sizeof(sample->prog_size) + sizeof(sample->comment));
+
+	write(fd, (short*)ar, 2);
+
 	close(fd);
 	free(res);
 }
