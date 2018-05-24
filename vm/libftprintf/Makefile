@@ -156,7 +156,8 @@ LIBFT_NAME	=	ft_islow.c 		    \
 				ft_lltoa.c 		    \
 				ft_ulltoa_base.c	\
 				ft_ulltoa.c			\
-				ft_wstr_to_str.c
+				ft_wstr_to_str.c	\
+				ft_memrev.c
 
 all: $(NAME)
 

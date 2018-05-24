@@ -17,17 +17,11 @@
 ** Parsing champions part (data)
 */
 
-typedef struct		header_s
-{
-  unsigned int		magic;
-  char				prog_name[PROG_NAME_LENGTH + 1];
-  unsigned int		prog_size;
-  char				comment[COMMENT_LENGTH + 1];
-}					header_t;
-
 typedef struct		s_champ
 {
-	header_t		header;
+	char			prog_name[PROG_NAME_LENGTH + 1];
+	unsigned int	prog_size;
+	char			comment[COMMENT_LENGTH + 1];
 	char			file_name[FILE_NAME_MAX + 1];
 	int				fd;
 	struct s_champ	*next;
@@ -39,7 +33,7 @@ typedef struct		s_parse_data
 }					t_parse_data;
 
 /*
-**
+** End
 */
 
 typedef struct		s_corewar

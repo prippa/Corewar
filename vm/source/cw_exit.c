@@ -9,7 +9,13 @@ void	cw_perror_exit(char *message, int error_number)
 
 void	cw_exit(char *message, int error_number)
 {
-	ft_dprintf(2, "%s\n", message);
+	if (error_number == HEADER)
+		ft_dprintf(2, "ERROR: File [%s] has an invalid header\n", message);
+	else if (error_number == PROG_NAME)
+		ft_dprintf(2, "ERROR: File [%s] prog name lenght is not equally \
+to PROG_NAME_LENGTH\n", message);
+	else
+		ft_dprintf(2, "%s\n", message);
 	cw_free();
 	exit(error_number);
 }

@@ -3,6 +3,7 @@
         {
             "name": "Mac",
             "includePath": [
+                "${workspaceFolder}/includes",
                 "${workspaceFolder}/vm/includes",
                 "${workspaceFolder}/vm/libftprintf/includes",
                 "${workspaceFolder}/vm/libftprintf/libft/includes",
@@ -80,5 +81,5 @@
             "cppStandard": "c++17"
         }
     ],
-    "version": 4
+    "version": 3
 }

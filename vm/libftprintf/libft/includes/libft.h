@@ -179,4 +179,6 @@ char				*ft_ulltoa_base(unsigned long long int n, int base);
 char				*ft_ulltoa(unsigned long long int n);
 
 char				*ft_wstr_to_str(wchar_t *ws);
+
+void				ft_memrev(void *dst, size_t n);
 #endif
