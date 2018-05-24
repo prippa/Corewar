@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 11:45:18 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/23 21:03:25 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/24 14:40:44 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,12 @@ static int		ch_cmd_sec(char *cmd)
 	return (0);
 }
 
-int			check_cmd(char *s, int j, int i, int l)
+int			check_cmd(char *s, int j, t_asm *am, int l)
 {
 	char	cmd[6];
+	int		i;
 
+	i = am->x;
 	ft_bzero(cmd, 6);
 	if (j - i > 5)
 		return (0);
@@ -108,7 +110,8 @@ int			check_cmd(char *s, int j, int i, int l)
 		l = 5;
 	else if (!ft_strcmp(cmd, "and"))
 		l = 6;
-	else
-		return (ch_cmd_sec(cmd));
+	else if (!(l = ch_cmd_sec(cmd)))
+		return (0);
+	am->x = i;
 	return (l);
 }

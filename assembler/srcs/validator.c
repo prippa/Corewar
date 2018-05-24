@@ -6,13 +6,13 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 23:33:49 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/23 19:58:41 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/24 14:37:09 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static t_label	*fill_struct(t_label *lb, int i)
+static t_label	*fill_struct(t_label *lb, int i, int j)
 {
 	if (!(lb->next = (t_label *)malloc(sizeof(t_label))))
 		return (0);
@@ -20,7 +20,7 @@ static t_label	*fill_struct(t_label *lb, int i)
 	if (!(lb->name = ft_strnew(i)))
 		return (0);
 	lb->next = 0;
-	lb->bit = am->hd.prog_size;
+	lb->bit = j;
 	lb->cmd = 0;
 	return (lb);
 }
@@ -34,19 +34,19 @@ static t_label	*crt_label(char *s, t_asm *am, int i, int *j)
 	lb = am->lb;
 	while (lb->next)
 		lb = lb->next;
-	if (!(lb = fill_struct(lb, i - am->x)))
+	if (!(lb = fill_struct(lb, i - am->x, am->hd.prog_size)))
 		errors_man(am, s, 10);
 	while (i > am->x)
 		lb->name[l++] = s[am->x++];
 	am->x++;
 	while (s[am->x] == ' ' || s[am->x] == '\t')
 		am->x++;
-	if (!s[i] || s[i] == ';' || s[i] == COMMENT_CHAR)
+	if (!s[am->x] || s[am->x] == ';' || s[am->x] == COMMENT_CHAR)
 		return (0);
 	i = am->x;
 	while (ft_strchr(LABEL_CHARS, s[i]))
 		i++;
-	if (!(*j = check_cmd(s, i, am->x, 0)))
+	if (!(*j = check_cmd(s, i, am, 0)))
 		errors_man(am, s, 4);
 	am->x = i;
 	return (lb);
@@ -73,7 +73,7 @@ static void		new_label(char *s, int i, t_asm *am, int *j)
 	i = am->x;
 	while (ft_strchr(LABEL_CHARS, s[i]))
 		i++;
-	if (!(*j = check_cmd(s, i, am->x, 0)))
+	if (!(*j = check_cmd(s, i, am, 0)))
 		errors_man(am, s, 4);
 	am->x = i;
 }
@@ -110,7 +110,7 @@ void			check_form(char *s, t_asm *am, int i, int j)
 		errors_man(am, s, 9);
 	while (ft_strchr(LABEL_CHARS, s[i]))
 		i++;
-	if (s[i] != ':' && !(j = check_cmd(s, i, am->x, 0)))
+	if (s[i] != ':' && !(j = check_cmd(s, i, am, 0)))
 		errors_man(am, s, 4);
 	if (am->nmcm != 3)
 		errors_man(am, s, 11);

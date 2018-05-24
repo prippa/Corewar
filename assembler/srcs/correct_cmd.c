@@ -6,13 +6,13 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 21:49:48 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/24 00:15:08 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/24 18:41:50 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-t_label			*find_lb_cmd(t_label *lb, int i)
+t_command		*find_lb_cmd(t_label *lb, int i)
 {
 	t_command	*tmp;
 
@@ -44,15 +44,16 @@ static void		crt_arg2(char *s, t_asm *am, t_arg *ar, char cmd)
 
 	str = 0;
 	j = 0;
+	i = 0;
 	if (ar->tp == T_REG || s[am->x] != LABEL_CHAR ||
-		!ft_strchr(LABEL_CHARS, s[i + 1]))
+		!ft_strchr(LABEL_CHARS, s[am->x + 1]))
 		errors_man(am, s, 20 + cmd);
 	i = ++am->x;
 	ar->x = am->x;
 	ar->y = am->y;
-	while (ft_strchr(LABEL_CHARS, s[i]))
+	while (s[i] && ft_strchr(LABEL_CHARS, s[i]))
 		i++;
-	if (!ft_strnew(str, i - am->x))
+	if (!(str = ft_strnew(i - am->x)))
 		errors_man(am, s, 10);
 	while (am->x < i)
 		str[j++] = s[am->x++];
@@ -71,7 +72,7 @@ void			crt_arg(char *s, t_asm *am, t_arg *ar, char cmd)
 		i = ft_atoi(s + am->x);
 		while (ft_isdigit(s[am->x]))
 			am->x++;
-		ar->av = i;
+		ar->av = &i;
 		ar->dn = 1;
 	}
 	else

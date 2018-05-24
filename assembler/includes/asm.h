@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:21:21 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/23 23:54:31 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/24 14:36:03 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define ASM_H
 
 # include "../../libft/includes/libft.h"
-# include "op.h"
+# include "../../includes/op.h"
 
 typedef struct			s_arg
 {
@@ -46,7 +46,7 @@ typedef struct			s_label
 
 typedef struct			s_asm
 {
-	header_t			hd;
+	t_header			hd;
 	t_label				*lb;
 	int					nmcm;
 	int					x;
@@ -55,11 +55,12 @@ typedef struct			s_asm
 
 void					errors_man(t_asm *am, char *s, int o);
 void					check_form(char *s, t_asm *am, int i, int j);
-void					write_cod(char *s, t_asm *am, char *cmd, t_label *lb);
-void					write_cod6(char *s, t_asm *am, char *cmd, t_label *lb);
-int						check_cmd(char *s, int j, int i);
+void					write_cod(char *s, t_asm *am, char cmd, t_label *lb);
+void					write_cod6(char *s, t_asm *am, char cmd, t_label *lb);
+int						check_cmd(char *s, int j, t_asm *am, int l);
 char					*tran_str(char i);
-t_label					*find_lb_cmd(t_label *lb, int i);
+t_command				*find_lb_cmd(t_label *lb, int i);
 void					bef_error(char *s, t_asm *am, char cmd, int i);
 void					crt_arg(char *s, t_asm *am, t_arg *ar, char cmd);
+
 #endif
