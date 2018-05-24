@@ -14,7 +14,7 @@
 
 typedef struct			s_arg
 {
-	t_arg_type			tp; // tp == ? 1 ->ch 2 4
+	t_arg_type			tp; // tp == ? 1 ->ch 2 4 sdfgsdfgsd.s.cor
 	char				dn;
 	void				*av; // only this to cast;
 	int					x;
@@ -65,8 +65,8 @@ while
 typedef struct		s_toto
 {
 	unsigned int	magic;
-	char			prog_name[128 + 1];
 	unsigned int	prog_size;
+	char			projg_name[128 + 1];
 	// size of the commands of program itself (not the whole file);
 	char			comment[2048 + 1];
 }					t_toto;
