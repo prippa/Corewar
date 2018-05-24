@@ -12,15 +12,52 @@
 
 #include "../libft/ft_printf.h"
 
-// t_asm *ld;
+typedef struct			s_arg
+{
+	t_arg_type			tp;
+	char				dn;
+	void				*av;
+	int					x;
+	int					y;
+}						t_arg;
 
-// ld->hd
-// while
-//  ?? ld->lb->cmd->cmd
-//  ?? ld->lb->cmd->codage
-//  ??arg1/...2...3
-//  tp == 1 === char ... 2 short 3 int
-//  ?? tp (1 2 or 3)ard->av
+typedef struct			s_command
+{
+	int					bit;
+	int					codage;
+	char				cmd;
+	t_arg				arg1;
+	t_arg				arg2;
+	t_arg				arg3;
+	struct s_command	*next;
+}						t_command;
+
+typedef struct			s_label
+{
+	char				*name;
+	t_command			*cmd;
+	int					bit;
+	struct s_label		*next;
+}						t_label;
+
+typedef struct			s_asm
+{
+	header_t			hd;
+	t_label				*lb;
+	int					nmcm;
+	int					x;
+	int					y;
+}						t_asm;
+
+t_asm *ld;
+
+ld->hd
+while
+ ?? ld->lb->cmd->cmd
+ ?? ld->lb->cmd->codage
+ ?? arg1/...2...3
+ tp == 1 === char ... 2 short 3 int
+ ?? tp (1 2 or 3)ard->av
 
 typedef struct		s_toto
 {
