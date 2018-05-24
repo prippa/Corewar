@@ -47,19 +47,19 @@ int		ft_string_size(char *str)
 	return (i);
 }
 
-void	ft_write_hex(char *to, char *what)
-{
-	int i;
-	int j;
+// void	ft_write_hex(char *to, char *what)
+// {
+// 	int i;
+// 	int j;
 
-	if (ft_strlen(what) == 8)
-		i = 0;
-	else
-		i = 8 - ft_strlen(what);
-	j = ft_strlen(what) - 1;
-	while (to[i] != '\0')
-		to[i++] = what[j--];
-}
+// 	if (ft_strlen(what) == 8)
+// 		i = 0;
+// 	else
+// 		i = 8 - ft_strlen(what);
+// 	j = ft_strlen(what) - 1;
+// 	while (to[i] != '\0')
+// 		to[i++] = what[j--];
+// }
 
 void	init(char *str)
 {
@@ -70,75 +70,75 @@ void	init(char *str)
 		str[a++] = '0';
 }
 
-void	ft_reverse(char *str)
-{
-	char buf[3];
+// void	ft_reverse(char *str)
+// {
+// 	char buf[3];
 
-	ft_bzero(buf, 3);
-	ft_strncpy(buf, &str[0], 2);
-	ft_strncpy(&str[0], &str[6], 2);
-	ft_strncpy(&str[6], buf, 2);
-	ft_strncpy(buf, &str[2], 2);
-	ft_strncpy(&str[2], &str[4], 2);
-	ft_strncpy(&str[4], buf, 2);
-}
+// 	ft_bzero(buf, 3);
+// 	ft_strncpy(buf, &str[0], 2);
+// 	ft_strncpy(&str[0], &str[6], 2);
+// 	ft_strncpy(&str[6], buf, 2);
+// 	ft_strncpy(buf, &str[2], 2);
+// 	ft_strncpy(&str[2], &str[4], 2);
+// 	ft_strncpy(&str[4], buf, 2);
+// }
 
-char	*dec_to_hexa(unsigned int n)
-{
-	int		i;
-	int		temp;
-	char	hexadecimal[100];
-	char	*buf;
-	size_t	a;
+// char	*dec_to_hexa(unsigned int n)
+// {
+// 	int		i;
+// 	int		temp;
+// 	char	hexadecimal[100];
+// 	char	*buf;
+// 	size_t	a;
 
-	ft_bzero(hexadecimal, 100);
-	i = 0;
-	a = 0;
-	while (n)
-	{
-		temp = n % 16;
-		if (temp < 10)
-			hexadecimal[i++] = temp + 48;
-		else
-			hexadecimal[i++] = temp + 55;
-		n = n / 16;
-	}
-	buf = ft_strnew(8);
-	init(buf);
-	ft_write_hex(buf, hexadecimal);
-	// ft_printf("buf before reverse -> %s\n", buf);
-	ft_reverse(buf);
-	// ft_printf("buf after  reverse -> %s\n", buf);
-	return (buf);
-}
+// 	ft_bzero(hexadecimal, 100);
+// 	i = 0;
+// 	a = 0;
+// 	while (n)
+// 	{
+// 		temp = n % 16;
+// 		if (temp < 10)
+// 			hexadecimal[i++] = temp + 48;
+// 		else
+// 			hexadecimal[i++] = temp + 55;
+// 		n = n / 16;
+// 	}
+// 	buf = ft_strnew(8);
+// 	init(buf);
+// 	ft_write_hex(buf, hexadecimal);
+// 	// ft_printf("buf before reverse -> %s\n", buf);
+// 	ft_reverse(buf);
+// 	// ft_printf("buf after  reverse -> %s\n", buf);
+// 	return (buf);
+// }
 
-unsigned int		hexadecimal_to_decimal(char *hexval)
-{
-	unsigned int	base;
-	unsigned int	dec_val;
-	int				i;
-	char			*str;
+// unsigned int		hexadecimal_to_decimal(char *hexval)
+// {
+// 	unsigned int	base;
+// 	unsigned int	dec_val;
+// 	int				i;
+// 	char			*str;
 
-	base = 1;
-	dec_val = 0;
-	i = 7;
-	str = hexval;
-	while (i >= 0)
-	{
-		if (str[i] >= '0' && str[i] <= '9')
-		{
-			dec_val += (str[i--] - 48) * base;
-			base = base * 16;
-		}
-		else if (str[i] >= 'A' && str[i] <= 'F')
-		{
-			dec_val += (str[i--] - 55) * base;
-			base = base * 16;
-		}
-	}
-	free(str);
-	return (dec_val);
-}
+// 	base = 1;
+// 	dec_val = 0;
+// 	i = 7;
+// 	str = hexval;
+// 	while (i >= 0)
+// 	{
+// 		if (str[i] >= '0' && str[i] <= '9')
+// 		{
+// 			dec_val += (str[i--] - 48) * base;
+// 			base = base * 16;
+// 		}
+// 		else if (str[i] >= 'A' && str[i] <= 'F')
+// 		{
+// 			dec_val += (str[i--] - 55) * base;
+// 			base = base * 16;
+// 		}
+// 	}
+// 	free(str);
+// 	return (dec_val);
+// }
 
 int		len_to_copy(char *str)
 {
@@ -169,21 +169,15 @@ void	write_to_struct(char *file_name, t_toto *sample)
 	void	*ar;
 	unsigned int 	asd;
 
-
 	asd = 1792; // inverted value = 1792;
 
 	// asd = hexadecimal_to_decimal(dec_to_hexa(asd));
 	// ft_printf("%u\n", asd);
 	// short buf = asd;
 	ar = &asd;
-
 	// short x = *(short *)ar;
-
 	// ft_printf("%u\n",x);
-
-
 	// int -> short | char'
-
 	len = ft_string_size(file_name);
 	copy_start = ft_strlen(file_name) - len;
 	// ft_printf("copy_start -> %d\n", copy_start);
@@ -193,8 +187,8 @@ void	write_to_struct(char *file_name, t_toto *sample)
 	res = ft_strjoin(tmp, ".cor");
 	free(tmp);
 	fd = open(res, O_WRONLY | O_CREAT | O_TRUNC, 0600);
-	sample->magic = hexadecimal_to_decimal(dec_to_hexa(sample->magic));
-	sample->prog_size = hexadecimal_to_decimal(dec_to_hexa(sample->prog_size));
+	// sample->magic = hexadecimal_to_decimal(dec_to_hexa(sample->magic));
+	// sample->prog_size = hexadecimal_to_decimal(dec_to_hexa(sample->prog_size));
 	ft_putnbr(sample->prog_size);
 	// ft_printf("unsigned int ->%u\n", sample->magic);
 	// ft_printf("str size -> %d\n", sizeof(sample->prog_name));
@@ -208,13 +202,74 @@ void	write_to_struct(char *file_name, t_toto *sample)
 	free(res);
 }
 
+void	reverse_binary_string(char *str)
+{
+	ft_printf("initial string -> %s\n", str);
+
+	char buf[9];
+	ft_bzero(buf, 9);
+	buf[8] = '\0';
+
+	ft_strncpy(buf, &str[0], 8);
+	ft_printf("buf1 -> %s\n", buf);
+
+	ft_strncpy(&str[0], &str[24], 8);
+	ft_strcpy(&str[24], buf);
+
+	ft_printf("1. swap -> %s\n", str);
+
+	ft_strncpy(buf, &str[8], 8);
+	ft_printf("buf2 -> %s\n", buf);
+
+	ft_strncpy(&str[8], &str[16], 8);
+	ft_strcpy(&str[16], buf);
+	ft_printf("2. swap -> %s\n", str);
+}
+
+// C++ program to convert binary to decimal
+// #include<iostream>
+// using namespace std;
+ 
+// Function to convert binary to decimal
+// unsigned int binaryToDecimal(char *str)
+// {
+//     int num = n;
+//     int dec_value = 0;
+     
+//     // Initializing base value to 1, i.e 2^0
+//     int base = 1;
+     
+//     int temp = num;
+//     while (temp)
+//     {
+//         int last_digit = temp % 10;
+//         temp = temp/10;
+         
+//         dec_value += last_digit*base;
+         
+//         base = base*2;
+//     }
+     
+//     return dec_value;
+// }
+
+int bstr_to_dec(char * str)
+{
+    int val = 0;
+     
+    while (*str != '\0')
+        val = 2 * val + (*str++ - '0');
+    return val;
+}
+
 char	*ft_to_binary(unsigned int n)
 {
 	int i = 0;
 	int c = 31;
 	int k;
 	char str[33];
-	char *reverse;
+	char *reverse = ft_strnew(32);
+	ft_bzero(reverse, 32);
 
 	str[32] = '\0'; 
 	while (c >= 0)
@@ -226,6 +281,9 @@ char	*ft_to_binary(unsigned int n)
 			str[i++] = '0';
 		c--;
 	}
+	reverse_binary_string(str);
+	ft_strcpy(reverse,str);
+	ft_printf("reverse->%s\n", reverse);
 	return (reverse);
 }
 
@@ -239,14 +297,19 @@ int		main(int argc, char **argv)
 	ft_bzero(sample.comment, sizeof(sample.comment));
 	ft_strcpy(sample.comment, "just a basic living prog");
 	sample.magic = 15369203;
-	sample.prog_size = 23;
+
+	// unsigned int test;
+	// unsigned int x = 23;
+	// test = x;
+
+	// ft_printf("-----------%u ->", bstr_to_dec(ft_to_binary(23)));
+
+	sample.prog_size = bstr_to_dec(ft_to_binary(123456));
+	
 	write_to_struct(argv[1], &sample);
 
-	unsigned int test;
-
-	test = 'a';
 	ft_printf("\n");
-	ft_to_binary(test);
+	// ft_to_binary(test);
 	// system("leaks -q asm");
 }
 
