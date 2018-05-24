@@ -208,6 +208,27 @@ void	write_to_struct(char *file_name, t_toto *sample)
 	free(res);
 }
 
+char	*ft_to_binary(unsigned int n)
+{
+	int i = 0;
+	int c = 31;
+	int k;
+	char str[33];
+	char *reverse;
+
+	str[32] = '\0'; 
+	while (c >= 0)
+	{
+		k = n >> c;
+		if (k & 1)
+			str[i++] = '1';
+		else
+			str[i++] = '0';
+		c--;
+	}
+	return (reverse);
+}
+
 int		main(int argc, char **argv)
 {
 	t_toto	sample;
@@ -220,6 +241,12 @@ int		main(int argc, char **argv)
 	sample.magic = 15369203;
 	sample.prog_size = 23;
 	write_to_struct(argv[1], &sample);
+
+	unsigned int test;
+
+	test = 'a';
+	ft_printf("\n");
+	ft_to_binary(test);
 	// system("leaks -q asm");
 }
 
