@@ -222,7 +222,7 @@ void	reverse_binary_string(char *str)
 	ft_printf("buf2 -> %s\n", buf);
 
 	ft_strncpy(&str[8], &str[16], 8);
-	ft_strcpy(&str[16], buf);
+	ft_strcpy(&str[24], buf);
 	ft_printf("2. swap -> %s\n", str);
 }
 
@@ -304,7 +304,7 @@ int		main(int argc, char **argv)
 
 	// ft_printf("-----------%u ->", bstr_to_dec(ft_to_binary(23)));
 
-	sample.prog_size = bstr_to_dec(ft_to_binary(123456));
+	sample.prog_size = bstr_to_dec(ft_to_binary(23));
 	
 	write_to_struct(argv[1], &sample);
 
