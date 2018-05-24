@@ -65,8 +65,8 @@
 typedef struct		s_toto
 {
 	unsigned int	magic;
-	unsigned int	prog_size;
 	char			prog_name[128 + 1];
+	unsigned int	prog_size;
 	// size of the commands of program itself (not the whole file);
 	char			comment[2048 + 1];
 }					t_toto;
