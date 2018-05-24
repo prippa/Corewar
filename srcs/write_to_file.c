@@ -12,6 +12,16 @@
 
 #include "../libft/ft_printf.h"
 
+// t_asm *ld;
+
+// ld->hd
+// while
+//  ?? ld->lb->cmd->cmd
+//  ?? ld->lb->cmd->codage
+//  ??arg1/...2...3
+//  tp == 1 === char ... 2 short 3 int
+//  ?? tp (1 2 or 3)ard->av
+
 typedef struct		s_toto
 {
 	unsigned int	magic;
@@ -212,3 +222,5 @@ int		main(int argc, char **argv)
 	write_to_struct(argv[1], &sample);
 	// system("leaks -q asm");
 }
+
+
