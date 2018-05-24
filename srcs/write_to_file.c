@@ -14,19 +14,19 @@
 
 typedef struct			s_arg
 {
-	t_arg_type			tp;
+	t_arg_type			tp; // tp == ? 1 ->ch 2 4
 	char				dn;
-	void				*av;
+	void				*av; // only this to cast;
 	int					x;
 	int					y;
 }						t_arg;
 
 typedef struct			s_command
 {
-	int					bit;
-	int					codage;
-	char				cmd;
-	t_arg				arg1;
+	int					bit; // nope
+	char				cmd; // always as char
+	int					codage; // only if our command is not 1,9,12,15
+	t_arg				arg1; // if type not null -> print as type;
 	t_arg				arg2;
 	t_arg				arg3;
 	struct s_command	*next;
@@ -34,10 +34,10 @@ typedef struct			s_command
 
 typedef struct			s_label
 {
-	char				*name;
+	char				*name; //nope
 	t_command			*cmd;
-	int					bit;
-	struct s_label		*next;
+	int					bit; // nope
+	struct s_label		*next; // nope
 }						t_label;
 
 typedef struct			s_asm
@@ -52,9 +52,12 @@ typedef struct			s_asm
 t_asm *ld;
 
 ld->hd
+1. hd;
+2. while (labe -> cmd). no comma
 while
  ?? ld->lb->cmd->cmd
  ?? ld->lb->cmd->codage
+
  ?? arg1/...2...3
  tp == 1 === char ... 2 short 3 int
  ?? tp (1 2 or 3)ard->av
