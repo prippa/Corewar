@@ -1,72 +1,72 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   write_to_file.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/21 14:50:31 by otimofie          #+#    #+#             */
-/*   Updated: 2018/05/21 14:50:33 by otimofie         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+// /* ************************************************************************** */
+// /*                                                                            */
+// /*                                                        :::      ::::::::   */
+// /*   write_to_file.c                                    :+:      :+:    :+:   */
+// /*                                                    +:+ +:+         +:+     */
+// /*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
+// /*                                                +#+#+#+#+#+   +#+           */
+// /*   Created: 2018/05/21 14:50:31 by otimofie          #+#    #+#             */
+// /*   Updated: 2018/05/21 14:50:33 by otimofie         ###   ########.fr       */
+// /*                                                                            */
+// /* ************************************************************************** */
 
 #include "../libft/ft_printf.h"
 
-typedef struct			s_arg
-{
-	t_arg_type			tp; // tp == ? 1 ->ch 2 4 sdfgsdfgsd.s.cor
-	char				dn;
-	void				*av; // only this to cast;
-	int					x;
-	int					y;
-}						t_arg;
+// typedef struct			s_arg
+// {
+// 	t_arg_type			tp; // tp == ? 1 ->ch 2 4 sdfgsdfgsd.s.cor
+// 	char				dn;
+// 	void				*av; // only this to cast;
+// 	int					x;
+// 	int					y;
+// }						t_arg;
 
-typedef struct			s_command
-{
-	int					bit; // nope
-	char				cmd; // always as char
-	int					codage; // only if our command is not 1,9,12,15
-	t_arg				arg1; // if type not null -> print as type;
-	t_arg				arg2;
-	t_arg				arg3;
-	struct s_command	*next;
-}						t_command;
+// typedef struct			s_command
+// {
+// 	int					bit; // nope
+// 	char				cmd; // always as char
+// 	int					codage; // only if our command is not 1, 9, 12, 15;
+// 	t_arg				arg1; // if type not null -> print as type;
+// 	t_arg				arg2;
+// 	t_arg				arg3;
+// 	struct s_command	*next;
+// }						t_command;
 
-typedef struct			s_label
-{
-	char				*name; //nope
-	t_command			*cmd;
-	int					bit; // nope
-	struct s_label		*next; // nope
-}						t_label;
+// typedef struct			s_label
+// {
+// 	char				*name; //nope
+// 	t_command			*cmd;
+// 	int					bit; // nope
+// 	struct s_label		*next; // nope
+// }						t_label;
 
-typedef struct			s_asm
-{
-	header_t			hd;
-	t_label				*lb;
-	int					nmcm;
-	int					x;
-	int					y;
-}						t_asm;
+// typedef struct			s_asm
+// {
+// 	header_t			hd;
+// 	t_label				*lb;
+// 	int					nmcm;
+// 	int					x;
+// 	int					y;
+// }						t_asm;
 
-t_asm *ld;
+// t_asm *ld;
 
-ld->hd
-1. hd;
-2. while (labe -> cmd). no comma
-while
- ?? ld->lb->cmd->cmd
- ?? ld->lb->cmd->codage
+// ld->hd
+// 1. hd;
+// 2. while (label -> cmd). no comma
+// while
+//  ?? ld->lb->cmd->cmd
+//  ?? ld->lb->cmd->codage
 
- ?? arg1/...2...3
- tp == 1 === char ... 2 short 3 int
- ?? tp (1 2 or 3)ard->av
+//  ?? arg1/...2...3
+//  tp == 1 === char ... 2 short 3 int
+//  ?? tp (1 2 or 3)ard->av
 
 typedef struct		s_toto
 {
 	unsigned int	magic;
 	unsigned int	prog_size;
-	char			projg_name[128 + 1];
+	char			prog_name[128 + 1];
 	// size of the commands of program itself (not the whole file);
 	char			comment[2048 + 1];
 }					t_toto;
