@@ -6,13 +6,34 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 21:49:48 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/24 18:41:50 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/25 12:00:46 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-t_command		*find_lb_cmd(t_label *lb, int i)
+static void		fill_cmd_arg(t_command *cmd)
+{
+	cmd->codage = 0;
+	cmd->next = 0;
+	cmd->arg1.tp = 0;
+	cmd->arg1.dn = 0;
+	cmd->arg1.av = 0;
+	cmd->arg1.x = 0;
+	cmd->arg1.y = 0;
+	cmd->arg2.tp = 0;
+	cmd->arg2.dn = 0;
+	cmd->arg2.av = 0;
+	cmd->arg2.x = 0;
+	cmd->arg2.y = 0;
+	cmd->arg3.tp = 0;
+	cmd->arg3.dn = 0;
+	cmd->arg3.av = 0;
+	cmd->arg3.x = 0;
+	cmd->arg3.y = 0;
+}
+
+t_command		*find_lb_cmd(t_label *lb, char *s, t_asm *am, int cmd)
 {
 	t_command	*tmp;
 
@@ -22,17 +43,18 @@ t_command		*find_lb_cmd(t_label *lb, int i)
 		while (tmp->next)
 			tmp = tmp->next;
 		if (!(tmp->next = (t_command *)malloc(sizeof(t_command))))
-			return (0);
+			errors_man(am, s, 10);
 		tmp = tmp->next;
 	}
 	else
 	{
 		if (!(lb->cmd = (t_command *)malloc(sizeof(t_command))))
-			return (0);
+			errors_man(am, s, 10);
 		tmp = lb->cmd;
 	}
-	tmp->bit = i;
-	tmp->next = 0;
+	tmp->bit = am->hd.prog_size;
+	tmp->cmd = cmd;
+	fill_cmd_arg(tmp);
 	return (tmp);
 }
 
@@ -57,7 +79,6 @@ static void		crt_arg2(char *s, t_asm *am, t_arg *ar, char cmd)
 		errors_man(am, s, 10);
 	while (am->x < i)
 		str[j++] = s[am->x++];
-	ar->dn = 0;
 	ar->av = str;
 }
 
@@ -72,6 +93,8 @@ void			crt_arg(char *s, t_asm *am, t_arg *ar, char cmd)
 		i = ft_atoi(s + am->x);
 		while (ft_isdigit(s[am->x]))
 			am->x++;
+		if (ar->tp == T_REG && ((short)i > REG_NUMBER || (short)i < 1))
+			errors_man(am, s, 12);
 		ar->av = &i;
 		ar->dn = 1;
 	}

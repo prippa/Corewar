@@ -6,12 +6,13 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 13:50:18 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/24 18:41:25 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/25 01:59:26 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OP_H
 # define OP_H
+
 # define IND_SIZE				2
 # define REG_SIZE				4
 # define DIR_SIZE				REG_SIZE
@@ -20,10 +21,10 @@
 # define DIR_CODE				2
 # define IND_CODE				3
 
-# define MAX_ARGS_NUMBER			4
-# define MAX_PLAYERS				4
-# define MEM_SIZE				(4*1024)
-# define IDX_MOD					(MEM_SIZE / 8)
+# define MAX_ARGS_NUMBER		4
+# define MAX_PLAYERS			4
+# define MEM_SIZE				(4 * 1024)
+# define IDX_MOD				(MEM_SIZE / 8)
 # define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
 
 # define COMMENT_CHAR			'#'
@@ -50,8 +51,8 @@ typedef char					t_arg_type;
 # define T_IND					4
 # define T_LAB					8
 
-# define PROG_NAME_LENGTH	  	(128)
-# define COMMENT_LENGTH		  	(2048)
+# define PROG_NAME_LENGTH		(128)
+# define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
 
 typedef struct					s_header
