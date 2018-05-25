@@ -66,5 +66,6 @@ void					bef_error(char *s, t_asm *am, char cmd, int i);
 void					crt_arg(char *s, t_asm *am, t_arg *ar, char cmd);
 void					all_clear(t_asm *am, char *s);
 void					ch_to_coord(t_asm *am);
+char					*generate_file_name(char *file_string);
 
 #endif

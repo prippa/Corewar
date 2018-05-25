@@ -166,55 +166,6 @@ char	*ft_to_binary(unsigned int n)
 	return (reverse);
 }
 
-int		ft_string_size(char *str)
-{
-	int i;
-	int len;
-
-	i = 0;
-	len = ft_strlen(str) - 1;
-	while (str[len] && str[len] != '/')
-	{
-		i++;
-		len--;
-	}
-	return (i);
-}
-
-int		len_to_copy(char *str)
-{
-	int i;
-	int len;
-
-	i = 0;
-	len = ft_strlen(str) - 1;
-	while (str[len] && str[len] != '.' && str[len] != '/')
-	{
-		i++;
-		len--;
-	}
-	if (ft_string_size(str) == i)
-		return (0);
-	return (i + 1);
-}
-
-char	*generate_file_name(char *file_string)
-{
-
-	int		len;
-	int		copy_start;
-	char	*tmp;
-	char	*res;
-
-	len = ft_string_size(file_string);
-	copy_start = ft_strlen(file_string) - len;
-	tmp = ft_strnew(len - len_to_copy(file_string));
-	ft_strncpy(tmp, &file_string[copy_start], len - len_to_copy(file_string));
-	res = ft_strjoin(tmp, ".cor");
-	free(tmp);
-	return (res);
-}
-
 void	write_to_struct(char *argv_name, t_asm *am)
 {
 	int		fd;
