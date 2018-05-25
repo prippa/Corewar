@@ -115,80 +115,6 @@ static void	valid_bit(int fd, t_asm *am, char *s)
 	ch_to_coord(am);
 }
 
-void	reverse_binary_string(char *str)
-{
-	char buf[9];
-
-	ft_bzero(buf, 9);
-	buf[8] = '\0';
-	ft_strncpy(buf, &str[0], 8);
-	ft_strncpy(&str[0], &str[24], 8);
-	ft_strncpy(&str[24], buf, 8);
-	ft_strncpy(buf, &str[8], 8);
-	ft_strncpy(&str[8], &str[16], 8);
-	ft_strncpy(&str[16], buf, 8);
-}
-
-int		bstr_to_dec(char *str)
-{
-	int val;
-
-	val = 0;
-	while (*str != '\0')
-		val = 2 * val + (*str++ - '0');
-	return (val);
-}
-
-char	*ft_to_binary(unsigned int n)
-{
-	int		i;
-	int		c;
-	int		k;
-	char	str[33];
-	char	*reverse;
-
-	i = 0;
-	c = 31;
-	reverse = ft_strnew(32);
-	ft_bzero(reverse, 32);
-	str[32] = '\0';
-	while (c >= 0)
-	{
-		k = n >> c;
-		if (k & 1)
-			str[i++] = '1';
-		else
-			str[i++] = '0';
-		c--;
-	}
-	reverse_binary_string(str);
-	ft_strcpy(reverse, str);
-	return (reverse);
-}
-
-void	write_to_struct(char *argv_name, t_asm *am)
-{
-	int		fd;
-	char 	*file_name;
-	char *test;
-
-	file_name = generate_file_name(argv_name);
-	fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0600); // append to file;
-
-	test = ft_to_binary(am->hd.prog_size);
-	am->hd.prog_size = bstr_to_dec(test);
-	free(test);
-
-	test = ft_to_binary(15369203);
-	am->hd.magic = bstr_to_dec(test);
-	free(test);
-
-	write(fd, am, sizeof(am->hd.magic) + sizeof(am->hd.prog_name)
-			+ sizeof(am->hd.prog_size) + sizeof(am->hd.comment));
-	close(fd);
-	free(file_name);
-}
-
 int			main(int ac, char **av)
 {
 	int		op;
@@ -211,7 +137,7 @@ int			main(int ac, char **av)
 	am.y = 0;
 	valid_bit(op, &am, line);
 	// name_cor(av[ac - 1], am);
-	write_to_struct(av[1], &am);
+	initial(av[1], &am);
 	printf("%s\n%s\n", am.hd.prog_name, am.hd.comment);
 	return (0);
 }
