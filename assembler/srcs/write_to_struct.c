@@ -35,3 +35,8 @@ void	initial(char *argv_name, t_asm *am)
 	close(fd);
 	free(file_name);
 }
+
+void	command_write()
+{
+	
+}
