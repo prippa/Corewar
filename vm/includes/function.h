@@ -17,10 +17,10 @@
 ** Basics
 */
 
-void		cw_exit(char *message, int error_number);
-void		cw_perror_exit(char *message, int error_number);
-void		cw_init(void);
-void		cw_free(void);
+void			cw_exit(char *message, int error_number);
+void			cw_perror_exit(char *message, int error_number);
+void			cw_init(void);
+void			cw_free(void);
 
 /*
 ** End
@@ -30,8 +30,14 @@ void		cw_free(void);
 ** Parse file part
 */
 
-void		cw_parse_args(int argc, char **argv);
-void		cw_parser(void);
+unsigned int	cw_hex_to_dec(unsigned char (*str)[]);
+void			cw_lseek_cur_skip(int fd, long size);
+void			cw_check_magic(t_champ *champ);
+void			cw_get_prog_name(t_champ *champ);
+void			cw_get_prog_size(t_champ *champ);
+void			cw_get_comment(t_champ *champ);
+void			cw_parse_args(int argc, char **argv);
+void			cw_parser(void);
 
 /*
 ** End
@@ -41,8 +47,8 @@ void		cw_parser(void);
 ** List Manipulations
 */
 
-void		t_champ_add(t_champ **champs);
-void		t_champ_free(t_champ **champs);
+void			t_champ_add(t_champ **champs);
+void			t_champ_free(t_champ **champs);
 
 /*
 ** End

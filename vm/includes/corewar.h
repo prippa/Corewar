@@ -18,5 +18,6 @@
 # include "struct.h"
 # include "function.h"
 # include "ft_printf.h"
+# include "libft.h"
 
 #endif

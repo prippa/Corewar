@@ -16,14 +16,11 @@ void		cw_parse_args(int argc, char **argv)
 {
 	int i;
 
-	if (argc > 1)
+	i = 0;
+	while (argv[i])
 	{
-		i = 0;
-		while (argv[i])
-		{
-			if (ft_strstr(argv[i], ".cor"))
-				cw_valid_champ(argv[i]);
-			i++;
-		}
+		if (ft_strstr(argv[i], ".cor"))
+			cw_valid_champ(argv[i]);
+		i++;
 	}
 }

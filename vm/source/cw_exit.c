@@ -1,21 +1,30 @@
 #include "corewar.h"
 
-void	cw_perror_exit(char *message, int error_number)
+void		cw_perror_exit(char *message, int error_number)
 {
 	perror(message);
 	cw_free();
 	exit(error_number);
 }
 
-void	cw_exit(char *message, int error_number)
+static void	cw_exit_print_message(char *message, int error_number)
 {
 	if (error_number == HEADER)
-		ft_dprintf(2, "ERROR: File [%s] has an invalid header\n", message);
+		ft_dprintf(2, "Error: File [%s] has an invalid header\n", message);
 	else if (error_number == PROG_NAME)
-		ft_dprintf(2, "ERROR: File [%s] prog name lenght is not equally \
-to PROG_NAME_LENGTH\n", message);
+		ft_dprintf(2, "Error: File [%s] has an invalid prog name\n", message);
+	else if (error_number == PROG_SIZE_TO_BIG)
+		ft_dprintf(2, "Error: File [%s] has too large a code \
+(%u bytes > %u bytes)\n", message, g_cw->pd.tmp, CHAMP_MAX_SIZE);
+	else if (error_number == COMMENT)
+		ft_dprintf(2, "Error: File [%s] has an invalid comment\n", message);
 	else
 		ft_dprintf(2, "%s\n", message);
+}
+
+void		cw_exit(char *message, int error_number)
+{
+	cw_exit_print_message(message, error_number);
 	cw_free();
 	exit(error_number);
 }

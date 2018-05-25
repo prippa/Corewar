@@ -19,9 +19,7 @@
 
 typedef struct		s_champ
 {
-	char			prog_name[PROG_NAME_LENGTH + 1];
-	unsigned int	prog_size;
-	char			comment[COMMENT_LENGTH + 1];
+	t_header		head;
 	char			file_name[FILE_NAME_MAX + 1];
 	int				fd;
 	struct s_champ	*next;
@@ -30,6 +28,7 @@ typedef struct		s_champ
 typedef struct		s_parse_data
 {
 	t_champ			*champs;
+	unsigned int	tmp;
 }					t_parse_data;
 
 /*

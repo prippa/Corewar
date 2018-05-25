@@ -16,10 +16,9 @@ NAME		=	corewar
 
 CC			=	gcc
 
-DIR_LIB		=	./libftprintf/
-LIBFT		=	$(DIR_LIB)libftprintf.a
-DIR_LIB_INC	=	$(DIR_LIB)libft/includes/
-DIR_FPF_INC	=	$(DIR_LIB)includes/
+DIR_LIB		=	./libft/
+LIBFT		=	$(DIR_LIB)libft.a
+DIR_LIB_INC	=	$(DIR_LIB)includes/
 DIR_CW_INC	=	../includes/
 DIR_VM_INC	=	./includes/
 DIR_VM		=	./source/
@@ -32,7 +31,7 @@ HEAD_CW		=	op.h
 
 C_VM		=	main.c cw_init.c cw_free.c cw_exit.c
 
-C_PARSER	=	cw_parser.c cw_parse_args.c
+C_PARSER	=	cw_parser.c cw_parse_args.c cw_get_basic_data.c cw_helpers.c
 
 C_LIST_MP	=	t_champ.c
 
@@ -42,7 +41,7 @@ OBJ_PARSER	= 	$(C_PARSER:.c=.o)
 OBJ_LIST_MP	= 	$(C_LIST_MP:.c=.o)
 
 OBJ 		= 	$(addprefix $(DIR_OBJ), $(OBJ_VM) $(OBJ_PARSER) $(OBJ_LIST_MP))
-INC 		= 	$(addprefix -I, $(DIR_VM_INC) $(DIR_LIB_INC) $(DIR_FPF_INC) $(DIR_CW_INC))
+INC 		= 	$(addprefix -I, $(DIR_VM_INC) $(DIR_LIB_INC) $(DIR_CW_INC))
 INC_VM 		= 	$(addprefix $(DIR_VM_INC), $(HEAD_VM))
 INC_VM 		+= 	$(addprefix $(DIR_CW_INC), $(HEAD_CW))
 
