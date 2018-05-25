@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   generate_file_name.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/25 17:33:17 by otimofie          #+#    #+#             */
+/*   Updated: 2018/05/25 17:33:19 by otimofie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 static int		ft_string_size(char *str)
@@ -32,9 +44,8 @@ static int		len_to_copy(char *str)
 	return (i + 1);
 }
 
-char	*generate_file_name(char *file_string)
+char			*generate_file_name(char *file_string)
 {
-
 	int		len;
 	int		copy_start;
 	char	*tmp;

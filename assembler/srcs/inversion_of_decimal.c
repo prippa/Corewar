@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   inversion_of_decimal.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/25 17:32:51 by otimofie          #+#    #+#             */
+/*   Updated: 2018/05/25 17:32:53 by otimofie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 static void	reverse_binary_string(char *str)
@@ -14,7 +26,7 @@ static void	reverse_binary_string(char *str)
 	ft_strncpy(&str[16], buf, 8);
 }
 
-int		bstr_to_dec(char *str)
+int			bstr_to_dec(char *str)
 {
 	int val;
 
@@ -24,7 +36,7 @@ int		bstr_to_dec(char *str)
 	return (val);
 }
 
-char	*ft_to_binary(unsigned int n)
+char		*ft_to_binary(unsigned int n)
 {
 	int		i;
 	int		c;
