@@ -36,7 +36,7 @@ int			bstr_to_dec(char *str)
 	return (val);
 }
 
-char		*ft_to_binary(unsigned int n)
+char		*ft_to_binary(/*unsigned */unsigned int n)
 {
 	int		i;
 	int		c;

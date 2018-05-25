@@ -53,36 +53,45 @@ int		check_not_1_9_12_15(int codage)
 void	print_arg_according_to_type(t_arg	*arg, int fd)
 {
 	char c;
-	short tmp_1;
+	int tmp_1;
 	int tmp_2;
 	char *buf;
+
+	// ft_printf("sizeof short -> %d\n", sizeof(short));
+	// ft_printf("sizeof int -> %d\n", sizeof(int));
+	// ft_printf("sizeof uint -> %d\n", sizeof(unsigned int));
+
+	// short x1 = 7;
+	// int x2 = x1;
+
+	// ft_printf("%d\n", x2);
 
 	if (arg)
 	{
 		if (arg->tp == 1)
 		{
-			ft_printf("correct of type 1-> %c\n", *(char *)arg->av);
 			c = *(char *)arg->av;
+			ft_printf("correct of type 1-> %d\n", c);
 			ft_printf("sizeof char-> %d\n", sizeof(c));
 			write(fd, &c, sizeof(c));
 		}
 		else if (arg->tp == 2)
 		{
-			ft_printf("correct of type 2-> %d\n", *(short *)arg->av);
-			buf = ft_to_binary(*(short int *)arg->av);
+			tmp_1 = *(short int *)arg->av;
+			ft_printf("correct of type 2-> %d\n", tmp_1);
+			buf = ft_to_binary(tmp_1);
 			tmp_1 = bstr_to_dec(buf);
-			ft_printf("sizeof short-> %d\n", sizeof(tmp_1));
+			ft_printf("sizeof short-> %d\n", 2);
 			ft_printf("after transformation -> %d\n", tmp_1);
 			free(buf);
 			write(fd, &tmp_1, sizeof(tmp_1));
 		}
 		else if (arg->tp == 4)
 		{
-			ft_printf("correct of type 4-> %d\n", *(int *)arg->av);
+			tmp_2 = *(int *)arg->av;
+			ft_printf("correct of type 4-> %d\n", tmp_2);
 			buf = ft_to_binary(*(int *)arg->av);
 			tmp_2 = bstr_to_dec(buf);
-			ft_printf("sizeof int-> %d\n", sizeof(tmp_2));
-
 			ft_printf("after transformation -> %d\n", tmp_2);
 			free(buf);
 			write(fd, &tmp_2, sizeof(tmp_2));
@@ -111,8 +120,14 @@ void	command_write(t_label	*label, int fd)
 			write(fd, &command->cmd, sizeof(command->cmd));
 
 			(check_not_1_9_12_15(command->codage)) ? ft_printf("codage -> %d\n", command->codage) : ft_printf("will not write codage -> %d\n", command->codage);
-			(check_not_1_9_12_15(command->codage)) ? write(fd, &command->codage, sizeof(command->codage)) : 0;			
+			if (check_not_1_9_12_15(command->codage))
+			{
+				char * buf = ft_to_binary(command->codage);
+				int tmp_1 = bstr_to_dec(buf);
 
+				write(fd, &tmp_1, sizeof(tmp_1));		
+				free(buf)	;
+			}
 			ft_printf("type of cmd 1 -> %d\n", command->arg1.tp);
 			ft_printf("type of cmd 2 -> %d\n", command->arg2.tp);
 			ft_printf("type of cmd 3 -> %d\n", command->arg3.tp);

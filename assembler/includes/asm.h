@@ -70,7 +70,7 @@ void					ch_to_coord(t_asm *am);
 // write to the file;
 
 char					*generate_file_name(char *file_string);
-char					*ft_to_binary(unsigned int n);
+char					*ft_to_binary(/*unsigned */unsigned int n);
 int						bstr_to_dec(char *str);
 void					initial(char *argv_name, t_asm *am);
 
