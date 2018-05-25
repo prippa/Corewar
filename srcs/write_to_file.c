@@ -150,39 +150,43 @@ char	*ft_to_binary(unsigned int n)
 	return (reverse);
 }
 
-void	write_to_struct(char *file_name, t_toto *sample)
+char	*generate_file_name(char *file_string)
 {
+
 	int		len;
-	int		fd;
 	int		copy_start;
 	char	*tmp;
 	char	*res;
 
-	len = ft_string_size(file_name);
-	copy_start = ft_strlen(file_name) - len;
-	tmp = ft_strnew(len - len_to_copy(file_name));
-	ft_strncpy(tmp, &file_name[copy_start], len - len_to_copy(file_name));
+	len = ft_string_size(file_string);
+	copy_start = ft_strlen(file_string) - len;
+	tmp = ft_strnew(len - len_to_copy(file_string));
+	ft_strncpy(tmp, &file_string[copy_start], len - len_to_copy(file_string));
 	res = ft_strjoin(tmp, ".cor");
 	free(tmp);
-	fd = open(res, O_WRONLY | O_CREAT | O_TRUNC, 0600);
-	sample->prog_size = bstr_to_dec(ft_to_binary(23));
-	sample->magic = bstr_to_dec(ft_to_binary(15369203));
+	return (res);
+}
+
+void	write_to_struct(char *argv_name, t_toto *sample)
+{
+	int		fd;
+	char 	*file_name;
+
+	file_name = generate_file_name(argv_name);
+	fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0600);
+	char *test = ft_to_binary(23);
+
+	sample->prog_size = bstr_to_dec(test);
+	free(test);
+
+	test = ft_to_binary(15369203);
+	sample->magic = bstr_to_dec(test);
+	free(test);
+
 	write(fd, sample, sizeof(sample->magic) + sizeof(sample->prog_name)
 			+ sizeof(sample->prog_size) + sizeof(sample->comment));
-	// experiment;
-
-	char c = 1;
-	int x = 1;
-
-	x = bstr_to_dec(ft_to_binary(x));
-
-	write (fd, &c, sizeof(c));
-		write (fd, &x, sizeof(x));
-
-
-
 	close(fd);
-	free(res);
+	free(file_name);
 }
 
 int		main(int argc, char **argv)
@@ -195,4 +199,5 @@ int		main(int argc, char **argv)
 	ft_bzero(sample.comment, sizeof(sample.comment));
 	ft_strcpy(sample.comment, "just a basic living prog");
 	write_to_struct(argv[1], &sample);
+	system("leaks -q asm");
 }
