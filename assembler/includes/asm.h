@@ -46,8 +46,8 @@ typedef struct			s_label
 
 typedef struct			s_asm
 {
-	t_header			hd;
-	t_label				*lb;
+	t_header			hd;  // done;
+	t_label				*lb; // done;
 	int					nmcm;
 	int					x;
 	int					y;
@@ -73,5 +73,7 @@ char					*generate_file_name(char *file_string);
 char					*ft_to_binary(unsigned int n);
 int						bstr_to_dec(char *str);
 void					initial(char *argv_name, t_asm *am);
+
+void	command_write(t_label	*label, int fd);
 
 #endif
