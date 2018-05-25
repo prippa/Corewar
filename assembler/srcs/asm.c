@@ -198,7 +198,6 @@ int		len_to_copy(char *str)
 	return (i + 1);
 }
 
-
 char	*generate_file_name(char *file_string)
 {
 
