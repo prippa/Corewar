@@ -173,7 +173,7 @@ void	write_to_struct(char *argv_name, t_toto *sample)
 	char 	*file_name;
 
 	file_name = generate_file_name(argv_name);
-	fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0600);
+	fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0600); // append to file;
 	char *test = ft_to_binary(23);
 
 	sample->prog_size = bstr_to_dec(test);
