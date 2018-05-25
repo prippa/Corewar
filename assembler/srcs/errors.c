@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 13:58:44 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/25 01:53:39 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/25 15:01:52 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void		errors_man(t_asm *am, char *s, int o)
 			write(1, s + am->x++, 1);
 		write(1, "\"\n", 2);
 	}
-	// all_clear(am, s);
+	all_clear(am, s);
 	exit(1);
 }
 

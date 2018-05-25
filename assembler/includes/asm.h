@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:21:21 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/25 13:55:46 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/25 15:51:59 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ char					*tran_str(char i);
 t_command				*find_lb_cmd(t_label *lb, char *s, t_asm *am, int cmd);
 void					bef_error(char *s, t_asm *am, char cmd, int i);
 void					crt_arg(char *s, t_asm *am, t_arg *ar, char cmd);
+void					all_clear(t_asm *am, char *s);
+void					ch_to_coord(t_asm *am);
 
 #endif

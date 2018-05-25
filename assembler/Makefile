@@ -6,7 +6,7 @@
 #    By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/16 13:38:18 by vgladush          #+#    #+#              #
-#    Updated: 2018/05/23 22:00:26 by vgladush         ###   ########.fr        #
+#    Updated: 2018/05/25 15:53:12 by vgladush         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJS	=	./obj/
 LB_LK	=	-L ../libft -lft
 
 FUNC	=	asm.c errors.c validator.c transform.c write_command.c \
-			correct_cmd.c write_command2.c 
+			correct_cmd.c write_command2.c free_all_asm.c find_coord.c
 
 OBJCS	=	$(FUNC:.c=.o)
 
