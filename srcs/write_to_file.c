@@ -12,55 +12,42 @@
 
 #include "../libft/ft_printf.h"
 
-// typedef struct			s_arg
-// {
-// 	t_arg_type			tp; // tp == ? 1 ->ch 2 4 sdfgsdfgsd.s.cor
-// 	char				dn;
-// 	void				*av; // only this to cast;
-// 	int					x;
-// 	int					y;
-// }						t_arg;
+typedef struct			s_arg
+{
+	t_arg_type			tp; // nope -> ype id for tp == ? 1 ->ch 2 4; char to be printed without conversion;
+	char				dn; // nope;
+	void				*av; // only this to cast;
+	int					x; // nope
+	int					y; // nope
+}						t_arg;
 
-// typedef struct			s_command
-// {
-// 	int					bit; // nope
-// 	char				cmd; // always as char
-// 	int					codage; // only if our command is not 1, 9, 12, 15;
-// 	t_arg				arg1; // if type not null -> print as type;
-// 	t_arg				arg2;
-// 	t_arg				arg3;
-// 	struct s_command	*next;
-// }						t_command;
+typedef struct			s_command
+{
+	int					bit; // nope
+	char				cmd; // always as char
+	int					codage; // only if our command is not 1, 9, 12, 15;
+	t_arg				arg1; // if type not null -> print as type indicates;
+	t_arg				arg2; // if type not null -> print as type indicates;
+	t_arg				arg3; // if type not null -> print as type indicates;
+	struct s_command	*next;
+}						t_command;
 
-// typedef struct			s_label
-// {
-// 	char				*name; //nope
-// 	t_command			*cmd;
-// 	int					bit; // nope
-// 	struct s_label		*next; // nope
-// }						t_label;
+typedef struct			s_label
+{
+	char				*name; //nope
+	t_command			*cmd;
+	int					bit; // nope
+	struct s_label		*next; // nope
+}						t_label;
 
-// typedef struct			s_asm
-// {
-// 	header_t			hd;
-// 	t_label				*lb;
-// 	int					nmcm;
-// 	int					x;
-// 	int					y;
-// }						t_asm;
-
-// t_asm *ld;
-
-// ld->hd
-// 1. hd;
-// 2. while (label -> cmd). no comma
-// while
-//  ?? ld->lb->cmd->cmd
-//  ?? ld->lb->cmd->codage
-
-//  ?? arg1/...2...3
-//  tp == 1 === char ... 2 short 3 int
-//  ?? tp (1 2 or 3)ard->av
+typedef struct			s_asm
+{
+	header_t			hd;
+	t_label				*lb;
+	int					nmcm;
+	int					x;
+	int					y;
+}						t_asm;
 
 typedef struct		s_toto
 {
