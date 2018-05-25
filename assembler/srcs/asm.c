@@ -139,5 +139,6 @@ int			main(int ac, char **av)
 	// name_cor(av[ac - 1], am);
 	initial(av[1], &am);
 	printf("%s\n%s\n", am.hd.prog_name, am.hd.comment);
+	system("leaks -q asm");
 	return (0);
 }

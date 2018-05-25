@@ -18,7 +18,10 @@ void	initial(char *argv_name, t_asm *am)
 	char	*file_name;
 	char	*test;
 
-	ft_printf("argv -> %s\n", argv_name);
+	// ft_printf("argv -> %s\n", argv_name);  write a file to a specific directory;
+	// https://stackoverflow.com/questions/22949500/create-file-inside-a-directory-c;
+
+
 
 
 
