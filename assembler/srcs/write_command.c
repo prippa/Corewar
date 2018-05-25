@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 11:39:41 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/25 16:08:50 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/25 19:52:32 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ static void		write_cod3(char *s, t_asm *am, char cmd, t_command *tmp)
 	bef_error(s, am, cmd, 2);
 	if (s[am->x] != 'r' && !ft_isdigit(s[am->x]) && s[am->x] != LABEL_CHAR)
 		bef_error(s, am, cmd, 1);
-	tmp->arg2.tp = (s[am->x] != 'r' ? T_REG : T_DIR);
-	tmp->codage = (s[am->x] != 'r' && (++am->x) ? 0x50 : 0x70);
+	tmp->arg2.tp = (s[am->x] == 'r' ? T_REG : T_DIR);
+	tmp->codage = (s[am->x] == 'r' && (++am->x) ? 0x50 : 0x70);
 	crt_arg(s, am, &tmp->arg2, cmd);
 }
 
 static void		write_cod2(char *s, t_asm *am, char cmd, t_command *tmp)
 {
-	if (s[am->x] != DIRECT_CHAR && !ft_isdigit(s[am->x] && s[am->x] != ':'))
+	if (s[am->x] != DIRECT_CHAR && !ft_isdigit(s[am->x]) && s[am->x] != ':')
 		bef_error(s, am, cmd, 1);
 	tmp->codage = (s[am->x] == DIRECT_CHAR ? 0x90 : 0xd0);
 	tmp->arg1.tp = (s[am->x] == DIRECT_CHAR && (++am->x) ? T_IND : T_DIR);
@@ -90,7 +90,7 @@ void			write_cod(char *s, t_asm *am, char cmd, t_label *lb)
 	t_command 	*tmp;
 
 	tmp = find_lb_cmd(lb, s, am, cmd);
-	while (s[am->x] == ' ' || s[am->x] == '\t')
+	while (s[am->x] && (s[am->x] == ' ' || s[am->x] == '\t'))
 		am->x++;
 	if (cmd == 1 || cmd == 9 || cmd == 12 || cmd == 15 || cmd == 16)
 		write_cod1(s, am, cmd, tmp);
