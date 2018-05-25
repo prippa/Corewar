@@ -14,7 +14,7 @@
 
 typedef struct			s_arg
 {
-	t_arg_type			tp; // nope -> ype id for tp == ? 1 ->ch 2 4; char to be printed without conversion;
+	t_arg_type			tp; // nope -> tp == ? 1 ->ch 2 4; char to be printed without conversion;
 	char				dn; // nope;
 	void				*av; // only this to cast;
 	int					x; // nope
