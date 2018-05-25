@@ -21,11 +21,6 @@ void	initial(char *argv_name, t_asm *am)
 	// ft_printf("argv -> %s\n", argv_name);  write a file to a specific directory;
 	// https://stackoverflow.com/questions/22949500/create-file-inside-a-directory-c;
 
-
-
-
-
-
 	file_name = generate_file_name(argv_name);
 	fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0600);
 	test = ft_to_binary(am->hd.prog_size);
