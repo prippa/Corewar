@@ -12,42 +12,42 @@
 
 #include "../libft/ft_printf.h"
 
-typedef struct			s_arg
-{
-	t_arg_type			tp; // nope -> tp == ? 1 ->ch 2 4; char to be printed without conversion;
-	char				dn; // nope;
-	void				*av; // only this to cast;
-	int					x; // nope
-	int					y; // nope
-}						t_arg;
+// typedef struct			s_arg
+// {
+// 	t_arg_type			tp; // nope -> tp == ? 1 ->ch 2 4; char to be printed without conversion;
+// 	char				dn; // nope;
+// 	void				*av; // only this to cast;
+// 	int					x; // nope
+// 	int					y; // nope
+// }						t_arg;
 
-typedef struct			s_command
-{
-	int					bit; // nope
-	char				cmd; // always as char
-	int					codage; // only if our command is not 1, 9, 12, 15;
-	t_arg				arg1; // if type not null -> print as type indicates;
-	t_arg				arg2; // if type not null -> print as type indicates;
-	t_arg				arg3; // if type not null -> print as type indicates;
-	struct s_command	*next;
-}						t_command;
+// typedef struct			s_command
+// {
+// 	int					bit; // nope
+// 	char				cmd; // always as char
+// 	int					codage; // only if our command is not 1, 9, 12, 15;
+// 	t_arg				arg1; // if type not null -> print as type indicates;
+// 	t_arg				arg2; // if type not null -> print as type indicates;
+// 	t_arg				arg3; // if type not null -> print as type indicates;
+// 	struct s_command	*next;
+// }						t_command;
 
-typedef struct			s_label
-{
-	char				*name; //nope
-	t_command			*cmd;
-	int					bit; // nope
-	struct s_label		*next; // nope
-}						t_label;
+// typedef struct			s_label
+// {
+// 	char				*name; //nope
+// 	t_command			*cmd;
+// 	int					bit; // nope
+// 	struct s_label		*next; // nope
+// }						t_label;
 
-typedef struct			s_asm
-{
-	header_t			hd;
-	t_label				*lb;
-	int					nmcm;
-	int					x;
-	int					y;
-}						t_asm;
+// typedef struct			s_asm
+// {
+// 	header_t			hd;
+// 	t_label				*lb;
+// 	int					nmcm;
+// 	int					x;
+// 	int					y;
+// }						t_asm;
 
 typedef struct		s_toto
 {
@@ -169,6 +169,18 @@ void	write_to_struct(char *file_name, t_toto *sample)
 	sample->magic = bstr_to_dec(ft_to_binary(15369203));
 	write(fd, sample, sizeof(sample->magic) + sizeof(sample->prog_name)
 			+ sizeof(sample->prog_size) + sizeof(sample->comment));
+	// experiment;
+
+	char c = 1;
+	int x = 1;
+
+	x = bstr_to_dec(ft_to_binary(x));
+
+	write (fd, &c, sizeof(c));
+		write (fd, &x, sizeof(x));
+
+
+
 	close(fd);
 	free(res);
 }
