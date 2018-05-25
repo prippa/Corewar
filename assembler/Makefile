@@ -6,31 +6,38 @@
 #    By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/16 13:38:18 by vgladush          #+#    #+#              #
-#    Updated: 2018/04/20 17:37:33 by vgladush         ###   ########.fr        #
+#    Updated: 2018/05/25 15:53:12 by vgladush         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CRWR_PH	=	./vm/
-CHAM_PH	=	./champion/
-ASM_PAT	=	./assembler/
-LB_PATH	=	./libft/
+NAME	=	asm
 
-all:
-	@make -C $(LB_PATH)
-	@make -C $(ASM_PAT)
-	@# @make -C $(CRWR_PH)
-	@# @make -C $(CHAM_PH)
+FLGS	=	gcc -g -Wall -Wextra -Werror
+SRCS	=	./srcs/
+INCL	=	./includes/ ../libft/includes/
+OBJS	=	./obj/
+LB_LK	=	-L ../libft -lft
+
+FUNC	=	asm.c errors.c validator.c transform.c write_command.c \
+			correct_cmd.c write_command2.c free_all_asm.c find_coord.c
+
+OBJCS	=	$(FUNC:.c=.o)
+
+OBJC	=	$(addprefix $(OBJS), $(OBJCS))
+INC		=	$(addprefix -I, $(INCL))
+
+all: create $(NAME)
+
+create:
+	@mkdir -p $(OBJS)
+
+$(NAME): $(OBJC)
+	@gcc -o ../$(NAME) $(OBJC) $(LB_LK)
+	@echo "\x1B[0;32m"$(NAME) "ready"
+
+$(OBJS)%.o: $(SRCS)%.c
+	@$(FLGS) $(INC) -o $@ -c $<
 
 clean:
-	@make -C $(LB_PATH) clean
-	@make -C $(ASM_PAT) clean
-	@make -C $(CRWR_PH) clean
-	@# @make -C $(CHAM_PH) clean
-
-fclean: clean
-	@# @rm -rf $(LB_PATH)libft.a
-	@echo "\x1B[0;31mlift.a deleted"
-	@rm -f asm corewar superdude
-	@echo "asm & corewar & superdude deleted"
-
-re: fclean all
+	@rm -rf $(OBJS)
+	@echo "\x1B[1;31mobjects" $(NAME) "deleted"

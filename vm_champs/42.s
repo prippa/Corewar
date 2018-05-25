@@ -1,4 +1,7 @@
-.name           "42"
-.comment        "Just a basic Winner Program"
 
-live	%42
+.name      	 ";ss"
+  ;asfasf
+.comment		 "nner ProgramJust a basic Winner Program"   #sdfdasd
+
+entree: 
+	aff r12
