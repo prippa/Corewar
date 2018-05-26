@@ -26,17 +26,18 @@ static void	reverse_binary_string(char *str)
 	ft_strncpy(&str[16], buf, 8);
 }
 
-int			bstr_to_dec(char *str)
+int			bstr_to_dec(char *str, char **buf)
 {
 	int val;
 
 	val = 0;
 	while (*str != '\0')
 		val = 2 * val + (*str++ - '0');
+	free(*buf);
 	return (val);
 }
 
-char		*ft_to_binary(/*unsigned */unsigned int n)
+char		*ft_to_binary(unsigned int n)
 {
 	int		i;
 	int		c;

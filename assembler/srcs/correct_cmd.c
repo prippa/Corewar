@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 21:49:48 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/25 16:27:27 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/26 12:48:17 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static void		crt_arg2(char *s, t_asm *am, t_arg *ar, char cmd)
 		errors_man(am, s, 10);
 	while (am->x < i)
 		str[j++] = s[am->x++];
-	ar->av = str;
+	ar->lb = str;
 }
 
 void			crt_arg(char *s, t_asm *am, t_arg *ar, char cmd)
@@ -95,7 +95,7 @@ void			crt_arg(char *s, t_asm *am, t_arg *ar, char cmd)
 			am->x++;
 		if (ar->tp == T_REG && ((short)i > REG_NUMBER || (short)i < 1))
 			errors_man(am, s, 12);
-		ar->av = &i;
+		ar->av = i;
 		ar->dn = 1;
 	}
 	else

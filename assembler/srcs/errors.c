@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 13:58:44 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/25 15:01:52 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/25 19:35:32 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void		bef_error(char *s, t_asm *am, char cmd, int i)
 		if (s[am->x] != SEPARATOR_CHAR)
 			bef_error(s, am, cmd, 1);
 		am->x++;
-		while (s[am->x] && s[am->x] == ' ' && s[am->x] == '\t')
+		while (s[am->x] && (s[am->x] == ' ' || s[am->x] == '\t'))
 			am->x++;
 		return ;
 	}

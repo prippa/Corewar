@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:21:21 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/25 15:51:59 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/26 12:46:52 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ typedef struct			s_arg
 {
 	t_arg_type			tp;
 	char				dn;
-	void				*av;
+	char				*lb;
+	int					av;
 	int					x;
 	int					y;
 }						t_arg;
@@ -71,9 +72,9 @@ void					ch_to_coord(t_asm *am);
 
 char					*generate_file_name(char *file_string);
 char					*ft_to_binary(/*unsigned */unsigned int n);
-int						bstr_to_dec(char *str);
+int						bstr_to_dec(char *str, char **buf);
 void					initial(char *argv_name, t_asm *am);
 
-void	command_write(t_label	*label, int fd);
+void					command_write(t_label	*label, int fd);
 
 #endif

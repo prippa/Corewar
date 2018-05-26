@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:06:25 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/25 14:42:17 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/25 21:23:38 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,11 +136,8 @@ int			main(int ac, char **av)
 	am.x = 0;
 	am.y = 0;
 	valid_bit(op, &am, line);
-	// name_cor(av[ac - 1], am);
-	initial(av[1], &am);
-
-
-	printf("%s\n%s\n", am.hd.prog_name, am.hd.comment);
+	initial(av[ac - 1], &am);
+	all_clear(&am, 0);
 	system("leaks -q asm");
 	return (0);
 }
