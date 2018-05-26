@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 23:33:49 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/24 14:37:09 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/26 19:32:47 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static void		wriite_cmd(char *s, t_asm *am, int i, int j)
 	else if (j)
 		while (lab->next)
 			lab = lab->next;
-	else if(!(lab = crt_label(s, am, i, &j)))
+	else if (!(lab = crt_label(s, am, i, &j)))
 		return ;
 	if (j)
 		write_cod(s, am, j, lab);

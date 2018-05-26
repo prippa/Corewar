@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 17:33:04 by otimofie          #+#    #+#             */
-/*   Updated: 2018/05/26 16:15:34 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/26 19:34:22 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int		ft_to_binary2(unsigned short n)
 		res[j] = '0';
 	j = 0;
 	reverse = ft_itoabase(n, 16, 'a');
-	printf("before %s\n", reverse);
 	i = ft_strlen(reverse);
 	while (i-- > 0)
 	{
@@ -33,13 +32,10 @@ static int		ft_to_binary2(unsigned short n)
 			res[j + 1] = reverse[i];
 		else
 		{
-			res[j + 1] = reverse[i--];
-			res[j++] = reverse[i];
-			j++;
+			res[++j] = reverse[i--];
+			res[j++ - 1] = reverse[i];
 		}
-
 	}
-	printf("after %s\n", res);
 	i = ft_basetoint(res, 16);
 	free(reverse);
 	return (i);
@@ -58,7 +54,6 @@ static int		ft_to_binary(unsigned int n)
 		res[j] = '0';
 	j = 0;
 	reverse = ft_itoabase(n, 16, 'a');
-	printf("before %s\n", reverse);
 	i = ft_strlen(reverse);
 	while (i-- > 0)
 	{
@@ -66,13 +61,10 @@ static int		ft_to_binary(unsigned int n)
 			res[j + 1] = reverse[i];
 		else
 		{
-			res[j + 1] = reverse[i--];
-			res[j++] = reverse[i];
-			j++;
+			res[++j] = reverse[i--];
+			res[j++ - 1] = reverse[i];
 		}
-
 	}
-	printf("after %s\n", res);
 	i = ft_basetoint(res, 16);
 	free(reverse);
 	return (i);
@@ -86,6 +78,7 @@ void			initial(char *argv_name, t_asm *am)
 	file_name = generate_file_name(argv_name);
 	fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0600);
 	am->hd.magic = ft_to_binary(COREWAR_EXEC_MAGIC);
+	am->hd.prog_size = ft_to_binary(am->hd.prog_size);
 	ft_printf("Writing output program to %s\n", file_name);
 	write(fd, &am->hd, sizeof(am->hd));
 	command_write(am->lb, fd);

@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 11:39:41 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/26 15:17:25 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/26 19:34:53 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void			write_cod1(char *s, t_asm *am, char cmd, t_command *tmp)
 
 void			write_cod(char *s, t_asm *am, char cmd, t_label *lb)
 {
-	t_command 	*tmp;
+	t_command	*tmp;
 
 	tmp = find_lb_cmd(lb, s, am, cmd);
 	while (s[am->x] && (s[am->x] == ' ' || s[am->x] == '\t'))

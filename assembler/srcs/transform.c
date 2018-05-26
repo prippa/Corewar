@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 11:45:18 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/24 14:40:44 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/26 18:57:19 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ static int		ch_cmd_sec(char *cmd)
 	return (0);
 }
 
-int			check_cmd(char *s, int j, t_asm *am, int l)
+int				check_cmd(char *s, int j, t_asm *am, int l)
 {
-	char	cmd[6];
-	int		i;
+	char		cmd[6];
+	int			i;
 
 	i = am->x;
 	ft_bzero(cmd, 6);

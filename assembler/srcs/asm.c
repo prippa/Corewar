@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:06:25 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/26 15:09:32 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/26 19:00:57 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ static void	valid_bit(int fd, t_asm *am, char *s)
 			check_form(s, am, am->x, 0);
 		free(s);
 	}
-	// if (!am->lb)
-	// 	errors_man(am, 0, 8);
+	if (!am->lb)
+		errors_man(am, 0, 5);
 	ch_to_coord(am);
 }
 
