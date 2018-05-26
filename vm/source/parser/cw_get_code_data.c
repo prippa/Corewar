@@ -1,24 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cw_free.c                                          :+:      :+:    :+:   */
+/*   cw_get_code_data.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/26 13:56:18 by prippa            #+#    #+#             */
-/*   Updated: 2018/05/26 13:56:19 by prippa           ###   ########.fr       */
+/*   Created: 2018/05/26 17:02:41 by prippa            #+#    #+#             */
+/*   Updated: 2018/05/26 17:02:44 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void	cw_parse_data_free(t_parse_data *pd)
-{
-	t_champ_free(&pd->champs);
-}
 
-void		cw_free(void)
-{
-	cw_parse_data_free(&g_cw->pd);
-	free(g_cw);
-}

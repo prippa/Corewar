@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cw_parser.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/26 13:55:45 by prippa            #+#    #+#             */
+/*   Updated: 2018/05/26 13:55:50 by prippa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "corewar.h"
 
 static void	cw_parse_file(t_champ *champ)
@@ -6,6 +18,7 @@ static void	cw_parse_file(t_champ *champ)
 	cw_get_prog_name(champ);
 	cw_get_prog_size(champ);
 	cw_get_comment(champ);
+	cw_get_prog_code(champ);
 
 	ft_printf("magic = (%u) | prog name = (%s) | prog size = (%u) | comment = (%s)\n",
 	champ->head.magic, champ->head.prog_name, champ->head.prog_size, champ->head.comment);

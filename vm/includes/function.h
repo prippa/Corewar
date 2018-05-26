@@ -36,6 +36,7 @@ void			cw_check_magic(t_champ *champ);
 void			cw_get_prog_name(t_champ *champ);
 void			cw_get_prog_size(t_champ *champ);
 void			cw_get_comment(t_champ *champ);
+void			cw_get_prog_code(t_champ *champ);
 void			cw_parse_args(int argc, char **argv);
 void			cw_parser(void);
 

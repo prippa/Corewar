@@ -31,7 +31,8 @@ typedef enum	e_error_numbers
 	HEADER,
 	PROG_NAME,
 	PROG_SIZE_TO_BIG,
-	COMMENT
+	COMMENT,
+	PROG_SIZE_INVALID
 }				t_error_numbers;
 
 # define ERR_MALLOC_MESSAGE		"malloc is failed"
