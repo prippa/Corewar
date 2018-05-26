@@ -30,8 +30,7 @@ void	initial(char *argv_name, t_asm *am)
 	am->hd.magic = bstr_to_dec(test);
 	free(test);
 	ft_printf("%s\n", "Writing output program to ");
-	write(fd, am, sizeof(am->hd.magic) + sizeof(am->hd.prog_name)
-			+ sizeof(am->hd.prog_size) + sizeof(am->hd.comment));
+	write(fd, &am->hd, sizeof(am->hd));
 	command_write(am->lb, fd);
 	close(fd);
 	free(file_name);
@@ -66,8 +65,8 @@ void	print_arg_according_to_type(t_arg	*arg, int fd)
 
 	// ft_printf("%d\n", x2);
 
-	if (arg)
-	{
+	// if (arg)
+	// {
 		if (arg->tp == 1)
 		{
 			c = *(char *)arg->av;
@@ -96,7 +95,7 @@ void	print_arg_according_to_type(t_arg	*arg, int fd)
 			free(buf);
 			write(fd, &tmp_2, sizeof(tmp_2));
 		}
-	}
+	// }
 }
 
 void	command_write(t_label	*label, int fd)
@@ -122,11 +121,11 @@ void	command_write(t_label	*label, int fd)
 			(check_not_1_9_12_15(command->codage)) ? ft_printf("codage -> %d\n", command->codage) : ft_printf("will not write codage -> %d\n", command->codage);
 			if (check_not_1_9_12_15(command->codage))
 			{
-				char * buf = ft_to_binary(command->codage);
-				int tmp_1 = bstr_to_dec(buf);
+				// char * buf = ft_to_binary(command->codage);
+				// int tmp_1 = bstr_to_dec(buf);
 
-				write(fd, &tmp_1, sizeof(tmp_1));		
-				free(buf)	;
+				write(fd, &command->codage, 1);		
+				// free(buf)	;
 			}
 			ft_printf("type of cmd 1 -> %d\n", command->arg1.tp);
 			ft_printf("type of cmd 2 -> %d\n", command->arg2.tp);
