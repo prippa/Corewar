@@ -72,7 +72,7 @@ void	print_arg_according_to_type(t_arg	*arg, int fd)
 		{
 			c = *(char *)arg->av;
 			ft_printf("correct of type 1-> %d\n", c);
-			ft_printf("sizeof char-> %d\n", sizeof(c));
+			// ft_printf("sizeof char-> %d\n", sizeof(c));
 			write(fd, &c, sizeof(c));
 		}
 		else if (arg->tp == 2)
@@ -81,7 +81,7 @@ void	print_arg_according_to_type(t_arg	*arg, int fd)
 			ft_printf("correct of type 2-> %d\n", tmp_1);
 			buf = ft_to_binary(tmp_1);
 			tmp_1 = bstr_to_dec(buf);
-			ft_printf("sizeof short-> %d\n", 2);
+			// ft_printf("sizeof short-> %d\n", 2);
 			ft_printf("after transformation -> %d\n", tmp_1);
 			free(buf);
 			write(fd, &tmp_1, sizeof(tmp_1));
