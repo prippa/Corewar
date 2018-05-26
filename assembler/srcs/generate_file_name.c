@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   generate_file_name.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
+/*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 17:33:17 by otimofie          #+#    #+#             */
-/*   Updated: 2018/05/25 19:12:27 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/25 17:33:19 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int	ft_string_size(char *str)
+static int		ft_string_size(char *str)
 {
-	int		i;
-	int		len;
+	int i;
+	int len;
 
 	i = 0;
 	len = ft_strlen(str) - 1;
@@ -27,10 +27,10 @@ static int	ft_string_size(char *str)
 	return (i);
 }
 
-static int	len_to_copy(char *str)
+static int		len_to_copy(char *str)
 {
-	int		i;
-	int		len;
+	int i;
+	int len;
 
 	i = 0;
 	len = ft_strlen(str) - 1;
@@ -44,7 +44,7 @@ static int	len_to_copy(char *str)
 	return (i + 1);
 }
 
-char		*generate_file_name(char *file_string)
+char			*generate_file_name(char *file_string)
 {
 	int		len;
 	int		copy_start;

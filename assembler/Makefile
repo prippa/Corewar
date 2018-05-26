@@ -6,13 +6,13 @@
 #    By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/16 13:38:18 by vgladush          #+#    #+#              #
-#    Updated: 2018/05/25 19:05:31 by vgladush         ###   ########.fr        #
+#    Updated: 2018/05/26 12:12:25 by vgladush         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	asm
 
-FLGS	=	gcc -g -Wall -Wextra -Werror
+FLGS	=	gcc -g -Wall -Wextra 
 SRCS	=	./srcs/
 INCL	=	./includes/ ../libft/includes/
 OBJS	=	./obj/

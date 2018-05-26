@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 15:01:11 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/25 15:51:09 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/26 13:02:18 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	free_cmd(t_command *cmd)
 	if (cmd->next)
 		free_cmd(cmd->next);
 	if (cmd->arg1.tp && !cmd->arg1.dn)
-		free((char *)cmd->arg1.av);
+		free(cmd->arg1.lb);
 	free(cmd);
 }
 
