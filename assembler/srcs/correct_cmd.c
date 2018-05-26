@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 21:49:48 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/26 12:48:17 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/26 13:53:43 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,19 @@ static void		fill_cmd_arg(t_command *cmd)
 	cmd->arg1.tp = 0;
 	cmd->arg1.dn = 0;
 	cmd->arg1.av = 0;
+	cmd->arg1.lb = 0;
 	cmd->arg1.x = 0;
 	cmd->arg1.y = 0;
 	cmd->arg2.tp = 0;
 	cmd->arg2.dn = 0;
 	cmd->arg2.av = 0;
+	cmd->arg2.lb = 0;
 	cmd->arg2.x = 0;
 	cmd->arg2.y = 0;
 	cmd->arg3.tp = 0;
 	cmd->arg3.dn = 0;
 	cmd->arg3.av = 0;
+	cmd->arg3.lb = 0;
 	cmd->arg3.x = 0;
 	cmd->arg3.y = 0;
 }

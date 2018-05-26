@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_file_name.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 17:33:17 by otimofie          #+#    #+#             */
-/*   Updated: 2018/05/25 17:33:19 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/05/26 14:55:31 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int		ft_string_size(char *str)
 
 	i = 0;
 	len = ft_strlen(str) - 1;
-	while (str[len] && str[len] != '/')
+	while (len > -1 && str[len] != '/')
 	{
 		i++;
 		len--;

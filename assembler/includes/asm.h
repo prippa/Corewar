@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:21:21 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/26 12:46:52 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/26 15:55:47 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ typedef struct			s_label
 
 typedef struct			s_asm
 {
-	t_header			hd;  // done;
-	t_label				*lb; // done;
+	t_header			hd;
+	t_label				*lb;
 	int					nmcm;
 	int					x;
 	int					y;
@@ -67,14 +67,8 @@ void					bef_error(char *s, t_asm *am, char cmd, int i);
 void					crt_arg(char *s, t_asm *am, t_arg *ar, char cmd);
 void					all_clear(t_asm *am, char *s);
 void					ch_to_coord(t_asm *am);
-
-// write to the file;
-
 char					*generate_file_name(char *file_string);
-char					*ft_to_binary(/*unsigned */unsigned int n);
-int						bstr_to_dec(char *str);
 void					initial(char *argv_name, t_asm *am);
-
-void					command_write(t_label	*label, int fd);
+void					command_write(t_label *label, int fd);
 
 #endif
