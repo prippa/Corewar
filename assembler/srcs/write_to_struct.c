@@ -119,14 +119,10 @@ void	command_write(t_label	*label, int fd)
 			write(fd, &command->cmd, sizeof(command->cmd));
 
 			(check_not_1_9_12_15(command->codage)) ? ft_printf("codage -> %d\n", command->codage) : ft_printf("will not write codage -> %d\n", command->codage);
+			
 			if (check_not_1_9_12_15(command->codage))
-			{
-				// char * buf = ft_to_binary(command->codage);
-				// int tmp_1 = bstr_to_dec(buf);
-
 				write(fd, &command->codage, 1);		
-				// free(buf)	;
-			}
+
 			ft_printf("type of cmd 1 -> %d\n", command->arg1.tp);
 			ft_printf("type of cmd 2 -> %d\n", command->arg2.tp);
 			ft_printf("type of cmd 3 -> %d\n", command->arg3.tp);
