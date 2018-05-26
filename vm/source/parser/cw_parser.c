@@ -19,6 +19,7 @@ static void	cw_parse_file(t_champ *champ)
 	cw_get_prog_size(champ);
 	cw_get_comment(champ);
 	cw_get_prog_code(champ);
+	cw_get_code_data(champ);
 
 	ft_printf("magic = (%u) | prog name = (%s) | prog size = (%u) | comment = (%s)\n",
 	champ->head.magic, champ->head.prog_name, champ->head.prog_size, champ->head.comment);
