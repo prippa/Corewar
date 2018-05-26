@@ -22,7 +22,7 @@ void	initial(char *argv_name, t_asm *am)
 	// https://stackoverflow.com/questions/22949500/create-file-inside-a-directory-c;
 
 	file_name = generate_file_name(argv_name);
-	fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0600);
+	fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0600); // here work it out;
 	test = ft_to_binary(am->hd.prog_size);
 	am->hd.prog_size = bstr_to_dec(test);
 	free(test);
@@ -114,7 +114,6 @@ void	command_write(t_label	*label, int fd)
 
 		while (command)
 		{
-
 			ft_printf("cmd -> %d\n", command->cmd);
 			write(fd, &command->cmd, sizeof(command->cmd));
 
