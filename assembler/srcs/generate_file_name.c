@@ -19,8 +19,9 @@ static int		ft_string_size(char *str)
 
 	i = 0;
 	len = ft_strlen(str) - 1;
-	while (str[len] && str[len] != '/')
+	while (len > -1 && str[len] != '/')
 	{
+		ft_printf("len -> %d\n", len);
 		i++;
 		len--;
 	}
