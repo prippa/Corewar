@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 14:02:08 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/26 15:32:51 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/26 23:36:44 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ static void		search_lab(t_asm *am, t_label *lb, t_arg *arg, int bt)
 	i = 0;
 	while (lb)
 	{
-		if (!ft_strcmp(lb->name, arg->lb))
+		if (lb->name && !ft_strcmp(lb->name, arg->lb))
 		{
 			free(arg->lb);
 			arg->lb = 0;
 			i = lb->bit - bt;
-			printf("%d\n", lb->bit - bt);
 			arg->av = i;
 			arg->dn = 1;
 			return ;

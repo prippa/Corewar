@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 17:33:04 by otimofie          #+#    #+#             */
-/*   Updated: 2018/05/26 19:34:22 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/27 00:54:29 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,23 +70,7 @@ static int		ft_to_binary(unsigned int n)
 	return (i);
 }
 
-void			initial(char *argv_name, t_asm *am)
-{
-	int			fd;
-	char		*file_name;
-
-	file_name = generate_file_name(argv_name);
-	fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0600);
-	am->hd.magic = ft_to_binary(COREWAR_EXEC_MAGIC);
-	am->hd.prog_size = ft_to_binary(am->hd.prog_size);
-	ft_printf("Writing output program to %s\n", file_name);
-	write(fd, &am->hd, sizeof(am->hd));
-	command_write(am->lb, fd);
-	close(fd);
-	free(file_name);
-}
-
-void			print_arg_according_to_type(t_arg *arg, int fd)
+static void		print_arg_according_to_type(t_arg *arg, int fd)
 {
 	char		c;
 	short		tmp_1;
@@ -118,7 +102,7 @@ void			command_write(t_label *label, int fd)
 		command = label->cmd;
 		while (command)
 		{
-			write(fd, &command->cmd, sizeof(command->cmd));
+			write(fd, &command->cmd, 1);
 			if (command->codage)
 				write(fd, &command->codage, 1);
 			print_arg_according_to_type(&command->arg1, fd);
@@ -128,4 +112,21 @@ void			command_write(t_label *label, int fd)
 		}
 		label = label->next;
 	}
+}
+
+void			initial(char *argv_name, t_asm *am)
+{
+	int			fd;
+	char		*file_name;
+
+	file_name = generate_file_name(argv_name);
+	fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0600);
+	am->hd.magic = ft_to_binary(COREWAR_EXEC_MAGIC);
+	am->hd.prog_size = ft_to_binary(am->hd.prog_size);
+	ft_to_binary(COREWAR_EXEC_MAGIC);
+	ft_printf("Writing output program to %s\n", file_name);
+	write(fd, &am->hd, sizeof(am->hd));
+	command_write(am->lb, fd);
+	close(fd);
+	free(file_name);
 }

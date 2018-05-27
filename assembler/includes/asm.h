@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:21:21 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/26 19:32:28 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/27 00:06:14 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "../../libft/includes/libft.h"
 # include "../../includes/op.h"
+
+# define T_DNR(x) x != DIRECT_CHAR && x != LABEL_CHAR && x != '-' && x != 'r'
+# define T_DTR(x) x == LABEL_CHAR || x == '-' || (x > 47 && x < 58)
 
 typedef struct			s_arg
 {

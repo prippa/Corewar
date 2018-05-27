@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 21:49:48 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/26 13:53:43 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/26 23:54:55 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,17 @@ void			crt_arg(char *s, t_asm *am, t_arg *ar, char cmd)
 {
 	int			i;
 
-	if (ft_isdigit(s[am->x]))
+	if (ft_isdigit(s[am->x]) || s[am->x] == '-')
 	{
 		ar->x = am->x;
 		ar->y = am->y;
 		i = ft_atoi(s + am->x);
+		if (s[am->x] == '-')
+		{
+			am->x++;
+			if (!ft_isdigit(s[am->x]))
+				errors_man(am, s, 20 + cmd);
+		}
 		while (ft_isdigit(s[am->x]))
 			am->x++;
 		if (ar->tp == T_REG && ((short)i > REG_NUMBER || (short)i < 1))
