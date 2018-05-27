@@ -30,7 +30,7 @@ void			cw_free(void);
 ** Parse file part
 */
 
-unsigned int	cw_hex_to_dec(unsigned char (*str)[]);
+long long int	cw_hex_to_dec(unsigned char (*str)[]);
 void			cw_lseek_cur_skip(int fd, long size);
 void			cw_check_magic(t_champ *champ);
 void			cw_get_prog_name(t_champ *champ);

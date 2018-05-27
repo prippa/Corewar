@@ -18,9 +18,9 @@ void			cw_lseek_cur_skip(int fd, long size)
 		cw_perror_exit(ERR_LSEEK_CUR_MESSAGE, LSEEK);
 }
 
-unsigned int	cw_hex_to_dec(unsigned char (*str)[])
+long long int	cw_hex_to_dec(unsigned char (*str)[])
 {
-	unsigned int res;
+	long long int res;
 
 	res = 0;
 	res += (*str)[0] * 16777216;

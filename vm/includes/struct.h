@@ -17,28 +17,45 @@
 ** Parsing champions part (data)
 */
 
-typedef struct		s_champ
+typedef struct			s_arg
 {
-	t_header		head;
-	char			file_name[FILE_NAME_MAX + 1];
-	int				fd;
-	char			*code;
-	struct s_champ	*next;
-}					t_champ;
+	t_arg_type			tp;
+	int					av;
+}						t_arg;
 
-typedef struct		s_parse_data
+typedef struct			s_command
 {
-	t_champ			*champs;
-	long long int	tmp;
-}					t_parse_data;
+	char				cmd;
+	int					codage;
+	t_arg				arg1;
+	t_arg				arg2;
+	t_arg				arg3;
+	struct s_command	*next;
+}						t_command;
+
+typedef struct			s_champ
+{
+	t_header			head;
+	char				file_name[FILE_NAME_MAX + 1];
+	int					fd;
+	char				*code;
+	t_command			*cmd;
+	struct s_champ		*next;
+}						t_champ;
+
+typedef struct			s_parse_data
+{
+	t_champ				*champs;
+	long long int		tmp;
+}						t_parse_data;
 
 /*
 ** End
 */
 
-typedef struct		s_corewar
+typedef struct			s_corewar
 {
-	t_parse_data	pd;
-}					t_corewar;
+	t_parse_data		pd;
+}						t_corewar;
 
 #endif
