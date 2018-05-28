@@ -14,12 +14,12 @@
 
 void		cw_check_magic(t_champ *champ)
 {
-	char	buf[REG_SIZE];
+	unsigned char	buf[REG_SIZE];
 
 	ft_bzero(buf, REG_SIZE);
 	if ((read(champ->fd, buf, REG_SIZE)) < 0)
 		cw_perror_exit(champ->file_name, READ_FILE);
-	champ->head.magic = cw_hex_to_dec((unsigned char (*)[])buf);
+	champ->head.magic = cw_hex_to_dec(buf);
 	if (champ->head.magic != COREWAR_EXEC_MAGIC)
 		cw_exit(champ->file_name, HEADER);
 }
@@ -38,13 +38,13 @@ void		cw_get_prog_name(t_champ *champ)
 
 void		cw_get_prog_size(t_champ *champ)
 {
-	char	buf[REG_SIZE];
+	unsigned char	buf[REG_SIZE];
 
 	cw_lseek_cur_skip(champ->fd, REG_SIZE);
 	ft_bzero(buf, REG_SIZE);
 	if ((read(champ->fd, buf, REG_SIZE)) < 0)
 		cw_perror_exit(champ->file_name, READ_FILE);
-	champ->head.prog_size = cw_hex_to_dec((unsigned char (*)[])buf);
+	champ->head.prog_size = cw_hex_to_dec(buf);
 	if (champ->head.prog_size > CHAMP_MAX_SIZE)
 	{
 		g_cw->pd.tmp = champ->head.prog_size;
@@ -66,7 +66,7 @@ void		cw_get_comment(t_champ *champ)
 
 void		cw_get_prog_code(t_champ *champ)
 {
-	char	buf[champ->head.prog_size + 2];
+	unsigned char	buf[champ->head.prog_size + 2];
 
 	cw_lseek_cur_skip(champ->fd, REG_SIZE);
 	ft_bzero(buf, champ->head.prog_size + 2);
@@ -74,7 +74,5 @@ void		cw_get_prog_code(t_champ *champ)
 		cw_perror_exit(champ->file_name, READ_FILE);
 	if ((unsigned int)g_cw->pd.tmp != champ->head.prog_size)
 		cw_exit(champ->file_name, PROG_SIZE_INVALID);
-	if (!(champ->code = ft_strnew(champ->head.prog_size)))
-		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
 	ft_memcpy(champ->code, buf, champ->head.prog_size);
 }

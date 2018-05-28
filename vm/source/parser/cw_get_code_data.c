@@ -12,10 +12,21 @@
 
 #include "corewar.h"
 
+void		cw_get_command(t_command *cmd,
+			unsigned char code[CHAMP_MAX_SIZE + 1],
+			int *i)
+{
+	*i += 1;
+}
+
 void		cw_get_code_data(t_champ *champ)
 {
-	ft_printf("%d\n", 4294967286);
-	for (int i = 0; i < champ->head.prog_size; i++)
-		ft_printf("%u ", (unsigned char)champ->code[i]);
+	g_cw->pd.i = 0;
+	while (g_cw->pd.i < champ->head.prog_size)
+	{
+		// t_command_add(&champ->cmd);
+		ft_printf("%u ", champ->code[g_cw->pd.i]);
+		cw_get_command(champ->cmd, champ->code, &g_cw->pd.i);
+	}
 	ft_putchar('\n');
 }

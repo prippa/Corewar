@@ -17,7 +17,7 @@ void	t_champ_free(t_champ **champs)
 	while (*champs)
 	{
 		close((*champs)->fd);
-		ft_str_free(&(*champs)->code);
+		t_command_free(&(*champs)->cmd);
 		free(*champs);
 		*champs = (*champs)->next;
 	}
@@ -35,7 +35,8 @@ void	t_champ_add(t_champ **champs)
 	ft_bzero(new_obj->head.prog_name, PROG_NAME_LENGTH + 1);
 	new_obj->head.prog_size = 0;
 	ft_bzero(new_obj->head.comment, COMMENT_LENGTH + 1);
-	new_obj->code = NULL;
+	ft_bzero(new_obj->code, CHAMP_MAX_SIZE + 1);
+	new_obj->cmd = NULL;
 	new_obj->next = *champs;
 	*champs = new_obj;
 }

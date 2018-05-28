@@ -15,13 +15,17 @@
 
 static void	cw_valid_champ(char *file_name)
 {
-	int fd;
+	int			fd;
+	static int	count;
 
+	if (count == MAX_PLAYERS)
+		cw_exit(TOO_MANY_CHAMPS, MANY_CHAMPS);
 	if ((fd = open(file_name, O_RDONLY)) == -1 || read(fd, NULL, 0) == -1)
 		cw_perror_exit(file_name, OPEN_FILE);
 	t_champ_add(&g_cw->pd.champs);
 	g_cw->pd.champs->fd = fd;
 	ft_strcpy(g_cw->pd.champs->file_name, file_name);
+	count++;
 }
 
 void		cw_parse_args(int argc, char **argv)
@@ -29,7 +33,8 @@ void		cw_parse_args(int argc, char **argv)
 	int i;
 
 	i = 0;
-	argc += 0;
+	if (argc < 2)
+		cw_exit(CW_USAGE, INVALID_INPUT);
 	while (argv[i])
 	{
 		if (ft_strstr(argv[i], ".cor"))
