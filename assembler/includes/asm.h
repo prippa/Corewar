@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:21:21 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/26 12:46:52 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/27 00:06:14 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "../../libft/includes/libft.h"
 # include "../../includes/op.h"
+
+# define T_DNR(x) x != DIRECT_CHAR && x != LABEL_CHAR && x != '-' && x != 'r'
+# define T_DTR(x) x == LABEL_CHAR || x == '-' || (x > 47 && x < 58)
 
 typedef struct			s_arg
 {
@@ -47,8 +50,8 @@ typedef struct			s_label
 
 typedef struct			s_asm
 {
-	t_header			hd;  // done;
-	t_label				*lb; // done;
+	t_header			hd;
+	t_label				*lb;
 	int					nmcm;
 	int					x;
 	int					y;
@@ -57,9 +60,9 @@ typedef struct			s_asm
 void					errors_man(t_asm *am, char *s, int o);
 void					check_form(char *s, t_asm *am, int i, int j);
 void					write_cod(char *s, t_asm *am, char cmd, t_label *lb);
-void					write_cod5(char *s, t_asm *am, char cmd, t_command *tmp);
-void					write_cod6(char *s, t_asm *am, char cmd, t_command *tmp);
-void					write_cod7(char *s, t_asm *am, char cmd, t_command *tmp);
+void					write_cod5(char *s, t_asm *am, char cmd, t_command *tm);
+void					write_cod6(char *s, t_asm *am, char cmd, t_command *tm);
+void					write_cod7(char *s, t_asm *am, char cmd, t_command *tm);
 int						check_cmd(char *s, int j, t_asm *am, int l);
 char					*tran_str(char i);
 t_command				*find_lb_cmd(t_label *lb, char *s, t_asm *am, int cmd);
@@ -67,14 +70,8 @@ void					bef_error(char *s, t_asm *am, char cmd, int i);
 void					crt_arg(char *s, t_asm *am, t_arg *ar, char cmd);
 void					all_clear(t_asm *am, char *s);
 void					ch_to_coord(t_asm *am);
-
-// write to the file;
-
 char					*generate_file_name(char *file_string);
-char					*ft_to_binary(/*unsigned */unsigned int n);
-int						bstr_to_dec(char *str, char **buf);
 void					initial(char *argv_name, t_asm *am);
-
-void					command_write(t_label	*label, int fd);
+void					command_write(t_label *label, int fd);
 
 #endif

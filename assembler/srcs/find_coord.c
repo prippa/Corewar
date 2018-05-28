@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 14:02:08 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/26 13:17:24 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/26 23:36:44 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		search_lab(t_asm *am, t_label *lb, t_arg *arg, int bt)
 	i = 0;
 	while (lb)
 	{
-		if (!ft_strcmp(lb->name, arg->lb))
+		if (lb->name && !ft_strcmp(lb->name, arg->lb))
 		{
 			free(arg->lb);
 			arg->lb = 0;
@@ -39,7 +39,9 @@ void			ch_to_coord(t_asm *am)
 {
 	t_label		*lab;
 	t_command	*cm;
+	int			i;
 
+	i = 0;
 	lab = am->lb;
 	while (lab)
 	{
@@ -47,11 +49,11 @@ void			ch_to_coord(t_asm *am)
 		while (cm)
 		{
 			if (cm->arg1.tp && !cm->arg1.dn)
-				search_lab(am, am->lb, &cm->arg1, cm->bit);
+				search_lab(am, am->lb, &cm->arg1, cm->bit + i);
 			if (cm->arg2.tp && !cm->arg2.dn)
-				search_lab(am, am->lb, &cm->arg2, cm->bit);
+				search_lab(am, am->lb, &cm->arg2, cm->bit + i);
 			if (cm->arg3.tp && !cm->arg3.dn)
-				search_lab(am, am->lb, &cm->arg3, cm->bit);
+				search_lab(am, am->lb, &cm->arg3, cm->bit + i);
 			cm = cm->next;
 		}
 		lab = lab->next;

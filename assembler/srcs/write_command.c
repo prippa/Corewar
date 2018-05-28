@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 11:39:41 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/26 12:49:02 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/26 23:49:56 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static void		write_cod3(char *s, t_asm *am, char cmd, t_command *tmp)
 	tmp->arg1.tp = T_REG;
 	crt_arg(s, am, &tmp->arg1, cmd);
 	bef_error(s, am, cmd, 2);
-	if (s[am->x] != 'r' && !ft_isdigit(s[am->x]) && s[am->x] != LABEL_CHAR)
+	if (s[am->x] != 'r' && !ft_isdigit(s[am->x]) && s[am->x] != LABEL_CHAR
+		&& s[am->x] != '-')
 		bef_error(s, am, cmd, 1);
 	tmp->arg2.tp = (s[am->x] == 'r' ? T_REG : T_DIR);
 	tmp->codage = (s[am->x] == 'r' && (++am->x) ? 0x50 : 0x70);
@@ -51,7 +52,8 @@ static void		write_cod3(char *s, t_asm *am, char cmd, t_command *tmp)
 
 static void		write_cod2(char *s, t_asm *am, char cmd, t_command *tmp)
 {
-	if (s[am->x] != DIRECT_CHAR && !ft_isdigit(s[am->x]) && s[am->x] != ':')
+	if (s[am->x] != DIRECT_CHAR && !ft_isdigit(s[am->x]) && s[am->x] != '-'
+		&& s[am->x] != LABEL_CHAR)
 		bef_error(s, am, cmd, 1);
 	tmp->codage = (s[am->x] == DIRECT_CHAR ? 0x90 : 0xd0);
 	tmp->arg1.tp = (s[am->x] == DIRECT_CHAR && (++am->x) ? T_IND : T_DIR);
@@ -87,7 +89,7 @@ void			write_cod1(char *s, t_asm *am, char cmd, t_command *tmp)
 
 void			write_cod(char *s, t_asm *am, char cmd, t_label *lb)
 {
-	t_command 	*tmp;
+	t_command	*tmp;
 
 	tmp = find_lb_cmd(lb, s, am, cmd);
 	while (s[am->x] && (s[am->x] == ' ' || s[am->x] == '\t'))

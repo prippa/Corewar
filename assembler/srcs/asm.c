@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:06:25 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/25 21:23:38 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/26 23:32:13 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ static void	valid_bit(int fd, t_asm *am, char *s)
 			check_form(s, am, am->x, 0);
 		free(s);
 	}
-	// if (!am->lb)
-	// 	errors_man(am, 0, 8);
+	if (!am->lb)
+		errors_man(am, 0, 5);
 	ch_to_coord(am);
 }
 
@@ -122,7 +122,7 @@ int			main(int ac, char **av)
 	t_asm	am;
 
 	if (ac < 2)
-		exit(ft_printf("need flags"));
+		exit(ft_printf("need flags\n"));
 	line = 0;
 	op = open(av[ac - 1], O_RDONLY);
 	if (read(op, 0, 0) < 0)
@@ -138,6 +138,5 @@ int			main(int ac, char **av)
 	valid_bit(op, &am, line);
 	initial(av[ac - 1], &am);
 	all_clear(&am, 0);
-	system("leaks -q asm");
 	return (0);
 }

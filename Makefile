@@ -6,7 +6,7 @@
 #    By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/16 13:38:18 by vgladush          #+#    #+#              #
-#    Updated: 2018/04/20 17:37:33 by vgladush         ###   ########.fr        #
+#    Updated: 2018/05/26 22:18:38 by vgladush         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,17 +18,17 @@ LB_PATH	=	./libft/
 all:
 	@make -C $(LB_PATH)
 	@make -C $(ASM_PAT)
-	@# @make -C $(CRWR_PH)
-	@# @make -C $(CHAM_PH)
+	# @make -C $(CRWR_PH)
+	# @make -C $(CHAM_PH)
 
 clean:
 	@make -C $(LB_PATH) clean
 	@make -C $(ASM_PAT) clean
-	@make -C $(CRWR_PH) clean
-	@# @make -C $(CHAM_PH) clean
+	# @make -C $(CRWR_PH) clean
+	# @make -C $(CHAM_PH) clean
 
 fclean: clean
-	@# @rm -rf $(LB_PATH)libft.a
+	@rm -rf $(LB_PATH)libft.a
 	@echo "\x1B[0;31mlift.a deleted"
 	@rm -f asm corewar superdude
 	@echo "asm & corewar & superdude deleted"
