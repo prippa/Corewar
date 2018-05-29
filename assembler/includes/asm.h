@@ -74,4 +74,9 @@ char					*generate_file_name(char *file_string);
 void					initial(char *argv_name, t_asm *am);
 void					command_write(t_label *label, int fd);
 
+// binary operations;
+
+int			binary_and(int var_x, int var_y);
+int			binary_or(int var_x, int var_y);
+
 #endif

@@ -20,7 +20,7 @@ LB_LK	=	-L ../libft -lft
 
 FUNC	=	asm.c errors.c validator.c transform.c write_command.c \
 			correct_cmd.c write_command2.c free_all_asm.c find_coord.c \
-			generate_file_name.c write_to_struct.c
+			generate_file_name.c write_to_struct.c binary_and.c binary_or.c \
 
 OBJCS	=	$(FUNC:.c=.o)
 
