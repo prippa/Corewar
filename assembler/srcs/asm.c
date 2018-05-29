@@ -115,6 +115,72 @@ static void	valid_bit(int fd, t_asm *am, char *s)
 	ch_to_coord(am);
 }
 
+int		ft_pow(int nb, int pow)
+{
+	if (pow == 0)
+		return (1);
+	else
+		return (nb * ft_pow(nb, pow - 1));
+}
+
+char	*ft_itoa_base(int value, int base)
+{
+	int		i;
+	char	*nbr;
+	int		neg;
+
+	i = 1;
+	neg = 0;
+	if (value < 0)
+	{
+		if (base == 10)
+			neg = 1;
+		value *= -1;
+	}
+	while (ft_pow(base, i) - 1 < value)
+		i++;
+	nbr = (char*)malloc(sizeof(nbr) * i);
+	nbr[i + neg] = '\0';
+	while (i-- > 0)
+	{
+		nbr[i + neg] = (value % base) + (value % base > 9 ? 'A' - 10 : '0');
+		value = value / base;
+	}
+	if (neg)
+		nbr[0] = '-';
+	return (nbr);
+}
+
+int			binary_add(int var_x, int var_y)
+{
+	char *x;
+	char *y;
+	char x_stack[33];
+	char y_stack[33];
+
+
+	x = ft_itoa_base(var_x, 2);
+	ft_printf("x -> %s\n", x);
+	y = ft_itoa_base(var_y, 2);
+	ft_printf("y -> %s\n", y);
+
+	ft_bzero(x_stack, 32);
+	ft_bzero(y_stack, 32);
+
+	x_stack[32] = '\0';
+	y_stack[32] = '\0';
+
+	ft_strcpy(x_stack, x);
+	ft_strcpy(y_stack, y);
+
+
+	ft_printf("x_stack -> %s\n", x_stack);
+	ft_printf("y_stack -> %s\n", y_stack);
+
+
+	return (0);
+}
+
 int			main(int ac, char **av)
 {
 	int		op;
@@ -138,5 +204,6 @@ int			main(int ac, char **av)
 	valid_bit(op, &am, line);
 	initial(av[ac - 1], &am);
 	all_clear(&am, 0);
+	binary_add(10, 7);
 	return (0);
 }
