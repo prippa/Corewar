@@ -151,6 +151,13 @@ char	*ft_itoa_base(int value, int base)
 	return (nbr);
 }
 
+void	ft_zero_it(char *str)
+{
+	int i = 0;
+	while (i < 32)
+		str[i++] = '0';
+}
+
 int			binary_add(int var_x, int var_y)
 {
 	char *x;
@@ -160,15 +167,16 @@ int			binary_add(int var_x, int var_y)
 
 
 	x = ft_itoa_base(var_x, 2);
-	ft_printf("x -> %s\n", x);
 	y = ft_itoa_base(var_y, 2);
-	ft_printf("y -> %s\n", y);
+	// ft_bzero(x_stack, 33); 
+	// ft_bzero(y_stack, 33);
+	x_stack[32] = '\0'; // last element <=> 33 = '\0'
+	y_stack[32] = '\0'; // last element <=> 33 = '\0
+	ft_zero_it(x_stack);
+	ft_zero_it(y_stack);
 
-	ft_bzero(x_stack, 32); 
-	ft_bzero(y_stack, 32);
 
-	x_stack[32] = '\0';
-	y_stack[32] = '\0';
+	ft_printf("x_stack -> %s, len -> %d\n", x_stack, (int)ft_strlen(x_stack));
 
 	ft_strcpy(&x_stack[10], x);
 	ft_strcpy(y_stack, y);
