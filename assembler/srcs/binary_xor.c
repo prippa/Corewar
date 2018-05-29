@@ -123,10 +123,10 @@ int			binary_xor(int var_x, int var_y)
 	// ft_printf("x_stack -> %s, len -> %d\n", x_stack, (int)ft_strlen(x_stack));
 	ft_strncpy(&x_stack[32 - (int)ft_strlen(x)], x, (int)ft_strlen(x));
 	ft_strncpy(&y_stack[32 - (int)ft_strlen(y)], y, (int)ft_strlen(y));
-	ft_printf("x_stack -> %s\n", x_stack);
-	ft_printf("y_stack -> %s\n", y_stack);
+	// ft_printf("x_stack -> %s\n", x_stack);
+	// ft_printf("y_stack -> %s\n", y_stack);
 	binary_xor_comparison(x_stack, y_stack, res_of_comparison);
-	ft_printf("res     -> %s\n", res_of_comparison);
+	// ft_printf("res     -> %s\n", res_of_comparison);
 	free(x);
 	free(y);
 	return (ft_atoi_base(res_of_comparison, 2));
