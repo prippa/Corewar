@@ -12,6 +12,24 @@
 
 #include "corewar.h"
 
+void	t_champ_rev(t_champ **champs)
+{
+	t_champ *prev;
+	t_champ *current;
+	t_champ *next;
+
+	prev = NULL;
+	current = *champs;
+	while (current)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	*champs = prev;
+}
+
 void	t_champ_free(t_champ **champs)
 {
 	while (*champs)

@@ -33,14 +33,15 @@ typedef enum	e_error_numbers
 	PROG_NAME,
 	PROG_SIZE_TO_BIG,
 	COMMENT,
-	PROG_SIZE_INVALID
+	PROG_SIZE_INVALID,
+	NOT_EXIST_CODE,
+	NOT_CORRECT_CODAGE
 }				t_error_numbers;
 
 # define ERR_MALLOC_MESSAGE		"malloc is failed"
 # define ERR_LSEEK_CUR_MESSAGE	"lseek to current position failed"
 
-# define TOO_MANY_CHAMPS	"Too many champions"
-# define CW_USAGE			"Usage: ./corewar <champion1.cor> <...>"
+# define CW_USAGE	"Usage: ./corewar <champion1.cor> <...>"
 
 /*
 ** End

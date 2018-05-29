@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <prippa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 16:30:01 by prippa            #+#    #+#             */
-/*   Updated: 2017/11/20 18:01:14 by prippa           ###   ########.fr       */
+/*   Updated: 2018/05/29 01:21:42 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include "ft_printf.h"
 
 # define BUFF_SIZE 32
 # define ABS(x) (((x) < 0) ? -(x) : (x))
@@ -124,5 +125,10 @@ char				*ft_itoa_max(long long int n);
 long long int		ft_atoi_max(char *str);
 void				ft_clear(void);
 void				ft_memrev(void *dst, size_t n);
+
+char				*ft_itoabase(uintmax_t c, int sys, int rg);
+uintmax_t			ft_basetoint(char *s, int base);
+int					ft_numlen(intmax_t c, int a);
+char				*ft_joinfree(char *s1, char *s2, int j);
 
 #endif

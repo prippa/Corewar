@@ -12,11 +12,11 @@
 
 NAME		=	corewar
 
-#FLAGS		= 	-Wall -Werror -Wextra
+FLAGS		= 	-Wall -Werror -Wextra
 
 CC			=	gcc
 
-DIR_LIB		=	./libft/
+DIR_LIB		=	../libft/
 LIBFT		=	$(DIR_LIB)libft.a
 DIR_LIB_INC	=	$(DIR_LIB)includes/
 DIR_CW_INC	=	../includes/
@@ -32,7 +32,7 @@ HEAD_CW		=	op.h
 C_VM		=	main.c cw_init.c cw_free.c cw_exit.c
 
 C_PARSER	=	cw_parser.c cw_parse_args.c cw_get_basic_data.c cw_helpers.c\
-				cw_get_code_data.c
+				cw_get_command.c
 
 C_LIST_MP	=	t_champ.c t_command.c
 

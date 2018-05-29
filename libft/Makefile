@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: prippa <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 14:20:39 by prippa            #+#    #+#              #
-#    Updated: 2017/11/13 14:21:04 by prippa           ###   ########.fr        #
+#    Updated: 2018/05/29 01:21:57 by vgladush         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ C_LIBC		= 	ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c\
 			ft_toupper.c ft_itoa_base.c get_next_line.c\
 			ft_arr_free.c ft_str_free.c ft_arrlen.c ft_nbrlen.c ft_atoi_base.c\
 			ft_clear.c ft_arrnew.c ft_putarr.c ft_putarr_fd.c ft_atoi_max.c\
-			ft_memrev.c ft_itoa_max.c
+			ft_memrev.c ft_itoa_max.c ft_itoabase.c ft_numlen.c ft_joinfree.c
 
 C_FPF		= 	ft_printf.c ft_dprintf.c\
 				ft_pf_strjoin.c ft_charjoin.c\

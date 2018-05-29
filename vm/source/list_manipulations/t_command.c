@@ -1,5 +1,23 @@
 #include "corewar.h"
 
+void	t_command_rev(t_command **cmds)
+{
+	t_command *prev;
+	t_command *current;
+	t_command *next;
+
+	prev = NULL;
+	current = *cmds;
+	while (current)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	*cmds = prev;
+}
+
 void	t_command_free(t_command **cmds)
 {
 	while (*cmds)
