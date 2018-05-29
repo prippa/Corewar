@@ -142,7 +142,8 @@ int			main(int ac, char **av)
 	ft_printf("binary and ->%d\n", binary_and(50000, 50));
 	ft_printf("binary or ->%d\n", binary_or(12, 25));
 	ft_printf("binary xor ->%d\n", binary_xor(12, 25));
-	
+
 	system("leaks -q asm");
+	
 	return (0);
 }
