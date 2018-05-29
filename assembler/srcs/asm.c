@@ -164,13 +164,13 @@ int			binary_add(int var_x, int var_y)
 	y = ft_itoa_base(var_y, 2);
 	ft_printf("y -> %s\n", y);
 
-	ft_bzero(x_stack, 32);
+	ft_bzero(x_stack, 32); 
 	ft_bzero(y_stack, 32);
 
 	x_stack[32] = '\0';
 	y_stack[32] = '\0';
 
-	ft_strcpy(x_stack, x);
+	ft_strcpy(&x_stack[10], x);
 	ft_strcpy(y_stack, y);
 
 
