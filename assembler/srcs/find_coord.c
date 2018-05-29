@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 14:02:08 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/26 23:36:44 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/05/29 01:14:42 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void		search_lab(t_asm *am, t_label *lb, t_arg *arg, int bt)
 	ft_printf("Syntax error at token [TOKEN][%.3d:%.3d] not found such a label \
 \"%s\"\n", arg->y, arg->x, arg->lb);
 	all_clear(am, 0);
+	exit(1);
 }
 
 void			ch_to_coord(t_asm *am)
