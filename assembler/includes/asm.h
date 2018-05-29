@@ -76,8 +76,8 @@ void					command_write(t_label *label, int fd);
 
 // binary operations;
 
-int			binary_and(int var_x, int var_y);
-int			binary_or(int var_x, int var_y);
-int			binary_xor(int var_x, int var_y);
+int						binary_and(int var_x, int var_y);
+int						binary_or(int var_x, int var_y);
+int						binary_xor(int var_x, int var_y);
 
 #endif
