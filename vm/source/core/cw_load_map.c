@@ -30,11 +30,12 @@ void	display_map(unsigned char *map)
 			ft_printf("%s%.2x%s", GREEN, map[i], COLOR_RESET);
 		else
 		{
-			ft_printf("%c",  '0');
-			ft_printf("%c",  '0');
+			ft_printf("%s%c%s", WHITE, map[i], COLOR_RESET);
+			ft_printf("%s%c%s", WHITE, map[i], COLOR_RESET);
+
 
 		}
-		
+
 		// if (spaces == SPACES_BYTES)
 		// {
 			ft_printf(" ");
