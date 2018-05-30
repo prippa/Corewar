@@ -1,17 +1,23 @@
 #include "corewar.h"
 
-void	init_map(unsigned char *dst /*, unsigned char *src, int start*/) // for the several bots;
-{
-	int i;
-
-	i  = 0;
-	while (i < MEM_SIZE * 2) // new line quantity;
-		dst[i++] = '0';
-}	
-
-void	cw_load_map()
+void	init_map(unsigned char *dst, unsigned char *src /*int start*/, unsigned int bot_size) // for the several bots;
 {
 	unsigned int i;
+
+	i  = 0;
+	while (i < MAP_SIZE) // new line quantity;
+		dst[i++] = '0';
+	i = 0;
+	while (i < bot_size)
+	{
+		dst[i] = (unsigned char)src[i];
+		i++;
+	}
+}	
+
+void	display_map(unsigned char *map)
+{
+		unsigned int i;
 	unsigned int lines;
 	unsigned int spaces;
 
@@ -25,26 +31,33 @@ void	cw_load_map()
 	// 	ft_printf("code -> %x\n", g_cw->pd.champs->code[i]);
 	// 	i++;
 	// }
-	init_map(g_cw->map.stack);
 
-	while (i < MEM_SIZE * 2)
+	while (i < MAP_SIZE)
 	{
-		ft_printf("%c", g_cw->map.stack[i]);
+		ft_printf("%c", map[i]);
 		
-		if (lines == NEWLINE_QUANTITY)
-		{
-			ft_printf("\n");
-			lines = 0;
-		}
-
 		if (spaces == SPACES_BYTES)
 		{
 			ft_printf(" ");
 			spaces = 0;
 		}
+		if (lines == NEWLINE_QUANTITY)
+		{
+			// ft_printf("\n");
+			ft_printf("\n");
+			lines = 0;
+		}
+
 		lines++;
 		spaces++;
 		i++;
 	}
-	ft_printf("i -> %d\n", i);
+}
+
+void	cw_load_map()
+{
+	init_map(g_cw->map.stack, g_cw->pd.champs->code, g_cw->pd.champs->head.prog_size);
+	display_map(g_cw->map.stack);
+
+	// ft_printf("i -> %d\n", i);
 }
