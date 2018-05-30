@@ -138,5 +138,6 @@ int			main(int ac, char **av)
 	valid_bit(op, &am, line);
 	initial(av[ac - 1], &am);
 	all_clear(&am, 0);
+	close(op);
 	return (0);
 }
