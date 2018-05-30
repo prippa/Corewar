@@ -26,7 +26,10 @@ void	display_map(unsigned char *map)
 	spaces = 1;
 	while (i < MAP_SIZE)
 	{
-		ft_printf("%.2x", map[i]);
+		if (map[i] !=0)
+			ft_printf("%.2x", map[i]);
+		else
+			ft_printf("%d", map[i]);
 		
 		if (spaces == SPACES_BYTES)
 		{
