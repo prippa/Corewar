@@ -33,10 +33,6 @@ static void	cw_exit_print_message(char *message, int error_number)
 	else if (error_number == PROG_SIZE_INVALID)
 		ft_dprintf(2, "Error: File [%s] \
 has a code size that differ from what its header says\n", message);
-	else if (error_number == NOT_EXIST_CODE)
-		ft_dprintf(2, "Error: File [%s] non-existent command\n", message);
-	else if (error_number == NOT_CORRECT_CODAGE)
-		ft_dprintf(2, "Error: File [%s] invalid codage\n", message);
 	else
 		ft_dprintf(2, "%s\n", message);
 }
