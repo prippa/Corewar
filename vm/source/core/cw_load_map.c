@@ -27,11 +27,11 @@ void	display_map(unsigned char *map)
 	while (i < MAP_SIZE)
 	{
 		if (map[i] != '0')
-			ft_printf("%s%.2x%s", GREEN, map[i], COLOR_RESET);
+			ft_printf("%~.2x", F_GREEN, map[i]);
 		else
 		{
-			ft_printf("%s%c%s", WHITE, map[i], COLOR_RESET);
-			ft_printf("%s%c%s", WHITE, map[i], COLOR_RESET);
+			ft_printf("%~c", F_WHITE, map[i]);
+			ft_printf("%~c", F_WHITE, map[i]);
 
 
 		}
