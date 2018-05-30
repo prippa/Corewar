@@ -15,32 +15,15 @@ int		champ_quantity(t_champ *champ)
 
 void	fill_map_with_bots(unsigned char *dst, t_champ *champ)
 {
-	// int champs_quantity;
-	int map_distance;
-	// int total_map_size;
-	unsigned int i;
-	unsigned int j;
-	
-	// champs_quantity = champ_quantity(champ);
+	int				map_distance;
+	unsigned int	i;
+	unsigned int	j;
+
 	map_distance = MEM_SIZE / champ_quantity(champ);
-	// ft_printf("%d\n", map_distance);
-	// total_map_size = MEM_SIZE;
-	// while (total_map_size)
-	// {
-	// 	while (i < bot_size)
-	// 	{
-	// 		dst[i] = src[i];
-	// 		i++;
-	// 	}
-	// 	i += map_distance;
-	// 	total_map_size -= map_distance;
-	// }
 	i = 0;
-	// j = 0;
 	while (champ)
 	{
 		j = 0;
-		// ft_printf("i -> %u\n", i);
 		while (j < champ->head.prog_size)
 		{
 			dst[i] = champ->code[j];
@@ -61,7 +44,7 @@ void	init_map(unsigned char *dst)
 		dst[i++] = '0';
 }	
 
-void	display_map(unsigned char *map)
+void	display_map(unsigned char *map) // parallel array in a stack for the colors;
 {
 	unsigned int i;
 	unsigned int lines;
@@ -73,7 +56,7 @@ void	display_map(unsigned char *map)
 	while (i < MEM_SIZE)
 	{
 		if (map[i] != '0')
-			ft_printf("%~.2x", F_GREEN, map[i]); // adopt + 1;
+			ft_printf("%~.2x", F_GREEN, map[i]);
 		else
 		{
 			ft_printf("%~c", F_WHITE, map[i]);
@@ -91,7 +74,7 @@ void	display_map(unsigned char *map)
 	}
 }
 
-void	cw_load_map()
+void	cw_load_map(void)
 {
 	init_map(g_cw->map.stack);
 
