@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   ft_arr_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 18:48:26 by prippa            #+#    #+#             */
-/*   Updated: 2018/04/26 18:48:28 by prippa           ###   ########.fr       */
+/*   Created: 2018/01/22 14:29:03 by prippa            #+#    #+#             */
+/*   Updated: 2018/01/22 14:29:05 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "libft.h"
 
-# include "op.h"
-# include "define.h"
-# include "struct.h"
-# include "function.h"
-# include "libft.h"
+void	ft_arr_free(char ***arr)
+{
+	int i;
 
-#endif
+	if (*arr)
+	{
+		i = 0;
+		while ((*arr)[i])
+		{
+			ft_str_free(&(*arr)[i]);
+			i++;
+		}
+		free(*arr);
+		*arr = NULL;
+	}
+}

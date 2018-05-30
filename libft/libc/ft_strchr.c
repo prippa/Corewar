@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 18:48:26 by prippa            #+#    #+#             */
-/*   Updated: 2018/04/26 18:48:28 by prippa           ###   ########.fr       */
+/*   Created: 2017/10/31 14:43:33 by prippa            #+#    #+#             */
+/*   Updated: 2017/10/31 14:43:34 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "libft.h"
 
-# include "op.h"
-# include "define.h"
-# include "struct.h"
-# include "function.h"
-# include "libft.h"
+char	*ft_strchr(const char *s, int c)
+{
+	size_t	i;
+	char	*str;
 
-#endif
+	str = (char*)s;
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	if (str[i] == c)
+		return (&str[i]);
+	return (NULL);
+}

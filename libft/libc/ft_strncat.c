@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 18:48:26 by prippa            #+#    #+#             */
-/*   Updated: 2018/04/26 18:48:28 by prippa           ###   ########.fr       */
+/*   Created: 2017/10/31 12:49:28 by prippa            #+#    #+#             */
+/*   Updated: 2017/10/31 12:49:32 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "libft.h"
 
-# include "op.h"
-# include "define.h"
-# include "struct.h"
-# include "function.h"
-# include "libft.h"
+char	*ft_strncat(char *s1, const char *s2, size_t n)
+{
+	size_t len;
+	size_t i;
 
-#endif
+	len = ft_strlen(s1);
+	i = 0;
+	while (s2[i] && i < n)
+	{
+		s1[len] = s2[i];
+		len++;
+		i++;
+	}
+	s1[len] = '\0';
+	return (s1);
+}

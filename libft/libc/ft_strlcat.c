@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 18:48:26 by prippa            #+#    #+#             */
-/*   Updated: 2018/04/26 18:48:28 by prippa           ###   ########.fr       */
+/*   Created: 2017/10/31 13:08:49 by prippa            #+#    #+#             */
+/*   Updated: 2017/10/31 13:08:52 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "libft.h"
 
-# include "op.h"
-# include "define.h"
-# include "struct.h"
-# include "function.h"
-# include "libft.h"
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+	size_t	dstlen;
+	size_t	srclen;
 
-#endif
+	dstlen = ft_strlen(dst);
+	srclen = ft_strlen(src);
+	if (dstsize < dstlen)
+		return (dstsize + srclen);
+	i = 0;
+	while (src[i] && (dstlen + i + 1) < dstsize)
+	{
+		dst[dstlen + i] = src[i];
+		i++;
+	}
+	dst[dstlen + i] = '\0';
+	return (dstlen + srclen);
+}

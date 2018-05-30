@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 18:48:26 by prippa            #+#    #+#             */
-/*   Updated: 2018/04/26 18:48:28 by prippa           ###   ########.fr       */
+/*   Created: 2017/10/25 19:25:06 by prippa            #+#    #+#             */
+/*   Updated: 2017/10/25 19:28:26 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "libft.h"
 
-# include "op.h"
-# include "define.h"
-# include "struct.h"
-# include "function.h"
-# include "libft.h"
+size_t	ft_strlen(const char *s)
+{
+	size_t len;
 
-#endif
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}

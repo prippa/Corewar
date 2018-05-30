@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   ft_isstrdigit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 18:48:26 by prippa            #+#    #+#             */
-/*   Updated: 2018/04/26 18:48:28 by prippa           ###   ########.fr       */
+/*   Created: 2017/11/09 14:14:55 by prippa            #+#    #+#             */
+/*   Updated: 2017/11/09 14:22:05 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "libft.h"
 
-# include "op.h"
-# include "define.h"
-# include "struct.h"
-# include "function.h"
-# include "libft.h"
+int	ft_str_is_digit(const char *str)
+{
+	size_t i;
 
-#endif
+	if (str)
+	{
+		i = 0;
+		if ((str[i] == '-' || str[i] == '+') && str[i + 1])
+			i++;
+		while (str[i])
+		{
+			if (!(ft_isdigit(str[i])))
+				return (0);
+			i++;
+		}
+		return (1);
+	}
+	return (0);
+}

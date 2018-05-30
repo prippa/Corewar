@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   ft_get_di.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 18:48:26 by prippa            #+#    #+#             */
-/*   Updated: 2018/04/26 18:48:28 by prippa           ###   ########.fr       */
+/*   Created: 2018/01/15 13:01:12 by prippa            #+#    #+#             */
+/*   Updated: 2018/01/15 13:01:20 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "ft_printf.h"
 
-# include "op.h"
-# include "define.h"
-# include "struct.h"
-# include "function.h"
-# include "libft.h"
+char	*ft_get_di(t_printf *fpf)
+{
+	char	*str;
 
-#endif
+	if (FC == 'd' || FC == 'i')
+		str = ft_itoa_max(ft_conv_sig_int(fpf));
+	else
+	{
+		fpf->size_flag = SF_L;
+		str = ft_itoa_max(ft_conv_sig_int(fpf));
+	}
+	return (str);
+}

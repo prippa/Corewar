@@ -1,22 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 18:48:26 by prippa            #+#    #+#             */
-/*   Updated: 2018/04/26 18:48:28 by prippa           ###   ########.fr       */
+/*   Created: 2017/10/26 16:32:47 by prippa            #+#    #+#             */
+/*   Updated: 2017/10/26 16:32:58 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "libft.h"
 
-# include "op.h"
-# include "define.h"
-# include "struct.h"
-# include "function.h"
-# include "libft.h"
+char	*ft_strstr(const char *haystack, const char *needle)
+{
+	int i;
+	int j;
+	int len;
 
-#endif
+	i = 0;
+	j = 0;
+	len = ft_strlen(needle);
+	if (len == 0)
+		return ((char *)haystack);
+	while (haystack[i])
+	{
+		while (needle[j] == haystack[i + j])
+		{
+			if (j == len - 1)
+				return ((char *)haystack + i);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	return (NULL);
+}

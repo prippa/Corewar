@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 18:48:26 by prippa            #+#    #+#             */
-/*   Updated: 2018/04/26 18:48:28 by prippa           ###   ########.fr       */
+/*   Created: 2017/11/03 17:33:28 by prippa            #+#    #+#             */
+/*   Updated: 2017/11/03 17:33:30 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "libft.h"
 
-# include "op.h"
-# include "define.h"
-# include "struct.h"
-# include "function.h"
-# include "libft.h"
+char	*ft_strmap(char const *s, char (*f)(char))
+{
+	size_t	i;
+	char	*fresh;
 
-#endif
+	if (!s || !f)
+		return (NULL);
+	if ((fresh = ft_strnew(ft_strlen(s))) == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		fresh[i] = (*f)(s[i]);
+		i++;
+	}
+	return (fresh);
+}

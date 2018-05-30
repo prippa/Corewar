@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   ft_charjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 18:48:26 by prippa            #+#    #+#             */
-/*   Updated: 2018/04/26 18:48:28 by prippa           ###   ########.fr       */
+/*   Created: 2018/01/15 12:57:21 by prippa            #+#    #+#             */
+/*   Updated: 2018/01/15 12:57:23 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "ft_printf.h"
 
-# include "op.h"
-# include "define.h"
-# include "struct.h"
-# include "function.h"
-# include "libft.h"
+void	ft_charjoin(t_printf *fpf, int n, char c)
+{
+	char	*str;
+	int		size;
 
-#endif
+	size = n;
+	if (n < 1)
+		return ;
+	if (!(str = (char *)malloc(sizeof(char) * n + 1)))
+		return ;
+	str[n] = '\0';
+	while (--n >= 0)
+		str[n] = c;
+	ft_pf_strjoin(fpf, str, size);
+	free(str);
+}

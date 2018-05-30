@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   ft_get_s.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 18:48:26 by prippa            #+#    #+#             */
-/*   Updated: 2018/04/26 18:48:28 by prippa           ###   ########.fr       */
+/*   Created: 2018/01/15 13:06:02 by prippa            #+#    #+#             */
+/*   Updated: 2018/01/15 13:06:07 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "ft_printf.h"
 
-# include "op.h"
-# include "define.h"
-# include "struct.h"
-# include "function.h"
-# include "libft.h"
+char	*ft_get_s(t_printf *fpf)
+{
+	void	*data;
+	char	*str;
 
-#endif
+	data = va_arg(fpf->args, void *);
+	if (!data)
+		str = ft_strdup("(null)");
+	else if (FC == 'S' || fpf->size_flag == SF_L)
+		str = ft_wstr_to_str((wchar_t *)data);
+	else
+		str = ft_strdup((char *)data);
+	return (str);
+}

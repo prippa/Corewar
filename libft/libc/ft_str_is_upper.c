@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   ft_isstruppercase.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 18:48:26 by prippa            #+#    #+#             */
-/*   Updated: 2018/04/26 18:48:28 by prippa           ###   ########.fr       */
+/*   Created: 2017/11/09 14:58:26 by prippa            #+#    #+#             */
+/*   Updated: 2017/11/09 15:05:05 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "libft.h"
 
-# include "op.h"
-# include "define.h"
-# include "struct.h"
-# include "function.h"
-# include "libft.h"
+int	ft_str_is_upper(const char *str)
+{
+	size_t i;
 
-#endif
+	if (str)
+	{
+		i = 0;
+		while (str[i])
+		{
+			if (ft_isalpha(str[i]) && !(ft_isupper(str[i])))
+				return (0);
+			i++;
+		}
+		return (1);
+	}
+	return (0);
+}

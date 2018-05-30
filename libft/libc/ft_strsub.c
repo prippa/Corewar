@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 18:48:26 by prippa            #+#    #+#             */
-/*   Updated: 2018/04/26 18:48:28 by prippa           ###   ########.fr       */
+/*   Created: 2017/11/06 13:55:18 by prippa            #+#    #+#             */
+/*   Updated: 2017/11/06 13:55:21 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "libft.h"
 
-# include "op.h"
-# include "define.h"
-# include "struct.h"
-# include "function.h"
-# include "libft.h"
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
+{
+	size_t		length;
+	char		*fresh;
 
-#endif
+	if (!s)
+		return (NULL);
+	length = ft_strlen(s);
+	fresh = NULL;
+	if ((start + len) <= length)
+	{
+		fresh = ft_strnew(len);
+		if (fresh)
+		{
+			fresh = ft_strncpy(fresh, s + start, len);
+			fresh[len] = '\0';
+		}
+	}
+	return (fresh);
+}
