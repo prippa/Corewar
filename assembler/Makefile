@@ -42,3 +42,11 @@ $(OBJS)%.o: $(SRCS)%.c
 clean:
 	@rm -rf $(OBJS)
 	@echo "\x1B[1;31mobjects" $(NAME) "deleted"
+
+fclean:
+	@rm -rf $(OBJS)
+	@echo "\x1B[1;31mobjects" $(NAME) "deleted"
+	@rm ../$(NAME)
+	@echo $(NAME) "deleted"
+
+re: fclean all

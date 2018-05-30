@@ -27,10 +27,10 @@ clean:
 	@make -C $(CRWR_PH) clean
 	@make -C $(CHAM_PH) clean
 
-fclean: clean
-	@rm -rf $(LB_PATH)libft.a
-	@echo "\x1B[0;31mlift.a deleted"
-	@rm -f asm corewar superdude
-	@echo "asm & corewar & superdude deleted"
+fclean:
+	@make -C $(LB_PATH) fclean
+	@make -C $(ASM_PAT) fclean
+	@make -C $(CRWR_PH) fclean
+	@make -C $(CHAM_PH) fclean
 
 re: fclean all
