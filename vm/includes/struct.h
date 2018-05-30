@@ -57,7 +57,7 @@ typedef struct			s_command
 
 typedef struct 			s_commands_stack
 {
-	char				stack[MEM_SIZE + NEWLINE_QUANTITY + 1];
+	unsigned char		stack[MEM_SIZE];
 }						t_commands_stack;
 
 /*
@@ -67,6 +67,7 @@ typedef struct 			s_commands_stack
 typedef struct			s_corewar
 {
 	t_parse_data		pd;
+	t_commands_stack	map;
 }						t_corewar;
 
 #endif

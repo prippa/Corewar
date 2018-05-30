@@ -1,12 +1,12 @@
 #include "corewar.h"
 
-void	init_map(char *str)
+void	init_map(unsigned char *dst /*, unsigned char *src, int start*/) // for the several bots;
 {
 	int i;
 
 	i  = 0;
-	while (i < MEM_SIZE + NEWLINE_QUANTITY)
-		str[i++] = '0';
+	while (i < MEM_SIZE) // new line quantity;
+		dst[i++] = '0';
 }	
 
 void	cw_load_map()
@@ -19,4 +19,5 @@ void	cw_load_map()
 		ft_printf("code -> %x\n", g_cw->pd.champs->code[i]);
 		i++;
 	}
+	init_map(g_cw->pd.map);
 }
