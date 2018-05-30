@@ -10,31 +10,23 @@ void	init_map(unsigned char *dst, unsigned char *src /*int start*/, unsigned int
 	i = 0;
 	while (i < bot_size)
 	{
-		dst[i] = (unsigned char)src[i];
+		dst[i] = src[i];
 		i++;
 	}
 }	
 
 void	display_map(unsigned char *map)
 {
-		unsigned int i;
+	unsigned int i;
 	unsigned int lines;
 	unsigned int spaces;
-
 
 	i = 0;
 	lines = 1;
 	spaces = 1;
-
-	// while (i < g_cw->pd.champs->head.prog_size)
-	// {
-	// 	ft_printf("code -> %x\n", g_cw->pd.champs->code[i]);
-	// 	i++;
-	// }
-
 	while (i < MAP_SIZE)
 	{
-		ft_printf("%c", map[i]);
+		ft_printf("%.2x", map[i]);
 		
 		if (spaces == SPACES_BYTES)
 		{
@@ -43,11 +35,9 @@ void	display_map(unsigned char *map)
 		}
 		if (lines == NEWLINE_QUANTITY)
 		{
-			// ft_printf("\n");
 			ft_printf("\n");
 			lines = 0;
 		}
-
 		lines++;
 		spaces++;
 		i++;
