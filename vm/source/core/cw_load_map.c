@@ -23,7 +23,7 @@ void	fill_map_with_bots(unsigned char *dst, t_champ *champ)
 	
 	// champs_quantity = champ_quantity(champ);
 	map_distance = MEM_SIZE / champ_quantity(champ);
-	ft_printf("%d\n", map_distance);
+	// ft_printf("%d\n", map_distance);
 	// total_map_size = MEM_SIZE;
 	// while (total_map_size)
 	// {
@@ -93,7 +93,7 @@ void	display_map(unsigned char *map)
 
 void	cw_load_map()
 {
-	init_map(g_cw->map.stack/*, g_cw->pd.champs->code, g_cw->pd.champs->head.prog_size, g_cw->pd.champs*/);
+	init_map(g_cw->map.stack);
 
 	fill_map_with_bots(g_cw->map.stack, g_cw->pd.champs);
 	display_map(g_cw->map.stack);
