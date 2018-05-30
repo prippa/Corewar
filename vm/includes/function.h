@@ -47,15 +47,23 @@ void			cw_parser(void);
 */
 
 /*
-** List Manipulations
+** Struct Manipulations
 */
 
-void			t_command_rev(t_command **cmds);
-void			t_command_add(t_command **cmds);
-void			t_command_free(t_command **cmds);
+t_command		*t_command_mem(void);
 void			t_champ_rev(t_champ **champs);
 void			t_champ_add(t_champ **champs);
 void			t_champ_free(t_champ **champs);
+
+/*
+** End
+*/
+
+/*
+** Core part
+*/
+
+void			cw_load_map(void);
 
 /*
 ** End

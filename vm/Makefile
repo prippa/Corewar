@@ -10,7 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	corewar
+NAME		=	../corewar
+VIS_NAME	=	corewar
 
 FLAGS		= 	-Wall -Werror -Wextra
 
@@ -23,7 +24,8 @@ DIR_CW_INC	=	../includes/
 DIR_VM_INC	=	./includes/
 DIR_VM		=	./source/
 DIR_PARSER	=	./source/parser/
-DIR_LIST_MP	=	./source/list_manipulations/
+DIR_SRUC_MP	=	./source/struct_manipulations/
+DIR_CORE	=	./source/core/
 DIR_OBJ		= 	./obj/
 
 HEAD_VM		=	corewar.h define.h function.h struct.h
@@ -31,34 +33,33 @@ HEAD_CW		=	op.h
 
 C_VM		=	main.c cw_init.c cw_free.c cw_exit.c
 
-C_PARSER	=	cw_parser.c cw_parse_args.c cw_get_basic_data.c cw_helpers.c\
-				cw_get_command.c
+C_PARSER	=	cw_parser.c cw_parse_args.c cw_get_basic_data.c cw_helpers.c
 
-C_LIST_MP	=	t_champ.c t_command.c
+C_SRUC_MP	=	t_champ.c t_command.c
+
+C_CORE		=	cw_get_command.c cw_load_map.c
 
 
 OBJ_VM 		= 	$(C_VM:.c=.o)
 OBJ_PARSER	= 	$(C_PARSER:.c=.o)
-OBJ_LIST_MP	= 	$(C_LIST_MP:.c=.o)
+OBJ_SRUC_MP	= 	$(C_SRUC_MP:.c=.o)
+OBJ_CORE	= 	$(C_CORE:.c=.o)
 
-OBJ 		= 	$(addprefix $(DIR_OBJ), $(OBJ_VM) $(OBJ_PARSER) $(OBJ_LIST_MP))
+OBJ 		= 	$(addprefix $(DIR_OBJ), $(OBJ_VM) $(OBJ_PARSER) $(OBJ_SRUC_MP) $(OBJ_CORE))
 INC 		= 	$(addprefix -I, $(DIR_VM_INC) $(DIR_LIB_INC) $(DIR_CW_INC))
 INC_VM 		= 	$(addprefix $(DIR_VM_INC), $(HEAD_VM))
 INC_VM 		+= 	$(addprefix $(DIR_CW_INC), $(HEAD_CW))
 
 
-all: lib obj $(NAME)
+all: obj $(NAME)
 
 obj:
 	@mkdir -p $(DIR_OBJ)
 
-lib:
-	@make -C $(DIR_LIB)
-
 #-------------------------COMPILE BLOCK-------------------------
 $(NAME): $(OBJ) $(LIBFT)
 	@$(CC) -o $(NAME) $(OBJ) $(LIBFT)
-	@echo "Compiling" [ $(NAME) ]
+	@echo "Compiling" [ $(VIS_NAME) ]
 
 #---source---
 $(DIR_OBJ)%.o: $(DIR_VM)%.c $(INC_VM)
@@ -70,22 +71,25 @@ $(DIR_OBJ)%.o: $(DIR_PARSER)%.c $(INC_VM)
 	@$(CC) $(FLAGS) $(INC) -c -o $@ $<
 	@echo "Linking" [ $< ]
 
-#---list_manipulations---
-$(DIR_OBJ)%.o: $(DIR_LIST_MP)%.c $(INC_VM)
+#---struct_manipulations---
+$(DIR_OBJ)%.o: $(DIR_SRUC_MP)%.c $(INC_VM)
+	@$(CC) $(FLAGS) $(INC) -c -o $@ $<
+	@echo "Linking" [ $< ]
+
+#---core---
+$(DIR_OBJ)%.o: $(DIR_CORE)%.c $(INC_VM)
 	@$(CC) $(FLAGS) $(INC) -c -o $@ $<
 	@echo "Linking" [ $< ]
 #---------------------------------------------------------------
 clean:
 	@rm -rf $(DIR_OBJ)
 	@echo "Clean [ obj files VM ]"
-	@make -C $(DIR_LIB) clean
 
 fclean:
 	@rm -rf $(DIR_OBJ)
 	@echo "Clean [ obj files VM ]"
 	@rm -f $(NAME)
-	@echo "Clean" [ $(NAME) ]
-	@make -C $(DIR_LIB) fclean
+	@echo "Clean" [ $(VIS_NAME) ]
 
 re: fclean all
 
