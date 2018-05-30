@@ -59,6 +59,8 @@ typedef struct			s_command
 typedef struct 			s_commands_stack
 {
 	unsigned char		stack[MEM_SIZE];
+	int					stack_color[MEM_SIZE];
+
 }						t_commands_stack;
 
 /*
