@@ -55,6 +55,11 @@ typedef struct			s_command
 	t_arg				arg3;
 }						t_command;
 
+typedef struct 			s_commands_stack
+{
+	char				stack[MEM_SIZE + NEWLINE_QUANTITY + 1];
+}						t_commands_stack;
+
 /*
 ** End
 */
