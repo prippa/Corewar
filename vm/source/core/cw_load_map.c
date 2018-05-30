@@ -26,16 +26,20 @@ void	display_map(unsigned char *map)
 	spaces = 1;
 	while (i < MAP_SIZE)
 	{
-		if (map[i] !=0)
-			ft_printf("%.2x", map[i]);
+		if (map[i] != '0')
+			ft_printf("%s%.2x%s", GREEN, map[i], COLOR_RESET);
 		else
-			ft_printf("%d", map[i]);
-		
-		if (spaces == SPACES_BYTES)
 		{
-			ft_printf(" ");
-			spaces = 0;
+			ft_printf("%c",  '0');
+			ft_printf("%c",  '0');
+
 		}
+		
+		// if (spaces == SPACES_BYTES)
+		// {
+			ft_printf(" ");
+			// spaces = 0;
+		// }
 		if (lines == NEWLINE_QUANTITY)
 		{
 			ft_printf("\n");
