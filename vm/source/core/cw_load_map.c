@@ -40,7 +40,7 @@ void	fill_map_with_bots(unsigned char *dst, t_champ *champ)
 	while (champ)
 	{
 		j = 0;
-		ft_printf("i -> %u\n", i);
+		// ft_printf("i -> %u\n", i);
 		while (j < champ->head.prog_size)
 		{
 			dst[i] = champ->code[j];
