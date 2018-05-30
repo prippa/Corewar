@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cw_load_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/30 20:42:26 by otimofie          #+#    #+#             */
+/*   Updated: 2018/05/30 20:42:27 by otimofie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "corewar.h"
 
 int		champ_quantity(t_champ *champ)
@@ -43,14 +55,14 @@ void	init_map(unsigned char *stack, int *stack_color)
 {
 	unsigned int i;
 
-	i  = 0;
+	i = 0;
 	while (i < MEM_SIZE)
 	{
 		stack[i] = '0';
 		stack_color[i] = 0;
 		i++;
 	}
-}	
+}
 
 void	print_color(unsigned char data, int color_type)
 {
@@ -64,33 +76,25 @@ void	print_color(unsigned char data, int color_type)
 		ft_printf("%~.2x", F_CYAN, data);
 }
 
-void	display_map(unsigned char *map, int *color) // parallel array in a stack for the colors;
+void	display_map(unsigned char *map, int *color)
 {
 	unsigned int i;
-	unsigned int lines;
 	unsigned int spaces;
 
 	i = 0;
-	lines = 1;
 	spaces = 1;
 	while (i < MEM_SIZE)
 	{
 		if (map[i] != '0')
-			// ft_printf("%~.2x", F_GREEN, map[i]);
 			print_color(map[i], color[i]);
-
 		else
 		{
 			ft_printf("%~c", F_WHITE, map[i]);
 			ft_printf("%~c", F_WHITE, map[i]);
 		}
 		ft_printf(" ");
-		if (lines == NEWLINE_QUANTITY)
-		{
+		if (i % NEWLINE_QUANTITY == 0)
 			ft_printf("\n");
-			lines = 0;
-		}
-		lines++;
 		spaces++;
 		i++;
 	}
