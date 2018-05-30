@@ -16,10 +16,12 @@ int		champ_quantity(t_champ *champ)
 void	init_map(unsigned char *dst, unsigned char *src /*int start*/, unsigned int bot_size, t_champ *var) // for the several bots;
 {
 	unsigned int i;
-	int champs_quantity;
+	int map_distance;
 
 	i  = 0;
-	champs_quantity = champ_quantity(var);
+	map_distance = MEM_SIZE / champ_quantity(var);
+	ft_printf("%d\n", map_distance);
+
 	while (i < MEM_SIZE)
 		dst[i++] = '0';
 
@@ -30,8 +32,6 @@ void	init_map(unsigned char *dst, unsigned char *src /*int start*/, unsigned int
 		dst[i] = src[i];
 		i++;
 	}
-
-
 }	
 
 void	display_map(unsigned char *map)
