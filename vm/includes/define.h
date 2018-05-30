@@ -47,7 +47,9 @@ typedef enum	e_error_numbers
 ****************************** map ****************************************
 */
 
-# define NEWLINE_QUANTITY 64
+# define NEWLINE_QUANTITY 128 // do it somewhow automatically;
+# define SPACES_BYTES 2 // spaces beetween bytes;
+
 
 /*
 ** End

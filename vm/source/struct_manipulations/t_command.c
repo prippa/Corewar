@@ -12,7 +12,7 @@
 
 #include "corewar.h"
 
-t_command		*t_command_mem(void)
+t_command		*t_command_mem(void) // for one element;
 {
 	t_command *new_obj;
 
