@@ -15,23 +15,23 @@
 t_processes	*cw_constr(t_champ *champ, int color, int process_pc)
 {
 	int			i;
-	t_processes *new;
-
+	t_processes *new_object;
+	
 	i = 0;
-	if (!(new = (t_processes *)malloc(sizeof(t_processes))))
+	if (!(new_object = (t_processes *)malloc(sizeof(t_processes))))
 		return (NULL);
 	while (i < CHAMP_MAX_SIZE + 1)
 	{
-		new->code[i] = champ->code[i];
+		new_object->code[i] = champ->code[i];
 		i++;
 	}
-	new->color = color;
-	new->process_PC = process_pc;
-	new->carry = 0;
-	ft_bzero(new->registers, 16);
-	new->champ_size = champ->head.prog_size;
-	new->next = NULL;
-	return (new);
+	new_object->color = color;
+	new_object->process_PC = process_pc;
+	new_object->carry = 0;
+	ft_bzero(new_object->registers, 16);
+	new_object->champ_size = champ->head.prog_size;
+	new_object->next = NULL;
+	return (new_object);
 }
 
 void		cw_init_processes(t_champ *champ, t_processes **proc_p)
