@@ -59,7 +59,7 @@ typedef struct			s_stack
 {
 	unsigned char		stack[MEM_SIZE];		// whole stack;
 	int					stack_color[MEM_SIZE];	// colors manipulation;
-	int					registers[REG_NUMBER]; 	// processor memory;
+	int					**registers;			// processor memory for each player;
 	int					PC; 					// current position of the stack command line;
 	int					carry;					// success id for the certain commands;
 }						t_stack;
