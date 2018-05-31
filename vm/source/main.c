@@ -18,6 +18,7 @@ int		main(int argc, char **argv)
 	cw_parse_args(argc, argv + 1);
 	cw_parser();
 	cw_load_map();
+	cw_game_loop();
 	cw_free();
 	system("leaks -q corewar");
 	return (0);

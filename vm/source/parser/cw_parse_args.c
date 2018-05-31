@@ -15,16 +15,15 @@
 static void	cw_valid_champ(char *file_name)
 {
 	int			fd;
-	static int	count;
 
-	if (count == MAX_PLAYERS)
+	if (g_cw->pd.champs_count == MAX_PLAYERS)
 		cw_exit("Too many champions", MANY_CHAMPS);
 	if ((fd = open(file_name, O_RDONLY)) == -1 || read(fd, NULL, 0) == -1)
 		cw_perror_exit(file_name, OPEN_FILE);
 	t_champ_add(&g_cw->pd.champs);
 	g_cw->pd.champs->fd = fd;
 	ft_strcpy(g_cw->pd.champs->file_name, file_name);
-	count++;
+	g_cw->pd.champs_count++;
 }
 
 static void	cw_parse_arg(char *arg)

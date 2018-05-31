@@ -64,6 +64,8 @@ void			t_champ_free(t_champ **champs);
 */
 
 void			cw_load_map(void);
+void			cw_game_loop(void);
+void			cw_display_map(unsigned char *map, int *color);
 
 /*
 ** End
