@@ -18,23 +18,16 @@ static void	cw_fill_map_with_bots(t_stack *stack, t_processes *process)
 	int j;
 	int woohoo;
 
-
 	while (process)
 	{
-			ft_printf("i->%d\n", i);
-			ft_printf("process_PC->%d\n", process->process_PC);
-			
-
 		j = 0;
-		i = process->process_PC;
 		woohoo = 0;
+		i = process->process_PC;
 		while (woohoo < process->champ_size)
 		{
 			stack->stack[i] = process->code[j];
 			stack->stack_color[i] = process->color;
-
 			j++;
-
 			i++;
 			woohoo++;
 		}
