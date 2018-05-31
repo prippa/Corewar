@@ -18,6 +18,7 @@ static void	cw_parse_data_init(t_parse_data *pd)
 {
 	pd->champs = NULL;
 	pd->tmp = 0;
+	pd->champs_count = 0;
 }
 
 void		cw_init(void)
