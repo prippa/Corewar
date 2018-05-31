@@ -14,7 +14,7 @@ t_processes	*cw_process_node_constructor(unsigned char *code, int color, int pro
 		i++;
 	}
 	new->color = color;
-	new->process_PC = 0;
+	new->process_PC = process_PC;
 	new->carry = process_PC;
 	ft_bzero(new->registers, 16);
 	new->next = NULL;
@@ -39,11 +39,8 @@ void	cw_init_processes(t_champ *champ_pointer, t_processes **processes_pointer)
 	color = 1;
 	map_distance = MEM_SIZE / g_cw->pd.champs_count;
 	process_PC = 0;
-
 	while(champ_pointer)
 	{
-			// system("leaks -q corewar");
-
 		if (!*processes_pointer)
 			*processes_pointer = cw_process_node_constructor(champ_pointer->code, color, process_PC);
 		else
@@ -53,8 +50,6 @@ void	cw_init_processes(t_champ *champ_pointer, t_processes **processes_pointer)
 				tmp_processes = tmp_processes->next;
 			tmp_processes->next = cw_process_node_constructor(champ_pointer->code, color, process_PC);
 		}
-			// system("leaks -q corewar");
-
 		color++;
 		process_PC += map_distance;
 		champ_pointer = champ_pointer->next;
