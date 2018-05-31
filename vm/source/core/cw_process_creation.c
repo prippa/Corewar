@@ -33,7 +33,7 @@ t_processes	*cw_constr(unsigned char *code, int color, int process_pc)
 	return (new);
 }
 
-void	cw_init_processes(t_champ *champ_pointer, t_processes **proc_p)
+void		cw_init_processes(t_champ *champ_pointer, t_processes **proc_p)
 {
 	int			color;
 	int			process_pc;
