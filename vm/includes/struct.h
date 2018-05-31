@@ -19,11 +19,11 @@
 
 typedef struct			s_champ
 {
-	t_header			head;
-	char				file_name[FILE_NAME_MAX + 1];
-	int					fd;
-	unsigned char		code[CHAMP_MAX_SIZE + 1];
-	struct s_champ		*next;
+	t_header			head; 							// nope;
+	char				file_name[FILE_NAME_MAX + 1];	// nope;
+	int					fd;								// nope;
+	unsigned char		code[CHAMP_MAX_SIZE + 1];		// yeap;
+	struct s_champ		*next;							// yeap;
 }						t_champ;
 
 typedef struct			s_parse_data
@@ -56,6 +56,14 @@ typedef struct			s_command
 	t_arg				arg3;
 }						t_command;
 
+typedef	struct			s_processes
+{
+	unsigned char		code[CHAMP_MAX_SIZE + 1];
+	int					color;
+	int					PC;
+	unsigned int		registers[16];
+}						t_processes;
+
 typedef struct			s_stack
 {
 	unsigned char		stack[MEM_SIZE];		// whole stack;
@@ -78,7 +86,7 @@ typedef struct			s_stack
 typedef struct			s_corewar
 {
 	t_parse_data		pd;
-	t_stack	map;
+	t_stack				map;
 }						t_corewar;
 
 #endif

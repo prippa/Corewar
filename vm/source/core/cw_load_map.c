@@ -12,7 +12,7 @@
 
 #include "corewar.h"
 
-void	cw_fill_map_with_bots(unsigned char *dst, int *stack_color, t_champ *champ)
+void	cw_fill_map_with_bots(unsigned char *dst, int *stack_color, t_champ *champ) // take processes instead of champs;
 {
 	int				map_distance;
 	unsigned int	i;
@@ -38,7 +38,7 @@ void	cw_fill_map_with_bots(unsigned char *dst, int *stack_color, t_champ *champ)
 	}
 }
 
-void	cw_init_map(unsigned char *stack, int *stack_color)
+void	cw_init_map(unsigned char *stack, int *stack_color) // o.k.
 {
 	unsigned int i;
 
@@ -55,4 +55,5 @@ void	cw_load_map(void)
 {
 	cw_init_map(g_cw->map.stack, g_cw->map.stack_color);
 	cw_fill_map_with_bots(g_cw->map.stack, g_cw->map.stack_color, g_cw->pd.champs);
+	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }
