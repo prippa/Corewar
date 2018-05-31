@@ -80,21 +80,24 @@ void	display_map(unsigned char *map, int *color)
 {
 	unsigned int i;
 	unsigned int spaces;
+	unsigned int lines;
 
 	i = 0;
 	spaces = 1;
+	lines = 0;
 	while (i < MEM_SIZE)
 	{
 		if (map[i] != '0')
 			print_color(map[i], color[i]);
 		else
-		{
-			ft_printf("%~c", F_WHITE, map[i]);
-			ft_printf("%~c", F_WHITE, map[i]);
-		}
+			ft_printf("%~.2d", F_WHITE, 0);
 		ft_printf(" ");
-		if (i % NEWLINE_QUANTITY == 0)
+		if (lines == NEWLINE_QUANTITY)
+		{
 			ft_printf("\n");
+			lines = -1;
+		}
+		lines++;
 		spaces++;
 		i++;
 	}
