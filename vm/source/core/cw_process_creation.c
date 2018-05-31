@@ -15,30 +15,24 @@ t_processes	*cw_process_node_constructor(unsigned char *code, int color, int pro
 	}
 	new->color = color;
 	new->process_PC = process_PC;
-	new->carry = process_PC;
+	new->carry = 0;
 	ft_bzero(new->registers, 16);
 	new->next = NULL;
 	return (new);
 }
 
-// void push(struct Node** head_ref, int new_data)
-// {
-//     struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
-//     new_node->data  = new_data;
-//     (*head_ref)    = new_node;
-// }
-
 void	cw_init_processes(t_champ *champ_pointer, t_processes **processes_pointer)
 {
-	// reverse the champions;
 	int color;
 	int process_PC;
 	int map_distance;
 	t_processes *tmp_processes;
 	
-	color = 1;
+	color = 4;
 	map_distance = MEM_SIZE / g_cw->pd.champs_count;
-	process_PC = 0;
+	process_PC = 4096 - (4096 / g_cw->pd.champs_count);
+	if (g_cw->pd.champs_count == 3)
+		process_PC -= 1;
 	while(champ_pointer)
 	{
 		if (!*processes_pointer)
@@ -50,8 +44,8 @@ void	cw_init_processes(t_champ *champ_pointer, t_processes **processes_pointer)
 				tmp_processes = tmp_processes->next;
 			tmp_processes->next = cw_process_node_constructor(champ_pointer->code, color, process_PC);
 		}
-		color++;
-		process_PC += map_distance;
+		color--;
+		process_PC -= map_distance;
 		champ_pointer = champ_pointer->next;
 	}
 }
