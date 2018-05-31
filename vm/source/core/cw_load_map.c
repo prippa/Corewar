@@ -12,7 +12,7 @@
 
 #include "corewar.h"
 
-int		champ_quantity(t_champ *champ) // o.k.
+int		cw_champ_quantity(t_champ *champ) // o.k.
 {
 	int i;
 
@@ -25,14 +25,14 @@ int		champ_quantity(t_champ *champ) // o.k.
 	return (i);
 }
 
-void	fill_map_with_bots(unsigned char *dst, int *stack_color, t_champ *champ)
+void	cw_fill_map_with_bots(unsigned char *dst, int *stack_color, t_champ *champ) // remaster for processes;
 {
 	int				map_distance;
 	unsigned int	i;
 	unsigned int	j;
 	int				color;
 
-	map_distance = MEM_SIZE / champ_quantity(champ);
+	map_distance = MEM_SIZE / cw_champ_quantity(champ);
 	i = 0;
 	color = 1;
 	while (champ)
@@ -51,7 +51,7 @@ void	fill_map_with_bots(unsigned char *dst, int *stack_color, t_champ *champ)
 	}
 }
 
-void	init_map(unsigned char *stack, int *stack_color) // o.k.
+void	cw_init_map(unsigned char *stack, int *stack_color) // o.k.
 {
 	unsigned int i;
 
@@ -64,7 +64,7 @@ void	init_map(unsigned char *stack, int *stack_color) // o.k.
 	}
 }
 
-void	print_color(unsigned char data, int color_type) // o.k.
+void	cw_print_color(unsigned char data, int color_type) // o.k.
 {
 	if (color_type == 1)
 		ft_printf("%~.2x", F_GREEN, data);
@@ -76,7 +76,7 @@ void	print_color(unsigned char data, int color_type) // o.k.
 		ft_printf("%~.2x", F_CYAN, data);
 }
 
-void	display_map(unsigned char *map, int *color) // o.k.
+void	cw_display_map(unsigned char *map, int *color) // o.k.
 {
 	unsigned int i;
 	unsigned int spaces;
@@ -88,7 +88,7 @@ void	display_map(unsigned char *map, int *color) // o.k.
 	while (i < MEM_SIZE)
 	{
 		if (map[i] != '0')
-			print_color(map[i], color[i]);
+			cw_print_color(map[i], color[i]);
 		else
 			ft_printf("%~.2d", F_WHITE, 0);
 		ft_printf(" ");
@@ -105,7 +105,7 @@ void	display_map(unsigned char *map, int *color) // o.k.
 
 void	cw_load_map(void)
 {
-	init_map(g_cw->map.stack, g_cw->map.stack_color);
-	fill_map_with_bots(g_cw->map.stack, g_cw->map.stack_color, g_cw->pd.champs);
-	display_map(g_cw->map.stack, g_cw->map.stack_color);
+	cw_init_map(g_cw->map.stack, g_cw->map.stack_color);
+	cw_fill_map_with_bots(g_cw->map.stack, g_cw->map.stack_color, g_cw->pd.champs);
+	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }
