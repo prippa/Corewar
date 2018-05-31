@@ -56,12 +56,12 @@ typedef struct			s_command
 	t_arg				arg3;
 }						t_command;
 
-typedef	struct			s_processes
+typedef	struct			s_processes					// fork will create a process and will change the map;
 {
-	unsigned char		code[CHAMP_MAX_SIZE + 1];
-	int					color;
-	int					PC;
-	int					carry;						// initially has zero value;
+	unsigned char		code[CHAMP_MAX_SIZE + 1];	// copy from champs;
+	int					color;						// iteratively {1 - 4};
+	int					PC;							// current position of the stack command line (iteratively according to the quantity of champs);
+	int					carry;						// initially has zero value because this var will be modified after execution of the command;
 	unsigned int		registers[16];				// inherited processes have to have the same player register ?
 }						t_processes;
 
@@ -69,14 +69,7 @@ typedef struct			s_stack
 {
 	unsigned char		stack[MEM_SIZE];			// whole stack;
 	int					stack_color[MEM_SIZE];		// colors manipulation;
-}						t_stack;
-
-
-
-
-
-
-	// int					PC; 					// current position of the stack command line;
+}						t_stack;					
 
 /*
 ** End
