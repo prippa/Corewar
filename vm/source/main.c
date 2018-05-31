@@ -18,12 +18,12 @@ int		main(int argc, char **argv)
 	cw_parse_args(argc, argv + 1);
 	cw_parser();
 	cw_init_processes(g_cw->pd.champs, &g_cw->processes);
-	while (g_cw->processes)
-	{
-		ft_printf("color -> %d\n", g_cw->processes->color);
-		ft_printf("process_PC -> %d\n", g_cw->processes->process_PC);
-		g_cw->processes = g_cw->processes->next;
-	}
+	// while (g_cw->processes)
+	// {
+	// 	ft_printf("color -> %d\n", g_cw->processes->color);
+	// 	ft_printf("process_PC -> %d\n", g_cw->processes->process_PC);
+	// 	g_cw->processes = g_cw->processes->next;
+	// }
 	cw_load_map();
 	// cw_game_loop();
 	// cw_free(); // why it leaks ?

@@ -12,29 +12,33 @@
 
 #include "corewar.h"
 
-static void	cw_fill_map_with_bots(unsigned char *dst, int *stack_color, t_champ *champ)
+static void	cw_fill_map_with_bots(t_stack *stack, t_processes *process)
 {
-	int				map_distance;
-	unsigned int	i;
-	unsigned int	j;
-	int				color;
+	int i;
+	int j;
+	int woohoo;
 
-	map_distance = MEM_SIZE / g_cw->pd.champs_count;
-	i = 0;
-	color = 1;
-	while (champ)
+
+	while (process)
 	{
+			ft_printf("i->%d\n", i);
+			ft_printf("process_PC->%d\n", process->process_PC);
+			
+
 		j = 0;
-		while (j < champ->head.prog_size)
+		i = process->process_PC;
+		woohoo = 0;
+		while (woohoo < process->champ_size)
 		{
-			dst[i] = champ->code[j];
-			stack_color[i] = color;
-			i++;
+			stack->stack[i] = process->code[j];
+			stack->stack_color[i] = process->color;
+
 			j++;
+
+			i++;
+			woohoo++;
 		}
-		i += map_distance - j;
-		color++;
-		champ = champ->next;
+		process = process->next;
 	}
 }
 
@@ -54,6 +58,6 @@ static void	cw_init_map(unsigned char *stack, int *stack_color)
 void		cw_load_map(void)
 {
 	cw_init_map(g_cw->map.stack, g_cw->map.stack_color);
-	cw_fill_map_with_bots(g_cw->map.stack, g_cw->map.stack_color, g_cw->pd.champs);
-	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	cw_fill_map_with_bots(&g_cw->map, g_cw->processes);
+	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }

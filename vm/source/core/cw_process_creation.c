@@ -12,7 +12,7 @@
 
 #include "corewar.h"
 
-t_processes	*cw_constr(unsigned char *code, int color, int process_pc)
+t_processes	*cw_constr(t_champ *champ, int color, int process_pc)
 {
 	int			i;
 	t_processes *new;
@@ -22,18 +22,19 @@ t_processes	*cw_constr(unsigned char *code, int color, int process_pc)
 		return (NULL);
 	while (i < CHAMP_MAX_SIZE + 1)
 	{
-		new->code[i] = code[i];
+		new->code[i] = champ->code[i];
 		i++;
 	}
 	new->color = color;
 	new->process_PC = process_pc;
 	new->carry = 0;
 	ft_bzero(new->registers, 16);
+	new->champ_size = champ->head.prog_size;
 	new->next = NULL;
 	return (new);
 }
 
-void		cw_init_processes(t_champ *champ_pointer, t_processes **proc_p)
+void		cw_init_processes(t_champ *champ, t_processes **proc_p)
 {
 	int			color;
 	int			process_pc;
@@ -45,19 +46,19 @@ void		cw_init_processes(t_champ *champ_pointer, t_processes **proc_p)
 	process_pc = MEM_SIZE - (MEM_SIZE / g_cw->pd.champs_count);
 	if (g_cw->pd.champs_count == 3)
 		process_pc -= 1;
-	while (champ_pointer)
+	while (champ)
 	{
 		if (!*proc_p)
-			*proc_p = cw_constr(champ_pointer->code, color, process_pc);
+			*proc_p = cw_constr(champ, color, process_pc);
 		else
 		{
 			tmp = *proc_p;
 			while (tmp->next)
 				tmp = tmp->next;
-			tmp->next = cw_constr(champ_pointer->code, color, process_pc);
+			tmp->next = cw_constr(champ, color, process_pc);
 		}
 		color--;
 		process_pc -= map_distance;
-		champ_pointer = champ_pointer->next;
+		champ = champ->next;
 	}
 }

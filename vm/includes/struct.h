@@ -28,7 +28,7 @@ typedef struct			s_champ
 
 typedef struct			s_parse_data
 {
-	t_champ				*champs;
+	t_champ				*champs; 						// to add champ name/counter;
 	long long int		tmp;
 	int					champs_count;
 }						t_parse_data;
@@ -62,6 +62,7 @@ typedef	struct			s_processes					// fork will create a process and will change t
 	int					color;						// iteratively {1 - 4};
 	int					process_PC;					// current position of the stack command line (iteratively according to the quantity of champs);
 	int					carry;						// initially has zero value because this var will be modified after execution of the command;
+	int					champ_size;					// for init procedure;
 	unsigned int		registers[16];				// inherited processes have to have the same player register ?
 	struct s_processes	*next;						// pointer to the next element;
 }						t_processes;
