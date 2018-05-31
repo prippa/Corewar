@@ -10,7 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	corewar
+NAME		=	../corewar
+VIS_NAME	=	corewar
 
 FLAGS		= 	-Wall -Werror -Wextra
 
@@ -50,18 +51,15 @@ INC_VM 		= 	$(addprefix $(DIR_VM_INC), $(HEAD_VM))
 INC_VM 		+= 	$(addprefix $(DIR_CW_INC), $(HEAD_CW))
 
 
-all: lib obj $(NAME)
+all: obj $(NAME)
 
 obj:
 	@mkdir -p $(DIR_OBJ)
 
-lib:
-	@make -C $(DIR_LIB)
-
 #-------------------------COMPILE BLOCK-------------------------
 $(NAME): $(OBJ) $(LIBFT)
 	@$(CC) -o $(NAME) $(OBJ) $(LIBFT)
-	@echo "Compiling" [ $(NAME) ]
+	@echo "Compiling" [ $(VIS_NAME) ]
 
 #---source---
 $(DIR_OBJ)%.o: $(DIR_VM)%.c $(INC_VM)
@@ -86,14 +84,12 @@ $(DIR_OBJ)%.o: $(DIR_CORE)%.c $(INC_VM)
 clean:
 	@rm -rf $(DIR_OBJ)
 	@echo "Clean [ obj files VM ]"
-	@make -C $(DIR_LIB) clean
 
 fclean:
 	@rm -rf $(DIR_OBJ)
 	@echo "Clean [ obj files VM ]"
 	@rm -f $(NAME)
-	@echo "Clean" [ $(NAME) ]
-	@make -C $(DIR_LIB) fclean
+	@echo "Clean" [ $(VIS_NAME) ]
 
 re: fclean all
 

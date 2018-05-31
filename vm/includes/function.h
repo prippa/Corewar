@@ -31,7 +31,7 @@ void			cw_free(void);
 */
 
 int				cw_get_command(t_command *cmd, unsigned int *i,
-				unsigned char code[CHAMP_MAX_SIZE + 1]);
+				unsigned char *map);
 int				cw_hex_to_dec(unsigned char *buf, int i);
 void			cw_lseek_cur_skip(int fd, long size);
 void			cw_check_magic(t_champ *champ);

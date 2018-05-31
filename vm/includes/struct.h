@@ -30,7 +30,6 @@ typedef struct			s_parse_data
 {
 	t_champ				*champs;
 	long long int		tmp;
-	int					champ_count;
 }						t_parse_data;
 
 /*

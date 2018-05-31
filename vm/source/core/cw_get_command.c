@@ -12,8 +12,8 @@
 
 #include "corewar.h"
 
-# define WHAT_DIR(x) (x > 8 && x < 13) || x == 14 || x == 15
-# define IS_CDG(x) x == 1 || x == 9 || x == 12 || x == 15
+#define WHAT_DIR(x) (x > 8 && x < 13) || x == 14 || x == 15
+#define IS_CDG(x) x == 1 || x == 9 || x == 12 || x == 15
 
 static int	arg_check(char *bn, int *j, char *tp, int bt)
 {
@@ -36,17 +36,17 @@ static int	arg_check(char *bn, int *j, char *tp, int bt)
 }
 
 static void	tmp_arg(unsigned char *s, int rd,
-					unsigned int *i, unsigned char *code)
+					unsigned int *i, unsigned char *map)
 {
 	int				j;
 
 	j = 0;
 	while (rd-- > 0)
-		s[j++] = code[(*i)++];
+		s[j++] = map[(*i)++];
 }
 
 static void	write_args(t_command *cmd, unsigned int *i, int bt,
-			unsigned char code[CHAMP_MAX_SIZE + 1])
+			unsigned char *map)
 {
 	char			*bn;
 	int				j;
@@ -61,15 +61,15 @@ static void	write_args(t_command *cmd, unsigned int *i, int bt,
 		if (!(bn = ft_joinfree("0", bn, 2)))
 			cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
 	rd = arg_check(bn, &j, &cmd->arg1.tp, bt);
-	tmp_arg(res, rd, i, code);
+	tmp_arg(res, rd, i, map);
 	cmd->arg1.av = cw_hex_to_dec(res, rd);
 	ft_bzero(res, 5);
 	rd = arg_check(bn, &j, &cmd->arg2.tp, bt);
-	tmp_arg(res, rd, i, code);
+	tmp_arg(res, rd, i, map);
 	cmd->arg2.av = cw_hex_to_dec(res, rd);
 	ft_bzero(res, 5);
 	rd = arg_check(bn, &j, &cmd->arg3.tp, bt);
-	tmp_arg(res, rd, i, code);
+	tmp_arg(res, rd, i, map);
 	cmd->arg3.av = cw_hex_to_dec(res, rd);
 	ft_str_free(&bn);
 }
@@ -97,22 +97,22 @@ static int	check_true_cdg(unsigned char cmd, int cdg)
 	return (0);
 }
 
-int			cw_get_command(t_command *cmd,  unsigned int *i,
-			unsigned char code[CHAMP_MAX_SIZE + 1])
+int			cw_get_command(t_command *cmd, unsigned int *i,
+			unsigned char *map)
 {
 	int				bt;
 	unsigned char	res[5];
 
 	ft_bzero(res, 5);
-	if (code[*i] > 16 || code[*i] < 1)
+	if (map[*i] > 16 || map[*i] < 1)
 		return (NOT_EXIST_CODE);
-	bt = (WHAT_DIR(code[*i]) ? 2 : 4);
-	cmd->cmd = code[*i];
+	bt = (WHAT_DIR(map[*i]) ? 2 : 4);
+	cmd->cmd = map[*i];
 	*i += 1;
-	cmd->codage = ((IS_CDG(cmd->cmd)) ? 0 : code[*i]);
+	cmd->codage = ((IS_CDG(cmd->cmd)) ? 0 : map[*i]);
 	if (IS_CDG(cmd->cmd))
 	{
-		tmp_arg(res, bt, i, code);
+		tmp_arg(res, bt, i, map);
 		cmd->arg1.av = cw_hex_to_dec(res, bt);
 		cmd->arg1.tp = T_DIR;
 		cmd->arg2.tp = 0;
@@ -122,6 +122,6 @@ int			cw_get_command(t_command *cmd,  unsigned int *i,
 	*i += 1;
 	if (check_true_cdg(cmd->cmd, cmd->codage))
 		return (NOT_CORRECT_CODAGE);
-	write_args(cmd, i, bt, code);
+	write_args(cmd, i, bt, map);
 	return (0);
 }

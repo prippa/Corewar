@@ -20,7 +20,7 @@ void			cw_lseek_cur_skip(int fd, long size)
 
 int				cw_hex_to_dec(unsigned char *buf, int i)
 {
-	int 	res;
+	int res;
 
 	res = 0;
 	if (!i)
