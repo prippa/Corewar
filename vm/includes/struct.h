@@ -72,7 +72,9 @@ typedef struct			s_stack
 typedef struct			s_corewar
 {
 	t_parse_data		pd;
-	t_stack	map;
+	t_stack				map;
+	int					loop;
+	unsigned int		i;
 }						t_corewar;
 
 #endif
