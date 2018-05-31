@@ -60,6 +60,9 @@ typedef struct 			s_commands_stack
 {
 	unsigned char		stack[MEM_SIZE];
 	int					stack_color[MEM_SIZE];
+	int					registers[REG_NUMBER]; 	// processor memory;
+	int					PC; 					// current position of the stack command line;
+	int					carry;					// success id for the certain commands;
 
 }						t_commands_stack;
 
