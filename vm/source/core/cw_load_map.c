@@ -12,7 +12,7 @@
 
 #include "corewar.h"
 
-int		champ_quantity(t_champ *champ)
+int		champ_quantity(t_champ *champ) // o.k.
 {
 	int i;
 
@@ -51,7 +51,7 @@ void	fill_map_with_bots(unsigned char *dst, int *stack_color, t_champ *champ)
 	}
 }
 
-void	init_map(unsigned char *stack, int *stack_color)
+void	init_map(unsigned char *stack, int *stack_color) // o.k.
 {
 	unsigned int i;
 
@@ -64,7 +64,7 @@ void	init_map(unsigned char *stack, int *stack_color)
 	}
 }
 
-void	print_color(unsigned char data, int color_type)
+void	print_color(unsigned char data, int color_type) // o.k.
 {
 	if (color_type == 1)
 		ft_printf("%~.2x", F_GREEN, data);
@@ -76,7 +76,7 @@ void	print_color(unsigned char data, int color_type)
 		ft_printf("%~.2x", F_CYAN, data);
 }
 
-void	display_map(unsigned char *map, int *color)
+void	display_map(unsigned char *map, int *color) // o.k.
 {
 	unsigned int i;
 	unsigned int spaces;
@@ -101,11 +101,6 @@ void	display_map(unsigned char *map, int *color)
 		spaces++;
 		i++;
 	}
-}
-
-void	init_registers(int ***register_array)
-{
-	
 }
 
 void	cw_load_map(void)

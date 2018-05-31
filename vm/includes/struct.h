@@ -58,11 +58,17 @@ typedef struct			s_command
 typedef struct 			s_stack
 {
 	unsigned char		stack[MEM_SIZE];		// whole stack;
+}						t_stack;
+
+
+
+
+
+
+	int					carry;					// success id for the certain commands;
 	int					stack_color[MEM_SIZE];	// colors manipulation;
 	int					**registers;			// processor memory for each player;
 	int					PC; 					// current position of the stack command line;
-	int					carry;					// success id for the certain commands;
-}						t_stack;
 
 /*
 ** End
