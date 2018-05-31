@@ -91,28 +91,20 @@ void	display_map(unsigned char *map, int *color)
 			print_color(map[i], color[i]);
 		else
 			ft_printf("%~.2d", F_WHITE, 0);
-			// ft_printf("%~c", F_WHITE, map[i]);
 		ft_printf(" ");
 		if (lines == NEWLINE_QUANTITY)
 		{
 			ft_printf("\n");
 			lines = -1;
 		}
-		
-		// ft_printf("%s","asdfsdfsdfsdfsdfdfsfsdf\n");
-		
 		lines++;
 		spaces++;
 		i++;
 	}
 }
 
-// void	init_registers(int **)
-
 void	cw_load_map(void)
 {
-			// ft_printf("\nasdfsdfsdfsdfsdfdfsfsdf\n");
-	
 	init_map(g_cw->map.stack, g_cw->map.stack_color);
 	fill_map_with_bots(g_cw->map.stack, g_cw->map.stack_color, g_cw->pd.champs);
 	display_map(g_cw->map.stack, g_cw->map.stack_color);
