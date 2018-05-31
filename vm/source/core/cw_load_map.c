@@ -103,6 +103,11 @@ void	display_map(unsigned char *map, int *color)
 	}
 }
 
+void	init_registers(int ***register_array)
+{
+	
+}
+
 void	cw_load_map(void)
 {
 	init_map(g_cw->map.stack, g_cw->map.stack_color);
