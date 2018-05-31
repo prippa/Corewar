@@ -55,7 +55,7 @@ typedef struct			s_command
 	t_arg				arg3;
 }						t_command;
 
-typedef struct 			s_stack
+typedef struct			s_stack
 {
 	unsigned char		stack[MEM_SIZE];		// whole stack;
 	int					stack_color[MEM_SIZE];	// colors manipulation;
