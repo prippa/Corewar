@@ -50,7 +50,6 @@ void			cw_parser(void);
 ** Struct Manipulations
 */
 
-t_command		*t_command_mem(void);
 void			t_champ_rev(t_champ **champs);
 void			t_champ_add(t_champ **champs);
 void			t_champ_free(t_champ **champs);
