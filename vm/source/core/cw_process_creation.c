@@ -41,12 +41,9 @@ void		cw_init_processes(t_champ *champ, t_processes **proc_p)
 	int			map_distance;
 	t_processes *tmp;
 
-	color = 1 /*4 - (4 - g_cw->pd.champs_count)*/;
+	color = 1;
 	map_distance = MEM_SIZE / g_cw->pd.champs_count;
-	process_pc = 0 /*MEM_SIZE - (MEM_SIZE / g_cw->pd.champs_count)*/;
-	// t_champ_rev(&g_cw->pd.champs);
-	// if (g_cw->pd.champs_count == 3)
-	// 	process_pc -= 1;
+	process_pc = 0;
 	while (champ)
 	{
 		if (!*proc_p)
