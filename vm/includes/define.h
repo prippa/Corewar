@@ -44,7 +44,7 @@ typedef enum	e_error_numbers
 # define CW_USAGE	"Usage: ./corewar <champion1.cor> <...>"
 
 /*
-****************************** map ****************************************
+******************************* map ****************************************
 */
 
 # define NEWLINE_QUANTITY 63
