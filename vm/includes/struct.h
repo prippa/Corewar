@@ -80,6 +80,7 @@ typedef struct			s_corewar
 {
 	t_parse_data		pd;
 	t_stack				map;
+	t_processes			*processes;
 	int					loop;
 	unsigned int		i;
 }						t_corewar;
