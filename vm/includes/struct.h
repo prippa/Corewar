@@ -56,15 +56,15 @@ typedef struct			s_command
 	t_arg				arg3;
 }						t_command;
 
-typedef struct 			s_commands_stack
+typedef struct 			s_stack
 {
-	unsigned char		stack[MEM_SIZE];
-	int					stack_color[MEM_SIZE];
+	unsigned char		stack[MEM_SIZE];		// whole stack;
+	int					stack_color[MEM_SIZE];	// colors manipulation;
 	int					registers[REG_NUMBER]; 	// processor memory;
 	int					PC; 					// current position of the stack command line;
 	int					carry;					// success id for the certain commands;
 
-}						t_commands_stack;
+}						t_stack;
 
 /*
 ** End
@@ -73,7 +73,7 @@ typedef struct 			s_commands_stack
 typedef struct			s_corewar
 {
 	t_parse_data		pd;
-	t_commands_stack	map;
+	t_stack	map;
 }						t_corewar;
 
 #endif
