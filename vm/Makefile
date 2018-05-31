@@ -15,7 +15,7 @@ VIS_NAME	=	corewar
 
 FLAGS		= 	-Wall -Werror -Wextra
 
-CC			=	gcc
+CC			=	gcc -g
 
 DIR_LIB		=	../libft/
 LIBFT		=	$(DIR_LIB)libft.a
