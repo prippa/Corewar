@@ -62,7 +62,6 @@ typedef struct 			s_stack
 	int					registers[REG_NUMBER]; 	// processor memory;
 	int					PC; 					// current position of the stack command line;
 	int					carry;					// success id for the certain commands;
-
 }						t_stack;
 
 /*
