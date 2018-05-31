@@ -61,13 +61,14 @@ typedef	struct			s_processes
 	unsigned char		code[CHAMP_MAX_SIZE + 1];
 	int					color;
 	int					PC;
-	unsigned int		registers[16];
+	int					carry;						// initially has zero value;
+	unsigned int		registers[16];				// inherited processes have to have the same player register ?
 }						t_processes;
 
 typedef struct			s_stack
 {
-	unsigned char		stack[MEM_SIZE];		// whole stack;
-	int					stack_color[MEM_SIZE];	// colors manipulation;
+	unsigned char		stack[MEM_SIZE];			// whole stack;
+	int					stack_color[MEM_SIZE];		// colors manipulation;
 }						t_stack;
 
 
@@ -75,8 +76,6 @@ typedef struct			s_stack
 
 
 
-	// int					carry;					// success id for the certain commands;
-	// int					**registers;			// processor memory for each player;
 	// int					PC; 					// current position of the stack command line;
 
 /*
@@ -87,6 +86,7 @@ typedef struct			s_corewar
 {
 	t_parse_data		pd;
 	t_stack				map;
+	t_processes			processes;
 }						t_corewar;
 
 #endif
