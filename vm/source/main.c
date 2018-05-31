@@ -26,7 +26,7 @@ int		main(int argc, char **argv)
 	// }
 	cw_load_map();
 	// cw_game_loop();
-	// cw_free(); // why it leaks ?
+	cw_free(); // why it leaks ?
 	// system("leaks -q corewar");
 	return (0);
 }

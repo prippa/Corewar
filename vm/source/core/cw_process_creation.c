@@ -41,11 +41,12 @@ void		cw_init_processes(t_champ *champ, t_processes **proc_p)
 	int			map_distance;
 	t_processes *tmp;
 
-	color = 4 - (4 - g_cw->pd.champs_count) ;
+	color = 1 /*4 - (4 - g_cw->pd.champs_count)*/;
 	map_distance = MEM_SIZE / g_cw->pd.champs_count;
-	process_pc = MEM_SIZE - (MEM_SIZE / g_cw->pd.champs_count);
-	if (g_cw->pd.champs_count == 3)
-		process_pc -= 1;
+	process_pc = 0 /*MEM_SIZE - (MEM_SIZE / g_cw->pd.champs_count)*/;
+	// t_champ_rev(&g_cw->pd.champs);
+	// if (g_cw->pd.champs_count == 3)
+	// 	process_pc -= 1;
 	while (champ)
 	{
 		if (!*proc_p)
@@ -57,8 +58,8 @@ void		cw_init_processes(t_champ *champ, t_processes **proc_p)
 				tmp = tmp->next;
 			tmp->next = cw_constr(champ, color, process_pc);
 		}
-		color--;
-		process_pc -= map_distance;
+		color++;
+		process_pc += map_distance;
 		champ = champ->next;
 	}
 }
