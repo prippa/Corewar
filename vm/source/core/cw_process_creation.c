@@ -30,7 +30,7 @@ void	cw_init_processes(t_champ *champ_pointer, t_processes **processes_pointer)
 	
 	color = 4;
 	map_distance = MEM_SIZE / g_cw->pd.champs_count;
-	process_PC = 4096 - (4096 / g_cw->pd.champs_count);
+	process_PC = MEM_SIZE - (MEM_SIZE / g_cw->pd.champs_count);
 	if (g_cw->pd.champs_count == 3)
 		process_PC -= 1;
 	while(champ_pointer)
