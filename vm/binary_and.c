@@ -110,7 +110,7 @@ int			binary_and(int var_x, int var_y)
 
 	x = ft_itoa_base(var_x, 2);
 	y = ft_itoa_base(var_y, 2);
-	// ft_bzero(x_stack, 33); 
+	// ft_bzero(x_stack, 33);
 	// ft_bzero(y_stack, 33);
 	x_stack[32] = '\0'; // last element <=> 33 = '\0'
 	y_stack[32] = '\0'; // last element <=> 33 = '\0
