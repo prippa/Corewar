@@ -12,15 +12,16 @@
 
 #include "corewar.h"
 
-
-static void	cw_zero_it(char *str)
+static void		cw_zero_it(char *str)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	while (i < 32)
 		str[i++] = '0';
 }
 
-static void		cw_binary_xor_comparison(char *var_1, char *var_2, char *var_res)
+static void		cw_xor_comparison(char *var_1, char *var_2, char *var_res)
 {
 	int i;
 
@@ -55,7 +56,7 @@ void			cw_binary_xor(int var_x, int var_y, int *var_res)
 	cw_zero_it(res_of_comparison);
 	ft_strncpy(&x_stack[32 - (int)ft_strlen(x)], x, (int)ft_strlen(x));
 	ft_strncpy(&y_stack[32 - (int)ft_strlen(y)], y, (int)ft_strlen(y));
-	cw_binary_xor_comparison(x_stack, y_stack, res_of_comparison);
+	cw_xor_comparison(x_stack, y_stack, res_of_comparison);
 	free(x);
 	free(y);
 	*var_res = ft_atoi_base(res_of_comparison, 2);

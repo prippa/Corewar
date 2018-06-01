@@ -12,9 +12,11 @@
 
 #include "corewar.h"
 
-static void	ft_zero_it(char *str)
+static void		ft_zero_it(char *str)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	while (i < 32)
 		str[i++] = '0';
 }

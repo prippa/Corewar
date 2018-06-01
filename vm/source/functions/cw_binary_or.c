@@ -12,9 +12,11 @@
 
 #include "corewar.h"
 
-static void	ft_zero_it(char *str)
+static void		ft_zero_it(char *str)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	while (i < 32)
 		str[i++] = '0';
 }
@@ -44,7 +46,6 @@ void			cw_binary_or(int var_x, int var_y, int *var_res)
 
 	x = ft_itoa_base(var_x, 2, 0);
 	y = ft_itoa_base(var_y, 2, 0);
-
 	x_stack[32] = '\0';
 	y_stack[32] = '\0';
 	res_of_comparison[32] = '\0';
