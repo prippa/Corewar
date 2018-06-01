@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cw_binary_xor.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/01 14:32:25 by otimofie          #+#    #+#             */
+/*   Updated: 2018/06/01 14:32:29 by otimofie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 static int		ft_pow(int nb, int pow)
@@ -81,7 +93,7 @@ static void	ft_zero_it(char *str)
 		str[i++] = '0';
 }
 
-static void		binary_or_comparison(char *var_1, char *var_2, char *var_res)
+static void		binary_xor_comparison(char *var_1, char *var_2, char *var_res)
 {
 	int i;
 
@@ -92,15 +104,17 @@ static void		binary_or_comparison(char *var_1, char *var_2, char *var_res)
 
 	while (i < 32)
 	{
-		if (var_1[i] == '1' || var_2[i] == '1')
-			var_res[i] = '1';
-		else
+		if (var_1[i] == '1' && var_2[i] == '1')
 			var_res[i] = '0';
+		else if (var_1[i] == '1' && var_2[i] == '0')
+			var_res[i] = '1';
+		else if (var_1[i] == '0' && var_2[i] == '1')
+			var_res[i] = '1';
 		i++;
 	}
 }
 
-int			binary_or(int var_x, int var_y)
+int			binary_xor(int var_x, int var_y)
 {
 	char *x;
 	char *y;
@@ -123,7 +137,7 @@ int			binary_or(int var_x, int var_y)
 	ft_strncpy(&y_stack[32 - (int)ft_strlen(y)], y, (int)ft_strlen(y));
 	// ft_printf("x_stack -> %s\n", x_stack);
 	// ft_printf("y_stack -> %s\n", y_stack);
-	binary_or_comparison(x_stack, y_stack, res_of_comparison);
+	binary_xor_comparison(x_stack, y_stack, res_of_comparison);
 	// ft_printf("res     -> %s\n", res_of_comparison);
 	free(x);
 	free(y);

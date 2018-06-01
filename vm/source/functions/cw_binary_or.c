@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cw_binary_or.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/01 14:32:17 by otimofie          #+#    #+#             */
+/*   Updated: 2018/06/01 14:32:18 by otimofie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 static int		ft_pow(int nb, int pow)
@@ -81,7 +93,7 @@ static void	ft_zero_it(char *str)
 		str[i++] = '0';
 }
 
-static void		binary_add_comparison(char *var_1, char *var_2, char *var_res)
+static void		binary_or_comparison(char *var_1, char *var_2, char *var_res)
 {
 	int i;
 
@@ -92,7 +104,7 @@ static void		binary_add_comparison(char *var_1, char *var_2, char *var_res)
 
 	while (i < 32)
 	{
-		if (var_1[i] == '1' && var_2[i] == '1')
+		if (var_1[i] == '1' || var_2[i] == '1')
 			var_res[i] = '1';
 		else
 			var_res[i] = '0';
@@ -100,7 +112,7 @@ static void		binary_add_comparison(char *var_1, char *var_2, char *var_res)
 	}
 }
 
-int			binary_and(int var_x, int var_y)
+int			binary_or(int var_x, int var_y)
 {
 	char *x;
 	char *y;
@@ -110,7 +122,7 @@ int			binary_and(int var_x, int var_y)
 
 	x = ft_itoa_base(var_x, 2);
 	y = ft_itoa_base(var_y, 2);
-	// ft_bzero(x_stack, 33);
+	// ft_bzero(x_stack, 33); 
 	// ft_bzero(y_stack, 33);
 	x_stack[32] = '\0'; // last element <=> 33 = '\0'
 	y_stack[32] = '\0'; // last element <=> 33 = '\0
@@ -123,7 +135,7 @@ int			binary_and(int var_x, int var_y)
 	ft_strncpy(&y_stack[32 - (int)ft_strlen(y)], y, (int)ft_strlen(y));
 	// ft_printf("x_stack -> %s\n", x_stack);
 	// ft_printf("y_stack -> %s\n", y_stack);
-	binary_add_comparison(x_stack, y_stack, res_of_comparison);
+	binary_or_comparison(x_stack, y_stack, res_of_comparison);
 	// ft_printf("res     -> %s\n", res_of_comparison);
 	free(x);
 	free(y);
