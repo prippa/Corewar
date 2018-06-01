@@ -74,6 +74,8 @@ void			cw_init_processes(t_champ *pointer, t_processes **point);
 void			cw_binary_and(int var_x, int var_y, int *var_res, int *carry);
 void			cw_binary_or(int var_x, int var_y, int *var_res, int *carry);
 void			cw_binary_xor(int var_x, int var_y, int *var_res, int *carry);
+void			cw_add(int var_x, int var_y, int *var_res, int *carry);
+void			cw_sub(int var_x, int var_y, int *var_res, int *carry);
 
 /*
 ** End
