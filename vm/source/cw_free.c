@@ -17,8 +17,20 @@ static void	cw_parse_data_free(t_parse_data *pd)
 	t_champ_free(&pd->champs);
 }
 
+static void	cw_processes_free(t_processes *head_ref)
+{
+	if (!head_ref)
+		return ;
+	if (head_ref->next)
+		cw_processes_free(head_ref->next);
+	free(head_ref);
+}
+
+
+
 void		cw_free(void)
 {
 	cw_parse_data_free(&g_cw->pd);
-	free(g_cw); // i think that is why i have leaks;
+	cw_processes_free(g_cw->processes);
+	free(g_cw);
 }
