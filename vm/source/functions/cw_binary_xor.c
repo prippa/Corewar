@@ -38,7 +38,7 @@ static void		cw_xor_comparison(char *var_1, char *var_2, char *var_res)
 	}
 }
 
-void			cw_binary_xor(int var_x, int var_y, int *var_res)
+void			cw_binary_xor(int var_x, int var_y, int *var_res, int *carry)
 {
 	char *x;
 	char *y;
@@ -60,4 +60,5 @@ void			cw_binary_xor(int var_x, int var_y, int *var_res)
 	free(x);
 	free(y);
 	*var_res = ft_atoi_base(res_of_comparison, 2);
+	*carry = (*var_res != 0) ? 1 : 0;
 }
