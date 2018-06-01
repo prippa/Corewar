@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "corewar.h"
 
 static int		ft_pow(int nb, int pow)
 {
