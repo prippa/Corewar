@@ -12,14 +12,15 @@
 
 #include "corewar.h"
 
-static void	ft_zero_it(char *str)
+
+static void	cw_zero_it(char *str)
 {
 	int i = 0;
 	while (i < 32)
 		str[i++] = '0';
 }
 
-static void		binary_xor_comparison(char *var_1, char *var_2, char *var_res)
+static void		cw_binary_xor_comparison(char *var_1, char *var_2, char *var_res)
 {
 	int i;
 
@@ -36,7 +37,7 @@ static void		binary_xor_comparison(char *var_1, char *var_2, char *var_res)
 	}
 }
 
-int			cw_binary_xor(int var_x, int var_y)
+void			cw_binary_xor(int var_x, int var_y, int *var_res)
 {
 	char *x;
 	char *y;
@@ -49,13 +50,13 @@ int			cw_binary_xor(int var_x, int var_y)
 	x_stack[32] = '\0';
 	y_stack[32] = '\0';
 	res_of_comparison[32] = '\0';
-	ft_zero_it(x_stack);
-	ft_zero_it(y_stack);
-	ft_zero_it(res_of_comparison);
+	cw_zero_it(x_stack);
+	cw_zero_it(y_stack);
+	cw_zero_it(res_of_comparison);
 	ft_strncpy(&x_stack[32 - (int)ft_strlen(x)], x, (int)ft_strlen(x));
 	ft_strncpy(&y_stack[32 - (int)ft_strlen(y)], y, (int)ft_strlen(y));
-	binary_xor_comparison(x_stack, y_stack, res_of_comparison);
+	cw_binary_xor_comparison(x_stack, y_stack, res_of_comparison);
 	free(x);
 	free(y);
-	return (ft_atoi_base(res_of_comparison, 2));
+	*var_res = ft_atoi_base(res_of_comparison, 2);
 }

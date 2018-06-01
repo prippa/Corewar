@@ -34,7 +34,7 @@ static void		binary_or_comparison(char *var_1, char *var_2, char *var_res)
 	}
 }
 
-int			cw_binary_or(int var_x, int var_y)
+void			cw_binary_or(int var_x, int var_y, int *var_res)
 {
 	char *x;
 	char *y;
@@ -56,5 +56,5 @@ int			cw_binary_or(int var_x, int var_y)
 	binary_or_comparison(x_stack, y_stack, res_of_comparison);
 	free(x);
 	free(y);
-	return (ft_atoi_base(res_of_comparison, 2));
+	*var_res = ft_atoi_base(res_of_comparison, 2);
 }

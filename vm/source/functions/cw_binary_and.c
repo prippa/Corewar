@@ -34,7 +34,7 @@ static void		binary_add_comparison(char *var_1, char *var_2, char *var_res)
 	}
 }
 
-int			cw_binary_and(int var_x, int var_y)
+void			cw_binary_and(int var_x, int var_y, int *var_res)
 {
 	char *x;
 	char *y;
@@ -43,11 +43,7 @@ int			cw_binary_and(int var_x, int var_y)
 	char res_of_comparison[33];
 
 	x = ft_itoa_base(var_x, 2, 0);
-	ft_printf("%s\n", x);
-
 	y = ft_itoa_base(var_y, 2, 0);
-	ft_printf("%s\n", y);
-
 	x_stack[32] = '\0';
 	y_stack[32] = '\0';
 	res_of_comparison[32] = '\0';
@@ -59,5 +55,5 @@ int			cw_binary_and(int var_x, int var_y)
 	binary_add_comparison(x_stack, y_stack, res_of_comparison);
 	free(x);
 	free(y);
-	return (ft_atoi_base(res_of_comparison, 2));
+	*var_res = ft_atoi_base(res_of_comparison, 2);
 }

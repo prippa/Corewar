@@ -66,10 +66,10 @@ void			cw_load_map(void);
 void			cw_game_loop(void);
 void			cw_display_map(unsigned char *map, int *color);
 void			cw_init_processes(t_champ *champ_pointer, t_processes **processes_pointer);
-int				cw_binary_and(int var_x, int var_y);
-int				cw_binary_or(int var_x, int var_y);
-int				cw_binary_xor(int var_x, int var_y);
 
+void			cw_binary_and(int var_x, int var_y, int *var_res);
+void			cw_binary_or(int var_x, int var_y, int *var_res);
+void				cw_binary_xor(int var_x, int var_y, int *var_res);
 
 /*
 ** End
