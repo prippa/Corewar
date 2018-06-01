@@ -16,7 +16,7 @@ t_processes	*cw_constr(t_champ *champ, int color, int process_pc)
 {
 	int			i;
 	t_processes *new_object;
-	
+
 	i = 0;
 	if (!(new_object = (t_processes *)malloc(sizeof(t_processes))))
 		return (NULL);

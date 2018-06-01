@@ -26,8 +26,6 @@ static void	cw_processes_free(t_processes *head_ref)
 	free(head_ref);
 }
 
-
-
 void		cw_free(void)
 {
 	cw_parse_data_free(&g_cw->pd);
