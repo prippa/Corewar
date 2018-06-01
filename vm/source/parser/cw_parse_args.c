@@ -48,5 +48,4 @@ void		cw_parse_args(int argc, char **argv)
 	}
 	if (!g_cw->pd.champs)
 		cw_exit(CW_USAGE, INVALID_INPUT);
-	// cw_
 }
