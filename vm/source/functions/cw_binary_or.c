@@ -12,79 +12,79 @@
 
 #include "corewar.h"
 
-static int		ft_pow(int nb, int pow)
-{
-	if (pow == 0)
-		return (1);
-	else
-		return (nb * ft_pow(nb, pow - 1));
-}
+// static int		ft_pow(int nb, int pow)
+// {
+// 	if (pow == 0)
+// 		return (1);
+// 	else
+// 		return (nb * ft_pow(nb, pow - 1));
+// }
 
-static char	*ft_itoa_base(int value, int base)
-{
-	int		i;
-	char	*nbr;
-	int		neg;
+// static char	*ft_itoa_base(int value, int base)
+// {
+// 	int		i;
+// 	char	*nbr;
+// 	int		neg;
 
-	i = 1;
-	neg = 0;
-	if (value < 0)
-	{
-		if (base == 10)
-			neg = 1;
-		value *= -1;
-	}
-	while (ft_pow(base, i) - 1 < value)
-		i++;
-	nbr = (char*)malloc(sizeof(nbr) * i);
-	nbr[i + neg] = '\0';
-	while (i-- > 0)
-	{
-		nbr[i + neg] = (value % base) + (value % base > 9 ? 'A' - 10 : '0');
-		value = value / base;
-	}
-	if (neg)
-		nbr[0] = '-';
-	return (nbr);
-}
+// 	i = 1;
+// 	neg = 0;
+// 	if (value < 0)
+// 	{
+// 		if (base == 10)
+// 			neg = 1;
+// 		value *= -1;
+// 	}
+// 	while (ft_pow(base, i) - 1 < value)
+// 		i++;
+// 	nbr = (char*)malloc(sizeof(nbr) * i);
+// 	nbr[i + neg] = '\0';
+// 	while (i-- > 0)
+// 	{
+// 		nbr[i + neg] = (value % base) + (value % base > 9 ? 'A' - 10 : '0');
+// 		value = value / base;
+// 	}
+// 	if (neg)
+// 		nbr[0] = '-';
+// 	return (nbr);
+// }
 
-static int		test_base(const char c)
-{
-	int		nb;
+// static int		test_base(const char c)
+// {
+// 	int		nb;
 
-	if (c >= '0' && c <= '9')
-		nb = c - '0';
-	else if (c >= 'a' && c <= 'z')
-		nb = c - 'a' + 10;
-	else if (c >= 'A' && c <= 'Z')
-		nb = c - 'A' + 10;
-	else
-		nb = -1;
-	return (nb);
-}
+// 	if (c >= '0' && c <= '9')
+// 		nb = c - '0';
+// 	else if (c >= 'a' && c <= 'z')
+// 		nb = c - 'a' + 10;
+// 	else if (c >= 'A' && c <= 'Z')
+// 		nb = c - 'A' + 10;
+// 	else
+// 		nb = -1;
+// 	return (nb);
+// }
 
-static int		ft_atoi_base(const char *str, int str_base)
-{
-	int		neg;
-	int		nb;
-	int		current;
+// static int		ft_atoi_base(const char *str, int str_base)
+// {
+// 	int		neg;
+// 	int		nb;
+// 	int		current;
 
-	nb = 0;
-	while (*str == ' ' || *str == '\n' || *str == '\t'
-		|| *str == '\f' || *str == '\r' || *str == '\v')
-		str++;
-	neg = (*str == '-' ? 1 : 0);
-	if (*str == '-' || *str == '+')
-		str++;
-	current = test_base(*str);
-	while (current >= 0 && current < str_base)
-	{
-		nb = nb * str_base + current;
-		str++;
-		current = test_base(*str);
-	}
-	return (neg ? -nb : nb);
-}
+// 	nb = 0;
+// 	while (*str == ' ' || *str == '\n' || *str == '\t'
+// 		|| *str == '\f' || *str == '\r' || *str == '\v')
+// 		str++;
+// 	neg = (*str == '-' ? 1 : 0);
+// 	if (*str == '-' || *str == '+')
+// 		str++;
+// 	current = test_base(*str);
+// 	while (current >= 0 && current < str_base)
+// 	{
+// 		nb = nb * str_base + current;
+// 		str++;
+// 		current = test_base(*str);
+// 	}
+// 	return (neg ? -nb : nb);
+// }
 
 static void	ft_zero_it(char *str)
 {
@@ -120,8 +120,8 @@ int			binary_or(int var_x, int var_y)
 	char y_stack[33];
 	char res_of_comparison[33];
 
-	x = ft_itoa_base(var_x, 2);
-	y = ft_itoa_base(var_y, 2);
+	x = ft_itoa_base(var_x, 2, 1);
+	y = ft_itoa_base(var_y, 2, 1);
 	// ft_bzero(x_stack, 33); 
 	// ft_bzero(y_stack, 33);
 	x_stack[32] = '\0'; // last element <=> 33 = '\0'

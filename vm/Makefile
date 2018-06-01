@@ -27,7 +27,7 @@ DIR_PARSER	=	./source/parser/
 DIR_SRUC_MP	=	./source/struct_manipulations/
 DIR_CORE	=	./source/core/
 DIR_OBJ		= 	./obj/
-DIR_FUNC	=	./source/functions/ #functions;
+DIR_FUNC	=	./source/functions/
 
 HEAD_VM		=	corewar.h define.h function.h struct.h
 HEAD_CW		=	op.h
@@ -40,8 +40,7 @@ C_SRUC_MP	=	t_champ.c
 
 C_CORE		=	cw_get_command.c cw_load_map.c cw_game_loop.c cw_display_map.c cw_process_creation.c
 
-C_FUNC		=	cw_binary_and.c cw_binary_or.c cw_binary_xor.c #functions;
-
+C_FUNC		=	cw_binary_and.c cw_binary_or.c cw_binary_xor.c
 
 OBJ_VM 		= 	$(C_VM:.c=.o)
 OBJ_PARSER	= 	$(C_PARSER:.c=.o)
@@ -49,11 +48,10 @@ OBJ_SRUC_MP	= 	$(C_SRUC_MP:.c=.o)
 OBJ_CORE	= 	$(C_CORE:.c=.o)
 OBJ_FUNC	=	$(C_FUNC:.c=.o)
 
-OBJ 		= 	$(addprefix $(DIR_OBJ), $(OBJ_VM) $(OBJ_PARSER) $(OBJ_SRUC_MP) $(OBJ_CORE) $(OBJ_FUNC)) #functions;
+OBJ 		= 	$(addprefix $(DIR_OBJ), $(OBJ_VM) $(OBJ_PARSER) $(OBJ_SRUC_MP) $(OBJ_CORE) $(OBJ_FUNC))
 INC 		= 	$(addprefix -I, $(DIR_VM_INC) $(DIR_LIB_INC) $(DIR_CW_INC))
 INC_VM 		= 	$(addprefix $(DIR_VM_INC), $(HEAD_VM))
 INC_VM 		+= 	$(addprefix $(DIR_CW_INC), $(HEAD_CW))
-
 
 all: obj $(NAME)
 
