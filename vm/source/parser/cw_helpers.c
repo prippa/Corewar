@@ -32,10 +32,15 @@ int				cw_hex_to_dec(unsigned char *buf, int i)
 		res += buf[2] * 256;
 		res += buf[3];
 	}
-	else
+	else if (i == 2)
 	{
 		res += buf[0] * 256;
 		res += buf[1];
+		res = (short)res;
+	}
+	else
+	{
+		res += buf[0];
 		res = (short)res;
 	}
 	return (res);
