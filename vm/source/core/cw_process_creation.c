@@ -19,7 +19,7 @@ t_processes	*cw_constr(t_champ *champ, int color, int process_pc)
 
 	i = 0;
 	if (!(new_object = (t_processes *)malloc(sizeof(t_processes))))
-		return (NULL);
+		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
 	while (i < CHAMP_MAX_SIZE + 1)
 	{
 		new_object->code[i] = champ->code[i];

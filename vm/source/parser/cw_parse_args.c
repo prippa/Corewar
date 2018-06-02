@@ -24,29 +24,48 @@ static void	cw_valid_champ(char *file_name)
 	g_cw->pd.champs->fd = fd;
 	ft_strcpy(g_cw->pd.champs->file_name, file_name);
 	g_cw->pd.champs_count++;
+	g_cw->pd.champs->champ_number = (int)g_cw->pd.tmp;
+	if (g_cw->pd.tmp == MAXINT)
+		g_cw->pd.tmp = MININT;
+	else
+		g_cw->pd.tmp++;
 }
 
-static void	cw_parse_arg(char *arg)
+static void	cw_valid_champ_number(char **argv, int *i)
 {
-	if (ft_strstr(arg, ".cor"))
-		cw_valid_champ(arg);
+	*i += 1;
+	if (!argv[*i] || !ft_str_is_digit(argv[*i]))
+		cw_exit("Argument after -n flag is not number", INV_N_FLAG);
+	g_cw->pd.tmp = ft_atoi_max(argv[*i]);
+	if (g_cw->pd.tmp < MININT || g_cw->pd.tmp > MAXINT)
+		cw_exit("Number after -n flag is bigger than int", INV_N_FLAG);
+	*i += 1;
+	if (!argv[*i])
+		cw_exit("No champion after -n flag", INV_N_FLAG);
+	cw_valid_champ(argv[*i]);
+}
+
+static void	cw_parse_arg(char **argv, int *i)
+{
+	if (!ft_strcmp(argv[*i], "-n"))
+		cw_valid_champ_number(argv, i);
 	else
-		cw_exit(CW_USAGE, INVALID_INPUT);
+		cw_valid_champ(argv[*i]);
 }
 
 void		cw_parse_args(int argc, char **argv)
 {
 	int i;
 
-	i = 0;
 	if (argc < 2)
-		cw_exit(CW_USAGE, INVALID_INPUT);
+		cw_exit(CW_USAGE, USAGE);
+	i = cw_parse_flags(argv);
 	while (argv[i])
 	{
-		cw_parse_arg(argv[i]);
+		cw_parse_arg(argv, &i);
 		i++;
 	}
 	if (!g_cw->pd.champs)
-		cw_exit(CW_USAGE, INVALID_INPUT);
+		cw_exit("No champions", NO_CHAMPS);
 	t_champ_rev(&g_cw->pd.champs);
 }

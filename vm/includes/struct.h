@@ -23,6 +23,7 @@ typedef struct			s_champ
 	char				file_name[FILE_NAME_MAX + 1];	// nope;
 	int					fd;								// nope;
 	unsigned char		code[CHAMP_MAX_SIZE + 1];		// yeap;
+	int					champ_number;
 	struct s_champ		*next;							// yeap;
 }						t_champ;
 
@@ -31,6 +32,8 @@ typedef struct			s_parse_data
 	t_champ				*champs; 						// to add champ name/counter;
 	long long int		tmp;
 	int					champs_count;
+	int					nbr_cycles;
+	char				flags[CW_F_SIZE];
 }						t_parse_data;
 
 /*
