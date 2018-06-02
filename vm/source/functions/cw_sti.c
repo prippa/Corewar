@@ -34,14 +34,17 @@ int		cw_bin_to_in(char *str)
 	return (decimal);
 }
 
-void	cw_sti(t_command *cmd, t_stack *map, t_processes *process)
+void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // move the process_PC by the quantity of bytes;
 {
 	ft_printf("%d\n", cmd->arg2.av);
 	ft_printf("%d\n", cmd->arg3.av);
 	
 	process->process_PC += ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD);
+	 // it will be found by the color ?; // process_PC will be moved by the quantity of bits,
+		// not by the place where the information has to be placed;
 
 	ft_printf("process_PC -> %d\n", process->process_PC);
+
 	char *str = ft_itoa_base(-1, 2, 87);
 
 	unsigned char buf[4];
@@ -56,12 +59,11 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process)
 	
 	int i = 0;
 	int	j = process->process_PC;
+
 	while (i < 4)
 	{
-		map->stack[j] = buf[i];
-		map->stack_color[j] = process->color;
-		i++;
-		j++;
+		map->stack[j] = buf[i++];
+		map->stack_color[j++] = process->color;
 	}
-		cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }
