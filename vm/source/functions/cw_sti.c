@@ -1,22 +1,38 @@
 #include "corewar.h"
 
+int		cw_pow(int base, int level)
+{
+	int i;
+	int	res;
+
+	i = 1;
+	res = 1;
+	if (level == 0)
+		return (1);
+	while (level)
+	{
+		res = res * base;
+		level--;;
+	}
+	return (res);
+}
+
 int		cw_bin_to_in(char *str)
 {
 	int decimal;
 	int	len;
-	int base;
+	int i;
 
 	decimal = 0;
-	len = 8;
-	base = 1;
-	while (len)
+	len = 7;
+	i = 0;
+	while (len >= 0)
 	{
-		base = base + base * 2;
 		if (str[len] == '1')
-			decimal += base;
+			decimal += cw_pow(2, i);
+		i++;
 		len--;
 	}
-	ft_printf("%d\n", decimal);
 	return (decimal);
 }
 
@@ -37,7 +53,7 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process)
 		buf[a] = cw_bin_to_in(&str[a + 8]);
 		a++;
 	}
-
+	
 	ft_printf("process_PC -> %s\n", str);
 	
 	int i = 0;
