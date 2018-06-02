@@ -17,8 +17,10 @@ struct s_corewar *g_cw;
 static void	cw_parse_data_init(t_parse_data *pd)
 {
 	pd->champs = NULL;
-	pd->tmp = 0;
+	pd->tmp = 1;
 	pd->champs_count = 0;
+	pd->nbr_cycles = 0;
+	ft_bzero(pd->flags, CW_F_SIZE);
 }
 
 void		cw_init(void)

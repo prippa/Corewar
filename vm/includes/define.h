@@ -16,6 +16,12 @@
 extern struct s_corewar	*g_cw;
 
 # define FILE_NAME_MAX		4096
+# define CW_F_SIZE			1
+
+typedef enum	e_flags
+{
+	DUMP = 0
+}				t_flags;
 
 /*
 ** Error management
@@ -28,7 +34,10 @@ typedef enum	e_error_numbers
 	OPEN_FILE,
 	READ_FILE,
 	MANY_CHAMPS,
-	INVALID_INPUT,
+	USAGE,
+	NO_CHAMPS,
+	INV_N_FLAG,
+	INV_DUMP_FLAG,
 	HEADER,
 	PROG_NAME,
 	PROG_SIZE_TO_BIG,
@@ -41,7 +50,8 @@ typedef enum	e_error_numbers
 # define ERR_MALLOC_MESSAGE		"malloc is failed"
 # define ERR_LSEEK_CUR_MESSAGE	"lseek to current position failed"
 
-# define CW_USAGE	"Usage: ./corewar <champion1.cor> <...>"
+# define CW_USAGE	"Usage: ./corewar [-dump nbr_cycles] \
+[[-n number] champion1.cor] ..."
 
 /*
 ******************************* map ****************************************
