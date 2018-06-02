@@ -106,6 +106,7 @@ int			cw_get_command(t_command *cmd, unsigned int *i,
 	ft_bzero(res, 5);
 	if (map[*i] > 16 || map[*i] < 1)
 		return (NOT_EXIST_CODE);
+	bt = 1;
 	bt = (WHAT_DIR(map[*i]) ? 2 : 4);
 	cmd->cmd = map[*i];
 	*i += 1;
