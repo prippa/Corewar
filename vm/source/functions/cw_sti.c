@@ -15,7 +15,7 @@ int		cw_pow(int base, int level)
 	return (res);
 }
 
-int		cw_bin_to_in(char *str)
+int		cw_bin_to_in(char *str) // process id in order to find the correct process;
 {
 	int decimal;
 	int	len;
@@ -34,7 +34,7 @@ int		cw_bin_to_in(char *str)
 	return (decimal);
 }
 
-void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // move the process_PC by the quantity of bytes;
+void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // move the process_PC by the quantity of bytes; // process id // process parent;
 {
 	ft_printf("%d\n", cmd->arg2.av);
 	ft_printf("%d\n", cmd->arg3.av);
