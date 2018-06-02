@@ -2,10 +2,8 @@
 
 int		cw_pow(int base, int level)
 {
-	int i;
 	int	res;
 
-	i = 1;
 	res = 1;
 	if (level == 0)
 		return (1);
