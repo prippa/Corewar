@@ -32,7 +32,7 @@ typedef struct			s_parse_data
 	t_champ				*champs; 						// to add champ name/counter;
 	long long int		tmp;
 	int					champs_count;
-	int					nbr_cycles;
+	int					nbr_cycles;						// -dump flag
 	char				flags[CW_F_SIZE];
 }						t_parse_data;
 
