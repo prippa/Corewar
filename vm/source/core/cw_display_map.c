@@ -22,6 +22,8 @@ static void	print_color(unsigned char data, int color_type)
 		ft_printf("%~.2x", F_BLUE, data);
 	else if (color_type == 4)
 		ft_printf("%~.2x", F_CYAN, data);
+	else if (color_type == 5)
+		ft_printf("%~.2x", F_BACK_GREEN_WHITE, data);
 }
 
 void		cw_display_map(unsigned char *map, int *color)
