@@ -24,7 +24,7 @@ void		cw_game_loop(void)
 	g_cw->i = 0;
 	while (g_cw->i < MEM_SIZE)
 	{
-		ft_bzero(&cmd, sizeof(t_command));
+		// ft_bzero(&cmd, sizeof(t_command));
 		if ((cw_get_command(&cmd, &g_cw->i, g_cw->map.stack)))
 		{
 			g_cw->i++;

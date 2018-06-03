@@ -82,31 +82,43 @@ void	cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 	free (check);
 }
 
-void	cw_sti(t_command *cmd, t_stack *map, t_processes *process)
+void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget about the search of the right process;
 {
 	unsigned char buf[4];
 	int i;
-	int	j;
+	int	position;
 
+	position = 0;
 	cw_write_bytes_to_buf(buf, process->registers[0]);
-	
-	process->process_PC += ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD);
 
-	// move the process_PC by the quantity of bytes; // process id // process parent;
+	// ft_printf("2 -> %d\n", cmd->arg2.av);
+	// ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
+	
+	position += ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD);
+	process->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg1.tp);
+	(cmd->arg2.tp == 2) ? process->process_PC += 2 : 0;
+
+	ft_printf("process_PC -> %d\n", process->process_PC);
+
+	// move the process_PC by the quantity of bytes; 
+
+	// process id // process parent;
 	// get clear with it;
 	// it will be found by the color ?;
 
 	// process id in order to find the correct process;
 
-
+	// ft_printf("%d", ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD));
 	i = 0;
-	j = 15;
+	// position = 15;
 
 	i = 0; // argument type variation;
 	while (i < 4) // 2 || 4;
 	{
-		map->stack[j] = buf[i++];
-		map->stack_color[j++] = process->color;
+		map->stack[position] = buf[i++];
+		map->stack_color[position++] = process->color;
 	}
+	map->stack[process->process_PC] = 1;
+	map->stack_color[process->process_PC] = 2;
 	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }
