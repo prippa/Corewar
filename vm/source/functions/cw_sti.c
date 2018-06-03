@@ -95,6 +95,7 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	// ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
 	
 	position += ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD);
+	
 	process->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg1.tp);
 	(cmd->arg2.tp == 2) ? process->process_PC += 2 : 0;
 
@@ -112,7 +113,7 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	i = 0;
 	// position = 15;
 
-	i = 0; // argument type variation;
+	// i = 0; // argument type variation;
 	while (i < 4) // 2 || 4;
 	{
 		map->stack[position] = buf[i++];
