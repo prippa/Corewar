@@ -88,8 +88,8 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process)
 	int i;
 	int	j;
 
-	cw_write_bytes_to_buf(buf, 32767);
-
+	cw_write_bytes_to_buf(buf, 1);
+	
 	process->process_PC += ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD);
 
 	// move the process_PC by the quantity of bytes; // process id // process parent;
@@ -98,10 +98,12 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process)
 
 	// process id in order to find the correct process;
 
+
 	i = 0;
 	j = process->process_PC;
 
-	while (i < 4) // we always write here 4 bytes;
+	i = 0; // argument type variation;
+	while (i < 4) // 2 || 4;
 	{
 		map->stack[j] = buf[i++];
 		map->stack_color[j++] = process->color;
