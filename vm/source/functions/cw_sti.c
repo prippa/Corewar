@@ -27,10 +27,7 @@ int		cw_bin_to_in(char *str, int index) // process id in order to find the corre
 	while (len >= 0)
 	{
 		if (str[index] == '1')
-		{
 			decimal += cw_pow(2, i);
-			ft_printf("true i -> %d\n", i);
-		}
 		i++;
 		index--;
 		len--;
@@ -39,76 +36,75 @@ int		cw_bin_to_in(char *str, int index) // process id in order to find the corre
 	return (decimal);
 }
 
-void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // move the process_PC by the quantity of bytes; // process id // process parent;
+char	*cw_get_string_for_conversion(int nbr)
 {
-	// ft_printf("%d\n", cmd->arg2.av);
-	// ft_printf("%d\n", cmd->arg3.av);
+	int i;
+	char *str;
+	char *check;
 	
-	process->process_PC += ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD);
-	 // it will be found by the color ?; // process_PC will be moved by the quantity of bits,
-		// not by the place where the information has to be placed;
-
-	// ft_printf("process_PC -> %d\n", process->process_PC);
-	int magic = -500;
-	char *str = ft_itoa_base(magic, 2, 87);
-
-	ft_printf("itoa_base -> %s\n", str);
-
-
-	int bla = 0;
-
-	bla = 0;
-	char *check = ft_strnew(32);
-	bla = 0;
-	while (bla < 32)
+	i = 0;
+	str = ft_itoa_base(nbr, 2, 87);
+	check = ft_strnew(32);
+	while (i < 32)
 	{
-		check[bla] = '0';
-		bla++;
+		check[i] = '0';
+		i++;
 	}
-	// ft_bzero(check, 32);
-	ft_printf("len -> %d", ft_strlen(str));
-	if (magic < 0)
+	if (nbr < 0)
 		ft_strncpy(&check[0], &str[32], ft_strlen(str) - 32);
 	else
 		ft_strncpy(&check[32 - ft_strlen(str)], &str[0], ft_strlen(str));
+	free(str);
+	return (check);
+}
 
-	ft_printf("check -> %s\n", check);
-
-	unsigned char buf[4];
-	int a = 0;
+void	cw_write_bytes_to_buf(unsigned char *buf, int nbr)
+{
+	char *check;
+	int i = 0;
 	int k;
 
-	while (a < 4)
+	check = cw_get_string_for_conversion(nbr);
+	while (i < 4)
 	{
-		if (a == 0)
+		if (i == 0)
 		{
 			k = 7 ;
-			buf[a] = cw_bin_to_in(check, k);
+			buf[i] = cw_bin_to_in(check, k);
 		}
-		else if (a >= 0)
+		else if (i >= 0)
 		{
 			k = k + 8;
-			ft_printf("k->%d", k);
-			buf[a] = cw_bin_to_in(check, k);
+			buf[i] = cw_bin_to_in(check, k);
 		}
-		// buf[a] =1;
-		ft_printf(" to_dec -> %d\n", buf[a]);
-		
-		a++;
+		i++;
 	}
+	free (check);
+}
+
+void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // move the process_PC by the quantity of bytes; // process id // process parent;
+{
+	process->process_PC += ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD);
+	 // it will be found by the color ?; // process_PC will be moved by the quantity of bits,
+		// not by the place where the information has to be placed;
 	
-	// ft_printf("process_PC -> %s\n", str);
+
+	unsigned char buf[4];
+
+	cw_write_bytes_to_buf(buf, 1);
+
+	// ft_printf("%s\n", check);
 	
 	int i = 0;
+
 	int	j = process->process_PC;
 
-	while (i < 4)
+	while (i < 4) // 2 || 4;
 	{
 		map->stack[j] = buf[i++];
 		map->stack_color[j++] = process->color;
 	}
 
-	free(str);
-	free(check);
+	// free(check);
 	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }
