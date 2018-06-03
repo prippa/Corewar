@@ -31,16 +31,16 @@ void		cw_game_loop(void)
 			continue;
 		}
 		cw_sti(&cmd, &g_cw->map, g_cw->processes);
-		ft_printf("command ------------------------ %d\n", tmp);
-		ft_printf("cmd - %u\n", cmd.cmd);
-		ft_printf("codage - %d\n", cmd.codage);
-		ft_printf("arg1.tp - %u\n", cmd.arg1.tp);
-		ft_printf("arg1.av - %d\n", cmd.arg1.av);
-		ft_printf("arg2.tp - %u\n", cmd.arg2.tp);
-		ft_printf("arg2.av - %d\n", cmd.arg2.av);
-		ft_printf("arg3.tp - %u\n", cmd.arg3.tp);
-		ft_printf("arg3.av - %d\n", cmd.arg3.av);
-		ft_printf("-----------------------------------\n");
+		// ft_printf("command ------------------------ %d\n", tmp);
+		// ft_printf("cmd - %u\n", cmd.cmd);
+		// ft_printf("codage - %d\n", cmd.codage);
+		// ft_printf("arg1.tp - %u\n", cmd.arg1.tp);
+		// ft_printf("arg1.av - %d\n", cmd.arg1.av);
+		// ft_printf("arg2.tp - %u\n", cmd.arg2.tp);
+		// ft_printf("arg2.av - %d\n", cmd.arg2.av);
+		// ft_printf("arg3.tp - %u\n", cmd.arg3.tp);
+		// ft_printf("arg3.av - %d\n", cmd.arg3.av);
+		// ft_printf("-----------------------------------\n");
 		tmp++;
 	}
 }
