@@ -171,6 +171,8 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	// maybe process id == champions name ?
 	// fot the process_PC management;
 
+	// if (map->stack[process_PC] == ???)
+
 	if (process->registers[0] == -1) // testing; // modify color function according tothe champs num
 		map->stack_color[process->process_PC] = 5;
 
