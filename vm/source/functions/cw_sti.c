@@ -105,39 +105,39 @@ int		cw_get_dec_from_the_point(unsigned char *str, int quantity, int position)
 
 	while (i < quantity)
 	{
-		ft_printf("d->%d\n", str[j] - '0');
-		ft_printf("c->%c\n", str[j]);
+		// ft_printf("d->%d\n", str[j] - '0');
+		// ft_printf("c->%c\n", str[j]);
 		
 		res += (str[j] - '0');
 		i++;
 		j++;
 	}
-	ft_printf("res --> %d\n", res);
+	// ft_printf("res --> %d\n", res);
 	return (res);
 
 }
 
 int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -1 for registers;
 {
-	if (cmd->codage == 100) 
-		return (((cmd->arg2.av + process->registers[cmd->arg3.av - 1]) % IDX_MOD));
-	else if (cmd->codage == 116) // ?
+	if (cmd->codage == 100) // o.k
+		return (((process->process_PC + cmd->arg2.av + process->registers[cmd->arg3.av - 1]) % IDX_MOD));
+	else if (cmd->codage == 116) // o.k
 	{
 
-		ft_printf("IND -> %d\n", cmd->arg2.av & IDX_MOD);
+		ft_printf("IND -> %d\n", cmd->arg2.av % IDX_MOD);
 		return (process->process_PC + (cw_get_dec_from_the_point(map->stack, 4, cmd->arg2.av % IDX_MOD) + process->registers[cmd->arg3.av - 1]));
 	}
-	else if (cmd->codage == 84) 
+	else if (cmd->codage == 84) // o.k.
 	{
 		// ft_printf("r1 -> %d\n", process->registers[cmd->arg2.av - 1]);
 		// ft_printf("r1 -> %d\n", process->registers[cmd->arg3.av - 1]);
 		// ft_printf("res -> %d\n", ((process->registers[cmd->arg2.av - 1] + (process->process_PC + 1) + process->registers[cmd->arg3.av - 1]) % IDX_MOD));
-		return ((process->registers[cmd->arg2.av - 1] + (process->process_PC /*+ 1*/) + process->registers[cmd->arg3.av - 1]) % IDX_MOD);
+		return ((process->process_PC + process->registers[cmd->arg2.av - 1]  /*+ 1*/ + process->registers[cmd->arg3.av - 1]) % IDX_MOD);
 	}
 	else if (cmd->codage == 104) // o.k
-		return ((cmd->arg2.av + cmd->arg3.av) % IDX_MOD);
-	else if (cmd->codage == 120)
-		return ((cw_get_dec_from_the_point(map->stack, 4, cmd->arg2.av) + process->process_PC + cmd->arg3.av));
+		return ((process->process_PC + cmd->arg2.av + cmd->arg3.av) % IDX_MOD);
+	else if (cmd->codage == 120) // o.k.
+			return (process->process_PC + (cw_get_dec_from_the_point(map->stack, 4, cmd->arg2.av % IDX_MOD) + cmd->arg3.av));
 	else if (cmd->codage == 88)
 		return (((process->registers[cmd->arg2.av] + cmd->arg3.av) % IDX_MOD));
 	return (0);
@@ -154,12 +154,12 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	position = 0;
 	cw_write_bytes_to_buf(buf, process->registers[0]);
 
-	ft_printf("2 -> %d\n", cmd->arg2.av);
-	ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
+	// ft_printf("2 -> %d\n", cmd->arg2.av);
+	// ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
 	// 
 	position += cw_arguments_value(cmd, map, process); // to func;
 
-	ft_printf("position -> %d\n", position);
+	// ft_printf("position -> %d\n", position);
 	
 
 	// position = 15;
@@ -168,8 +168,10 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 
 	(cmd->arg2.tp == 2) ? process->process_PC += 2 : 0;
 	(cmd->arg2.tp == 1) ? process->process_PC += 2 : 0;
+	(cmd->arg2.tp == 2 && cmd->arg3.tp == 2) ? process->process_PC += 1 : 0;
+	(cmd->arg2.tp == 4 && cmd->arg3.tp == 2) ? process->process_PC += 1 : 0;
 
-	ft_printf("process_PC -> %d\n", process->process_PC);
+	// ft_printf("process_PC -> %d\n", process->process_PC);
 
 	// move the process_PC by the quantity of bytes; 
 
@@ -186,7 +188,7 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	i = 0;
 	if (position < 0)
 		position = MEM_SIZE + position;
-		ft_printf("position -> %d\n", position);
+		// ft_printf("position -> %d\n", position);
 	while (i < 4) // 2 || 4; // always take 4 bytes to the map;
 	{
 		if (position == 4096)
@@ -199,7 +201,7 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	map->stack[process->process_PC] = 7;
 	map->stack_color[process->process_PC] = 5;
 
-	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
 	// ft_printf("%d\n", 15 & IDX_MOD);
 }
