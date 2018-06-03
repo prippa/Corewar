@@ -70,11 +70,11 @@ void		cw_parse_args(int argc, char **argv)
 	t_champ_rev(&g_cw->pd.champs);
 
 	//TEST
-	t_champ *tmp = g_cw->pd.champs;
-	while (tmp)
-	{
-		ft_printf("%s - %d\n", tmp->file_name, tmp->champ_number);
-		tmp = tmp->next;
-	}
+	// t_champ *tmp = g_cw->pd.champs;
+	// while (tmp)
+	// {
+	// 	ft_printf("%s - %d\n", tmp->file_name, tmp->champ_number);
+	// 	tmp = tmp->next;
+	// }
 	//END
 }
