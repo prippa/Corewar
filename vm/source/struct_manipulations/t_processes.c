@@ -29,20 +29,20 @@ int			t_processe_free_by_id(t_processes **proc_start,
 	if (temp == *proc_start)
 	{
 		*proc_start = (*proc_start)->next;
-		(*proc_start)->prev = NULL;
+		if (*proc_start)
+			(*proc_start)->prev = NULL;
+		else
+			*proc_end = NULL;
+	}
+	else if (temp->next == NULL)
+	{
+		temp->prev->next = NULL;
+		*proc_end = temp->prev;
 	}
 	else
 	{
-		if (temp->next == NULL)
-		{
-			temp->prev->next = NULL;
-			*proc_end = temp->prev;
-		}
-		else
-		{
-			temp->prev->next = temp->next;
-			temp->next->prev = temp->prev;
-		}
+		temp->prev->next = temp->next;
+		temp->next->prev = temp->prev;
 	}
 	free(temp);
 	return (1);
