@@ -16,11 +16,12 @@
 extern struct s_corewar	*g_cw;
 
 # define FILE_NAME_MAX		4096
-# define CW_F_SIZE			1
+# define CW_F_SIZE			2
 
 typedef enum	e_flags
 {
-	DUMP = 0
+	DUMP = 0,
+	VISU
 }				t_flags;
 
 /*
@@ -50,8 +51,13 @@ typedef enum	e_error_numbers
 # define ERR_MALLOC_MESSAGE		"malloc is failed"
 # define ERR_LSEEK_CUR_MESSAGE	"lseek to current position failed"
 
-# define CW_USAGE	"Usage: ./corewar [-dump nbr_cycles] \
-[[-n number] champion1.cor] ..."
+# define CW_USAGE	"Usage: ./corewar [-visu] [-dump nbr_cycles] \
+[[-n number] champion1.cor] ...\n\
+######################## Flags Manual ########################\n\
+-dump N		: Dumps memory after N cycles then exits\n\
+-n N		: Sets the number of the next player\n\
+-visu		: Big ass visualization\n\
+##############################################################"
 
 /*
 ******************************* map ****************************************

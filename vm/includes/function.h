@@ -54,6 +54,10 @@ void			cw_parser(void);
 void			t_champ_rev(t_champ **champs);
 void			t_champ_add(t_champ **champs);
 void			t_champ_free(t_champ **champs);
+void			t_processe_add(t_processes **proc_start,
+								t_processes **proc_end);
+void			t_processe_free_first(t_processes **proc_start,
+									t_processes **proc_end);
 
 /*
 ** End
@@ -66,7 +70,6 @@ void			t_champ_free(t_champ **champs);
 void			cw_load_map(void);
 void			cw_game_loop(void);
 void			cw_display_map(unsigned char *map, int *color);
-void			cw_init_processes(t_champ *pointer, t_processes **point);
 
 /*
 ** functions
@@ -78,6 +81,7 @@ void			cw_binary_xor(int var_x, int var_y, int *var_res, int *carry);
 void			cw_add(int var_x, int var_y, int *var_res, int *carry);
 void			cw_sub(int var_x, int var_y, int *var_res, int *carry);
 void			cw_sti(t_command *cmd, t_stack *map, t_processes *process);
+void			cw_ld(t_command *cmd, t_stack *map, t_processes *process);
 
 /*
 ** End

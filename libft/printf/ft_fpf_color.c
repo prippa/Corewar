@@ -12,6 +12,26 @@
 
 #include "ft_printf.h"
 
+static void	ft_fpf_back_color(t_printf *fpf)
+{
+	if (fpf->color == F_BACK_GREEN_BLACK)
+		ft_pf_strjoin(fpf, BACK_GREEN_BLACK, ft_strlen(BACK_GREEN_BLACK));
+	else if (fpf->color == F_BACK_BLUE_BLACK)
+		ft_pf_strjoin(fpf, BACK_BLUE_BLACK, ft_strlen(BACK_BLUE_BLACK));
+	else if (fpf->color == F_BACK_RED_BLACK)
+		ft_pf_strjoin(fpf, BACK_RED_BLACK, ft_strlen(BACK_RED_BLACK));
+	else if (fpf->color == F_BACK_CYAN_BLACK)
+		ft_pf_strjoin(fpf, BACK_CYAN_BLACK, ft_strlen(BACK_CYAN_BLACK));
+	else if (fpf->color == F_BACK_GREEN_WHITE)
+		ft_pf_strjoin(fpf, BACK_GREEN_WHITE, ft_strlen(BACK_GREEN_WHITE));
+	else if (fpf->color == F_BACK_BLUE_WHITE)
+		ft_pf_strjoin(fpf, BACK_BLUE_WHITE, ft_strlen(BACK_BLUE_WHITE));
+	else if (fpf->color == F_BACK_RED_WHITE)
+		ft_pf_strjoin(fpf, BACK_RED_WHITE, ft_strlen(BACK_RED_WHITE));
+	else if (fpf->color == F_BACK_CYAN_WHITE)
+		ft_pf_strjoin(fpf, BACK_CYAN_WHITE, ft_strlen(BACK_CYAN_WHITE));
+}
+
 static void	ft_fpf_bold_color(t_printf *fpf)
 {
 	if (fpf->color == F_BOLD_GRAY)
@@ -30,6 +50,8 @@ static void	ft_fpf_bold_color(t_printf *fpf)
 		ft_pf_strjoin(fpf, BOLD_CYAN, ft_strlen(BOLD_CYAN));
 	else if (fpf->color == F_BOLD_WHITE)
 		ft_pf_strjoin(fpf, BOLD_WHITE, ft_strlen(BOLD_WHITE));
+	else
+		ft_fpf_back_color(fpf);
 }
 
 void		ft_fpf_color(t_printf *fpf)
