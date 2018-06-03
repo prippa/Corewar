@@ -130,8 +130,8 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	position = 0;
 	cw_write_bytes_to_buf(buf, process->registers[0]);
 
-	// ft_printf("2 -> %d\n", cmd->arg2.av);
-	// ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
+	ft_printf("2 -> %d\n", cmd->arg2.av);
+	ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
 	
 	position += cw_arguments_value(cmd, map, process); // to func;
 
@@ -162,8 +162,8 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 		map->stack[position] = buf[i++];
 		map->stack_color[position++] = process->color;
 	}
-	// map->stack[process->process_PC] = 1;
-	// map->stack_color[process->process_PC] = 2;
+	map->stack[process->process_PC] = 1;
+	map->stack_color[process->process_PC] = 2;
 	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
 	// ft_printf("%d\n", 15 & IDX_MOD);

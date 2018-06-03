@@ -66,6 +66,7 @@ static void	cw_init_processes(t_champ *champ)
 		g_cw->proc_start->color = color;
 		g_cw->proc_start->process_PC = process_pc;
 		g_cw->proc_start->champ_size = champ->head.prog_size;
+		g_cw->proc_start->registers[0] = champ->champ_number;
 		color++;
 		process_pc += map_distance;
 		champ = champ->next;
