@@ -88,7 +88,7 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process)
 	int i;
 	int	j;
 
-	cw_write_bytes_to_buf(buf, cmd->arg1.av);
+	cw_write_bytes_to_buf(buf, process->registers[0]);
 	
 	process->process_PC += ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD);
 

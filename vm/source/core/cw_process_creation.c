@@ -30,6 +30,7 @@ t_processes	*cw_constr(t_champ *champ, int color, int process_pc)
 	new_object->carry = 0;
 	ft_bzero(new_object->registers, 16);
 	new_object->champ_size = champ->head.prog_size;
+	new_object->registers[0] = champ->champ_number;
 	new_object->next = NULL;
 	return (new_object);
 }
