@@ -34,7 +34,7 @@ int			t_processe_free_by_id(t_processes **proc_start,
 		else
 			*proc_end = NULL;
 	}
-	else if (temp->next == NULL)
+	else if (!temp->next)
 	{
 		temp->prev->next = NULL;
 		*proc_end = temp->prev;
