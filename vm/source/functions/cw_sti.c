@@ -124,9 +124,6 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	position_on_the_map += cw_arguments_value(cmd, map, process); // to func;
 
 	// ft_printf("position_on_the_map -> %d\n", position_on_the_map);
-	
-
-	// position_on_the_map = 15;
 
 	process->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg1.tp); // o.k.
 
