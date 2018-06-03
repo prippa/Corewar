@@ -66,7 +66,7 @@ typedef	struct			s_processes					// fork will create a process and will change t
 	int					process_PC;					// current position of the stack command line (iteratively according to the quantity of champs);
 	int					carry;						// initially has zero value because this var will be modified after execution of the command;
 	int					champ_size;					// var for init procedure;
-	int					registers[REG_NUMBER];				// r1 -> player_name register;
+	int					registers[REG_NUMBER];		// r1 -> player_name register;
 	struct s_processes	*next;						// pointer to the next element;
 	struct s_processes	*prev;						// pointer to the next element;
 }						t_processes;
