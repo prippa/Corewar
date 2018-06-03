@@ -108,6 +108,8 @@ int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process)
 		return (((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD));
 	else if (cmd->codage == 116)
 		return ((cw_get_dec_from_the_point(map->stack, 4, cmd->arg2.av)) % IDX_MOD);
+	else if (cmd->codage == 84)
+		return (((process->registers[cmd->arg2.av] + process->registers[cmd->arg3.av]) % IDX_MOD));
 	(void)map;
 	return (0);
 }
@@ -128,8 +130,11 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	
 	position += cw_arguments_value(cmd, map, process); // to func;
 
+	// position = 15;
+
 	process->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg1.tp); // o.k.
 	(cmd->arg2.tp == 2) ? process->process_PC += 2 : 0;
+	(cmd->arg2.tp == 1) ? process->process_PC += 2 : 0;
 
 	ft_printf("process_PC -> %d\n", process->process_PC);
 
