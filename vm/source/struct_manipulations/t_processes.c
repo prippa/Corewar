@@ -22,11 +22,11 @@ t_processes	*t_processe_get_by_id(t_processes *proc_start,
 int			t_processe_free_by_id(t_processes **proc_start,
 								t_processes **proc_end, unsigned int id)
 {
-	t_processes *temp;
+	t_processes *tmp;
 
-	if (!(temp = t_processe_get_by_id(*proc_start, *proc_end, id)))
+	if (!(tmp = t_processe_get_by_id(*proc_start, *proc_end, id)))
 		return (0);
-	if (temp == *proc_start)
+	if (tmp == *proc_start)
 	{
 		*proc_start = (*proc_start)->next;
 		if (*proc_start)
@@ -34,17 +34,17 @@ int			t_processe_free_by_id(t_processes **proc_start,
 		else
 			*proc_end = NULL;
 	}
-	else if (!temp->next)
+	else if (!tmp->next)
 	{
-		temp->prev->next = NULL;
-		*proc_end = temp->prev;
+		tmp->prev->next = NULL;
+		*proc_end = tmp->prev;
 	}
 	else
 	{
-		temp->prev->next = temp->next;
-		temp->next->prev = temp->prev;
+		tmp->prev->next = tmp->next;
+		tmp->next->prev = tmp->prev;
 	}
-	free(temp);
+	free(tmp);
 	return (1);
 }
 
