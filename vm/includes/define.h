@@ -56,7 +56,8 @@ typedef enum	e_error_numbers
 ######################## Flags Manual ########################\n\
 -dump N		: Dumps memory after N cycles then exits\n\
 -n N		: Sets the number of the next player\n\
--visu		: Big ass visualization"
+-visu		: Big ass visualization\n\
+##############################################################"
 
 /*
 ******************************* map ****************************************
