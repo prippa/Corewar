@@ -88,7 +88,7 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process)
 	int i;
 	int	j;
 
-	cw_write_bytes_to_buf(buf, 1);
+	cw_write_bytes_to_buf(buf, cmd->arg1.av);
 	
 	process->process_PC += ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD);
 
@@ -100,7 +100,7 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process)
 
 
 	i = 0;
-	j = process->process_PC;
+	j = 15;
 
 	i = 0; // argument type variation;
 	while (i < 4) // 2 || 4;
