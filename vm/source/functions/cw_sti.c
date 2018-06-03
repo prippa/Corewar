@@ -1,40 +1,5 @@
 #include "corewar.h"
 
-int		cw_pow(int base, int level) // to lib;
-{
-	int	res;
-
-	res = 1;
-	if (level == 0)
-		return (1);
-	while (level)
-	{
-		res = res * base;
-		level--;;
-	}
-	return (res);
-}
-
-int		cw_bin_to_in(char *str, int index) // to lib;
-{
-	int decimal;
-	int	len;
-	int i;
-
-	decimal = 0;
-	len = 7;
-	i = 0;
-	while (len >= 0)
-	{
-		if (str[index] == '1')
-			decimal += cw_pow(2, i);
-		i++;
-		index--;
-		len--;
-	}
-	return (decimal);
-}
-
 char	*cw_get_string_for_conversion(int nbr)
 {
 	int i;
@@ -70,12 +35,12 @@ void	cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 		if (i == 0)
 		{
 			k = 7 ;
-			buf[i] = cw_bin_to_in(check, k);
+			buf[i] = ft_bin_to_int(check, k);
 		}
 		else if (i >= 0)
 		{
 			k = k + 8;
-			buf[i] = cw_bin_to_in(check, k);
+			buf[i] = ft_bin_to_int(check, k);
 		}
 		i++;
 	}

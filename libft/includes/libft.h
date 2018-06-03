@@ -130,5 +130,7 @@ char				*ft_itoabase(uintmax_t c, int sys, int rg);
 uintmax_t			ft_basetoint(char *s, int base);
 int					ft_numlen(intmax_t c, int a);
 char				*ft_joinfree(char *s1, char *s2, int j);
+int					ft_pow(int base, int level);
+int					ft_bin_to_int(char *str, int index);
 
 #endif
