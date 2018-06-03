@@ -146,22 +146,22 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 {
 	unsigned char buf[4];
 	int i;
-	int	position;
+	int	position_on_the_map;
 	// int	arguments[3];
 	//process;
 
-	position = 0;
+	position_on_the_map = 0;
 	cw_write_bytes_to_buf(buf, process->registers[0]);
 
 	// ft_printf("2 -> %d\n", cmd->arg2.av);
 	// ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
 	// 
-	position += cw_arguments_value(cmd, map, process); // to func;
+	position_on_the_map += cw_arguments_value(cmd, map, process); // to func;
 
-	// ft_printf("position -> %d\n", position);
+	// ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 	
 
-	// position = 15;
+	// position_on_the_map = 15;
 
 	process->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg1.tp); // o.k.
 
@@ -181,21 +181,21 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	// process id in order to find the correct process;
 
 	// ft_printf("%d", ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD));
-	// position = 15;
+	// position_on_the_map = 15;
 
 	// i = 0; // argument type variation;
 	i = 0;
-	if (position < 0)
-		position = MEM_SIZE + position;
-		// ft_printf("position -> %d\n", position);
+	if (position_on_the_map < 0)
+		position_on_the_map = MEM_SIZE + position_on_the_map;
+		// ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 	while (i < 4) // 2 || 4; // always take 4 bytes to the map;
 	{
-		if (position == 4096)
-		// ft_printf("position -> %d", position);
-		position = 0;
+		if (position_on_the_map == 4096)
+		// ft_printf("position_on_the_map -> %d", position_on_the_map);
+		position_on_the_map = 0;
 		
-		map->stack[position] = buf[i++];
-		map->stack_color[position++] = process->color;
+		map->stack[position_on_the_map] = buf[i++];
+		map->stack_color[position_on_the_map++] = process->color;
 	}
 	map->stack[process->process_PC] = 7;
 	map->stack_color[process->process_PC] = 5;
