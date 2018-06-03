@@ -30,7 +30,7 @@ void		cw_game_loop(void)
 			g_cw->i++;
 			continue;
 		}
-		cw_sti(&cmd, &g_cw->map, g_cw->processes);
+		cw_sti(&cmd, &g_cw->map, g_cw->proc_start);
 		// ft_printf("command ------------------------ %d\n", tmp);
 		// ft_printf("cmd - %u\n", cmd.cmd);
 		// ft_printf("codage - %d\n", cmd.codage);

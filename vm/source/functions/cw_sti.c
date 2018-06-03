@@ -106,5 +106,4 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // move the proc
 	}
 
 	// free(check);
-	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }

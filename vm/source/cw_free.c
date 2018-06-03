@@ -17,18 +17,15 @@ static void	cw_parse_data_free(t_parse_data *pd)
 	t_champ_free(&pd->champs);
 }
 
-static void	cw_processes_free(t_processes *head_ref)
+static void	cw_processes_free(t_processes **proc_start, t_processes **proc_end)
 {
-	if (!head_ref)
-		return ;
-	if (head_ref->next)
-		cw_processes_free(head_ref->next);
-	free(head_ref);
+	while (*proc_start)
+		t_processe_free_first(proc_start, proc_end);
 }
 
 void		cw_free(void)
 {
 	cw_parse_data_free(&g_cw->pd);
-	cw_processes_free(g_cw->processes);
+	cw_processes_free(&g_cw->proc_start, &g_cw->proc_end);
 	free(g_cw);
 }

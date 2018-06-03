@@ -28,6 +28,7 @@ void		cw_init(void)
 	if (!(g_cw = (t_corewar *)malloc(sizeof(t_corewar))))
 		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
 	cw_parse_data_init(&g_cw->pd);
-	g_cw->processes = NULL;
+	g_cw->proc_start = NULL;
+	g_cw->proc_end = NULL;
 	g_cw->loop = 1;
 }
