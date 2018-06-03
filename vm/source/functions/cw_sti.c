@@ -81,25 +81,26 @@ void	cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 	free (check);
 }
 
-void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // move the process_PC by the quantity of bytes; // process id // process parent;
+void	cw_sti(t_command *cmd, t_stack *map, t_processes *process)
 {
 	unsigned char buf[4];
 	int i;
 	int	j;
 
-	process->process_PC += ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD); // get clear with it;
-	 // it will be found by the color ?; // process_PC will be moved by the quantity of bits,
-		// not by the place where the information has to be placed;
-	 // process id in order to find the correct process;
+	process->process_PC += ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD);
 
+	// move the process_PC by the quantity of bytes; // process id // process parent;
+	// get clear with it;
+	// it will be found by the color ?;
 
-	cw_write_bytes_to_buf(buf, 1);
+	// process id in order to find the correct process;
 
-	// ft_printf("%s\n", check);
-	
+	cw_write_bytes_to_buf(buf, 32767);
+
 	i = 0;
 	j = process->process_PC;
 
+	i = 2; // argument type variation;
 	while (i < 4) // 2 || 4;
 	{
 		map->stack[j] = buf[i++];
