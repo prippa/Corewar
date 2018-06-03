@@ -200,7 +200,7 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	map->stack[process->process_PC] = 7;
 	map->stack_color[process->process_PC] = 5;
 
-	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
 	// ft_printf("%d\n", 15 & IDX_MOD);
 }
