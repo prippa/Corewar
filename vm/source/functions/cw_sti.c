@@ -15,7 +15,7 @@ int		cw_pow(int base, int level)
 	return (res);
 }
 
-int		cw_bin_to_in(char *str, int index) // process id in order to find the correct process;
+int		cw_bin_to_in(char *str, int index)
 {
 	int decimal;
 	int	len;
@@ -32,7 +32,6 @@ int		cw_bin_to_in(char *str, int index) // process id in order to find the corre
 		index--;
 		len--;
 	}
-	// ft_printf("decimal -> %d", decimal);
 	return (decimal);
 }
 
@@ -84,20 +83,22 @@ void	cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 
 void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // move the process_PC by the quantity of bytes; // process id // process parent;
 {
-	process->process_PC += ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD);
+	unsigned char buf[4];
+	int i;
+	int	j;
+
+	process->process_PC += ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD); // get clear with it;
 	 // it will be found by the color ?; // process_PC will be moved by the quantity of bits,
 		// not by the place where the information has to be placed;
-	
+	 // process id in order to find the correct process;
 
-	unsigned char buf[4];
 
 	cw_write_bytes_to_buf(buf, 1);
 
 	// ft_printf("%s\n", check);
 	
-	int i = 0;
-
-	int	j = process->process_PC;
+	i = 0;
+	j = process->process_PC;
 
 	while (i < 4) // 2 || 4;
 	{
