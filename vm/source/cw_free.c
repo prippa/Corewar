@@ -20,7 +20,7 @@ static void	cw_parse_data_free(t_parse_data *pd)
 static void	cw_processes_free(t_processes **proc_start, t_processes **proc_end)
 {
 	while (*proc_start)
-		t_processe_free_first(proc_start, proc_end);
+		t_processe_free_one(proc_start, proc_end);
 }
 
 void		cw_free(void)
