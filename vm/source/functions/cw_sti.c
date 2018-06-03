@@ -49,19 +49,15 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // move the proc
 		// not by the place where the information has to be placed;
 
 	// ft_printf("process_PC -> %d\n", process->process_PC);
-
-	char *str = ft_itoa_base(-1, 2, 87);
+	int magic = -500;
+	char *str = ft_itoa_base(magic, 2, 87);
 
 	ft_printf("itoa_base -> %s\n", str);
 
 
 	int bla = 0;
 
-
-
 	bla = 0;
-
-
 	char *check = ft_strnew(32);
 	bla = 0;
 	while (bla < 32)
@@ -71,7 +67,10 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // move the proc
 	}
 	// ft_bzero(check, 32);
 	ft_printf("len -> %d", ft_strlen(str));
-	ft_strncpy(&check[0], &str[0], 32);
+	if (magic < 0)
+		ft_strncpy(&check[0], &str[32], ft_strlen(str) - 32);
+	else
+		ft_strncpy(&check[32 - ft_strlen(str)], &str[0], ft_strlen(str));
 
 	ft_printf("check -> %s\n", check);
 
@@ -111,5 +110,5 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // move the proc
 
 	free(str);
 	free(check);
-	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }
