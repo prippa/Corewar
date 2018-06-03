@@ -102,14 +102,24 @@ int		cw_get_dec_from_the_point(unsigned char *str, int quantity, int position)
 
 }
 
-int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process)
+int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -1 for registers;
 {
 	if (cmd->codage == 100)
-		return (((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD));
+		return (((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD) - 1);
 	else if (cmd->codage == 116)
+	{
 		return ((cw_get_dec_from_the_point(map->stack, 4, cmd->arg2.av)) % IDX_MOD);
+	}
 	else if (cmd->codage == 84)
-		return (((process->registers[cmd->arg2.av] + process->registers[cmd->arg3.av]) % IDX_MOD));
+	{
+		ft_printf("r1 -> %d\n", process->registers[cmd->arg2.av - 1]);
+		ft_printf("r1 -> %d\n", process->registers[cmd->arg3.av - 1]);
+		
+		
+		// ft_printf("res -> %d\n", ((process->registers[cmd->arg2.av - 1] + (process->process_PC + 1) + process->registers[cmd->arg3.av - 1]) % IDX_MOD));
+		return ((process->registers[cmd->arg2.av - 1] + (process->process_PC /*+ 1*/) + process->registers[cmd->arg3.av - 1]) % IDX_MOD);
+		
+	}
 	else if (cmd->codage == 104)
 		return ((cmd->arg2.av + cmd->arg3.av) % IDX_MOD);
 	else if (cmd->codage == 120)
@@ -132,8 +142,11 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 
 	ft_printf("2 -> %d\n", cmd->arg2.av);
 	ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
-	
+	// 
 	position += cw_arguments_value(cmd, map, process); // to func;
+
+	ft_printf("position -> %d\n", position);
+	
 
 	// position = 15;
 
@@ -157,13 +170,21 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 
 	// i = 0; // argument type variation;
 	i = 0;
+	if (position < 0)
+		position = MEM_SIZE + position;
+		ft_printf("position -> %d\n", position);
 	while (i < 4) // 2 || 4; // always take 4 bytes to the map;
 	{
+		if (position == 4096)
+		// ft_printf("position -> %d", position);
+		position = 0;
+		
 		map->stack[position] = buf[i++];
 		map->stack_color[position++] = process->color;
 	}
-	map->stack[process->process_PC] = 1;
+	map->stack[process->process_PC] = 7;
 	map->stack_color[process->process_PC] = 5;
+
 	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
 	// ft_printf("%d\n", 15 & IDX_MOD);
