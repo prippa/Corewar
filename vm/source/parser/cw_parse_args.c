@@ -25,10 +25,10 @@ static void	cw_valid_champ(char *file_name)
 	ft_strcpy(g_cw->pd.champs->file_name, file_name);
 	g_cw->pd.champs_count++;
 	g_cw->pd.champs->champ_number = (int)g_cw->pd.tmp;
-	if (g_cw->pd.tmp == MAXINT)
-		g_cw->pd.tmp = MININT;
+	if (g_cw->pd.tmp == MININT)
+		g_cw->pd.tmp = MAXINT;
 	else
-		g_cw->pd.tmp++;
+		g_cw->pd.tmp--;
 }
 
 static void	cw_valid_champ_number(char **argv, int *i)
@@ -68,4 +68,13 @@ void		cw_parse_args(int argc, char **argv)
 	if (!g_cw->pd.champs)
 		cw_exit("No champions", NO_CHAMPS);
 	t_champ_rev(&g_cw->pd.champs);
+
+	//TEST
+	t_champ *tmp = g_cw->pd.champs;
+	while (tmp)
+	{
+		ft_printf("%s - %d\n", tmp->file_name, tmp->champ_number);
+		tmp = tmp->next;
+	}
+	//END
 }

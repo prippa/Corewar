@@ -43,19 +43,21 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // move the proc
 	 // it will be found by the color ?; // process_PC will be moved by the quantity of bits,
 		// not by the place where the information has to be placed;
 
-	ft_printf("process_PC -> %d\n", process->process_PC);
+	ft_printf("process_PC-> %d\n", process->process_PC);
 
-	char *str = ft_itoa_base(-1, 2, 87);
+	char *str = ft_itoa_base(2, 2, 87);
+
+	char *buf1 = "00000010";
 
 	unsigned char buf[4];
 	int a = 0;
 	while (a < 4)
 	{
-		buf[a] = cw_bin_to_in(&str[a + 8]);
+		buf[a] = cw_bin_to_in(&buf1[a + 8]);
 		a++;
 	}
 	
-	ft_printf("process_PC -> %s\n", str);
+	ft_printf("process_PC ========-> %s\n", str);
 	
 	int i = 0;
 	int	j = process->process_PC;
