@@ -160,31 +160,13 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 		map->stack_color[position_on_the_map] = process->color;
 		map->stack_process_id[position_on_the_map++] = process->id;
 	}
-	map->stack[process->process_PC] = 7; // for testing
-
 
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-	// just testing here;
-	// maybe all colors have to have champions name id <-> nope;
-	// and the champions name is the main parent for all stuff;
-	// maybe process id == champions name ?
-	// fot the process_PC management;
+	// each process has the color of the parent;
 
-	// if (map->stack[process_PC] == ???)
-
-	// if (process->registers[0] == -1) // testing; // modify color function according tothe champs num
-	// 	map->stack_color[process->process_PC] = 5;
+	if (map->stack_color[0] == 1)
+		map->stack_color[0] = 5;
 
 	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
-
-	// int b = 0;
-
-	// while (b < MEM_SIZE)
-	// {
-	// 	ft_printf("p_id->%d\n", g_cw->map.stack_process_id[b]);
-	// 	b++;
-	// }
-
-	// ft_printf("%d\n", 15 & IDX_MOD);
 }
