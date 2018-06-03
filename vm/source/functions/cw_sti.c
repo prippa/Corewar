@@ -152,19 +152,20 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 		// ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 	while (i < 4) // 2 || 4; // always take 4 bytes to the map;
 	{
-		if (position_on_the_map == 4096)
+		if (position_on_the_map == MEM_SIZE)
 		// ft_printf("position_on_the_map -> %d", position_on_the_map);
 		position_on_the_map = 0;
 		
 		map->stack[position_on_the_map] = buf[i++];
-		map->stack_color[position_on_the_map++] = process->color;
+		map->stack_color[position_on_the_map] = process->color;
+		map->stack_process_id[position_on_the_map++] = process->id;
 	}
 	map->stack[process->process_PC] = 7;
 	map->stack_color[process->process_PC] = 5;
 
 	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
-	int b = 0;
+	// int b = 0;
 
 	// while (b < MEM_SIZE)
 	// {
