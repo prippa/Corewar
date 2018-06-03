@@ -137,7 +137,7 @@ int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -
 		return ((process->process_PC + cmd->arg2.av + cmd->arg3.av) % IDX_MOD);
 	else if (cmd->codage == 120) // o.k.
 		return (process->process_PC + (cw_get_dec_from_the_point(map->stack, 4, cmd->arg2.av % IDX_MOD) + cmd->arg3.av));
-	else if (cmd->codage == 88) // ?
+	else if (cmd->codage == 88) // o.k
 		return ((process->process_PC + process->registers[cmd->arg2.av - 1]  /*+ 1*/ + cmd->arg3.av) % IDX_MOD);
 	return (0);
 }
