@@ -42,5 +42,5 @@ void		cw_game_loop(void)
 		ft_printf("-----------------------------------\n");
 		tmp++;
 	}
-		cw_sti(&cmd, &g_cw->map, g_cw->processes);
+	cw_sti(&cmd, &g_cw->map, g_cw->processes);
 }
