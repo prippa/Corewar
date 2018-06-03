@@ -106,5 +106,5 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process)
 		map->stack[j] = buf[i++];
 		map->stack_color[j++] = process->color;
 	}
-	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }
