@@ -13,7 +13,7 @@
 NAME		=	../corewar
 VIS_NAME	=	corewar
 
-FLAGS		= 	-Wall -Werror -Wextra
+#FLAGS		= 	-Wall -Werror -Wextra
 
 CC			=	gcc -g
 
@@ -43,7 +43,7 @@ C_CORE		=	cw_get_command.c cw_load_map.c cw_game_loop.c\
 				cw_display_map.c cw_process_creation.c
 
 C_FUNC		=	cw_binary_and.c cw_binary_or.c cw_binary_xor.c\
-				cw_add.c cw_sub.c cw_sti.c
+				cw_add.c cw_sub.c cw_sti.c cw_ld.c
 
 
 OBJ_VM 		= 	$(C_VM:.c=.o)
