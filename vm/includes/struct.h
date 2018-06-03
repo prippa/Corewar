@@ -75,7 +75,7 @@ typedef struct			s_stack
 {
 	unsigned char		stack[MEM_SIZE];			// whole stack;
 	int					stack_color[MEM_SIZE];		// colors manipulation;
-	int					stack_process_id[MEM_SIZE];	// map process management;
+	int					stack_process_id[MEM_SIZE];	// maintain process id;
 }						t_stack;					
 
 /*
