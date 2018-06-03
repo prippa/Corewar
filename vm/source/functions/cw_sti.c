@@ -60,9 +60,10 @@ char	*cw_get_string_for_conversion(int nbr)
 void	cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 {
 	char *check;
-	int i = 0;
+	int i;
 	int k;
 
+	i = 0;
 	check = cw_get_string_for_conversion(nbr);
 	while (i < 4)
 	{
@@ -87,6 +88,8 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process)
 	int i;
 	int	j;
 
+	cw_write_bytes_to_buf(buf, 32767);
+
 	process->process_PC += ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD);
 
 	// move the process_PC by the quantity of bytes; // process id // process parent;
@@ -95,18 +98,13 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process)
 
 	// process id in order to find the correct process;
 
-	cw_write_bytes_to_buf(buf, 32767);
-
 	i = 0;
 	j = process->process_PC;
 
-	i = 2; // argument type variation;
-	while (i < 4) // 2 || 4;
+	while (i < 4) // we always write here 4 bytes;
 	{
 		map->stack[j] = buf[i++];
 		map->stack_color[j++] = process->color;
 	}
-
-	// free(check);
-	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }
