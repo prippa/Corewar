@@ -104,13 +104,13 @@ int		cw_get_dec_from_the_point(unsigned char *str, int quantity, int position)
 
 int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -1 for registers;
 {
-	if (cmd->codage == 100)
-		return (((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD) - 1);
-	else if (cmd->codage == 116)
+	if (cmd->codage == 100) // o.k.
+		return (((cmd->arg2.av + process->registers[cmd->arg3.av - 1]) % IDX_MOD));
+	else if (cmd->codage == 116) // o.k.
 	{
-		return ((cw_get_dec_from_the_point(map->stack, 4, cmd->arg2.av)) % IDX_MOD);
+		return ((cw_get_dec_from_the_point(map->stack, 4, cmd->arg2.av) + process->process_PC + process->registers[cmd->arg3.av - 1]));
 	}
-	else if (cmd->codage == 84)
+	else if (cmd->codage == 84) // o.k.
 	{
 		ft_printf("r1 -> %d\n", process->registers[cmd->arg2.av - 1]);
 		ft_printf("r1 -> %d\n", process->registers[cmd->arg3.av - 1]);
