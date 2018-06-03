@@ -1,6 +1,6 @@
 #include "corewar.h"
 
-int		cw_pow(int base, int level)
+int		cw_pow(int base, int level) // to lib;
 {
 	int	res;
 
@@ -15,7 +15,7 @@ int		cw_pow(int base, int level)
 	return (res);
 }
 
-int		cw_bin_to_in(char *str, int index)
+int		cw_bin_to_in(char *str, int index) // to lib;
 {
 	int decimal;
 	int	len;
