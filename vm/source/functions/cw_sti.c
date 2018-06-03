@@ -82,11 +82,43 @@ void	cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 	free (check);
 }
 
+int		cw_get_dec_from_the_point(unsigned char *str, int quantity, int position)
+{
+	int res;
+	int i;
+	int j;
+
+	res = 0;
+	i = 0;
+	j = position;
+	while (i < quantity)
+	{
+		ft_printf("%u", str[j]);
+		res += (str[j++] - '0');
+		i++;
+	}
+	ft_printf("res -> %d\n", res);
+	return (res);
+
+}
+
+int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process)
+{
+	if (cmd->codage == 100)
+		return (((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD));
+	else if (cmd->codage == 116)
+		return ((cw_get_dec_from_the_point(map->stack, 4, cmd->arg2.av)) % IDX_MOD);
+	(void)map;
+	return (0);
+}
+
 void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget about the search of the right process;
 {
 	unsigned char buf[4];
 	int i;
 	int	position;
+	// int	arguments[3];
+	//process;
 
 	position = 0;
 	cw_write_bytes_to_buf(buf, process->registers[0]);
@@ -94,9 +126,9 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	// ft_printf("2 -> %d\n", cmd->arg2.av);
 	// ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
 	
-	position += ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD);
-	
-	process->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg1.tp);
+	position += cw_arguments_value(cmd, map, process); // to func;
+
+	process->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg1.tp); // o.k.
 	(cmd->arg2.tp == 2) ? process->process_PC += 2 : 0;
 
 	ft_printf("process_PC -> %d\n", process->process_PC);
@@ -121,7 +153,7 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	}
 	map->stack[process->process_PC] = 1;
 	map->stack_color[process->process_PC] = 2;
-	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
-	ft_printf("%d\n", 15 & IDX_MOD);
+	// ft_printf("%d\n", 15 & IDX_MOD);
 }
