@@ -61,6 +61,7 @@ typedef struct			s_command
 
 typedef	struct			s_processes					// fork will create a process and will change the map;
 {
+	unsigned int		id;
 	int					color;						// R: {1 - 4};
 	int					process_PC;					// current position of the stack command line (iteratively according to the quantity of champs);
 	int					carry;						// initially has zero value because this var will be modified after execution of the command;
@@ -88,6 +89,8 @@ typedef struct			s_corewar
 	t_processes			*proc_end;
 	int					loop;
 	unsigned int		i;
+	unsigned int		proc_counter;				// size of active processes
+	unsigned int		id_counter;					// counter of id in processes
 }						t_corewar;
 
 #endif
