@@ -164,5 +164,13 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 
 	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
+	int b = 0;
+
+	while (b < MEM_SIZE)
+	{
+		ft_printf("p_id->%d\n", g_cw->map.stack_process_id[b]);
+		b++;
+	}
+
 	// ft_printf("%d\n", 15 & IDX_MOD);
 }

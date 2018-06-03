@@ -29,6 +29,7 @@ static void	cw_fill_map_with_bots(t_stack *stack, t_processes *process)
 		{
 			stack->stack[i] = champs->code[j];
 			stack->stack_color[i] = process->color;
+			stack->stack_process_id[i] = process->id;
 			j++;
 			i++;
 			woohoo++;
