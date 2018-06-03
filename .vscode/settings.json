@@ -1,5 +1,8 @@
 {
 	"files.associations": {
-		"corewar.h": "c"
+		"corewar.h": "c",
+		"functional": "c",
+		"iterator": "c",
+		"memory": "c"
 	}
 }

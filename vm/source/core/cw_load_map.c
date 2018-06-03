@@ -52,5 +52,5 @@ void		cw_load_map(void)
 {
 	cw_init_map(g_cw->map.stack, g_cw->map.stack_color);
 	cw_fill_map_with_bots(&g_cw->map, g_cw->processes);
-	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }

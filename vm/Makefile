@@ -43,7 +43,8 @@ C_CORE		=	cw_get_command.c cw_load_map.c cw_game_loop.c\
 				cw_display_map.c cw_process_creation.c
 
 C_FUNC		=	cw_binary_and.c cw_binary_or.c cw_binary_xor.c\
-				cw_add.c cw_sub.c
+				cw_add.c cw_sub.c cw_sti.c
+
 
 OBJ_VM 		= 	$(C_VM:.c=.o)
 OBJ_PARSER	= 	$(C_PARSER:.c=.o)
