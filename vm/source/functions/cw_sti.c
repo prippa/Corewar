@@ -50,7 +50,7 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // move the proc
 
 	// ft_printf("process_PC -> %d\n", process->process_PC);
 
-	char *str = ft_itoa_base(5, 2, 87);
+	char *str = ft_itoa_base(-1, 2, 87);
 
 	ft_printf("itoa_base -> %s\n", str);
 
@@ -70,7 +70,8 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // move the proc
 		bla++;
 	}
 	// ft_bzero(check, 32);
-	ft_strncpy(&check[29], &str[0], 3);
+	ft_printf("len -> %d", ft_strlen(str));
+	ft_strncpy(&check[0], &str[0], 32);
 
 	ft_printf("check -> %s\n", check);
 
