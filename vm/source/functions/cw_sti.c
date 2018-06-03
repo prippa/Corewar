@@ -163,7 +163,7 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	map->stack[process->process_PC] = 7; // for testing
 
 
-
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	// just testing here;
 	// maybe all colors have to have champions name id <-> nope;
@@ -173,8 +173,8 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 
 	// if (map->stack[process_PC] == ???)
 
-	if (process->registers[0] == -1) // testing; // modify color function according tothe champs num
-		map->stack_color[process->process_PC] = 5;
+	// if (process->registers[0] == -1) // testing; // modify color function according tothe champs num
+	// 	map->stack_color[process->process_PC] = 5;
 
 	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
