@@ -153,17 +153,17 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	// process id in order to find the correct process;
 
 	// ft_printf("%d", ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD));
-	i = 0;
 	// position = 15;
 
 	// i = 0; // argument type variation;
-	while (i < 4) // 2 || 4;
+	i = 0;
+	while (i < 4) // 2 || 4; // always take 4 bytes to the map;
 	{
 		map->stack[position] = buf[i++];
 		map->stack_color[position++] = process->color;
 	}
-	map->stack[process->process_PC] = 1;
-	map->stack_color[process->process_PC] = 2;
+	// map->stack[process->process_PC] = 1;
+	// map->stack_color[process->process_PC] = 2;
 	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
 	// ft_printf("%d\n", 15 & IDX_MOD);
