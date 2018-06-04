@@ -30,7 +30,7 @@ void			cw_free(void);
 ** Parse file part
 */
 
-int				cw_get_command(t_command *cmd, unsigned int *i,
+int				cw_get_command(t_command *cmd, unsigned int /* * */i,
 				unsigned char *map);
 int				cw_hex_to_dec(unsigned char *buf, int i);
 void			cw_lseek_cur_skip(int fd, long size);
