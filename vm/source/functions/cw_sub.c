@@ -48,5 +48,5 @@ void			cw_sub(t_command *cmd, t_stack *map, t_processes *process, int process_id
 
 	ft_printf("process_carry -> %d\n\n", proc->carry);
 
-	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }

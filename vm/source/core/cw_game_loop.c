@@ -50,8 +50,9 @@ void		cw_game_loop(void)
 		ft_printf("-----------------------------------\n");
 		
 		// cw_sti(&cmd, &g_cw->map, g_cw->proc_start, g_cw->map.stack_process_id[0]);
-		// cw_add(&cmd, &g_cw->map, g_cw->proc_start, g_cw->map.stack_process_id[0]);
-		cw_binary_and(&cmd, &g_cw->map, g_cw->proc_start, g_cw->map.stack_process_id[0]);
+		cw_add(&cmd, &g_cw->map, g_cw->proc_start, g_cw->map.stack_process_id[0]);
+		// cw_sub(&cmd, &g_cw->map, g_cw->proc_start, g_cw->map.stack_process_id[0]);
+		// cw_binary_and(&cmd, &g_cw->map, g_cw->proc_start, g_cw->map.stack_process_id[0]);
 		
 		tmp++;
 	// }
