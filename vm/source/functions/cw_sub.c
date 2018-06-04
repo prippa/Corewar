@@ -12,23 +12,23 @@
 
 #include "corewar.h"
 
-static t_processes	*cw_process_find(int process_id, t_processes *list)
-{
-	while (list)
-	{
-		if (list->id == process_id)
-			return (list);
-		list = list->next;
-	}
-	return (NULL);
-}
+// static t_processes	*cw_process_find(int process_id, t_processes *list)
+// {
+// 	while (list)
+// 	{
+// 		if (list->id == process_id)
+// 			return (list);
+// 		list = list->next;
+// 	}
+// 	return (NULL);
+// }
 
-void			cw_sub(t_command *cmd, t_stack *map, t_processes *process, int process_id)
+void			cw_sub(t_command *cmd, t_stack *map, unsigned int process_id)
 {
 	t_processes *proc;
 	// int	arguments[3];
 	//process;
-	proc = cw_process_find(process_id, process);
+	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
 	ft_printf("process_id-> %d\n\n", proc->id);
 
 	ft_printf("proc->registers[cmd->arg1.av - 1]-> %d\n", proc->registers[cmd->arg1.av - 1]);
