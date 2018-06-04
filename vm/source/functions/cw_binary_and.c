@@ -87,7 +87,8 @@ char			*cw_res_of_comparison(t_command *cmd, t_processes *proc)
 	ft_zero_it(res_of_comparison);
 	ft_strncpy(&x_stack[32 - (int)ft_strlen(x)], x, (int)ft_strlen(x));
 	ft_strncpy(&y_stack[32 - (int)ft_strlen(y)], y, (int)ft_strlen(y));
-	/* testing
+
+	// testing
 	int i = 0;
 	while (i < 32)
 		ft_printf("%c", x_stack[i++]);
@@ -101,7 +102,8 @@ char			*cw_res_of_comparison(t_command *cmd, t_processes *proc)
 	while (i < 32)
 		ft_printf("%c", res_of_comparison[i++]);
 	ft_printf("\n");
-	*/
+	
+
 	free(x);
 	free(y);
 	return (ft_strdup(res_of_comparison));
@@ -122,14 +124,15 @@ void			cw_binary_and(t_command *cmd, t_stack *map, t_processes *process, int pro
 	process->registers[cmd->arg3.av - 1] = ft_atoi_base(res_of_comparison, 2);
 	free(res_of_comparison);
 
-// ft_printf("res of comparison->%d\n", process->registers[cmd->arg3.av - 1]);
-	proc->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg1.tp + 2); // codage + command bytes;
+	ft_printf("res of comparison->%d\n", process->registers[cmd->arg3.av - 1]);
+	proc->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2); // codage + command bytes;
 	process->carry = (process->registers[cmd->arg3.av - 1] != 0) ? 1 : 0;
 
 
 	map->stack[proc->process_PC] = 7;
 	map->stack_color[proc->process_PC] = 5;
-		// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	
+	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
 
 	
