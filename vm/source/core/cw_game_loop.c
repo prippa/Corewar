@@ -38,6 +38,7 @@ void		cw_game_loop(void)
 	// 		continue;
 	// 	}
 		cw_get_command(&cmd, &g_cw->i, g_cw->map.stack);
+		
 		ft_printf("command ------------------------ %d\n", tmp);
 		ft_printf("cmd - %u\n", cmd.cmd);
 		ft_printf("codage - %d\n", cmd.codage);
@@ -54,7 +55,7 @@ void		cw_game_loop(void)
 		// cw_binary_and(&cmd, &g_cw->map, g_cw->map.stack_process_id[0]); // o.k
 		// cw_binary_or(&cmd, &g_cw->map,  g_cw->map.stack_process_id[0]); // o.k.
 		// cw_binary_xor(&cmd, &g_cw->map, g_cw->map.stack_process_id[0]); // o.k.
-		
+
 		// cw_sti(&cmd, &g_cw->map, g_cw->proc_start, g_cw->map.stack_process_id[0]);
 		
 		tmp++;
