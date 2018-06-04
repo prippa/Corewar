@@ -12,8 +12,14 @@
 
 #include "corewar.h"
 
-void			cw_add(int var_x, int var_y, int *var_res, int *carry)
+void			cw_add(t_command *cmd, t_stack *map, t_processes *process, int process_id)
 {
-	*var_res = var_x + var_y;
-	*carry = (var_res != 0) ? 1 : 0;
+	
+
+
+
+
+
+	process->registers[cmd->arg3.av - 1] = process->registers[cmd->arg1.av - 1] + process->registers[cmd->arg2.av - 1];
+	process->carry = (process->registers[cmd->arg3.av - 1] != 0) ? 1 : 0;
 }
