@@ -57,8 +57,8 @@ int		cw_get_dec_from_the_point(unsigned char *str, int quantity, int position)
 	i = 0;
 	j = position;
 
-	// ft_printf("position -> %d\n", position);
-	// ft_printf("mod -> %d\n", 0 %IDX_MOD);
+	ft_printf("position -> %d\n", position);
+	ft_printf("mod -> %d\n", 1 % IDX_MOD);
 
 	// int k = 0;
 	// while (k < 4096)
@@ -77,7 +77,7 @@ int		cw_get_dec_from_the_point(unsigned char *str, int quantity, int position)
 		i++;
 		j++;
 	}
-	// ft_printf("res --> %d\n", res);
+	ft_printf("res --> %d\n", res);
 	return (res);
 
 }
@@ -88,7 +88,7 @@ int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -
 		return (((process->process_PC + cmd->arg2.av + process->registers[cmd->arg3.av - 1]) % IDX_MOD));
 	else if (cmd->codage == 116) // o.k
 	{
-		// ft_printf("IND -> %d\n", cmd->arg2.av % IDX_MOD);
+		ft_printf("IND -> %d\n", cmd->arg2.av % IDX_MOD);
 		return (process->process_PC + (cw_get_dec_from_the_point(map->stack, 4, cmd->arg2.av % IDX_MOD) + process->registers[cmd->arg3.av - 1]));
 	}
 	else if (cmd->codage == 84) // o.k.
@@ -162,12 +162,12 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process, int process_id)
 	i = 0;
 	if (position_on_the_map < 0)
 		position_on_the_map = MEM_SIZE + position_on_the_map;
-		// ft_printf("position_on_the_map -> %d\n", position_on_the_map);
+		ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 	while (i < 4) // 2 || 4; // always take 4 bytes to the map;
 	{
 		if (position_on_the_map == MEM_SIZE)
 		// ft_printf("position_on_the_map -> %d", position_on_the_map);
-		position_on_the_map = 0;
+			position_on_the_map = 0;
 		
 		map->stack[position_on_the_map] = buf[i++];
 		map->stack_color[position_on_the_map] = proc->color;
@@ -179,10 +179,10 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process, int process_id)
 	// each process has the color of the parent;
 
 		// for testing;
-	map->stack[proc->process_PC] = 7;
-	map->stack_color[proc->process_PC] = 5;
+	// map->stack[proc->process_PC] = 7;
+	// map->stack_color[proc->process_PC] = 5;
 
 
 
-	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }
