@@ -84,8 +84,8 @@ void			cw_display_map(unsigned char *map, int *color);
 */
 
 void			cw_binary_and(t_command *cmd, t_stack *map, unsigned int process_id);
-void			cw_binary_or(t_command *cmd, t_stack *map, t_processes *process, int process_id);
-void			cw_binary_xor(t_command *cmd, t_stack *map, t_processes *process, int process_id);
+void			cw_binary_or(t_command *cmd, t_stack *map, unsigned int process_id);
+void			cw_binary_xor(t_command *cmd, t_stack *map, unsigned int process_id);
 
 void			cw_add(t_command *cmd, t_stack *map, unsigned int process_id);
 void			cw_sub(t_command *cmd, t_stack *map, unsigned int process_id);

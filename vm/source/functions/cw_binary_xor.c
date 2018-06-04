@@ -12,16 +12,16 @@
 
 #include "corewar.h"
 
-static t_processes	*cw_process_find(int process_id, t_processes *list)
-{
-	while (list)
-	{
-		if (list->id == process_id)
-			return (list);
-		list = list->next;
-	}
-	return (NULL);
-}
+// static t_processes	*cw_process_find(int process_id, t_processes *list)
+// {
+// 	while (list)
+// 	{
+// 		if (list->id == process_id)
+// 			return (list);
+// 		list = list->next;
+// 	}
+// 	return (NULL);
+// }
 
 static void		ft_zero_it(char *str)
 {
@@ -111,24 +111,24 @@ static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc)
 	return (ft_strdup(res_of_comparison));
 }
 
-void			cw_binary_xor(t_command *cmd, t_stack *map, t_processes *process, int process_id)
+void			cw_binary_xor(t_command *cmd, t_stack *map, unsigned int process_id)
 {
 
 	t_processes *proc;
 	// int	arguments[3];
 	//process;
-	proc = cw_process_find(process_id, process);
+	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
 
 	// process_cw;
 	char *res_of_comparison;
 
 	res_of_comparison = cw_res_of_comparison(cmd, proc);
-	process->registers[cmd->arg3.av - 1] = ft_atoi_base(res_of_comparison, 2);
+	proc->registers[cmd->arg3.av - 1] = ft_atoi_base(res_of_comparison, 2);
 	free(res_of_comparison);
 
-	ft_printf("res of comparison->%d\n", process->registers[cmd->arg3.av - 1]);
+	ft_printf("res of comparison->%d\n", proc->registers[cmd->arg3.av - 1]);
 	proc->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2); // codage + command bytes;
-	process->carry = (process->registers[cmd->arg3.av - 1] != 0) ? 1 : 0;
+	proc->carry = (proc->registers[cmd->arg3.av - 1] != 0) ? 1 : 0;
 
 	// // testing
 	// map->stack[proc->process_PC] = 7;
