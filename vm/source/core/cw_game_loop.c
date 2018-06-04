@@ -22,11 +22,17 @@ void		cw_game_loop(void)
 	int tmp = 1;
 
 	g_cw->i = 0;
-	while (g_cw->i < MEM_SIZE)
+	
+	// ft_printf("before while -> %d\n",g_cw->i);
+	
+	while (g_cw->i < MEM_SIZE) // add the action when the var is 4096;
 	{
+		// ft_printf("in while i -> %d\n",g_cw->i);
+		
 		// ft_bzero(&cmd, sizeof(t_command));
 		if ((cw_get_command(&cmd, &g_cw->i, g_cw->map.stack)))
 		{
+			// ft_printf("after codage i -> %d\n", g_cw->i);
 			g_cw->i++;
 			continue;
 		}
@@ -42,5 +48,6 @@ void		cw_game_loop(void)
 		ft_printf("-----------------------------------\n");
 		tmp++;
 	}
-	cw_sti(&cmd, &g_cw->map, g_cw->proc_start);
+
+	cw_sti(&cmd, &g_cw->map, g_cw->proc_start, g_cw->map.stack_process_id[0]);
 }

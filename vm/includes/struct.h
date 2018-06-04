@@ -89,7 +89,7 @@ typedef struct			s_corewar
 	t_processes			*proc_start;
 	t_processes			*proc_end;
 	int					loop;
-	unsigned int		i;
+	unsigned int		i;							// map iterator;
 	unsigned int		proc_counter;				// size of active processes
 	unsigned int		id_counter;					// counter of id in processes
 }						t_corewar;

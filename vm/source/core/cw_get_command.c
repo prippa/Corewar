@@ -102,6 +102,9 @@ int			cw_get_command(t_command *cmd, unsigned int *i,
 {
 	int				bt;
 	unsigned char	res[5];
+	
+	// ft_printf("in cmd i -> %d\n",g_cw->i);
+
 
 	ft_bzero(res, 5);
 	if (map[*i] > 16 || map[*i] < 1)
@@ -124,5 +127,7 @@ int			cw_get_command(t_command *cmd, unsigned int *i,
 	if (check_true_cdg(cmd->cmd, cmd->codage))
 		return (NOT_CORRECT_CODAGE);
 	write_args(cmd, i, bt, map);
+	// ft_printf("in cmd i -> %d\n",g_cw->i);
+	
 	return (0);
 }

@@ -107,30 +107,43 @@ int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -
 	return (0);
 }
 
-void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget about the search of the right process;
+t_processes	*cw_process_find(int process_id, t_processes *list)
+{
+	while (list)
+	{
+		if (list->id == process_id)
+			return (list);
+		list = list->next;
+	}
+	return (NULL);
+}
+
+void	cw_sti(t_command *cmd, t_stack *map, t_processes *process, int process_id)
 {
 	unsigned char buf[4];
 	int i;
 	int	position_on_the_map;
+	t_processes *proc;
 	// int	arguments[3];
 	//process;
+	proc = cw_process_find(process_id, process);
 
 	position_on_the_map = 0;
-	cw_write_bytes_to_buf(buf, process->registers[0]);
+	cw_write_bytes_to_buf(buf, proc->registers[0]);
 
 	// ft_printf("2 -> %d\n", cmd->arg2.av);
 	// ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
 	// 
-	position_on_the_map += cw_arguments_value(cmd, map, process); // to func;
+	position_on_the_map += cw_arguments_value(cmd, map, proc); // to func;
 
 	// ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 
-	process->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg1.tp); // o.k.
+	proc->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg1.tp); // o.k.
 
-	(cmd->arg2.tp == 2) ? process->process_PC += 2 : 0;
-	(cmd->arg2.tp == 1) ? process->process_PC += 2 : 0;
-	(cmd->arg2.tp == 2 && cmd->arg3.tp == 2) ? process->process_PC += 1 : 0;
-	(cmd->arg2.tp == 4 && cmd->arg3.tp == 2) ? process->process_PC += 1 : 0;
+	(cmd->arg2.tp == 2) ? proc->process_PC += 2 : 0;
+	(cmd->arg2.tp == 1) ? proc->process_PC += 2 : 0;
+	(cmd->arg2.tp == 2 && cmd->arg3.tp == 2) ? proc->process_PC += 1 : 0;
+	(cmd->arg2.tp == 4 && cmd->arg3.tp == 2) ? proc->process_PC += 1 : 0;
 
 	// ft_printf("process_PC -> %d\n", process->process_PC);
 
@@ -157,8 +170,8 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 		position_on_the_map = 0;
 		
 		map->stack[position_on_the_map] = buf[i++];
-		map->stack_color[position_on_the_map] = process->color;
-		map->stack_process_id[position_on_the_map++] = process->id;
+		map->stack_color[position_on_the_map] = proc->color;
+		map->stack_process_id[position_on_the_map++] = proc->id;
 	}
 
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -168,5 +181,5 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	if (map->stack_color[0] == 1)
 		map->stack_color[0] = 5;
 
-	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }

@@ -84,7 +84,7 @@ void			cw_binary_or(int var_x, int var_y, int *var_res, int *carry);
 void			cw_binary_xor(int var_x, int var_y, int *var_res, int *carry);
 void			cw_add(int var_x, int var_y, int *var_res, int *carry);
 void			cw_sub(int var_x, int var_y, int *var_res, int *carry);
-void			cw_sti(t_command *cmd, t_stack *map, t_processes *process);
+void			cw_sti(t_command *cmd, t_stack *map, t_processes *process, int process_id);
 void			cw_ld(t_command *cmd, t_stack *map, t_processes *process);
 
 /*
