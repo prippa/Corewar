@@ -138,9 +138,9 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process, int process_id)
 
 	// ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 
-	proc->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg1.tp + 2); // o.k.
+	proc->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2); // o.k.
 
-	// (cmd->arg2.tp == 2) ? proc->process_PC += 2 : 0;
+	// (cmd->arg2.tp == 2) ? proc->process_PC += 1 : 0;
 	// (cmd->arg2.tp == 1) ? proc->process_PC += 2 : 0;
 	// (cmd->arg2.tp == 2 && cmd->arg3.tp == 2) ? proc->process_PC += 1 : 0;
 	// (cmd->arg2.tp == 4 && cmd->arg3.tp == 2) ? proc->process_PC += 1 : 0;
