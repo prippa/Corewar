@@ -98,7 +98,7 @@ static int	check_true_cdg(unsigned char cmd, int cdg)
 }
 
 int			cw_get_command(t_command *cmd, unsigned int /* * */i,
-			unsigned char *map)
+			unsigned char *map) // return 1 if the function was successfull;
 {
 	int				bt; // byte 
 	unsigned char	res[5]; // max is 4 bytes;
