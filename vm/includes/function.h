@@ -56,12 +56,12 @@ void			t_champ_add(t_champ **champs);
 void			t_champ_free(t_champ **champs);
 void			t_processe_add(t_processes **proc_start,
 								t_processes **proc_end);
-void			t_processe_free_one(t_processes **proc_start,
-									t_processes **proc_end);
 t_processes		*t_processe_get_by_id(t_processes *proc_start,
 								t_processes *proc_end, unsigned int id);
 int				t_processe_free_by_id(t_processes **proc_start,
 								t_processes **proc_end, unsigned int id);
+int			t_processe_free_by_obj(t_processes **proc_start,
+								t_processes **proc_end, t_processes *obj);
 
 /*
 ** End
