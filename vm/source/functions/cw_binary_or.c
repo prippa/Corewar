@@ -32,7 +32,7 @@ static void		ft_zero_it(char *str)
 		str[i++] = '0';
 }
 
-static void		binary_and_comparison(char *var_1, char *var_2, char *var_res)
+static void		binary_or_comparison(char *var_1, char *var_2, char *var_res)
 {
 	int i;
 
@@ -97,7 +97,7 @@ static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc)
 	while (i < 32)
 		ft_printf("%c", y_stack[i++]);
 	ft_printf("\n");		
-	binary_and_comparison(x_stack, y_stack, res_of_comparison);
+	binary_or_comparison(x_stack, y_stack, res_of_comparison);
 	i = 0;
 	while (i < 32)
 		ft_printf("%c", res_of_comparison[i++]);
@@ -132,7 +132,7 @@ void			cw_binary_or(t_command *cmd, t_stack *map, t_processes *process, int proc
 	// map->stack[proc->process_PC] = 7;
 	// map->stack_color[proc->process_PC] = 5;
 	
-	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
 
 	
