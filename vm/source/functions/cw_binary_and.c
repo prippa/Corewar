@@ -47,7 +47,7 @@ static void		binary_and_comparison(char *var_1, char *var_2, char *var_res)
 	}
 }
 
-int				cw_return_value_according_to_the_type_of_parameter_1(t_command *cmd, t_processes *process)
+static int				cw_return_value_according_to_the_type_of_parameter_1(t_command *cmd, t_processes *process)
 {
 	if (cmd->arg1.tp == 1)
 		return (process->registers[cmd->arg1.av - 1]);
@@ -58,7 +58,7 @@ int				cw_return_value_according_to_the_type_of_parameter_1(t_command *cmd, t_pr
 	return (0);
 }
 
-int				cw_return_value_according_to_the_type_of_parameter_2(t_command *cmd, t_processes *process)
+static int				cw_return_value_according_to_the_type_of_parameter_2(t_command *cmd, t_processes *process)
 {
 	if (cmd->arg2.tp == 1)
 		return (process->registers[cmd->arg2.av - 1]);
@@ -69,7 +69,7 @@ int				cw_return_value_according_to_the_type_of_parameter_2(t_command *cmd, t_pr
 	return (0);
 }
 
-char			*cw_res_of_comparison(t_command *cmd, t_processes *proc)
+static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc)
 {
 	char *x;
 	char *y;
