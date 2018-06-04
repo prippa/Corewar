@@ -25,10 +25,11 @@ static void	cw_fill_map_with_bots(t_stack *stack, t_processes *process)
 		j = 0;
 		woohoo = 0;
 		i = process->process_PC;
-		while (woohoo < process->champ_size)
+		while (woohoo < champs->head.prog_size)
 		{
 			stack->stack[i] = champs->code[j];
 			stack->stack_color[i] = process->color;
+			stack->stack_process_id[i] = process->id;
 			j++;
 			i++;
 			woohoo++;
@@ -65,7 +66,6 @@ static void	cw_init_processes(t_champ *champ)
 		t_processe_add(&g_cw->proc_start, &g_cw->proc_end);
 		g_cw->proc_start->color = color;
 		g_cw->proc_start->process_PC = process_pc;
-		g_cw->proc_start->champ_size = champ->head.prog_size;
 		g_cw->proc_start->registers[0] = champ->champ_number;
 		color++;
 		process_pc += map_distance;

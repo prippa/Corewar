@@ -43,26 +43,8 @@ int		main(int argc, char **argv)
 	cw_parse_args(argc, argv + 1);
 	cw_parser();
 	cw_load_map();
-ft_putstr("###############################################################\n");
-print_processes(g_cw->proc_start);
-ft_putstr("###############################################################\n");
-ft_putstr("###############################################################\n");
-t_processe_free_by_id(&g_cw->proc_start, &g_cw->proc_end, 2);
-print_processes(g_cw->proc_start);
-ft_putstr("###############################################################\n");
-ft_putstr("###############################################################\n");
-print_one_proc(t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, 1));
-ft_putstr("###############################################################\n");
-// ft_putstr("###############################################################\n");
-// t_processe_free_by_id(g_cw->proc_start, g_cw->proc_end, 2);
-// print_processes(g_cw->proc_start);
-// ft_putstr("###############################################################\n");
-	// cw_game_loop();
-	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
-	if (g_cw->proc_start)
-		ft_printf("YES START\n");
-	if (g_cw->proc_end)
-		ft_printf("YES END\n");
+	cw_game_loop();
+	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 	cw_free();
 	system("leaks -q corewar");
 	return (0);

@@ -1,40 +1,5 @@
 #include "corewar.h"
 
-int		cw_pow(int base, int level)
-{
-	int	res;
-
-	res = 1;
-	if (level == 0)
-		return (1);
-	while (level)
-	{
-		res = res * base;
-		level--;;
-	}
-	return (res);
-}
-
-int		cw_bin_to_in(char *str, int index)
-{
-	int decimal;
-	int	len;
-	int i;
-
-	decimal = 0;
-	len = 7;
-	i = 0;
-	while (len >= 0)
-	{
-		if (str[index] == '1')
-			decimal += cw_pow(2, i);
-		i++;
-		index--;
-		len--;
-	}
-	return (decimal);
-}
-
 char	*cw_get_string_for_conversion(int nbr)
 {
 	int i;
@@ -70,12 +35,12 @@ void	cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 		if (i == 0)
 		{
 			k = 7 ;
-			buf[i] = cw_bin_to_in(check, k);
+			buf[i] = ft_bin_to_int(check, k);
 		}
 		else if (i >= 0)
 		{
 			k = k + 8;
-			buf[i] = cw_bin_to_in(check, k);
+			buf[i] = ft_bin_to_int(check, k);
 		}
 		i++;
 	}
@@ -91,58 +56,96 @@ int		cw_get_dec_from_the_point(unsigned char *str, int quantity, int position)
 	res = 0;
 	i = 0;
 	j = position;
+
+	// ft_printf("position -> %d\n", position);
+	// ft_printf("mod -> %d\n", 0 %IDX_MOD);
+
+	// int k = 0;
+	// while (k < 4096)
+	// {
+	// 	ft_printf("d->%d\n", str[k]);
+	// 	k++;
+	// }
+	
+
 	while (i < quantity)
 	{
-		ft_printf("%u", str[j]);
-		res += (str[j++] - '0');
+		// ft_printf("d->%d\n", str[j] - '0');
+		// ft_printf("c->%c\n", str[j]);
+		
+		res += (str[j] - '0');
 		i++;
+		j++;
 	}
-	ft_printf("res -> %d\n", res);
+	// ft_printf("res --> %d\n", res);
 	return (res);
 
 }
 
-int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process)
+int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -1 for registers;
 {
-	if (cmd->codage == 100)
-		return (((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD));
-	else if (cmd->codage == 116)
-		return ((cw_get_dec_from_the_point(map->stack, 4, cmd->arg2.av)) % IDX_MOD);
-	else if (cmd->codage == 84)
-		return (((process->registers[cmd->arg2.av] + process->registers[cmd->arg3.av]) % IDX_MOD));
-	else if (cmd->codage == 104)
-		return ((cmd->arg2.av + cmd->arg3.av) % IDX_MOD);
-	else if (cmd->codage == 120)
-		return ((cw_get_dec_from_the_point(map->stack, 4, cmd->arg2.av)) % IDX_MOD);
-	else if (cmd->codage == 88)
-		return (((process->registers[cmd->arg2.av] + cmd->arg3.av) % IDX_MOD));
+	if (cmd->codage == 100) // o.k
+		return (((process->process_PC + cmd->arg2.av + process->registers[cmd->arg3.av - 1]) % IDX_MOD));
+	else if (cmd->codage == 116) // o.k
+	{
+		// ft_printf("IND -> %d\n", cmd->arg2.av % IDX_MOD);
+		return (process->process_PC + (cw_get_dec_from_the_point(map->stack, 4, cmd->arg2.av % IDX_MOD) + process->registers[cmd->arg3.av - 1]));
+	}
+	else if (cmd->codage == 84) // o.k.
+	{
+		// ft_printf("r1 -> %d\n", process->registers[cmd->arg2.av - 1]);
+		// ft_printf("r1 -> %d\n", process->registers[cmd->arg3.av - 1]);
+		// ft_printf("res -> %d\n", ((process->registers[cmd->arg2.av - 1] + (process->process_PC + 1) + process->registers[cmd->arg3.av - 1]) % IDX_MOD));
+		return ((process->process_PC + process->registers[cmd->arg2.av - 1]  + process->registers[cmd->arg3.av - 1]) % IDX_MOD);
+	}
+	else if (cmd->codage == 104) // o.k
+		return ((process->process_PC + cmd->arg2.av + cmd->arg3.av) % IDX_MOD);
+	else if (cmd->codage == 120) // o.k.
+		return (process->process_PC + (cw_get_dec_from_the_point(map->stack, 4, cmd->arg2.av % IDX_MOD) + cmd->arg3.av));
+	else if (cmd->codage == 88) // o.k
+		return ((process->process_PC + process->registers[cmd->arg2.av - 1]  + cmd->arg3.av) % IDX_MOD);
 	return (0);
 }
 
-void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget about the search of the right process;
+t_processes	*cw_process_find(int process_id, t_processes *list)
+{
+	while (list)
+	{
+		if (list->id == process_id)
+			return (list);
+		list = list->next;
+	}
+	return (NULL);
+}
+
+void	cw_sti(t_command *cmd, t_stack *map, t_processes *process, int process_id)
 {
 	unsigned char buf[4];
 	int i;
-	int	position;
+	int	position_on_the_map;
+	t_processes *proc;
 	// int	arguments[3];
 	//process;
+	proc = cw_process_find(process_id, process);
 
-	position = 0;
-	cw_write_bytes_to_buf(buf, process->registers[0]);
+	position_on_the_map = 0;
+	cw_write_bytes_to_buf(buf, proc->registers[0]);
 
-	ft_printf("2 -> %d\n", cmd->arg2.av);
-	ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
-	
-	position += cw_arguments_value(cmd, map, process); // to func;
+	// ft_printf("2 -> %d\n", cmd->arg2.av);
+	// ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
+	// 
+	position_on_the_map += cw_arguments_value(cmd, map, proc); // to func;
 
-	// position = 15;
+	// ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 
-	process->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg1.tp); // o.k.
+	proc->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg1.tp); // o.k.
 
-	(cmd->arg2.tp == 2) ? process->process_PC += 2 : 0;
-	(cmd->arg2.tp == 1) ? process->process_PC += 2 : 0;
+	(cmd->arg2.tp == 2) ? proc->process_PC += 2 : 0;
+	(cmd->arg2.tp == 1) ? proc->process_PC += 2 : 0;
+	(cmd->arg2.tp == 2 && cmd->arg3.tp == 2) ? proc->process_PC += 1 : 0;
+	(cmd->arg2.tp == 4 && cmd->arg3.tp == 2) ? proc->process_PC += 1 : 0;
 
-	ft_printf("process_PC -> %d\n", process->process_PC);
+	// ft_printf("process_PC -> %d\n", process->process_PC);
 
 	// move the process_PC by the quantity of bytes;
 
@@ -153,18 +156,30 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process) // do not forget
 	// process id in order to find the correct process;
 
 	// ft_printf("%d", ((cmd->arg2.av + process->registers[cmd->arg3.av]) % IDX_MOD));
-	// position = 15;
+	// position_on_the_map = 15;
 
 	// i = 0; // argument type variation;
 	i = 0;
+	if (position_on_the_map < 0)
+		position_on_the_map = MEM_SIZE + position_on_the_map;
+		// ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 	while (i < 4) // 2 || 4; // always take 4 bytes to the map;
 	{
-		map->stack[position] = buf[i++];
-		map->stack_color[position++] = process->color;
+		if (position_on_the_map == MEM_SIZE)
+		// ft_printf("position_on_the_map -> %d", position_on_the_map);
+		position_on_the_map = 0;
+		
+		map->stack[position_on_the_map] = buf[i++];
+		map->stack_color[position_on_the_map] = proc->color;
+		map->stack_process_id[position_on_the_map++] = proc->id;
 	}
-	map->stack[process->process_PC] = 1;
-	map->stack_color[process->process_PC] = 5;
-	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
-	// ft_printf("%d\n", 15 & IDX_MOD);
+	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+	// each process has the color of the parent;
+
+	if (map->stack_color[0] == 1)
+		map->stack_color[0] = 5;
+
+	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }

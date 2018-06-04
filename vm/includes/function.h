@@ -30,7 +30,7 @@ void			cw_free(void);
 ** Parse file part
 */
 
-int				cw_get_command(t_command *cmd, unsigned int *i,
+int				cw_get_command(t_command *cmd, unsigned int /* * */*i,
 				unsigned char *map);
 int				cw_hex_to_dec(unsigned char *buf, int i);
 void			cw_lseek_cur_skip(int fd, long size);
@@ -76,15 +76,21 @@ void			cw_game_loop(void);
 void			cw_display_map(unsigned char *map, int *color);
 
 /*
+** End
+*/
+
+/*
 ** functions
 */
 
-void			cw_binary_and(int var_x, int var_y, int *var_res, int *carry);
+void			cw_binary_and(t_command *cmd, t_stack *map, t_processes *process, int process_id);
 void			cw_binary_or(int var_x, int var_y, int *var_res, int *carry);
 void			cw_binary_xor(int var_x, int var_y, int *var_res, int *carry);
-void			cw_add(int var_x, int var_y, int *var_res, int *carry);
-void			cw_sub(int var_x, int var_y, int *var_res, int *carry);
-void			cw_sti(t_command *cmd, t_stack *map, t_processes *process);
+
+void			cw_add(t_command *cmd, t_stack *map, t_processes *process, int process_id);
+void			cw_sub(t_command *cmd, t_stack *map, t_processes *process, int process_id);
+
+void			cw_sti(t_command *cmd, t_stack *map, t_processes *process, int process_id);
 void			cw_ld(t_command *cmd, t_stack *map, t_processes *process);
 
 /*

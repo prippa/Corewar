@@ -72,7 +72,6 @@ void		t_processe_add(t_processes **proc_start,
 		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
 	new_obj->id = g_cw->id_counter++;
 	new_obj->carry = 0;
-	new_obj->champ_size = 0;
 	new_obj->color = 0;
 	new_obj->process_PC = 0;
 	ft_bzero(new_obj->registers, REG_NUMBER);

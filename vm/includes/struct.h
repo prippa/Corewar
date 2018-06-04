@@ -65,8 +65,7 @@ typedef	struct			s_processes					// fork will create a process and will change t
 	int					color;						// R: {1 - 4};
 	int					process_PC;					// current position of the stack command line (iteratively according to the quantity of champs);
 	int					carry;						// initially has zero value because this var will be modified after execution of the command;
-	int					champ_size;					// var for init procedure;
-	int					registers[REG_NUMBER];				// r1 -> player_name register;
+	int					registers[REG_NUMBER];		// r1 -> player_name register;
 	struct s_processes	*next;						// pointer to the next element;
 	struct s_processes	*prev;						// pointer to the next element;
 }						t_processes;
@@ -75,6 +74,7 @@ typedef struct			s_stack
 {
 	unsigned char		stack[MEM_SIZE];			// whole stack;
 	int					stack_color[MEM_SIZE];		// colors manipulation;
+	unsigned int		stack_process_id[MEM_SIZE];	// maintain process id;
 }						t_stack;					
 
 /*
@@ -88,7 +88,7 @@ typedef struct			s_corewar
 	t_processes			*proc_start;
 	t_processes			*proc_end;
 	int					loop;
-	unsigned int		i;
+	unsigned int		i;							// map iterator;
 	unsigned int		proc_counter;				// size of active processes
 	unsigned int		id_counter;					// counter of id in processes
 }						t_corewar;
