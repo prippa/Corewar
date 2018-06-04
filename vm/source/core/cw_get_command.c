@@ -121,7 +121,7 @@ int			cw_get_command(t_command *cmd, unsigned int /* * */i,
 		cmd->arg1.tp = T_DIR;
 		cmd->arg2.tp = 0;
 		cmd->arg3.tp = 0;
-		return (0);
+		return (1); // not 0;
 	}
 	/* * */i += 1; // go to other commands;
 	if (check_true_cdg(cmd->cmd, cmd->codage)) // check if a specific cmd has the correct codage;
@@ -130,5 +130,5 @@ int			cw_get_command(t_command *cmd, unsigned int /* * */i,
 	write_args(cmd, i, bt, map);
 	// ft_printf("in cmd i -> %d\n",g_cw->i);
 	
-	return (0);
+	return (1); // not 0;
 }
