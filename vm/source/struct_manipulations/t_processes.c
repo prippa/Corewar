@@ -19,14 +19,12 @@ t_processes	*t_processe_get_by_id(t_processes *proc_start,
 	return (NULL);
 }
 
-int			t_processe_free_by_id(t_processes **proc_start,
-								t_processes **proc_end, unsigned int id)
+int			t_processe_free_by_obj(t_processes **proc_start,
+								t_processes **proc_end, t_processes *obj)
 {
-	t_processes *tmp;
-
-	if (!(tmp = t_processe_get_by_id(*proc_start, *proc_end, id)))
+	if (!(*proc_start) || !(*proc_end) || !obj)
 		return (0);
-	if (tmp == *proc_start)
+	if (obj == *proc_start)
 	{
 		*proc_start = (*proc_start)->next;
 		if (*proc_start)
@@ -34,32 +32,30 @@ int			t_processe_free_by_id(t_processes **proc_start,
 		else
 			*proc_end = NULL;
 	}
-	else if (!tmp->next)
+	else if (!obj->next)
 	{
-		tmp->prev->next = NULL;
-		*proc_end = tmp->prev;
+		obj->prev->next = NULL;
+		*proc_end = obj->prev;
 	}
 	else
 	{
-		tmp->prev->next = tmp->next;
-		tmp->next->prev = tmp->prev;
+		obj->prev->next = obj->next;
+		obj->next->prev = obj->prev;
 	}
-	free(tmp);
+	free(obj);
 	return (1);
 }
 
-void		t_processe_free_one(t_processes **proc_start,
-								t_processes **proc_end)
+int			t_processe_free_by_id(t_processes **proc_start,
+								t_processes **proc_end, unsigned int id)
 {
 	t_processes *tmp;
 
-	tmp = *proc_start;
-	*proc_start = (*proc_start)->next;
-	if (*proc_start)
-		(*proc_start)->prev = NULL;
-	else
-		*proc_end = NULL;
-	free(tmp);
+	if (!(tmp = t_processe_get_by_id(*proc_start, *proc_end, id)))
+		return (0);
+	if (!t_processe_free_by_obj(proc_start, proc_end, tmp))
+		return (0);
+	return (1);
 }
 
 void		t_processe_add(t_processes **proc_start,
