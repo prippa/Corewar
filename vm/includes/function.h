@@ -76,6 +76,10 @@ void			cw_game_loop(void);
 void			cw_display_map(unsigned char *map, int *color);
 
 /*
+** End
+*/
+
+/*
 ** functions
 */
 

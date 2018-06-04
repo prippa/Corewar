@@ -147,7 +147,7 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process, int process_id)
 
 	// ft_printf("process_PC -> %d\n", process->process_PC);
 
-	// move the process_PC by the quantity of bytes; 
+	// move the process_PC by the quantity of bytes;
 
 	// process id // process parent;
 	// get clear with it;

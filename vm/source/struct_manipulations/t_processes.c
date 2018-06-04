@@ -22,29 +22,29 @@ t_processes	*t_processe_get_by_id(t_processes *proc_start,
 int			t_processe_free_by_id(t_processes **proc_start,
 								t_processes **proc_end, unsigned int id)
 {
-	t_processes *temp;
+	t_processes *tmp;
 
-	if (!(temp = t_processe_get_by_id(*proc_start, *proc_end, id)))
+	if (!(tmp = t_processe_get_by_id(*proc_start, *proc_end, id)))
 		return (0);
-	if (temp == *proc_start)
+	if (tmp == *proc_start)
 	{
 		*proc_start = (*proc_start)->next;
-		(*proc_start)->prev = NULL;
+		if (*proc_start)
+			(*proc_start)->prev = NULL;
+		else
+			*proc_end = NULL;
+	}
+	else if (!tmp->next)
+	{
+		tmp->prev->next = NULL;
+		*proc_end = tmp->prev;
 	}
 	else
 	{
-		if (temp->next == NULL)
-		{
-			temp->prev->next = NULL;
-			*proc_end = temp->prev;
-		}
-		else
-		{
-			temp->prev->next = temp->next;
-			temp->next->prev = temp->prev;
-		}
+		tmp->prev->next = tmp->next;
+		tmp->next->prev = tmp->prev;
 	}
-	free(temp);
+	free(tmp);
 	return (1);
 }
 
@@ -72,7 +72,6 @@ void		t_processe_add(t_processes **proc_start,
 		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
 	new_obj->id = g_cw->id_counter++;
 	new_obj->carry = 0;
-	new_obj->champ_size = 0;
 	new_obj->color = 0;
 	new_obj->process_PC = 0;
 	ft_bzero(new_obj->registers, REG_NUMBER);
