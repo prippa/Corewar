@@ -37,8 +37,8 @@ void		cw_game_loop(void)
 	// 		// to the next position after the cmp function;
 	// 		continue;
 	// 	}
-		cw_get_command(&cmd, &g_cw->i, g_cw->map.stack);
-		
+		cw_get_command(&cmd, &g_cw->i, g_cw->map.stack); // remoce &g_cw->i;
+
 		ft_printf("command ------------------------ %d\n", tmp);
 		ft_printf("cmd - %u\n", cmd.cmd);
 		ft_printf("codage - %d\n", cmd.codage);
