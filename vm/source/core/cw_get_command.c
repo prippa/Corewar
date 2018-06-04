@@ -14,23 +14,32 @@
 
 #define WHAT_DIR(x) (x > 8 && x < 13) || x == 14 || x == 15
 #define IS_CDG(x) x == 1 || x == 9 || x == 12 || x == 15
+#define	T_IND_TRUE 2
+#define T_DIR_GENERAL 7
+// #define	T_DIR_TRUE_OPT_1 2
+// #define	T_DIR_TRUE_OPT_2 4
 
 static int	arg_check(char *bn, int *j, char *tp, int bt)
 {
 	if (bn[*j] == '1' && bn[*j + 1] == '1')
-		*tp = T_IND;
-	else if (bn[*j] == '1' && bn[*j + 1] == '0')
-		*tp = T_DIR;
+		*tp = T_IND_TRUE;
+	else if (bn[*j] == '1' && bn[*j + 1] == '0') // set it correctly 2 or 4;
+		*tp = bt; /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	else if (bn[*j] == '0' && bn[*j + 1] == '1')
-		*tp = T_REG;
+		*tp = T_REG; // o.k.
 	else
 		*tp = 0;
-	*j += 2;
-	if (*tp == T_IND)
+	*j += 2; // move the cursor for analysis why 2 ? -> according tothetype returns how many bytes to read;
+	if (*tp == T_IND_TRUE)
 		return (2);
-	if (*tp == T_DIR)
+	if (*tp == bt) // here;
+	{
+		ft_putstr("here\n");
+		ft_printf("tp -> %d\n", *tp);
+		ft_printf("bt -> %d\n", bt);
 		return (bt);
-	if (*tp == T_REG)
+	}
+	if (*tp == T_REG) //o.k.
 		return (1);
 	return (0);
 }
@@ -60,17 +69,24 @@ static void	write_args(t_command *cmd, unsigned int *i, int bt,
 	while (ft_strlen(bn) < 8)
 		if (!(bn = ft_joinfree("0", bn, 2)))
 			cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
+
+	// ft_printf("%s\n", bn);
+
 	rd = arg_check(bn, &j, &cmd->arg1.tp, bt);
 	tmp_arg(res, rd, i, map);
 	cmd->arg1.av = cw_hex_to_dec(res, rd);
+
 	ft_bzero(res, 5);
 	rd = arg_check(bn, &j, &cmd->arg2.tp, bt);
+	// ft_printf("bt->%d\n", &cmd->arg2.tp);
 	tmp_arg(res, rd, i, map);
 	cmd->arg2.av = cw_hex_to_dec(res, rd);
+
 	ft_bzero(res, 5);
 	rd = arg_check(bn, &j, &cmd->arg3.tp, bt);
 	tmp_arg(res, rd, i, map);
 	cmd->arg3.av = cw_hex_to_dec(res, rd);
+
 	ft_str_free(&bn);
 }
 
