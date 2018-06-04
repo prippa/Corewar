@@ -50,7 +50,8 @@ void		cw_game_loop(void)
 		ft_printf("arg3.av - %d\n", cmd.arg3.av);
 		ft_printf("-----------------------------------\n");
 		
-		cw_sti(&cmd, &g_cw->map, g_cw->proc_start, g_cw->map.stack_process_id[g_cw->i]);
+		cw_sti(&cmd, &g_cw->map, g_cw->proc_start, g_cw->map.stack_process_id[g_cw->i]); 
+		// i -> current position of the process on the map map[process_pc]
 		
 		tmp++;
 	// }
