@@ -42,11 +42,11 @@ void			cw_sub(t_command *cmd, t_stack *map, t_processes *process, int process_id
 	proc->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg1.tp + 2); // codage + command bytes;
 
 
-	// for testing;
-	map->stack[proc->process_PC] = 7;
-	map->stack_color[proc->process_PC] = 5;
+	// // for testing;
+	// map->stack[proc->process_PC] = 7;
+	// map->stack_color[proc->process_PC] = 5;
 
-	ft_printf("process_carry -> %d\n\n", proc->carry);
+	// ft_printf("process_carry -> %d\n\n", proc->carry);
 
-	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	// // cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }

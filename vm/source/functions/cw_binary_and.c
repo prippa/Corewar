@@ -128,11 +128,11 @@ void			cw_binary_and(t_command *cmd, t_stack *map, t_processes *process, int pro
 	proc->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2); // codage + command bytes;
 	process->carry = (process->registers[cmd->arg3.av - 1] != 0) ? 1 : 0;
 
-
-	map->stack[proc->process_PC] = 7;
-	map->stack_color[proc->process_PC] = 5;
+	// //testing
+	// map->stack[proc->process_PC] = 7;
+	// map->stack_color[proc->process_PC] = 5;
 	
-	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
 
 	
