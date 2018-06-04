@@ -34,6 +34,7 @@ void		cw_game_loop(void)
 		{
 			// ft_printf("after codage i -> %d\n", g_cw->i);
 			g_cw->i++;
+			// to the next position after the cmp function;
 			continue;
 		}
 		ft_printf("command ------------------------ %d\n", tmp);
@@ -46,8 +47,8 @@ void		cw_game_loop(void)
 		ft_printf("arg3.tp - %u\n", cmd.arg3.tp);
 		ft_printf("arg3.av - %d\n", cmd.arg3.av);
 		ft_printf("-----------------------------------\n");
+			cw_sti(&cmd, &g_cw->map, g_cw->proc_start, g_cw->map.stack_process_id[0]);
 		tmp++;
 	}
 
-	cw_sti(&cmd, &g_cw->map, g_cw->proc_start, g_cw->map.stack_process_id[0]);
 }

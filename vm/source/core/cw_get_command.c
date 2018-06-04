@@ -103,7 +103,6 @@ int			cw_get_command(t_command *cmd, unsigned int *i,
 	int				bt;
 	unsigned char	res[5];
 	
-	// ft_printf("in cmd i -> %d\n",g_cw->i);
 
 
 	ft_bzero(res, 5);
@@ -113,6 +112,7 @@ int			cw_get_command(t_command *cmd, unsigned int *i,
 	bt = (WHAT_DIR(map[*i]) ? 2 : 4);
 	cmd->cmd = map[*i];
 	*i += 1;
+	// ft_printf("in cmd i -> %d\n",g_cw->i);
 	cmd->codage = ((IS_CDG(cmd->cmd)) ? 0 : map[*i]);
 	if (IS_CDG(cmd->cmd))
 	{
