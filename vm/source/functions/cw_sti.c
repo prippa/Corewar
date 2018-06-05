@@ -6,7 +6,7 @@
 /*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 09:34:31 by otimofie          #+#    #+#             */
-/*   Updated: 2018/06/05 13:15:52 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/06/05 13:16:47 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ void	cw_sti(t_command *cmd, t_stack *map, int process_id)
 	// ft_printf("process_PC -> %d\n", process->process_PC);
 
 	// move the process_PC by the quantity of bytes;
+
 
 	// process id // process parent;
 	// get clear with it;
