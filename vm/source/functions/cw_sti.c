@@ -6,7 +6,7 @@
 /*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 09:34:31 by otimofie          #+#    #+#             */
-/*   Updated: 2018/06/05 09:34:33 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/06/05 13:15:52 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,8 @@ void	cw_sti(t_command *cmd, t_stack *map, int process_id)
 	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
 
 	position_on_the_map = 0;
-	cw_write_bytes_to_buf(buf, proc->registers[0]);
+
+	cw_write_bytes_to_buf(buf, proc->registers[cmd->arg2.av - 1]);
 
 	// ft_printf("2 -> %d\n", cmd->arg2.av);
 	// ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
