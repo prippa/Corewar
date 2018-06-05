@@ -6,7 +6,7 @@
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 13:55:27 by prippa            #+#    #+#             */
-/*   Updated: 2018/05/26 13:55:28 by prippa           ###   ########.fr       */
+/*   Updated: 2018/06/05 13:25:23 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,4 @@ void		cw_parse_args(int argc, char **argv)
 	if (!g_cw->pd.champs)
 		cw_exit("No champions", NO_CHAMPS);
 	t_champ_rev(&g_cw->pd.champs);
-
-	//TEST
-	// t_champ *tmp = g_cw->pd.champs;
-	// while (tmp)
-	// {
-	// 	ft_printf("%s - %d\n", tmp->file_name, tmp->champ_number);
-	// 	tmp = tmp->next;
-	// }
-	//END
 }
