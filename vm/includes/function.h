@@ -91,6 +91,7 @@ void			cw_add(t_command *cmd, t_stack *map, unsigned int process_id);
 void			cw_sub(t_command *cmd, t_stack *map, unsigned int process_id);
 
 void			cw_sti(t_command *cmd, t_stack *map, unsigned int process_id);
+void			cw_live(t_command *cmd, t_stack *map, unsigned int process_id);
 void			cw_ld(t_command *cmd, t_stack *map, unsigned int process_id);
 
 /*
