@@ -120,17 +120,6 @@ int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -
 	return (0);
 }
 
-t_processes	*cw_process_find(int process_id, t_processes *list)
-{
-	while (list)
-	{
-		if (list->id == process_id)
-			return (list);
-		list = list->next;
-	}
-	return (NULL);
-}
-
 void	cw_sti(t_command *cmd, t_stack *map, int process_id)
 {
 	unsigned char buf[4];
