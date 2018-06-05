@@ -11,6 +11,9 @@ void	cw_ld(t_command *cmd, t_stack *map, unsigned int process_id)
 	{
 		cmd->arg1.av = cmd->arg1.av % IDX_MOD;
 		proc->registers[cmd->arg2.av - 1] =
+
+
+
 		cw_get_dec_from_the_point(map->stack,
 		4,
 		proc->process_PC + cmd->arg1.av); // TODO check out the mistake;

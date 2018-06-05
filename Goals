@@ -1,8 +1,8 @@
 1. Finish with:
     - live;
     - fork;
-    - aff;
     - zjmp;
+    - aff;
 
 2. Init all registers to 0 whole process creation
 
