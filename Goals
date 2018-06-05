@@ -1,0 +1,9 @@
+1. Finish with:
+    - live;
+    - fork;
+    - aff;
+    - zjmp;
+
+2. Think over:
+    - erase the processes on a specific event (cycle_to_die);
+    - func that returns the waiting for the functions;
