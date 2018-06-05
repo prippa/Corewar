@@ -60,5 +60,5 @@ dkms.conf
 *txt
 *iml
 *xml
-.cmake-build-debug/
+cmake-build-debug/
 
