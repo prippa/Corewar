@@ -84,7 +84,6 @@ void		t_processe_add(t_processes **proc_start,
 	new_obj->process_PC = 0;
 	new_obj->live_status = ALIVE;
 	new_obj->has_been_activated = DEAD;
-	ft_bzero(new_obj->registers, sizeof(int) * REG_NUMBER);
 	new_obj->next = *proc_start;
 	new_obj->prev = NULL;
 	if (*proc_start)
