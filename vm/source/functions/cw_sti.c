@@ -57,10 +57,10 @@ int		cw_get_dec_from_the_point(unsigned char *str, int quantity, int position)
 	i = 0;
 	j = position;
 
-	ft_printf("quantity -> %d\n", quantity);
-	ft_printf("position -> %d\n", position);
+	// ft_printf("quantity -> %d\n", quantity);
+	// ft_printf("position -> %d\n", position);
 
-	ft_printf("mod -> %d\n", (0 + (16777216 - 1) % IDX_MOD) % IDX_MOD);
+	// ft_printf("mod -> %d\n", (0 + (16777216 - 1) % IDX_MOD) % IDX_MOD);
 
 	// int k = 0;
 	// while (k < 4096)
@@ -75,21 +75,21 @@ int		cw_get_dec_from_the_point(unsigned char *str, int quantity, int position)
 		// ft_printf("d->%d\n", str[j] - '0');
 		// ft_printf("c->%c\n", str[j]);
 		if (str[j] == 48)
-			str[j] = 0;
-			
-		
-		buf[i] = str[j];
+			buf[i] = 0;
+		else
+			buf[i] = str[j];
 		i++;
 		j++;
 	}
-	i = 0;
+	// i = 0;
 
-	while (i < 4)
-	{
-		ft_printf("%.u", buf[i]);
-		i++;
-	}
-	ft_printf("\n");
+	// while (i < 4)
+	// {
+	// 	ft_printf("%.u", buf[i]);
+	// 	i++;
+	// }
+	// ft_printf("\n");
+	res = cw_hex_to_dec(buf,4);
 	// ft_printf("res --> %d\n", res);
 	return (res);
 
@@ -101,8 +101,8 @@ int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -
 		return (((process->process_PC + cmd->arg2.av + process->registers[cmd->arg3.av - 1]) % IDX_MOD));
 	else if (cmd->codage == 116) // o.k
 	{
-		ft_printf("IND -> %d\n", cmd->arg2.av % IDX_MOD);
-		return (process->process_PC + (cw_get_dec_from_the_point(map->stack, 4,cmd->arg2.av % IDX_MOD) + process->registers[cmd->arg3.av - 1]) % IDX_MOD);
+		// ft_printf("IND -> %d\n", cmd->arg2.av % IDX_MOD);
+		return ((process->process_PC + (cw_get_dec_from_the_point(map->stack, 4,cmd->arg2.av % IDX_MOD) + process->registers[cmd->arg3.av - 1]) % IDX_MOD) % IDX_MOD);
 	}
 	else if (cmd->codage == 84) // o.k.
 	{
@@ -114,7 +114,7 @@ int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -
 	else if (cmd->codage == 104) // o.k
 		return ((process->process_PC + cmd->arg2.av + cmd->arg3.av) % IDX_MOD);
 	else if (cmd->codage == 120) // o.k.
-		return (process->process_PC + (cw_get_dec_from_the_point(map->stack, 4, cmd->arg2.av % IDX_MOD) + cmd->arg3.av));
+		return ((process->process_PC + (cw_get_dec_from_the_point(map->stack, 4,cmd->arg2.av % IDX_MOD) + cmd->arg3.av) % IDX_MOD) % IDX_MOD);
 	else if (cmd->codage == 88) // o.k
 		return ((process->process_PC + process->registers[cmd->arg2.av - 1]  + cmd->arg3.av) % IDX_MOD);
 	return (0);
@@ -175,7 +175,7 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process, int process_id)
 	i = 0;
 	if (position_on_the_map < 0)
 		position_on_the_map = MEM_SIZE + position_on_the_map;
-		ft_printf("position_on_the_map -> %d\n", position_on_the_map);
+		// ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 	while (i < 4) // 2 || 4; // always take 4 bytes to the map;
 	{
 		if (position_on_the_map == MEM_SIZE)
@@ -192,10 +192,10 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process, int process_id)
 	// each process has the color of the parent;
 
 		// for testing;
-	// map->stack[proc->process_PC] = 7;
-	// map->stack_color[proc->process_PC] = 5;
+	map->stack[proc->process_PC] = 7;
+	map->stack_color[proc->process_PC] = 5;
 
 
 
-	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }
