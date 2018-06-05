@@ -22,6 +22,10 @@ void			cw_perror_exit(char *message, int error_number);
 void			cw_init(void);
 void			cw_free(void);
 
+int				cw_get_dec_from_the_point(unsigned char *str,
+								int quantity, int position);
+int				cw_hex_to_dec(unsigned char *buf, int i);
+
 /*
 ** End
 */
@@ -32,7 +36,6 @@ void			cw_free(void);
 
 int				cw_get_command(t_command *cmd, unsigned int /* * */*i,
 				unsigned char *map);
-int				cw_hex_to_dec(unsigned char *buf, int i);
 void			cw_lseek_cur_skip(int fd, long size);
 void			cw_check_magic(t_champ *champ);
 void			cw_get_prog_name(t_champ *champ);

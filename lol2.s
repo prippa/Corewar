@@ -1,4 +1,4 @@
 .name		"test1"
 .comment	"simple fork"
 
-live %-1
+ld 0, r16
