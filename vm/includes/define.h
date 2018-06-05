@@ -69,6 +69,7 @@ typedef enum	e_error_numbers
 
 # define NEWLINE_QUANTITY 63
 # define SPACES_BYTES 2
+#define ALIVE 1
 
 
 /*
