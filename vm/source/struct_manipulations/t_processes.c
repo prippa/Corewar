@@ -82,7 +82,7 @@ void		t_processe_add(t_processes **proc_start,
 	new_obj->carry = 0;
 	new_obj->color = 0;
 	new_obj->process_PC = 0;
-	ft_bzero(new_obj->registers, REG_NUMBER);
+	ft_bzero(new_obj->registers, sizeof(int) * REG_NUMBER);
 	new_obj->next = *proc_start;
 	new_obj->prev = NULL;
 	if (*proc_start)
