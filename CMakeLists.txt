@@ -128,6 +128,7 @@ add_executable(Corewar
         vm/source/functions/cw_ld.c
         vm/source/functions/cw_sti.c
         vm/source/functions/cw_sub.c
+        vm/source/functions/cw_live.c
         vm/source/parser/cw_get_basic_data.c
         vm/source/parser/cw_helpers.c
         vm/source/parser/cw_parse_args.c
@@ -273,5 +274,6 @@ include_directories(${CMAKE_HOME_DIRECTORY}/vm/includes)
 target_link_libraries(Corewar ${CMAKE_SOURCE_DIR}/libft/libft.a)
 target_link_libraries(asm ${CMAKE_SOURCE_DIR}/libft/libft.a)
 
+#TODO remaster CMAKE and check the makefile;
 
 
