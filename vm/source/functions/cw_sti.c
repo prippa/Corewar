@@ -6,12 +6,12 @@
 /*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 09:34:31 by otimofie          #+#    #+#             */
-/*   Updated: 2018/06/05 13:16:47 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/06/05 13:34:08 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
+// TODO delete all comments
 char	*cw_get_string_for_conversion(int nbr)
 {
 	int i;
@@ -144,7 +144,7 @@ void	cw_sti(t_command *cmd, t_stack *map, int process_id)
 
 	position_on_the_map = 0;
 
-	cw_write_bytes_to_buf(buf, proc->registers[cmd->arg2.av - 1]);
+	cw_write_bytes_to_buf(buf, proc->registers[cmd->arg1.av - 1]);
 
 	// ft_printf("2 -> %d\n", cmd->arg2.av);
 	// ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
