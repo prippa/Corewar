@@ -131,7 +131,7 @@ t_processes	*cw_process_find(int process_id, t_processes *list)
 	return (NULL);
 }
 
-void	cw_sti(t_command *cmd, t_stack *map, t_processes *process, int process_id)
+void	cw_sti(t_command *cmd, t_stack *map, int process_id)
 {
 	unsigned char buf[4];
 	int i;
@@ -139,7 +139,7 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process, int process_id)
 	t_processes *proc;
 	// int	arguments[3];
 	//process;
-	proc = cw_process_find(process_id, process);
+	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
 
 	position_on_the_map = 0;
 	cw_write_bytes_to_buf(buf, proc->registers[0]);
@@ -197,5 +197,5 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process, int process_id)
 
 
 
-	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }
