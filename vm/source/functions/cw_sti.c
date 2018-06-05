@@ -68,18 +68,29 @@ int		cw_get_dec_from_the_point(unsigned char *str, int quantity, int position)
 	// 	ft_printf("d->%d\n", str[k]);
 	// 	k++;
 	// }
-	
+	unsigned char buf [4];
 
-	while (i < quantity)
+	while (i < 4)
 	{
 		// ft_printf("d->%d\n", str[j] - '0');
 		// ft_printf("c->%c\n", str[j]);
+		if (str[j] == 48)
+			str[j] = 0;
+			
 		
-		res += (str[j] - '0');
+		buf[i] = str[j];
 		i++;
 		j++;
 	}
-	ft_printf("res --> %d\n", res);
+	i = 0;
+
+	while (i < 4)
+	{
+		ft_printf("%.u", buf[i]);
+		i++;
+	}
+	ft_printf("\n");
+	// ft_printf("res --> %d\n", res);
 	return (res);
 
 }
@@ -91,7 +102,7 @@ int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -
 	else if (cmd->codage == 116) // o.k
 	{
 		ft_printf("IND -> %d\n", cmd->arg2.av % IDX_MOD);
-		return (process->process_PC + (cw_get_dec_from_the_point(map->stack, 4, 74 % IDX_MOD) + process->registers[cmd->arg3.av - 1]) % IDX_MOD);
+		return (process->process_PC + (cw_get_dec_from_the_point(map->stack, 4,cmd->arg2.av % IDX_MOD) + process->registers[cmd->arg3.av - 1]) % IDX_MOD);
 	}
 	else if (cmd->codage == 84) // o.k.
 	{
@@ -186,5 +197,5 @@ void	cw_sti(t_command *cmd, t_stack *map, t_processes *process, int process_id)
 
 
 
-	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }
