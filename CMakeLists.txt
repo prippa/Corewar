@@ -130,7 +130,7 @@ add_executable(Corewar
         vm/source/functions/cw_sub.c
         vm/source/functions/cw_live.c
         vm/source/parser/cw_get_basic_data.c
-        vm/source/parser/cw_helpers.c
+        vm/source/cw_helpers.c
         vm/source/parser/cw_parse_args.c
         vm/source/parser/cw_parse_flags.c
         vm/source/parser/cw_parser.c
