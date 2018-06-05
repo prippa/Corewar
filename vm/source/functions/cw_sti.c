@@ -59,54 +59,6 @@ void	cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 	free(check);
 }
 
-int		cw_get_dec_from_the_point(unsigned char *str, int quantity, int position)
-{
-	int res;
-	int i;
-	int j;
-
-	res = 0;
-	i = 0;
-	j = position;
-
-	// ft_printf("quantity -> %d\n", quantity);
-	// ft_printf("position -> %d\n", position);
-
-	// ft_printf("mod -> %d\n", (0 + (16777216 - 1) % IDX_MOD) % IDX_MOD);
-
-	// int k = 0;
-	// while (k < 4096)
-	// {
-	// 	ft_printf("d->%d\n", str[k]);
-	// 	k++;
-	// }
-	unsigned char buf [4];
-
-	while (i < 4)
-	{
-		// ft_printf("d->%d\n", str[j] - '0');
-		// ft_printf("c->%c\n", str[j]);
-		if (str[j] == 48)
-			buf[i] = 0;
-		else
-			buf[i] = str[j];
-		i++;
-		j++;
-	}
-	// i = 0;
-
-	// while (i < 4)
-	// {
-	// 	ft_printf("%.u", buf[i]);
-	// 	i++;
-	// }
-	// ft_printf("\n");
-	res = cw_hex_to_dec(buf,4);
-	// ft_printf("res --> %d\n", res);
-	return (res);
-
-}
-
 int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -1 for registers;
 {
 	if (cmd->codage == 100) // o.k
