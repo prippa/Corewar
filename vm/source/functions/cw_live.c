@@ -16,11 +16,10 @@
 //1. Засчитывает, что процесс (который выполняет данную команду) жив.
 //2. Засчитывает, что жив номер (если этот номер совпадает с номером игрока, то засчитвает, что этот игрок жив), который заходит как аргумент (T_DIR).
 
-void			cw_live(t_command *cmd, t_stack *map, unsigned int process_id)
+void			cw_live(t_command *cmd, t_stack *map, unsigned int process_id) // TODO think over globak champ;
 {
     t_processes *proc;
-    // int	arguments[3];
-    //process;
+
     proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
 
 
