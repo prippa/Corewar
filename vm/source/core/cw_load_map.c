@@ -6,12 +6,12 @@
 /*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 20:42:26 by otimofie          #+#    #+#             */
-/*   Updated: 2018/05/30 20:42:27 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/06/05 13:58:29 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
+// TODO init id of the process map to zero;
 static void	cw_fill_map_with_bots(t_stack *stack, t_processes *process)
 {
 	int		i;

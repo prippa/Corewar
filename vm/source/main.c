@@ -46,6 +46,6 @@ int		main(int argc, char **argv)
 	cw_game_loop();
 	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 	cw_free();
-	system("leaks -q corewar");
+//	system("leaks -q corewar");
 	return (0);
 }
