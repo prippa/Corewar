@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "corewar.h"
-
+// TODO delete all comments
 // static t_processes	*cw_process_find(int process_id, t_processes *list)
 // {
 // 	while (list)
