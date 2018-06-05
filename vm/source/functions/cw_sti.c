@@ -46,7 +46,7 @@ void	cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 	{
 		if (i == 0)
 		{
-			k = 7 ;
+			k = 7;
 			buf[i] = ft_bin_to_int(check, k);
 		}
 		else if (i >= 0)
@@ -56,7 +56,7 @@ void	cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 		}
 		i++;
 	}
-	free (check);
+	free(check);
 }
 
 int		cw_get_dec_from_the_point(unsigned char *str, int quantity, int position)
@@ -132,7 +132,7 @@ int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -
 	return (0);
 }
 
-void	cw_sti(t_command *cmd, t_stack *map, int process_id)
+void	cw_sti(t_command *cmd, t_stack *map, unsigned int process_id)
 {
 	unsigned char buf[4];
 	int i;
