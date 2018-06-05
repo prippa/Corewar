@@ -4,6 +4,20 @@
     - aff;
     - zjmp;
 
-2. Think over:
+2. Init all registers to 0 whole process creation
+
+3. Think over:
     - erase the processes on a specific event (cycle_to_die);
     - func that returns the waiting for the functions;
+    - commands validation;
+    - dump (view the map on the stop);
+    - N player number;
+    - Nbr cycle;
+    - perror exit;
+    - Move the PC for all processes simultaneously
+    - Color changes commands;
+    - Circle the PC for all of the processes;
+    - Cycles to wait (intermidiary iterator);
+    - color print func (add according to the process parent) [5 - 8];
+    - how to slow down the execution in the terminal;
+    ​
