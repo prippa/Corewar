@@ -54,7 +54,7 @@ static void	cw_init_map(unsigned char *stack, int *stack_color,
 	}
 }
 
-static void	cw_init_processes(t_champ *champ)
+static void	cw_load_processes(t_champ *champ)
 {
 	int			color;
 	int			process_pc;
@@ -77,7 +77,7 @@ static void	cw_init_processes(t_champ *champ)
 
 void		cw_load_map(void)
 {
-	cw_init_processes(g_cw->pd.champs);
+	cw_load_processes(g_cw->pd.champs);
 	cw_init_map(g_cw->map.stack,
 	g_cw->map.stack_color, g_cw->map.stack_process_id);
 	cw_fill_map_with_bots(&g_cw->map, g_cw->proc_start);

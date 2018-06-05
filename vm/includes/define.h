@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 18:48:39 by prippa            #+#    #+#             */
-/*   Updated: 2018/04/26 18:48:41 by prippa           ###   ########.fr       */
+/*   Updated: 2018/06/05 16:25:37 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef enum	e_error_numbers
 
 # define NEWLINE_QUANTITY 63
 # define SPACES_BYTES 2
+#define ALIVE 1
+#define DEAD 0
 
 
 /*
