@@ -41,7 +41,7 @@ void			cw_sub(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 
 	proc->carry = (proc->registers[cmd->arg3.av - 1] != 0) ? 1 : 0;
 	proc->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2); // codage + command bytes;
-	CIRCLE_OF_LIFE(proc->process_PC);
+	BIBA(proc->process_PC);
 
 
 	 // for testing;

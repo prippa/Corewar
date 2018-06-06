@@ -59,7 +59,7 @@ void	cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 	free(check);
 }
 
-int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -1 for registers;
+int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -1 for registers; // TODO use BOBA for IDX_MOD
 {
 	if (cmd->codage == 100) // o.k
 		return (((process->process_PC + cmd->arg2.av + process->registers[cmd->arg3.av - 1]) % IDX_MOD));
@@ -106,7 +106,7 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	// ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 
 	proc->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2); // o.k.
-    CIRCLE_OF_LIFE(proc->process_PC);
+    BIBA(proc->process_PC);
 
 	// (cmd->arg2.tp == 2) ? proc->process_PC += 1 : 0;
 	// (cmd->arg2.tp == 1) ? proc->process_PC += 2 : 0;
