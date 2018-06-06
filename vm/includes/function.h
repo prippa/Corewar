@@ -86,16 +86,16 @@ void			cw_display_map(unsigned char *map, int *color);
 ** functions
 */
 
-void			cw_binary_and(t_command *cmd, t_stack *map, unsigned int process_id);
-void			cw_binary_or(t_command *cmd, t_stack *map, unsigned int process_id);
-void			cw_binary_xor(t_command *cmd, t_stack *map, unsigned int process_id);
+void			cw_binary_and(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/);
+void			cw_binary_or(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/);
+void			cw_binary_xor(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/);
 
-void			cw_add(t_command *cmd, t_stack *map, unsigned int process_id);
-void			cw_sub(t_command *cmd, t_stack *map, unsigned int process_id);
+void			cw_add(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/);
+void			cw_sub(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/);
 
-void			cw_sti(t_command *cmd, t_stack *map, unsigned int process_id);
-void			cw_live(t_command *cmd, t_stack *map, unsigned int process_id);
-void			cw_ld(t_command *cmd, t_stack *map, unsigned int process_id);
+void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/);
+void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/);
+void			cw_ld(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/);
 
 /*
 ** End

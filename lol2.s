@@ -1,4 +1,4 @@
 .name		"test1"
 .comment	"simple fork"
 
-fork %1
+sti r1,r1,r1

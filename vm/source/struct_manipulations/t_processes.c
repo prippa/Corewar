@@ -69,7 +69,7 @@ int			t_processe_free_by_id(t_processes **proc_start,
 		return (0);
 	return (1);
 }
-
+// TODO change init stuff
 void		t_processe_add(t_processes **proc_start,
 							t_processes **proc_end)
 {

@@ -76,7 +76,7 @@ typedef struct			s_stack
 {
 	unsigned char		stack[MEM_SIZE];			// whole stack;
 	int					stack_color[MEM_SIZE];		// colors manipulation;
-	unsigned int		stack_process_id[MEM_SIZE];	// maintain process id;
+//	unsigned int		stack_process_id[MEM_SIZE];	// maintain process id;
 }						t_stack;					
 
 /*
@@ -90,7 +90,7 @@ typedef struct			s_corewar
 	t_processes			*proc_start;
 	t_processes			*proc_end;
 	int					loop;
-	unsigned int		i;							// map iterator;
+	unsigned int		i;							// map iterator; // TODO why we need this feature;
 	unsigned int		proc_counter;				// size of active processes
 	unsigned int		id_counter;					// counter of id in processes
 }						t_corewar;
