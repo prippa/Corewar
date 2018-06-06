@@ -1,9 +1,9 @@
 1. Finish with:
     + live (if the process has not been activated -> kil the process);
     - fork (clone the process / processes);
-    - zjmp;
-    - aff;
-    - st;
+    - zjmp; // today
+    - aff; // today
+    - st; // today
 
 2. Init all registers to 0 whole process creation;
 
