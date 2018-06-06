@@ -15,6 +15,7 @@
 // Выполняет 2 операции:
 //1. Засчитывает, что процесс (который выполняет данную команду) жив.
 //2. Засчитывает, что жив номер (если этот номер совпадает с номером игрока, то засчитвает, что этот игрок жив), который заходит как аргумент (T_DIR).
+// we take the next live process in the linked list of processes;
 
 void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/) // TODO think over global champ;
 {
