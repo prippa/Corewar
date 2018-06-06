@@ -34,6 +34,8 @@ int		cw_get_dec_from_the_point(unsigned char *str,
 	// 	ft_printf("d->%d\n", str[k]);
 	// 	k++;
 	// }
+	CIRCLE_OF_LIFE(j);
+
 	unsigned char buf [4];
 
 	while (i < 4)
