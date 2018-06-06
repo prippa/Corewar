@@ -21,7 +21,7 @@ int		cw_get_dec_from_the_point(unsigned char *str,
 
 	res = 0;
 	i = 0;
-	j = position;
+	j = MEM_CORRECTION(position);
 	
 	// ft_printf("quantity -> %d\n", quantity);
 	// ft_printf("position -> %d\n", position);
@@ -34,7 +34,6 @@ int		cw_get_dec_from_the_point(unsigned char *str,
 	// 	ft_printf("d->%d\n", str[k]);
 	// 	k++;
 	// }
-	MEM_CORRECTION(j);
 
 	unsigned char buf [4];
 
