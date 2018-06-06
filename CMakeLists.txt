@@ -129,6 +129,7 @@ add_executable(Corewar
         vm/source/functions/cw_zjmp.c
         vm/source/functions/cw_lld.c
         vm/source/functions/cw_ldi.c
+        vm/source/functions/cw_lldi.c
         vm/source/functions/cw_sti.c
         vm/source/functions/cw_sub.c
         vm/source/functions/cw_live.c

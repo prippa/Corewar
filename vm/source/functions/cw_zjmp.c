@@ -17,9 +17,9 @@
 void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
     if (proc->carry == 1)
-        proc->process_PC += MEM_CORRECTION(IDX_CORRECTION(cmd->arg1.av));
+        proc->process_PC = MEM_CORRECTION(proc->process_PC + IDX_CORRECTION(cmd->arg1.av));
     else
-        proc->process_PC += MEM_CORRECTION(cmd->arg1.tp + 1);
+        proc->process_PC = MEM_CORRECTION(proc->process_PC + IDX_CORRECTION(cmd->arg1.av));
 
 //
 //    map->stack[proc->process_PC] = 7;
