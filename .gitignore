@@ -64,6 +64,6 @@ cmake-build-debug/
 
 *json
 !CMakeLists.txt
-
+.idea
 
 
