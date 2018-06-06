@@ -27,3 +27,6 @@
     - color print func (add according to the process parent) [5 - 8];
     - how to slow down the execution in the terminal;
     ​- check regarding 0 - 16 // some weird stuff;
+    - process live / dead function;
+    - validation: has to be a valid champ;
+    - BIBA = MEM_SIZE;

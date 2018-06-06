@@ -28,7 +28,7 @@
  	return (NULL);
  }
 
-void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/) // TODO think over global champ;
+void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
     t_champ *champ;
 //
@@ -37,6 +37,8 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
     champ = cw_champ_find(cmd->arg1.av, g_cw->pd.champs);
     champ->lives_number += ALIVE;
+
+    // todo champ->last_live = ? what
 
 
     ft_printf("champ_number -> %d\n", champ->champ_number);
