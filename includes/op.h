@@ -13,6 +13,7 @@
 #ifndef OP_H
 # define OP_H
 
+
 # define IND_SIZE				2
 # define REG_SIZE				4
 # define DIR_SIZE				REG_SIZE
@@ -62,5 +63,7 @@ typedef struct					s_header
 	unsigned int				prog_size;
 	char						comment[COMMENT_LENGTH + 1];
 }								t_header;
+
+# define CIRCLE_OF_LIFE(x)		(x % MEM_SIZE)
 
 #endif

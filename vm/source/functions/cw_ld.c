@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cw_ld.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/06 12:25:29 by prippa            #+#    #+#             */
+/*   Updated: 2018/06/06 12:25:31 by prippa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "corewar.h"
 
 void			cw_ld(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
@@ -11,16 +23,16 @@ void			cw_ld(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pro
 	{
 		cmd->arg1.av = cmd->arg1.av % IDX_MOD;
 		proc->registers[cmd->arg2.av - 1] =
-		cw_get_dec_from_the_point(map->stack,
-		4,
-		(proc->process_PC + cmd->arg1.av) % MEM_SIZE); // TODO check out -> process_PC;
+		cw_get_dec_from_the_point(map->stack, 4,
+		proc->process_PC + cmd->arg1.av);
 		proc->process_PC += cmd->arg1.tp + cmd->arg2.tp + 2;
+		CIRCLE_OF_LIFE(proc->process_PC);
 	}
 	proc->carry = (proc->registers[cmd->arg2.av - 1] == 0 ? 1 : 0); // carry
-	 map->stack[proc->process_PC] = 7;
-	 map->stack_color[proc->process_PC] = 5;
+	//  map->stack[proc->process_PC] = 7;
+	//  map->stack_color[proc->process_PC] = 5;
 
-	 ft_printf("process_carry -> %d\n\n", proc->carry);
+	//  ft_printf("process_carry -> %d\n\n", proc->carry);
 
-	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	//  cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }
