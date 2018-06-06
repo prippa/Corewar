@@ -16,4 +16,8 @@ void			cw_ldi(t_command *cmd, t_stack *map, t_processes *proc)
 	);
 	proc->process_PC = BIBA(
 		proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2);
+		map->stack[proc->process_PC] = 7;
+		map->stack_color[proc->process_PC] = 5;
+		ft_printf("process_carry -> %d\n\n", proc->carry);
+		cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }
