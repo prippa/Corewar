@@ -6,7 +6,7 @@
 /*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 16:17:53 by otimofie          #+#    #+#             */
-/*   Updated: 2018/06/06 16:52:18 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/06/06 17:19:38 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
     if (proc->carry == 1)
         proc->process_PC = MEM_CORRECTION(proc->process_PC + IDX_CORRECTION(cmd->arg1.av));
     else
-        proc->process_PC = MEM_CORRECTION(proc->process_PC + IDX_CORRECTION(cmd->arg1.av));
+        proc->process_PC = MEM_CORRECTION(proc->process_PC + cmd->arg1.av);
 
 //
 //    map->stack[proc->process_PC] = 7;
