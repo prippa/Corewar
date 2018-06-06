@@ -134,7 +134,7 @@ int			cw_get_command(t_command *cmd, unsigned int *i,
 	{
 		tmp_arg(res, bt, i, map); // get the data from the map for conversion;
 		cmd->arg1.av = cw_hex_to_dec(res, bt); // res - buf, bt == byte;
-		cmd->arg1.tp = T_DIR;
+		cmd->arg1.tp = (cmd->cmd == 1) ? 4 : T_DIR;
 		cmd->arg2.tp = 0;
 		cmd->arg3.tp = 0;
 		return (0);

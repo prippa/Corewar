@@ -24,6 +24,8 @@ typedef struct			s_champ
 	int					fd;								// nope;
 	unsigned char		code[CHAMP_MAX_SIZE + 1];		// yeap;
 	int					champ_number;
+	unsigned int        lives_number;
+	unsigned int        last_live;                         // todo implement in the cycle;
 	struct s_champ		*next;							// yeap;
 }						t_champ;
 

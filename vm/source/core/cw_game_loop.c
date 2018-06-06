@@ -56,8 +56,10 @@ void		cw_game_loop(void)
 //     cw_binary_or(&cmd, &g_cw->map,  g_cw->proc_start); // o.k.
 //     cw_binary_xor(&cmd, &g_cw->map, g_cw->proc_start); // o.k.
 //     cw_sti(&cmd, &g_cw->map, g_cw->proc_start); // o.k.
-		cw_ld(&cmd, &g_cw->map, g_cw->proc_start);
+//		cw_ld(&cmd, &g_cw->map, g_cw->proc_start); // o.k.
+    cw_live(&cmd, &g_cw->map, g_cw->proc_start);
 
-		tmp++;
+
+    tmp++;
 	// }
 }
