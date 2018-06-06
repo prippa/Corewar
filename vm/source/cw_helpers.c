@@ -22,7 +22,7 @@ int		cw_get_dec_from_the_point(unsigned char *str,
 	res = 0;
 	i = 0;
 	j = position;
-
+	
 	// ft_printf("quantity -> %d\n", quantity);
 	// ft_printf("position -> %d\n", position);
 
