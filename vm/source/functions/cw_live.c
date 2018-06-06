@@ -42,8 +42,7 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
     ft_printf("champ_number -> %d\n", champ->champ_number);
     ft_printf("champ_number -> %u\n", champ->lives_number);
 
-    proc->process_PC += (cmd->arg1.tp + 1);
-    BIBA(proc->process_PC);
+    proc->process_PC = BIBA(proc->process_PC + cmd->arg1.tp + 1);
 
 //	 for testing;
 	 map->stack[proc->process_PC] = 7;

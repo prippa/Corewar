@@ -39,9 +39,9 @@ void			cw_add(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 //	ft_printf("proc->registers[cmd->arg3.av - 1]-> %d\n", proc->registers[cmd->arg3.av - 1]);
 
 	proc->carry = (proc->registers[cmd->arg3.av - 1] != 0) ? 1 : 0;
-	proc->process_PC += (cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2); // codage + command bytes;
 
-    BIBA(proc->process_PC);
+   proc->process_PC = BIBA(
+	   proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2);
 
 
 	// for testing;

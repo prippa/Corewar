@@ -18,12 +18,12 @@ void			cw_lld(t_command *cmd, t_stack *map, t_processes *proc)
 		proc->registers[cmd->arg2.av - 1] = cmd->arg1.av;
 	else
 		proc->registers[cmd->arg2.av - 1] = cw_get_dec_from_the_point(
-		map->stack,
-		4,
-		proc->process_PC + cmd->arg1.av);
+			map->stack,
+			4,
+			proc->process_PC + cmd->arg1.av
+		);
 	proc->carry = (proc->registers[cmd->arg2.av - 1] == 0 ? 1 : 0); // carry
-	proc->process_PC += cmd->arg1.tp + cmd->arg2.tp + 2;
-	BIBA(proc->process_PC);
+	proc->process_PC = BIBA(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + 2);
 		// map->stack[proc->process_PC] = 7;
 		// map->stack_color[proc->process_PC] = 5;
 		// ft_printf("process_carry -> %d\n\n", proc->carry);
