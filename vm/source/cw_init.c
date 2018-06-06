@@ -14,6 +14,26 @@
 
 struct s_corewar *g_cw;
 
+static void	cw_cycles_price_init(void)
+{
+	g_cw->cycles_price[LIVE - 1] = 10;
+	g_cw->cycles_price[LD - 1] = 5;
+	g_cw->cycles_price[ST - 1] = 5;
+	g_cw->cycles_price[ADD - 1] = 10;
+	g_cw->cycles_price[SUB - 1] = 10;
+	g_cw->cycles_price[AND - 1] = 6;
+	g_cw->cycles_price[OR - 1] = 6;
+	g_cw->cycles_price[XOR - 1] = 6;
+	g_cw->cycles_price[ZJMP - 1] = 20;
+	g_cw->cycles_price[LDI - 1] = 25;
+	g_cw->cycles_price[STI - 1] = 25;
+	g_cw->cycles_price[FORK - 1] = 800;
+	g_cw->cycles_price[LLD - 1] = 10;
+	g_cw->cycles_price[LLDI - 1] = 50;
+	g_cw->cycles_price[LFORK - 1] = 1000;
+	g_cw->cycles_price[AFF - 1] = 2;
+}
+
 static void	cw_functions_init(void)
 {
 	g_cw->op[LIVE - 1] = cw_live;
@@ -49,6 +69,7 @@ void		cw_init(void)
 		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
 	cw_parse_data_init(&g_cw->pd);
 	cw_functions_init();
+	cw_cycles_price_init();
 	g_cw->proc_start = NULL;
 	g_cw->proc_end = NULL;
 	g_cw->loop = 1;

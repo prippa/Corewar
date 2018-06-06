@@ -92,6 +92,7 @@ typedef struct			s_corewar
 	t_processes			*proc_start;
 	t_processes			*proc_end;
 	void				((*op[CW_OP_SIZE]))(t_command*, t_stack*, t_processes*);
+	short				cycles_price[CW_OP_SIZE];
 	int					loop;
 	unsigned int		i;							// map iterator; // TODO why we need this feature;
 	unsigned int		proc_counter;				// size of active processes
