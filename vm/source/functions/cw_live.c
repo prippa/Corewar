@@ -6,11 +6,13 @@
 /*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 19:11:31 by otimofie          #+#    #+#             */
-/*   Updated: 2018/06/05 19:36:57 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/06/06 16:49:09 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+//todo delete all comments;
 
 // Выполняет 2 операции:
 //1. Засчитывает, что процесс (который выполняет данную команду) жив.
@@ -47,10 +49,10 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
     proc->process_PC = MEM_CORRECTION(proc->process_PC + cmd->arg1.tp + 1);
 
 //	 for testing;
-	 map->stack[proc->process_PC] = 7;
-	 map->stack_color[proc->process_PC] = 5;
-
-	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+//	 map->stack[proc->process_PC] = 7;
+//	 map->stack_color[proc->process_PC] = 5;
+//
+//	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
 
 
