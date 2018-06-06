@@ -95,9 +95,11 @@ void			cw_sub(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 
 void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/);
 void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/);
+
 void			cw_ld(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/);
 void			cw_lld(t_command *cmd, t_stack *map, t_processes *proc);
 void			cw_ldi(t_command *cmd, t_stack *map, t_processes *proc);
+void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc);
 void 			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc);
 
 /*

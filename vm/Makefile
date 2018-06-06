@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: prippa <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: otimofie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/13 14:20:39 by prippa            #+#    #+#              #
-#    Updated: 2018/01/15 14:29:46 by prippa           ###   ########.fr        #
+#    Updated: 2018/06/06 17:10:34 by otimofie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,7 @@ C_CORE		=	cw_get_command.c cw_load_map.c cw_game_loop.c\
 
 C_FUNC		=	cw_binary_and.c cw_binary_or.c cw_binary_xor.c\
 				cw_add.c cw_sub.c cw_sti.c cw_ld.c cw_live.c\
-				cw_lld.c cw_ldi.c cw_zjmp.c
-
+				cw_lld.c cw_ldi.c cw_zjmp.c cw_lldi.c
 
 OBJ_VM 		= 	$(C_VM:.c=.o)
 OBJ_PARSER	= 	$(C_PARSER:.c=.o)

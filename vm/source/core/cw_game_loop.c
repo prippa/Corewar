@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cw_game_loop.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 16:28:33 by prippa            #+#    #+#             */
-/*   Updated: 2018/06/06 16:49:43 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/05/31 16:28:35 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,8 @@ void		cw_game_loop(void)
 //     cw_sti(&cmd, &g_cw->map, g_cw->proc_start); // o.k.
 		// cw_ld(&cmd, &g_cw->map, g_cw->proc_start);
 		// cw_lld(&cmd, &g_cw->map, g_cw->proc_start);
-//		cw_ldi(&cmd, &g_cw->map, g_cw->proc_start); o.k.
-//		cw_live(&cmd, &g_cw->map, g_cw->proc_start);
-        cw_zjmp(&cmd, &g_cw->map, g_cw->proc_start);
-
+		// cw_ldi(&cmd, &g_cw->map, g_cw->proc_start);
+		cw_lldi(&cmd, &g_cw->map, g_cw->proc_start);
 
 
     tmp++;

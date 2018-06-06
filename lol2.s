@@ -1,4 +1,4 @@
 .name		"test1"
 .comment	"simple fork"
 
-zjmp %1
+ldi r1, %1, r1
