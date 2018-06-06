@@ -6,7 +6,7 @@
 /*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 13:25:50 by prippa            #+#    #+#             */
-/*   Updated: 2018/06/05 16:25:37 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/06/05 19:30:23 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void		t_processe_add(t_processes **proc_start,
 	new_obj->process_PC = 0;
 	new_obj->live_status = ALIVE;
 	new_obj->has_been_activated = DEAD;
-	ft_bzero(new_obj->registers, sizeof(int) * REG_NUMBER); // CONFLICT
+	ft_bzero(new_obj->registers, sizeof(int) * REG_NUMBER);
 	new_obj->next = *proc_start;
 	new_obj->prev = NULL;
 	if (*proc_start)

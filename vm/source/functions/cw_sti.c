@@ -6,7 +6,7 @@
 /*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 09:34:31 by otimofie          #+#    #+#             */
-/*   Updated: 2018/06/05 16:17:44 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/06/05 17:06:45 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,9 +146,9 @@ void	cw_sti(t_command *cmd, t_stack *map, unsigned int process_id)
 
 	// each process has the color of the parent;
 
-		// for testing;
-	 map->stack[proc->process_PC] = 7;
-	 map->stack_color[proc->process_PC] = 5;
+	// for testing;
+	// map->stack[proc->process_PC] = 7;
+	// map->stack_color[proc->process_PC] = 5;
 
 	// TODO read(1, 0, 1);
 
