@@ -1,9 +1,10 @@
 1. Finish with:
     + live (if the process has not been activated -> kil the process);
     - fork (clone the process / processes);
-    - zjmp; // today
+    + zjmp;
     - aff; // today
     - st; // today
+    - cycles func; // today
 
 2. Init all registers to 0 whole process creation;
 
@@ -29,4 +30,3 @@
     ​- check regarding 0 - 16 // some weird stuff;
     - process live / dead function;
     - validation: has to be a valid champ;
-    - MEM_CORRECTION = MEM_SIZE;
