@@ -60,7 +60,8 @@ void		cw_game_loop(void)
 		// cw_lld(&cmd, &g_cw->map, g_cw->proc_start);
 		// cw_ldi(&cmd, &g_cw->map, g_cw->proc_start);
 //		cw_lldi(&cmd, &g_cw->map, g_cw->proc_start);
-		cw_zjmp(&cmd, &g_cw->map, g_cw->proc_start);
+		// cw_zjmp(&cmd, &g_cw->map, g_cw->proc_start);
+		cw_aff(&cmd, &g_cw->map, g_cw->proc_start);
 
 
     tmp++;
