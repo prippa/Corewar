@@ -1,5 +1,5 @@
 1. Finish with:
-    - live (if the process has not been activated -> kil the process);
+    + live (if the process has not been activated -> kil the process);
     - fork (clone the process / processes);
     - zjmp;
     - aff;
