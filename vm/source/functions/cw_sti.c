@@ -147,10 +147,10 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	// each process has the color of the parent;
 
 //	 for testing;
-	 map->stack[proc->process_PC] = 7;
-	 map->stack_color[proc->process_PC] = 5;
+//	 map->stack[proc->process_PC] = 7;
+//	 map->stack_color[proc->process_PC] = 5;
 
 	// TODO read(1, 0, 1);
 
-	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+//	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }
