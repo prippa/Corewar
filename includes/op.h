@@ -64,7 +64,7 @@ typedef struct					s_header
 	char						comment[COMMENT_LENGTH + 1];
 }								t_header;
 
-# define BIBA(x)				(x % MEM_SIZE)
-# define BOBA(x)				(x % IDX_MOD)
+# define MEM_CORRECTION(x)		(x % MEM_SIZE)
+# define IDX_CORRECTION(x)		(x % IDX_MOD)
 
 #endif

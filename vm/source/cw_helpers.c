@@ -34,7 +34,7 @@ int		cw_get_dec_from_the_point(unsigned char *str,
 	// 	ft_printf("d->%d\n", str[k]);
 	// 	k++;
 	// }
-	BIBA(j);
+	MEM_CORRECTION(j);
 
 	unsigned char buf [4];
 

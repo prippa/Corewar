@@ -29,4 +29,4 @@
     ​- check regarding 0 - 16 // some weird stuff;
     - process live / dead function;
     - validation: has to be a valid champ;
-    - BIBA = MEM_SIZE;
+    - MEM_CORRECTION = MEM_SIZE;
