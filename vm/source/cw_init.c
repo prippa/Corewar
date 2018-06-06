@@ -22,7 +22,7 @@ static void	cw_parse_data_init(t_parse_data *pd)
 	pd->nbr_cycles = 0;
 	ft_bzero(pd->flags, CW_F_SIZE);
 }
-
+// TODO change init stuff, where else it may occur;
 void		cw_init(void)
 {
 	if (!(g_cw = (t_corewar *)malloc(sizeof(t_corewar))))

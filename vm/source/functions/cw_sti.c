@@ -84,15 +84,15 @@ int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -
 	return (0);
 }
 
-void	cw_sti(t_command *cmd, t_stack *map, unsigned int process_id)
+void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
 	unsigned char buf[4];
 	int i;
 	int	position_on_the_map;
-	t_processes *proc;
+//	t_processes *proc;
 	// int	arguments[3];
 	//process;
-	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
+//	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
 
 	position_on_the_map = 0;
 
@@ -138,19 +138,19 @@ void	cw_sti(t_command *cmd, t_stack *map, unsigned int process_id)
 			position_on_the_map = 0;
 		
 		map->stack[position_on_the_map] = buf[i++];
-		map->stack_color[position_on_the_map] = proc->color;
-		map->stack_process_id[position_on_the_map++] = proc->id;
+		map->stack_color[position_on_the_map++] = proc->color;
+//		map->stack_process_id[position_on_the_map++] = proc->id;
 	}
 
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	// each process has the color of the parent;
 
-	// for testing;
-	// map->stack[proc->process_PC] = 7;
-	// map->stack_color[proc->process_PC] = 5;
+//	 for testing;
+//	 map->stack[proc->process_PC] = 7;
+//	 map->stack_color[proc->process_PC] = 5;
 
 	// TODO read(1, 0, 1);
 
-	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+//	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }

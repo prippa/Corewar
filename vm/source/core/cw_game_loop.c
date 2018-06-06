@@ -37,7 +37,7 @@ void		cw_game_loop(void)
 	// 		// to the next position after the cmp function;
 	// 		continue;
 	// 	}
-		cw_get_command(&cmd, &g_cw->i, g_cw->map.stack); // remoce &g_cw->i;
+		cw_get_command(&cmd, &g_cw->i, g_cw->map.stack); // TODO do not move the map with i;
 
 		ft_printf("command ------------------------ %d\n", tmp);
 		ft_printf("cmd - %u\n", cmd.cmd);
@@ -49,15 +49,15 @@ void		cw_game_loop(void)
 		ft_printf("arg3.tp - %u\n", cmd.arg3.tp);
 		ft_printf("arg3.av - %d\n", cmd.arg3.av);
 		ft_printf("-----------------------------------\n");
-		cw_ld(&cmd, &g_cw->map, g_cw->map.stack_process_id[0]);
-		// cw_add(&cmd, &g_cw->map, g_cw->map.stack_process_id[0]); // o.k.
-		// cw_sub(&cmd, &g_cw->map, g_cw->map.stack_process_id[0]); // o.k.
-		// cw_binary_and(&cmd, &g_cw->map, g_cw->map.stack_process_id[0]); // o.k
-		// cw_binary_or(&cmd, &g_cw->map,  g_cw->map.stack_process_id[0]); // o.k.
-		// cw_binary_xor(&cmd, &g_cw->map, g_cw->map.stack_process_id[0]); // o.k.
-		// cw_sti(&cmd, &g_cw->map, g_cw->map.stack_process_id[0]); // o.k.
 
-		
+//     cw_add(&cmd, &g_cw->map, g_cw->proc_start); // o.k.
+//     cw_sub(&cmd, &g_cw->map, g_cw->proc_start); // o.k.
+//     cw_binary_and(&cmd, &g_cw->map, g_cw->proc_start); // o.k
+//     cw_binary_or(&cmd, &g_cw->map,  g_cw->proc_start); // o.k.
+//     cw_binary_xor(&cmd, &g_cw->map, g_cw->proc_start); // o.k.
+//     cw_sti(&cmd, &g_cw->map, g_cw->proc_start); // o.k.
+// 		cw_ld(&cmd, &g_cw->map, g_cw->proc_start);
+
 		tmp++;
 	// }
 }

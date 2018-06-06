@@ -29,7 +29,7 @@ static void	cw_fill_map_with_bots(t_stack *stack, t_processes *process)
 		{
 			stack->stack[i] = champs->code[j];
 			stack->stack_color[i] = process->color;
-			stack->stack_process_id[i] = process->id;
+//			stack->stack_process_id[i] = process->id;
 			j++;
 			i++;
 			woohoo++;
@@ -39,8 +39,8 @@ static void	cw_fill_map_with_bots(t_stack *stack, t_processes *process)
 	}
 }
 
-static void	cw_init_map(unsigned char *stack, int *stack_color,
-						unsigned int *stack_process_id)
+static void	cw_init_map(unsigned char *stack, int *stack_color/*,
+						unsigned int *stack_process_id*/)
 {
 	unsigned int i;
 
@@ -49,7 +49,7 @@ static void	cw_init_map(unsigned char *stack, int *stack_color,
 	{
 		stack[i] = '0';
 		stack_color[i] = 0;
-		stack_process_id[i] = 0;
+//		stack_process_id[i] = 0;
 		i++;
 	}
 }
@@ -79,6 +79,6 @@ void		cw_load_map(void)
 {
 	cw_load_processes(g_cw->pd.champs);
 	cw_init_map(g_cw->map.stack,
-	g_cw->map.stack_color, g_cw->map.stack_process_id);
+	g_cw->map.stack_color/*, g_cw->map.stack_process_id*/);
 	cw_fill_map_with_bots(&g_cw->map, g_cw->proc_start);
 }
