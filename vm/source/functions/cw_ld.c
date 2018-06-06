@@ -26,7 +26,7 @@ void			cw_ld(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pro
 		cw_get_dec_from_the_point(map->stack, 4,
 		proc->process_PC + cmd->arg1.av);
 		proc->process_PC += cmd->arg1.tp + cmd->arg2.tp + 2;
-		CIRCLE_OF_LIFE(proc->process_PC);
+		BIBA(proc->process_PC);
 	}
 	proc->carry = (proc->registers[cmd->arg2.av - 1] == 0 ? 1 : 0); // carry
 	//  map->stack[proc->process_PC] = 7;
