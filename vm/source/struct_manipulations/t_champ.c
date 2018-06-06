@@ -54,6 +54,8 @@ void	t_champ_add(t_champ **champs)
 	ft_bzero(new_obj->head.comment, COMMENT_LENGTH + 1);
 	ft_bzero(new_obj->code, CHAMP_MAX_SIZE + 1);
 	new_obj->champ_number = 0;
+	new_obj->lives_number = 0;
+	new_obj->last_live = 0;
 	new_obj->next = *champs;
 	*champs = new_obj;
 }
