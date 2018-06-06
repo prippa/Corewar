@@ -15,7 +15,7 @@ void	cw_ld(t_command *cmd, t_stack *map, unsigned int process_id)
 		4,
 		proc->process_PC + cmd->arg1.av); // TODO check out -> process_PC;
 	}
-	proc->carry = (proc->registers[cmd->arg2.av - 1] == 0 ? 1 : 0);//carry
+	proc->carry = (proc->registers[cmd->arg2.av - 1] == 0 ? 1 : 0); // carry
 //	ft_printf("carry = %d\n", proc->carry);
 //	for(int i = 0; i < REG_NUMBER; i++)
 //		ft_printf("%d ", proc->registers[i]);
