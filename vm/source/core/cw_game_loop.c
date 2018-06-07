@@ -6,7 +6,7 @@
 /*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 16:28:33 by prippa            #+#    #+#             */
-/*   Updated: 2018/06/06 17:09:15 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/06/07 15:17:13 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ void		cw_game_loop(void)
 		// cw_lld(&cmd, &g_cw->map, g_cw->proc_start);
 		// cw_ldi(&cmd, &g_cw->map, g_cw->proc_start);
 //		cw_lldi(&cmd, &g_cw->map, g_cw->proc_start);
-//		cw_zjmp(&cmd, &g_cw->map, g_cw->proc_start);
+		// cw_zjmp(&cmd, &g_cw->map, g_cw->proc_start);
+		// cw_aff(&cmd, &g_cw->map, g_cw->proc_start);
+//		cw_st(&cmd, &g_cw->map, g_cw->proc_start);
 
 
     tmp++;

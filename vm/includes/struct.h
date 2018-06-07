@@ -22,7 +22,7 @@ typedef struct			s_champ
 	t_header			head; 							// nope;
 	char				file_name[FILE_NAME_MAX + 1];	// nope;
 	int					fd;								// nope;
-	unsigned char		code[CHAMP_MAX_SIZE + 1];		// yeap;
+	unsigned char		code[CHAMP_MAX_SIZE];		// yeap;
 	int					champ_number;
 	unsigned int        lives_number;
 	unsigned int        last_live;                         // todo implement in the cycle;
@@ -70,6 +70,7 @@ typedef	struct			s_processes					// fork will create a process and will change t
 	int					registers[REG_NUMBER];		// r1 -> player_name register;
 	int 				live_status;				// flag to detect the life of the process;
 	int 				has_been_activated;			// if the process has been used;
+	int					champ_number;				// Number of champ
 	struct s_processes	*next;						// pointer to the next element;
 	struct s_processes	*prev;						// pointer to the next element;
 }						t_processes;
@@ -85,14 +86,29 @@ typedef struct			s_stack
 ** End
 */
 
+/*
+** Very useful t_op struct
+*/
+
+typedef struct			s_op
+{
+	void				((*func))(t_command *, t_stack *, t_processes *);
+	short				cycles_price;
+
+}						t_op;
+
+/*
+** End
+*/
+
 typedef struct			s_corewar
 {
 	t_parse_data		pd;
 	t_stack				map;
 	t_processes			*proc_start;
 	t_processes			*proc_end;
-	void				((*op[CW_OP_SIZE]))(t_command*, t_stack*, t_processes*);
-	int					loop;
+	const t_op			*op;
+	char				loop;
 	unsigned int		i;							// map iterator; // TODO why we need this feature;
 	unsigned int		proc_counter;				// size of active processes
 	unsigned int		id_counter;					// counter of id in processes

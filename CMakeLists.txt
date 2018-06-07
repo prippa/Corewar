@@ -131,6 +131,10 @@ add_executable(Corewar
         vm/source/functions/cw_ldi.c
         vm/source/functions/cw_lldi.c
         vm/source/functions/cw_sti.c
+        vm/source/functions/cw_st.c
+        vm/source/functions/cw_fork.c
+        vm/source/functions/cw_lfork.c
+        vm/source/functions/cw_aff.c
         vm/source/functions/cw_sub.c
         vm/source/functions/cw_live.c
         vm/source/parser/cw_get_basic_data.c

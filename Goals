@@ -3,7 +3,7 @@
     - fork (clone the process / processes);
     + zjmp;
     + aff;
-    - st;
+    + st;
     - cycles func;
     - modify cmd func;
     + short cycles_price (j-- == 0 -> do somthing);
