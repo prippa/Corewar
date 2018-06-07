@@ -2,9 +2,11 @@
     + live (if the process has not been activated -> kil the process);
     - fork (clone the process / processes);
     + zjmp;
-    - aff;
+    + aff;
     - st;
     - cycles func;
+    - modify cmd func;
+    + short cycles_price (j-- == 0 -> do somthing);
 
 2. Init all registers to 0 whole process creation;
 
