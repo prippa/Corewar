@@ -23,7 +23,7 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 
     proc->process_PC = MEM_CORRECTION(
-            proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 1);
+            proc->process_PC + cmd->arg1.tp + 1);
 
     // (cmd->arg2.tp == 2) ? proc->process_PC += 1 : 0;
     // (cmd->arg2.tp == 1) ? proc->process_PC += 2 : 0;
