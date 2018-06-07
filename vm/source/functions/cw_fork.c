@@ -13,7 +13,7 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     //process;
 //	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
 
-
+    position_on_the_map = MEM_CORRECTION(proc->process_PC + IDX_CORRECTION(cmd->arg1.av));
 
     // ft_printf("2 -> %d\n", cmd->arg2.av);
     // ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
@@ -64,8 +64,8 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     // each process has the color of the parent;
 
 //	 for testing;
-    map->stack[proc->process_PC] = 7;
-    map->stack_color[proc->process_PC] = 5;
+    map->stack[position_on_the_map] = 7;
+    map->stack_color[position_on_the_map] = 5;
 
     // TODO read(1, 0, 1);
 
