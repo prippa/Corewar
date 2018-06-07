@@ -23,8 +23,11 @@ void			cw_init(void);
 void			cw_free(void);
 
 int				cw_get_dec_from_the_point(unsigned char *str,
-								int quantity, int position);
+					int quantity, int position);
 int				cw_hex_to_dec(unsigned char *buf, int i);
+void			cw_write_bytes_to_buf(unsigned char *buf, int nbr);
+void			cw_write_to_map(t_stack *map, t_processes *proc,
+					unsigned char *buf, int position_on_the_map);
 
 /*
 ** End
@@ -35,7 +38,7 @@ int				cw_hex_to_dec(unsigned char *buf, int i);
 */
 
 int				cw_get_command(t_command *cmd, unsigned int /* * */*i,
-				unsigned char *map);
+					unsigned char *map);
 void			cw_lseek_cur_skip(int fd, long size);
 void			cw_check_magic(t_champ *champ);
 void			cw_get_prog_name(t_champ *champ);
@@ -58,13 +61,13 @@ void			t_champ_rev(t_champ **champs);
 void			t_champ_add(t_champ **champs);
 void			t_champ_free(t_champ **champs);
 void			t_processe_add(t_processes **proc_start,
-								t_processes **proc_end);
+					t_processes **proc_end);
 t_processes		*t_processe_get_by_id(t_processes *proc_start,
-								t_processes *proc_end, unsigned int id);
+					t_processes *proc_end, unsigned int id);
 int				t_processe_free_by_id(t_processes **proc_start,
-								t_processes **proc_end, unsigned int id);
+					t_processes **proc_end, unsigned int id);
 int			t_processe_free_by_obj(t_processes **proc_start,
-								t_processes **proc_end, t_processes *obj);
+					t_processes **proc_end, t_processes *obj);
 
 /*
 ** End

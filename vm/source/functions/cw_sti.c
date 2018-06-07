@@ -12,52 +12,6 @@
 
 #include "corewar.h"
 // TODO delete all comments
-char	*cw_get_string_for_conversion(int nbr)
-{
-	int i;
-	char *str;
-	char *check;
-	
-	i = 0;
-	str = ft_itoa_base(nbr, 2, 87);
-	check = ft_strnew(32);
-	while (i < 32)
-	{
-		check[i] = '0';
-		i++;
-	}
-	if (nbr < 0)
-		ft_strncpy(&check[0], &str[32], ft_strlen(str) - 32);
-	else
-		ft_strncpy(&check[32 - ft_strlen(str)], &str[0], ft_strlen(str));
-	free(str);
-	return (check);
-}
-
-void	cw_write_bytes_to_buf(unsigned char *buf, int nbr)
-{
-	char *check;
-	int i;
-	int k;
-
-	i = 0;
-	check = cw_get_string_for_conversion(nbr);
-	while (i < 4)
-	{
-		if (i == 0)
-		{
-			k = 7;
-			buf[i] = ft_bin_to_int(check, k);
-		}
-		else if (i >= 0)
-		{
-			k = k + 8;
-			buf[i] = ft_bin_to_int(check, k);
-		}
-		i++;
-	}
-	free(check);
-}
 
 int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -1 for registers; // TODO use IDX_CORRECTION for IDX_MOD
 {
@@ -86,15 +40,16 @@ int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -
 
 void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
-	unsigned char buf[4];
-	int i;
-	int	position_on_the_map;
+	unsigned char	buf[4];
+	// int i;
+	int				position_on_the_map;
 //	t_processes *proc;
 	// int	arguments[3];
 	//process;
 //	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
 
-	position_on_the_map = ABS(cw_arguments_value(cmd, map, proc));
+	if ((position_on_the_map = MEM_CORRECTION(cw_arguments_value(cmd, map, proc))) < 0)
+		position_on_the_map = MEM_SIZE + position_on_the_map;
 
 	cw_write_bytes_to_buf(buf, proc->registers[cmd->arg1.av - 1]);
 
@@ -128,20 +83,19 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	// position_on_the_map = 15;
 
 	// i = 0; // argument type variation;
-	i = 0;
-//	if (position_on_the_map < 0)
-		position_on_the_map = MEM_SIZE - position_on_the_map;
+	// i = 0;
 		// ft_printf("position_on_the_map -> %d\n", position_on_the_map);
-	while (i < 4) // 2 || 4; // always take 4 bytes to the map;
-	{
-		if (position_on_the_map == MEM_SIZE)
-		// ft_printf("position_on_the_map -> %d", position_on_the_map);
-			position_on_the_map = 0;
+	cw_write_to_map(map, proc, buf, position_on_the_map);
+// 	while (i < 4) // 2 || 4; // always take 4 bytes to the map;
+// 	{
+// 		if (position_on_the_map == MEM_SIZE)
+// 			position_on_the_map = 0;
+// 		// ft_printf("position_on_the_map -> %d", position_on_the_map);
 		
-		map->stack[position_on_the_map] = buf[i++];
-		map->stack_color[position_on_the_map++] = proc->color;
-//		map->stack_process_id[position_on_the_map++] = proc->id;
-	}
+// 		map->stack[position_on_the_map] = buf[i++];
+// 		map->stack_color[position_on_the_map++] = proc->color;
+// //		map->stack_process_id[position_on_the_map++] = proc->id;
+// 	}
 
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 

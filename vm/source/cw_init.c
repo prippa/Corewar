@@ -36,7 +36,6 @@ static void cw_get_op(void)
 		{&cw_aff, 2}
 	};
 	g_cw->op = op_tab;
-//	todo int i = g_cw->op[FORK - 1].func()  || .cycle;
 }
 
 static void	cw_parse_data_init(t_parse_data *pd)

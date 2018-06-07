@@ -94,7 +94,6 @@ typedef struct			s_op
 {
 	void				((*func))(t_command *, t_stack *, t_processes *);
 	short				cycles_price;
-
 }						t_op;
 
 /*

@@ -12,7 +12,76 @@
 
 #include "corewar.h"
 
-int		cw_get_dec_from_the_point(unsigned char *str,
+static char	*cw_get_string_for_conversion(int nbr)
+{
+	int i;
+	char *str;
+	char *check;
+	
+	i = 0;
+	if (!(str = ft_itoa_base(nbr, 2, 87)))
+		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
+	if (!(check = ft_strnew(32)))
+		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
+	while (i < 32)
+	{
+		check[i] = '0';
+		i++;
+	}
+	if (nbr < 0)
+		ft_strncpy(&check[0], &str[32], ft_strlen(str) - 32);
+	else
+		ft_strncpy(&check[32 - ft_strlen(str)], &str[0], ft_strlen(str));
+	ft_str_free(&str);
+	return (check);
+}
+
+void		cw_write_bytes_to_buf(unsigned char *buf, int nbr)
+{
+	char *check;
+	int i;
+	int k;
+
+	i = 0;
+	check = cw_get_string_for_conversion(nbr);
+	while (i < 4)
+	{
+		if (i == 0)
+		{
+			k = 7;
+			buf[i] = ft_bin_to_int(check, k);
+		}
+		else if (i >= 0)
+		{
+			k = k + 8;
+			buf[i] = ft_bin_to_int(check, k);
+		}
+		i++;
+	}
+	ft_str_free(&check);
+}
+
+void		cw_write_to_map(t_stack *map, t_processes *proc, unsigned char *buf,
+			int position_on_the_map)
+{
+	unsigned short i;
+
+	i = 0;
+	while (i < 4) // 2 || 4; // always take 4 bytes to the map;
+	{
+		if (position_on_the_map == MEM_SIZE)
+			position_on_the_map = 0;
+		// ft_printf("position_on_the_map -> %d", position_on_the_map);
+		
+		map->stack[position_on_the_map] = buf[i];
+		map->stack_color[position_on_the_map] = proc->color;
+		i++;
+		position_on_the_map++;
+//		map->stack_process_id[position_on_the_map++] = proc->id;
+	}
+}
+
+int			cw_get_dec_from_the_point(unsigned char *str,
 						int quantity, int position)
 {
 	int res;
@@ -61,7 +130,7 @@ int		cw_get_dec_from_the_point(unsigned char *str,
 	return (res);
 }
 
-int		cw_hex_to_dec(unsigned char *buf, int i)
+int			cw_hex_to_dec(unsigned char *buf, int i)
 {
 	int res;
 
