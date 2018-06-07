@@ -13,10 +13,7 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     //process;
 //	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
 
-    if ((position_on_the_map = MEM_CORRECTION(cw_arguments_value(cmd, map, proc))) < 0)
-        position_on_the_map = MEM_SIZE + position_on_the_map;
 
-    cw_write_bytes_to_buf(buf, proc->registers[cmd->arg1.av - 1]);
 
     // ft_printf("2 -> %d\n", cmd->arg2.av);
     // ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
@@ -33,7 +30,7 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     // (cmd->arg2.tp == 2 && cmd->arg3.tp == 2) ? proc->process_PC += 1 : 0;
     // (cmd->arg2.tp == 4 && cmd->arg3.tp == 2) ? proc->process_PC += 1 : 0;
 
-    ft_printf("process_PC -> %d\n", process->process_PC);
+    ft_printf("process_PC -> %d\n", proc->process_PC);
 
     // move the process_PC by the quantity of bytes;
 
