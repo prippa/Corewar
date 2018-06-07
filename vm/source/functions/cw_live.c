@@ -35,16 +35,15 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
     t_champ *champ;
 //
 //   proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
-    proc->has_been_activated = ALIVE;
+    proc->has_been_activated = ALIVE; // maybe for testing we can use += live, will see;
 
     champ = cw_champ_find(cmd->arg1.av, g_cw->pd.champs);
     champ->lives_number += ALIVE;
 
-    // todo champ->last_live = ? what
 
 
-    ft_printf("champ_number -> %d\n", champ->champ_number);
-    ft_printf("champ_number -> %u\n", champ->lives_number);
+    // ft_printf("champ_number -> %d\n", champ->champ_number);
+    // ft_printf("champ_number -> %u\n", champ->lives_number);
 
     proc->process_PC = MEM_CORRECTION(proc->process_PC + cmd->arg1.tp + 1);
 
