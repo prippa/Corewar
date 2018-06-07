@@ -32,3 +32,4 @@
     ​- check regarding 0 - 16 // some weird stuff;
     - process live / dead function;
     - validation: has to be a valid champ;
+    - debug management to the file;
