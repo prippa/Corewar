@@ -1,4 +1,4 @@
 .name		"test1"
 .comment	"simple fork"
 
-st r12, -123
+st r1, 12
