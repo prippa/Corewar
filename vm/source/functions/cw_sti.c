@@ -6,7 +6,7 @@
 /*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 09:34:31 by otimofie          #+#    #+#             */
-/*   Updated: 2018/06/05 17:06:45 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/06/07 15:11:53 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,14 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	//process;
 //	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
 
-	position_on_the_map = 0;
+	position_on_the_map = cw_arguments_value(cmd, map, proc);
 
 	cw_write_bytes_to_buf(buf, proc->registers[cmd->arg1.av - 1]);
 
 	// ft_printf("2 -> %d\n", cmd->arg2.av);
 	// ft_printf("3 -> %d\n", process->registers[cmd->arg3.av]);
 	// 
-	position_on_the_map += cw_arguments_value(cmd, map, proc); // to func;
+//	position_on_the_map +// to func;
 
 	// ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 
@@ -148,10 +148,10 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	// each process has the color of the parent;
 
 //	 for testing;
-//	 map->stack[proc->process_PC] = 7;
-//	 map->stack_color[proc->process_PC] = 5;
+	 map->stack[proc->process_PC] = 7;
+	 map->stack_color[proc->process_PC] = 5;
 
 	// TODO read(1, 0, 1);
 
-//	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }
