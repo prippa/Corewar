@@ -103,6 +103,10 @@ void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc);
 void 			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc);
 void			cw_aff(t_command *cmd, t_stack *map, t_processes *proc);
 
+void			cw_st(t_command *cmd, t_stack *map, t_processes *proc);
+void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc);
+void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc);
+
 /*
 ** End
 */
