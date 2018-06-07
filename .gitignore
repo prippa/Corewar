@@ -62,7 +62,7 @@ dkms.conf
 *xml
 cmake-build-debug/
 
-test
+test.s
 
 *json
 !CMakeLists.txt
