@@ -20,6 +20,8 @@ void		cw_do_smth(t_processes *proc)
 
 	// parallel actions -> find the command, waiting for the command execution, decrementation of the command till execution;
 
+	// += to cycles when;
+
 	// add: cycles till execution decrementation;
 	// command detection
 	
