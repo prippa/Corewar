@@ -14,9 +14,33 @@
 
 void		cw_do_smth(t_processes *proc)
 {
+	t_command cmd;
+
+	// process status: finding the right command; activated; waiting for the execution;
+	
 	while (proc)
 	{
-		ft_printf("%d\n", proc->id);
+		ft_printf("proc_id -> %d\n", proc->id);
+
+		g_cw->i = proc->process_PC;
+
+		cw_get_command(&cmd, &g_cw->i, g_cw->map.stack); // TODO do not move the map with i;
+
+
+		ft_printf("command --------------------------- \n");
+		ft_printf("cmd - %u\n", cmd.cmd);
+		ft_printf("codage - %d\n", cmd.codage);
+		ft_printf("arg1.tp - %u\n", cmd.arg1.tp);
+		ft_printf("arg1.av - %d\n", cmd.arg1.av);
+		ft_printf("arg2.tp - %u\n", cmd.arg2.tp);
+		ft_printf("arg2.av - %d\n", cmd.arg2.av);
+		ft_printf("arg3.tp - %u\n", cmd.arg3.tp);
+		ft_printf("arg3.av - %d\n", cmd.arg3.av);
+		ft_printf("-----------------------------------\n");
+
+
+		ft_bzero(&cmd, sizeof(t_command));
+
 		proc = proc->next;
 	}
 }
@@ -27,10 +51,8 @@ void		cw_game_loop(void)
 	// {
 		
 	// }
-	t_command cmd;
-	int tmp = 1;
+	// int tmp = 1;
 
-	g_cw->i = 0;
 	
 	// ft_printf("before while -> %d\n",g_cw->i);
 	
@@ -38,7 +60,6 @@ void		cw_game_loop(void)
 	// {
 	// 	// ft_printf("in while i -> %d\n",g_cw->i);
 		
-	// 	// ft_bzero(&cmd, sizeof(t_command));
 	// 	if ((cw_get_command(&cmd, g_cw->i, g_cw->map.stack)))
 	// 	{
 	// 		// ft_printf("after codage i -> %d\n", g_cw->i);
@@ -46,22 +67,12 @@ void		cw_game_loop(void)
 	// 		// to the next position after the cmp function;
 	// 		continue;
 	// 	}
-		cw_get_command(&cmd, &g_cw->i, g_cw->map.stack); // TODO do not move the map with i;
 
-		// ft_printf("command ------------------------ %d\n", tmp);
-		// ft_printf("cmd - %u\n", cmd.cmd);
-		// ft_printf("codage - %d\n", cmd.codage);
-		// ft_printf("arg1.tp - %u\n", cmd.arg1.tp);
-		// ft_printf("arg1.av - %d\n", cmd.arg1.av);
-		// ft_printf("arg2.tp - %u\n", cmd.arg2.tp);
-		// ft_printf("arg2.av - %d\n", cmd.arg2.av);
-		// ft_printf("arg3.tp - %u\n", cmd.arg3.tp);
-		// ft_printf("arg3.av - %d\n", cmd.arg3.av);
-		// ft_printf("-----------------------------------\n");
+
 
 	int global_iterator = 0;
 
-	#define CYCLES 5
+	#define CYCLES 20
 
 
 
@@ -107,6 +118,6 @@ void		cw_game_loop(void)
 
 
 
-    tmp++;
+    // tmp++;
 	// }
 }
