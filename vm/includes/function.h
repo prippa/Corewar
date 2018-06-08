@@ -62,12 +62,14 @@ void			t_champ_add(t_champ **champs);
 void			t_champ_free(t_champ **champs);
 void			t_processe_add(t_processes **proc_start,
 					t_processes **proc_end);
+void		t_processes_copy(t_processes **proc_start, t_processes **proc_end, t_processes *current_proc, int position);
 t_processes		*t_processe_get_by_id(t_processes *proc_start,
 					t_processes *proc_end, unsigned int id);
 int				t_processe_free_by_id(t_processes **proc_start,
 					t_processes **proc_end, unsigned int id);
 int			t_processe_free_by_obj(t_processes **proc_start,
 					t_processes **proc_end, t_processes *obj);
+
 
 /*
 ** End
@@ -107,7 +109,7 @@ void 			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc);
 void			cw_aff(t_command *cmd, t_stack *map, t_processes *proc);
 
 void			cw_st(t_command *cmd, t_stack *map, t_processes *proc);
-void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc);
+void			cw_fork(t_command *cmd, t_stack *map, t_processes **proc);
 void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc);
 
 /*

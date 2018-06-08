@@ -63,7 +63,7 @@ void		cw_game_loop(void)
 		// cw_zjmp(&cmd, &g_cw->map, g_cw->proc_start);
 		// cw_aff(&cmd, &g_cw->map, g_cw->proc_start);
 		// cw_st(&cmd, &g_cw->map, g_cw->proc_start);
-		cw_fork(&cmd, &g_cw->map, g_cw->proc_start);
+		cw_fork(&cmd, &g_cw->map, &g_cw->proc_start);
 
 
     tmp++;
