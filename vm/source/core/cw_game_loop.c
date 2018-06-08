@@ -12,6 +12,15 @@
 
 #include "corewar.h"
 
+void		cw_do_smth(t_processes *proc)
+{
+	while (proc)
+	{
+		ft_printf("%d\n", proc->id);
+		proc = proc->next;
+	}
+}
+
 void		cw_game_loop(void)
 {
 	// while (g_cw->loop)
@@ -39,16 +48,28 @@ void		cw_game_loop(void)
 	// 	}
 		cw_get_command(&cmd, &g_cw->i, g_cw->map.stack); // TODO do not move the map with i;
 
-		ft_printf("command ------------------------ %d\n", tmp);
-		ft_printf("cmd - %u\n", cmd.cmd);
-		ft_printf("codage - %d\n", cmd.codage);
-		ft_printf("arg1.tp - %u\n", cmd.arg1.tp);
-		ft_printf("arg1.av - %d\n", cmd.arg1.av);
-		ft_printf("arg2.tp - %u\n", cmd.arg2.tp);
-		ft_printf("arg2.av - %d\n", cmd.arg2.av);
-		ft_printf("arg3.tp - %u\n", cmd.arg3.tp);
-		ft_printf("arg3.av - %d\n", cmd.arg3.av);
-		ft_printf("-----------------------------------\n");
+		// ft_printf("command ------------------------ %d\n", tmp);
+		// ft_printf("cmd - %u\n", cmd.cmd);
+		// ft_printf("codage - %d\n", cmd.codage);
+		// ft_printf("arg1.tp - %u\n", cmd.arg1.tp);
+		// ft_printf("arg1.av - %d\n", cmd.arg1.av);
+		// ft_printf("arg2.tp - %u\n", cmd.arg2.tp);
+		// ft_printf("arg2.av - %d\n", cmd.arg2.av);
+		// ft_printf("arg3.tp - %u\n", cmd.arg3.tp);
+		// ft_printf("arg3.av - %d\n", cmd.arg3.av);
+		// ft_printf("-----------------------------------\n");
+
+	int global_iterator = 0;
+
+	#define CYCLES 5
+
+
+
+		while (global_iterator < CYCLES)
+		{
+			cw_do_smth(g_cw->proc_start);
+			global_iterator++;
+		}
 
 //     cw_add(&cmd, &g_cw->map, g_cw->proc_start); // o.k.
 //     cw_sub(&cmd, &g_cw->map, g_cw->proc_start); // o.k.
