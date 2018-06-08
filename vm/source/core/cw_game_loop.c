@@ -30,7 +30,7 @@ void		cw_do_smth(t_processes *proc)
 	{
 		ft_printf("proc_id -> %d\n", proc->id);
 
-		g_cw->i = proc->process_PC;
+		g_cw->i = proc->process_PC; // what if it is 4095, think about it )))))))))))
 
 		cw_get_command(&cmd, &g_cw->i, g_cw->map.stack); // TODO do not move the map with i;
 
