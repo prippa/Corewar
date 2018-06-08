@@ -23,10 +23,10 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes **proc)
     clone = *proc;
 
     while (clone->next)
-    {
+    // {
         // ft_printf("id -> %u\n", clone->id);
         clone = clone->next;
-    }
+    // }
 
     t_processes_copy(&g_cw->proc_start, &g_cw->proc_end, clone, position_on_the_map);
     
