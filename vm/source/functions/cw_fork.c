@@ -39,21 +39,21 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes **proc)
         // clone = clone->next;
     // }
 
-    while ((*proc))
-    {
-        ft_printf("id      -> %u\n", (*proc)->id);
-        ft_printf("color   -> %u\n", (*proc)->color);
-        ft_printf("proc_PC -> %u\n", (*proc)->process_PC);
-        ft_printf("carry   -> %u\n", (*proc)->carry);
-        int d = 0;
-        while (d < 16)
-            ft_printf("%d ", (*proc)->registers[d++]);
-        ft_printf("\n");
+    // while ((*proc))
+    // {
+    //     ft_printf("id      -> %u\n", (*proc)->id);
+    //     ft_printf("color   -> %u\n", (*proc)->color);
+    //     ft_printf("proc_PC -> %u\n", (*proc)->process_PC);
+    //     ft_printf("carry   -> %u\n", (*proc)->carry);
+    //     int d = 0;
+    //     while (d < 16)
+    //         ft_printf("%d ", (*proc)->registers[d++]);
+    //     ft_printf("\n");
 
 
 
-        (*proc) = (*proc)->next;
-    }
+    //     (*proc) = (*proc)->next;
+    // }
 
     // //	 for testing;
     // map->stack[proc->process_PC] = 7;
