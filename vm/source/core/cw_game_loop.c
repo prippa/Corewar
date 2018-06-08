@@ -16,12 +16,15 @@ void		cw_do_smth(t_processes *proc)
 {
 	t_command cmd;
 
+	// every process has its status of operations;
+
 	// process status: finding the right command; activated; waiting for the execution;
 
 	// parallel actions -> find the command, waiting for the command execution, decrementation of the command till execution;
 
 	// += to cycles when;
 	// - cycles = arr[live];
+
 
 	// add: cycles till execution decrementation;
 	// command detection
