@@ -63,24 +63,26 @@ void		cw_game_loop(void)
 		// cw_zjmp(&cmd, &g_cw->map, g_cw->proc_start);
 		// cw_aff(&cmd, &g_cw->map, g_cw->proc_start);
 		// cw_st(&cmd, &g_cw->map, g_cw->proc_start);
-		cw_fork(&cmd, &g_cw->map, g_cw->proc_start);
+		// cw_fork(&cmd, &g_cw->map, g_cw->proc_start);
 		// cw_lfork(&cmd, &g_cw->map, g_cw->proc_start);
 
-		    while (g_cw->proc_start)
-    {
-        ft_printf("id      -> %u\n", g_cw->proc_start->id);
-        ft_printf("color   -> %d\n", g_cw->proc_start->color);
-        ft_printf("proc_PC -> %d\n", g_cw->proc_start->process_PC);
-        ft_printf("carry   -> %d\n", g_cw->proc_start->carry);
-        int d = 0;
-        while (d < 16)
-            ft_printf("%d ", g_cw->proc_start->registers[d++]);
-        ft_printf("\n");
+		  //  while (g_cw->proc_start)
+    // {
+    //     ft_printf("id      -> %u\n", g_cw->proc_start->id);
+    //     ft_printf("color   -> %d\n", g_cw->proc_start->color);
+    //     ft_printf("proc_PC -> %d\n", g_cw->proc_start->process_PC);
+    //     ft_printf("carry   -> %d\n", g_cw->proc_start->carry);
+    //     ft_printf("cycles  -> %d\n", g_cw->proc_start->cycles_till_execution);
+
+    //     int d = 0;
+    //     while (d < 16)
+    //         ft_printf("%d ", g_cw->proc_start->registers[d++]);
+    //     ft_printf("\n");
 
 
 
-        g_cw->proc_start = g_cw->proc_start->next;
-    }
+    //     g_cw->proc_start = g_cw->proc_start->next;
+    // }
 
 
 
