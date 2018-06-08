@@ -71,6 +71,7 @@ typedef	struct			s_processes					// fork will create a process and will change t
 	int 				live_status;				// flag to detect the life of the process;
 	int 				has_been_activated;			// if the process has been used;
 	int					champ_number;				// Number of champ
+	short				cycles_till_execution;		// will be decremented;
 	struct s_processes	*next;						// pointer to the next element;
 	struct s_processes	*prev;						// pointer to the next element;
 }						t_processes;
