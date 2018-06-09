@@ -37,7 +37,7 @@ C_VM		=	main.c cw_init.c cw_free.c cw_exit.c cw_helpers.c
 C_PARSER	=	cw_parser.c cw_parse_args.c cw_get_basic_data.c\
 				cw_parse_flags.c
 
-C_SRUC_MP	=	t_champ.c t_processes.c
+C_SRUC_MP	=	t_champ.c t_proc_free_srch.c t_proc_add_cpy.c
 
 C_CORE		=	cw_get_command.c cw_load_map.c cw_game_loop.c\
 				cw_display_map.c
