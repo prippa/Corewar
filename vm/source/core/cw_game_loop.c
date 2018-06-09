@@ -12,6 +12,32 @@
 
 #include "corewar.h"
 
+#define	IS_CMD(x) (x >= 1 && x <= 16)
+
+void		cw_color_start(t_processes *proc, t_stack *map) // add init for the second player;
+{
+	while (proc)
+	{
+		if (proc->color == 1)
+			map->stack_color[proc->process_PC] = 5;
+		proc = proc->next;
+	}
+}
+
+void		cw_print_cmd_specifications(t_command *cmd)
+{
+	ft_printf("command --------------------------- \n");
+	ft_printf("cmd - %u\n", cmd->cmd);
+	ft_printf("codage - %d\n", cmd->codage);
+	ft_printf("arg1.tp - %u\n", cmd->arg1.tp);
+	ft_printf("arg1.av - %d\n", cmd->arg1.av);
+	ft_printf("arg2.tp - %u\n", cmd->arg2.tp);
+	ft_printf("arg2.av - %d\n", cmd->arg2.av);
+	ft_printf("arg3.tp - %u\n", cmd->arg3.tp);
+	ft_printf("arg3.av - %d\n", cmd->arg3.av);
+	ft_printf("-----------------------------------\n");
+}
+
 void		cw_do_smth(t_processes *proc)
 {
 	t_command cmd;
@@ -31,33 +57,50 @@ void		cw_do_smth(t_processes *proc)
 	
 	while (proc)
 	{
-		ft_printf("proc_id -> %d\n", proc->id);
+		// ft_printf("proc_id -> %d\n", proc->id);
 
 		g_cw->i = proc->process_PC; // what if g_cw->i is 4095, think about it )))))))))))
 
-		cw_get_command(&cmd, &g_cw->i, g_cw->map.stack); // TODO do not move the map with i;
+		cw_get_command(&cmd, &g_cw->i, g_cw->map.stack);
+
+		if (IS_CMD(cmd.cmd))
+		{
+			ft_printf("true\n");
+			cw_print_cmd_specifications(&cmd);
+		}
+		else
+		{
+			g_cw->map.stack_color[proc->process_PC] = proc->color;
+			proc->process_PC += 1;
+		}
 
 
-		ft_printf("command --------------------------- \n");
-		ft_printf("cmd - %u\n", cmd.cmd);
-		ft_printf("codage - %d\n", cmd.codage);
-		ft_printf("arg1.tp - %u\n", cmd.arg1.tp);
-		ft_printf("arg1.av - %d\n", cmd.arg1.av);
-		ft_printf("arg2.tp - %u\n", cmd.arg2.tp);
-		ft_printf("arg2.av - %d\n", cmd.arg2.av);
-		ft_printf("arg3.tp - %u\n", cmd.arg3.tp);
-		ft_printf("arg3.av - %d\n", cmd.arg3.av);
-		ft_printf("-----------------------------------\n");
+
+
+
+
+
+
+
+
 
 
 		ft_bzero(&cmd, sizeof(t_command));
+
+		ft_printf("proc_PC -> %d", proc->process_PC);
 
 		proc = proc->next;
 	}
 }
 
+
+
 void		cw_game_loop(void)
 {
+	cw_color_start(g_cw->proc_start, &g_cw->map);
+	
+	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+
 	// while (g_cw->loop)
 	// {
 		
@@ -79,21 +122,18 @@ void		cw_game_loop(void)
 	// 		continue;
 	// 	}
 
-
-
 	int global_iterator = 0;
 
-	#define CYCLES 20
+	#define CYCLES 5
 
+	while (global_iterator < CYCLES)
+	{
+		ft_printf("cycle -> %d", global_iterator);
+		cw_do_smth(g_cw->proc_start);
+		cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
-
-		while (global_iterator < CYCLES)
-		{
-			cw_do_smth(g_cw->proc_start);
-    		cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
-
-			global_iterator++;
-		}
+		global_iterator++;
+	}
 
 //     cw_add(&cmd, &g_cw->map, g_cw->proc_start); // o.k.
 //     cw_sub(&cmd, &g_cw->map, g_cw->proc_start); // o.k.
