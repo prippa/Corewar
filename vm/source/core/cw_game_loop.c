@@ -65,13 +65,27 @@ void		cw_do_smth(t_processes *proc)
 
 		if (IS_CMD(cmd.cmd))
 		{
+
+
+
+
+
+
+
 			ft_printf("true\n");
 			cw_print_cmd_specifications(&cmd);
+
+
+
+
+
 		}
 		else
 		{
 			g_cw->map.stack_color[proc->process_PC] = proc->color;
 			proc->process_PC += 1;
+
+			g_cw->map.stack_color[proc->process_PC] = 5;
 		}
 
 
@@ -128,8 +142,10 @@ void		cw_game_loop(void)
 
 	while (global_iterator < CYCLES)
 	{
-		ft_printf("cycle -> %d", global_iterator);
+		ft_printf("cycle -> %d\n", global_iterator + 1);
+
 		cw_do_smth(g_cw->proc_start);
+
 		cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
 		global_iterator++;
