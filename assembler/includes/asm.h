@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 13:21:21 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/27 00:06:14 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/06/09 23:58:58 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct			s_asm
 	t_header			hd;
 	t_label				*lb;
 	int					nmcm;
+	int					fd;
 	int					x;
 	int					y;
 }						t_asm;

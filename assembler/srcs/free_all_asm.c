@@ -6,7 +6,7 @@
 /*   By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 15:01:11 by vgladush          #+#    #+#             */
-/*   Updated: 2018/05/26 13:02:18 by vgladush         ###   ########.fr       */
+/*   Updated: 2018/06/09 23:35:41 by vgladush         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ void		all_clear(t_asm *am, char *s)
 		free(s);
 	if (am->lb)
 		free_lab(am->lb);
+	close(am->fd);
 }
