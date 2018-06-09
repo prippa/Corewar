@@ -38,18 +38,22 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
     proc->has_been_activated = ALIVE; // maybe for testing we can use += live, will see;
 
     champ = cw_champ_find(cmd->arg1.av, g_cw->pd.champs);
-    champ->lives_number += ALIVE;
 
+    if (champ)
+    // {
+    	champ->lives_number += ALIVE;
+	// }
 
 
     // ft_printf("champ_number -> %d\n", champ->champ_number);
     // ft_printf("champ_number -> %u\n", champ->lives_number);
+    map->stack_color[proc->process_PC] = proc->color;
 
     proc->process_PC = MEM_CORRECTION(proc->process_PC + cmd->arg1.tp + 1);
 
 //	 for testing;
 //	 map->stack[proc->process_PC] = 7;
-//	 map->stack_color[proc->process_PC] = 5;
+	 map->stack_color[proc->process_PC] = 5; // !!!!!!!!!!!!!!!!!!!!
 //
 //	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 

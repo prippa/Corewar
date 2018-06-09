@@ -63,40 +63,23 @@ void		cw_do_smth(t_processes *proc)
 
 		cw_get_command(&cmd, &g_cw->i, g_cw->map.stack);
 
-		if (IS_CMD(cmd.cmd))
+		if (!IS_CMD(cmd.cmd))
 		{
+			g_cw->map.stack_color[proc->process_PC] = proc->color;
 
+			proc->process_PC += 1;
 
-
-
-
-
-
-			ft_printf("true\n");
-			cw_print_cmd_specifications(&cmd);
-
-
-
-
+			g_cw->map.stack_color[proc->process_PC] = 5; // modify with func according to tha current proc color;
 
 		}
 		else
 		{
-			g_cw->map.stack_color[proc->process_PC] = proc->color;
-			proc->process_PC += 1;
+			ft_printf("true\n");
+			
+			cw_print_cmd_specifications(&cmd);
 
-			g_cw->map.stack_color[proc->process_PC] = 5;
+			g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, g_cw->proc_start);
 		}
-
-
-
-
-
-
-
-
-
-
 
 
 		ft_bzero(&cmd, sizeof(t_command));
@@ -138,7 +121,7 @@ void		cw_game_loop(void)
 
 	int global_iterator = 0;
 
-	#define CYCLES 5
+	#define CYCLES 20
 
 	while (global_iterator < CYCLES)
 	{
