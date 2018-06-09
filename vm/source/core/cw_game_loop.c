@@ -19,7 +19,7 @@ void		cw_color_start(t_processes *proc, t_stack *map) // add init for the second
 	while (proc)
 	{
 		if (proc->color == 1)
-			map->stack_color[proc->process_PC] = 5;
+			map->stack_color[proc->process_PC] = 5;			// add colors to the options;
 		proc = proc->next;
 	}
 }
@@ -55,9 +55,10 @@ void		cw_do_smth(t_processes *proc)
 	// add: cycles till execution decrementation;
 	// command detection
 	
+
 	while (proc)
 	{
-		// ft_printf("proc_id -> %d\n", proc->id);
+		ft_printf("proc_id -> %d\n", proc->id);
 
 		g_cw->i = proc->process_PC; // what if g_cw->i is 4095, think about it )))))))))))
 
@@ -75,14 +76,13 @@ void		cw_do_smth(t_processes *proc)
 		else
 		{
 			ft_printf("true\n");
-			
+
 			cw_print_cmd_specifications(&cmd);
 
-			g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, g_cw->proc_start);
+			g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
 		}
 
-
-		ft_bzero(&cmd, sizeof(t_command));
+		// ft_bzero(&cmd, sizeof(t_command));
 
 		ft_printf("proc_PC -> %d", proc->process_PC);
 
