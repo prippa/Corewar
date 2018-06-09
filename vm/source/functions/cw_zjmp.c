@@ -18,6 +18,12 @@ void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 {
 	map->stack_color[proc->process_PC] = proc->color;
 
+    ft_printf("proc_carry -> %d", proc->carry);
+
+    // WTF with proc carry;
+
+    proc->carry = 1;
+
     if (proc->carry == 1)
         proc->process_PC = MEM_CORRECTION(proc->process_PC + IDX_CORRECTION(cmd->arg1.av));
     else
