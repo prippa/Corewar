@@ -71,6 +71,8 @@ typedef enum	e_error_numbers
 # define SPACES_BYTES 2
 #define ALIVE 1
 #define DEAD 0
+# define LOOKING_FOR_THE_COMMAND 0
+# define WAITING_FOR_THE_EXECUTION 1
 
 
 /*

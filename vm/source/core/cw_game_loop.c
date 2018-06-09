@@ -90,6 +90,8 @@ void		cw_game_loop(void)
 		while (global_iterator < CYCLES)
 		{
 			cw_do_smth(g_cw->proc_start);
+    		cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+
 			global_iterator++;
 		}
 

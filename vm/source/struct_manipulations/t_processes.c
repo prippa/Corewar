@@ -88,6 +88,7 @@ void		t_processe_add(t_processes **proc_start,
 	new_obj->next = *proc_start;
 	new_obj->prev = NULL;
 	new_obj->cycles_till_execution = 0;
+	new_obj->status = LOOKING_FOR_THE_COMMAND;
 	if (*proc_start)
 		(*proc_start)->prev = new_obj;
 	else
@@ -116,6 +117,7 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end, t_proce
 	new_obj->live_status = (*current_proc)->live_status; // copy;
 	new_obj->has_been_activated = (*current_proc)->has_been_activated; // copy;
 	new_obj->cycles_till_execution = (*current_proc)->cycles_till_execution;
+	new_obj->status = (*current_proc)->status;
 
 	ft_bzero(new_obj->registers, sizeof(int) * REG_NUMBER);
 
