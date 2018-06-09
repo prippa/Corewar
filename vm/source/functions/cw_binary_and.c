@@ -120,6 +120,9 @@ void			cw_binary_and(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned
 	// process_cw;
 	char *res_of_comparison;
 
+
+	map->stack_color[proc->process_PC] = proc->color;
+
 	res_of_comparison = cw_res_of_comparison(cmd, proc);
 	proc->registers[cmd->arg3.av - 1] = ft_atoi_base(res_of_comparison, 2);
 	free(res_of_comparison);
@@ -128,6 +131,8 @@ void			cw_binary_and(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned
 	proc->process_PC = MEM_CORRECTION(
 		proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2);
 	proc->carry = (proc->registers[cmd->arg3.av - 1] == 0) ? 1 : 0;
+
+	map->stack_color[proc->process_PC] = 5;
 
 //	 //testing
 //	 map->stack[proc->process_PC] = 7;

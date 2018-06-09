@@ -32,6 +32,9 @@ void		cw_display_map(unsigned char *map, int *color)
 	unsigned int spaces;
 	unsigned int lines;
 
+	read(1,0,1); // this stuff may help with visualization;
+	system("clear"); // this stuff may help with visualization;
+
 	i = 0;
 	spaces = 1;
 	lines = 0;
