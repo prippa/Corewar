@@ -89,7 +89,7 @@ void		cw_do_smth(t_processes *proc)
 			{
 				// ft_printf("till exec -> %d\n", proc->cycles_till_execution);
 
-				++proc->cycles_till_execution;
+				proc->cycles_till_execution++;
 			}
 			else
 			{
