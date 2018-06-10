@@ -79,6 +79,8 @@ void		cw_do_smth(t_processes *proc)
 
 			cw_print_cmd_specifications(&cmd);
 
+			// decrement the cycles and then execute;
+
 			g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
 		}
 
