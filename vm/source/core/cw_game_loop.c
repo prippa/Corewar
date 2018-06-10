@@ -89,13 +89,13 @@ void		cw_do_smth(t_processes *proc)
 			{
 				// ft_printf("till exec -> %d\n", proc->cycles_till_execution);
 
-				proc->cycles_till_execution += 1;
+				++proc->cycles_till_execution;
 			}
 			else
 			{
 				g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
 
-				proc->cycles_till_execution = 0;
+				proc->cycles_till_execution = 1;
 
 			}
 			// else if (proc->cycles_till_execution != 0 && proc->cycles_till_execution != 1001)
@@ -150,7 +150,7 @@ void		cw_game_loop(void)
 
 	while (global_iterator < CYCLES)
 	{
-		ft_printf("cycle -> %d\n", global_iterator + 1);
+		ft_printf("cycle -> %d\n", global_iterator);
 
 		cw_do_smth(g_cw->proc_start);
 
