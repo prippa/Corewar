@@ -32,11 +32,6 @@ static void	print_color(unsigned char data, int color_type)
 		ft_printf("%~.2x", F_BACK_CYAN_WHITE, data);
 }
 
-// 1+4
-// 2+4
-// 3+4
-// 4+4
-
 void		cw_display_map(unsigned char *map, int *color)
 {
 	unsigned int i;
