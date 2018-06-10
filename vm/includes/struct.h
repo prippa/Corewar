@@ -14,7 +14,7 @@
 # define STRUCT_H
 
 /*
-** Parsing champions part (data)
+************************ Parsing champions part (data) *************************
 */
 
 typedef struct			s_champ
@@ -39,11 +39,7 @@ typedef struct			s_parse_data
 }						t_parse_data;
 
 /*
-** End
-*/
-
-/*
-** Core part
+********************************** Core Part ***********************************
 */
 
 typedef struct			s_arg
@@ -82,14 +78,10 @@ typedef struct			s_stack
 	unsigned char		stack[MEM_SIZE];			// whole stack;
 	int					stack_color[MEM_SIZE];		// colors manipulation;
 //	unsigned int		stack_process_id[MEM_SIZE];	// maintain process id;
-}						t_stack;					
+}						t_stack;
 
 /*
-** End
-*/
-
-/*
-** Very useful t_op struct
+*********************** Implementing a function pointer ************************
 */
 
 typedef struct			s_op
@@ -99,7 +91,7 @@ typedef struct			s_op
 }						t_op;
 
 /*
-** End
+*************************** Global Elite Structure *****************************
 */
 
 typedef struct			s_corewar

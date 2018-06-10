@@ -13,6 +13,10 @@
 #ifndef DEFINE_H
 # define DEFINE_H
 
+/*
+************************************ Basics ************************************
+*/
+
 extern struct s_corewar	*g_cw;
 
 # define FILE_NAME_MAX		4096
@@ -24,8 +28,28 @@ typedef enum	e_flags
 	VISU
 }				t_flags;
 
+typedef enum	e_op_code
+{
+	LIVE = 1,
+	LD,
+	ST,
+	ADD,
+	SUB,
+	AND,
+	OR,
+	XOR,
+	ZJMP,
+	LDI,
+	STI,
+	FORK,
+	LLD,
+	LLDI,
+	LFORK,
+	AFF
+}				t_op_code;
+
 /*
-** Error management
+******************************* Error management *******************************
 */
 
 typedef enum	e_error_numbers
@@ -60,43 +84,14 @@ typedef enum	e_error_numbers
 ##############################################################"
 
 /*
-** End
-*/
-
-/*
-******************************* map ****************************************
+************************************* Map **************************************
 */
 
 # define NEWLINE_QUANTITY 63
 # define SPACES_BYTES 2
-#define ALIVE 1
-#define DEAD 0
+# define ALIVE 1
+# define DEAD 0
 # define LOOKING_FOR_THE_COMMAND 0
 # define WAITING_FOR_THE_EXECUTION 1
-
-
-/*
-** End
-*/
-
-typedef enum	e_op_code
-{
-	LIVE = 1,
-	LD,
-	ST,
-	ADD,
-	SUB,
-	AND,
-	OR,
-	XOR,
-	ZJMP,
-	LDI,
-	STI,
-	FORK,
-	LLD,
-	LLDI,
-	LFORK,
-	AFF
-}				t_op_code;
 
 #endif

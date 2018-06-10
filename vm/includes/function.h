@@ -14,7 +14,7 @@
 # define FUNCTION_H
 
 /*
-** Basics
+************************************ Basics ************************************
 */
 
 void			cw_exit(char *message, int error_number);
@@ -30,11 +30,7 @@ void			cw_write_to_map(t_stack *map, t_processes *proc,
 					unsigned char *buf, int position_on_the_map);
 
 /*
-** End
-*/
-
-/*
-** Parse file part
+******************************* Parse file part ********************************
 */
 
 int				cw_get_command(t_command *cmd, unsigned int /* * */*i,
@@ -50,11 +46,7 @@ void			cw_parse_args(int argc, char **argv);
 void			cw_parser(void);
 
 /*
-** End
-*/
-
-/*
-** Struct Manipulations
+***************************** Struct Manipulations *****************************
 */
 
 void			t_champ_rev(t_champ **champs);
@@ -63,22 +55,18 @@ void			t_champ_free(t_champ **champs);
 void			t_processe_add(t_processes **proc_start,
 					t_processes **proc_end);
 
-void		t_processes_copy(t_processes **proc_start, t_processes **proc_end, t_processes *current_proc, int position);
-
+void			t_processes_copy(t_processes **proc_start,
+					t_processes **proc_end, t_processes *current_proc,
+					int position);
 t_processes		*t_processe_get_by_id(t_processes *proc_start,
 					t_processes *proc_end, unsigned int id);
 int				t_processe_free_by_id(t_processes **proc_start,
 					t_processes **proc_end, unsigned int id);
-int			t_processe_free_by_obj(t_processes **proc_start,
+int				t_processe_free_by_obj(t_processes **proc_start,
 					t_processes **proc_end, t_processes *obj);
 
-
 /*
-** End
-*/
-
-/*
-** Core part
+********************************** Core Part ***********************************
 */
 
 void			cw_load_map(void);
@@ -86,11 +74,7 @@ void			cw_game_loop(void);
 void			cw_display_map(unsigned char *map, int *color);
 
 /*
-** End
-*/
-
-/*
-** functions
+********************************** Functions ***********************************
 */
 
 void			cw_binary_and(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/);
@@ -113,9 +97,5 @@ void			cw_aff(t_command *cmd, t_stack *map, t_processes *proc);
 void			cw_st(t_command *cmd, t_stack *map, t_processes *proc);
 void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc);
 void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc);
-
-/*
-** End
-*/
 
 #endif
