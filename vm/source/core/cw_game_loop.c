@@ -127,7 +127,7 @@ void		cw_game_loop(void)
 
 	int global_iterator = 0;
 
-	#define CYCLES 20
+	#define CYCLES 100
 
 	while (global_iterator < CYCLES)
 	{
