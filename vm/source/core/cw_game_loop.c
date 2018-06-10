@@ -12,6 +12,11 @@
 
 #include "corewar.h"
 
+// - выполнение на цикл
+// - Взятие аргументов в момент выполнения
+// - Цвета под каждого чемпиона
+
+
 #define	IS_CMD(x) (x >= 1 && x <= 16)
 
 void		cw_color_start(t_processes *proc, t_stack *map) // add init for the second player;
