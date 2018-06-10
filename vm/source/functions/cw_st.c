@@ -16,8 +16,16 @@ void			cw_st(t_command *cmd, t_stack *map, t_processes *proc)
 		cw_write_to_map(map, proc, buf, index);
 		// ft_printf("INDEX ----- %d\n", index);
 	}
+
+	map->stack_color[proc->process_PC] = proc->color;
+
+
+
 	proc->process_PC = MEM_CORRECTION(
 		proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + 2);
+
+	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
+	
 
 		// map->stack[proc->process_PC] = 7;
 		// map->stack_color[proc->process_PC] = 5;

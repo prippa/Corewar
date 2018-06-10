@@ -27,8 +27,16 @@ void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc)
 		arg
 	);
 	proc->carry = (proc->registers[cmd->arg3.av - 1] == 0 ? 1 : 0);//carry
+
+
+	map->stack_color[proc->process_PC] = proc->color;
+
+
 	proc->process_PC = MEM_CORRECTION(
 		proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2);
+
+	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
+	
 		// map->stack[proc->process_PC] = 7;
 		// map->stack_color[proc->process_PC] = 5;
 		// ft_printf("process_carry -> %d\n\n", proc->carry);

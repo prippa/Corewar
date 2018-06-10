@@ -60,8 +60,15 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 
 	 ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 
+
+	map->stack_color[proc->process_PC] = proc->color;
+
+
 	proc->process_PC = MEM_CORRECTION(
 		proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2);
+
+	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
+	
 
 	// (cmd->arg2.tp == 2) ? proc->process_PC += 1 : 0;
 	// (cmd->arg2.tp == 1) ? proc->process_PC += 2 : 0;
@@ -102,8 +109,8 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	// each process has the color of the parent;
 
 //	 for testing;
-	 map->stack[proc->process_PC] = 7;
-	 map->stack_color[proc->process_PC] = 5;
+	 // map->stack[proc->process_PC] = 7;
+	 // map->stack_color[proc->process_PC] = 5;
 
 	// TODO read(1, 0, 1);
 

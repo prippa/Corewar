@@ -33,6 +33,8 @@ void			cw_add(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 
 //	ft_printf("proc->registers[cmd->arg1.av - 1]-> %d\n", proc->registers[cmd->arg1.av - 1]);
 //	ft_printf("proc->registers[cmd->arg2.av - 1]-> %d\n", proc->registers[cmd->arg2.av - 1]);
+	map->stack_color[proc->process_PC] = proc->color;
+
 	
 	proc->registers[cmd->arg3.av - 1] = proc->registers[cmd->arg1.av - 1] + proc->registers[cmd->arg2.av - 1];
 
@@ -42,6 +44,9 @@ void			cw_add(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 
    proc->process_PC = MEM_CORRECTION(
 	   proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2);
+
+	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
+   
 
 
 	// for testing;

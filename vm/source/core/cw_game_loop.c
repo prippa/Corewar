@@ -12,13 +12,10 @@
 
 #include "corewar.h"
 
-// - выполнение на цикл
-// - Взятие аргументов в момент выполнения
-// - Цвета под каждого чемпиона
-// get clear with proc carry'
-
-// coloring while it is not valid;
-
+// - выполнение на cycles_to_be_done = 0;
+// - Взятие аргументов в момент выполнения;
+// - get clear with proc carry;
+// - coloring while it is not valid;
 
 #define	IS_CMD(x) (x >= 1 && x <= 16)
 
