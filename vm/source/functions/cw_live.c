@@ -53,7 +53,7 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
 //	 for testing;
 //	 map->stack[proc->process_PC] = 7;
-	 map->stack_color[proc->process_PC] = 5; // !!!!!!!!!!!!!!!!!!!!
+	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
 //
 //	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 

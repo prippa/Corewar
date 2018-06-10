@@ -31,7 +31,7 @@ void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
     ft_printf("proc_PC_in_zjmp -> %d", proc->process_PC);
 
-    map->stack_color[proc->process_PC] = 5;
+    map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
 
 //
 //    map->stack[proc->process_PC] = 7;

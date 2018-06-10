@@ -15,16 +15,18 @@
 // - выполнение на цикл
 // - Взятие аргументов в момент выполнения
 // - Цвета под каждого чемпиона
+// get clear with proc carry'
+
+// coloring while it is not valid;
 
 
 #define	IS_CMD(x) (x >= 1 && x <= 16)
 
-void		cw_color_start(t_processes *proc, t_stack *map) // add init for the second player;
+void		cw_color_start(t_processes *proc, t_stack *map)
 {
 	while (proc)
 	{
-		if (proc->color == 1)
-			map->stack_color[proc->process_PC] = 5;			// add colors to the options;
+		map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
 		proc = proc->next;
 	}
 }
@@ -75,7 +77,7 @@ void		cw_do_smth(t_processes *proc)
 
 			proc->process_PC += 1;
 
-			g_cw->map.stack_color[proc->process_PC] = 5; // modify with func according to tha current proc color;
+			g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // modify with func according to tha current proc color;
 
 		}
 		else

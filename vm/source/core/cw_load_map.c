@@ -67,6 +67,7 @@ static void	cw_load_processes(t_champ *champ)
 	{
 		t_processe_add(&g_cw->proc_start, &g_cw->proc_end);
 		g_cw->proc_start->color = color;
+		g_cw->proc_start->proc_process_PC_color = color + 4;
 		g_cw->proc_start->process_PC = process_pc;
 		g_cw->proc_start->registers[0] = champ->champ_number;
 		color++;
