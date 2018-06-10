@@ -59,10 +59,10 @@ void		cw_do_smth(t_processes *proc)
 	// add: cycles till execution decrementation;
 	// command detection
 	
-
+	// int		cycles = 0;
 	while (proc)
 	{
-		ft_printf("proc_id -> %d\n", proc->id);
+		// ft_printf("proc_id -> %d\n", proc->id);
 
 		g_cw->i = proc->process_PC; // what if g_cw->i is 4095, think about it )))))))))))
 
@@ -79,18 +79,37 @@ void		cw_do_smth(t_processes *proc)
 		}
 		else
 		{
-			ft_printf("true\n");
+			// ft_printf("true\n");
 
-			cw_print_cmd_specifications(&cmd);
+			// cw_print_cmd_specifications(&cmd);
 
 			// decrement the cycles and then execute;
 
-			g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
+			if (proc->cycles_till_execution < g_cw->op[cmd.cmd - 1].cycles_price)
+			{
+				// ft_printf("till exec -> %d\n", proc->cycles_till_execution);
+
+				proc->cycles_till_execution += 1;
+			}
+			else
+			{
+				g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
+
+				proc->cycles_till_execution = 0;
+
+			}
+			// else if (proc->cycles_till_execution != 0 && proc->cycles_till_execution != 1001)
+			// 	proc->cycles_till_execution--;
+
+
+			// if (proc->cycles_till_execution == 0)
+
+
 		}
 
 		// ft_bzero(&cmd, sizeof(t_command));
 
-		ft_printf("proc_PC -> %d", proc->process_PC);
+		// ft_printf("proc_PC -> %d", proc->process_PC);
 
 		proc = proc->next;
 	}
