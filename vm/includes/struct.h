@@ -22,10 +22,10 @@ typedef struct			s_champ
 	t_header			head; 							// nope;
 	char				file_name[FILE_NAME_MAX + 1];	// nope;
 	int					fd;								// nope;
-	unsigned char		code[CHAMP_MAX_SIZE];		// yeap;
+	unsigned char		code[CHAMP_MAX_SIZE];			// yeap;
 	int					champ_number;
 	unsigned int        lives_number;
-	unsigned int        last_live;                         // todo implement in the cycle;
+	unsigned int        last_live;                      // todo implement in the cycle;
 	struct s_champ		*next;							// yeap;
 }						t_champ;
 
