@@ -62,6 +62,9 @@ static void	cw_load_processes(t_champ *champ)
 
 	color = 1;
 	map_distance = MEM_SIZE / g_cw->pd.champs_count;
+
+	ft_printf("map_distance -> %d\n", map_distance);
+	
 	process_pc = 0;
 	while (champ)
 	{
