@@ -42,7 +42,7 @@ void		cw_print_cmd_specifications(t_command *cmd)
 	ft_printf("-----------------------------------\n");
 }
 
-void		cw_do_smth(t_processes *proc)
+void		cw_execute_corewar_magic(t_processes *proc)
 {
 	t_command cmd;
 
@@ -93,6 +93,11 @@ void		cw_do_smth(t_processes *proc)
 			}
 			else
 			{
+				g_cw->i = proc->process_PC;
+				ft_bzero(&cmd, sizeof(t_command));
+
+				cw_get_command(&cmd, &g_cw->i, g_cw->map.stack);
+
 				g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
 
 				proc->cycles_till_execution = 1;
@@ -152,7 +157,7 @@ void		cw_game_loop(void)
 	{
 		ft_printf("cycle -> %d\n", global_iterator);
 
-		cw_do_smth(g_cw->proc_start);
+		cw_execute_corewar_magic(g_cw->proc_start);
 
 		cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
