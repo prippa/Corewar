@@ -12,10 +12,7 @@
 
 #include "corewar.h"
 
-// - выполнение на cycles_to_be_done = 0;
-// - Взятие аргументов в момент выполнения;
 // - get clear with proc carry;
-// - coloring while it is not valid;
 
 #define	IS_CMD(x) (x >= 1 && x <= 16)
 
@@ -46,18 +43,6 @@ void		cw_execute_corewar_magic(t_processes *proc)
 {
 	t_command cmd;
 
-	// every process has its status of operations;
-
-	// process status: finding the right command; activated; waiting for the execution;
-
-	// parallel actions -> find the command, waiting for the command execution, decrementation of the command till execution;
-
-	// += to cycles when;
-	// - cycles = arr[live];
-
-
-	// add: cycles till execution decrementation;
-	// command detection
 	
 	// int		cycles = 0;
 	while (proc)
