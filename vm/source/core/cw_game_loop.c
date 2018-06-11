@@ -53,7 +53,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 		cw_get_command(&cmd, &g_cw->i, g_cw->map.stack);
 
-		if (!IS_CMD(cmd.cmd))
+		if (!IS_CMD(cmd.cmd)) // return (0);
 		{
 			g_cw->map.stack_color[proc->process_PC] = proc->color;
 
@@ -78,7 +78,8 @@ void		cw_execute_corewar_magic(t_processes *proc)
 			}
 			else
 			{
-				g_cw->i = proc->process_PC;
+				g_cw->i = proc->process_PC; // if it is not valid -> not to do it;
+
 				ft_bzero(&cmd, sizeof(t_command));
 
 				cw_get_command(&cmd, &g_cw->i, g_cw->map.stack);

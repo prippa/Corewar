@@ -23,6 +23,24 @@
 // 	return (NULL);
 // }
 
+	// ft_strncpy(&y_stack[32 - (int)ft_strlen(y)], y, (int)ft_strlen(y));
+
+static void		cw_evil(char *var_stack, char*src)
+{
+	int limit = 32;
+
+	limit -= (int)ft_strlen(src);
+
+	int i = 0;
+
+	while (src[i])
+	{
+		var_stack[limit] = src[i];
+		limit++;
+		i++;
+	}
+}
+
 static void		ft_zero_it(char *str)
 {
 	int i;
@@ -85,8 +103,10 @@ static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc)
 	ft_zero_it(x_stack);
 	ft_zero_it(y_stack);
 	ft_zero_it(res_of_comparison);
-	ft_strncpy(&x_stack[32 - (int)ft_strlen(x)], x, (int)ft_strlen(x));
-	ft_strncpy(&y_stack[32 - (int)ft_strlen(y)], y, (int)ft_strlen(y));
+	// ft_strncpy(&x_stack[32 - (int)ft_strlen(x)], x, (int)ft_strlen(x));
+	// ft_strncpy(&y_stack[32 - (int)ft_strlen(y)], y, (int)ft_strlen(y));
+	cw_evil(x_stack, x);
+	cw_evil(y_stack, y);
 
 	// testing
 	int i = 0;
