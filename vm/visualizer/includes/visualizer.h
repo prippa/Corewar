@@ -24,16 +24,13 @@
 # define ARENA_WIDTH 64
 # define ARENA_HEIGHT 64
 
-extern t_ltexture	*g_tile_block;
-extern t_ltexture	*g_text_block;
-
 int			visualizer_main(void);
 SDL_Rect	get_rectangle(int x, int y, int w, int h);
 void		set_viewport(SDL_Renderer *renderer, SDL_Rect *viewport);
 bool		init(t_arena *arena);
 void		clear_renderer(SDL_Renderer *renderer);
 int			exit_dialog(t_arena *arena);
-bool		init_start_menu(SDL_Renderer *renderer);
+bool		init_start_menu(t_arena *arena);
 void		create_figures(t_arena *arena);
 void		set_random(t_arena *arena);
 void		force_error(const char *error);

@@ -7,8 +7,8 @@ void		create_figures(t_arena *arena)
 	char	buf[2];
 
 	buf[1] = 0;
-	font_weight = MAX(ARENA_TILE_HEIGHT, ARENA_TILE_WIDTH) *
-						MAX_ZOOM;
+	font_weight = MAX(ARENA_TILE_HEIGHT, ARENA_TILE_WIDTH) * MAX_ZOOM;
+	font_weight <<= 2;
 	i = -1;
 	while (++i < 0x10)
 	{
@@ -18,7 +18,7 @@ void		create_figures(t_arena *arena)
 			buf[0] = 'f' - (0xf - i);
 		arena->figures[i] =
 			load_from_rendered_text(get_text_info(
-									FUTURICA,
+									ROBOTO_REGULAR,
 									font_weight,
 									buf,
 									(SDL_Color){.r = 0xff, .g = 0xff, .b = 0xff, .a = 0xff}),

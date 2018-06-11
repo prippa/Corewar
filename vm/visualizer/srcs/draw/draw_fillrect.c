@@ -18,19 +18,19 @@ void			draw_fillrect(t_arena *arena,
 {
 
 	t_rposition	position;
-	SDL_Point	left_corner = {.x = rect.x + 3, .y = rect.y - 3};
+	SDL_Point	left_corner = {.x = rect.x, .y = rect.y};
 	int	cell = arena->bytes[i * ARENA_TILE_HEIGHT + j];
 	int ff = 0;
 	int sf = 0;
 	ff = (cell >> 4);
 	sf = ((ff << 4) ^ cell);
 
-	//position = get_render_position(0, &left_corner, NULL, &rect);
-	//set_color(arena->colors[i * ARENA_WIDTH + j], g_tile_block);
-	//render(&position, g_tile_block, arena->renderer, SDL_FLIP_NONE);
+	position = get_render_position(0, &left_corner, NULL, &rect);
+	set_color(arena->colors[i * ARENA_WIDTH + j], arena->tile_block);
+	render(&position, arena->tile_block, arena->renderer, SDL_FLIP_NONE);
 	//SDL_Color c = arena->colors[i * ARENA_WIDTH + j];
-	SDL_SetRenderDrawColor(arena->renderer, 0x00, 0x00, 0x00, 0xff);
-	SDL_RenderFillRect(arena->renderer, &rect);
+	//SDL_SetRenderDrawColor(arena->renderer, 0x00, 0x00, 0x00, 0xff);
+	//SDL_RenderFillRect(arena->renderer, &rect);
 	rect.w /= 2;
 	position = get_render_position(0, &left_corner, NULL, &rect);
 	render(&position, arena->figures[ff], arena->renderer, SDL_FLIP_NONE);

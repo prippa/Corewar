@@ -22,10 +22,20 @@
 # include "SDL_ttf.h"
 # include "SDL_mixer.h"
 # include <stdio.h>
-# define IMG_FOLDER "./vm/visualizer/"
+# define IMG_FOLDER "./vm/visualizer/images/"
+# define BTN_FOLDER "./vm/visualizer/images/buttons"
+# define ARROW_IMG "./vm/visualizer/images/buttons/arrow.png"
+# define CHECK_IMG "./vm/visualizer/images/buttons/red_check.png"
+# define CROSS_IMG "./vm/visualizer/images/buttons/red_cross.png"
+# define MENU_DOWN_IMG "./vm/visualizer/images/buttons/red_down.png"
+# define MENU_ON_IMG "./vm/visualizer/images/buttons/red_on.png"
+# define MENU_OUT_IMG "./vm/visualizer/images/buttons/red_out.png"
+# define MENU_UP_IMG "./vm/visualizer/images/buttons/red_up.png"
+# define TILEBLOCK_IMG "./vm/visualizer/images/tileblock.jpg"
+# define BACK_IMG "vm/visualizer/images/colosseum.jpg"
 # define GET_DMODE_SUCCESS 0
-# define SCREEN_WIDTH 2500
-# define SCREEN_HEIGHT 1300
+# define SCREEN_WIDTH 2560
+# define SCREEN_HEIGHT 1440
 # define MAP_SIZE 4096
 # define MIN_ZOOM 0.5
 # define MAX_ZOOM 10
@@ -79,6 +89,67 @@ typedef struct					s_ltexture
 	int							height;
 }								t_ltexture;
 
+typedef enum	e_btnsprite
+{
+	BUTTON_MOUSE_OUT,
+	BUTTON_MOUSE_OVER_MOTION,
+	BUTTON_MOUSE_DOWN,
+	BUTTON_MOUSE_UP,
+	BUTTON_TOTAL
+}				t_btnsprite;
+
+typedef enum	e_movebtnsprite
+{
+	MOVE_BUTTON_MOUSE_OUT,
+	MOVE_BUTTON_MOUSE_OVER_MOTION,
+	MOVE_BUTTON_MOUSE_DOWN,
+	MOVE_BUTTON_MOUSE_UP,
+	MOVE_BUTTON_TOTAL
+}				t_movebtnsprite;				
+
+typedef enum	e_cbxsprite
+{
+	CHECK_MOUSE_OUT,
+	CHECK_MOUSE_IN,
+	CROSS_MOUSE_OUT,
+	CROSS_MOUSE_IN
+}				t_cbxsprite;
+
+typedef enum	e_startmenu
+{
+	START_MENU_BTN,
+	STOP_MENU_BTN,
+	INFO_MENU_BTN,
+	EXIT_MENU_BTN,
+}				t_startmenu;
+
+typedef enum	e_movemenu
+{
+	UP_MENU_BTN,
+	RIGHT_MENU_BTN,
+	DOWN_MENU_BTN,
+	LEFT_MENU_BTN
+}				t_movemenu;
+
+typedef struct	s_button
+{
+	SDL_Point	position;
+	t_btnsprite	current_sprite;
+	t_ltexture	*button_txt;
+	SDL_Point	txt_position;
+	int			width;
+	int			height;
+}				t_button;
+
+typedef struct	s_checkbox
+{
+	SDL_Point	position;
+	t_cbxsprite	current_sprite;
+	t_ltexture	*checkbox_txt;
+	SDL_Point	txt_position;
+	bool		checked;
+}				t_checkbox;
+
 /*
 ** Position for renderer
 */
@@ -108,6 +179,15 @@ typedef struct					s_text
 typedef struct					s_arena
 {
 	/*
+	** Start menu buttons
+	*/
+	t_button					*start_btns[TOTAL_BUTTONS];
+	/*
+	** Sprites for start menu button states
+	** wraped in ltexture and prepare for rendering
+	*/
+	t_ltexture					*start_btn_sprites[TOTAL_SPRITES];
+	/*
 	** Dialog buttons Yes, No, Cansel
 	*/
 	SDL_MessageBoxButtonData	msgbox_buttons[MESSAGE_BOX_BUTTON_NBR];
@@ -119,6 +199,7 @@ typedef struct					s_arena
 	bool						is_rendered;
 	bool						is_fullscreen;
 	bool						pause;
+	t_ltexture					*tile_block;
 	float						zoom;
 	int							thread_count;
 	int							start_for_thread;

@@ -39,14 +39,15 @@
 
 int		main(int argc, char **argv)
 {
-	// visualizer_main();
-	cw_init();
+	visualizer_main();
+	/*cw_init();
 	cw_parse_args(argc, argv + 1);
 	cw_parser();
 	cw_load_map();
+
 	cw_game_loop();
 	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
-	cw_free();
+	cw_free();*/
 	system("leaks -q corewar");
 	return (0);
 }

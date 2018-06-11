@@ -19,7 +19,7 @@ void				events_handler(t_arena *arena)
 	
 	e = &(arena->e);
 	bzero(&bp, sizeof(SDL_Point));
-	t_ltexture *background = load_from_file("colosseum.jpg",
+	t_ltexture *background = load_from_file(BACK_IMG,
 											arena->renderer,
 											(SDL_Color){.r=0,.g=0,.b=0});
 	SDL_Rect clip = get_rectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -39,12 +39,12 @@ void				events_handler(t_arena *arena)
 				wheel_event(arena, e->wheel.y);
 			}
 			for (int i = 0; i < BUTTON_TOTAL; i++)
-				handle_button_event(e, g_start_btns[i], arena, i);
+				handle_button_event(e, arena->start_btns[i], arena, i);
 			handle_checkbox_event(e, g_full_btn, arena);
 		}
 		render_checkbox_sprite(g_full_btn, arena->renderer);
 		for (int i = 0; i < BUTTON_TOTAL; i++)
-			render_button_sprite(g_start_btns[i], arena->renderer);
+			render_button_sprite(arena->start_btns[i], arena);
 		if (arena->is_rendered)
 		{
 			if (arena->pause == false)

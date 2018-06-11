@@ -12,8 +12,6 @@
 
 #include "visualizer.h"
 
-//SDL_MessageBoxButtonData g_buttons[MESSAGE_BOX_BUTTON_NBR];
-
 static inline bool	create_window(t_arena *arena)
 {
 	if (!(arena->window = SDL_CreateWindow("Digital Coliseum",
@@ -70,14 +68,19 @@ bool				init(t_arena *arena)
 	}
 	if (!create_window(arena))
 		return (false);
-	if (!init_start_menu(arena->renderer))
-		return (false);
-	t_ltexture *background = load_from_file("colosseum.jpg",
+	t_ltexture *background = load_from_file(BACK_IMG,
 											arena->renderer,
 											(SDL_Color){.r=0,.g=0,.b=0});
 	SDL_Rect clip = get_rectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	t_rposition pos = get_render_position(0, NULL, NULL, &clip);
 	render(&pos, background, arena->renderer, SDL_FLIP_NONE);
 	create_figures(arena);
+	if (!init_start_menu(arena))
+		return (false);
+	if (!(arena->tile_block =
+			load_from_file(TILEBLOCK_IMG,
+							arena->renderer,
+							(SDL_Color){.r = 0x0, .g = 0x0, .b = 0x0, .a = 0xff})))
+		return (false);
 	return (true);
 }

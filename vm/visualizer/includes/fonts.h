@@ -7,4 +7,5 @@
 # define KENVECTOR_THIN "fonts/kenvector_future_thin.ttf"
 # define WESTERN_SWING "fonts/WesternSwing.ttf"
 # define CENT "fonts/Cent.ttf"
+# define ROBOTO_REGULAR "fonts/RobotoRegular.ttf"
 #endif
