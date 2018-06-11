@@ -145,6 +145,7 @@ void		cw_game_loop(void)
 
 		cw_execute_corewar_magic(g_cw->proc_start);
 
+		if (global_iterator == 17)
 		cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
 		global_iterator++;

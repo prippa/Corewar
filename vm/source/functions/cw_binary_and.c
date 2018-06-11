@@ -33,6 +33,8 @@ static void		cw_evil(char *var_stack, char*src)
 
 	int i = 0;
 
+	ft_printf("stack -> %s\n", var_stack);
+
 	while (src[i])
 	{
 		var_stack[limit] = src[i];
@@ -87,7 +89,7 @@ static int				cw_return_value_according_to_the_type_of_parameter_2(t_command *cm
 	return (0);
 }
 
-static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc)
+static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc) // do them as strings;
 {
 	char *x;
 	char *y;
@@ -105,6 +107,8 @@ static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc)
 	ft_zero_it(res_of_comparison);
 	// ft_strncpy(&x_stack[32 - (int)ft_strlen(x)], x, (int)ft_strlen(x));
 	// ft_strncpy(&y_stack[32 - (int)ft_strlen(y)], y, (int)ft_strlen(y));
+
+
 	cw_evil(x_stack, x);
 	cw_evil(y_stack, y);
 
