@@ -57,6 +57,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 			proc->process_PC += 1;
 
 			g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // modify with func according to tha current proc color;
+
 		}
 		else
 		{
@@ -72,13 +73,14 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 				proc->cycles_till_execution++;
 			}
-			else if (!cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
-			{
-				g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
-			}
 			else
 			{
+				cw_get_command(&cmd, proc->process_PC, g_cw->map.stack);
+
+				g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
+
 				proc->cycles_till_execution = 1;
+
 			}
 			// else if (proc->cycles_till_execution != 0 && proc->cycles_till_execution != 1001)
 			// 	proc->cycles_till_execution--;
