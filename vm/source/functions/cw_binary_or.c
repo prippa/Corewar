@@ -23,6 +23,17 @@
 // 	return (NULL);
 // }
 
+static char			*cw_snoop_dogg(char *str)
+{
+	char *wuf_wuf = ft_strnew(33);
+
+	ft_strncpy(wuf_wuf, &str[32], 32);
+
+	return (wuf_wuf);
+
+
+}
+
 static void		ft_zero_it(char *str)
 {
 	int i;
@@ -85,8 +96,16 @@ static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc)
 	ft_zero_it(x_stack);
 	ft_zero_it(y_stack);
 	ft_zero_it(res_of_comparison);
-	ft_strncpy(&x_stack[32 - (int)ft_strlen(x)], x, (int)ft_strlen(x));
-	ft_strncpy(&y_stack[32 - (int)ft_strlen(y)], y, (int)ft_strlen(y));
+	if (cw_return_value_according_to_the_type_of_parameter_1(cmd, proc) < 0)
+	{
+		free(x);
+		x = cw_snoop_dogg(x);
+	}
+		if (cw_return_value_according_to_the_type_of_parameter_2(cmd, proc) < 0)
+	{
+		free(y);
+		y = cw_snoop_dogg(y);
+	}
 
 	// testing
 	int i = 0;
