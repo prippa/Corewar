@@ -48,19 +48,15 @@ void		cw_execute_corewar_magic(t_processes *proc)
 	while (proc)
 	{
 		// ft_printf("proc_id -> %d\n", proc->id);
+		ft_bzero(&cmd, sizeof(t_command));
 
-		g_cw->i = proc->process_PC; // what if g_cw->i is 4095, think about it )))))))))))
-
-		cw_get_command(&cmd, &g_cw->i, g_cw->map.stack);
-
-		if (!IS_CMD(cmd.cmd))
+		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
 		{
 			g_cw->map.stack_color[proc->process_PC] = proc->color;
 
 			proc->process_PC += 1;
 
 			g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // modify with func according to tha current proc color;
-
 		}
 		else
 		{
@@ -76,17 +72,11 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 				proc->cycles_till_execution++;
 			}
-			else
+			else if (!cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
 			{
-				g_cw->i = proc->process_PC;
-				ft_bzero(&cmd, sizeof(t_command));
-
-				cw_get_command(&cmd, &g_cw->i, g_cw->map.stack);
-
 				g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
 
 				proc->cycles_till_execution = 1;
-
 			}
 			// else if (proc->cycles_till_execution != 0 && proc->cycles_till_execution != 1001)
 			// 	proc->cycles_till_execution--;
@@ -144,7 +134,8 @@ void		cw_game_loop(void)
 
 		cw_execute_corewar_magic(g_cw->proc_start);
 
-		cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+		if (global_iterator == CYCLES - 1)
+			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
 		global_iterator++;
 	}

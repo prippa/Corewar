@@ -61,7 +61,7 @@ typedef	struct			s_processes					// fork will create a process and will change t
 {
 	unsigned int		id;
 	int					color;						// R: {1 - 4};
-	int					process_PC;					// current position of the stack command line (iteratively according to the quantity of champs);
+	unsigned int		process_PC;					// current position of the stack command line (iteratively according to the quantity of champs);
 	int					carry;						// initially has zero value because this var will be modified after execution of the command;
 	int					registers[REG_NUMBER];		// r1 -> player_name register;
 	int 				live_status;				// flag to detect the life of the process;
@@ -70,7 +70,7 @@ typedef	struct			s_processes					// fork will create a process and will change t
 	short				cycles_till_execution;		// will be decremented;
 	short				proc_process_PC_color;
 	struct s_processes	*next;						// pointer to the next element;
-	struct s_processes	*prev;						// pointer to the next element;
+	struct s_processes	*prev;						// pointer to the prev element;
 }						t_processes;
 
 typedef struct			s_stack
