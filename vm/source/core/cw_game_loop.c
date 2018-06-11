@@ -75,7 +75,9 @@ void		cw_execute_corewar_magic(t_processes *proc)
 			else if (!cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
 			{
 				g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
-
+			}
+			else
+			{
 				proc->cycles_till_execution = 1;
 			}
 			// else if (proc->cycles_till_execution != 0 && proc->cycles_till_execution != 1001)
