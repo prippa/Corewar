@@ -22,10 +22,10 @@ typedef struct			s_champ
 	t_header			head; 							// nope;
 	char				file_name[FILE_NAME_MAX + 1];	// nope;
 	int					fd;								// nope;
-	unsigned char		code[CHAMP_MAX_SIZE];		// yeap;
+	unsigned char		code[CHAMP_MAX_SIZE];			// yeap;
 	int					champ_number;
 	unsigned int        lives_number;
-	unsigned int        last_live;                         // todo implement in the cycle;
+	unsigned int        last_live;                      // todo implement in the cycle;
 	struct s_champ		*next;							// yeap;
 }						t_champ;
 
@@ -60,7 +60,6 @@ typedef struct			s_command
 typedef	struct			s_processes					// fork will create a process and will change the map;
 {
 	unsigned int		id;
-	int 				status;						// Looking for the command;
 	int					color;						// R: {1 - 4};
 	int					process_PC;					// current position of the stack command line (iteratively according to the quantity of champs);
 	int					carry;						// initially has zero value because this var will be modified after execution of the command;
@@ -69,6 +68,7 @@ typedef	struct			s_processes					// fork will create a process and will change t
 	int 				has_been_activated;			// if the process has been used;
 	int					champ_number;				// Number of champ
 	short				cycles_till_execution;		// will be decremented;
+	short				proc_process_PC_color;
 	struct s_processes	*next;						// pointer to the next element;
 	struct s_processes	*prev;						// pointer to the next element;
 }						t_processes;

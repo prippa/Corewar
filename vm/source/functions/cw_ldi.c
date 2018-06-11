@@ -26,6 +26,11 @@ void			cw_ldi(t_command *cmd, t_stack *map, t_processes *proc)
 		4,
 		arg
 	);
+
+
+	map->stack_color[proc->process_PC] = proc->color;
+	
+	
 	proc->process_PC = MEM_CORRECTION(
 		proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2);
 		// map->stack[proc->process_PC] = 7;
