@@ -39,6 +39,7 @@
 
 int		main(int argc, char **argv)
 {
+	// visualizer_main();
 	cw_init();
 	cw_parse_args(argc, argv + 1);
 	cw_parser();
