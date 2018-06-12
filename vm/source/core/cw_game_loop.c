@@ -202,11 +202,12 @@ void		cw_game_loop(void)
 
 		cw_execute_corewar_magic(g_cw->proc_start);
 
-		// if (global_iterator == 60)
-		// cw_display_map_write(g_cw->map.write_to_the_map_stack);
 		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);
-	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
-		
+		// if (global_iterator == 49)
+			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+			
+		// cw_display_map_write(g_cw->map.write_to_the_map_stack);
+
 
 		global_iterator++;
 	}
