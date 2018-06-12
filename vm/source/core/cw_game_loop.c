@@ -124,7 +124,7 @@ void cw_display_map_write(unsigned int *map)
 	}
 }
 
-void	cw_decrementor(unsigned int *write_to_the_map_stack, int *stack_color, unsigned int *cycle_stack)
+void	cw_decrementor(unsigned int *write_to_the_map_stack, int *stack_color, unsigned int *cycle_stack) // for 50 cycles;
 {
 	int i;
 
