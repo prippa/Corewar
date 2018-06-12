@@ -42,8 +42,13 @@ void		cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 	int i;
 	int k;
 
+	ft_printf("nbr -> %d\n", nbr);
+
 	i = 0;
-	check = cw_get_string_for_conversion(nbr);
+	check = cw_get_string_for_conversion(nbr); // o.k.
+
+	ft_printf("check -> %s\n", check);
+
 	while (i < 4)
 	{
 		if (i == 0)
@@ -71,11 +76,18 @@ void		cw_write_to_map(t_stack *map, t_processes *proc, unsigned char *buf,
 	{
 		if (position_on_the_map == MEM_SIZE)
 			position_on_the_map = 0;
-		// ft_printf("position_on_the_map -> %d", position_on_the_map);
+
+		ft_printf("map[i] -> %d", buf[i]);
 		
 		map->stack[position_on_the_map] = buf[i];
 
 		map->stack_color[position_on_the_map] = proc->proc_color_write_to_map;
+
+
+
+
+
+
 		map->write_to_the_map_stack[position_on_the_map] = proc->proc_color_write_to_map + 50; // -> 59;
 		map->cycle_stack[position_on_the_map] = 50; // -> 0 -> execute;
 

@@ -78,6 +78,7 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 //	position_on_the_map +// to func;
 
 	 ft_printf("position_on_the_map -> %d\n", position_on_the_map);
+	 
 	 ft_printf("process_PC -> %d\n", proc->process_PC);
 
 
