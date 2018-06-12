@@ -74,7 +74,13 @@ void		cw_write_to_map(t_stack *map, t_processes *proc, unsigned char *buf,
 		// ft_printf("position_on_the_map -> %d", position_on_the_map);
 		
 		map->stack[position_on_the_map] = buf[i];
-		map->stack_color[position_on_the_map] = proc->color;
+
+		map->stack_color[position_on_the_map] = proc->proc_color_write_to_map;
+		map->write_to_the_map_stack[position_on_the_map] = proc->proc_color_write_to_map + 50; // -> 59;
+		map->cycle_stack[position_on_the_map] = 50; // -> 0 -> execute;
+
+
+
 		i++;
 		position_on_the_map++;
 //		map->stack_process_id[position_on_the_map++] = proc->id;
@@ -91,7 +97,8 @@ int			cw_get_dec_from_the_point(unsigned char *str,
 	res = 0;
 	i = 0;
 	j = MEM_CORRECTION(position);
-	
+	j = (j < 0) ? MEM_SIZE + j : j;
+
 	// ft_printf("quantity -> %d\n", quantity);
 	// ft_printf("position -> %d\n", position);
 

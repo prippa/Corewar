@@ -28,9 +28,9 @@ void			cw_lld(t_command *cmd, t_stack *map, t_processes *proc)
 	proc->carry = (proc->registers[cmd->arg2.av - 1] == 0 ? 1 : 0); // carry
 
 	map->stack_color[proc->process_PC] = proc->color;
+
 	proc->process_PC = MEM_CORRECTION(
-		
-		proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + 2);
+		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + 2));
 
 	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
 

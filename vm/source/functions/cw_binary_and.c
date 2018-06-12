@@ -187,7 +187,7 @@ void			cw_binary_and(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned
 
 	ft_printf("res of comparison->%d\n", proc->registers[cmd->arg3.av - 1]);
 	proc->process_PC = MEM_CORRECTION(
-		proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2);
+		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2));
 	proc->carry = (proc->registers[cmd->arg3.av - 1] == 0) ? 1 : 0;
 
 	ft_printf("carry -> %d\n", proc->carry);

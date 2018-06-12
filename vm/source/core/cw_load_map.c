@@ -39,8 +39,8 @@ static void	cw_fill_map_with_bots(t_stack *stack, t_processes *process)
 	}
 }
 
-static void	cw_init_map(unsigned char *stack, int *stack_color/*,
-						unsigned int *stack_process_id*/)
+static void	cw_init_map(unsigned char *stack, int *stack_color,
+						unsigned int *write_to_the_map_stack, unsigned int *cycle_stack)
 {
 	unsigned int i;
 
@@ -49,7 +49,8 @@ static void	cw_init_map(unsigned char *stack, int *stack_color/*,
 	{
 		stack[i] = '0';
 		stack_color[i] = 0;
-//		stack_process_id[i] = 0;
+		write_to_the_map_stack[i] = 0;
+		cycle_stack[i] = 0;
 		i++;
 	}
 }
@@ -71,6 +72,7 @@ static void	cw_load_processes(t_champ *champ)
 		t_processe_add(&g_cw->proc_start, &g_cw->proc_end);
 		g_cw->proc_start->color = color;
 		g_cw->proc_start->proc_process_PC_color = color + 4;
+		g_cw->proc_start->proc_color_write_to_map = g_cw->proc_start->proc_process_PC_color + 4;
 		g_cw->proc_start->process_PC = process_pc;
 		g_cw->proc_start->registers[0] = champ->champ_number;
 		color++;
@@ -83,6 +85,6 @@ void		cw_load_map(void)
 {
 	cw_load_processes(g_cw->pd.champs);
 	cw_init_map(g_cw->map.stack,
-	g_cw->map.stack_color/*, g_cw->map.stack_process_id*/);
+	g_cw->map.stack_color, g_cw->map.write_to_the_map_stack, g_cw->map.cycle_stack);
 	cw_fill_map_with_bots(&g_cw->map, g_cw->proc_start);
 }

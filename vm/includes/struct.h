@@ -68,16 +68,18 @@ typedef	struct			s_processes					// fork will create a process and will change t
 	int 				has_been_activated;			// if the process has been used;
 	int					champ_number;				// Number of champ
 	short				cycles_till_execution;		// will be decremented;
-	short				proc_process_PC_color;
+	short				proc_process_PC_color;		// initial color;
+	short				proc_color_write_to_map;	// color for writing on the map;
 	struct s_processes	*next;						// pointer to the next element;
-	struct s_processes	*prev;						// pointer to the next element;
+	struct s_processes	*prev;						// pointer to the prev element;
 }						t_processes;
 
 typedef struct			s_stack
 {
 	unsigned char		stack[MEM_SIZE];			// whole stack;
 	int					stack_color[MEM_SIZE];		// colors manipulation;
-//	unsigned int		stack_process_id[MEM_SIZE];	// maintain process id;
+	unsigned int		write_to_the_map_stack[MEM_SIZE];	// maintain color buf for sti;
+	unsigned int		cycle_stack[MEM_SIZE];		// to keep the 50 cycles;
 }						t_stack;
 
 /*
@@ -102,7 +104,6 @@ typedef struct			s_corewar
 	t_processes			*proc_end;
 	const t_op			*op;
 	char				loop;
-	unsigned int		i;							// map iterator; // TODO why we need this feature;
 	unsigned int		proc_counter;				// size of active processes
 	unsigned int		id_counter;					// counter of id in processes
 }						t_corewar;

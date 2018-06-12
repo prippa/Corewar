@@ -33,7 +33,7 @@ void			cw_write_to_map(t_stack *map, t_processes *proc,
 ******************************* Parse file part ********************************
 */
 
-int				cw_get_command(t_command *cmd, unsigned int /* * */*i,
+int				cw_get_command(t_command *cmd, unsigned int i,
 					unsigned char *map);
 void			cw_lseek_cur_skip(int fd, long size);
 void			cw_check_magic(t_champ *champ);

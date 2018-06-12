@@ -50,7 +50,7 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
     // ft_printf("champ_number -> %u\n", champ->lives_number);
     map->stack_color[proc->process_PC] = proc->color;
 
-    proc->process_PC = MEM_CORRECTION(proc->process_PC + cmd->arg1.tp + 1);
+    proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
 
 //	 for testing;
 //	 map->stack[proc->process_PC] = 7;
