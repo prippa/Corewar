@@ -108,8 +108,10 @@ static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc) // do the
 	char y_stack[33];
 	char res_of_comparison[33];
 
-	x = ft_itoa_base(cw_return_value_according_to_the_type_of_parameter_1(cmd, proc), 2, 0);
-	y = ft_itoa_base(cw_return_value_according_to_the_type_of_parameter_2(cmd, proc), 2, 0);
+	if (!(x = ft_itoa_base(cw_return_value_according_to_the_type_of_parameter_1(cmd, proc), 2, 0)))
+		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
+	if (!(y = ft_itoa_base(cw_return_value_according_to_the_type_of_parameter_2(cmd, proc), 2, 0)))
+		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
 
 	if (cw_return_value_according_to_the_type_of_parameter_1(cmd, proc) < 0)
 	{
