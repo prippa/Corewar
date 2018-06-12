@@ -57,10 +57,10 @@ void		cw_display_map(unsigned char *map, int *color)
 	while (i < MEM_SIZE)
 	{
 		print_color(map[i], color[i]);
-		ft_printf(" ");
+		ft_putchar(' ');
 		if (lines == NEWLINE_QUANTITY)
 		{
-			ft_printf("\n");
+			ft_putchar('\n');
 			lines = -1;
 		}
 		lines++;

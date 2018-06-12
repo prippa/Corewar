@@ -97,32 +97,32 @@ void		cw_execute_corewar_magic(t_processes *proc)
 	}
 }
 
-void cw_display_map_write(unsigned int *map)
-{
-	unsigned int i;
-	unsigned int spaces;
-	unsigned int lines;
+// void cw_display_map_write(unsigned int *map)
+// {
+// 	unsigned int i;
+// 	unsigned int spaces;
+// 	unsigned int lines;
 
-	read(1, 0, 1); // this stuff may help with visualization;
-	system("clear"); // this stuff may help with visualization;
+// 	read(1, 0, 1); // this stuff may help with visualization;
+// 	system("clear"); // this stuff may help with visualization;
 
-	i = 0;
-	spaces = 1;
-	lines = 0;
-	while (i < MEM_SIZE)
-	{
-		ft_printf("%~.2d", F_WHITE, map[i]);
-		ft_printf(" ");
-		if (lines == NEWLINE_QUANTITY)
-		{
-			ft_printf("\n");
-			lines = -1;
-		}
-		lines++;
-		spaces++;
-		i++;
-	}
-}
+// 	i = 0;
+// 	spaces = 1;
+// 	lines = 0;
+// 	while (i < MEM_SIZE)
+// 	{
+// 		ft_printf("%~.2d", F_WHITE, map[i]);
+// 		ft_printf(" ");
+// 		if (lines == NEWLINE_QUANTITY)
+// 		{
+// 			ft_printf("\n");
+// 			lines = -1;
+// 		}
+// 		lines++;
+// 		spaces++;
+// 		i++;
+// 	}
+// }
 
 void	cw_decrementor(unsigned int *write_to_the_map_stack, int *stack_color, unsigned int *cycle_stack) // for 50 cycles;
 {
@@ -193,7 +193,7 @@ void		cw_game_loop(void)
 	int global_iterator = 0;
 
 	#define CYCLES 10000
-	#define test 2853
+	#define test 2854
 
 	while (global_iterator < CYCLES)
 	{
