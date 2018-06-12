@@ -193,7 +193,7 @@ void		cw_game_loop(void)
 	int global_iterator = 0;
 
 	#define CYCLES 10000
-	#define test 1069
+	#define test 4069
 
 	while (global_iterator < CYCLES)
 	{
