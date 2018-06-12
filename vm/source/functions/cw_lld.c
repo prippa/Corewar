@@ -14,9 +14,6 @@
 
 void			cw_lld(t_command *cmd, t_stack *map, t_processes *proc)
 {
-
-
-
 	if (cmd->arg1.tp == 4)
 		proc->registers[cmd->arg2.av - 1] = cmd->arg1.av;
 	else

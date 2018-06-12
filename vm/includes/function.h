@@ -22,6 +22,11 @@ void			cw_perror_exit(char *message, int error_number);
 void			cw_init(void);
 void			cw_free(void);
 
+/*
+************************************ Helpers ***********************************
+*/
+
+char			*cw_snoop_dogg(char *str);
 int				cw_get_dec_from_the_point(unsigned char *str,
 					int quantity, int position);
 int				cw_hex_to_dec(unsigned char *buf, int i);

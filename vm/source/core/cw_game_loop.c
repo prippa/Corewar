@@ -39,10 +39,9 @@ void		cw_print_cmd_specifications(t_command *cmd)
 	ft_printf("-----------------------------------\n");
 }
 
-void		cw_execute_corewar_magic(void)
+void		cw_execute_corewar_magic(t_processes *proc)
 {
 	t_command cmd;
-	t_processes *proc = g_cw->proc_start;
 	
 	// int		cycles = 0;
 	while (proc)
@@ -200,7 +199,7 @@ void		cw_game_loop(void)
 	{
 		ft_printf("cycle -> %d\n", global_iterator);
 
-		cw_execute_corewar_magic();
+		cw_execute_corewar_magic(g_cw->proc_start);
 
 		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);
 

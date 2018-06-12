@@ -65,7 +65,8 @@ HEAD_VM		=	corewar.h define.h function.h struct.h
 HEAD_CW		=	op.h
 
 #-------------------------------VM----------------------------------
-C_VM		=	main.c cw_init.c cw_free.c cw_exit.c cw_helpers.c
+C_VM		=	main.c cw_init.c cw_free.c cw_exit.c cw_helpers.c\
+				cw_helpers_2.c
 
 C_PARSER	=	cw_parser.c cw_parse_args.c cw_get_basic_data.c\
 				cw_parse_flags.c

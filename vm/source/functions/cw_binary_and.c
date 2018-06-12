@@ -89,17 +89,6 @@ static int				cw_return_value_according_to_the_type_of_parameter_2(t_command *cm
 	return (0);
 }
 
-static char			*cw_snoop_dogg(char *str)
-{
-	char *wuf_wuf = ft_strnew(33);
-
-	ft_strncpy(wuf_wuf, &str[32], 32);
-
-	return (wuf_wuf);
-
-
-}
-
 static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc) // do them as strings;
 {
 	char *x;
@@ -108,8 +97,10 @@ static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc) // do the
 	char y_stack[33];
 	char res_of_comparison[33];
 
-	x = ft_itoa_base(cw_return_value_according_to_the_type_of_parameter_1(cmd, proc), 2, 0);
-	y = ft_itoa_base(cw_return_value_according_to_the_type_of_parameter_2(cmd, proc), 2, 0);
+	if (!(x = ft_itoa_base(cw_return_value_according_to_the_type_of_parameter_1(cmd, proc), 2, 0)))
+		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
+	if (!(y = ft_itoa_base(cw_return_value_according_to_the_type_of_parameter_2(cmd, proc), 2, 0)))
+		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
 
 	if (cw_return_value_according_to_the_type_of_parameter_1(cmd, proc) < 0)
 	{
@@ -181,7 +172,8 @@ void			cw_binary_and(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned
 
 	map->stack_color[proc->process_PC] = proc->color;
 
-	res_of_comparison = cw_res_of_comparison(cmd, proc);
+	if (!(res_of_comparison = cw_res_of_comparison(cmd, proc)))
+		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
 	proc->registers[cmd->arg3.av - 1] = ft_atoi_base(res_of_comparison, 2);
 	free(res_of_comparison);
 
