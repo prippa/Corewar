@@ -193,7 +193,7 @@ void		cw_game_loop(void)
 	int global_iterator = 0;
 
 	#define CYCLES 10000
-	#define test 4069
+	#define test 2844
 
 	while (global_iterator < CYCLES)
 	{
@@ -202,7 +202,7 @@ void		cw_game_loop(void)
 		cw_execute_corewar_magic(g_cw->proc_start);
 
 		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);
-		
+
 		if (global_iterator == test)
 			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 		else if (global_iterator > test)
