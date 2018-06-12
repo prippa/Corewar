@@ -39,22 +39,21 @@ void		cw_print_cmd_specifications(t_command *cmd)
 	ft_printf("-----------------------------------\n");
 }
 
-void		cw_execute_corewar_magic(t_processes *proc)
+void		cw_execute_corewar_magic(void)
 {
 	t_command cmd;
-
+	t_processes *proc = g_cw->proc_start;
 	
 	// int		cycles = 0;
 	while (proc)
 	{
 		// ft_printf("proc_id -> %d\n", proc->id);
-		ft_bzero(&cmd, sizeof(t_command));
 
 		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
 		{
 			g_cw->map.stack_color[proc->process_PC] = proc->color;
-
-			proc->process_PC += 1;
+			proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
+			// proc->process_PC += 1;
 
 			g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // modify with func according to tha current proc color;
 
@@ -75,12 +74,12 @@ void		cw_execute_corewar_magic(t_processes *proc)
 			}
 			else
 			{
-				cw_get_command(&cmd, proc->process_PC, g_cw->map.stack);
 
-				g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
+				if (!cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
+					g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
 
 				proc->cycles_till_execution = 1;
-
+				
 			}
 			// else if (proc->cycles_till_execution != 0 && proc->cycles_till_execution != 1001)
 			// 	proc->cycles_till_execution--;
@@ -201,7 +200,7 @@ void		cw_game_loop(void)
 	{
 		ft_printf("cycle -> %d\n", global_iterator);
 
-		cw_execute_corewar_magic(g_cw->proc_start);
+		cw_execute_corewar_magic();
 
 		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);
 		if (global_iterator == test)

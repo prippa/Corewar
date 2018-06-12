@@ -56,7 +56,6 @@ void		cw_init(void)
 	g_cw->proc_start = NULL;
 	g_cw->proc_end = NULL;
 	g_cw->loop = 1;
-	g_cw->i = 0;
 	g_cw->proc_counter = 0;
 	g_cw->id_counter = 1;
 }

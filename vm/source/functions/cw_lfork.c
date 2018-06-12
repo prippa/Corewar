@@ -7,7 +7,7 @@ void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc)
 {
     int				position_on_the_map;
 
-    position_on_the_map = MEM_CORRECTION(proc->process_PC + cmd->arg1.av);
+    position_on_the_map = MEM_CORRECTION((proc->process_PC + cmd->arg1.av));
     position_on_the_map = (position_on_the_map < 0) ? MEM_SIZE + position_on_the_map : position_on_the_map;
 
     // ft_printf("position_on_the_map -> %d\n", position_on_the_map);
@@ -15,7 +15,7 @@ void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc)
     // position on the map will be a process_PC for the new process;
     map->stack_color[proc->process_PC] = proc->color;
 
-    proc->process_PC = MEM_CORRECTION(proc->process_PC + cmd->arg1.tp + 1);
+    proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
 
     // ft_printf("process_PC -> %d\n", proc->process_PC);
 
