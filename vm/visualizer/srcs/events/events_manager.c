@@ -14,10 +14,8 @@
 
 void				events_handler(t_arena *arena)
 {
-	SDL_Event		*e;
 	SDL_Point		bp;
 	
-	e = &(arena->e);
 	bzero(&bp, sizeof(SDL_Point));
 	t_ltexture *background = load_from_file(BACK_IMG,
 											arena->renderer,
@@ -28,23 +26,23 @@ void				events_handler(t_arena *arena)
 	{
 		clear_renderer(arena->renderer);
 		render(&pos, background, arena->renderer, SDL_FLIP_NONE);
-		while (SDL_PollEvent(e))
+		while (SDL_PollEvent(&(arena->e)))
 		{
-			if (e->type == SDL_QUIT)
+			if (arena->e.type == SDL_QUIT)
 				exit_event(arena);
-			else if (e->type == SDL_KEYDOWN)
-				key_event(arena, e->key.keysym.sym);
-			else if (e->type == SDL_MOUSEWHEEL)
-			{
-				wheel_event(arena, e->wheel.y);
-			}
+			else if (arena->e.type == SDL_KEYDOWN)
+				key_event(arena, arena->e.key.keysym.sym);
+			else if (arena->e.type == SDL_MOUSEWHEEL)
+				wheel_event(arena, arena->e.wheel.y);
 			for (int i = 0; i < BUTTON_TOTAL; i++)
-				handle_button_event(e, arena->start_btns[i], arena, i);
-			handle_checkbox_event(e, g_full_btn, arena);
+				handle_button_event(&(arena->e), arena->start_btns[i], arena, i);
+			handle_checkbox_event(&(arena->e), arena->full_btn, arena);
 		}
-		render_checkbox_sprite(g_full_btn, arena->renderer);
+		render_checkbox_sprite(arena->full_btn, arena);
 		for (int i = 0; i < BUTTON_TOTAL; i++)
 			render_button_sprite(arena->start_btns[i], arena);
+		for (int i = 0; i < MOVE_BUTTON_TOTAL; i++)
+			render_button_sprite(arena->move_btns[i], arena);
 		if (arena->is_rendered)
 		{
 			if (arena->pause == false)

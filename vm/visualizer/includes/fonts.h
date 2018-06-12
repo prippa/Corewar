@@ -8,4 +8,5 @@
 # define WESTERN_SWING "fonts/WesternSwing.ttf"
 # define CENT "fonts/Cent.ttf"
 # define ROBOTO_REGULAR "fonts/RobotoRegular.ttf"
+# define ROBOTO_THIN "fonts/RobotoThin.ttf"
 #endif

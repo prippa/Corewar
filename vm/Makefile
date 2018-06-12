@@ -82,13 +82,10 @@ C_FUNC		=	cw_binary_and.c cw_binary_or.c cw_binary_xor.c\
 #-------------------------------------------------------------------
 
 #------------------------------Visualizer---------------------------
-SRC_NAME		=	init.c						\
-					clear_renderer.c			\
+SRC_NAME		=	clear_renderer.c			\
 					exit_dialog.c				\
 					get_rectangle.c				\
 					set_viewport.c				\
-					init_start_menu.c			\
-					create_figures.c			\
 					visualizer.c
 
 EVENT_NAME		=	events_manager.c			\
@@ -121,7 +118,12 @@ BUTTON_NAME		=	create_button.c				\
 					handle_checkbox_event.c		\
 					render_checkbox_sprite.c
 
-INIT_NAME		=	init_devices.c
+INIT_NAME		=	init_devices.c				\
+					init.c 						\
+					init_controls.c				\
+					init_start_buttons.c		\
+					init_figures.c				\
+					init_move_buttons.c
 
 ERROR_NAME		=	force_error.c
 #-------------------------------------------------------------------
@@ -188,32 +190,32 @@ $(DIR_OBJ)%.o: $(DIR_FUNC)%.c $(INC_VM)
 #-----------------------------Visualizer------------------------
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
-				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
+				@$(CC) $(FLAGS) -o $@ -c $< $(INC) $(INC_CW)
 				@echo "Linking" [ $< ]
 
 $(OBJ_PATH)%.o:	$(EVENT_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
-				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
+				@$(CC) $(FLAGS) -o $@ -c $< $(INC) $(INC_CW)
 				@echo "Linking" [ $< ]
 
 $(OBJ_PATH)%.o:	$(DRAW_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
-				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
+				@$(CC) $(FLAGS) -o $@ -c $< $(INC) $(INC_CW)
 				@echo "Linking" [ $< ]
 
 $(OBJ_PATH)%.o:	$(LOADER_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
-				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
+				@$(CC) $(FLAGS) -o $@ -c $< $(INC) $(INC_CW)
 				@echo "Linking" [ $< ]
 
 $(OBJ_PATH)%.o:	$(LTEXTURE_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
-				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
+				@$(CC) $(FLAGS) -o $@ -c $< $(INC) $(INC_CW)
 				@echo "Linking" [ $< ]
 
 $(OBJ_PATH)%.o:	$(BUTTON_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
-				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
+				@$(CC) $(FLAGS) -o $@ -c $< $(INC) $(INC_CW)
 				@echo "Linking" [ $< ]
 
 $(OBJ_PATH)%.o:	$(INIT_PATH)%.c

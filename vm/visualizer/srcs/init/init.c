@@ -74,8 +74,8 @@ bool				init(t_arena *arena)
 	SDL_Rect clip = get_rectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	t_rposition pos = get_render_position(0, NULL, NULL, &clip);
 	render(&pos, background, arena->renderer, SDL_FLIP_NONE);
-	create_figures(arena);
-	if (!init_start_menu(arena))
+	init_figures(arena);
+	if (!init_controls(arena))
 		return (false);
 	if (!(arena->tile_block =
 			load_from_file(TILEBLOCK_IMG,

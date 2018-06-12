@@ -30,9 +30,11 @@ void		set_viewport(SDL_Renderer *renderer, SDL_Rect *viewport);
 bool		init(t_arena *arena);
 void		clear_renderer(SDL_Renderer *renderer);
 int			exit_dialog(t_arena *arena);
-bool		init_start_menu(t_arena *arena);
-void		create_figures(t_arena *arena);
+bool		init_controls(t_arena *arena);
+bool		init_start_buttons(t_arena *arena);
+void		init_figures(t_arena *arena);
 void		set_random(t_arena *arena);
 void		force_error(const char *error);
 void		draw_arena_split(t_arena *arena);
+bool		init_move_buttons(t_arena *arena);
 #endif

@@ -3,27 +3,6 @@
 # include "ltexture.h"
 
 /*
-** Sprites for fullscreen checkbox
-*/
-extern t_ltexture		*g_full_sprites[TOTAL_FULL_SPRITES];
-
-/*
-** Sprites for move button states
-** wraped in ltexture and prepare for rendering
-*/
-extern t_ltexture		*g_move_btn_sprites[TOTAL_MOVE_SPRITES];
-
-/*
-** Fullscreen checkbox
-*/
-extern t_checkbox		*g_full_btn;
-
-/*
-** Move buttons
-*/
-extern t_button			*g_move_btns[TOTAL_MOVE_BUTTONS];
-
-/*
 ** Allocates memory for a new checkbox
 ** and sets position
 */
@@ -42,7 +21,7 @@ void					handle_checkbox_event(SDL_Event* e,
 ** Shows checkbox sprite
 */
 void					render_checkbox_sprite(t_checkbox *btn,
-										SDL_Renderer *renderer);
+										t_arena *arena);
 
 /*
 ** Frees memory
@@ -53,10 +32,11 @@ void					free_checkbox(t_checkbox *btn);
 ** Allocates memory for a new button
 ** and sets position
 */
-t_button				*create_button(SDL_Point position,
-									const char *text,
-									SDL_Renderer *renderer,
-									SDL_Point params);
+t_button				*create_button(double angle,
+										SDL_Point position,
+										const char *text,
+										SDL_Renderer *renderer,
+										SDL_Point params);
 /*
 ** Handles mouse event for button
 */

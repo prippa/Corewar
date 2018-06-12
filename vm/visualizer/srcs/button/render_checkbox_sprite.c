@@ -12,11 +12,8 @@
 
 #include "visualizer.h"
 
-t_ltexture		*g_full_sprites[TOTAL_FULL_SPRITES];
-t_checkbox		*g_full_btn;
-
 void				render_checkbox_sprite(t_checkbox *cbx,
-											SDL_Renderer *renderer)
+											t_arena *arena)
 {
 	t_rposition		cbx_pos;
 	t_rposition		txt_pos;
@@ -27,13 +24,13 @@ void				render_checkbox_sprite(t_checkbox *cbx,
 							CHECKBOX_WIDTH,
 							CHECKBOX_HEIGHT);
 	cbx_pos = get_render_position(0, &(cbx->position), NULL, &clip);
-	render(&cbx_pos, g_full_sprites[cbx->current_sprite],
-			renderer, SDL_FLIP_NONE);
+	render(&cbx_pos, arena->full_sprites[cbx->current_sprite],
+			arena->renderer, SDL_FLIP_NONE);
 	if (cbx->checkbox_txt)
 	{
 		txt_pos = get_render_position(0, &(cbx->txt_position), NULL, NULL);
 		render(&txt_pos, cbx->checkbox_txt,
-				renderer, SDL_FLIP_NONE);
+				arena->renderer, SDL_FLIP_NONE);
 		
 	}
 }

@@ -49,24 +49,24 @@ void	key_event(t_arena *arena, SDL_Keycode sym)
 		else
 		{
 			arena->is_fullscreen = false;
-			g_full_btn->checked = false;
-			g_full_btn->current_sprite = CROSS_MOUSE_OUT;
+			arena->full_btn->checked = false;
+			arena->full_btn->current_sprite = CROSS_MOUSE_OUT;
 			SDL_SetWindowFullscreen(arena->window, 0);
 		}
 	}
 	else if (sym == SDLK_f)
 	{
-		g_full_btn->checked = true;
+		arena->full_btn->checked = true;
 		arena->is_fullscreen = true;
-		g_full_btn->current_sprite = CHECK_MOUSE_OUT;
+		arena->full_btn->current_sprite = CHECK_MOUSE_OUT;
 		SDL_SetWindowFullscreen(arena->window,
 								 SDL_WINDOW_FULLSCREEN);
 	}
 	else if (sym == SDLK_h)
 	{
-		g_full_btn->checked = false;
+		arena->full_btn->checked = false;
 		arena->is_fullscreen = false;
-		g_full_btn->current_sprite = CROSS_MOUSE_OUT;
+		arena->full_btn->current_sprite = CROSS_MOUSE_OUT;
 		SDL_SetWindowFullscreen(arena->window, 0);
 	}
 	else if (sym == SDLK_i)

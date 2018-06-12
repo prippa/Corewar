@@ -28,8 +28,11 @@ static inline void	close_all(t_arena *arena)
 		free_ltexture(arena->start_btns[i]->button_txt);
 		free(arena->start_btns[i]);
 	}
-	SDL_DestroyTexture(arena->tile_block->texture);
-	free(arena->tile_block);
+	free_ltexture(arena->full_btn->checkbox_txt);
+	i = -1;
+	while (++i < FULL_SPRITES)
+		free_ltexture(arena->full_sprites[i]);
+	free_ltexture(arena->tile_block);
 	SDL_FreeSurface(arena->screen_surface);
 	SDL_DestroyRenderer(arena->renderer);
 	SDL_DestroyWindow(arena->window);
@@ -46,7 +49,7 @@ void	set_random(t_arena *arena)
 	while (++i < limit)
 	{
 		arena->bytes[i] = rand() % 0x100;
-		arena->colors[i] = (SDL_Color){.r=0, .g=255, .b=0};
+		arena->colors[i] = (SDL_Color){.r=rand(), .g=255, .b=rand()};
 	}
 }
 
@@ -60,7 +63,7 @@ int					visualizer_main(void)
 	}
 	arena.viewport = get_rectangle(0,
 								0,
-								SCREEN_WIDTH - BUTTON_WIDTH - 100,
+								SCREEN_WIDTH - BUTTON_WIDTH - (SCREEN_WIDTH >> 5),
 								SCREEN_HEIGHT);
 	events_handler(&arena);
 	close_all(&arena);
