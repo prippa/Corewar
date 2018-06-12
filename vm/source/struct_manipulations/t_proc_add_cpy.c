@@ -54,7 +54,7 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	new_obj->process_PC = position; // not a copy;
 	new_obj->live_status = current_proc->live_status; // copy;
 	new_obj->has_been_activated = current_proc->has_been_activated; // copy;
-	new_obj->cycles_till_execution = 0; // copy;
+	new_obj->cycles_till_execution = 1; // copy;
 	new_obj->proc_color_write_to_map = current_proc->proc_color_write_to_map; // copy;
 	new_obj->proc_process_PC_color = current_proc->proc_process_PC_color;
 
