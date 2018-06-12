@@ -61,7 +61,7 @@ typedef	struct			s_processes					// fork will create a process and will change t
 {
 	unsigned int		id;
 	int					color;						// R: {1 - 4};
-	unsigned int		process_PC;					// current position of the stack command line (iteratively according to the quantity of champs);
+	int					process_PC;					// current position of the stack command line (iteratively according to the quantity of champs);
 	int					carry;						// initially has zero value because this var will be modified after execution of the command;
 	int					registers[REG_NUMBER];		// r1 -> player_name register;
 	int 				live_status;				// flag to detect the life of the process;
@@ -102,7 +102,6 @@ typedef struct			s_corewar
 	t_processes			*proc_end;
 	const t_op			*op;
 	char				loop;
-	unsigned int		i;							// map iterator; // TODO why we need this feature;
 	unsigned int		proc_counter;				// size of active processes
 	unsigned int		id_counter;					// counter of id in processes
 }						t_corewar;

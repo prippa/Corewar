@@ -51,7 +51,11 @@ static void	tmp_arg(unsigned char *s, int rd,
 
 	j = 0;
 	while (rd-- > 0)
-		s[j++] = map[(*i)++];
+	{
+		s[j] = map[*i];
+		j++;
+		*i = MEM_CORRECTION((*i + 1));
+	}
 }
 
 static void	write_args(t_command *cmd, unsigned int *i, int bt,
@@ -127,7 +131,7 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 	bt = 1; // byte as default = 1, reghas 1 byte;
 	bt = (WHAT_DIR(map[i]) ? 2 : 4); // detect syze in bytes of the DIR;
 	cmd->cmd = map[i]; // set the command value from the first position on the map;
-	i += 1; // move the map pointer to the next byte;
+	i = MEM_CORRECTION((i + 1)); // move the map pointer to the next byte;
 	// ft_printf("in cmd i -> %d\n",g_cw->i);
 	cmd->codage = ((IS_CDG(cmd->cmd)) ? 0 : map[i]); // set the command codage from the second position on the map;
 	if (IS_CDG(cmd->cmd)) // if commands: 1, 9, 2, 15;
@@ -139,7 +143,7 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 		cmd->arg3.tp = 0;
 		return (0);
 	}
-	i += 1; // go to other commands;
+	i = MEM_CORRECTION((i + 1)); // go to other commands;
 	if (check_true_cdg(cmd->cmd, cmd->codage)) // check if a specific cmd has the correct codage;
 		return (NOT_CORRECT_CODAGE); // check if a specific cmd has the correct codage;
 
