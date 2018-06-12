@@ -48,7 +48,6 @@ void		cw_execute_corewar_magic(t_processes *proc)
 	while (proc)
 	{
 		// ft_printf("proc_id -> %d\n", proc->id);
-		ft_bzero(&cmd, sizeof(t_command));
 
 		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
 		{
@@ -75,12 +74,12 @@ void		cw_execute_corewar_magic(t_processes *proc)
 			}
 			else
 			{
-				cw_get_command(&cmd, proc->process_PC, g_cw->map.stack);
 
-				g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
+				if (!cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
+					g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
 
 				proc->cycles_till_execution = 1;
-
+				
 			}
 			// else if (proc->cycles_till_execution != 0 && proc->cycles_till_execution != 1001)
 			// 	proc->cycles_till_execution--;
