@@ -54,8 +54,9 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	new_obj->process_PC = position; // not a copy;
 	new_obj->live_status = current_proc->live_status; // copy;
 	new_obj->has_been_activated = current_proc->has_been_activated; // copy;
-	new_obj->cycles_till_execution = current_proc->cycles_till_execution; // copy;
+	new_obj->cycles_till_execution = 0; // copy;
 	new_obj->proc_color_write_to_map = current_proc->proc_color_write_to_map; // copy;
+	new_obj->proc_process_PC_color = current_proc->proc_process_PC_color;
 
 	ft_bzero(new_obj->registers, sizeof(int) * REG_NUMBER);
 
@@ -64,7 +65,16 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	
 
 	// add to the map;
-	g_cw->map.stack_color[new_obj->process_PC] = 9;
+	if (new_obj->color == 1)
+	{
+		g_cw->map.stack_color[new_obj->process_PC] = 5;
+	}
+	else if (new_obj->color == 2)
+		g_cw->map.stack_color[new_obj->process_PC] = 6;
+	else if (new_obj->color == 3)
+		g_cw->map.stack_color[new_obj->process_PC] = 7;
+	else if (new_obj->color == 4)
+		g_cw->map.stack_color[new_obj->process_PC] = 8;
 
 
 
