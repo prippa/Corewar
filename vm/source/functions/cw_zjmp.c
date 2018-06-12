@@ -18,7 +18,7 @@ void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 {
 	map->stack_color[proc->process_PC] = proc->color;
 
-    ft_printf("proc_carry -> %d", proc->carry);
+    // ft_printf("proc_carry -> %d", proc->carry);
 
     // WTF with proc carry;
 
@@ -29,7 +29,7 @@ void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
     else
         proc->process_PC = MEM_CORRECTION(proc->process_PC + cmd->arg1.tp + 1);
 
-    ft_printf("proc_PC_in_zjmp -> %d", proc->process_PC);
+    // ft_printf("proc_PC_in_zjmp -> %d", proc->process_PC);
 
     map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
 

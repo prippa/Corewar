@@ -123,10 +123,10 @@ static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc) // do the
 		y = cw_snoop_dogg(y);
 	}
 
-	ft_printf("x -> %s;\n", x);
-	ft_printf("y -> %s;\n", y);
-	ft_printf("len of x -> %d;\n", ft_strlen(x));
-	ft_printf("len of y -> %d;\n", ft_strlen(y));
+	// ft_printf("x -> %s;\n", x);
+	// ft_printf("y -> %s;\n", y);
+	// ft_printf("len of x -> %d;\n", ft_strlen(x));
+	// ft_printf("len of y -> %d;\n", ft_strlen(y));
 
 
 
