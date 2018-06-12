@@ -32,7 +32,7 @@ static char	*cw_get_string_for_conversion(int nbr)
 		ft_strncpy(&check[0], &str[32], ft_strlen(str) - 32);
 	else
 		ft_strncpy(&check[32 - ft_strlen(str)], &str[0], ft_strlen(str));
-	ft_str_free(&str);
+	free(str);
 	return (check);
 }
 
@@ -45,25 +45,17 @@ void		cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 	ft_printf("nbr -> %d\n", nbr);
 
 	i = 0;
-	check = cw_get_string_for_conversion(nbr); // o.k.
+	check = cw_get_string_for_conversion(nbr); // o.k. +++
 
 	ft_printf("check -> %s\n", check);
-
+	k = 7;
 	while (i < 4)
 	{
-		if (i == 0)
-		{
-			k = 7;
-			buf[i] = ft_bin_to_int(check, k);
-		}
-		else if (i >= 0)
-		{
-			k = k + 8;
-			buf[i] = ft_bin_to_int(check, k);
-		}
+		buf[i] = ft_bin_to_int(check, k);
+		k += 8;
 		i++;
 	}
-	ft_str_free(&check);
+	free(check);
 }
 
 void		cw_write_to_map(t_stack *map, t_processes *proc, unsigned char *buf,
@@ -72,13 +64,16 @@ void		cw_write_to_map(t_stack *map, t_processes *proc, unsigned char *buf,
 	unsigned short i;
 
 	i = 0;
+	// buf[0] = 0x00;
+	// buf[1] = 0x30;
+	// buf[2] = 0x00;
+	// buf[3] = 0x00;
 	while (i < 4) // 2 || 4; // always take 4 bytes to the map;
 	{
 		if (position_on_the_map == MEM_SIZE)
 			position_on_the_map = 0;
 
 		ft_printf("map[i] -> %d", buf[i]);
-		
 		map->stack[position_on_the_map] = buf[i];
 
 		map->stack_color[position_on_the_map] = proc->proc_color_write_to_map;

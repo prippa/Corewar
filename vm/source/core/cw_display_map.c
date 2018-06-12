@@ -38,6 +38,8 @@ static void	print_color(unsigned char data, int color_type)
 		ft_printf("%~.2x", F_BOLD_BLUE, data);
 	else if (color_type == 12)
 		ft_printf("%~.2x", F_BOLD_CYAN, data);
+	else
+		ft_printf("%~.2x", F_WHITE, 0);
 }
 
 void		cw_display_map(unsigned char *map, int *color)
@@ -54,10 +56,7 @@ void		cw_display_map(unsigned char *map, int *color)
 	lines = 0;
 	while (i < MEM_SIZE)
 	{
-		if (map[i] != '0')
-			print_color(map[i], color[i]);
-		else
-			ft_printf("%~.2d", F_WHITE, 0);
+		print_color(map[i], color[i]);
 		ft_printf(" ");
 		if (lines == NEWLINE_QUANTITY)
 		{
