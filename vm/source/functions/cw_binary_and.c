@@ -23,6 +23,26 @@
 // 	return (NULL);
 // }
 
+	// ft_strncpy(&y_stack[32 - (int)ft_strlen(y)], y, (int)ft_strlen(y));
+
+static void		cw_evil(char *var_stack, char*src)
+{
+	int limit = 32;
+
+	limit -= (int)ft_strlen(src);
+
+	int i = 0;
+
+	ft_printf("stack -> %s\n", var_stack);
+
+	while (src[i])
+	{
+		var_stack[limit] = src[i];
+		limit++;
+		i++;
+	}
+}
+
 static void		ft_zero_it(char *str)
 {
 	int i;
@@ -69,7 +89,18 @@ static int				cw_return_value_according_to_the_type_of_parameter_2(t_command *cm
 	return (0);
 }
 
-static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc)
+static char			*cw_snoop_dogg(char *str)
+{
+	char *wuf_wuf = ft_strnew(33);
+
+	ft_strncpy(wuf_wuf, &str[32], 32);
+
+	return (wuf_wuf);
+
+
+}
+
+static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc) // do them as strings;
 {
 	char *x;
 	char *y;
@@ -79,14 +110,41 @@ static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc)
 
 	x = ft_itoa_base(cw_return_value_according_to_the_type_of_parameter_1(cmd, proc), 2, 0);
 	y = ft_itoa_base(cw_return_value_according_to_the_type_of_parameter_2(cmd, proc), 2, 0);
+
+	if (cw_return_value_according_to_the_type_of_parameter_1(cmd, proc) < 0)
+	{
+		free(x);
+		x = cw_snoop_dogg(x);
+	}
+
+	if (cw_return_value_according_to_the_type_of_parameter_2(cmd, proc) < 0)
+	{
+		free(y);
+		y = cw_snoop_dogg(y);
+	}
+
+	// ft_printf("x -> %s;\n", x);
+	// ft_printf("y -> %s;\n", y);
+	// ft_printf("len of x -> %d;\n", ft_strlen(x));
+	// ft_printf("len of y -> %d;\n", ft_strlen(y));
+
+
+
 	x_stack[32] = '\0';
 	y_stack[32] = '\0';
 	res_of_comparison[32] = '\0';
 	ft_zero_it(x_stack);
 	ft_zero_it(y_stack);
 	ft_zero_it(res_of_comparison);
+
+
 	ft_strncpy(&x_stack[32 - (int)ft_strlen(x)], x, (int)ft_strlen(x));
 	ft_strncpy(&y_stack[32 - (int)ft_strlen(y)], y, (int)ft_strlen(y));
+
+
+
+	// cw_evil(x_stack, x);
+	// cw_evil(y_stack, y);
 
 	// testing
 	int i = 0;
@@ -131,6 +189,8 @@ void			cw_binary_and(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned
 	proc->process_PC = MEM_CORRECTION(
 		proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2);
 	proc->carry = (proc->registers[cmd->arg3.av - 1] == 0) ? 1 : 0;
+
+	ft_printf("carry -> %d\n", proc->carry);
 
 	map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
 
