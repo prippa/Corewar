@@ -30,6 +30,14 @@ static void	print_color(unsigned char data, int color_type)
 		ft_printf("%~.2x", F_BACK_BLUE_WHITE, data);
 	else if (color_type == 8)
 		ft_printf("%~.2x", F_BACK_CYAN_WHITE, data);
+	else if (color_type == 9)
+		ft_printf("%~.2x", F_BOLD_GREEN, data);
+	else if (color_type == 10)
+		ft_printf("%~.2x", F_BOLD_RED, data);
+	else if (color_type == 11)
+		ft_printf("%~.2x", F_BOLD_BLUE, data);
+	else if (color_type == 12)
+		ft_printf("%~.2x", F_BOLD_CYAN, data);
 }
 
 void		cw_display_map(unsigned char *map, int *color)

@@ -29,6 +29,7 @@ void		t_processe_add(t_processes **proc_start,
 	new_obj->has_been_activated = DEAD;
 	ft_bzero(new_obj->registers, sizeof(int) * REG_NUMBER);
 	new_obj->cycles_till_execution = 1;
+	new_obj->proc_color_write_to_map = 0;
 	t_processes_add_to_head(proc_start, proc_end, new_obj);
 }
 
@@ -54,6 +55,7 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	new_obj->live_status = current_proc->live_status; // copy;
 	new_obj->has_been_activated = current_proc->has_been_activated; // copy;
 	new_obj->cycles_till_execution = current_proc->cycles_till_execution; // copy;
+	new_obj->proc_color_write_to_map = current_proc->proc_color_write_to_map; // copy;
 
 	ft_bzero(new_obj->registers, sizeof(int) * REG_NUMBER);
 

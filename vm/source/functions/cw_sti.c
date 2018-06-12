@@ -38,6 +38,8 @@ int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -
 	return (0);
 }
 
+// bold green;
+
 void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
 	unsigned char	buf[4];
@@ -67,7 +69,8 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	proc->process_PC = MEM_CORRECTION(
 		proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2);
 
-	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
+
+	map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
 	
 
 	// (cmd->arg2.tp == 2) ? proc->process_PC += 1 : 0;
@@ -114,5 +117,5 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 
 	// TODO read(1, 0, 1);
 
-	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	 // cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 }

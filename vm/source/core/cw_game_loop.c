@@ -48,12 +48,9 @@ void		cw_execute_corewar_magic(t_processes *proc)
 	while (proc)
 	{
 		// ft_printf("proc_id -> %d\n", proc->id);
+		ft_bzero(&cmd, sizeof(t_command));
 
-		g_cw->i = proc->process_PC; // what if g_cw->i is 4095, think about it )))))))))))
-
-		cw_get_command(&cmd, &g_cw->i, g_cw->map.stack);
-
-		if (!IS_CMD(cmd.cmd)) // return (0);
+		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
 		{
 			g_cw->map.stack_color[proc->process_PC] = proc->color;
 
@@ -78,11 +75,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 			}
 			else
 			{
-				g_cw->i = proc->process_PC; // if it is not valid -> not to do it;
-
-				ft_bzero(&cmd, sizeof(t_command));
-
-				cw_get_command(&cmd, &g_cw->i, g_cw->map.stack);
+				cw_get_command(&cmd, proc->process_PC, g_cw->map.stack);
 
 				g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
 
@@ -106,6 +99,70 @@ void		cw_execute_corewar_magic(t_processes *proc)
 	}
 }
 
+void cw_display_map_write(unsigned int *map)
+{
+	unsigned int i;
+	unsigned int spaces;
+	unsigned int lines;
+
+	read(1, 0, 1); // this stuff may help with visualization;
+	system("clear"); // this stuff may help with visualization;
+
+	i = 0;
+	spaces = 1;
+	lines = 0;
+	while (i < MEM_SIZE)
+	{
+		ft_printf("%~.2d", F_WHITE, map[i]);
+		ft_printf(" ");
+		if (lines == NEWLINE_QUANTITY)
+		{
+			ft_printf("\n");
+			lines = -1;
+		}
+		lines++;
+		spaces++;
+		i++;
+	}
+}
+
+void	cw_decrementor(unsigned int *write_to_the_map_stack, int *stack_color, unsigned int *cycle_stack)
+{
+	int i;
+
+	i = 0;
+	while (i < MEM_SIZE)
+	{
+		if (write_to_the_map_stack[i] != 0)
+		{
+			if (write_to_the_map_stack[i] == 9 && cycle_stack[i] == 0)
+			{
+				stack_color[i] = 1;
+				write_to_the_map_stack[i] = 0;
+			}
+			else if (write_to_the_map_stack[i] == 10 && cycle_stack[i] == 0)
+			{
+				stack_color[i] = 2;
+				write_to_the_map_stack[i] = 0;
+			}
+			else if (write_to_the_map_stack[i] == 11 && cycle_stack[i] == 0)
+			{
+				stack_color[i] = 3;
+				write_to_the_map_stack[i] = 0;
+			}
+			else if (write_to_the_map_stack[i] == 12 && cycle_stack[i] == 0)
+			{
+				stack_color[i] = 4;
+				write_to_the_map_stack[i] = 0;
+			}
+			else
+				write_to_the_map_stack[i]--;
+		}
+		if (cycle_stack[i] != 0)
+			cycle_stack[i]--;
+		i++;
+	}
+}
 
 
 void		cw_game_loop(void)
@@ -137,7 +194,7 @@ void		cw_game_loop(void)
 
 	int global_iterator = 0;
 
-	#define CYCLES 100
+	#define CYCLES 1000
 
 	while (global_iterator < CYCLES)
 	{
@@ -145,8 +202,11 @@ void		cw_game_loop(void)
 
 		cw_execute_corewar_magic(g_cw->proc_start);
 
-		// if (global_iterator == 17)
-		cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+		// if (global_iterator == 60)
+		// cw_display_map_write(g_cw->map.write_to_the_map_stack);
+		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);
+	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+		
 
 		global_iterator++;
 	}
