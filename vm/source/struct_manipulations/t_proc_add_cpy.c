@@ -64,7 +64,7 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	
 
 	// add to the map;
-	// g_cw->map.stack_color[new_obj->process_PC] = 1;
+	g_cw->map.stack_color[new_obj->process_PC] = 9;
 
 
 
