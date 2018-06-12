@@ -169,7 +169,7 @@ void		cw_game_loop(void)
 {
 	cw_color_start(g_cw->proc_start, &g_cw->map);
 	
-	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
 	// while (g_cw->loop)
 	// {
@@ -194,7 +194,7 @@ void		cw_game_loop(void)
 
 	int global_iterator = 0;
 
-	#define CYCLES 1000
+	#define CYCLES 2000
 
 	while (global_iterator < CYCLES)
 	{
@@ -203,8 +203,8 @@ void		cw_game_loop(void)
 		cw_execute_corewar_magic(g_cw->proc_start);
 
 		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);
-		// if (global_iterator == 49)
-			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+		if (global_iterator == 1085)
+		cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 			
 		// cw_display_map_write(g_cw->map.write_to_the_map_stack);
 

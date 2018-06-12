@@ -19,6 +19,8 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
 
     proc->process_PC = MEM_CORRECTION(proc->process_PC + cmd->arg1.tp + 1);
 
+    map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
+
     // ft_printf("process_PC -> %d\n", proc->process_PC);
 
     // t_processes *clone;

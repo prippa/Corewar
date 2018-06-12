@@ -61,8 +61,19 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 
 	ft_memcpy(new_obj->registers, current_proc->registers, sizeof(int) * 16); // ---> !!!!! sizeof(int) not just 16 !!!!! <--- // copy;
 
+	
+
+	// add to the map;
+	// g_cw->map.stack_color[new_obj->process_PC] = 1;
+
+
+
+
+
+	
 	// add to the head;
 	t_processes_add_to_head(proc_start, proc_end, new_obj);
+
 
 
 }
