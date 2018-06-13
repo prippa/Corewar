@@ -51,7 +51,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 		ft_printf("PC -----------> %d\n", proc->process_PC);
 
 
-		//cmd.cmd
+		// cmd.cmd, do not include codage;
 		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) /*&& proc->current_command != 0*/) // if no active command; // adopt here;
 		{
 			g_cw->map.stack_color[proc->process_PC] = proc->color;
