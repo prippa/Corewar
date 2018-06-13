@@ -70,6 +70,7 @@ typedef	struct			s_processes					// fork will create a process and will change t
 	short				cycles_till_execution;		// will be decremented;
 	short				proc_process_PC_color;		// initial color;
 	short				proc_color_write_to_map;	// color for writing on the map;
+	int				current_command;
 	struct s_processes	*next;						// pointer to the next element;
 	struct s_processes	*prev;						// pointer to the prev element;
 }						t_processes;

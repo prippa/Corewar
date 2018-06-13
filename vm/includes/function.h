@@ -40,6 +40,14 @@ void			cw_write_to_map(t_stack *map, t_processes *proc,
 
 int				cw_get_command(t_command *cmd, unsigned int i,
 					unsigned char *map);
+
+int			cw_get_command_2(t_command *cmd, unsigned int i,
+			unsigned char *map, int proc_current_command);
+
+
+
+
+
 void			cw_lseek_cur_skip(int fd, long size);
 void			cw_check_magic(t_champ *champ);
 void			cw_get_prog_name(t_champ *champ);

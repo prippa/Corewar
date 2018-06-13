@@ -47,6 +47,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 	while (proc)
 	{
 		// ft_printf("proc_id -> %d\n", proc->id);
+				ft_bzero(&cmd, sizeof(t_command));
 
 		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
 		{
@@ -65,6 +66,17 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 			// decrement the cycles and then execute;
 
+			if (proc->current_command == 0)
+			{
+				proc->current_command = cmd.cmd;
+			}
+
+			ft_printf("cmd -> %d\n", proc->current_command);
+
+			ft_printf("current_cmd -> %d\n", proc->current_command);
+
+
+
 			if (proc->cycles_till_execution < g_cw->op[cmd.cmd - 1].cycles_price) // keep the current command and cycles;
 			{
 				// ft_printf("till exec -> %d\n", proc->cycles_till_execution);
@@ -73,9 +85,15 @@ void		cw_execute_corewar_magic(t_processes *proc)
 			}
 			else
 			{
+				ft_printf("proc->cycles_till_execution -> %d\n", proc->cycles_till_execution);
+				ft_printf("proc->cycles_till_execution -> %d\n", g_cw->op[cmd.cmd - 1].cycles_price);
 
+				ft_bzero(&cmd, sizeof(t_command));
 				if (!cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
+				{
 					g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
+					proc->current_command = 0;
+				}
 
 				proc->cycles_till_execution = 1;
 				
@@ -89,7 +107,6 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 		}
 
-		// ft_bzero(&cmd, sizeof(t_command));
 
 		// ft_printf("proc_PC -> %d", proc->process_PC);
 
