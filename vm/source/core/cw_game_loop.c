@@ -79,7 +79,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 			if (proc->cycles_till_execution < g_cw->op[cmd.cmd - 1].cycles_price) // keep the current command and cycles;
 			{
-				// ft_printf("till exec -> %d\n", proc->cycles_till_execution);
+				ft_printf("till exec -> %d\n", proc->cycles_till_execution);
 
 				proc->cycles_till_execution++;
 			}
