@@ -47,7 +47,7 @@ static void	cw_init_map(unsigned char *stack, int *stack_color,
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		stack[i] = '0';
+		stack[i] = 0;
 		stack_color[i] = 0;
 		write_to_the_map_stack[i] = 0;
 		cycle_stack[i] = 0;
