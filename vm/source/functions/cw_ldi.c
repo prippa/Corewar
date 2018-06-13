@@ -16,7 +16,6 @@ void			cw_ldi(t_command *cmd, t_stack *map, t_processes *proc)
 {
 	int arg;
 
-	arg = 0;
 	if (cmd->arg1.tp == 2)
 		arg = IDX_CORRECTION(cmd->arg1.av) + cmd->arg2.av + proc->process_PC;
 	else
