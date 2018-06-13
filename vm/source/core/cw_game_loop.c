@@ -243,7 +243,7 @@ void		cw_game_loop(void)
 	// while (g_cw->i < MEM_SIZE) // add the action when the var is 4096;
 	// {
 	// 	// ft_printf("in while i -> %d\n",g_cw->i);
-		
+	
 	// 	if ((cw_get_command(&cmd, g_cw->i, g_cw->map.stack)))
 	// 	{
 	// 		// ft_printf("after codage i -> %d\n", g_cw->i);
@@ -294,6 +294,9 @@ void		cw_game_loop(void)
 		else if (global_iterator > test)
 			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
+		// FLAG -dump in work
+		if (g_cw->pd.flags[DUMP] && global_iterator == g_cw->pd.dump_stop)
+			cw_print_dump();
 
 		global_iterator++;
 	}

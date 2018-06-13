@@ -21,6 +21,7 @@ extern struct s_corewar	*g_cw;
 
 # define FILE_NAME_MAX		4096
 # define CW_F_SIZE			2
+# define CW_BIT				64
 
 typedef enum	e_flags
 {

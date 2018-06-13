@@ -43,7 +43,7 @@ static void	cw_parse_data_init(t_parse_data *pd)
 	pd->champs = NULL;
 	pd->tmp = -1;
 	pd->champs_count = 0;
-	pd->nbr_cycles = 0;
+	pd->dump_stop = 0;
 	ft_bzero(pd->flags, CW_F_SIZE);
 }
 

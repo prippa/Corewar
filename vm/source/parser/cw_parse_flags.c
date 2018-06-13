@@ -23,7 +23,7 @@ static void	cw_valid_dump(char **argv, int *i)
 	if (tmp < 0 || tmp > MAXINT)
 		cw_exit("Number after -dump flag \
 is bigger than MAXINT or less then 0", INV_DUMP_FLAG);
-	g_cw->pd.nbr_cycles = (int)tmp;
+	g_cw->pd.dump_stop = (int)tmp;
 	g_cw->pd.flags[DUMP] = '1';
 }
 
