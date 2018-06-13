@@ -127,7 +127,11 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 
 	ft_bzero(res, 5); // +;
 	if (map[i] > 16 || map[i] < 1) // check if we have a correct command;
+	{
+		ft_putstr("rrrrrrrrrrrrrrrrrrrrrr -> 1\n");
+
 		return (NOT_EXIST_CODE);
+	}
 	bt = 1; // byte as default = 1, reghas 1 byte;
 	bt = (WHAT_DIR(map[i]) ? 2 : 4); // detect syze in bytes of the DIR;
 	cmd->cmd = map[i]; // set the command value from the first position on the map;
@@ -145,7 +149,10 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 	}
 	i = MEM_CORRECTION((i + 1)); // go to other commands;
 	if (check_true_cdg(cmd->cmd, cmd->codage)) // check if a specific cmd has the correct codage;
+	{
+				ft_putstr("rrrrrrrrrrrrrrrrrrrrrr -> 2\n");
 		return (NOT_CORRECT_CODAGE); // check if a specific cmd has the correct codage;
+	}
 
 	write_args(cmd, &i, bt, map);
 	// ft_printf("in cmd i -> %d\n",g_cw->i);

@@ -48,15 +48,17 @@ void		cw_execute_corewar_magic(t_processes *proc)
 	{
 		// ft_printf("proc_id -> %d\n", proc->id);
 		ft_bzero(&cmd, sizeof(t_command));
+		ft_printf("PC -----------> %d\n", proc->process_PC);
 
 
-		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) && proc->current_command != 0) // if no active command;
+		//cmd.cmd
+		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) /*&& proc->current_command != 0*/) // if no active command; // adopt here;
 		{
 			g_cw->map.stack_color[proc->process_PC] = proc->color;
 
 			proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
 			// proc->process_PC += 1;
-
+			ft_printf("cmd-------%d\n", cmd.cmd);
 			g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // modify with func according to tha current proc color;
 
 		}
@@ -273,7 +275,7 @@ void		cw_game_loop(void)
 
 	// #define test 4458
 	// #define test 4570
-	#define test 3909 // <- 3918
+	#define test 4524 // <- 3918
 
 	// 4570;
 
