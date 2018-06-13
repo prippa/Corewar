@@ -6,7 +6,7 @@
 #    By: vgladush <vgladush@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/16 13:38:18 by vgladush          #+#    #+#              #
-#    Updated: 2018/05/26 15:56:04 by vgladush         ###   ########.fr        #
+#    Updated: 2018/06/09 22:27:47 by vgladush         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ OBJS		=	./obj/
 LB_LK		=	-L $(DIR_LIB) -lft
 
 FUNC		=	asm.c errors.c validator.c transform.c write_command.c \
-			correct_cmd.c write_command2.c free_all_asm.c find_coord.c \
-			generate_file_name.c write_to_struct.c
+				correct_cmd.c write_command2.c free_all_asm.c find_coord.c \
+				generate_file_name.c write_to_struct.c
 
 OBJCS		=	$(FUNC:.c=.o)
 
@@ -46,9 +46,7 @@ clean:
 	@rm -rf $(OBJS)
 	@echo "\x1B[1;31mobjects $(VIS_NAME) deleted\x1B[0m"
 
-fclean:
-	@rm -rf $(OBJS)
-	@echo "\x1B[1;31mobjects$(VIS_NAME) deleted\x1B[0m"
+fclean: clean
 	@rm -f $(NAME)
 	@echo "\x1B[1;31m$(VIS_NAME) deleted\x1B[0m"
 
