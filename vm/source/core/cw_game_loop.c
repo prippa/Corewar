@@ -65,7 +65,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 			// decrement the cycles and then execute;
 
-			if (proc->cycles_till_execution < g_cw->op[cmd.cmd - 1].cycles_price)
+			if (proc->cycles_till_execution < g_cw->op[cmd.cmd - 1].cycles_price) // keep the current command and cycles;
 			{
 				// ft_printf("till exec -> %d\n", proc->cycles_till_execution);
 
@@ -207,9 +207,11 @@ void		cw_game_loop(void)
 	// #define test 2900
 	// #define test 2911
 		// #define test 2890
-		#define test 2913
+		// #define test 2913
 
-
+	// #define test 4458
+	// #define test 4570
+	#define test 3900 // <- 3918
 
 	// 4570;
 
@@ -225,7 +227,7 @@ void		cw_game_loop(void)
 		if (global_iterator == test)
 		{
 			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
-			// cw_display_map_write(g_cw->map.write_to_the_map_stack);
+			// cw_display_map_write(g_cw->map.stack_color);
 		}
 		else if (global_iterator > test)
 			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
