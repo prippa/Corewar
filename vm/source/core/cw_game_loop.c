@@ -47,6 +47,8 @@ void		cw_execute_corewar_magic(t_processes *proc)
 	while (proc)
 	{
 		// ft_printf("proc_id -> %d\n", proc->id);
+		ft_bzero(&cmd, sizeof(t_command));
+
 
 		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
 		{
@@ -59,11 +61,29 @@ void		cw_execute_corewar_magic(t_processes *proc)
 		}
 		else
 		{
-			// ft_printf("true\n");
 
 			// cw_print_cmd_specifications(&cmd);
 
 			// decrement the cycles and then execute;
+
+			// ft_bzero(&cmd, sizeof(t_command));
+			if (proc->current_command == 0)
+			{
+				proc->current_command = cmd.cmd;
+
+			}
+
+			// int buf;
+
+			if (proc->current_command != cmd.cmd) // 3910
+			{
+				ft_printf("not equal\n");
+				ft_printf("cur cmd -> %d\n", proc->current_command);
+				ft_printf("cycles done -> %d\n", proc->cycles_till_execution);
+				ft_printf("necessary cycles -> %d\n", g_cw->op[proc->current_command - 1].cycles_price);
+			}
+
+
 
 			if (proc->cycles_till_execution < g_cw->op[cmd.cmd - 1].cycles_price) // keep the current comman
 			{
@@ -73,9 +93,13 @@ void		cw_execute_corewar_magic(t_processes *proc)
 			}
 			else
 			{
+				ft_printf("execute\n");
 
 				if (!cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
+				{
 					g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
+					proc->current_command = 0;
+				}
 
 				proc->cycles_till_execution = 1;
 				
@@ -211,7 +235,7 @@ void		cw_game_loop(void)
 
 	// #define test 4458
 	// #define test 4570
-	#define test 3900 // <- 3918
+	#define test 3909 // <- 3918
 
 	// 4570;
 
