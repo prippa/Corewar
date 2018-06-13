@@ -16,7 +16,7 @@ static void	cw_print_map(void)
 			index++;
 		}
 		ft_putchar('\n');
-		counter += 64;
+		counter += CW_BIT;
 	}
 }
 
