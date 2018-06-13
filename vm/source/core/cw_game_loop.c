@@ -39,7 +39,7 @@ void		cw_print_cmd_specifications(t_command *cmd)
 	ft_printf("-----------------------------------\n");
 }
 
-void		cw_execute_corewar_magic(t_processes *proc. int *wtf)
+void		cw_execute_corewar_magic(t_processes *proc)
 {
 	t_command cmd;
 	
@@ -50,9 +50,10 @@ void		cw_execute_corewar_magic(t_processes *proc. int *wtf)
 		ft_bzero(&cmd, sizeof(t_command));
 
 
-		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
+		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) && proc->current_command != 0) // and proc current cmd
 		{
 			g_cw->map.stack_color[proc->process_PC] = proc->color;
+			
 			proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
 			// proc->process_PC += 1;
 
@@ -67,43 +68,74 @@ void		cw_execute_corewar_magic(t_processes *proc. int *wtf)
 			// decrement the cycles and then execute;
 
 			// ft_bzero(&cmd, sizeof(t_command));
+
 			if (proc->current_command == 0)
 			{
 				proc->current_command = cmd.cmd;
-
 			}
 
-			// int buf;
+			// int detect deviation;
 
 			if (proc->current_command != cmd.cmd) // 3910
 			{
-				ft_printf("not equal\n");
-				*wtf = 1;
+				ft_printf("\nnot equal\n");
+				
 				ft_printf("cur cmd -> %d\n", proc->current_command);
+				ft_printf("cmd cmd -> %d\n", cmd.cmd);
+
 				ft_printf("cycles done -> %d\n", proc->cycles_till_execution);
 				ft_printf("necessary cycles -> %d\n", g_cw->op[proc->current_command - 1].cycles_price);
-			}
 
-
-
-			if (proc->cycles_till_execution < g_cw->op[cmd.cmd - 1].cycles_price) // keep the current comman
-			{
-				// ft_printf("till exec -> %d\n", proc->cycles_till_execution);
-
-				proc->cycles_till_execution++;
-			}
-			else
-			{
-				ft_printf("execute\n");
-
-				if (!cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
-				{
-					g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
-					proc->current_command = 0;
-				}
-
-				proc->cycles_till_execution = 1;
+				proc->detect_deviation = 1;
 				
+				// exit (0); // -> show the first deviation;
+			}
+
+
+			if (proc->detect_deviation == 0)
+			{
+
+				if (proc->cycles_till_execution < g_cw->op[cmd.cmd - 1].cycles_price) // keep the current comman
+				{
+					// ft_printf("till exec -> %d\n", proc->cycles_till_execution);
+					proc->cycles_till_execution++;
+				}
+				else
+				{
+					// ft_printf("execute\n");
+
+					if (!cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
+					{
+						g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
+						proc->current_command = 0;
+					}
+					proc->cycles_till_execution = 1;
+					
+				}
+			}
+			else if (proc->detect_deviation == 1)
+			{
+				exit (0); // -> show the first deviation;
+				
+				ft_bzero(&cmd, sizeof(t_command));
+
+				if (proc->cycles_till_execution < g_cw->op[proc->current_command - 1].cycles_price) // keep the current comman
+				{
+					// ft_printf("till exec -> %d\n", proc->cycles_till_execution);
+
+					proc->cycles_till_execution++;
+				}
+				else
+				{
+					// ft_printf("execute\n");
+					if (!cw_get_command_2(&cmd, proc->process_PC, g_cw->map.stack, proc->current_command))
+					{
+						g_cw->op[proc->current_command - 1].func(&cmd, &g_cw->map, proc);
+						proc->current_command = 0;
+						proc->detect_deviation = 0;
+					}
+					proc->cycles_till_execution = 1;
+				}
 			}
 			// else if (proc->cycles_till_execution != 0 && proc->cycles_till_execution != 1001)
 			// 	proc->cycles_till_execution--;
@@ -239,13 +271,13 @@ void		cw_game_loop(void)
 	#define test 3909 // <- 3918
 
 	// 4570;
-	int wtf;
+
 	while (global_iterator < CYCLES)
 	{
-		ft_printf("cycle -> %d\n", global_iterator);
+		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", global_iterator);
 		ft_printf("cycles -> %d\n", g_cw->proc_counter);
 
-		cw_execute_corewar_magic(g_cw->proc_start, &wtf);
+		cw_execute_corewar_magic(g_cw->proc_start);
 
 		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);
 
