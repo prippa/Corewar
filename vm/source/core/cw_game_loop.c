@@ -39,7 +39,7 @@ void		cw_print_cmd_specifications(t_command *cmd)
 	ft_printf("-----------------------------------\n");
 }
 
-void		cw_execute_corewar_magic(t_processes *proc)
+void		cw_execute_corewar_magic(t_processes *proc. int *wtf)
 {
 	t_command cmd;
 	
@@ -78,6 +78,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 			if (proc->current_command != cmd.cmd) // 3910
 			{
 				ft_printf("not equal\n");
+				*wtf = 1;
 				ft_printf("cur cmd -> %d\n", proc->current_command);
 				ft_printf("cycles done -> %d\n", proc->cycles_till_execution);
 				ft_printf("necessary cycles -> %d\n", g_cw->op[proc->current_command - 1].cycles_price);
@@ -238,13 +239,13 @@ void		cw_game_loop(void)
 	#define test 3909 // <- 3918
 
 	// 4570;
-
+	int wtf;
 	while (global_iterator < CYCLES)
 	{
 		ft_printf("cycle -> %d\n", global_iterator);
 		ft_printf("cycles -> %d\n", g_cw->proc_counter);
 
-		cw_execute_corewar_magic(g_cw->proc_start);
+		cw_execute_corewar_magic(g_cw->proc_start, &wtf);
 
 		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);
 
