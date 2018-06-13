@@ -31,6 +31,7 @@ void		t_processe_add(t_processes **proc_start,
 	new_obj->cycles_till_execution = 1;
 	new_obj->proc_color_write_to_map = 0;
 	new_obj->current_command = 0;
+	new_obj->detect_deviation = 0;
 	t_processes_add_to_head(proc_start, proc_end, new_obj);
 }
 
@@ -58,7 +59,8 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	new_obj->cycles_till_execution = 1; // copy;
 	new_obj->proc_color_write_to_map = current_proc->proc_color_write_to_map; // copy;
 	new_obj->proc_process_PC_color = current_proc->proc_process_PC_color;
-	new_obj->current_command = current_proc->current_command;
+	new_obj->current_command = g_cw->map.stack[position];
+	new_obj->detect_deviation = 0; ////////////////////////// ?
 
 	ft_bzero(new_obj->registers, sizeof(int) * REG_NUMBER);
 

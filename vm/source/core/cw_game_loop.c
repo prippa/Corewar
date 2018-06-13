@@ -76,7 +76,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 			// int detect deviation;
 
-			if (proc->current_command != cmd.cmd) // 3910
+			if (proc->current_command != cmd.cmd/* && proc->current_command != 0*/) // 3910
 			{
 				ft_printf("\nnot equal\n");
 				
@@ -85,6 +85,8 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 				ft_printf("cycles done -> %d\n", proc->cycles_till_execution);
 				ft_printf("necessary cycles -> %d\n", g_cw->op[proc->current_command - 1].cycles_price);
+				ft_printf("PC -> %d\n", proc->process_PC);
+				ft_printf("proc id -> %d\n", proc->process_PC);
 
 				proc->detect_deviation = 1;
 				
@@ -102,14 +104,14 @@ void		cw_execute_corewar_magic(t_processes *proc)
 				}
 				else
 				{
-					// ft_printf("execute\n");
+					ft_printf("execute\n");
 
 					if (!cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
 					{
 						g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
 						proc->current_command = 0;
+						proc->cycles_till_execution = 1;
 					}
-					proc->cycles_till_execution = 1;
 					
 				}
 			}
@@ -120,7 +122,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 				if (proc->cycles_till_execution < g_cw->op[proc->current_command - 1].cycles_price) // keep the current comman
 				{
-					// ft_printf("till exec -> %d\n", proc->cycles_till_execution);
+					ft_printf("proc->current_command -> %d\n", proc->current_command);
 
 					proc->cycles_till_execution++;
 				}
@@ -130,14 +132,14 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 					// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
-					exit (0); // -> show the first deviation;
 					if (!cw_get_command_2(&cmd, proc->process_PC, g_cw->map.stack, proc->current_command))
 					{
 						g_cw->op[proc->current_command - 1].func(&cmd, &g_cw->map, proc);
 						proc->current_command = 0;
 						proc->detect_deviation = 0;
+						proc->cycles_till_execution = 1;
 					}
-					proc->cycles_till_execution = 1;
+					// exit (0); // -> show the first deviation;
 				}
 			}
 			// else if (proc->cycles_till_execution != 0 && proc->cycles_till_execution != 1001)

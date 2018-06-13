@@ -78,7 +78,7 @@ void		cw_write_to_map(t_stack *map, t_processes *proc, unsigned char *buf,
 		map->stack[position_on_the_map] = buf[i];
 
 
-		if (map->stack_color[position_on_the_map] != 9) ////////////////////////////////////////////// costello for not overwriting;
+		if (map->stack_color[position_on_the_map] != 9) ////////////////////////////////////////////// costello for not overwriting; // ? fork;
 		map->stack_color[position_on_the_map] = proc->proc_color_write_to_map;
 
 
