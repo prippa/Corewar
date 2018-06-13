@@ -50,10 +50,10 @@ void		cw_execute_corewar_magic(t_processes *proc)
 		ft_bzero(&cmd, sizeof(t_command));
 
 
-		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) && proc->current_command != 0) // and proc current cmd
+		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) && proc->current_command != 0) // if no active command;
 		{
 			g_cw->map.stack_color[proc->process_PC] = proc->color;
-			
+
 			proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
 			// proc->process_PC += 1;
 
@@ -115,7 +115,6 @@ void		cw_execute_corewar_magic(t_processes *proc)
 			}
 			else if (proc->detect_deviation == 1)
 			{
-				exit (0); // -> show the first deviation;
 				
 				ft_bzero(&cmd, sizeof(t_command));
 
@@ -128,6 +127,10 @@ void		cw_execute_corewar_magic(t_processes *proc)
 				else
 				{
 					// ft_printf("execute\n");
+
+					// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+
+					exit (0); // -> show the first deviation;
 					if (!cw_get_command_2(&cmd, proc->process_PC, g_cw->map.stack, proc->current_command))
 					{
 						g_cw->op[proc->current_command - 1].func(&cmd, &g_cw->map, proc);
