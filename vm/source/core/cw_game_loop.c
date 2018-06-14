@@ -12,9 +12,95 @@
 
 #include "corewar.h"
 
+static void		ft_zero_it(char *str)
+{
+	int i;
+
+	i = 0;
+	while (i < 8)
+		str[i++] = '0';
+}
+
 // - get clear with proc carry;
 
 #define	IS_CMD(x) (x >= 1 && x <= 16)
+
+int			cw_move_PC_when_not_correct_cdg(int codage)
+{
+	int i;
+	int j;
+	char *binary;
+	char *buf_general;
+	char	*buf_for_2_bytes;;
+
+	i = 0;
+	j = 0;
+	if (!(binary = ft_itoa_base(codage, 2, 0)))
+		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
+	ft_printf("binary -----------------------------------------------------------------------> %s\n", binary);
+
+	buf_general = ft_strnew(8);
+
+	ft_zero_it(buf_general);
+	ft_printf("buf_general --------------------------------------------------------------------------> %s\n", buf_general);
+
+	ft_strncpy(&buf_general[8 - ft_strlen(binary)], binary, ft_strlen(binary));
+
+	ft_printf("buf_general --------------------------------------------------------------------------> %s\n", buf_general);
+
+	buf_for_2_bytes = ft_strnew(2);
+	buf_for_2_bytes[0] = '0';
+	buf_for_2_bytes[1] = '0';
+
+
+	while (j < 4)
+	{
+		if (j == 0)
+		{
+			ft_strncpy(buf_for_2_bytes, &buf_general[0], 2);
+			ft_printf("asdfasfasfasdfasdfasdfd -> %s\n", buf_for_2_bytes);
+		}
+		else if (j == 1)
+		{
+			ft_strncpy(buf_for_2_bytes, &buf_general[2], 2);
+			ft_printf("asdfasfasfasdfasdfasdfd -> %s\n", buf_for_2_bytes);
+
+		}
+		else if (j == 2)
+		{
+			ft_strncpy(buf_for_2_bytes, &buf_general[4], 2);
+			ft_printf("asdfasfasfasdfasdfasdfd -> %s\n", buf_for_2_bytes);
+
+		}
+		else if (j == 3)
+		{
+			ft_strncpy(buf_for_2_bytes, &buf_general[6], 2);
+			ft_printf("asdfasfasfasdfasdfasdfd -> %s\n", buf_for_2_bytes);
+
+			}
+
+		i += 
+
+		j++;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	ft_printf("->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>%d\n", i);
+	return (i);
+
+}
 
 void		cw_color_start(t_processes *proc, t_stack *map)
 {
@@ -52,7 +138,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 
 		// cmd.cmd, do not include codage;
-		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) /*&& proc->current_command != 0*/) // if no active command; // adopt here;
+		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) ==  NOT_EXIST_CODE/*&& proc->current_command != 0*/) // if no active command; // adopt here;
 		{
 			g_cw->map.stack_color[proc->process_PC] = proc->color;
 
@@ -114,7 +200,23 @@ void		cw_execute_corewar_magic(t_processes *proc)
 						proc->current_command = 0;
 						proc->cycles_till_execution = 1;
 					}
-					
+					else
+					{
+						ft_printf("not valid codage -------------------------------> %d\n", cmd.codage);
+						
+						g_cw->map.stack_color[proc->process_PC] = proc->color;
+
+						proc->process_PC += cw_move_PC_when_not_correct_cdg(cmd.codage);
+
+    					g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
+
+    					
+    					proc->cycles_till_execution = 1;
+
+						//colors
+
+
+					}
 				}
 			}
 			else if (proc->detect_deviation == 1)
@@ -141,6 +243,8 @@ void		cw_execute_corewar_magic(t_processes *proc)
 						proc->detect_deviation = 0;
 						proc->cycles_till_execution = 1;
 					}
+					// else
+					// 	ft_printf("not valid codage -> %d", NOT_CORRECT_CODAGE);
 					// exit (0); // -> show the first deviation;
 				}
 			}
@@ -275,14 +379,14 @@ void		cw_game_loop(void)
 
 	// #define test 4458
 	// #define test 4570
-	#define test 4524 // <- 3918
+	#define test 4547 // <- 3918
 
 	// 4570;
 
 	while (global_iterator < CYCLES)
 	{
 		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", global_iterator);
-		ft_printf("cycles -> %d\n", g_cw->proc_counter);
+		ft_printf("processes -> %d\n", g_cw->proc_counter);
 
 		cw_execute_corewar_magic(g_cw->proc_start);
 
