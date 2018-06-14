@@ -23,13 +23,13 @@ static void	print_color(unsigned char data, int color_type)
 	else if (color_type == 4)
 		ft_printf("%~.2x", F_CYAN, data);
 	else if (color_type == 5)
-		ft_printf("%~.2x", F_BACK_GREEN_WHITE, data);
+		ft_printf("%~.2x", F_BACK_GREEN_BLACK, data);
 	else if (color_type == 6)
-		ft_printf("%~.2x", F_BACK_RED_WHITE, data);
+		ft_printf("%~.2x", F_BACK_RED_BLACK, data);
 	else if (color_type == 7)
-		ft_printf("%~.2x", F_BACK_BLUE_WHITE, data);
+		ft_printf("%~.2x", F_BACK_BLUE_BLACK, data);
 	else if (color_type == 8)
-		ft_printf("%~.2x", F_BACK_CYAN_WHITE, data);
+		ft_printf("%~.2x", F_BACK_CYAN_BLACK, data);
 	else if (color_type == 9)
 		ft_printf("%~.2x", F_BOLD_GREEN, data);
 	else if (color_type == 10)
