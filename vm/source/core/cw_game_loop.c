@@ -13,6 +13,7 @@
 // 4894 <- write color trouble;
 // 5020 <- color if nothing on the map;
 // cw_helpers write to map costello;
+// replace all constants like 5 or 9 to variable in game loop and zjmp;
 
 // если у любого игрока было 21 лайвж
 // первый 6 байт + 2ж
@@ -163,32 +164,37 @@ void		cw_execute_corewar_magic(t_processes *proc)
 		{
 				     		ft_printf("in -> %d\n", g_cw->map.stack_color[proc->process_PC]);
 
-        		// ft_printf("stack_color not vali -> %d\n", g_cw->map.stack_color[proc->process_PC]);
+        		ft_printf("stack_color not vali -> %d\n", g_cw->map.stack_color[proc->process_PC]);
 
 
-        		if (g_cw->map.stack_color[proc->process_PC ] != 0 && g_cw->map.stack_color[proc->process_PC ] != 14 /*&& g_cw->map.cycle_stack[proc->process_PC] == 0*/)
+        		if (g_cw->map.stack_color[proc->process_PC ] != 0 && g_cw->map.stack_color[proc->process_PC ] != 14 && g_cw->map.cycle_stack[proc->process_PC] == 0)
 					g_cw->map.stack_color[proc->process_PC] = proc->color; //check it;
 				else if (g_cw->map.stack_color[proc->process_PC ] == 0 || g_cw->map.stack_color[proc->process_PC ] == 14)
 					g_cw->map.stack_color[proc->process_PC] = 14;
 
 
+					static int zeta;
 
-
-
-
-
-				proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
-				if (g_cw->map.stack_color[proc->process_PC - 1] == 14) // one process_PC is enough maybe;
+				if (g_cw->map.stack_color[proc->process_PC] == zeta) // one process_PC is enough maybe;
 				{
 					// ft_putstr("here\n");
-					g_cw->map.stack_color[proc->process_PC - 1 ] = 0;
+					g_cw->map.stack_color[proc->process_PC] = 9;
 				}
 
 
 
 
+				proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
 
 
+
+
+
+				if (g_cw->map.stack_color[proc->process_PC - 1] == 14) // one process_PC is enough maybe;
+				{
+					// ft_putstr("here\n");
+					g_cw->map.stack_color[proc->process_PC - 1 ] = 0;
+				}
 
 
 				if (g_cw->map.stack_color[proc->process_PC ] == 0)
@@ -199,11 +205,16 @@ void		cw_execute_corewar_magic(t_processes *proc)
 				else if (g_cw->map.stack_color[proc->process_PC] != 14 && g_cw->map.stack_color[proc->process_PC] != 0)
 				{
 					// g_cw->map.stack_color[proc->process_PC - 1] = 0;
+					// int color_before = g_cw->map.stack_color[proc->process_PC];
+
+
+					if (g_cw->map.stack_color[proc->process_PC] == 5)
+						zeta = 5;
 
 					ft_printf("cycle_stack -> %d\n", g_cw->map.cycle_stack[proc->process_PC]);
 
 					// if (g_cw->map.cycle_stack[proc->process_PC] == 0)
-						g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // modify with func according to tha current proc color;
+						g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // цвет кареткиж
 				}
 				// else
 
@@ -269,7 +280,10 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 						proc->process_PC += cw_move_PC_when_not_correct_cdg(cmd.codage, cmd.cmd);
 
-    					g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
+						if (g_cw->map.stack_color[proc->process_PC] != 0 && g_cw->map.stack_color[proc->process_PC] != 14)
+    						g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
+    					else
+    						g_cw->map.stack_color[proc->process_PC] = 14;
 
     					proc->cycles_till_execution = 1;
 
@@ -305,6 +319,30 @@ void		cw_execute_corewar_magic(t_processes *proc)
 						proc->current_command = 0;
 						proc->detect_deviation = 0;
 						proc->cycles_till_execution = 1;
+					}
+					else
+					{
+						ft_printf("not valid codage -------------------------------> %d\n", "123456");//////////// ?
+
+						cw_get_command(&cmd, proc->process_PC, g_cw->map.stack); // to have the cmd.codage actual on the map; /////////////////// ?
+
+						g_cw->map.stack_color[proc->process_PC] = proc->color;
+
+						proc->process_PC += cw_move_PC_when_not_correct_cdg(cmd.codage, proc->current_command);
+
+						if (g_cw->map.stack_color[proc->process_PC] != 0 && g_cw->map.stack_color[proc->process_PC] != 14)
+    						g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
+    					else
+    						g_cw->map.stack_color[proc->process_PC] = 14;
+
+    					proc->cycles_till_execution = 1;
+
+						proc->current_command = 0;
+
+
+						//colors
+
+
 					}
 					// else
 					// 	ft_printf("not valid codage -> %d", NOT_CORRECT_CODAGE);
@@ -433,7 +471,7 @@ void		cw_game_loop(void)
 
 	#define CYCLES 10000
 
-	#define test 5024
+	#define test 5303
 	// #define test 5080
 
 
@@ -456,7 +494,7 @@ void		cw_game_loop(void)
 			cw_game_end();
 
 		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw->cycle);
-		ft_printf("cycles -> %d\n", g_cw->proc_counter);
+		ft_printf("processes -> %d\n", g_cw->proc_counter);
 
 		cw_execute_corewar_magic(g_cw->proc_start);
 
