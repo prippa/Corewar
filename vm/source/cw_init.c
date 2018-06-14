@@ -18,22 +18,22 @@ static void cw_get_op(void)
 {
 	const t_op op_tab[] =
 	{
-		{&cw_live, 10},
-		{&cw_ld, 5},
-		{&cw_st, 5},
-		{&cw_add, 10},
-		{&cw_sub, 10},
-		{&cw_binary_and, 6},
-		{&cw_binary_or, 6},
-		{&cw_binary_xor, 6},
-		{&cw_zjmp, 20},
-		{&cw_ldi, 25},
-		{&cw_sti, 25},
-		{&cw_fork, 800},
-		{&cw_lld, 10},
-		{&cw_lldi, 50},
-		{&cw_lfork, 1000},
-		{&cw_aff, 2}
+		{&cw_live, 10, 1},
+		{&cw_ld, 5, 2},
+		{&cw_st, 5, 2},
+		{&cw_add, 10, 3},
+		{&cw_sub, 10, 3},
+		{&cw_binary_and, 6, 3},
+		{&cw_binary_or, 6, 3},
+		{&cw_binary_xor, 6, 3},
+		{&cw_zjmp, 20, 1},
+		{&cw_ldi, 25, 3},
+		{&cw_sti, 25, 3},
+		{&cw_fork, 800, 1},
+		{&cw_lld, 10, 2},
+		{&cw_lldi, 50, 3},
+		{&cw_lfork, 1000, 1},
+		{&cw_aff, 2, 1}
 	};
 	g_cw->op = op_tab;
 }
@@ -58,6 +58,7 @@ void		cw_init(void)
 	g_cw->cycle = 0;
 	g_cw->cycle_to_die = CYCLE_TO_DIE;
 	g_cw->cycle_to_die_check = CYCLE_TO_DIE;
+	g_cw->max_checks_check = MAX_CHECKS;
 	g_cw->proc_counter = 0;
 	g_cw->id_counter = 1;
 }

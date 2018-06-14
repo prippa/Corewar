@@ -90,6 +90,7 @@ void			cw_display_map(unsigned char *map, int *color);
 void			cw_print_players(void);
 void			cw_print_dump(void);
 void			cw_cycles_new_period(void);
+void			cw_game_end(void);
 
 /*
 ********************************** Functions ***********************************

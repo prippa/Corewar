@@ -128,7 +128,7 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 	ft_bzero(res, 5); // +;
 	if (map[i] > 16 || map[i] < 1) // check if we have a correct command;
 	{
-		ft_putstr("rrrrrrrrrrrrrrrrrrrrrr -> 1\n");
+		// ft_putstr("rrrrrrrrrrrrrrrrrrrrrr -> 1\n");
 
 		return (NOT_EXIST_CODE);
 	}
@@ -150,7 +150,7 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 	i = MEM_CORRECTION((i + 1)); // go to other commands;
 	if (check_true_cdg(cmd->cmd, cmd->codage)) // check if a specific cmd has the correct codage;
 	{
-				ft_putstr("rrrrrrrrrrrrrrrrrrrrrr -> 2\n");
+				// ft_putstr("rrrrrrrrrrrrrrrrrrrrrr -> 2\n");
 		return (NOT_CORRECT_CODAGE); // check if a specific cmd has the correct codage;
 	}
 

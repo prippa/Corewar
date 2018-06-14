@@ -14,7 +14,7 @@
 
 //    Перемещает PC с текущей позиции на T_DIR % IDX_MOD если carry равен 1
 
-void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
+void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/) // one is enough maybe;
 {
 	map->stack_color[proc->process_PC] = proc->color;
 
@@ -34,11 +34,11 @@ void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
     if (map->stack_color[proc->process_PC] == 0)
     {
-        ft_printf("stack_color jmp == 0 -> %d\n", map->stack_color[proc->process_PC]);
+        // ft_printf("stack_color jmp == 0 -> %d\n", map->stack_color[proc->process_PC]);
 
         ft_putstr("****************************************1\n");
-
-        ft_printf("stack_color jmp == 0 -> %d\n", map->stack_color[proc->process_PC]);
+// 
+        // ft_printf("stack_color jmp == 0 -> %d\n", map->stack_color[proc->process_PC]);
 
         map->stack_color[proc->process_PC] = 14;
 
@@ -48,7 +48,7 @@ void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
     else if (map->stack_color[proc->process_PC] != 0 && map->stack_color[proc->process_PC] != 14)
     {
         ft_putstr("****************************************2\n");
-        ft_printf("stack_color jmp != 0 -> %d\n", map->stack_color[proc->process_PC]);
+        // ft_printf("stack_color jmp != 0 -> %d\n", map->stack_color[proc->process_PC]);
 
         map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
 
@@ -56,7 +56,7 @@ void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
     }
 
-
+  // ft_printf("stack_color jmp general -> %d\n", map->stack_color[proc->process_PC]);
 //
 //    map->stack[proc->process_PC] = 7;
 //    map->stack_color[proc->process_PC] = 5;

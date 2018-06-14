@@ -92,6 +92,7 @@ typedef struct			s_op
 {
 	void				((*func))(t_command *, t_stack *, t_processes *);
 	short				cycles_price;
+	short				arguments_quantity;
 }						t_op;
 
 /*
@@ -107,7 +108,8 @@ typedef struct			s_corewar
 	const t_op			*op;
 	unsigned int		cycle;
 	int					cycle_to_die;
-	unsigned int		cycle_to_die_check;
+	int					cycle_to_die_check;
+	unsigned int		max_checks_check;
 	unsigned int		proc_counter;				// size of active processes
 	unsigned int		id_counter;					// counter of id in processes
 }						t_corewar;
