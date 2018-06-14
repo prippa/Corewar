@@ -55,7 +55,9 @@ void		cw_init(void)
 	cw_get_op();
 	g_cw->proc_start = NULL;
 	g_cw->proc_end = NULL;
-	g_cw->loop = 1;
+	g_cw->cycle = 0;
+	g_cw->cycle_to_die = CYCLE_TO_DIE;
+	g_cw->cycle_to_die_check = CYCLE_TO_DIE;
 	g_cw->proc_counter = 0;
 	g_cw->id_counter = 1;
 }

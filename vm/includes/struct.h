@@ -105,7 +105,9 @@ typedef struct			s_corewar
 	t_processes			*proc_start;
 	t_processes			*proc_end;
 	const t_op			*op;
-	char				loop;
+	unsigned int		cycle;
+	int					cycle_to_die;
+	unsigned int		cycle_to_die_check;
 	unsigned int		proc_counter;				// size of active processes
 	unsigned int		id_counter;					// counter of id in processes
 }						t_corewar;

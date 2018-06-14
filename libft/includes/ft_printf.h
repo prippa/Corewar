@@ -62,15 +62,17 @@
 # define BOLD_CYAN 		"\033[1;36m"
 # define BOLD_WHITE 	"\033[1;39m"
 
-# define BACK_RED_BLACK		"\e[3;30;41m"
-# define BACK_GREEN_BLACK	"\e[3;30;42m"
-# define BACK_BLUE_BLACK	"\e[3;30;44m"
-# define BACK_CYAN_BLACK	"\e[3;30;46m"
+# define BACK_RED_BLACK		"\e[30;41m"
+# define BACK_GREEN_BLACK	"\e[30;42m"
+# define BACK_BLUE_BLACK	"\e[30;44m"
+# define BACK_CYAN_BLACK	"\e[30;46m"
+# define BACK_GRAY_BLACK	"\e[30;100m"
 
 # define BACK_RED_WHITE		"\e[1;97;41m"
 # define BACK_GREEN_WHITE	"\e[1;97;42m"
 # define BACK_BLUE_WHITE	"\e[1;97;44m"
 # define BACK_CYAN_WHITE	"\e[1;97;46m"
+
 
 typedef enum	e_colors
 {
@@ -93,6 +95,7 @@ typedef enum	e_colors
 	F_BACK_BLUE_BLACK,
 	F_BACK_RED_BLACK,
 	F_BACK_CYAN_BLACK,
+	F_BACK_GRAY_BLACK,
 	F_BACK_GREEN_WHITE,
 	F_BACK_BLUE_WHITE,
 	F_BACK_RED_WHITE,

@@ -12,6 +12,7 @@
 
 // 4894 <- write color trouble;
 // 5020 <- color if nothing on the map;
+// cw_helpers write to map costello;
 
 #include "corewar.h"
 
@@ -156,15 +157,50 @@ void		cw_execute_corewar_magic(t_processes *proc)
 		// cmd.cmd, do not include codage;
 		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) ==  NOT_EXIST_CODE && proc->current_command == 0) // if no active command; // adopt here;
 		{
-			// if (g_cw->map.stack_color[proc->process_PC] != 0)
-			g_cw->map.stack_color[proc->process_PC] = proc->color;
 
-			proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
-			// proc->process_PC += 1;
-			ft_printf("cmd-------%d\n", cmd.cmd);
-			// if (g_cw->map.stack_color[proc->process_PC] != 0)
+        		ft_printf("stack_color not vali -> %d\n", g_cw->map.stack_color[proc->process_PC]);
 
-			g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // modify with func according to tha current proc color;
+
+        		if (g_cw->map.stack_color[proc->process_PC ] != 0 && g_cw->map.stack_color[proc->process_PC ] != 14)
+					g_cw->map.stack_color[proc->process_PC] = proc->color;
+				else if (g_cw->map.stack_color[proc->process_PC ] == 0)
+					g_cw->map.stack_color[proc->process_PC] = 14;
+
+
+
+
+
+
+
+				proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
+
+				// if (g_cw->map.stack_color[proc->process_PC - 1] == 14)
+				// {
+				// 	g_cw->map.stack_color[proc->process_PC -1 ] == 0;
+				// }
+
+
+
+
+
+
+
+				if (g_cw->map.stack_color[proc->process_PC ] == 0)
+				{
+					// g_cw->map.stack_color[proc->process_PC - 1] = 0;
+					g_cw->map.stack_color[proc->process_PC] = 14;
+				}
+				else if (g_cw->map.stack_color[proc->process_PC] != 14 && g_cw->map.stack_color[proc->process_PC] != 0)
+				{
+					ft_putstr("here\n");
+					// g_cw->map.stack_color[proc->process_PC - 1] = 0;
+					
+
+					g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // modify with func according to tha current proc color;
+				}
+				// else
+				     		ft_printf("before -> %d\n", g_cw->map.stack_color[proc->process_PC - 1]);
+
 
 		}
 		else
@@ -383,8 +419,6 @@ void		cw_game_loop(void)
 
 	// 3791
 
-	int global_iterator = 0;
-
 
 	// 4509 ob
 
@@ -405,7 +439,10 @@ void		cw_game_loop(void)
 	// #define test 4581 // <- 3918
 	// #define test 4654 // <- 3918
 	// #define test 4860 // <- 3918
-	#define test 5010 // <- 3918
+	// #define test 5010 // <- 3918
+	#define test 5025 // <- 3918
+	// #define test 5000 // <- 3918
+
 
 
 
@@ -413,28 +450,27 @@ void		cw_game_loop(void)
 
 	// 4570;
 
-	while (global_iterator < CYCLES)
+	while (g_cw->cycle < CYCLES)
 	{
-		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", global_iterator);
+		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw->cycle);
 		ft_printf("processes -> %d\n", g_cw->proc_counter);
 
 		cw_execute_corewar_magic(g_cw->proc_start);
 
 		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);
 
-		if (global_iterator == test)
+		if (g_cw->cycle >= test)
 		{
 			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 			// cw_display_map_write(g_cw->map.stack_color);
 		}
-		else if (global_iterator > test)
-			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
 		// FLAG -dump in work
-		if (g_cw->pd.flags[DUMP] && global_iterator == g_cw->pd.dump_stop)
+		if (g_cw->pd.flags[DUMP] && g_cw->cycle == g_cw->pd.dump_stop)
 			cw_print_dump();
 
-		global_iterator++;
+		g_cw->cycle++;
+		g_cw->cycle_to_die_check--;
 	}
 
 //     cw_add(&cmd, &g_cw->map, g_cw->proc_start); // o.k.
