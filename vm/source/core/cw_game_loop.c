@@ -10,7 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+// 4894 <- write color trouble;
+// 5020 <- color if nothing on the map;
+
 #include "corewar.h"
+
+#define	DIR_CHECK(x) (x > 8 && x < 13) || x == 14 || x == 15
 
 static void		ft_zero_it(char *str)
 {
@@ -21,11 +26,22 @@ static void		ft_zero_it(char *str)
 		str[i++] = '0';
 }
 
+static	int	ft_codage_for_counting(char *str, int cmd)
+{
+	if (ft_strequ("01", str))
+		return (1);
+	if (ft_strequ("11", str))
+		return (2);
+	if (ft_strequ("10", str))
+		return ((DIR_CHECK(cmd)) ? 2 : 4);
+	return (0);
+}
+
 // - get clear with proc carry;
 
 #define	IS_CMD(x) (x >= 1 && x <= 16)
 
-int			cw_move_PC_when_not_correct_cdg(int codage)
+int			cw_move_PC_when_not_correct_cdg(int codage, int cmd)
 {
 	int i;
 	int j;
@@ -79,7 +95,7 @@ int			cw_move_PC_when_not_correct_cdg(int codage)
 
 			}
 
-		i += 
+		i += ft_codage_for_counting(buf_for_2_bytes, cmd);
 
 		j++;
 	}
@@ -138,13 +154,16 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 
 		// cmd.cmd, do not include codage;
-		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) ==  NOT_EXIST_CODE/*&& proc->current_command != 0*/) // if no active command; // adopt here;
+		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) ==  NOT_EXIST_CODE && proc->current_command == 0) // if no active command; // adopt here;
 		{
+			if (g_cw->map.stack_color[proc->process_PC] != 0)
 			g_cw->map.stack_color[proc->process_PC] = proc->color;
 
 			proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
 			// proc->process_PC += 1;
 			ft_printf("cmd-------%d\n", cmd.cmd);
+			if (g_cw->map.stack_color[proc->process_PC] != 0)
+
 			g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // modify with func according to tha current proc color;
 
 		}
@@ -206,12 +225,14 @@ void		cw_execute_corewar_magic(t_processes *proc)
 						
 						g_cw->map.stack_color[proc->process_PC] = proc->color;
 
-						proc->process_PC += cw_move_PC_when_not_correct_cdg(cmd.codage);
+						proc->process_PC += cw_move_PC_when_not_correct_cdg(cmd.codage, cmd.cmd);
 
     					g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
 
-    					
     					proc->cycles_till_execution = 1;
+
+						proc->current_command = 0;
+
 
 						//colors
 
@@ -379,7 +400,16 @@ void		cw_game_loop(void)
 
 	// #define test 4458
 	// #define test 4570
-	#define test 4547 // <- 3918
+	// #define test 4547 // <- 3918
+	// #define test 4547 // <- 3918
+	// #define test 4581 // <- 3918
+	// #define test 4654 // <- 3918
+	// #define test 4860 // <- 3918
+	#define test 5010 // <- 3918
+
+
+
+
 
 	// 4570;
 
