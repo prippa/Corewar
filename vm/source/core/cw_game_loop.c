@@ -156,13 +156,13 @@ void		cw_execute_corewar_magic(t_processes *proc)
 		// cmd.cmd, do not include codage;
 		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) ==  NOT_EXIST_CODE && proc->current_command == 0) // if no active command; // adopt here;
 		{
-			if (g_cw->map.stack_color[proc->process_PC] != 0)
+			// if (g_cw->map.stack_color[proc->process_PC] != 0)
 			g_cw->map.stack_color[proc->process_PC] = proc->color;
 
 			proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
 			// proc->process_PC += 1;
 			ft_printf("cmd-------%d\n", cmd.cmd);
-			if (g_cw->map.stack_color[proc->process_PC] != 0)
+			// if (g_cw->map.stack_color[proc->process_PC] != 0)
 
 			g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // modify with func according to tha current proc color;
 
