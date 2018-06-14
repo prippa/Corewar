@@ -10,11 +10,113 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+// 4894 <- write color trouble;
+// 5020 <- color if nothing on the map;
+
 #include "corewar.h"
+
+#define	DIR_CHECK(x) (x > 8 && x < 13) || x == 14 || x == 15
+
+static void		ft_zero_it(char *str)
+{
+	int i;
+
+	i = 0;
+	while (i < 8)
+		str[i++] = '0';
+}
+
+static	int	ft_codage_for_counting(char *str, int cmd)
+{
+	if (ft_strequ("01", str))
+		return (1);
+	if (ft_strequ("11", str))
+		return (2);
+	if (ft_strequ("10", str))
+		return ((DIR_CHECK(cmd)) ? 2 : 4);
+	return (0);
+}
 
 // - get clear with proc carry;
 
 #define	IS_CMD(x) (x >= 1 && x <= 16)
+
+int			cw_move_PC_when_not_correct_cdg(int codage, int cmd)
+{
+	int i;
+	int j;
+	char *binary;
+	char *buf_general;
+	char	*buf_for_2_bytes;;
+
+	i = 0;
+	j = 0;
+	if (!(binary = ft_itoa_base(codage, 2, 0)))
+		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
+	ft_printf("binary -----------------------------------------------------------------------> %s\n", binary);
+
+	buf_general = ft_strnew(8);
+
+	ft_zero_it(buf_general);
+	ft_printf("buf_general --------------------------------------------------------------------------> %s\n", buf_general);
+
+	ft_strncpy(&buf_general[8 - ft_strlen(binary)], binary, ft_strlen(binary));
+
+	ft_printf("buf_general --------------------------------------------------------------------------> %s\n", buf_general);
+
+	buf_for_2_bytes = ft_strnew(2);
+	buf_for_2_bytes[0] = '0';
+	buf_for_2_bytes[1] = '0';
+
+
+	while (j < 4)
+	{
+		if (j == 0)
+		{
+			ft_strncpy(buf_for_2_bytes, &buf_general[0], 2);
+			ft_printf("asdfasfasfasdfasdfasdfd -> %s\n", buf_for_2_bytes);
+		}
+		else if (j == 1)
+		{
+			ft_strncpy(buf_for_2_bytes, &buf_general[2], 2);
+			ft_printf("asdfasfasfasdfasdfasdfd -> %s\n", buf_for_2_bytes);
+
+		}
+		else if (j == 2)
+		{
+			ft_strncpy(buf_for_2_bytes, &buf_general[4], 2);
+			ft_printf("asdfasfasfasdfasdfasdfd -> %s\n", buf_for_2_bytes);
+
+		}
+		else if (j == 3)
+		{
+			ft_strncpy(buf_for_2_bytes, &buf_general[6], 2);
+			ft_printf("asdfasfasfasdfasdfasdfd -> %s\n", buf_for_2_bytes);
+
+			}
+
+		i += ft_codage_for_counting(buf_for_2_bytes, cmd);
+
+		j++;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	ft_printf("->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>%d\n", i);
+	return (i);
+
+}
 
 void		cw_color_start(t_processes *proc, t_stack *map)
 {
@@ -52,13 +154,16 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 
 		// cmd.cmd, do not include codage;
-		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) /*&& proc->current_command != 0*/) // if no active command; // adopt here;
+		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) ==  NOT_EXIST_CODE && proc->current_command == 0) // if no active command; // adopt here;
 		{
+			// if (g_cw->map.stack_color[proc->process_PC] != 0)
 			g_cw->map.stack_color[proc->process_PC] = proc->color;
 
 			proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
 			// proc->process_PC += 1;
 			ft_printf("cmd-------%d\n", cmd.cmd);
+			// if (g_cw->map.stack_color[proc->process_PC] != 0)
+
 			g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // modify with func according to tha current proc color;
 
 		}
@@ -114,7 +219,25 @@ void		cw_execute_corewar_magic(t_processes *proc)
 						proc->current_command = 0;
 						proc->cycles_till_execution = 1;
 					}
+					else
+					{
+						ft_printf("not valid codage -------------------------------> %d\n", cmd.codage);
+						
+						g_cw->map.stack_color[proc->process_PC] = proc->color;
 
+						proc->process_PC += cw_move_PC_when_not_correct_cdg(cmd.codage, cmd.cmd);
+
+    					g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
+
+    					proc->cycles_till_execution = 1;
+
+						proc->current_command = 0;
+
+
+						//colors
+
+
+					}
 				}
 			}
 			else if (proc->detect_deviation == 1)
@@ -141,6 +264,8 @@ void		cw_execute_corewar_magic(t_processes *proc)
 						proc->detect_deviation = 0;
 						proc->cycles_till_execution = 1;
 					}
+					// else
+					// 	ft_printf("not valid codage -> %d", NOT_CORRECT_CODAGE);
 					// exit (0); // -> show the first deviation;
 				}
 			}
@@ -264,7 +389,7 @@ void		cw_game_loop(void)
 	// 4566 ?
 
 
-	#define CYCLES 10000
+	#define CYCLES 100000
 	// #define test 2854
 	// #define test 2900
 	// #define test 2911
@@ -273,18 +398,30 @@ void		cw_game_loop(void)
 
 	// #define test 4458
 	// #define test 4570
-	#define test 4526 // <- 3918
+	// #define test 4547 // <- 3918
+	// #define test 4547 // <- 3918
+	// #define test 4581 // <- 3918
+	// #define test 4654 // <- 3918
+	// #define test 4860 // <- 3918
+	#define test 5010 // <- 3918
+
+
+
+
 
 	// 4570;
 
 	while (g_cw->cycle < CYCLES)
 	{
-		if (g_cw->cycle == 694)
-		{
+		// if (g_cw->cycle == 26689)
+		// {
 			
-		}
-		if (!g_cw->cycle_to_die_check)
-			cw_cycles_new_period();
+		// }
+
+		// IF GAME END!
+		if (g_cw->cycle_to_die <= 0)
+			cw_game_end();
+
 		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw->cycle);
 		ft_printf("cycles -> %d\n", g_cw->proc_counter);
 
@@ -292,16 +429,20 @@ void		cw_game_loop(void)
 
 		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);
 
-		if (g_cw->cycle >= test)
-		{
-			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
-			// cw_display_map_write(g_cw->map.stack_color);
-		}
+		// if (g_cw->cycle >= test)
+		// {
+		// 	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+		// 	// cw_display_map_write(g_cw->map.stack_color);
+		// }
 
 		// FLAG -dump in work
 		if (g_cw->pd.flags[DUMP] && g_cw->cycle == g_cw->pd.dump_stop)
 			cw_print_dump();
-
+		
+		// New Period!
+		if (!g_cw->cycle_to_die_check)
+			cw_cycles_new_period();
+		
 		g_cw->cycle++;
 		g_cw->cycle_to_die_check--;
 	}

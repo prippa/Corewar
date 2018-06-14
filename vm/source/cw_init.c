@@ -58,6 +58,7 @@ void		cw_init(void)
 	g_cw->cycle = 0;
 	g_cw->cycle_to_die = CYCLE_TO_DIE;
 	g_cw->cycle_to_die_check = CYCLE_TO_DIE;
+	g_cw->max_checks_check = MAX_CHECKS;
 	g_cw->proc_counter = 0;
 	g_cw->id_counter = 1;
 }
