@@ -278,7 +278,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 						
 						g_cw->map.stack_color[proc->process_PC] = proc->color;
 
-						proc->process_PC += cw_move_PC_when_not_correct_cdg(cmd.codage, cmd.cmd);
+						proc->process_PC = MEM_CORRECTION((proc->process_PC + cw_move_PC_when_not_correct_cdg(cmd.codage, cmd.cmd)));
 
 						if (g_cw->map.stack_color[proc->process_PC] != 0 && g_cw->map.stack_color[proc->process_PC] != 14)
     						g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
@@ -471,8 +471,8 @@ void		cw_game_loop(void)
 
 	#define CYCLES 10000
 
-	#define test 5303
-	// #define test 5080
+	// #define test 5303
+	#define test 7000
 
 
 
