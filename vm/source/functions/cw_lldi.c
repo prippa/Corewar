@@ -34,7 +34,29 @@ void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc)
 	proc->process_PC = MEM_CORRECTION(
 		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2));
 	// if(map->stack_color[proc->process_PC] != 0)
-	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
+	    if (map->stack_color[proc->process_PC] == 0)
+    {
+        ft_printf("stack_color lldi == 0 -> %d\n", map->stack_color[proc->process_PC]);
+
+        ft_putstr("****************************************1\n");
+
+        ft_printf("stack_color lldi == 0 -> %d\n", map->stack_color[proc->process_PC]);
+
+        map->stack_color[proc->process_PC] = 14;
+
+        ft_printf("stack_color lldi == 0 -> %d\n", map->stack_color[proc->process_PC]);
+        
+    }
+    else if (map->stack_color[proc->process_PC] != 0 && map->stack_color[proc->process_PC] != 14)
+    {
+        ft_putstr("****************************************2\n");
+        ft_printf("stack_color lldi != 0 -> %d\n", map->stack_color[proc->process_PC]);
+
+        map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
+
+        ft_printf("stack_color lldi != 0 -> %d\n", map->stack_color[proc->process_PC]);
+
+    }
 	
 		// map->stack[proc->process_PC] = 7;
 		// map->stack_color[proc->process_PC] = 5;

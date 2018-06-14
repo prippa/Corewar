@@ -162,7 +162,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 
         		if (g_cw->map.stack_color[proc->process_PC ] != 0 && g_cw->map.stack_color[proc->process_PC ] != 14)
-					g_cw->map.stack_color[proc->process_PC] = proc->color;
+					g_cw->map.stack_color[proc->process_PC] = proc->color; //check it;
 				else if (g_cw->map.stack_color[proc->process_PC ] == 0)
 					g_cw->map.stack_color[proc->process_PC] = 14;
 
@@ -174,10 +174,11 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 				proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
 
-				// if (g_cw->map.stack_color[proc->process_PC - 1] == 14)
-				// {
-				// 	g_cw->map.stack_color[proc->process_PC -1 ] == 0;
-				// }
+				if (g_cw->map.stack_color[proc->process_PC - 1] == 14)
+				{
+					ft_putstr("here\n");
+					g_cw->map.stack_color[proc->process_PC -1 ] = 0;
+				}
 
 
 
@@ -192,9 +193,8 @@ void		cw_execute_corewar_magic(t_processes *proc)
 				}
 				else if (g_cw->map.stack_color[proc->process_PC] != 14 && g_cw->map.stack_color[proc->process_PC] != 0)
 				{
-					ft_putstr("here\n");
 					// g_cw->map.stack_color[proc->process_PC - 1] = 0;
-					
+
 
 					g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // modify with func according to tha current proc color;
 				}
@@ -426,22 +426,9 @@ void		cw_game_loop(void)
 
 
 	#define CYCLES 10000
-	// #define test 2854
-	// #define test 2900
-	// #define test 2911
-		// #define test 2890
-		// #define test 2913
 
-	// #define test 4458
-	// #define test 4570
-	// #define test 4547 // <- 3918
-	// #define test 4547 // <- 3918
-	// #define test 4581 // <- 3918
-	// #define test 4654 // <- 3918
-	// #define test 4860 // <- 3918
-	// #define test 5010 // <- 3918
-	#define test 5025 // <- 3918
-	// #define test 5000 // <- 3918
+	// #define test 5025
+	#define test 5080
 
 
 
