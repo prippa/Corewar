@@ -389,7 +389,7 @@ void		cw_game_loop(void)
 	// 4566 ?
 
 
-	#define CYCLES 10000
+	#define CYCLES 100000
 	// #define test 2854
 	// #define test 2900
 	// #define test 2911
@@ -413,12 +413,15 @@ void		cw_game_loop(void)
 
 	while (g_cw->cycle < CYCLES)
 	{
-		if (g_cw->cycle == 694)
-		{
+		// if (g_cw->cycle == 26689)
+		// {
 			
-		}
-		if (!g_cw->cycle_to_die_check)
-			cw_cycles_new_period();
+		// }
+
+		// IF GAME END!
+		if (g_cw->cycle_to_die <= 0)
+			cw_game_end();
+
 		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw->cycle);
 		ft_printf("cycles -> %d\n", g_cw->proc_counter);
 
@@ -426,16 +429,20 @@ void		cw_game_loop(void)
 
 		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);
 
-		if (g_cw->cycle >= test)
-		{
-			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
-			// cw_display_map_write(g_cw->map.stack_color);
-		}
+		// if (g_cw->cycle >= test)
+		// {
+		// 	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+		// 	// cw_display_map_write(g_cw->map.stack_color);
+		// }
 
 		// FLAG -dump in work
 		if (g_cw->pd.flags[DUMP] && g_cw->cycle == g_cw->pd.dump_stop)
 			cw_print_dump();
-
+		
+		// New Period!
+		if (!g_cw->cycle_to_die_check)
+			cw_cycles_new_period();
+		
 		g_cw->cycle++;
 		g_cw->cycle_to_die_check--;
 	}
