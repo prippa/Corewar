@@ -85,6 +85,8 @@ int				t_processe_free_by_obj(t_processes **proc_start,
 void			cw_load_map(void);
 void			cw_game_loop(void);
 void			cw_display_map(unsigned char *map, int *color);
+void			cw_print_players(void);
+void			cw_print_dump(void);
 
 /*
 ********************************** Functions ***********************************
