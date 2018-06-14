@@ -22,6 +22,8 @@ static void	ft_fpf_back_color(t_printf *fpf)
 		ft_pf_strjoin(fpf, BACK_RED_BLACK, ft_strlen(BACK_RED_BLACK));
 	else if (fpf->color == F_BACK_CYAN_BLACK)
 		ft_pf_strjoin(fpf, BACK_CYAN_BLACK, ft_strlen(BACK_CYAN_BLACK));
+	else if (fpf->color == F_BACK_GRAY_BLACK)
+		ft_pf_strjoin(fpf, BACK_GRAY_BLACK, ft_strlen(BACK_GRAY_BLACK));
 	else if (fpf->color == F_BACK_GREEN_WHITE)
 		ft_pf_strjoin(fpf, BACK_GREEN_WHITE, ft_strlen(BACK_GREEN_WHITE));
 	else if (fpf->color == F_BACK_BLUE_WHITE)

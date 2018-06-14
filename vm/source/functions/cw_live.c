@@ -19,38 +19,28 @@
 //2. Засчитывает, что жив номер (если этот номер совпадает с номером игрока, то засчитвает, что этот игрок жив), который заходит как аргумент (T_DIR).
 // we take the next live process in the linked list of processes;
 
- static t_champ	*cw_champ_find(int champ_number, t_champ *list)
- {
- 	while (list)
- 	{
- 		if (list->champ_number == champ_number)
- 			return (list);
- 		list = list->next;
- 	}
- 	return (NULL);
- }
-
 void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
-    t_champ *champ;
-//
+	t_champ *champ;
+
 //   proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
-    
-    proc->has_been_activated = ALIVE; // maybe for testing we can use += live, will see;
 
-    champ = cw_champ_find(cmd->arg1.av, g_cw->pd.champs);
+	proc->has_been_activated = ALIVE; // maybe for testing we can use += live, will see;
 
-    if (champ)
-    // {
-    	champ->lives_number += ALIVE;
-	// }
+	champ = t_champ_find(cmd->arg1.av, g_cw->pd.champs);
+
+	if (champ)
+	{
+		champ->lives_number += ALIVE;
+		champ->last_live = g_cw->cycle + 1;
+	}
 
 
-    // ft_printf("champ_number -> %d\n", champ->champ_number);
-    // ft_printf("champ_number -> %u\n", champ->lives_number);
-    map->stack_color[proc->process_PC] = proc->color;
+	// ft_printf("champ_number -> %d\n", champ->champ_number);
+	// ft_printf("champ_number -> %u\n", champ->lives_number);
+	map->stack_color[proc->process_PC] = proc->color;
 
-    proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
+	proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
 
 //	 for testing;
 //	 map->stack[proc->process_PC] = 7;

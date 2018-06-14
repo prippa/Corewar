@@ -48,15 +48,17 @@ void		cw_execute_corewar_magic(t_processes *proc)
 	{
 		// ft_printf("proc_id -> %d\n", proc->id);
 		ft_bzero(&cmd, sizeof(t_command));
+		ft_printf("PC -----------> %d\n", proc->process_PC);
 
 
-		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) && proc->current_command != 0) // if no active command;
+		// cmd.cmd, do not include codage;
+		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) /*&& proc->current_command != 0*/) // if no active command; // adopt here;
 		{
 			g_cw->map.stack_color[proc->process_PC] = proc->color;
 
 			proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
 			// proc->process_PC += 1;
-
+			ft_printf("cmd-------%d\n", cmd.cmd);
 			g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // modify with func according to tha current proc color;
 
 		}
@@ -112,7 +114,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 						proc->current_command = 0;
 						proc->cycles_till_execution = 1;
 					}
-					
+
 				}
 			}
 			else if (proc->detect_deviation == 1)
@@ -256,8 +258,6 @@ void		cw_game_loop(void)
 
 	// 3791
 
-	int global_iterator = 0;
-
 
 	// 4509 ob
 
@@ -273,32 +273,37 @@ void		cw_game_loop(void)
 
 	// #define test 4458
 	// #define test 4570
-	#define test 3909 // <- 3918
+	#define test 4526 // <- 3918
 
 	// 4570;
 
-	while (global_iterator < CYCLES)
+	while (g_cw->cycle < CYCLES)
 	{
-		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", global_iterator);
+		if (g_cw->cycle == 694)
+		{
+			
+		}
+		if (!g_cw->cycle_to_die_check)
+			cw_cycles_new_period();
+		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw->cycle);
 		ft_printf("cycles -> %d\n", g_cw->proc_counter);
 
 		cw_execute_corewar_magic(g_cw->proc_start);
 
 		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);
 
-		if (global_iterator == test)
+		if (g_cw->cycle >= test)
 		{
 			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 			// cw_display_map_write(g_cw->map.stack_color);
 		}
-		else if (global_iterator > test)
-			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 
 		// FLAG -dump in work
-		if (g_cw->pd.flags[DUMP] && global_iterator == g_cw->pd.dump_stop)
+		if (g_cw->pd.flags[DUMP] && g_cw->cycle == g_cw->pd.dump_stop)
 			cw_print_dump();
 
-		global_iterator++;
+		g_cw->cycle++;
+		g_cw->cycle_to_die_check--;
 	}
 
 //     cw_add(&cmd, &g_cw->map, g_cw->proc_start); // o.k.

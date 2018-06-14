@@ -65,9 +65,11 @@ void			cw_parser(void);
 void			t_champ_rev(t_champ **champs);
 void			t_champ_add(t_champ **champs);
 void			t_champ_free(t_champ **champs);
+t_champ			*t_champ_find(int champ_number, t_champ *list);
+unsigned int	t_champ_get_lives_number(t_champ *champs);
+
 void			t_processe_add(t_processes **proc_start,
 					t_processes **proc_end);
-
 void			t_processes_copy(t_processes **proc_start,
 					t_processes **proc_end, t_processes *current_proc,
 					int position);
@@ -87,6 +89,7 @@ void			cw_game_loop(void);
 void			cw_display_map(unsigned char *map, int *color);
 void			cw_print_players(void);
 void			cw_print_dump(void);
+void			cw_cycles_new_period(void);
 
 /*
 ********************************** Functions ***********************************

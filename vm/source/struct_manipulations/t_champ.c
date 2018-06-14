@@ -12,7 +12,31 @@
 
 #include "corewar.h"
 
-void	t_champ_rev(t_champ **champs)
+unsigned int	t_champ_get_lives_number(t_champ *champs)
+{
+	unsigned int count;
+
+	count = 0;
+	while (champs)
+	{
+		count += champs->lives_number;
+		champs = champs->next;
+	}
+	return (count);
+}
+
+t_champ			*t_champ_find(int champ_number, t_champ *list)
+{
+	while (list)
+	{
+		if (list->champ_number == champ_number)
+			return (list);
+		list = list->next;
+	}
+	return (NULL);
+}
+
+void			t_champ_rev(t_champ **champs)
 {
 	t_champ *prev;
 	t_champ *current;
@@ -30,7 +54,7 @@ void	t_champ_rev(t_champ **champs)
 	*champs = prev;
 }
 
-void	t_champ_free(t_champ **champs)
+void			t_champ_free(t_champ **champs)
 {
 	while (*champs)
 	{
@@ -40,7 +64,7 @@ void	t_champ_free(t_champ **champs)
 	}
 }
 
-void	t_champ_add(t_champ **champs)
+void			t_champ_add(t_champ **champs)
 {
 	t_champ *new_obj;
 
