@@ -12,15 +12,6 @@
 
 #include "corewar.h"
 
-static void	t_champ_zero_lives_number(t_champ *champs)
-{
-	while (champs)
-	{
-		champs->lives_number = 0;
-		champs = champs->next;
-	}
-}
-
 void		cw_cycles_new_period(void)
 {
 	g_cw->max_checks_check--;

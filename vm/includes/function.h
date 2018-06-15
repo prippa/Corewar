@@ -67,6 +67,9 @@ void			t_champ_add(t_champ **champs);
 void			t_champ_free(t_champ **champs);
 t_champ			*t_champ_find(int champ_number, t_champ *list);
 unsigned int	t_champ_get_lives_number(t_champ *champs);
+void			cw_print_players(t_champ *champs);
+void			t_champ_zero_lives_number(t_champ *champs);
+void			cw_print_winer(t_champ *champs);
 
 void			t_processe_add(t_processes **proc_start,
 					t_processes **proc_end);
@@ -87,10 +90,9 @@ int				t_processe_free_by_obj(t_processes **proc_start,
 void			cw_load_map(void);
 void			cw_game_loop(void);
 void			cw_display_map(unsigned char *map, int *color);
-void			cw_print_players(void);
-void			cw_print_dump(void);
+void			cw_display_dump(void);
 void			cw_cycles_new_period(void);
-void			cw_game_end(void);
+void			cw_game_end_exit(void);
 
 /*
 ********************************** Functions ***********************************

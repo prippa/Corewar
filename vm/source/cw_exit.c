@@ -43,3 +43,19 @@ void		cw_exit(char *message, int error_number)
 	cw_free();
 	exit(error_number);
 }
+
+void		cw_print_dump_exit(void)
+{
+	cw_print_players(g_cw->pd.champs);
+	cw_display_dump();
+	cw_free();
+	exit(0);
+}
+
+void		cw_game_end_exit(void)
+{
+	cw_print_players(g_cw->pd.champs);
+	cw_print_winer(g_cw->pd.champs);
+	cw_free();
+	exit(0);
+}

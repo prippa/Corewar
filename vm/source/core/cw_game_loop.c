@@ -472,7 +472,7 @@ void		cw_game_loop(void)
 	#define CYCLES 10000
 
 	// #define test 5303
-	#define test 7000
+	#define test 5000
 
 
 
@@ -491,7 +491,7 @@ void		cw_game_loop(void)
 
 		// IF GAME END!
 		if (g_cw->cycle_to_die <= 0)
-			cw_game_end();
+			cw_game_end_exit();
 
 		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw->cycle);
 		ft_printf("processes -> %d\n", g_cw->proc_counter);
@@ -508,7 +508,7 @@ void		cw_game_loop(void)
 
 		// FLAG -dump in work
 		if (g_cw->pd.flags[DUMP] && g_cw->cycle == g_cw->pd.dump_stop)
-			cw_print_dump();
+			cw_display_dump();
 		
 		// New Period!
 		if (!g_cw->cycle_to_die_check)

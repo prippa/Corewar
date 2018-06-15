@@ -70,3 +70,23 @@ void		cw_display_map(unsigned char *map, int *color)
 		i++;
 	}
 }
+
+void		cw_display_dump(void)
+{
+	int	counter;
+	int index;
+
+	counter = 0;
+	index = 0;
+	while (index < MEM_SIZE)
+	{
+		ft_printf("0x%.4x : ", counter);
+		while (index < (counter + CW_BIT))
+		{
+			ft_printf("%.2x ", g_cw->map.stack[index]);
+			index++;
+		}
+		ft_putchar('\n');
+		counter += CW_BIT;
+	}
+}
