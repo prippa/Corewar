@@ -55,6 +55,7 @@ int			t_processe_free_by_obj(t_processes **proc_start,
 		obj->next->prev = obj->prev;
 	}
 	free(obj);
+	g_cw->proc_counter--;
 	return (1);
 }
 

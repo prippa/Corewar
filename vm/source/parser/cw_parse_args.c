@@ -25,6 +25,7 @@ static void	cw_valid_champ(char *file_name)
 	ft_strcpy(g_cw->pd.champs->file_name, file_name);
 	g_cw->pd.champs_count++;
 	g_cw->pd.champs->champ_number = (int)g_cw->pd.tmp;
+	g_cw->pd.champs->real_champ_number = g_cw->pd.champs_count;
 	if (g_cw->pd.tmp == MININT)
 		g_cw->pd.tmp = MAXINT;
 	else

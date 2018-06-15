@@ -82,6 +82,7 @@ int				t_processe_free_by_id(t_processes **proc_start,
 					t_processes **proc_end, unsigned int id);
 int				t_processe_free_by_obj(t_processes **proc_start,
 					t_processes **proc_end, t_processes *obj);
+void			t_processe_killer(t_processes *head);
 
 /*
 ********************************** Core Part ***********************************

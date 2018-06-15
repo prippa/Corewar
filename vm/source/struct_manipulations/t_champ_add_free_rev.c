@@ -56,6 +56,7 @@ void			t_champ_add(t_champ **champs)
 	new_obj->champ_number = 0;
 	new_obj->lives_number = 0;
 	new_obj->last_live = 0;
+	new_obj->real_champ_number = 0;
 	new_obj->next = *champs;
 	*champs = new_obj;
 }

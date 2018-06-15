@@ -493,7 +493,7 @@ void		cw_game_loop(void)
 		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw->cycle);
 		ft_printf("processes -> %d\n", g_cw->proc_counter);
 
-		// IF GAME END!
+		// GAME EDN IF PERIODS OF CYCLE_TO_DIE IS OWER !
 		if (g_cw->cycle_to_die <= 0)
 			return ;
 
@@ -503,7 +503,7 @@ void		cw_game_loop(void)
 
 		if (g_cw->cycle >= test)
 		{
-			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+			// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 		// 	// cw_display_map_write(g_cw->map.stack_color);
 		}
 
@@ -515,6 +515,10 @@ void		cw_game_loop(void)
 		if (!g_cw->cycle_to_die_check)
 			cw_cycles_new_period();
 		
+		// GAME END IF ALL PROCESSES IS DEAD !
+		if (g_cw->proc_counter == 0)
+			return ;
+
 		g_cw->cycle++;
 		g_cw->cycle_to_die_check--;
 	}
