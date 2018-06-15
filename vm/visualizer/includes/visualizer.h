@@ -19,7 +19,7 @@
 # include "ltexture.h"
 # include "fonts.h"
 # include "init.h"
-# define ARENA_TILE_WIDTH ((SCREEN_WIDTH - BUTTON_WIDTH - 100) >> 6)
+# define ARENA_TILE_WIDTH (((int)((0.9 * SCREEN_WIDTH) - BUTTON_WIDTH)) >> 6)
 # define ARENA_TILE_HEIGHT (SCREEN_HEIGHT >> 6)
 # define ARENA_WIDTH 64
 # define ARENA_HEIGHT 64

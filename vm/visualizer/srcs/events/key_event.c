@@ -16,11 +16,11 @@ static inline void	move_arena(t_arena *arena, SDL_Keycode sym)
 {
 	if (sym == SDLK_UP)
 	{
-		arena->top_left.y -= ARENA_TILE_HEIGHT * arena->zoom;
+		move_up(arena);
 	}
 	else if (sym == SDLK_DOWN)
 	{
-		arena->top_left.y += ARENA_TILE_HEIGHT * arena->zoom;
+		move_down(arena);
 	}
 	else if (sym == SDLK_LEFT)
 	{

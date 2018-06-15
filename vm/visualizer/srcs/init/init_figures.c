@@ -20,7 +20,8 @@ void		init_figures(t_arena *arena)
 
 	buf[1] = 0;
 	font_weight = ARENA_TILE_WIDTH * MAX_ZOOM;
-	font_weight <<= 2;
+	double k = ((double)(arena->d_mode.w) / (double)(SCREEN_WIDTH));
+	font_weight *= k;
 	i = -1;
 	while (++i < 0x10)
 	{

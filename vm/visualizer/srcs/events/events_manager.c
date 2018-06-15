@@ -36,6 +36,8 @@ void				events_handler(t_arena *arena)
 				wheel_event(arena, arena->e.wheel.y);
 			for (int i = 0; i < BUTTON_TOTAL; i++)
 				handle_button_event(&(arena->e), arena->start_btns[i], arena, i);
+			for (int i = 0; i < MOVE_BUTTON_TOTAL; i++)
+				handle_movebutton_event(&(arena->e), arena->move_btns[i], arena, i);
 			handle_checkbox_event(&(arena->e), arena->full_btn, arena);
 		}
 		render_checkbox_sprite(arena->full_btn, arena);

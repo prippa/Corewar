@@ -44,7 +44,7 @@ bool			init_controls(t_arena *arena)
 		success = false;
 	if (!init_move_buttons(arena))
 		success = false;
-	if (!(arena->full_btn = create_checkbox((SDL_Point){.x = wd, .y = 50},
+	if (!(arena->full_btn = create_checkbox((SDL_Point){.x = wd, .y = 20},
 									"FULLSCREEN",
 									arena->renderer)))
 		success = false;

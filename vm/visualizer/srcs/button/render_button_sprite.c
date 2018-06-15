@@ -9,9 +9,11 @@ void				render_button_sprite(t_button *btn,
 
 	if (btn->button_txt)
 	{
-		render(&btn_pos, arena->start_btn_sprites[btn->current_sprite],
-			arena->renderer, SDL_FLIP_NONE);
-		clip.w /= 2;
+		render(&btn_pos,
+			((t_ltexture **)(btn->sprites))[btn->current_sprite],
+			arena->renderer,
+			SDL_FLIP_NONE);
+		clip.w >>= 1;
 		clip.x += (btn->width >> 2);
 		txt_pos = get_render_position(0, &(btn->txt_position), NULL, &clip);
 		render(&txt_pos, btn->button_txt,

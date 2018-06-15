@@ -29,7 +29,8 @@ t_button		*create_button(double angle,
 								SDL_Point position,
 								const char *text,
 								SDL_Renderer *renderer,
-								SDL_Point params)
+								SDL_Point params,
+								void *sprites)
 {
 	t_button	*new_btn;
 
@@ -41,6 +42,7 @@ t_button		*create_button(double angle,
 									NULL);
 	else
 	{
+		new_btn->sprites = sprites;
 		new_btn->width = params.x;
 		new_btn->height = params.y;
 		new_btn->position = position;

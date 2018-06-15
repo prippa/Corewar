@@ -48,4 +48,6 @@ void	zoom_out(const int x,
 				const int y,
 				t_arena *arena);
 
+void	move_up(t_arena *arena);
+void	move_down(t_arena *arena);
 #endif

@@ -88,7 +88,7 @@ BUTTON_NAME		=	create_button.c				\
 					render_button_sprite.c		\
 					create_checkbox.c			\
 					handle_checkbox_event.c		\
-					render_checkbox_sprite.c
+					render_checkbox_sprite.c	
 
 INIT_NAME		=	init_devices.c
 

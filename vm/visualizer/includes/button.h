@@ -36,7 +36,8 @@ t_button				*create_button(double angle,
 										SDL_Point position,
 										const char *text,
 										SDL_Renderer *renderer,
-										SDL_Point params);
+										SDL_Point params,
+										void *sprites);
 /*
 ** Handles mouse event for button
 */
@@ -55,4 +56,9 @@ void					render_button_sprite(t_button *btn,
 ** Frees memory
 */
 void					free_button(t_button *btn);
+
+void					handle_movebutton_event(SDL_Event *e,
+											t_button *btn,
+											t_arena *arena,
+											t_movemenu id);
 #endif

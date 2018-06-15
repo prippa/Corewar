@@ -28,7 +28,8 @@ void				render_checkbox_sprite(t_checkbox *cbx,
 			arena->renderer, SDL_FLIP_NONE);
 	if (cbx->checkbox_txt)
 	{
-		txt_pos = get_render_position(0, &(cbx->txt_position), NULL, NULL);
+		clip.w *= 2;
+		txt_pos = get_render_position(0, &(cbx->txt_position), NULL, &clip);
 		render(&txt_pos, cbx->checkbox_txt,
 				arena->renderer, SDL_FLIP_NONE);
 		

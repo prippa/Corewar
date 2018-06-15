@@ -34,8 +34,8 @@
 # define TILEBLOCK_IMG "./vm/visualizer/images/tileblock.jpg"
 # define BACK_IMG "vm/visualizer/images/colosseum.jpg"
 # define GET_DMODE_SUCCESS 0
-# define SCREEN_WIDTH 2560
-# define SCREEN_HEIGHT 1440
+# define SCREEN_WIDTH 1280
+# define SCREEN_HEIGHT 720
 # define MAP_SIZE 4096
 # define MIN_ZOOM 0.5
 # define MAX_ZOOM 10
@@ -168,6 +168,7 @@ typedef struct					s_text
 
 typedef struct					s_button
 {
+	void						(*event_handler)(void *arena);
 	SDL_Rect					clip;
 	t_rposition					btn_pos;
 	SDL_Point					position;
@@ -176,6 +177,7 @@ typedef struct					s_button
 	SDL_Point					txt_position;
 	int							width;
 	int							height;
+	void						*sprites;
 }								t_button;
 
 /*

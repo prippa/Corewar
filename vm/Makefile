@@ -92,7 +92,8 @@ EVENT_NAME		=	events_manager.c			\
 					key_event.c					\
 					exit_event.c				\
 					wheel_event.c				\
-					zoom.c
+					zoom.c						\
+					move.c
 
 DRAW_NAME		=	draw_arena.c				\
 					draw_fillrect.c				\
@@ -116,7 +117,8 @@ BUTTON_NAME		=	create_button.c				\
 					render_button_sprite.c		\
 					create_checkbox.c			\
 					handle_checkbox_event.c		\
-					render_checkbox_sprite.c
+					render_checkbox_sprite.c	\
+					handle_movebutton_event.c
 
 INIT_NAME		=	init_devices.c				\
 					init.c 						\

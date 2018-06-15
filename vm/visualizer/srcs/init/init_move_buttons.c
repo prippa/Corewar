@@ -19,38 +19,38 @@ bool	init_move_buttons(t_arena *arena)
 	arena->move_btn_sprites[MOVE_BUTTON_MOUSE_OUT] = load_from_file(ARROW_IMG,
 																arena->renderer,
 																DEFAULT_COLOR_KEY);
+	set_alpha_mode(100, arena->move_btn_sprites[MOVE_BUTTON_MOUSE_OUT]);
 	arena->move_btn_sprites[MOVE_BUTTON_MOUSE_OVER_MOTION] = load_from_file(ARROW_IMG,
 																arena->renderer,
 																DEFAULT_COLOR_KEY);
-	set_color((SDL_Color){.g=0xff},
-				arena->move_btn_sprites[MOVE_BUTTON_MOUSE_OVER_MOTION]);
 	arena->move_btn_sprites[MOVE_BUTTON_MOUSE_DOWN] = load_from_file(ARROW_IMG,
 																arena->renderer,
 																DEFAULT_COLOR_KEY);
-	set_color((SDL_Color){.r=0xff},
+	set_color((SDL_Color){.g=0xff},
 				arena->move_btn_sprites[MOVE_BUTTON_MOUSE_DOWN]);
 	arena->move_btn_sprites[MOVE_BUTTON_MOUSE_UP] = load_from_file(ARROW_IMG,
 																arena->renderer,
 																DEFAULT_COLOR_KEY);
-	set_color((SDL_Color){.r=0xff,.b=0xff},
-				arena->move_btn_sprites[MOVE_BUTTON_MOUSE_UP]);
-	
 	if (!(arena->move_btns[UP_MENU_BTN] =
-			create_button(-90, (SDL_Point){.x = wd, .y = 650 + MOVE_BTN_HEIGHT},
+			create_button(-90, (SDL_Point){.x = wd, .y = 150 + MOVE_BTN_HEIGHT},
 							NULL, arena->renderer,
-							(SDL_Point){.x=MOVE_BTN_WIDTH, .y=MOVE_BTN_HEIGHT})) ||
+							(SDL_Point){.x=MOVE_BTN_WIDTH, .y=MOVE_BTN_HEIGHT},
+							arena->move_btn_sprites)) ||
 		!(arena->move_btns[RIGHT_MENU_BTN] =
-			create_button(0, (SDL_Point){.x = wd + 100, .y = 750 + MOVE_BTN_HEIGHT},
+			create_button(0, (SDL_Point){.x = wd + 100, .y = 250 + MOVE_BTN_HEIGHT},
 							NULL, arena->renderer,
-							(SDL_Point){.x=MOVE_BTN_WIDTH, .y=MOVE_BTN_HEIGHT})) ||
+							(SDL_Point){.x=MOVE_BTN_WIDTH, .y=MOVE_BTN_HEIGHT},
+							arena->move_btn_sprites)) ||
 		!(arena->move_btns[DOWN_MENU_BTN] =
-			create_button(90, (SDL_Point){.x = wd, .y = 850 + MOVE_BTN_HEIGHT},
+			create_button(90, (SDL_Point){.x = wd, .y = 350 + MOVE_BTN_HEIGHT},
 							NULL, arena->renderer,
-							(SDL_Point){.x=MOVE_BTN_WIDTH, .y=MOVE_BTN_HEIGHT})) ||
+							(SDL_Point){.x=MOVE_BTN_WIDTH, .y=MOVE_BTN_HEIGHT},
+							arena->move_btn_sprites)) ||
 		!(arena->move_btns[LEFT_MENU_BTN] =
-			create_button(180, (SDL_Point){.x = wd - 100, .y = 750 + MOVE_BTN_HEIGHT},
+			create_button(180, (SDL_Point){.x = wd - 100, .y = 250 + MOVE_BTN_HEIGHT},
 							NULL, arena->renderer,
-							(SDL_Point){.x=MOVE_BTN_WIDTH, .y=MOVE_BTN_HEIGHT})))
+							(SDL_Point){.x=MOVE_BTN_WIDTH, .y=MOVE_BTN_HEIGHT},
+							arena->move_btn_sprites)))
 		return (false);
 	return (true);
 }

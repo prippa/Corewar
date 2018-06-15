@@ -24,7 +24,7 @@ static inline void	create_checkbox_text(t_checkbox *cbx,
 		txt_top_left.x = cbx->position.x + CHECKBOX_WIDTH + 10;
 		txt_top_left.y = cbx->position.y;
 		texture = load_from_rendered_text(get_text_info(FUTURICA_ITALIC,
-											CHECKBOX_HEIGHT / 2,
+											(CHECKBOX_HEIGHT << 2),
 											text,
 											(SDL_Color){.r = 0xff, .g = 0, .b = 0, .a = 0}),
 											renderer);
