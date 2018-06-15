@@ -190,11 +190,13 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 
 
-				if (g_cw->map.stack_color[proc->process_PC - 1] == 14) // one process_PC is enough maybe;
+				if (proc->process_PC != 0 && g_cw->map.stack_color[proc->process_PC - 1] == 14) // one process_PC is enough maybe;
 				{
 					// ft_putstr("here\n");
-					g_cw->map.stack_color[proc->process_PC - 1 ] = 0;
+					g_cw->map.stack_color[proc->process_PC - 1] = 0;
 				}
+				else if (proc->process_PC == 0 && g_cw->map.stack_color[MEM_SIZE - 1] == 14)
+					g_cw->map.stack_color[MEM_SIZE - 1] = 0;
 
 
 				if (g_cw->map.stack_color[proc->process_PC ] == 0)
@@ -469,10 +471,10 @@ void		cw_game_loop(void)
 	// 4566 ?
 
 
-	#define CYCLES 10000
+	#define CYCLES 100000
 
 	// #define test 5303
-	#define test 5000
+	#define test 4090
 
 
 
@@ -483,18 +485,17 @@ void		cw_game_loop(void)
 
 	while (g_cw->cycle < CYCLES)
 	{
-
 		// if (g_cw->cycle == 26689)
 		// {
 			
 		// }
 
-		// IF GAME END!
-		if (g_cw->cycle_to_die <= 0)
-			cw_game_end_exit();
-
 		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw->cycle);
 		ft_printf("processes -> %d\n", g_cw->proc_counter);
+
+		// IF GAME END!
+		if (g_cw->cycle_to_die <= 0)
+			return ;
 
 		cw_execute_corewar_magic(g_cw->proc_start);
 
@@ -503,7 +504,7 @@ void		cw_game_loop(void)
 		if (g_cw->cycle >= test)
 		{
 			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
-			// cw_display_map_write(g_cw->map.stack_color);
+		// 	// cw_display_map_write(g_cw->map.stack_color);
 		}
 
 		// FLAG -dump in work
