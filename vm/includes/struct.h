@@ -67,7 +67,6 @@ typedef	struct			s_processes					// fork will create a process and will change t
 	int					registers[REG_NUMBER];		// r1 -> player_name register;
 	int 				live_status;				// flag to detect the life of the process;
 	int 				has_been_activated;			// if the process has been used;
-	int					champ_number;				// Number of champ
 	short				cycles_till_execution;		// will be decremented;
 	short				proc_process_PC_color;		// initial color;
 	short				proc_color_write_to_map;	// color for writing on the map;

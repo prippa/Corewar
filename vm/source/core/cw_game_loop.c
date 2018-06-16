@@ -51,11 +51,11 @@ static	int	ft_codage_for_counting(char *str, int cmd)
 
 int			cw_move_PC_when_not_correct_cdg(int codage, int cmd) // read first 3 bytes; !!!!!!!!!!!!! amended
 {
-	int i;
-	int j;
-	char *binary;
-	char *buf_general;
-	char	*buf_for_2_bytes;;
+	int		i;
+	int		j;
+	char	*binary;
+	char	*buf_general;
+	char	*buf_for_2_bytes;
 
 	i = 0;
 	j = 0;
@@ -112,7 +112,9 @@ int			cw_move_PC_when_not_correct_cdg(int codage, int cmd) // read first 3 bytes
 
 
 
-
+	free(binary);
+	free(buf_general);
+	free(buf_for_2_bytes);
 
 
 
@@ -494,7 +496,7 @@ void		cw_game_loop(void)
 
 	// 4570;
 
-	while (g_cw->cycle < CYCLES)
+	while (42)
 	{
 		// if (g_cw->cycle == 26689)
 		// {
