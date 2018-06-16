@@ -261,7 +261,9 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 				if (proc->cycles_till_execution < g_cw->op[cmd.cmd - 1].cycles_price) // keep the current comman
 				{
-					// ft_printf("till exec -> %d\n", proc->cycles_till_execution);
+					ft_printf("till exec normal -> %d\n", proc->current_command);
+					ft_printf("process_PC_normal -> %d\n", proc->process_PC);
+
 					proc->cycles_till_execution++;
 				}
 				else
@@ -305,7 +307,10 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 				if (proc->cycles_till_execution < g_cw->op[proc->current_command - 1].cycles_price) // keep the current comman
 				{
-					// ft_printf("proc->current_command -> %d\n", proc->current_command);
+
+					ft_printf("till exec dev-> %d\n", proc->cycles_till_execution);
+					ft_printf("process_PC_dev -> %d\n", proc->process_PC);
+
 // 
 					proc->cycles_till_execution++;
 				}
@@ -474,7 +479,7 @@ void		cw_game_loop(void)
 	#define CYCLES 100000
 
 	// #define test 5303
-	#define test 4090
+	#define test 5303
 
 
 
