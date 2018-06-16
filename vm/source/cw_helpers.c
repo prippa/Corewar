@@ -108,7 +108,7 @@ int			cw_get_dec_from_the_point(unsigned char *str,
 
 	res = 0;
 	i = 0;
-	j = MEM_CORRECTION(position);
+	j = MEM_CORRECTION((position));
 	j = (j < 0) ? MEM_SIZE + j : j;
 
 	// ft_printf("quantity -> %d\n", quantity);

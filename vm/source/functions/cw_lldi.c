@@ -17,7 +17,7 @@ void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc)
 	int arg;
 
 	if (cmd->arg1.tp == 2)
-		arg = IDX_CORRECTION(cmd->arg1.av) + cmd->arg2.av + proc->process_PC;
+		arg = (IDX_CORRECTION((cmd->arg1.av))) + cmd->arg2.av + proc->process_PC;
 	else
 		arg = cmd->arg1.av + cmd->arg2.av + proc->process_PC;
 	proc->registers[cmd->arg3.av - 1] = cw_get_dec_from_the_point(
