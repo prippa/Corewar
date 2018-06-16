@@ -63,7 +63,7 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 
 	// what to do if command is not valid
 	if (g_cw->map.stack[position] >= 1 && g_cw->map.stack[position] <= 16)
-	new_obj->current_command = g_cw->map.stack[position];
+		new_obj->current_command = g_cw->map.stack[position];
 	else
 		new_obj->current_command = 0;
 
