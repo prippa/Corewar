@@ -19,6 +19,7 @@
 
 void			cw_exit(char *message, int error_number);
 void			cw_perror_exit(char *message, int error_number);
+void			cw_print_dump_exit(void);
 void			cw_init(void);
 void			cw_free(void);
 

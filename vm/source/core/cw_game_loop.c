@@ -511,10 +511,10 @@ void		cw_game_loop(void)
 			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 			// cw_display_map_write(g_cw->map.stack_color);
 		}
-
+		
 		// FLAG -dump in work
 		if (g_cw->pd.flags[DUMP] && g_cw->cycle == g_cw->pd.dump_stop)
-			cw_display_dump();
+			cw_print_dump_exit();
 		
 		// New Period!
 		if (!g_cw->cycle_to_die_check)
