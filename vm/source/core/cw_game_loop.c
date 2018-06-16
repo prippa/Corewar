@@ -155,8 +155,8 @@ void		cw_execute_corewar_magic(t_processes *proc)
 	while (proc)
 	{
 		ft_printf("proc_PC --------------------------------------------------------------------> %d\n", proc->process_PC);
+		ft_printf("id -----------> %d\n", proc->id);
 		ft_bzero(&cmd, sizeof(t_command));
-		// ft_printf("PC -----------> %d\n", proc->process_PC);
 
 
 		// cmd.cmd, do not include codage;
