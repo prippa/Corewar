@@ -14,6 +14,7 @@
 // 5020 <- color if nothing on the map;
 // cw_helpers write to map costello;
 // replace all constants like 5 or 9 to variable in game loop and zjmp;
+// каретка не должна менять цвет если один из процессов остался на том же месте
 
 // если у любого игрока было 21 лайвж
 // первый 6 байт + 2ж
@@ -21,6 +22,8 @@
 #include "corewar.h"
 
 #define	DIR_CHECK(x) (x > 8 && x < 13) || x == 14 || x == 15
+
+	#define test 5312
 
 static void		ft_zero_it(char *str)
 {
@@ -156,6 +159,9 @@ void		cw_execute_corewar_magic(t_processes *proc)
 	{
 		ft_printf("proc_PC --------------------------------------------------------------------> %d\n", proc->process_PC);
 		ft_printf("id -----------> %d\n", proc->id);
+		ft_printf("cur cmd -----------> %d\n", proc->current_command);
+		ft_printf("color -----------> %d\n", g_cw->map.stack_color[proc->process_PC]);
+
 		ft_bzero(&cmd, sizeof(t_command));
 
 
@@ -261,7 +267,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 				if (proc->cycles_till_execution < g_cw->op[cmd.cmd - 1].cycles_price) // keep the current comman
 				{
-					ft_printf("till exec normal -> %d\n", proc->current_command);
+					ft_printf("till exec normal -> %d\n", proc->cycles_till_execution);
 					ft_printf("process_PC_normal -> %d\n", proc->process_PC);
 
 					proc->cycles_till_execution++;
@@ -479,7 +485,7 @@ void		cw_game_loop(void)
 	#define CYCLES 100000
 
 	// #define test 5303
-	#define test 5300
+
 
 
 
