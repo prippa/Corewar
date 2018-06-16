@@ -154,7 +154,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 	// int		cycles = 0;
 	while (proc)
 	{
-		// ft_printf("proc_id -> %d\n", proc->id);
+		ft_printf("proc_PC --------------------------------------------------------------------> %d\n", proc->process_PC);
 		ft_bzero(&cmd, sizeof(t_command));
 		// ft_printf("PC -----------> %d\n", proc->process_PC);
 
@@ -162,7 +162,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 		// cmd.cmd, do not include codage;
 		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) ==  NOT_EXIST_CODE && proc->current_command == 0) // if no active command; // adopt here;
 		{
-				     		ft_printf("in -> %d\n", g_cw->map.stack_color[proc->process_PC]);
+				ft_printf("in -> %d\n", g_cw->map.stack_color[proc->process_PC]);
 
         		ft_printf("stack_color not vali -> %d\n", g_cw->map.stack_color[proc->process_PC]);
 
@@ -240,15 +240,15 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 			if (proc->current_command != cmd.cmd/* && proc->current_command != 0*/) // 3910
 			{
-				// ft_printf("\nnot equal\n");
+				ft_printf("\nnot equal\n");
 				
-				// ft_printf("cur cmd -> %d\n", proc->current_command);
-				// ft_printf("cmd cmd -> %d\n", cmd.cmd);
+				ft_printf("cur cmd -> %d\n", proc->current_command);
+				ft_printf("cmd cmd -> %d\n", cmd.cmd);
 
-				// ft_printf("cycles done -> %d\n", proc->cycles_till_execution);
-				// ft_printf("necessary cycles -> %d\n", g_cw->op[proc->current_command - 1].cycles_price);
-				// ft_printf("PC -> %d\n", proc->process_PC);
-				// ft_printf("proc id -> %d\n", proc->process_PC);
+				ft_printf("cycles done -> %d\n", proc->cycles_till_execution);
+				ft_printf("necessary cycles -> %d\n", g_cw->op[proc->current_command - 1].cycles_price);
+				ft_printf("PC -> %d\n", proc->process_PC);
+				ft_printf("proc id -> %d\n", proc->process_PC);
 
 				proc->detect_deviation = 1;
 				
@@ -479,7 +479,7 @@ void		cw_game_loop(void)
 	#define CYCLES 100000
 
 	// #define test 5303
-	#define test 5303
+	#define test 5300
 
 
 

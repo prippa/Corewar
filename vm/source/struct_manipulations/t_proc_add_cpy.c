@@ -60,7 +60,13 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	new_obj->proc_color_write_to_map = current_proc->proc_color_write_to_map; // copy;
 	new_obj->proc_process_PC_color = current_proc->proc_process_PC_color;
 
-	new_obj->current_command = g_cw->map.stack[position];
+
+	// what to do if command is not valid
+	if (g_cw->map.stack[position] >= 1 && g_cw->map.stack[position] <= 16)
+		new_obj->current_command = g_cw->map.stack[position];
+	else
+		new_obj->current_command = 0;
+
 	new_obj->detect_deviation = 0; ////////////////////////// ?
 
 	ft_bzero(new_obj->registers, sizeof(int) * REG_NUMBER);
