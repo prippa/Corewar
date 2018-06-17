@@ -41,10 +41,11 @@ static void cw_get_op(void)
 static void	cw_parse_data_init(t_parse_data *pd)
 {
 	pd->champs = NULL;
-	pd->tmp = -1;
+	pd->tmp = 0;
 	pd->champs_count = 0;
 	pd->dump_stop = 0;
 	ft_bzero(pd->flags, CW_F_SIZE);
+	ft_bzero(pd->flag_champ_number, MAX_PLAYERS);
 }
 
 void		cw_init(void)
@@ -53,8 +54,6 @@ void		cw_init(void)
 		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
 	cw_parse_data_init(&g_cw->pd);
 	cw_get_op();
-	g_cw->proc_start = NULL;
-	g_cw->proc_end = NULL;
 	g_cw->cycle = 0;
 	g_cw->cycle_to_die = CYCLE_TO_DIE;
 	g_cw->cycle_to_die_check = CYCLE_TO_DIE;

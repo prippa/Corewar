@@ -23,5 +23,5 @@ void		cw_cycles_new_period(void)
 	}
 	g_cw->cycle_to_die_check = g_cw->cycle_to_die;
 	t_champ_zero_lives_number(g_cw->pd.champs);
-	t_processe_killer(g_cw->proc_start);
+	t_processe_killer(g_cw->pd.champs);
 }

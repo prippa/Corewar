@@ -42,12 +42,12 @@ void		cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 	int i;
 	int k;
 
-	ft_printf("nbr -> %d\n", nbr);
+	// ft_printf("nbr -> %d\n", nbr);
 
 	i = 0;
 	check = cw_get_string_for_conversion(nbr); // o.k. +++
 
-	ft_printf("check -> %s\n", check);
+	// ft_printf("check -> %s\n", check);
 	k = 7;
 	while (i < 4)
 	{
@@ -73,14 +73,14 @@ void		cw_write_to_map(t_stack *map, t_processes *proc, unsigned char *buf,
 		if (position_on_the_map == MEM_SIZE)
 			position_on_the_map = 0;
 
-		ft_printf("map[i] -> %d", buf[i]);
+		// ft_printf("map[i] -> %d", buf[i]);
 
 		map->stack[position_on_the_map] = buf[i];
 
 
 		if (map->stack_color[position_on_the_map] != 5) // maybe here for 4894;
 		{ ////////////////////////////////////////////// costello for not overwriting; // ? fork;
-		ft_printf ("proc->proc_color_write_to_map -> %d\n", proc->proc_color_write_to_map);
+		// ft_printf ("proc->proc_color_write_to_map -> %d\n", proc->proc_color_write_to_map);
 		map->stack_color[position_on_the_map] = proc->proc_color_write_to_map;
 		}
 
@@ -99,8 +99,7 @@ void		cw_write_to_map(t_stack *map, t_processes *proc, unsigned char *buf,
 	}
 }
 
-int			cw_get_dec_from_the_point(unsigned char *str,
-						int quantity, int position)
+int			cw_get_dec_from_the_point(unsigned char *str, int position)
 {
 	int res;
 	int i;

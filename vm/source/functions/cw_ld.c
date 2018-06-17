@@ -24,7 +24,6 @@ void			cw_ld(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pro
 		cmd->arg1.av = IDX_CORRECTION((cmd->arg1.av));
 		proc->registers[cmd->arg2.av - 1] = cw_get_dec_from_the_point(
 			map->stack,
-			4,
 			proc->process_PC + cmd->arg1.av
 		);
 	}

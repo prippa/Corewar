@@ -32,6 +32,7 @@ void		t_processe_add(t_processes **proc_start,
 	new_obj->proc_color_write_to_map = 0;
 	new_obj->current_command = 0;
 	new_obj->detect_deviation = 0;
+	new_obj->champ_number = 0;
 	t_processes_add_to_head(proc_start, proc_end, new_obj);
 }
 
@@ -59,7 +60,7 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	new_obj->cycles_till_execution = 1; // not copy;
 	new_obj->proc_color_write_to_map = current_proc->proc_color_write_to_map; // copy;
 	new_obj->proc_process_PC_color = current_proc->proc_process_PC_color;
-
+	new_obj->champ_number = current_proc->champ_number;
 
 	// what to do if command is not valid
 	if (g_cw->map.stack[position] >= 1 && g_cw->map.stack[position] <= 16)

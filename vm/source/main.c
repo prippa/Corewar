@@ -19,7 +19,9 @@ int		main(int argc, char **argv)
 	cw_parse_args(argc, argv + 1);
 	cw_parser();
 	cw_load_map();
+	t_champ_sort_by_order(&g_cw->pd.champs);
 	cw_game_loop();
+	t_champ_sort_by_champ_number(&g_cw->pd.champs);
 	cw_print_players(g_cw->pd.champs);
 	cw_print_winer(g_cw->pd.champs);
 	cw_free();

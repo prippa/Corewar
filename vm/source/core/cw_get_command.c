@@ -34,9 +34,9 @@ static int	arg_check(char *bn, int *j, char *tp, int bt)
 		return (2);
 	if (*tp == bt) // here;
 	{
-		ft_putstr("here\n");
-		ft_printf("tp -> %d\n", *tp);
-		ft_printf("bt -> %d\n", bt);
+		// ft_putstr("here\n");
+		// ft_printf("tp -> %d\n", *tp);
+		// ft_printf("bt -> %d\n", bt);
 		return (bt);
 	}
 	if (*tp == T_REG) //o.k.

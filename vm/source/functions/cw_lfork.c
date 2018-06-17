@@ -5,8 +5,10 @@
 
 void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc)
 {
-    int				position_on_the_map;
+    int		position_on_the_map;
+	t_champ	*champ;
 
+	champ = t_champ_find(proc->champ_number, g_cw->pd.champs);
     position_on_the_map = MEM_CORRECTION((proc->process_PC + cmd->arg1.av));
     position_on_the_map = (position_on_the_map < 0) ? MEM_SIZE + position_on_the_map : position_on_the_map;
 
@@ -29,7 +31,7 @@ void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc)
         // clone = clone->next;
     // }
 
-    t_processes_copy(&g_cw->proc_start, &g_cw->proc_end, proc, position_on_the_map);
+    t_processes_copy(&champ->proc_start, &champ->proc_end, proc, position_on_the_map);
     
 
     // while (clone->next)
