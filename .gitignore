@@ -69,4 +69,5 @@ test.cor
 !CMakeLists.txt
 .idea
 
-
+#VS code
+*.vscode
