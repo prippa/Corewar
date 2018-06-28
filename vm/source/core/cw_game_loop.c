@@ -457,19 +457,19 @@ void		cw_game_loop(void)
 
 	#define CYCLES 100000
 
-	#define test 20000
+	#define test 10000
 
 	// 4570;
 
 	while (42)
 	{
-		// if (g_cw->cycle == 26689)
-		// {
+		if (g_cw->cycle == 10008)
+		{
 			
-		// }
-		ft_putstr("Cycles ");
-		ft_putnbr((int)g_cw->cycle);
-		ft_putchar('\n');
+		}
+		// ft_putstr("Cycles ");
+		// ft_putnbr((int)g_cw->cycle);
+		// ft_putchar('\n');
 		// ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw->cycle);
 		// ft_printf("processes -> %d\n", g_cw->proc_counter);
 
