@@ -31,7 +31,7 @@ void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc)
         // clone = clone->next;
     // }
 
-    t_processes_copy(&champ->proc_start, &champ->proc_end, proc, position_on_the_map);
+    t_processes_copy(&champ->proc_start, &champ->proc_end, &proc, position_on_the_map);
     
 
     // while (clone->next)

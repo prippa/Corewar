@@ -340,7 +340,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 						g_cw->map.stack_color[proc->process_PC] = proc->color;
 
-						proc->process_PC += cw_move_PC_when_not_correct_cdg(cmd.codage, proc->current_command);
+						proc->process_PC = MEM_CORRECTION(proc->process_PC + cw_move_PC_when_not_correct_cdg(cmd.codage, proc->current_command));
 
 						if (g_cw->map.stack_color[proc->process_PC] != 0 && g_cw->map.stack_color[proc->process_PC] != 14)
     						g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
@@ -481,6 +481,17 @@ void		cw_game_loop(void)
 		champs = g_cw->pd.champs;
 		while (champs)
 		{
+			// t_processes *tmp = champs->proc_start;
+			// while (tmp)
+			// {
+			// 	if (tmp->process_PC > MEM_SIZE || tmp->process_PC < 0)
+			// 	{
+			// 		ft_printf("%d\n", tmp->process_PC);
+			// 		// exit(-1);
+			// 		tmp->process_PC = 0;
+			// 	}
+			// 	tmp = tmp->next;
+			// }
 			cw_execute_corewar_magic(champs->proc_start);
 			champs = champs->next;
 		}

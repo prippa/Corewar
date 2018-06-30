@@ -35,8 +35,18 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
         // clone = clone->next;
     // }
 
-    t_processes_copy(&champ->proc_start, &champ->proc_end, proc, position_on_the_map);
+    t_processes_copy(&champ->proc_start, &champ->proc_end, &proc, position_on_the_map);
     
+	// t_processes *tmp = champ->proc_start;
+	// while (tmp)
+	// {
+	// 	if (tmp->process_PC > MEM_SIZE || tmp->process_PC < 0)
+	// 	{
+	// 		ft_printf("%u\n", tmp->id);
+	// 		exit (-1);
+	// 	}
+	// 	tmp = tmp->next;
+	// }
 
     // while (clone->next)
     // {
