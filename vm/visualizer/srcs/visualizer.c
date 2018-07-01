@@ -12,30 +12,30 @@
 
 #include "visualizer.h"
 
-static inline void	close_all(t_arena *arena)
+static inline void	close_all(t_arena arena)
 {
 	int				i;
 
 	i = -1;
 	while (++i < FIGURES_COUNT)
-		free_ltexture(arena->figures[i]);
+		free_ltexture(arena.figures[i]);
 	i = -1;
 	while (++i < TOTAL_SPRITES)
-		free_ltexture(arena->start_btn_sprites[i]);
+		free_ltexture(arena.start_btn_sprites[i]);
 	i = -1;
 	while (++i < TOTAL_BUTTONS)
 	{
-		free_ltexture(arena->start_btns[i]->button_txt);
-		free(arena->start_btns[i]);
+		free_ltexture(arena.start_btns[i]->button_txt);
+		free(arena.start_btns[i]);
 	}
-	free_ltexture(arena->full_btn->checkbox_txt);
+	free_ltexture(arena.full_btn->checkbox_txt);
 	i = -1;
 	while (++i < FULL_SPRITES)
-		free_ltexture(arena->full_sprites[i]);
-	free_ltexture(arena->tile_block);
-	SDL_FreeSurface(arena->screen_surface);
-	SDL_DestroyRenderer(arena->renderer);
-	SDL_DestroyWindow(arena->window);
+		free_ltexture(arena.full_sprites[i]);
+	free_ltexture(arena.tile_block);
+	SDL_FreeSurface(arena.screen_surface);
+	SDL_DestroyRenderer(arena.renderer);
+	SDL_DestroyWindow(arena.window);
 	SDL_Quit();
 }
 
@@ -58,14 +58,12 @@ int					visualizer_main(void)
 	t_arena			arena;
 
 	if (!init(&arena))
-	{
 		printf("Error\n");
-	}
 	arena.viewport = get_rectangle(0,
 								0,
 								SCREEN_WIDTH - BUTTON_WIDTH - (SCREEN_WIDTH >> 5),
 								SCREEN_HEIGHT);
 	events_handler(&arena);
-	close_all(&arena);
+	close_all(arena);
 	return (0);
 }

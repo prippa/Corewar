@@ -85,7 +85,6 @@ C_FUNC		=	cw_binary_and.c cw_binary_or.c cw_binary_xor.c\
 SRC_NAME		=	clear_renderer.c			\
 					exit_dialog.c				\
 					get_rectangle.c				\
-					set_viewport.c				\
 					visualizer.c
 
 EVENT_NAME		=	events_manager.c			\
