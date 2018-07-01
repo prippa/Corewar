@@ -96,8 +96,7 @@ EVENT_NAME		=	events_manager.c			\
 
 DRAW_NAME		=	draw_arena.c				\
 					draw_fillrect.c				\
-					draw_outlinerect.c			\
-					draw_arena_split.c
+					draw_outlinerect.c
 
 LOADER_NAME		=	load_surface.c				\
 					load_texture.c

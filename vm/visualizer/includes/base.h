@@ -80,10 +80,6 @@
 # define MESSAGE_BOX_COLOR_SCHEME {{WIN_BACK, TXT, BTN, BTN_BACK, BTN_SEL}}
 
 /*
-** End
-*/
-
-/*
 ** Wrapper for SDL texture
 */
 typedef struct					s_ltexture
@@ -226,9 +222,6 @@ typedef struct					s_arena
 	bool						pause;
 	t_ltexture					*tile_block;
 	float						zoom;
-	int							thread_count;
-	int							start_for_thread;
-	int							end_for_thread;
 	SDL_Event					e;
 	SDL_Rect					viewport;
 	SDL_Point					top_left;

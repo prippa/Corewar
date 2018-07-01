@@ -94,9 +94,7 @@ void			draw_arena(t_arena *arena)
 			continue ;
 		}
 		else if (top_y > arena->viewport.y + arena->viewport.h)
-		{
 			break ;
-		}
 		j = -1;
 		top_x = arena->top_left.x + width + 1;
 		while (++j < ARENA_WIDTH)

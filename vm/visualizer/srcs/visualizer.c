@@ -44,8 +44,8 @@ void	set_random(t_arena *arena)
 	int	i;
 	int	limit;
 
-	i = arena->start_for_thread - 1;
 	limit = MAP_SIZE;
+	i = -1;
 	while (++i < limit)
 	{
 		arena->bytes[i] = rand() % 0x100;

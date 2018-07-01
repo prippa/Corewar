@@ -58,7 +58,6 @@ bool				init(t_arena *arena)
 	arena->msgbox_buttons[NO_BUTTON_ID] = (SDL_MessageBoxButtonData)NO_BUTTON;
 	arena->msgbox_buttons[YES_BUTTON_ID] = (SDL_MessageBoxButtonData)YES_BUTTON;
 	arena->msgbox_buttons[CANSEL_BUTTON_ID] = (SDL_MessageBoxButtonData)CANSEL_BUTTON;
-	arena->thread_count = sysconf(_SC_NPROCESSORS_ONLN);	
 	arena->window = NULL;
 	if (SDL_GetDesktopDisplayMode(0, &(arena->d_mode)) !=
 			GET_DMODE_SUCCESS)

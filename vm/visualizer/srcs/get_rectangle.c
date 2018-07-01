@@ -14,11 +14,5 @@
 
 SDL_Rect		get_rectangle(int x, int y, int w, int h)
 {
-	SDL_Rect	rect;
-	
-	rect.x = x;
-	rect.y = y;
-	rect.w = w;
-	rect.h = h;
-	return (rect);
+	return ((SDL_Rect){.x = x, .y = y, .w = w, .h = h});
 }
