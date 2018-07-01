@@ -28,9 +28,12 @@ void			draw_fillrect(t_arena *arena,
 	position = get_render_position(0, &left_corner, NULL, &rect);
 	set_color(arena->colors[i * ARENA_WIDTH + j], arena->tile_block);
 	render(&position, arena->tile_block, arena->renderer, SDL_FLIP_NONE);
-	//SDL_Color c = arena->colors[i * ARENA_WIDTH + j];
-	//SDL_SetRenderDrawColor(arena->renderer, 0x00, 0x00, 0x00, 0xff);
-	//SDL_RenderFillRect(arena->renderer, &rect);
+	SDL_Color c = arena->colors[i * ARENA_WIDTH + j];
+	c.r ^= 0xff;
+	c.g ^= 0xff;
+	c.b ^= 0xff;
+	set_color(c, arena->figures[ff]);
+	set_color(c, arena->figures[sf]);
 	rect.w /= 2;
 	position = get_render_position(0, &left_corner, NULL, &rect);
 	render(&position, arena->figures[ff], arena->renderer, SDL_FLIP_NONE);

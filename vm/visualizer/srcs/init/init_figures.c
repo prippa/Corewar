@@ -25,10 +25,7 @@ void		init_figures(t_arena *arena)
 	i = -1;
 	while (++i < 0x10)
 	{
-		if (i < 0xa)
-			buf[0] = i + 48;
-		else
-			buf[0] = 'f' - (0xf - i);
+		buf[0] = (i < 0xa) ? i + 48 : 'f' - (0xf - i);
 		arena->figures[i] =
 			load_from_rendered_text(get_text_info(
 									ROBOTO_REGULAR,
@@ -36,5 +33,6 @@ void		init_figures(t_arena *arena)
 									buf,
 									(SDL_Color){.r = 0xff, .g = 0xff, .b = 0xff, .a = 0xff}),
 									arena->renderer);
+		//set_color((SDL_Color){.r=255}, arena->figures[i]);
 	}
 }

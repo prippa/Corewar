@@ -42,14 +42,12 @@ static inline void	close_all(t_arena arena)
 void	set_random(t_arena *arena)
 {
 	int	i;
-	int	limit;
 
-	limit = MAP_SIZE;
 	i = -1;
-	while (++i < limit)
+	while (++i < MAP_SIZE)
 	{
 		arena->bytes[i] = rand() % 0x100;
-		arena->colors[i] = (SDL_Color){.r=rand(), .g=255, .b=rand()};
+		arena->colors[i] = (SDL_Color){.r = rand(), .g = 255, .b = rand()};
 	}
 }
 
