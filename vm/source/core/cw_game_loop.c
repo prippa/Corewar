@@ -457,17 +457,17 @@ void		cw_game_loop(void)
 
 	#define CYCLES 100000
 
-	#define test 10000
+	#define test 5000
 
 	// 4570;
 
-	while (42)
+	while (1)
 	{
-		if (g_cw->cycle >= 10000)
-		{
-			// ft_printf("%-----u\n", g_cw->proc_counter);
-			// exit (0);
-		}
+		// if (g_cw->cycle >= 5041)
+		// {
+		// 	ft_printf("%-----u\n", g_cw->proc_counter);
+		// 	exit (0);
+		// }
 		ft_putstr("Cycles ");
 		ft_putnbr((int)g_cw->cycle);
 		ft_putchar('\n');
@@ -500,11 +500,11 @@ void		cw_game_loop(void)
 
 		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);
 
-		if (g_cw->cycle >= test)
-		{
-			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
-		// 	// cw_display_map_write(g_cw->map.stack_color);
-		}
+		// if (g_cw->cycle >= test)
+		// {
+		// 	cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+		// // 	// cw_display_map_write(g_cw->map.stack_color);
+		// }
 
 		// FLAG -dump in work
 		if (g_cw->pd.flags[DUMP] && g_cw->cycle == g_cw->pd.dump_stop)
