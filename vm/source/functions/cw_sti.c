@@ -63,8 +63,8 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	//process;
 //	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
 
-	if ((position_on_the_map = MEM_CORRECTION((cw_arguments_value(cmd, map, proc)))) < 0)
-		position_on_the_map = MEM_SIZE + position_on_the_map;
+	if ((position_on_the_map = MEM_CORRECTION(cw_arguments_value(cmd, map, proc))) < 0)
+		position_on_the_map += MEM_SIZE;
 
 	// ft_printf("position-> %d\n", cw_arguments_value(cmd, map, proc));
 

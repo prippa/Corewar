@@ -9,8 +9,8 @@ void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc)
 	t_champ	*champ;
 
 	champ = t_champ_find(proc->champ_number, g_cw->pd.champs);
-    position_on_the_map = MEM_CORRECTION((proc->process_PC + cmd->arg1.av));
-    position_on_the_map = (position_on_the_map < 0) ? MEM_SIZE + position_on_the_map : position_on_the_map;
+    if ((position_on_the_map = MEM_CORRECTION((proc->process_PC + cmd->arg1.av))) < 0)
+		position_on_the_map += MEM_SIZE;
 
     // ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 
