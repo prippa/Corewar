@@ -22,8 +22,12 @@ void				events_handler(t_arena *arena)
 											(SDL_Color){.r=0,.g=0,.b=0});
 	SDL_Rect clip = get_rectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	t_rposition pos = get_render_position(0, NULL, NULL, &clip);
+	clock_t begin = 0;
+	clock_t end = 0;
+	int tacts_before_render = 0;
 	while (!arena->quit)
 	{
+		begin = clock();
 		clear_renderer(arena->renderer);
 		render(&pos, background, arena->renderer, SDL_FLIP_NONE);
 		while (SDL_PollEvent(&(arena->e)))
@@ -45,10 +49,16 @@ void				events_handler(t_arena *arena)
 			render_button_sprite(arena->start_btns[i], arena);
 		for (int i = 0; i < MOVE_BUTTON_TOTAL; i++)
 			render_button_sprite(arena->move_btns[i], arena);
+		end = clock();
 		if (arena->is_rendered)
 		{
-			if (arena->pause == false)
-				set_random(arena);
+			tacts_before_render -= (end - begin);
+			if (tacts_before_render <= 0)
+			{
+				tacts_before_render = 100000;
+				if (arena->pause == false)
+					set_random(arena);
+			}
 			draw_arena(arena);
 		}
 		SDL_RenderPresent(arena->renderer);

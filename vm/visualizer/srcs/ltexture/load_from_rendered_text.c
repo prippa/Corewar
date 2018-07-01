@@ -18,13 +18,10 @@ t_text			get_text_info(const char *font_name,
 								const char *txt,
 								SDL_Color txt_color)
 {
-	t_text		info;
-
-	info.font_name = font_name;
-	info.font_weight = font_weight;
-	info.txt = txt;
-	info.txt_color = txt_color;
-	return (info);
+	return ((t_text){.font_name = font_name,
+			.font_weight = font_weight,
+			.txt = txt,
+			.txt_color = txt_color});
 }
 
 t_ltexture		*load_from_rendered_text(t_text info,
