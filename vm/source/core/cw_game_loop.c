@@ -23,7 +23,7 @@
 
 #define	DIR_CHECK(x) (x > 8 && x < 13) || x == 14 || x == 15
 
-	#define test 5312
+	#define test 8000 //5312
 
 static void		ft_zero_it(char *str)
 {
@@ -138,39 +138,58 @@ void		cw_color_start(t_processes *proc, t_stack *map)
 
 void		cw_print_cmd_specifications(t_command *cmd)
 {
-	ft_printf("command --------------------------- \n");
-	ft_printf("cmd - %u\n", cmd->cmd);
-	ft_printf("codage - %d\n", cmd->codage);
-	ft_printf("arg1.tp - %u\n", cmd->arg1.tp);
-	ft_printf("arg1.av - %d\n", cmd->arg1.av);
-	ft_printf("arg2.tp - %u\n", cmd->arg2.tp);
-	ft_printf("arg2.av - %d\n", cmd->arg2.av);
-	ft_printf("arg3.tp - %u\n", cmd->arg3.tp);
-	ft_printf("arg3.av - %d\n", cmd->arg3.av);
-	ft_printf("-----------------------------------\n");
+	// ft_printf("command --------------------------- \n");
+	// ft_printf("cmd - %u\n", cmd->cmd);
+	// ft_printf("codage - %d\n", cmd->codage);
+	// ft_printf("arg1.tp - %u\n", cmd->arg1.tp);
+	// ft_printf("arg1.av - %d\n", cmd->arg1.av);
+	// ft_printf("arg2.tp - %u\n", cmd->arg2.tp);
+	// ft_printf("arg2.av - %d\n", cmd->arg2.av);
+	// ft_printf("arg3.tp - %u\n", cmd->arg3.tp);
+	// ft_printf("arg3.av - %d\n", cmd->arg3.av);
+	// ft_printf("-----------------------------------\n");
 }
 
 void		cw_execute_corewar_magic(t_processes *proc)
 {
 	t_command cmd;
 	
+
+	// ft_printf("%s\n", "in corwar magic"); // 235 536 184
+	// exit(1);
+	// getchar();
 	// int		cycles = 0;
 	while (proc)
 	{
-		ft_printf("proc_PC --------------------------------------------------------------------> %d\n", proc->process_PC);
-		ft_printf("id -----------> %d\n", proc->id);
-		ft_printf("cur cmd -----------> %d\n", proc->current_command);
-		ft_printf("color -----------> %d\n", g_cw->map.stack_color[proc->process_PC]);
+		// ft_printf("proc_PC --------------------------------------------------------------------> %d\n", proc->process_PC);
+		// ft_printf("id -----------> %d\n", proc->id);
+		// ft_printf("cur cmd -----------> %d\n", proc->current_command);
+		// ft_printf("color -----------> %d\n", g_cw->map.stack_color[proc->process_PC]);
 
 		ft_bzero(&cmd, sizeof(t_command));
 
 
 		// cmd.cmd, do not include codage;
+		// ft_printf("%s\n", "before get cmd");
+		
+		// if (proc->process_PC > 4095)
+		// {
+		// 	ft_printf("proc_id -> %d\n", proc->id);
+		// 	ft_printf("PC -> %d\n", proc->process_PC);
+		// }
+		
 		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) ==  NOT_EXIST_CODE && proc->current_command == 0) // if no active command; // adopt here;
 		{
-				ft_printf("in -> %d\n", g_cw->map.stack_color[proc->process_PC]);
 
-        		ft_printf("stack_color not vali -> %d\n", g_cw->map.stack_color[proc->process_PC]);
+				// ft_printf("%s\n", "after get cmd");
+// 
+				// ft_printf("in -> %d\n", g_cw->map.stack_color[proc->process_PC]);
+
+        		// ft_printf("stack_color not vali -> %d\n", g_cw->map.stack_color[proc->process_PC]);
+
+				// ft_printf("%s\n", "woohoo");
+
+
 
 
         		if (g_cw->map.stack_color[proc->process_PC ] != 0 && g_cw->map.stack_color[proc->process_PC ] != 14 && g_cw->map.cycle_stack[proc->process_PC] == 0)
@@ -178,8 +197,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 				else if (g_cw->map.stack_color[proc->process_PC ] == 0 || g_cw->map.stack_color[proc->process_PC ] == 14)
 					g_cw->map.stack_color[proc->process_PC] = 14;
 
-
-					static int zeta;
+				static int zeta;
 
 				if (g_cw->map.stack_color[proc->process_PC] == zeta) // one process_PC is enough maybe;
 				{
@@ -191,6 +209,15 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 
 				proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
+
+				if (proc->process_PC > 4095 || proc->process_PC < 0)
+				{
+					ft_printf("here ->*******************************************1\n");
+					getchar();
+
+					// getch();
+					// sleep(60);
+				}
 
 
 
@@ -219,7 +246,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 					if (g_cw->map.stack_color[proc->process_PC] == 5)
 						zeta = 5;
 
-					ft_printf("cycle_stack -> %d\n", g_cw->map.cycle_stack[proc->process_PC]);
+					// ft_printf("cycle_stack -> %d\n", g_cw->map.cycle_stack[proc->process_PC]);
 
 					// if (g_cw->map.cycle_stack[proc->process_PC] == 0)
 						g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // цвет кареткиж
@@ -246,15 +273,15 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 			if (proc->current_command != cmd.cmd/* && proc->current_command != 0*/) // 3910
 			{
-				ft_printf("\nnot equal\n");
+				// ft_printf("\nnot equal\n");
 				
-				ft_printf("cur cmd -> %d\n", proc->current_command);
-				ft_printf("cmd cmd -> %d\n", cmd.cmd);
+				// ft_printf("cur cmd -> %d\n", proc->current_command);
+				// ft_printf("cmd cmd -> %d\n", cmd.cmd);
 
-				ft_printf("cycles done -> %d\n", proc->cycles_till_execution);
-				ft_printf("necessary cycles -> %d\n", g_cw->op[proc->current_command - 1].cycles_price);
-				ft_printf("PC -> %d\n", proc->process_PC);
-				ft_printf("proc id -> %d\n", proc->process_PC);
+				// ft_printf("cycles done -> %d\n", proc->cycles_till_execution);
+				// ft_printf("necessary cycles -> %d\n", g_cw->op[proc->current_command - 1].cycles_price);
+				// ft_printf("PC -> %d\n", proc->process_PC);
+				// ft_printf("proc id -> %d\n", proc->process_PC);
 
 				proc->detect_deviation = 1;
 				
@@ -267,8 +294,8 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 				if (proc->cycles_till_execution < g_cw->op[cmd.cmd - 1].cycles_price) // keep the current comman
 				{
-					ft_printf("till exec normal -> %d\n", proc->cycles_till_execution);
-					ft_printf("process_PC_normal -> %d\n", proc->process_PC);
+					// ft_printf("till exec normal -> %d\n", proc->cycles_till_execution);
+					// ft_printf("process_PC_normal -> %d\n", proc->process_PC);
 
 					proc->cycles_till_execution++;
 				}
@@ -289,6 +316,15 @@ void		cw_execute_corewar_magic(t_processes *proc)
 						g_cw->map.stack_color[proc->process_PC] = proc->color;
 
 						proc->process_PC = MEM_CORRECTION((proc->process_PC + cw_move_PC_when_not_correct_cdg(cmd.codage, cmd.cmd)));
+
+				if (proc->process_PC > 4095 || proc->process_PC < 0)
+				{
+					ft_printf("here ->*******************************************1\n");
+					getchar();
+
+						// sleep(60);
+					// ft_printf("here ->2\n");
+				}
 
 						if (g_cw->map.stack_color[proc->process_PC] != 0 && g_cw->map.stack_color[proc->process_PC] != 14)
     						g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
@@ -313,9 +349,9 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 				if (proc->cycles_till_execution < g_cw->op[proc->current_command - 1].cycles_price) // keep the current comman
 				{
-
-					ft_printf("till exec dev-> %d\n", proc->cycles_till_execution);
-					ft_printf("process_PC_dev -> %d\n", proc->process_PC);
+// 
+					// ft_printf("till exec dev-> %d\n", proc->cycles_till_execution);
+					// ft_printf("process_PC_dev -> %d\n", proc->process_PC);
 
 // 
 					proc->cycles_till_execution++;
@@ -335,13 +371,22 @@ void		cw_execute_corewar_magic(t_processes *proc)
 					}
 					else
 					{
-						ft_printf("not valid codage -------------------------------> %d\n", "123456");//////////// ?
+						// ft_printf("not valid codage -------------------------------> %d\n", "123456");//////////// ?
 
 						cw_get_command(&cmd, proc->process_PC, g_cw->map.stack); // to have the cmd.codage actual on the map; /////////////////// ?
 
 						g_cw->map.stack_color[proc->process_PC] = proc->color;
 
 						proc->process_PC += cw_move_PC_when_not_correct_cdg(cmd.codage, proc->current_command);
+
+
+				if (proc->process_PC > 4095 || proc->process_PC < 0)
+				{
+					ft_printf("here ->*******************************************1\n");
+				getchar();
+						// sleep(60);
+					// ft_printf("here ->3\n");
+				}
 
 						if (g_cw->map.stack_color[proc->process_PC] != 0 && g_cw->map.stack_color[proc->process_PC] != 14)
     						g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
@@ -502,13 +547,14 @@ void		cw_game_loop(void)
 		// }
 
 		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw->cycle);
-		ft_printf("processes -> %d\n", g_cw->proc_counter);
+		// ft_printf("processes -> %d\n", g_cw->proc_counter);
 
 		// GAME EDN IF PERIODS OF CYCLE_TO_DIE IS OWER !
 		if (g_cw->cycle_to_die <= 0)
 			return ;
 
 		cw_execute_corewar_magic(g_cw->proc_start);
+
 
 		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);
 

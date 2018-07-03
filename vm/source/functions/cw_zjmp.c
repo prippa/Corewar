@@ -16,6 +16,16 @@
 
 void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/) // one is enough maybe;
 {
+        ft_printf("zjmp\n");
+
+     if (proc->process_PC > 4095 || proc->process_PC < 0)
+    {
+        ft_printf("zjmp\n");
+        ft_printf("PC", proc->process_PC);
+
+            getchar();
+    }
+
 	map->stack_color[proc->process_PC] = proc->color;
 
     // ft_printf("proc_carry -> %d", proc->carry);
@@ -28,6 +38,32 @@ void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
         proc->process_PC = MEM_CORRECTION((proc->process_PC + IDX_CORRECTION(cmd->arg1.av)));
     else
         proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
+    
+
+    if (proc->process_PC < 0)
+    {
+        // ft_printf("zjmp before-> %d\n", proc->process_PC);
+        // ft_printf("PC -> %d", proc->process_PC);
+
+            // getchar();
+        proc->process_PC += MEM_SIZE;
+                    // ft_printf("zjmp after -> %d\n", proc->process_PC);
+        // ft_printf("PC -> %d", proc->process_PC);
+            // getchar();
+    
+    }
+
+    
+
+    if (proc->process_PC > 4095 || proc->process_PC < 0)
+    {
+        ft_printf("zjmp\n");
+        ft_printf("PC -> %d", proc->process_PC);
+
+            getchar();
+    }
+
+
 	proc->process_PC = (proc->process_PC < 0 ? MEM_SIZE + proc->process_PC : proc->process_PC);
     
     ft_printf("proc_PC_in_zjmp -> %d\n", proc->process_PC);

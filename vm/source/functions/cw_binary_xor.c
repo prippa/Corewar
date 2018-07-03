@@ -123,6 +123,13 @@ static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc)
 
 void			cw_binary_xor(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
+		ft_printf("xor\n");
+			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	{
+		ft_printf("xor\n");
+			getchar();
+	}
+
 
 //	t_processes *proc;
 	// int	arguments[3];
@@ -144,6 +151,14 @@ void			cw_binary_xor(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned
 
 	proc->process_PC = MEM_CORRECTION(
 		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2));
+
+			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	{
+		ft_printf("xor\n");
+			getchar();
+	}
+
+
 	proc->carry = (proc->registers[cmd->arg3.av - 1] == 0) ? 1 : 0;
 
 //	 // testing

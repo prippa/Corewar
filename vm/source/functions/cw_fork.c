@@ -5,6 +5,13 @@
 
 void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
 {
+        ft_printf("fork\n");
+            if (proc->process_PC > 4095 || proc->process_PC < 0)
+    {
+        ft_printf("fork\n");
+            getchar();
+    }
+
     int				position_on_the_map;
 
     position_on_the_map = MEM_CORRECTION((proc->process_PC + IDX_CORRECTION(cmd->arg1.av)));
@@ -18,6 +25,12 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
 
 
     proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
+
+            if (proc->process_PC > 4095 || proc->process_PC < 0)
+    {
+        ft_printf("fork\n");
+            getchar();
+    }
 
     map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
 

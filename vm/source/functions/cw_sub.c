@@ -25,6 +25,13 @@
 
 void			cw_sub(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
+		ft_printf("sub\n");
+			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	{
+		ft_printf("sub\n");
+			getchar();
+	}
+
 //	t_processes *proc;
 	// int	arguments[3];
 	//process;
@@ -48,6 +55,12 @@ void			cw_sub(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	
 	proc->process_PC = MEM_CORRECTION(
 		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2));
+
+			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	{
+		ft_printf("sub\n");
+			getchar();
+	}
 
     map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
 	

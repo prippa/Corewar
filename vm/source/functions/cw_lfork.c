@@ -5,6 +5,13 @@
 
 void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc)
 {
+        ft_printf("lfork\n");
+            if (proc->process_PC > 4095 || proc->process_PC < 0)
+    {
+        ft_printf("lfork\n");
+            getchar();
+    }
+
     int				position_on_the_map;
 
     position_on_the_map = MEM_CORRECTION((proc->process_PC + cmd->arg1.av));
@@ -16,6 +23,12 @@ void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc)
     map->stack_color[proc->process_PC] = proc->color;
 
     proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
+
+            if (proc->process_PC > 4095 || proc->process_PC < 0)
+    {
+        ft_printf("lfork\n");
+            getchar();
+    }
 
     // ft_printf("process_PC -> %d\n", proc->process_PC);
 

@@ -89,11 +89,21 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 
 
 
+	        if (new_obj->process_PC > 4095)
+        {
+        ft_printf("copy\n");
+            sleep(60);
+        }
 
 
 	
 	// add to the head;
 	t_processes_add_to_head(proc_start, proc_end, new_obj);
+	        if (new_obj->process_PC > 4095)
+        {
+        ft_printf("copy\n");
+            sleep(60);
+        }
 
 
 

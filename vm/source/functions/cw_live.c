@@ -21,6 +21,13 @@
 
 void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
+		ft_printf("live\n");
+			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	{
+		ft_printf("live\n");
+			getchar();
+	}
+
 	t_champ *champ;
 
 //   proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
@@ -28,6 +35,8 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 	proc->has_been_activated = ALIVE; // maybe for testing we can use += live, will see;
 
 	champ = t_champ_find(cmd->arg1.av, g_cw->pd.champs);
+
+ft_printf("here live\n");
 
 	if (champ)
 	{
@@ -43,6 +52,12 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
 
 	proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
+
+			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	{
+		ft_printf("live\n");
+			getchar();
+	}
 
 //	 for testing;
 //	 map->stack[proc->process_PC] = 7;

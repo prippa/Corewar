@@ -14,6 +14,13 @@
 
 void			cw_ld(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
+			ft_printf("ld\n");
+			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	{
+		ft_printf("ld\n");
+			getchar();
+	}
+
 //	t_processes *proc;
 
 //	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
@@ -38,6 +45,12 @@ void			cw_ld(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pro
 	
 	proc->process_PC = MEM_CORRECTION(
 		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + 2));
+
+			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	{
+		ft_printf("ld\n");
+			getchar();
+	}
 		// map->stack[proc->process_PC] = 7;
 		// map->stack_color[proc->process_PC] = 5;
 		// ft_printf("process_carry -> %d\n\n", proc->carry);
