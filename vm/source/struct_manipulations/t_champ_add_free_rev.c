@@ -34,7 +34,7 @@ void			t_champ_free(t_champ **champs)
 {
 	while (*champs)
 	{
-		close((*champs)->fd);
+		// close((*champs)->fd);
 		free(*champs);
 		*champs = (*champs)->next;
 	}

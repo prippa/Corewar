@@ -18,6 +18,12 @@ int		main(int argc, char **argv)
 	cw_init();
 	cw_parse_args(argc, argv + 1);
 	cw_parser();
+	t_champ *tmp = g_cw->pd.champs;
+	while (tmp)
+	{
+		close(tmp->fd);
+		tmp = tmp->next;
+	}
 	cw_load_map();
 	cw_game_loop();
 	cw_print_players(g_cw->pd.champs);
