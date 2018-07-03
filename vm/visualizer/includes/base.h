@@ -34,6 +34,7 @@
 # define TILEBLOCK_IMG "./vm/visualizer/images/tileblock.jpg"
 # define BACK_IMG "vm/visualizer/images/colosseum.jpg"
 # define GREY_PANEL_IMG "vm/visualizer/images/grey_panel.png"
+# define MAIN_THEME "music/10 Route 666.mp3"
 # define GET_DMODE_SUCCESS 0
 # define SCREEN_WIDTH 1280
 # define SCREEN_HEIGHT 720
@@ -182,6 +183,10 @@ typedef struct					s_button
 */
 typedef struct					s_arena
 {
+	/*
+	** The music that will be played
+	*/
+	Mix_Music					*theme;
 	/*
 	** background texture
 	*/

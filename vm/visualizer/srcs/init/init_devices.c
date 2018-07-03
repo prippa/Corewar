@@ -20,6 +20,8 @@ bool	init_devices(void)
 		force_error(IMG_GetError());
 	else if (TTF_Init() < 0)
 		force_error(TTF_GetError());
+	else if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+		force_error(SDL_GetError());
 	else
 		return (true);
 	return (false);

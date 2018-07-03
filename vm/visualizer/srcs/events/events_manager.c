@@ -66,6 +66,7 @@ void				events_handler(t_arena *arena)
 	begin = 0;
 	tacts_before_render = 0;
 	init_background(arena);
+	Mix_PlayMusic(arena->theme, -1);
 	while (!arena->quit)
 	{
 		begin = clock();
