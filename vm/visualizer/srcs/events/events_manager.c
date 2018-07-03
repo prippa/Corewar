@@ -50,6 +50,13 @@ void				events_handler(t_arena *arena)
 		for (int i = 0; i < MOVE_BUTTON_TOTAL; i++)
 			render_button_sprite(arena->move_btns[i], arena);
 		end = clock();
+		t_ltexture *panel = load_from_file(GREY_PANEL_IMG,
+			arena->renderer, (SDL_Color){});
+		SDL_Point p = {.x = SCREEN_WIDTH - BUTTON_WIDTH - ((SCREEN_WIDTH >> 6)), .y = 10 * BUTTON_HEIGHT};
+		SDL_Rect clip = (SDL_Rect){.x=0,.y=0,.w=BUTTON_WIDTH,.h=BUTTON_WIDTH};
+		t_rposition pos = get_render_position(0, &p, NULL, &clip);
+		render(&pos, panel, arena->renderer, SDL_FLIP_NONE);
+		free_ltexture(panel);
 		if (arena->is_rendered)
 		{
 			tacts_before_render -= (end - begin);

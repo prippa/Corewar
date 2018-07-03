@@ -13,7 +13,7 @@ static inline bool	is_mouse_outside_movebtn(int x, int y,
 	return (x < position.x ||
 			x > position.x + MOVE_BTN_WIDTH ||
 			y < position.y ||
-			y > position.y + MOVE_BTN_HEIGHT);
+			y > position.y + MOVE_BTN_WIDTH);
 }
 
 void				handle_movebutton_event(SDL_Event *e,

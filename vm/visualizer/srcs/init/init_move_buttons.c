@@ -32,24 +32,24 @@ bool	init_move_buttons(t_arena *arena)
 																arena->renderer,
 																DEFAULT_COLOR_KEY);
 	if (!(arena->move_btns[UP_MENU_BTN] =
-			create_button(-90, (SDL_Point){.x = wd, .y = 150 + MOVE_BTN_HEIGHT},
+			create_button(-90, (SDL_Point){.x = wd, .y = 150 + MOVE_BTN_WIDTH},
 							NULL, arena->renderer,
-							(SDL_Point){.x=MOVE_BTN_WIDTH, .y=MOVE_BTN_HEIGHT},
+							(SDL_Point){.x=MOVE_BTN_WIDTH, .y=MOVE_BTN_WIDTH},
 							arena->move_btn_sprites)) ||
 		!(arena->move_btns[RIGHT_MENU_BTN] =
-			create_button(0, (SDL_Point){.x = wd + 100, .y = 250 + MOVE_BTN_HEIGHT},
+			create_button(0, (SDL_Point){.x = wd + 100, .y = 250 + MOVE_BTN_WIDTH},
 							NULL, arena->renderer,
-							(SDL_Point){.x=MOVE_BTN_WIDTH, .y=MOVE_BTN_HEIGHT},
+							(SDL_Point){.x=MOVE_BTN_WIDTH, .y=MOVE_BTN_WIDTH},
 							arena->move_btn_sprites)) ||
 		!(arena->move_btns[DOWN_MENU_BTN] =
-			create_button(90, (SDL_Point){.x = wd, .y = 350 + MOVE_BTN_HEIGHT},
+			create_button(90, (SDL_Point){.x = wd, .y = 350 + MOVE_BTN_WIDTH},
 							NULL, arena->renderer,
-							(SDL_Point){.x=MOVE_BTN_WIDTH, .y=MOVE_BTN_HEIGHT},
+							(SDL_Point){.x=MOVE_BTN_WIDTH, .y=MOVE_BTN_WIDTH},
 							arena->move_btn_sprites)) ||
 		!(arena->move_btns[LEFT_MENU_BTN] =
-			create_button(180, (SDL_Point){.x = wd - 100, .y = 250 + MOVE_BTN_HEIGHT},
+			create_button(180, (SDL_Point){.x = wd - 100, .y = 250 + MOVE_BTN_WIDTH},
 							NULL, arena->renderer,
-							(SDL_Point){.x=MOVE_BTN_WIDTH, .y=MOVE_BTN_HEIGHT},
+							(SDL_Point){.x=MOVE_BTN_WIDTH, .y=MOVE_BTN_WIDTH},
 							arena->move_btn_sprites)))
 		return (false);
 	return (true);

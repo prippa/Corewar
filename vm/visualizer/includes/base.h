@@ -33,6 +33,7 @@
 # define MENU_UP_IMG "./vm/visualizer/images/buttons/red_up.png"
 # define TILEBLOCK_IMG "./vm/visualizer/images/tileblock.jpg"
 # define BACK_IMG "vm/visualizer/images/colosseum.jpg"
+# define GREY_PANEL_IMG "vm/visualizer/images/grey_panel.png"
 # define GET_DMODE_SUCCESS 0
 # define SCREEN_WIDTH 1280
 # define SCREEN_HEIGHT 720
@@ -61,8 +62,7 @@
 # define YES_BUTTON	{RETURN_KEY, YES_BUTTON_ID, "Yes"}
 # define CANSEL_BUTTON {ESCAPE_KEY, CANSEL_BUTTON_ID, "Cansel"}
 # define DEFAULT_COLOR_KEY (SDL_Color){.r = 0xff, .g = 0xff, .b = 0xff}
-# define MOVE_BTN_HEIGHT 100
-# define MOVE_BTN_WIDTH 100
+# define MOVE_BTN_WIDTH (SCREEN_WIDTH >> 5)
 
 /*
 ** Number of message box buttons
