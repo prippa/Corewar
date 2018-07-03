@@ -15,8 +15,9 @@
 bool			init_controls(t_arena *arena)
 {
 	bool		success;
-	int wd = SCREEN_WIDTH - BUTTON_WIDTH - (SCREEN_WIDTH >> 6);
+	int			wd;
 	
+	wd = SCREEN_WIDTH - BUTTON_WIDTH - (SCREEN_WIDTH >> 6);
 	success = true;
 	bzero(arena->full_sprites, sizeof(arena->full_sprites));
 	if (!(arena->full_sprites[CHECK_MOUSE_OUT] =

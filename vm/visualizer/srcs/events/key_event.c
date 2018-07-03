@@ -15,21 +15,13 @@
 static inline void	move_arena(t_arena *arena, SDL_Keycode sym)
 {
 	if (sym == SDLK_UP)
-	{
 		move_up(arena);
-	}
 	else if (sym == SDLK_DOWN)
-	{
 		move_down(arena);
-	}
 	else if (sym == SDLK_LEFT)
-	{
-		arena->top_left.x -= ARENA_TILE_WIDTH * arena->zoom;
-	}
+		move_left(arena);
 	else if (sym == SDLK_RIGHT)
-	{
-		arena->top_left.x += ARENA_TILE_WIDTH * arena->zoom;
-	}
+		move_right(arena);
 }
 
 void	key_event(t_arena *arena, SDL_Keycode sym)

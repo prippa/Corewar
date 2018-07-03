@@ -62,7 +62,7 @@
 # define YES_BUTTON	{RETURN_KEY, YES_BUTTON_ID, "Yes"}
 # define CANSEL_BUTTON {ESCAPE_KEY, CANSEL_BUTTON_ID, "Cansel"}
 # define DEFAULT_COLOR_KEY (SDL_Color){.r = 0xff, .g = 0xff, .b = 0xff}
-# define MOVE_BTN_WIDTH (SCREEN_WIDTH >> 5)
+# define MOVE_BTN_WIDTH (((SCREEN_WIDTH >> 4) * 2) / 3)
 
 /*
 ** Number of message box buttons

@@ -18,7 +18,5 @@ void	exit_event(t_arena *arena)
 
 	buttonid = exit_dialog(arena);
 	if (buttonid == YES_BUTTON_ID)
-	{
 		arena->quit = true;
-	}
 }
