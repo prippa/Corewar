@@ -150,7 +150,7 @@ void		cw_print_cmd_specifications(t_command *cmd)
 	// ft_printf("-----------------------------------\n");
 }
 
-void		cw_execute_corewar_magic(t_processes *proc)
+void		cw_execute_corewar(t_processes *proc)
 {
 	t_command cmd;
 	
@@ -550,6 +550,7 @@ void		cw_game_loop(void)
 			
 		// }
 
+
 		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw->cycle);
 		// ft_printf("processes -> %d\n", g_cw->proc_counter);
 
@@ -557,7 +558,7 @@ void		cw_game_loop(void)
 		if (g_cw->cycle_to_die <= 0)
 			return ;
 
-		cw_execute_corewar_magic(g_cw->proc_start);
+		cw_execute_corewar(g_cw->proc_start);
 
 
 		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);
