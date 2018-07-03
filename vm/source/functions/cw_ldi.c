@@ -14,11 +14,11 @@
 
 void			cw_ldi(t_command *cmd, t_stack *map, t_processes *proc)
 {
-		ft_printf("ldi\n");
-			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	ft_printf("ldi\n");
+	if (proc->process_PC > 4095 || proc->process_PC < 0)
 	{
 		ft_printf("ldi\n");
-			getchar();
+		getchar();
 	}
 		//
 
@@ -41,10 +41,10 @@ void			cw_ldi(t_command *cmd, t_stack *map, t_processes *proc)
 	proc->process_PC = MEM_CORRECTION(
 		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2));
 
-			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	if (proc->process_PC > 4095 || proc->process_PC < 0)
 	{
 		ft_printf("ldi\n");
-			getchar();
+		getchar();
 	}
 		// map->stack[proc->process_PC] = 7;
 		// map->stack_color[proc->process_PC] = 5;

@@ -160,8 +160,9 @@ static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc) // do the
 
 void			cw_binary_and(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
-		ft_printf("and\n");
-			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	ft_printf("and\n");
+			
+	if (proc->process_PC > 4095 || proc->process_PC < 0)
 	{
 		ft_printf("and\n");
 			getchar();
@@ -189,7 +190,7 @@ void			cw_binary_and(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned
 	proc->process_PC = MEM_CORRECTION(
 		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2));
 
-			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	if (proc->process_PC > 4095 || proc->process_PC < 0)
 	{
 		ft_printf("and\n");
 			getchar();

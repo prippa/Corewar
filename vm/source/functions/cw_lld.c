@@ -14,11 +14,12 @@
 
 void			cw_lld(t_command *cmd, t_stack *map, t_processes *proc)
 {
-		ft_printf("lld\n");
-			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	ft_printf("lld\n");
+
+	if (proc->process_PC > 4095 || proc->process_PC < 0)
 	{
 		ft_printf("lld\n");
-			getchar();
+		getchar();
 	}
 
 	if (cmd->arg1.tp == 4)
@@ -36,10 +37,10 @@ void			cw_lld(t_command *cmd, t_stack *map, t_processes *proc)
 	proc->process_PC = MEM_CORRECTION(
 		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + 2));
 
-			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	if (proc->process_PC > 4095 || proc->process_PC < 0)
 	{
 		ft_printf("lld\n");
-			getchar();
+		getchar();
 	}
 
 	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!

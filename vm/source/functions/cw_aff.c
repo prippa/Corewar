@@ -14,9 +14,9 @@
 
 void			cw_aff(t_command *cmd, t_stack *map, t_processes *proc)
 {
-		ft_printf("aff\n");
+	ft_printf("aff\n");
 				// if (proc->process_PC > 4095)
-			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	if (proc->process_PC > 4095 || proc->process_PC < 0)
 	{
 		ft_printf("aff\n");
 			getchar();

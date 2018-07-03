@@ -55,11 +55,11 @@ int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -
 
 void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
-		ft_printf("sti\n");
-			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	ft_printf("sti\n");
+	if (proc->process_PC > 4095 || proc->process_PC < 0)
 	{
 		ft_printf("sti\n");
-			getchar();
+		getchar();
 	}
 
 	unsigned char	buf[4];
@@ -96,10 +96,10 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	proc->process_PC = MEM_CORRECTION(
 		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2));
 
-			if (proc->process_PC > 4095 || proc->process_PC < 0)
+	if (proc->process_PC > 4095 || proc->process_PC < 0)
 	{
 		ft_printf("sti\n");
-			getchar();
+		getchar();
 	}
 
 	map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
