@@ -302,6 +302,8 @@ void		cw_execute_corewar_magic(t_processes *proc)
 				else
 				{
 					// ft_printf("execute\n");
+					// ft_printf("here ->*******************************************2\n");
+					// getchar();
 
 					if (!cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
 					{
@@ -319,7 +321,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 				if (proc->process_PC > 4095 || proc->process_PC < 0)
 				{
-					ft_printf("here ->*******************************************1\n");
+					ft_printf("here ->*******************************************3\n");
 					getchar();
 
 						// sleep(60);
@@ -372,6 +374,8 @@ void		cw_execute_corewar_magic(t_processes *proc)
 					else
 					{
 						// ft_printf("not valid codage -------------------------------> %d\n", "123456");//////////// ?
+					// ft_printf("here ->*******************************************4\n");
+					// getchar();
 
 						cw_get_command(&cmd, proc->process_PC, g_cw->map.stack); // to have the cmd.codage actual on the map; /////////////////// ?
 
@@ -382,7 +386,7 @@ void		cw_execute_corewar_magic(t_processes *proc)
 
 				if (proc->process_PC > 4095 || proc->process_PC < 0)
 				{
-					ft_printf("here ->*******************************************1\n");
+					ft_printf("here ->*******************************************5\n");
 				getchar();
 						// sleep(60);
 					// ft_printf("here ->3\n");
@@ -560,6 +564,7 @@ void		cw_game_loop(void)
 
 		if (g_cw->cycle >= test)
 		{
+			exit(0);
 			cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 			// cw_display_map_write(g_cw->map.stack_color);
 		}
