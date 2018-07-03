@@ -34,7 +34,7 @@ static int	arg_check(char *bn, int *j, char *tp, int bt)
 		return (2);
 	if (*tp == bt) // here;
 	{
-		ft_putstr("here\n");
+		// ft_putstr("here\n");
 		ft_printf("tp -> %d\n", *tp);
 		ft_printf("bt -> %d\n", bt);
 		return (bt);
@@ -124,7 +124,10 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 	unsigned char	res[5]; // max is 4 bytes;
 	
 
-
+	if ( i > 4095)
+	{
+		getchar();
+	}
 	ft_bzero(res, 5); // +;
 	if (map[i] > 16 || map[i] < 1) // check if we have a correct command;
 	{
