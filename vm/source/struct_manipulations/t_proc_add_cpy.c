@@ -48,17 +48,23 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	if (!(new_obj = (t_processes *)malloc(sizeof(t_processes))))
 		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
 
+	ft_bzero(new_obj, sizeof(new_obj));
+
 	// general variable;
 	new_obj->id = g_cw->id_counter++;
 
 	new_obj->carry = current_proc->carry; // copy;
 	new_obj->color = current_proc->color; // copy;
 
-		    if (position > 4095 || position < 0)
-        {
+	if (position > 4095 || position < 0)
+    {
         ft_printf("copy\n");
             getchar();
-        }
+    }
+    // else///
+        // ft_printf("position -> %d\n", position);
+
+
 	new_obj->process_PC = position; // not a copy;
 	new_obj->live_status = current_proc->live_status; // copy;
 	new_obj->has_been_activated = current_proc->has_been_activated; // copy;

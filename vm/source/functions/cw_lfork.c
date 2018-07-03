@@ -32,6 +32,7 @@ void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc)
     map->stack_color[proc->process_PC] = proc->color;
 
     proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
+    ft_printf("process_PC -> %d\n", proc->process_PC);
 
     if (proc->process_PC > 4095 || proc->process_PC < 0)
     {

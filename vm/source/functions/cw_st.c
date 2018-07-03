@@ -42,6 +42,7 @@ void			cw_st(t_command *cmd, t_stack *map, t_processes *proc)
 
 	proc->process_PC = MEM_CORRECTION(
 		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + 2));
+	ft_printf("process_PC ->%d \n", proc->process_PC);
 
 	if (proc->process_PC > 4095 || proc->process_PC < 0)
 	{

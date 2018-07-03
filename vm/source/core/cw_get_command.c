@@ -128,8 +128,6 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 	{
 		ft_printf("in cmd 1\n");
 		ft_printf("in cmd %d\n", i);
-
-
 		getchar();
 	}
 
