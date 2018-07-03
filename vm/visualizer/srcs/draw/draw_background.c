@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.h                                             :+:      :+:    :+:   */
+/*   draw_background.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkovsh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/24 17:10:45 by vkovsh            #+#    #+#             */
-/*   Updated: 2018/05/24 17:10:46 by vkovsh           ###   ########.fr       */
+/*   Created: 2018/07/03 13:12:48 by vkovsh            #+#    #+#             */
+/*   Updated: 2018/07/03 13:12:49 by vkovsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_H
-# define DRAW_H
-# include "base.h"
+#include "visualizer.h"
 
-/*
-** Rendering Corewar Arena
-*/
-void	draw_arena(t_arena *arena);
-void	draw_fillrect(t_arena *arena,
-						int i, int j,
-						SDL_Rect rect);
-void	draw_outlinerect(t_arena *arena, SDL_Rect rect);
-void	draw_controls(t_arena *arena);
-void	draw_background(t_arena *arena);
-#endif
+
+void	draw_background(t_arena *arena)
+{
+	SDL_Point		bp;
+
+	bzero(&bp, sizeof(SDL_Point));
+	SDL_Rect clip = get_rectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+	t_rposition pos = get_render_position(0, NULL, NULL, &clip);
+	render(&pos, arena->background, arena->renderer, SDL_FLIP_NONE);
+}

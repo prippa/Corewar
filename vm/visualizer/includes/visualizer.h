@@ -35,6 +35,6 @@ bool		init_start_buttons(t_arena *arena);
 void		init_figures(t_arena *arena);
 void		set_random(t_arena *arena);
 void		force_error(const char *error);
-void		draw_arena_split(t_arena *arena);
 bool		init_move_buttons(t_arena *arena);
+bool		init_background(t_arena *arena);
 #endif

@@ -183,6 +183,10 @@ typedef struct					s_button
 typedef struct					s_arena
 {
 	/*
+	** background texture
+	*/
+	t_ltexture					*background;
+	/*
 	** Sprites for move button states
 	** wraped in ltexture and prepare for rendering
 	*/
@@ -216,6 +220,10 @@ typedef struct					s_arena
 	** If false quit state inits
 	*/
 	bool						quit;
+	/*
+	** Panel for move arrows
+	*/
+	t_ltexture					*move_panel;
 	bool						inited;
 	bool						is_rendered;
 	bool						is_fullscreen;

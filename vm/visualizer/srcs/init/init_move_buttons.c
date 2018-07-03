@@ -15,6 +15,7 @@
 bool	init_move_buttons(t_arena *arena)
 {
 	int wd = SCREEN_WIDTH - BUTTON_WIDTH - ((SCREEN_WIDTH >> 6));
+	arena->move_panel = load_from_file(GREY_PANEL_IMG, arena->renderer, (SDL_Color){});
 	bzero(arena->move_btn_sprites, sizeof(arena->move_btn_sprites));
 	arena->move_btn_sprites[MOVE_BUTTON_MOUSE_OUT] = load_from_file(ARROW_IMG,
 																arena->renderer,
