@@ -21,6 +21,7 @@ void		t_processe_add(t_processes **proc_start,
 	g_cw->proc_counter++;
 	if (!(new_obj = (t_processes *)malloc(sizeof(t_processes))))
 		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
+	
 	new_obj->id = g_cw->id_counter++;
 	new_obj->carry = 0;
 	new_obj->color = 0;
@@ -111,6 +112,7 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	
 	// add to the head;
 		t_processes_add_to_head(proc_start, proc_end, new_obj);
+
 	    if (new_obj->process_PC > 4095 || new_obj->process_PC < 0)
 	        
         {

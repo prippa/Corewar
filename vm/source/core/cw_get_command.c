@@ -128,6 +128,8 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 	{
 		ft_printf("in cmd 1\n");
 		ft_printf("in cmd %d\n", i);
+		cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+		
 		getchar();
 	}
 
@@ -178,6 +180,7 @@ int			cw_get_command_2(t_command *cmd, unsigned int i,
 	
 	if ( i > 4095)
 	{
+		cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 		ft_printf("2\n");
 		getchar();
 	}
