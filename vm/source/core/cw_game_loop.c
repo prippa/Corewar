@@ -651,13 +651,40 @@ void		cw_execute_corewar(t_processes *proc)
 						if (g_cw->map.stack_color[proc->process_PC] != 0 && g_cw->map.stack_color[proc->process_PC] != 14)
 						{
     						g_cw->map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
+    																							if (proc->process_PC >4095 || proc->process_PC < 0)
+						{
+							ft_printf("id after 40---------> %d\n", proc->process_PC);
+							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
+							getchar();
+						}
+
 						}
     					else
+    					{
     						g_cw->map.stack_color[proc->process_PC] = 14;
+    																							if (proc->process_PC >4095 || proc->process_PC < 0)
+						{
+							ft_printf("id after 41---------> %d\n", proc->process_PC);
+							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
+							getchar();
+						}
+    					}
 
     					proc->cycles_till_execution = 1;
+    					    																							if (proc->process_PC >4095 || proc->process_PC < 0)
+						{
+							ft_printf("id after 42---------> %d\n", proc->process_PC);
+							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
+							getchar();
+						}
 
 						proc->current_command = 0;
+						    																							if (proc->process_PC >4095 || proc->process_PC < 0)
+						{
+							ft_printf("id after 43---------> %d\n", proc->process_PC);
+							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
+							getchar();
+						}
 
 
 						//colors
@@ -683,6 +710,12 @@ void		cw_execute_corewar(t_processes *proc)
 		// ft_printf("proc_PC -> %d", proc->process_PC);
 
 		proc = proc->next;
+		    			if (proc && (proc->process_PC >4095 || proc->process_PC < 0))
+						{
+							ft_printf("id after 44---------> %d\n", proc->process_PC);
+							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
+							getchar();
+						}
 	}
 		tmp = g_cw->proc_start;
 		i = 0;
@@ -845,24 +878,25 @@ void		cw_game_loop(void)
 		t_processes *tmp = g_cw->proc_start;
 		int i = 0;
 
-		// while (tmp)
-		// {
-		// 	// i = 0;
+		while (tmp)
+		{
+			// i = 0;
 
-		// 	if (tmp->process_PC > 4095 || tmp->process_PC < 0)
-		// 	{
-		// 		ft_printf("Total ---------> %d\n", g_cw->proc_counter);
-		// 		ft_printf("id ---------> %d\n", tmp->id);
+			if (tmp->process_PC > 4095 || tmp->process_PC < 0)
+			{
+				ft_printf("Ignat -> %p\n", tmp->process_PC);
+				ft_printf("Total ---------> %d\n", g_cw->proc_counter);
+				ft_printf("id ---------> %d\n", tmp->id);
 
-		// 		ft_printf("PC ---------> %d\n", tmp->process_PC);
-		// 		ft_printf("i ---------> %d\n", i);
+				ft_printf("PC ---------> %d\n", tmp->process_PC);
+				ft_printf("i ---------> %d\n", i);
 
 
-		// 		getchar();
-		// 	}
-		// 		i++;
-		// 	tmp = tmp->next;
-		// }
+				getchar();
+			}
+				i++;
+			tmp = tmp->next;
+		}
 
 
 		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);

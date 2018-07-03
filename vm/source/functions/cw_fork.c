@@ -13,8 +13,18 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     }
 
     int				position_on_the_map;
+        if (proc->process_PC > 4095 || proc->process_PC < 0)
+    {
+        ft_printf("fork\n");
+        getchar();
+    }
 
     position_on_the_map = MEM_CORRECTION((proc->process_PC + IDX_CORRECTION(cmd->arg1.av)));
+        if (proc->process_PC > 4095 || proc->process_PC < 0)
+    {
+        ft_printf("fork\n");
+        getchar();
+    }
     position_on_the_map = (position_on_the_map < 0) ? MEM_SIZE + position_on_the_map : position_on_the_map;
 
         if (position_on_the_map > 4095 || position_on_the_map < 0)
@@ -28,13 +38,28 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     // position on the map will be a process_PC for the new process;
 
     map->stack_color[proc->process_PC] = proc->color;
+        if (proc->process_PC > 4095 || proc->process_PC < 0)
+    {
+        ft_printf("fork\n");
+        getchar();
+    }
 
 
     proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
+        if (proc->process_PC > 4095 || proc->process_PC < 0)
+    {
+        ft_printf("fork\n");
+        getchar();
+    }
     ft_printf("process_PC -> %d\n", proc->process_PC);
 
 
     map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
+        if (proc->process_PC > 4095 || proc->process_PC < 0)
+    {
+        ft_printf("fork\n");
+        getchar();
+    }
 
     // ft_printf("process_PC -> %d\n", proc->process_PC);
 
@@ -49,6 +74,11 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     // }
 
     t_processes_copy(&g_cw->proc_start, &g_cw->proc_end, proc, position_on_the_map);
+        if (proc->process_PC > 4095 || proc->process_PC < 0)
+    {
+        ft_printf("fork\n");
+        getchar();
+    }
     
     if (proc->process_PC > 4095 || proc->process_PC < 0)
     {
