@@ -103,11 +103,6 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2));
 	ft_printf("process_PC -> %d\n", proc->process_PC);
 
-	if (proc->process_PC > 4095 || proc->process_PC < 0)
-	{
-		ft_printf("sti\n");
-		getchar();
-	}
 
 	map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
 	
@@ -135,6 +130,11 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	// i = 0;
 		// ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 	cw_write_to_map(map, proc, buf, position_on_the_map);
+	if (proc->process_PC > 4095 || proc->process_PC < 0)
+	{
+		ft_printf("sti\n");
+		getchar();
+	}
 // 	while (i < 4) // 2 || 4; // always take 4 bytes to the map;
 // 	{
 // 		if (position_on_the_map == MEM_SIZE)

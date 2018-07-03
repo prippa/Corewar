@@ -3,6 +3,15 @@
 static void	t_processes_add_to_head(t_processes **proc_start,
 							t_processes **proc_end, t_processes *new_obj)
 {
+		    if (new_obj->process_PC > 4095 || new_obj->process_PC < 0)
+	        
+        {
+        ft_printf("add to head\n");
+            getchar();
+            
+        }
+
+
 	new_obj->next = *proc_start;
 	new_obj->prev = NULL;
 	if (*proc_start)
@@ -10,6 +19,14 @@ static void	t_processes_add_to_head(t_processes **proc_start,
 	else
 		*proc_end = new_obj;
 	*proc_start = new_obj;
+
+	if (new_obj->process_PC > 4095 || new_obj->process_PC < 0)
+	        
+        {
+        ft_printf("add to head\n");
+            getchar();
+            
+        }
 }
 
 // TODO change init stuff
@@ -21,7 +38,7 @@ void		t_processe_add(t_processes **proc_start,
 	g_cw->proc_counter++;
 	if (!(new_obj = (t_processes *)malloc(sizeof(t_processes))))
 		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
-	
+
 	new_obj->id = g_cw->id_counter++;
 	new_obj->carry = 0;
 	new_obj->color = 0;
@@ -67,6 +84,11 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 
 
 	new_obj->process_PC = position; // not a copy;
+		if (new_obj->process_PC > 4095 || new_obj->process_PC < 0)
+    {
+        ft_printf("copy PC\n");
+            getchar();
+    }
 	new_obj->live_status = current_proc->live_status; // copy;
 	new_obj->has_been_activated = current_proc->has_been_activated; // copy;
 	new_obj->cycles_till_execution = 1; // not copy;
@@ -82,7 +104,7 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 
 	new_obj->detect_deviation = 0; ////////////////////////// ?
 
-	ft_bzero(new_obj->registers, sizeof(int) * REG_NUMBER);
+	// ft_bzero(new_obj->registers, sizeof(int) * REG_NUMBER);
 
 	ft_memcpy(new_obj->registers, current_proc->registers, sizeof(int) * REG_NUMBER); // ---> !!!!! sizeof(int) not just 16 !!!!! <--- // copy;
 

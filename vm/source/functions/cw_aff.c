@@ -29,12 +29,11 @@ void			cw_aff(t_command *cmd, t_stack *map, t_processes *proc)
 	proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 2));
 	ft_printf("process_PC -> %d\n", proc->process_PC);
 
+	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
+	
 	if (proc->process_PC > 4095 || proc->process_PC < 0)
 	{
 		ft_printf("aff\n");
 			getchar();
 	}
-
-	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
-	
 }

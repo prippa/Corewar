@@ -55,15 +55,15 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 	proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
 	ft_printf("process_PC -> %d\n", proc->process_PC);
 
+
+//	 for testing;
+//	 map->stack[proc->process_PC] = 7;
+	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
 	if (proc->process_PC > 4095 || proc->process_PC < 0)
 	{
 		ft_printf("live\n");
 			getchar();
 	}
-
-//	 for testing;
-//	 map->stack[proc->process_PC] = 7;
-	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
 //
 //	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
 

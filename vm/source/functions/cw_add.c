@@ -55,15 +55,14 @@ void			cw_add(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	ft_printf("process_PC -> %d\n", proc->process_PC);
 
 
+
+	map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
+   
 	if (proc->process_PC > 4095 || proc->process_PC < 0)
 	{
 		ft_printf("add\n");
 			getchar();
 	}
-
-	map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
-   
-
 
 	// for testing;
 //	 map->stack[proc->process_PC] = 7;

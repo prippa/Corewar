@@ -33,11 +33,6 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
     ft_printf("process_PC -> %d\n", proc->process_PC);
 
-    if (proc->process_PC > 4095 || proc->process_PC < 0)
-    {
-        ft_printf("fork\n");
-        getchar();
-    }
 
     map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
 
@@ -55,6 +50,11 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
 
     t_processes_copy(&g_cw->proc_start, &g_cw->proc_end, proc, position_on_the_map);
     
+    if (proc->process_PC > 4095 || proc->process_PC < 0)
+    {
+        ft_printf("fork\n");
+        getchar();
+    }
 
     // while (clone->next)
     // {

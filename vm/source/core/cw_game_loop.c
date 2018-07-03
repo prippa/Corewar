@@ -23,7 +23,7 @@
 
 #define	DIR_CHECK(x) (x > 8 && x < 13) || x == 14 || x == 15
 
-	#define test 8000 //5312
+#define test 8000 //5312
 
 static void		ft_zero_it(char *str)
 {
@@ -159,10 +159,32 @@ void		cw_execute_corewar(t_processes *proc)
 	// exit(1);
 	// getchar();
 	// int		cycles = 0;
+	t_processes *tmp = g_cw->proc_start;
+	int i = 0;
+
+			while (tmp)
+		{
+			// i = 0;
+
+			if (tmp->process_PC > 4095 || tmp->process_PC < 0)
+			{
+				ft_printf("1\n");
+				ft_printf("Total ---------> %d\n", g_cw->proc_counter);
+				ft_printf("id ---------> %d\n", tmp->id);
+
+				ft_printf("PC ---------> %d\n", tmp->process_PC);
+				ft_printf("i ---------> %d\n", i);
+
+
+				getchar();
+			}
+				i++;
+			tmp = tmp->next;
+		}
 	while (proc)
 	{
-		// ft_printf("proc_PC --------------------------------------------------------------------> %d\n", proc->process_PC);
 		// ft_printf("id -----------> %d\n", proc->id);
+		// ft_printf("proc_PC --------------------------------------------------------------------> %d\n", proc->process_PC);
 		// ft_printf("cur cmd -----------> %d\n", proc->current_command);
 		// ft_printf("color -----------> %d\n", g_cw->map.stack_color[proc->process_PC]);
 
@@ -180,17 +202,9 @@ void		cw_execute_corewar(t_processes *proc)
 		
 		if (cw_get_command(&cmd, proc->process_PC, g_cw->map.stack) ==  NOT_EXIST_CODE && proc->current_command == 0) // if no active command; // adopt here;
 		{
-
 				// ft_printf("%s\n", "after get cmd");
-// 
 				// ft_printf("in -> %d\n", g_cw->map.stack_color[proc->process_PC]);
-
         		// ft_printf("stack_color not vali -> %d\n", g_cw->map.stack_color[proc->process_PC]);
-
-				// ft_printf("%s\n", "woohoo");
-
-
-
 
         		if (g_cw->map.stack_color[proc->process_PC ] != 0 && g_cw->map.stack_color[proc->process_PC ] != 14 && g_cw->map.cycle_stack[proc->process_PC] == 0)
 					g_cw->map.stack_color[proc->process_PC] = proc->color; //check it;
@@ -207,6 +221,7 @@ void		cw_execute_corewar(t_processes *proc)
 
 
 
+				// ft_printf("%s\n", "woohoo");
 
 				proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
 
@@ -308,6 +323,11 @@ void		cw_execute_corewar(t_processes *proc)
 					if (!cw_get_command(&cmd, proc->process_PC, g_cw->map.stack))
 					{
 						g_cw->op[cmd.cmd - 1].func(&cmd, &g_cw->map, proc);
+						if (proc->process_PC >4095 || proc->process_PC < 0)
+						{
+							ft_printf("id after func---------> %d\n", proc->id);
+							getchar();
+						}
 						proc->current_command = 0;
 						proc->cycles_till_execution = 1;
 					}
@@ -367,6 +387,11 @@ void		cw_execute_corewar(t_processes *proc)
 					if (!cw_get_command_2(&cmd, proc->process_PC, g_cw->map.stack, proc->current_command))
 					{
 						g_cw->op[proc->current_command - 1].func(&cmd, &g_cw->map, proc);
+												if (proc->process_PC >4095 || proc->process_PC < 0)
+						{
+							ft_printf("id after func---------> %d\n", proc->id);
+							getchar();
+						}
 						proc->current_command = 0;
 						proc->detect_deviation = 0;
 						proc->cycles_till_execution = 1;
@@ -387,7 +412,7 @@ void		cw_execute_corewar(t_processes *proc)
 				if (proc->process_PC > 4095 || proc->process_PC < 0)
 				{
 					ft_printf("here ->*******************************************5\n");
-				getchar();
+					getchar();
 						// sleep(60);
 					// ft_printf("here ->3\n");
 				}
@@ -426,6 +451,30 @@ void		cw_execute_corewar(t_processes *proc)
 
 		proc = proc->next;
 	}
+		tmp = g_cw->proc_start;
+		i = 0;
+	
+			while (tmp)
+		{
+			// i = 0;
+
+			if (tmp->process_PC > 4095 || tmp->process_PC < 0)
+			{
+				ft_printf("2\n");
+
+				ft_printf("Total ---------> %d\n", g_cw->proc_counter);
+				ft_printf("id ---------> %d\n", tmp->id);
+
+				ft_printf("PC ---------> %d\n", tmp->process_PC);
+				ft_printf("i ---------> %d\n", i);
+
+
+				getchar();
+			}
+				i++;
+			tmp = tmp->next;
+		}
+
 }
 
 void cw_display_map_write(unsigned int *map)
@@ -559,6 +608,28 @@ void		cw_game_loop(void)
 			return ;
 
 		cw_execute_corewar(g_cw->proc_start);
+
+		t_processes *tmp = g_cw->proc_start;
+		int i = 0;
+
+		// while (tmp)
+		// {
+		// 	// i = 0;
+
+		// 	if (tmp->process_PC > 4095 || tmp->process_PC < 0)
+		// 	{
+		// 		ft_printf("Total ---------> %d\n", g_cw->proc_counter);
+		// 		ft_printf("id ---------> %d\n", tmp->id);
+
+		// 		ft_printf("PC ---------> %d\n", tmp->process_PC);
+		// 		ft_printf("i ---------> %d\n", i);
+
+
+		// 		getchar();
+		// 	}
+		// 		i++;
+		// 	tmp = tmp->next;
+		// }
 
 
 		cw_decrementor(g_cw->map.write_to_the_map_stack, g_cw->map.stack_color, g_cw->map.cycle_stack);
