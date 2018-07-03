@@ -17,6 +17,12 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     position_on_the_map = MEM_CORRECTION((proc->process_PC + IDX_CORRECTION(cmd->arg1.av)));
     position_on_the_map = (position_on_the_map < 0) ? MEM_SIZE + position_on_the_map : position_on_the_map;
 
+        if (position_on_the_map > 4095 || position_on_the_map < 0)
+    {
+        ft_printf("fork position\n");
+        getchar();
+    }
+
     // ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 
     // position on the map will be a process_PC for the new process;

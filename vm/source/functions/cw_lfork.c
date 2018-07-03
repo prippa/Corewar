@@ -14,8 +14,17 @@ void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc)
 
     int				position_on_the_map;
 
+
+
     position_on_the_map = MEM_CORRECTION((proc->process_PC + cmd->arg1.av));
+
     position_on_the_map = (position_on_the_map < 0) ? MEM_SIZE + position_on_the_map : position_on_the_map;
+
+    if (position_on_the_map > 4095 || position_on_the_map < 0)
+    {
+        ft_printf("lfork position\n");
+        getchar();
+    }
 
     // ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 

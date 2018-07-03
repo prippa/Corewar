@@ -124,14 +124,18 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 	unsigned char	res[5]; // max is 4 bytes;
 	
 
-	// if ( i > 4095)
-	// {
-	// 	getchar();
-	// }
+	if ( i > 4095)
+	{
+		ft_printf("in cmd 1\n");
+		ft_printf("in cmd %d\n", i);
+
+
+		getchar();
+	}
 
 
 
-	
+
 	ft_bzero(res, 5); // +;
 
 	if (map[i] > 16 || map[i] < 1) // check if we have a correct command;
@@ -174,7 +178,11 @@ int			cw_get_command_2(t_command *cmd, unsigned int i,
 	int				bt; // byte 
 	unsigned char	res[5]; // max is 4 bytes;
 	
-
+	if ( i > 4095)
+	{
+		ft_printf("2\n");
+		getchar();
+	}
 
 	ft_bzero(res, 5); // +;
 	if (proc_current_command > 16 || proc_current_command < 1) // check if we have a correct command;

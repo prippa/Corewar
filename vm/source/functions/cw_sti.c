@@ -73,6 +73,12 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	if ((position_on_the_map = MEM_CORRECTION(cw_arguments_value(cmd, map, proc))) < 0)
 		position_on_the_map += MEM_SIZE;
 
+	if (position_on_the_map > 4095 || position_on_the_map < 0)
+    {
+        ft_printf("sti pos\n");
+        getchar();
+    }
+
 	ft_printf("position-> %d\n", cw_arguments_value(cmd, map, proc));
 
 	cw_write_bytes_to_buf(buf, proc->registers[cmd->arg1.av - 1]);

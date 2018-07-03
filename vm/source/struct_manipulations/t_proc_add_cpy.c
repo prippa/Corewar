@@ -53,6 +53,12 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 
 	new_obj->carry = current_proc->carry; // copy;
 	new_obj->color = current_proc->color; // copy;
+
+		    if (position > 4095 || position < 0)
+        {
+        ft_printf("copy\n");
+            getchar();
+        }
 	new_obj->process_PC = position; // not a copy;
 	new_obj->live_status = current_proc->live_status; // copy;
 	new_obj->has_been_activated = current_proc->has_been_activated; // copy;
@@ -98,7 +104,7 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 
 	
 	// add to the head;
-	t_processes_add_to_head(proc_start, proc_end, new_obj);
+		t_processes_add_to_head(proc_start, proc_end, new_obj);
 	    if (new_obj->process_PC > 4095 || new_obj->process_PC < 0)
 	        
         {
