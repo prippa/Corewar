@@ -154,6 +154,8 @@ void		cw_color_start(t_champ *ch, t_stack *map)
 void		cw_execute_corewar(t_processes *proc)
 {
 	t_command cmd;
+				ft_bzero(&cmd, sizeof(t_command));
+	
 	// t_processes *head = proc;
 	
 
