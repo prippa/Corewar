@@ -154,15 +154,15 @@ void		cw_color_start(t_champ *ch, t_stack *map)
 void		cw_execute_corewar(t_processes *proc)
 {
 	t_command cmd;
-	t_processes *head = proc;
+	// t_processes *head = proc;
 	
 
 	// ft_printf("%s\n", "in corwar magic"); // 235 536 184
 	// exit(1);
 	// getchar();
 	// int		cycles = 0;
-	t_processes *tmp = head;
-	int i = 0;
+	// t_processes *tmp = head;
+	// int i = 0;
 
 		// 	while (tmp)
 		// {
