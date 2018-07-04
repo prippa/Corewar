@@ -136,7 +136,7 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 	bt = (WHAT_DIR(map[i]) ? 2 : 4); // detect syze in bytes of the DIR;
 	cmd->cmd = map[i]; // set the command value from the first position on the map;
 	i = MEM_CORRECTION((i + 1)); // move the map pointer to the next byte;
-	// ft_printf("in cmd i -> %d\n",g_cw->i);
+	// ft_printf("in cmd i -> %d\n",g_cw.i);
 	cmd->codage = ((IS_CDG(cmd->cmd)) ? 0 : map[i]); // set the command codage from the second position on the map;
 	if (IS_CDG(cmd->cmd)) // if commands: 1, 9, 2, 15;
 	{
@@ -155,7 +155,7 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 	}
 
 	write_args(cmd, &i, bt, map);
-	// ft_printf("in cmd i -> %d\n",g_cw->i);
+	// ft_printf("in cmd i -> %d\n",g_cw.i);
 	
 	return (0);
 }
@@ -178,7 +178,7 @@ int			cw_get_command_2(t_command *cmd, unsigned int i,
 	bt = (WHAT_DIR(proc_current_command) ? 2 : 4); // detect syze in bytes of the DIR;
 	cmd->cmd = proc_current_command; // set the command value from the first position on the map;
 	i = MEM_CORRECTION((i + 1)); // move the map pointer to the next byte;
-	// ft_printf("in cmd i -> %d\n",g_cw->i);
+	// ft_printf("in cmd i -> %d\n",g_cw.i);
 	cmd->codage = ((IS_CDG(cmd->cmd)) ? 0 : map[i]); // set the command codage from the second position on the map;
 	if (IS_CDG(cmd->cmd)) // if commands: 1, 9, 2, 15;
 	{
@@ -197,7 +197,7 @@ int			cw_get_command_2(t_command *cmd, unsigned int i,
 	}
 
 	write_args(cmd, &i, bt, map);
-	// ft_printf("in cmd i -> %d\n",g_cw->i);
+	// ft_printf("in cmd i -> %d\n",g_cw.i);
 	
 	return (0);
 }

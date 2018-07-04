@@ -8,7 +8,7 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     int		position_on_the_map;
 	t_champ	*champ;
 
-	champ = t_champ_find(proc->champ_number, g_cw->pd.champs);
+	champ = t_champ_find(proc->champ_number, g_cw.pd.champs);
     if ((position_on_the_map = MEM_CORRECTION((proc->process_PC + IDX_CORRECTION(cmd->arg1.av)))) < 0)
 		position_on_the_map += MEM_SIZE;
     // ft_printf("position_on_the_map -> %d\n", position_on_the_map);
@@ -49,8 +49,8 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
 
     // while (clone->next)
     // {
-        // ft_printf("end id -> %u\n", g_cw->proc_end->id);
-        // ft_printf("process_PC -> %d\n", g_cw->proc_end->process_PC);
+        // ft_printf("end id -> %u\n", g_cw.proc_end->id);
+        // ft_printf("process_PC -> %d\n", g_cw.proc_end->process_PC);
 
         // clone = clone->next;
     // }
@@ -63,5 +63,5 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
 
     // TODO read(1, 0, 1);
 
-    // cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+    // cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 }

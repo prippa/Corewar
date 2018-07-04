@@ -48,7 +48,7 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 //	t_processes *proc;
 	// int	arguments[3];
 	//process;
-//	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
+//	proc = t_processe_get_by_id(g_cw.proc_start, g_cw.proc_end, process_id);
 
 	if ((position_on_the_map = MEM_CORRECTION(cw_arguments_value(cmd, map, proc))) < 0)
 		position_on_the_map += MEM_SIZE;
@@ -123,5 +123,5 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 
 	// TODO read(1, 0, 1);
 
-	 // cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+	 // cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 }

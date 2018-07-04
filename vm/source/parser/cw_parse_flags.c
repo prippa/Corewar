@@ -23,8 +23,8 @@ static void	cw_valid_dump(char **argv, int *i)
 	if (tmp < 0 || tmp > MAXINT)
 		cw_exit("ERROR: Number after -dump flag \
 is bigger than MAXINT or less then 0", INV_DUMP_FLAG);
-	g_cw->pd.dump_stop = (unsigned int)tmp;
-	g_cw->pd.flags[DUMP] = '1';
+	g_cw.pd.dump_stop = (unsigned int)tmp;
+	g_cw.pd.flags[DUMP] = '1';
 }
 
 int			cw_parse_flags(char **argv)
@@ -34,10 +34,10 @@ int			cw_parse_flags(char **argv)
 	i = 0;
 	while (argv[i])
 	{
-		if (!ft_strcmp(argv[i], "-dump") && !g_cw->pd.flags[DUMP])
+		if (!ft_strcmp(argv[i], "-dump") && !g_cw.pd.flags[DUMP])
 			cw_valid_dump(argv, &i);
-		else if (!ft_strcmp(argv[i], "-visu") && !g_cw->pd.flags[VISU])
-			g_cw->pd.flags[VISU] = '1';
+		else if (!ft_strcmp(argv[i], "-visu") && !g_cw.pd.flags[VISU])
+			g_cw.pd.flags[VISU] = '1';
 		else
 			return (i);
 		i++;

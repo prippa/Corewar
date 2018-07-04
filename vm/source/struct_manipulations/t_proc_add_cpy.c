@@ -18,10 +18,10 @@ void		t_processe_add(t_processes **proc_start,
 {
 	t_processes	*new_obj;
 
-	g_cw->proc_counter++;
+	g_cw.proc_counter++;
 	if (!(new_obj = (t_processes *)malloc(sizeof(t_processes))))
 		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
-	new_obj->id = g_cw->id_counter++;
+	new_obj->id = g_cw.id_counter++;
 	new_obj->carry = 0;
 	new_obj->color = 0;
 	new_obj->process_PC = 0;
@@ -43,14 +43,14 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	t_processes	*new_obj;
 
 	// add general quantity of the processes;
-	g_cw->proc_counter++;
+	g_cw.proc_counter++;
 
 	// created the memory area for the new node/process;
 	if (!(new_obj = (t_processes *)malloc(sizeof(t_processes))))
 		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
 
 	// general variable;
-	new_obj->id = g_cw->id_counter++;
+	new_obj->id = g_cw.id_counter++;
 
 	new_obj->carry = (*current_proc)->carry; // copy;
 	new_obj->color = (*current_proc)->color; // copy;
@@ -63,8 +63,8 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	new_obj->champ_number = (*current_proc)->champ_number;
 
 	// what to do if command is not valid
-	if (g_cw->map.stack[position] >= 1 && g_cw->map.stack[position] <= 16)
-		new_obj->current_command = g_cw->map.stack[position];
+	if (g_cw.map.stack[position] >= 1 && g_cw.map.stack[position] <= 16)
+		new_obj->current_command = g_cw.map.stack[position];
 	else
 		new_obj->current_command = 0;
 
@@ -77,14 +77,14 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	// add to the map;
 	if (new_obj->color == 1)
 	{
-		g_cw->map.stack_color[new_obj->process_PC] = 5;
+		g_cw.map.stack_color[new_obj->process_PC] = 5;
 	}
 	else if (new_obj->color == 2)
-		g_cw->map.stack_color[new_obj->process_PC] = 6;
+		g_cw.map.stack_color[new_obj->process_PC] = 6;
 	else if (new_obj->color == 3)
-		g_cw->map.stack_color[new_obj->process_PC] = 7;
+		g_cw.map.stack_color[new_obj->process_PC] = 7;
 	else if (new_obj->color == 4)
-		g_cw->map.stack_color[new_obj->process_PC] = 8;
+		g_cw.map.stack_color[new_obj->process_PC] = 8;
 
 
 

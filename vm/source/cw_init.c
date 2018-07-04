@@ -12,7 +12,7 @@
 
 #include "corewar.h"
 
-struct s_corewar *g_cw;
+struct s_corewar g_cw;
 
 static void cw_get_op(void)
 {
@@ -35,7 +35,7 @@ static void cw_get_op(void)
 		{&cw_lfork, 1000, 1},
 		{&cw_aff, 2, 1}
 	};
-	g_cw->op = op_tab;
+	g_cw.op = op_tab;
 }
 
 static void	cw_parse_data_init(t_parse_data *pd)
@@ -50,14 +50,12 @@ static void	cw_parse_data_init(t_parse_data *pd)
 
 void		cw_init(void)
 {
-	if (!(g_cw = (t_corewar *)malloc(sizeof(t_corewar))))
-		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
-	cw_parse_data_init(&g_cw->pd);
+	cw_parse_data_init(&g_cw.pd);
 	cw_get_op();
-	g_cw->cycle = 0;
-	g_cw->cycle_to_die = CYCLE_TO_DIE;
-	g_cw->cycle_to_die_check = CYCLE_TO_DIE;
-	g_cw->max_checks_check = MAX_CHECKS;
-	g_cw->proc_counter = 0;
-	g_cw->id_counter = 1;
+	g_cw.cycle = 0;
+	g_cw.cycle_to_die = CYCLE_TO_DIE;
+	g_cw.cycle_to_die_check = CYCLE_TO_DIE;
+	g_cw.max_checks_check = MAX_CHECKS;
+	g_cw.proc_counter = 0;
+	g_cw.id_counter = 1;
 }

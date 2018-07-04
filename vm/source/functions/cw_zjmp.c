@@ -61,5 +61,5 @@ void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 //    map->stack[proc->process_PC] = 7;
 //    map->stack_color[proc->process_PC] = 5;
 //
-//    cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+//    cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 }

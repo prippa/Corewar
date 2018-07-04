@@ -83,7 +83,7 @@ void		cw_display_dump(void)
 		ft_printf("0x%.4x : ", counter);
 		while (index < (counter + CW_BIT))
 		{
-			ft_printf("%.2x ", g_cw->map.stack[index]);
+			ft_printf("%.2x ", g_cw.map.stack[index]);
 			index++;
 		}
 		ft_putchar('\n');

@@ -127,7 +127,7 @@ void			cw_binary_xor(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned
 //	t_processes *proc;
 	// int	arguments[3];
 	//process;
-//	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
+//	proc = t_processe_get_by_id(g_cw.proc_start, g_cw.proc_end, process_id);
 
 	// process_cw;
 	char *res_of_comparison;
@@ -150,7 +150,7 @@ void			cw_binary_xor(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned
 //    map->stack[proc->process_PC] = 7;
 //    map->stack_color[proc->process_PC] = 5;
 //
-//    cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+//    cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 
 
 	

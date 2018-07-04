@@ -59,7 +59,7 @@ static void	cw_load_processes(t_champ *champ)
 	int			map_distance;
 
 	color = 1;
-	map_distance = MEM_SIZE / g_cw->pd.champs_count;
+	map_distance = MEM_SIZE / g_cw.pd.champs_count;
 
 	// ft_printf("map_distance -> %d\n", map_distance);
 	
@@ -81,8 +81,8 @@ static void	cw_load_processes(t_champ *champ)
 
 void		cw_load_map(void)
 {
-	cw_load_processes(g_cw->pd.champs);
-	cw_init_map(g_cw->map.stack,
-	g_cw->map.stack_color, g_cw->map.write_to_the_map_stack, g_cw->map.cycle_stack);
-	cw_fill_map_with_bots(&g_cw->map, g_cw->pd.champs);
+	cw_load_processes(g_cw.pd.champs);
+	cw_init_map(g_cw.map.stack,
+	g_cw.map.stack_color, g_cw.map.write_to_the_map_stack, g_cw.map.cycle_stack);
+	cw_fill_map_with_bots(&g_cw.map, g_cw.pd.champs);
 }
