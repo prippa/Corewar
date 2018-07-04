@@ -40,6 +40,8 @@ static void	print_color(unsigned char data, int color_type)
 		ft_printf("%~.2x", F_BOLD_CYAN, data);
 	else if (color_type == 14)
 		ft_printf("%~.2x", F_BACK_GRAY_BLACK, data);
+	else if (color_type== 15)
+		ft_printf("%~.2x", F_BACK_GREEN_WHITE, data);
 	else
 		ft_printf("%~.2x", F_WHITE, 0);
 }

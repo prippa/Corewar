@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+//if (map->stack_color[position_on_the_map] != 5) cw_helpers != 5
+// 234 line -> 5 
 // 4894 <- write color trouble;
 // 5020 <- color if nothing on the map;
 // каретка не должна менять цвет если один из процессов остался на том же месте
@@ -230,9 +232,9 @@ void		cw_execute_corewar(t_processes *proc)
 					// g_cw.map.stack_color[proc->process_PC - 1] = 0;
 					// int color_before = g_cw.map.stack_color[proc->process_PC];
 
-					if (g_cw.map.stack_color[proc->process_PC] == proc->proc_process_PC_color)
+					if (g_cw.map.stack_color[proc->process_PC] == 5)
 					{
-						zeta = proc->proc_process_PC_color;
+						zeta = 5;
 			
 					}
 

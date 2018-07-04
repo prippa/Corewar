@@ -78,7 +78,7 @@ void		cw_write_to_map(t_stack *map, t_processes *proc, unsigned char *buf,
 		map->stack[position_on_the_map] = buf[i];
 
 
-		if (map->stack_color[position_on_the_map] != proc->proc_process_PC_color) // maybe here for 4894;
+		if (map->stack_color[position_on_the_map] != 5) // maybe here for 4894;
 		{ ////////////////////////////////////////////// costello for not overwriting; // ? fork;
 		// ft_printf ("proc->proc_color_write_to_map -> %d\n", proc->proc_color_write_to_map);
 		map->stack_color[position_on_the_map] = proc->proc_color_write_to_map;
