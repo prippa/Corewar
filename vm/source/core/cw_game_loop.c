@@ -445,8 +445,8 @@ void		cw_execute_corewar(t_processes *proc)
 
 		proc = proc->next;
 	}
-		tmp = head;
-		i = 0;
+		// tmp = head;
+		// i = 0;
 	
 		// 	while (tmp)
 		// {
