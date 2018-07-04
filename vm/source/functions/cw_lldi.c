@@ -29,7 +29,6 @@ void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc)
 		arg = cmd->arg1.av + cmd->arg2.av + proc->process_PC;
 	proc->registers[cmd->arg3.av - 1] = cw_get_dec_from_the_point(
 		map->stack,
-		4,
 		arg
 	);
 	proc->carry = (proc->registers[cmd->arg3.av - 1] == 0 ? 1 : 0);//carry
@@ -45,25 +44,25 @@ void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc)
 	// if(map->stack_color[proc->process_PC] != 0)
 	    if (map->stack_color[proc->process_PC] == 0)
     {
-        ft_printf("stack_color lldi == 0 -> %d\n", map->stack_color[proc->process_PC]);
+        // ft_printf("stack_color lldi == 0 -> %d\n", map->stack_color[proc->process_PC]);
 
-        ft_putstr("****************************************1\n");
+        // ft_putstr("****************************************1\n");
 
-        ft_printf("stack_color lldi == 0 -> %d\n", map->stack_color[proc->process_PC]);
+        // ft_printf("stack_color lldi == 0 -> %d\n", map->stack_color[proc->process_PC]);
 
         map->stack_color[proc->process_PC] = 14;
 
-        ft_printf("stack_color lldi == 0 -> %d\n", map->stack_color[proc->process_PC]);
+        // ft_printf("stack_color lldi == 0 -> %d\n", map->stack_color[proc->process_PC]);
         
     }
     else if (map->stack_color[proc->process_PC] != 0 && map->stack_color[proc->process_PC] != 14)
     {
-        ft_putstr("****************************************2\n");
-        ft_printf("stack_color lldi != 0 -> %d\n", map->stack_color[proc->process_PC]);
+        // ft_putstr("****************************************2\n");
+        // ft_printf("stack_color lldi != 0 -> %d\n", map->stack_color[proc->process_PC]);
 
         map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
 
-        ft_printf("stack_color lldi != 0 -> %d\n", map->stack_color[proc->process_PC]);
+        // ft_printf("stack_color lldi != 0 -> %d\n", map->stack_color[proc->process_PC]);
 
     }
 	
@@ -75,5 +74,5 @@ void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc)
 		// map->stack[proc->process_PC] = 7;
 		// map->stack_color[proc->process_PC] = 5;
 		// ft_printf("process_carry -> %d\n\n", proc->carry);
-		// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+		// cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 }

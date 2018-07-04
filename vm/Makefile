@@ -13,7 +13,7 @@
 NAME		=	../corewar
 VIS_NAME	=	corewar
 
-#FLAGS		= 	-Wall -Werror -Wextra
+FLAGS		= 	-Wall -Werror -Wextra
 
 CC			=	gcc -g
 
@@ -66,7 +66,7 @@ HEAD_CW		=	op.h
 
 #-------------------------------VM----------------------------------
 C_VM		=	main.c cw_init.c cw_free.c cw_exit.c cw_helpers.c\
-				cw_helpers_2.c
+				cw_helpers_2.c cw_end.c
 
 C_PARSER	=	cw_parser.c cw_parse_args.c cw_get_basic_data.c\
 				cw_parse_flags.c
@@ -238,13 +238,13 @@ clean:
 	# @echo "Cleaning obj [ Visualizer ]..."
 
 fclean:
-	# @rm -rf $(DIR_OBJ)
-	# @echo "Clean [ obj files VM ]"
-	@rm -rf $(OBJ_PATH)
-	@echo "Cleaning obj [ Visualizer ]..."
+	@rm -rf $(DIR_OBJ)
+	@echo "Clean [ obj files VM ]"
+	# @rm -rf $(OBJ_PATH)
+	# @echo "Cleaning obj [ Visualizer ]..."
 	@rm -f $(NAME)
 	@echo "Clean" [ $(VIS_NAME) ]
 
 re: fclean all
 
-.PHONY: all clean fclean re 
+.PHONY: all clean fclean re

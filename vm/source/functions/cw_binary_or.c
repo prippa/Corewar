@@ -32,20 +32,20 @@ static void		ft_zero_it(char *str)
 		str[i++] = '0';
 }
 
-static void		binary_or_comparison(char *var_1, char *var_2, char *var_res)
-{
-	int i;
+// static void		binary_or_comparison(char *var_1, char *var_2, char *var_res)
+// {
+// 	int i;
 
-	i = 0;
-	while (i < 32)
-	{
-		if (var_1[i] == '1' || var_2[i] == '1')
-			var_res[i] = '1';
-		else
-			var_res[i] = '0';
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < 32)
+// 	{
+// 		if (var_1[i] == '1' || var_2[i] == '1')
+// 			var_res[i] = '1';
+// 		else
+// 			var_res[i] = '0';
+// 		i++;
+// 	}
+// }
 
 static int				cw_return_value_according_to_the_type_of_parameter_1(t_command *cmd, t_processes *process)
 {
@@ -99,19 +99,19 @@ static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc)
 	}
 
 	// testing
-	int i = 0;
-	while (i < 32)
-		ft_printf("%c", x_stack[i++]);
-	i = 0;
-	ft_printf("\n");
-	while (i < 32)
-		ft_printf("%c", y_stack[i++]);
-	ft_printf("\n");		
-	binary_or_comparison(x_stack, y_stack, res_of_comparison);
-	i = 0;
-	while (i < 32)
-		ft_printf("%c", res_of_comparison[i++]);
-	ft_printf("\n");
+	// int i = 0;
+	// while (i < 32)
+	// 	ft_printf("%c", x_stack[i++]);
+	// i = 0;
+	// ft_printf("\n");
+	// while (i < 32)
+	// 	ft_printf("%c", y_stack[i++]);
+	// ft_printf("\n");		
+	// binary_or_comparison(x_stack, y_stack, res_of_comparison);
+	// i = 0;
+	// while (i < 32)
+	// 	ft_printf("%c", res_of_comparison[i++]);
+	// ft_printf("\n");
 	
 
 	free(x);
@@ -132,7 +132,7 @@ void			cw_binary_or(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned 
 //	t_processes *proc;
 	// int	arguments[3];
 	//process;
-//	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
+//	proc = t_processe_get_by_id(g_cw.proc_start, g_cw.proc_end, process_id);
 
 	// process_cw;
 	char *res_of_comparison;
@@ -142,7 +142,7 @@ void			cw_binary_or(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned 
 	proc->registers[cmd->arg3.av - 1] = ft_atoi_base(res_of_comparison, 2);
 	free(res_of_comparison);
 
-	ft_printf("res of comparison->%d\n", proc->registers[cmd->arg3.av - 1]);
+	// ft_printf("res of comparison->%d\n", proc->registers[cmd->arg3.av - 1]);
 
 	map->stack_color[proc->process_PC] = proc->color;
 	
@@ -162,7 +162,7 @@ void			cw_binary_or(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned 
 //	 map->stack[proc->process_PC] = 7;
 //	 map->stack_color[proc->process_PC] = 5;
 //
-//	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+//	 cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 
 
 	

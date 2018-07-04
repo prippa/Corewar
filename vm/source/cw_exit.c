@@ -27,7 +27,7 @@ static void	cw_exit_print_message(char *message, int error_number)
 		ft_dprintf(2, "Error: File [%s] has an invalid prog name\n", message);
 	else if (error_number == PROG_SIZE_TO_BIG)
 		ft_dprintf(2, "Error: File [%s] has too large a code (\
-%u bytes > %u bytes)\n", message, (unsigned int)(g_cw->pd.tmp), CHAMP_MAX_SIZE);
+%u bytes > %u bytes)\n", message, (unsigned int)(g_cw.pd.tmp), CHAMP_MAX_SIZE);
 	else if (error_number == COMMENT)
 		ft_dprintf(2, "Error: File [%s] has an invalid comment\n", message);
 	else if (error_number == PROG_SIZE_INVALID)
@@ -46,7 +46,7 @@ void		cw_exit(char *message, int error_number)
 
 void		cw_print_dump_exit(void)
 {
-	cw_print_players(g_cw->pd.champs);
+	cw_print_players(g_cw.pd.champs);
 	cw_display_dump();
 	cw_free();
 	exit(0);

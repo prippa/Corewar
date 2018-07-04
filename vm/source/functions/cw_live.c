@@ -30,18 +30,18 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
 	t_champ *champ;
 
-//   proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
+//   proc = t_processe_get_by_id(g_cw.proc_start, g_cw.proc_end, process_id);
 
 	proc->has_been_activated = ALIVE; // maybe for testing we can use += live, will see;
 
-	champ = t_champ_find(cmd->arg1.av, g_cw->pd.champs);
+	champ = t_champ_find(cmd->arg1.av, g_cw.pd.champs);
 
 	ft_printf("here live\n");
 
 	if (champ)
 	{
 		champ->lives_number += ALIVE;
-		champ->last_live = g_cw->cycle + 1;
+		champ->last_live = g_cw.cycle + 1;
 	}
 
 	ft_printf("here after\n");
@@ -65,7 +65,7 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 			getchar();
 	}
 //
-//	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+//	 cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 
 
 

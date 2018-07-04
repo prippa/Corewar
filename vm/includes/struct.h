@@ -14,32 +14,6 @@
 # define STRUCT_H
 
 /*
-************************ Parsing champions part (data) *************************
-*/
-
-typedef struct			s_champ
-{
-	t_header			head; 							// nope;
-	char				file_name[FILE_NAME_MAX + 1];	// nope;
-	int					fd;								// nope;
-	unsigned char		code[CHAMP_MAX_SIZE];			// yeap;
-	int					champ_number;
-	int					real_champ_number;
-	unsigned int        lives_number;
-	unsigned int        last_live;                      // todo implement in the cycle;
-	struct s_champ		*next;							// yeap;
-}						t_champ;
-
-typedef struct			s_parse_data
-{
-	t_champ				*champs; 						// to add champ name/counter;
-	long long int		tmp;
-	int					champs_count;
-	int					dump_stop;					// -dump flag
-	char				flags[CW_F_SIZE];
-}						t_parse_data;
-
-/*
 ********************************** Core Part ***********************************
 */
 
@@ -67,12 +41,12 @@ typedef	struct			s_processes					// fork will create a process and will change t
 	int					registers[REG_NUMBER];		// r1 -> player_name register;
 	int 				live_status;				// flag to detect the life of the process;
 	int 				has_been_activated;			// if the process has been used;
-	int					champ_number;				// Number of champ
 	short				cycles_till_execution;		// will be decremented;
 	short				proc_process_PC_color;		// initial color;
 	short				proc_color_write_to_map;	// color for writing on the map;
 	int					current_command;			// keep the current command;
 	int 				detect_deviation;			// cmd vs cur cmd;
+	int					champ_number;
 	struct s_processes	*next;						// pointer to the next element;
 	struct s_processes	*prev;						// pointer to the prev element;
 }						t_processes;
@@ -84,6 +58,35 @@ typedef struct			s_stack
 	unsigned int		write_to_the_map_stack[MEM_SIZE];	// maintain color buf for sti;
 	unsigned int		cycle_stack[MEM_SIZE];		// to keep the 50 cycles;
 }						t_stack;
+
+/*
+************************ Parsing champions part (data) *************************
+*/
+
+typedef struct			s_champ
+{
+	t_header			head; 							// nope;
+	char				file_name[FILE_NAME_MAX + 1];	// nope;
+	int					fd;								// nope;
+	unsigned char		code[CHAMP_MAX_SIZE];			// yeap;
+	int					champ_number;
+	int					order;
+	unsigned int        lives_number;
+	unsigned int        last_live;                      // todo implement in the cycle;
+	t_processes			*proc_start;
+	t_processes			*proc_end;
+	struct s_champ		*next;							// yeap;
+}						t_champ;
+
+typedef struct			s_parse_data
+{
+	t_champ				*champs; 						// to add champ name/counter;
+	long long int		tmp;
+	int					champs_count;
+	unsigned int		dump_stop;						// -dump flag
+	char				flags[CW_F_SIZE];
+	char				flag_champ_number[MAX_PLAYERS];
+}						t_parse_data;
 
 /*
 *********************** Implementing a function pointer ************************
@@ -104,8 +107,6 @@ typedef struct			s_corewar
 {
 	t_parse_data		pd;
 	t_stack				map;
-	t_processes			*proc_start;
-	t_processes			*proc_end;
 	const t_op			*op;
 	unsigned int		cycle;
 	int					cycle_to_die;

@@ -12,6 +12,62 @@
 
 #include "corewar.h"
 
+void			t_champ_sort_by_champ_number(t_champ **champs)
+{
+	t_champ *list;
+	t_champ *next;
+	t_champ *prev;
+
+	list = *champs;
+	prev = NULL;
+	while (list->next)
+	{
+		next = list->next;
+		if (list->champ_number < next->champ_number)
+		{
+			list->next = next->next;
+			next->next = list;
+			if (prev)
+				prev->next = next;
+			else
+				*champs = next;
+			list = *champs;
+			prev = NULL;
+			continue;
+		}
+		prev = list;
+		list = list->next;
+	}
+}
+
+void			t_champ_sort_by_order(t_champ **champs)
+{
+	t_champ *list;
+	t_champ *next;
+	t_champ *prev;
+
+	list = *champs;
+	prev = NULL;
+	while (list->next)
+	{
+		next = list->next;
+		if (list->order > next->order)
+		{
+			list->next = next->next;
+			next->next = list;
+			if (prev)
+				prev->next = next;
+			else
+				*champs = next;
+			list = *champs;
+			prev = NULL;
+			continue;
+		}
+		prev = list;
+		list = list->next;
+	}
+}
+
 void			t_champ_rev(t_champ **champs)
 {
 	t_champ *prev;
@@ -34,7 +90,10 @@ void			t_champ_free(t_champ **champs)
 {
 	while (*champs)
 	{
-		// close((*champs)->fd);
+		close((*champs)->fd);
+		while ((*champs)->proc_start)
+			t_processe_free_by_obj(&(*champs)->proc_start, &(*champs)->proc_end,
+				(*champs)->proc_start);
 		free(*champs);
 		*champs = (*champs)->next;
 	}
@@ -53,10 +112,12 @@ void			t_champ_add(t_champ **champs)
 	new_obj->head.prog_size = 0;
 	ft_bzero(new_obj->head.comment, COMMENT_LENGTH + 1);
 	ft_bzero(new_obj->code, CHAMP_MAX_SIZE);
-	new_obj->champ_number = 0;
 	new_obj->lives_number = 0;
 	new_obj->last_live = 0;
-	new_obj->real_champ_number = 0;
+	new_obj->champ_number = 0;
+	new_obj->order = 0;
+	new_obj->proc_start = NULL;
+	new_obj->proc_end = NULL;
 	new_obj->next = *champs;
 	*champs = new_obj;
 }

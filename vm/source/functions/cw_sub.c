@@ -37,7 +37,7 @@ void			cw_sub(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	// int	arguments[3];
 	//process;
 
-//	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
+//	proc = t_processe_get_by_id(g_cw.proc_start, g_cw.proc_end, process_id);
 //	ft_printf("process_id-> %d\n\n", proc->id);
 
 //	ft_printf("proc->registers[cmd->arg1.av - 1]-> %d\n", proc->registers[cmd->arg1.av - 1]);
@@ -74,5 +74,5 @@ void			cw_sub(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 //
 //	 ft_printf("process_carry -> %d\n\n", proc->carry);
 //
-//	  cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+//	  cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 }
