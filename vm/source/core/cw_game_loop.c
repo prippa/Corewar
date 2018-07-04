@@ -106,22 +106,9 @@ int			cw_move_PC_when_not_correct_cdg(int codage, int cmd) // read first 3 bytes
 		j++;
 	}
 	i += 2;
-
-
-
-
-
 	free(binary);
 	free(buf_general);
 	free(buf_for_2_bytes);
-
-
-
-
-
-
-
-
 	// ft_printf("->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>%d\n", i);
 	// read(1,0,1);
 	return (i);
@@ -154,11 +141,10 @@ void		cw_color_start(t_champ *ch, t_stack *map)
 void		cw_execute_corewar(t_processes *proc)
 {
 	t_command cmd;
-				ft_bzero(&cmd, sizeof(t_command));
-	
+	ft_bzero(&cmd, sizeof(t_command));
+
 	// t_processes *head = proc;
 	
-
 	// ft_printf("%s\n", "in corwar magic"); // 235 536 184
 	// exit(1);
 	// getchar();
@@ -190,8 +176,6 @@ void		cw_execute_corewar(t_processes *proc)
 		// ft_printf("cur cmd -----------> %d\n", proc->current_command);
 		// ft_printf("color -----------> %d\n", g_cw.map.stack_color[proc->process_PC]);
 
-
-
 		// cmd.cmd, do not include codage;
 		// ft_printf("%s\n", "before get cmd");
 		
@@ -206,39 +190,25 @@ void		cw_execute_corewar(t_processes *proc)
 				// ft_printf("%s\n", "after get cmd");
 				// ft_printf("in -> %d\n", g_cw.map.stack_color[proc->process_PC]);
         		// ft_printf("stack_color not vali -> %d\n", g_cw.map.stack_color[proc->process_PC]);
-
         		if (g_cw.map.stack_color[proc->process_PC ] != 0 && g_cw.map.stack_color[proc->process_PC ] != 14 && g_cw.map.cycle_stack[proc->process_PC] == 0)
         		{
 					g_cw.map.stack_color[proc->process_PC] = proc->color; //check it;
-					
         		}
 				else if (g_cw.map.stack_color[proc->process_PC ] == 0 || g_cw.map.stack_color[proc->process_PC ] == 14)
 				{
 					g_cw.map.stack_color[proc->process_PC] = 14;
-
 				}
 
 				static int zeta;
-
 
 				if (g_cw.map.stack_color[proc->process_PC] == zeta) // one process_PC is enough maybe;
 				{
 					// ft_putstr("here\n");
 					g_cw.map.stack_color[proc->process_PC] = 9;
-	
 				}
-
-
-
 				// ft_printf("%s\n", "woohoo");
 
 				proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
-
-
-
-
-
-
 
 				if (proc->process_PC != 0 && g_cw.map.stack_color[proc->process_PC - 1] == 14) // one process_PC is enough maybe;
 				{
@@ -252,7 +222,6 @@ void		cw_execute_corewar(t_processes *proc)
 			
 				}
 
-
 				if (g_cw.map.stack_color[proc->process_PC ] == 0)
 				{
 					// g_cw.map.stack_color[proc->process_PC - 1] = 0;
@@ -264,7 +233,6 @@ void		cw_execute_corewar(t_processes *proc)
 					// g_cw.map.stack_color[proc->process_PC - 1] = 0;
 					// int color_before = g_cw.map.stack_color[proc->process_PC];
 
-		
 					if (g_cw.map.stack_color[proc->process_PC] == 5)
 					{
 						zeta = 5;
@@ -274,17 +242,13 @@ void		cw_execute_corewar(t_processes *proc)
 					// ft_printf("cycle_stack -> %d\n", g_cw.map.cycle_stack[proc->process_PC]);
 
 					// if (g_cw.map.cycle_stack[proc->process_PC] == 0)
-						g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // цвет кареткиж
+					g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // цвет кареткиж
 		
 				}
 				// else
-
-
 		}
 		else
 		{
-		
-
 			// cw_print_cmd_specifications(&cmd);
 
 			// decrement the cycles and then execute;
@@ -310,7 +274,6 @@ void		cw_execute_corewar(t_processes *proc)
 				proc->detect_deviation = 1;
 				// exit (0); // -> show the first deviation;
 			}
-
 
 			if (proc->detect_deviation == 0)
 			{
@@ -342,43 +305,30 @@ void		cw_execute_corewar(t_processes *proc)
 						if (g_cw.map.stack_color[proc->process_PC] != 0 && g_cw.map.stack_color[proc->process_PC] != 14)
 						{
     						g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
-  
 						}
     					else
     					{
     						g_cw.map.stack_color[proc->process_PC] = 14;
-
     					}
 
     					proc->cycles_till_execution = 1;
 
-
 						proc->current_command = 0;
 
-
-
 						//colors
-
-
 					}
 				}
 			}
 			else if (proc->detect_deviation == 1)
 			{
-
-
 				ft_bzero(&cmd, sizeof(t_command));
-
 
 				if (proc->cycles_till_execution < g_cw.op[proc->current_command - 1].cycles_price) // keep the current comman
 				{
-// 
 					// ft_printf("till exec dev-> %d\n", proc->cycles_till_execution);
 					// ft_printf("process_PC_dev -> %d\n", proc->process_PC);
 
-
 					proc->cycles_till_execution++;											
-
 				}
 				else
 				{
@@ -404,20 +354,15 @@ void		cw_execute_corewar(t_processes *proc)
 						// ft_printf("not valid codage -------------------------------> %d\n", "123456");//////////// ?
 					// ft_printf("here ->*******************************************4\n");
 					// getchar();
-
 						cw_get_command(&cmd, proc->process_PC, g_cw.map.stack); // to have the cmd.codage actual on the map; /////////////////// ?
 
 						g_cw.map.stack_color[proc->process_PC] = proc->color;
 
 						proc->process_PC += cw_move_PC_when_not_correct_cdg(cmd.codage, proc->current_command);
 
-
-
 						if (g_cw.map.stack_color[proc->process_PC] != 0 && g_cw.map.stack_color[proc->process_PC] != 14)
 						{
     						g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
-
-
 						}
     					else
     					{
@@ -425,7 +370,6 @@ void		cw_execute_corewar(t_processes *proc)
     					}
     					proc->cycles_till_execution = 1;
 						proc->current_command = 0;
-						//colors
 					}
 					// else
 					// 	ft_printf("not valid codage -> %d", NOT_CORRECT_CODAGE);
@@ -434,11 +378,7 @@ void		cw_execute_corewar(t_processes *proc)
 			}
 			// else if (proc->cycles_till_execution != 0 && proc->cycles_till_execution != 1001)
 			// 	proc->cycles_till_execution--;
-
-
 			// if (proc->cycles_till_execution == 0)
-
-
 		}
 
 		// ft_bzero(&cmd, sizeof(t_command));
@@ -563,8 +503,6 @@ void		cw_game_loop(void)
 		// 	ft_printf("%-----u\n", g_cw.proc_counter);
 		// 	exit (0);
 		// }
-
-
 		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw.cycle);
 		// ft_printf("processes -> %d\n", g_cw.proc_counter);
 
