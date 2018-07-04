@@ -12,12 +12,9 @@
 
 // 4894 <- write color trouble;
 // 5020 <- color if nothing on the map;
-// cw_helpers write to map costello;
-// replace all constants like 5 or 9 to variable in game loop and zjmp;
 // каретка не должна менять цвет если один из процессов остался на том же месте
 
-// если у любого игрока было 21 лайвж
-// первый 6 байт + 2ж
+// ft_printf("%~.2x", F_BACK_GREEN_WHITE, data); // every 50 cycles
 
 #include "corewar.h"
 
@@ -233,9 +230,9 @@ void		cw_execute_corewar(t_processes *proc)
 					// g_cw.map.stack_color[proc->process_PC - 1] = 0;
 					// int color_before = g_cw.map.stack_color[proc->process_PC];
 
-					if (g_cw.map.stack_color[proc->process_PC] == 5)
+					if (g_cw.map.stack_color[proc->process_PC] == proc->proc_process_PC_color)
 					{
-						zeta = 5;
+						zeta = proc->proc_process_PC_color;
 			
 					}
 
@@ -492,7 +489,7 @@ void		cw_game_loop(void)
 
 	#define CYCLES 100000
 
-	#define test 5000
+	#define test 5163
 
 	// 4570;
 
@@ -532,11 +529,11 @@ void		cw_game_loop(void)
 
 		cw_decrementor(g_cw.map.write_to_the_map_stack, g_cw.map.stack_color, g_cw.map.cycle_stack);
 
-		// if (g_cw.cycle >= test)
-		// {
-		// 	cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
-		// // 	// cw_display_map_write(g_cw.map.stack_color);
-		// }
+		if (g_cw.cycle >= test)
+		{
+			cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
+		// 	// cw_display_map_write(g_cw.map.stack_color);
+		}
 
 		// FLAG -dump in work
 		if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
@@ -546,7 +543,7 @@ void		cw_game_loop(void)
 		if (!g_cw.cycle_to_die_check)
 			cw_cycles_new_period();
 		
-		// GAME END IF ALL PROCESSES IS DEAD !
+		// GAME END IF ALL PROCESSES ARE DEAD !
 		if (g_cw.proc_counter == 0)
 			return ;
 

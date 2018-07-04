@@ -67,6 +67,4 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 //
 //	 cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 
-
-
 }
