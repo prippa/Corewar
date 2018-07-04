@@ -90,7 +90,6 @@ void			t_champ_free(t_champ **champs)
 {
 	while (*champs)
 	{
-		close((*champs)->fd);
 		while ((*champs)->proc_start)
 			t_processe_free_by_obj(&(*champs)->proc_start, &(*champs)->proc_end,
 				(*champs)->proc_start);

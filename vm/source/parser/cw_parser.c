@@ -35,6 +35,7 @@ void		cw_parser(void)
 	while (champs)
 	{
 		cw_parse_file(champs);
+		close(champs->fd);
 		champs = champs->next;
 	}
 }

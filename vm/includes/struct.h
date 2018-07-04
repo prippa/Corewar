@@ -117,5 +117,3 @@ typedef struct			s_corewar
 }						t_corewar;
 
 #endif
-
-#define AAA "  ________                           ________                          \n /  _____/ _____     _____    ____   \\_____  \\  ___  __  ____  _______ \n"
