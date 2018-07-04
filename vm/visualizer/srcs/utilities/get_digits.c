@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_outlinerect.c                                 :+:      :+:    :+:   */
+/*   get_digits.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkovsh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/24 12:42:59 by vkovsh            #+#    #+#             */
-/*   Updated: 2018/05/24 12:43:01 by vkovsh           ###   ########.fr       */
+/*   Created: 2018/07/04 16:42:15 by vkovsh            #+#    #+#             */
+/*   Updated: 2018/07/04 16:42:17 by vkovsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visualizer.h"
 
-void	draw_outlinerect(t_arena *arena, SDL_Rect rect)
+void	get_digits(unsigned char hex, int *ff, int *sf)
 {
-	SDL_SetRenderDrawColor(arena->renderer, 0x00, 0x00, 0x00, 0xff);
-	SDL_RenderDrawRect(arena->renderer, &rect);
+	*ff = (hex >> 4);
+	*sf = ((*ff << 4) ^ hex);
 }

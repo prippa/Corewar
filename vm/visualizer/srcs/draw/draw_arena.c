@@ -18,6 +18,8 @@ static inline void	draw_numbers(t_arena *arena,
 {
 	SDL_Point		top_left;
 	Uint8			i;
+	int				ff;
+	int				sf;
 
 	top_left = arena->top_left;
 	top_left.x += width;
@@ -25,8 +27,7 @@ static inline void	draw_numbers(t_arena *arena,
 	while (++i < ARENA_WIDTH)
 	{
 		int x_init = top_left.x;
-		int ff = (i >> 4);
-		int sf = ((ff << 4) ^ i);
+		get_digits(i, &ff, &sf);
 		SDL_Rect rect = get_rectangle(top_left.x + 1,
 										top_left.y + 1,
 										width - 2,
@@ -34,10 +35,7 @@ static inline void	draw_numbers(t_arena *arena,
 		SDL_SetRenderDrawColor(arena->renderer, 0x0, 0x0, 0x0, 0xff);
 		SDL_RenderFillRect(arena->renderer, &rect);
 		rect.w /= 2;
-		t_rposition position = get_render_position(0,
-												&top_left,
-												NULL,
-												&rect);
+		t_rposition position = get_render_position(0, &top_left, NULL, &rect);
 		render(&position, arena->figures[ff], arena->renderer, SDL_FLIP_NONE);
 		top_left.x += rect.w;
 		rect.x += rect.w;

@@ -14,8 +14,6 @@
 
 static inline void	dequeue_events(t_arena *arena)
 {
-	static int		k;
-
 	while (SDL_PollEvent(&(arena->e)))
 	{
 		if (arena->e.type == SDL_QUIT)
@@ -30,14 +28,8 @@ static inline void	dequeue_events(t_arena *arena)
 			handle_movebutton_event(&(arena->e), arena->move_btns[i], arena, i);
 		handle_checkbox_event(&(arena->e), arena->full_btn, arena);
 	}
-	if (k == 4)
-	{
-		for (int i = 0; i < MOVE_BUTTON_TOTAL; i++)
-			handle_movebutton_event(NULL, arena->move_btns[i], arena, i);
-		k = 0;
-	}
-	else
-		k++;
+	for (int i = 0; i < MOVE_BUTTON_TOTAL; i++)
+		handle_movebutton_event(NULL, arena->move_btns[i], arena, i);
 }
 
 static inline void	handle_arena_rendering(t_arena *arena,
@@ -50,7 +42,7 @@ static inline void	handle_arena_rendering(t_arena *arena,
 		*tacts_before_render -= (end - begin);
 		if (*tacts_before_render <= 0)
 		{
-			*tacts_before_render = 100000;
+			*tacts_before_render = 200000;
 			if (arena->pause == false)
 				set_random(arena);
 		}

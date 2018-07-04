@@ -64,9 +64,10 @@
 # define CANSEL_BUTTON {ESCAPE_KEY, CANSEL_BUTTON_ID, "Cansel"}
 # define DEFAULT_COLOR_KEY (SDL_Color){.r = 0xff, .g = 0xff, .b = 0xff}
 # define MOVE_BTN_WIDTH (((SCREEN_WIDTH >> 4) * 2) / 3)
-
-extern int	g_w;
-extern int	g_h;
+# define RED ((SDL_Color){.r = 0xff})
+# define GREEN ((SDL_Color){.g = 0xff})
+# define BLUE ((SDL_Color){.b = 0xff})
+# define CYAN ((SDL_Color){.g = 0xff, .b = 0xff})
 
 /*
 ** Number of message box buttons
@@ -245,10 +246,18 @@ typedef struct					s_arena
 	SDL_Surface					*screen_surface;
 	SDL_Renderer				*renderer;
 	SDL_DisplayMode				d_mode;
+	/*
+	** regular figures
+	*/
 	t_ltexture					*figures[FIGURES_COUNT];
+	/*
+	** bold figures
+	*/
+	t_ltexture					*bold_figures[FIGURES_COUNT];
 	Uint8						bytes[MAP_SIZE];
 	SDL_Color					colors[MAP_SIZE];
 	Uint8						new_bytes[MAP_SIZE];
 	SDL_Color					new_colors[MAP_SIZE];
+	bool						is_bold[MAP_SIZE];
 }								t_arena;
 #endif

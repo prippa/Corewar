@@ -12,7 +12,7 @@
 
 #include "visualizer.h"
 
-static inline bool	create_window(t_arena *arena)
+static inline bool	init_window(t_arena *arena)
 {
 	if (!(arena->window = SDL_CreateWindow("Digital Coliseum",
 											SDL_WINDOWPOS_UNDEFINED,
@@ -54,28 +54,31 @@ static inline void	init_viewport(t_arena *arena)
 									SCREEN_HEIGHT);
 }
 
-bool				init(t_arena *arena)
+static inline bool	init_display_mode(t_arena *arena)
 {
-	if (!init_devices())
-		return (false);
-	bzero(arena, sizeof(t_arena));
 	if (SDL_GetDesktopDisplayMode(0, &(arena->d_mode)) != GET_DMODE_SUCCESS)
 	{
 		force_error(SDL_GetError());
         return (false);
 	}
-	init_music(arena);
+	return (true);
+}
+
+bool				init(t_arena *arena)
+{
+	if (!init_devices())
+		return (false);
+	bzero(arena, sizeof(t_arena));
+	if (!init_display_mode(arena) || !init_music(arena))
+		return (false);
 	init_viewport(arena);
 	init_msg_buttons(arena);
-	if (!create_window(arena))
+	if (!init_window(arena))
 		return (false);
 	init_figures(arena);
 	if (!init_controls(arena))
 		return (false);
-	if (!(arena->tile_block =
-			load_from_file(TILEBLOCK_IMG,
-							arena->renderer,
-							(SDL_Color){.r = 0x0, .g = 0x0, .b = 0x0, .a = 0xff})))
+	if (!(arena->tile_block = load_from_file(TILEBLOCK_IMG, arena->renderer, (SDL_Color){})))
 		return (false);
 	return (true);
 }

@@ -42,6 +42,7 @@ DRAW_PATH		=	$(SRC_PATH)draw/
 LOADER_PATH		=	$(SRC_PATH)loader/
 LTEXTURE_PATH	=	$(SRC_PATH)ltexture/
 BUTTON_PATH		=	$(SRC_PATH)button/
+UTIL_PATH		=	$(SRC_PATH)utilities/
 SDL_PATH		=	$(DIR_VIS)SDL_framework/
 MACOS_INC_PATH	=	$(DIR_VIS)includes/ $(SDL_PATH)Headers_macos/
 LINUX_INC_PATH	=	$(DIR_VIS)includes/ $(SDL_PATH)Headers_linux/
@@ -82,10 +83,12 @@ C_FUNC		=	cw_binary_and.c cw_binary_or.c cw_binary_xor.c\
 #-------------------------------------------------------------------
 
 #------------------------------Visualizer---------------------------
-SRC_NAME		=	clear_renderer.c			\
+SRC_NAME		=	entry_point.c
+
+UTIL_NAME		=	clear_renderer.c			\
 					exit_dialog.c				\
 					get_rectangle.c				\
-					visualizer.c
+					get_digits.c
 
 EVENT_NAME		=	events_manager.c			\
 					key_event.c					\
@@ -149,6 +152,7 @@ OBJ_NAME		+=	$(LTEXTURE_NAME:.c=.o)
 OBJ_NAME		+=	$(BUTTON_NAME:.c=.o)
 OBJ_NAME		+=	$(INIT_NAME:.c=.o)
 OBJ_NAME		+=	$(ERROR_NAME:.c=.o)
+OBJ_NAME		+=	$(UTIL_NAME:.c=.o)
 #---------------------------------------------------------------
 
 OBJ			=	$(addprefix $(OBJ_PATH), $(OBJ_NAME))
@@ -230,6 +234,11 @@ $(OBJ_PATH)%.o:	$(INIT_PATH)%.c
 $(OBJ_PATH)%.o:	$(ERROR_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
 				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
+				@echo "Linking" [ $< ]
+
+$(OBJ_PATH)%.o:	$(UTIL_PATH)%.c
+				@mkdir -p $(OBJ_PATH)
+				@$(CC) $(FLAGS) -o $@ -c $< $(INC) $(INC_CW)
 				@echo "Linking" [ $< ]
 #---------------------------------------------------------------
 #---------------------------------------------------------------

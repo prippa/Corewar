@@ -25,20 +25,36 @@ void			draw_fillrect(t_arena *arena,
 	ff = (cell >> 4);
 	sf = ((ff << 4) ^ cell);
 
+	t_ltexture *f = NULL;
+	t_ltexture *s = NULL;
+	SDL_Color c = (SDL_Color){};
+	if (arena->is_bold[cell])
+	{
+		f = arena->bold_figures[ff];
+		s = arena->bold_figures[sf];
+	}
+	else
+	{
+		f = arena->figures[ff];
+		s = arena->figures[sf];
+		set_alpha_mode(200, f);
+		set_alpha_mode(200, s);
+	}
 	position = get_render_position(0, &left_corner, NULL, &rect);
-	set_color(arena->colors[i * ARENA_WIDTH + j], arena->tile_block);
+	//set_color(arena->colors[i * ARENA_WIDTH + j], arena->tile_block);
+	set_color((SDL_Color){}, arena->tile_block);
 	render(&position, arena->tile_block, arena->renderer, SDL_FLIP_NONE);
-	SDL_Color c = arena->colors[i * ARENA_WIDTH + j];
-	c.r ^= 0xff;
+	c = arena->colors[i * ARENA_WIDTH + j];
+	/*c.r ^= 0xff;
 	c.g ^= 0xff;
-	c.b ^= 0xff;
-	set_color(c, arena->figures[ff]);
-	set_color(c, arena->figures[sf]);
+	c.b ^= 0xff;*/
+	set_color(c, f);
+	set_color(c, s);
 	rect.w /= 2;
 	position = get_render_position(0, &left_corner, NULL, &rect);
-	render(&position, arena->figures[ff], arena->renderer, SDL_FLIP_NONE);
+	render(&position, f, arena->renderer, SDL_FLIP_NONE);
 	rect.x += rect.w;
 	left_corner.x += rect.w;
 	position = get_render_position(0, &left_corner, NULL, &rect);
-	render(&position, arena->figures[sf], arena->renderer, SDL_FLIP_NONE);
+	render(&position, s, arena->renderer, SDL_FLIP_NONE);
 }

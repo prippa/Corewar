@@ -46,8 +46,18 @@ void	set_random(t_arena *arena)
 	i = -1;
 	while (++i < MAP_SIZE)
 	{
+		arena->is_bold[i] = rand() % 2;
 		arena->bytes[i] = rand() % 0x100;
-		arena->colors[i] = (SDL_Color){.r = rand(), .g = 255, .b = rand()};
+		int r = rand()%4;
+		if (r == 0)
+			arena->colors[i] = RED;
+		else if (r == 1)
+			arena->colors[i] = GREEN;
+		else if (r == 2)
+			arena->colors[i] = BLUE;
+		else
+			arena->colors[i] = CYAN;
+		//arena->colors[i] = (SDL_Color){.r = 0, .g = 0, .b = 0};
 	}
 }
 
