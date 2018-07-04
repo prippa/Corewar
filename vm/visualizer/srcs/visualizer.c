@@ -57,10 +57,6 @@ int					visualizer_main(void)
 
 	if (!init(&arena))
 		printf("Error\n");
-	arena.viewport = get_rectangle(0,
-								0,
-								SCREEN_WIDTH - BUTTON_WIDTH - (SCREEN_WIDTH >> 5),
-								SCREEN_HEIGHT);
 	events_handler(&arena);
 	close_all(arena);
 	return (0);

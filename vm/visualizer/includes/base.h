@@ -36,8 +36,8 @@
 # define GREY_PANEL_IMG "vm/visualizer/images/grey_panel.png"
 # define MAIN_THEME "music/10 Route 666.mp3"
 # define GET_DMODE_SUCCESS 0
-# define SCREEN_WIDTH 1280
-# define SCREEN_HEIGHT 720
+# define SCREEN_WIDTH (arena->d_mode.w - 200)
+# define SCREEN_HEIGHT (arena->d_mode.h - 200)
 # define MAP_SIZE 4096
 # define MIN_ZOOM 0.5
 # define MAX_ZOOM 10
@@ -64,6 +64,9 @@
 # define CANSEL_BUTTON {ESCAPE_KEY, CANSEL_BUTTON_ID, "Cansel"}
 # define DEFAULT_COLOR_KEY (SDL_Color){.r = 0xff, .g = 0xff, .b = 0xff}
 # define MOVE_BTN_WIDTH (((SCREEN_WIDTH >> 4) * 2) / 3)
+
+extern int	g_w;
+extern int	g_h;
 
 /*
 ** Number of message box buttons

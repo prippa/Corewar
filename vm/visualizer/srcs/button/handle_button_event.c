@@ -8,7 +8,7 @@ static inline bool	is_mouse_event_happened(int type)
 }
 
 static inline bool	is_mouse_outside_button(int x, int y,
-											SDL_Point position)
+											SDL_Point position, t_arena *arena)
 {
 	return (x < position.x ||
 			x > position.x + BUTTON_WIDTH ||
@@ -27,7 +27,7 @@ void				handle_button_event(SDL_Event *e,
 	if (is_mouse_event_happened(e->type))
 	{
 		SDL_GetMouseState(&x, &y);
-		if (is_mouse_outside_button(x, y, btn->position))
+		if (is_mouse_outside_button(x, y, btn->position, arena))
 			btn->current_sprite = BUTTON_MOUSE_OUT;
 		else if (e->type == SDL_MOUSEMOTION)
 			btn->current_sprite = BUTTON_MOUSE_OVER_MOTION;
