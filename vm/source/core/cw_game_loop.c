@@ -297,6 +297,7 @@ void		cw_execute_corewar(t_processes *proc)
 					else
 					{
 						// ft_printf("not valid codage -------------------------------> %d\n", cmd.codage);
+	// ->>>>>>>>>>>>>>>>>>>>>>>// do smthing with lieve;
 						g_cw.map.stack_color[proc->process_PC] = proc->color;
 
 						proc->process_PC = MEM_CORRECTION((proc->process_PC + cw_move_PC_when_not_correct_cdg(cmd.codage, cmd.cmd)));
@@ -448,22 +449,22 @@ void	cw_decrementor(unsigned int *write_to_the_map_stack, int *stack_color, unsi
 	{
 		if (write_to_the_map_stack[i] != 0)
 		{
-			if (write_to_the_map_stack[i] == 9 && cycle_stack[i] == 0 && stack_color[i] != 5)
+			if (write_to_the_map_stack[i] == 9 && cycle_stack[i] == 0 && stack_color[i] != 5) //sti
 			{
 				stack_color[i] = 1;
 				write_to_the_map_stack[i] = 0;
 			}
-			else if (write_to_the_map_stack[i] == 10 && cycle_stack[i] == 0 && stack_color[i] != 6)
+			else if (write_to_the_map_stack[i] == 10 && cycle_stack[i] == 0 && stack_color[i] != 6) //sti
 			{
 				stack_color[i] = 2;
 				write_to_the_map_stack[i] = 0;
 			}
-			else if (write_to_the_map_stack[i] == 11 && cycle_stack[i] == 0 && stack_color[i] != 7)
+			else if (write_to_the_map_stack[i] == 11 && cycle_stack[i] == 0 && stack_color[i] != 7) //sti
 			{
 				stack_color[i] = 3;
 				write_to_the_map_stack[i] = 0;
 			}
-			else if (write_to_the_map_stack[i] == 12 && cycle_stack[i] == 0 && stack_color[i] != 8)
+			else if (write_to_the_map_stack[i] == 12 && cycle_stack[i] == 0 && stack_color[i] != 8) //sti
 			{
 				stack_color[i] = 4;
 				write_to_the_map_stack[i] = 0;
