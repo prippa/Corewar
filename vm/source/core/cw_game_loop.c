@@ -517,8 +517,8 @@ void		cw_game_loop(void)
 
 	#define CYCLES 100000
 
-	#define test 6142
-	// #define test 100
+	#define test1 2800
+	// #define test1 100
 
 
 	// 4570;
@@ -560,7 +560,7 @@ void		cw_game_loop(void)
 
 		cw_decrementor(g_cw.map.write_to_the_map_stack, g_cw.map.stack_color, g_cw.map.cycle_stack);
 
-		// if (g_cw.cycle >= test)
+		// if (g_cw.cycle >= test1)
 		// {
 		// 	cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 		// // 	// cw_display_map_write(g_cw.map.stack_color);
