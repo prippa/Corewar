@@ -21,7 +21,7 @@
 
 #define	DIR_CHECK(x) (((x) > 8 && (x) < 13) || (x) == 14 || (x) == 15)
 
-#define number_for_empty_signal 100
+
 
 
 static void		ft_zero_it(char *str)
@@ -517,7 +517,7 @@ void		cw_game_loop(void)
 
 	#define CYCLES 100000
 
-	#define test 5312
+	#define test 5314
 	// #define test 100
 
 
