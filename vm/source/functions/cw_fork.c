@@ -23,7 +23,7 @@ int             cw_find_the_same_PC(t_champ *champs, int cur_PC, unsigned int id
                 ft_putstr("found:\n");
                 ft_printf("PC->%d\n",process_branch->process_PC);
                 ft_printf("id->%d\n", process_branch->id);
-                getchar();
+                // getchar();
 
                return(process_branch->id);
             }
@@ -50,7 +50,7 @@ int             cw_get_same_position_detection(t_champ *champs)
             int result = cw_find_the_same_PC(g_cw.pd.champs, process_branch->process_PC, process_branch->id, process_branch->cycles_till_execution);
             if (result)
             {
-                getchar();
+                // getchar();
                 return(result);
             }
             process_branch = process_branch->next;
