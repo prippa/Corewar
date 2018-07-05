@@ -72,7 +72,7 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
 	proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
 	
-	ft_printf("process_PC -> %d\n", proc->process_PC);
+	// ft_printf("process_PC -> %d\n", proc->process_PC);
 
 
 //	 for testing;
