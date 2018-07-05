@@ -109,6 +109,7 @@ LOADER_NAME		=	load_surface.c				\
 LTEXTURE_NAME	=	load_from_file.c			\
 					free_ltexture.c				\
 					render.c					\
+					render_part.c				\
 					set_color.c					\
 					set_blend_mode.c			\
 					set_alpha_mode.c			\

@@ -34,12 +34,14 @@ static inline void	draw_numbers(t_arena *arena,
 										height - 2);
 		SDL_SetRenderDrawColor(arena->renderer, 0x0, 0x0, 0x0, 0xff);
 		SDL_RenderFillRect(arena->renderer, &rect);
+		set_color((SDL_Color){.r=0xff}, arena->bold_figures[sf]);
+		set_color((SDL_Color){.r=0xff}, arena->bold_figures[ff]);
 		rect.w /= 2;
 		t_rposition position = get_render_position(0, &top_left, NULL, &rect);
-		render(&position, arena->figures[ff], arena->renderer, SDL_FLIP_NONE);
+		render(&position, arena->bold_figures[ff], arena->renderer, SDL_FLIP_NONE);
 		top_left.x += rect.w;
 		rect.x += rect.w;
-		render(&position, arena->figures[sf], arena->renderer, SDL_FLIP_NONE);
+		render(&position, arena->bold_figures[sf], arena->renderer, SDL_FLIP_NONE);
 		top_left.x = x_init + width;
 	}
 	top_left = arena->top_left;
@@ -50,6 +52,8 @@ static inline void	draw_numbers(t_arena *arena,
 		int y_init = top_left.y;
 		int ff = (i >> 4);
 		int sf = ((ff << 4) ^ i);
+		set_color((SDL_Color){.r=0xff}, arena->bold_figures[sf]);
+		set_color((SDL_Color){.r=0xff}, arena->bold_figures[ff]);
 		SDL_Rect rect = get_rectangle(top_left.x,
 										top_left.y + 1,
 										width - 2,
@@ -61,10 +65,10 @@ static inline void	draw_numbers(t_arena *arena,
 												&top_left,
 												NULL,
 												&rect);
-		render(&position, arena->figures[ff], arena->renderer, SDL_FLIP_NONE);
+		render(&position, arena->bold_figures[ff], arena->renderer, SDL_FLIP_NONE);
 		top_left.x += rect.w;
 		rect.x += rect.w;
-		render(&position, arena->figures[sf], arena->renderer, SDL_FLIP_NONE);
+		render(&position, arena->bold_figures[sf], arena->renderer, SDL_FLIP_NONE);
 		top_left.x -= rect.w;
 		top_left.y = y_init + height;
 	}
@@ -103,9 +107,7 @@ void			draw_arena(t_arena *arena)
 				continue ;
 			}
 			else if (top_x > arena->viewport.x + arena->viewport.w - width)
-			{
 				break ;
-			}
 			draw_fillrect(arena, i, j, get_rectangle(top_x + 1,
 												top_y + 1,
 												width - 2,

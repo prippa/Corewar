@@ -22,11 +22,9 @@ void			draw_fillrect(t_arena *arena,
 	int	cell = arena->bytes[i * ARENA_TILE_HEIGHT + j];
 	int ff = 0;
 	int sf = 0;
-	ff = (cell >> 4);
-	sf = ((ff << 4) ^ cell);
-
-	t_ltexture *f = NULL;
-	t_ltexture *s = NULL;
+	get_digits(cell, &ff, &sf);
+	t_ltexture *f;
+	t_ltexture *s;
 	SDL_Color c = (SDL_Color){};
 	if (arena->is_bold[cell])
 	{

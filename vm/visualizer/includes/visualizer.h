@@ -32,4 +32,9 @@ int			exit_dialog(t_arena *arena);
 void		set_random(t_arena *arena);
 void		force_error(const char *error);
 void		get_digits(unsigned char hex, int *ff, int *sf);
+void		render_part(SDL_Rect clip,
+						SDL_Rect target,
+						SDL_Point top_left,
+						SDL_Texture *texture,
+						SDL_Renderer *renderer);
 #endif

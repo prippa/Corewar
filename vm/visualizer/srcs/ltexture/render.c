@@ -29,9 +29,6 @@ void			render(t_rposition *position,
 	{
 		render_quad.w = position->clip->w;
 		render_quad.h = position->clip->h;
-		/*if (position->clip->w < ltexture->width &&
-				position->clip->h < ltexture->height)
-				clip = position->clip;*/
 	}
 	if (SDL_RenderCopyEx(renderer,
 						ltexture->texture,
