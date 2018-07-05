@@ -38,6 +38,9 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
 	ft_printf("here live\n");
 
+
+	// maybe we have segfault here; who knows :)
+
 	if (champ)
 	{
 		champ->lives_number += ALIVE;
@@ -48,7 +51,20 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
 	// ft_printf("champ_number -> %d\n", champ->champ_number);
 	// ft_printf("champ_number -> %u\n", champ->lives_number);
-	map->stack_color[proc->process_PC] = proc->color; // write to the 50 cycles;
+
+	ft_printf("process_PC_color -> %d\n", proc->proc_process_PC_color);
+
+	ft_printf("live_color -> %d\n", proc->live_color);
+
+	if (proc->live_color >16)
+	{
+		ft_printf("proc -> %d\n", proc->id);
+		getchar();
+	}
+
+	map->stack_color[proc->process_PC] = proc->live_color; // write to the 50 cycles;
+
+	// ft_printf("live_color -> %d\n", map->stack_color[proc->process_PC]);
 
 
 
@@ -58,7 +74,9 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
 //	 for testing;
 //	 map->stack[proc->process_PC] = 7;
-	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
+	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // move the color of the PC;
+
+
 	if (proc->process_PC > 4095 || proc->process_PC < 0)
 	{
 		ft_printf("live\n");

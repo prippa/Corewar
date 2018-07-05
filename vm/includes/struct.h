@@ -47,6 +47,7 @@ typedef	struct			s_processes					// fork will create a process and will change t
 	int					current_command;			// keep the current command;
 	int 				detect_deviation;			// cmd vs cur cmd;
 	int					champ_number;
+	int					live_color;					// color after live execution;
 	struct s_processes	*next;						// pointer to the next element;
 	struct s_processes	*prev;						// pointer to the prev element;
 }						t_processes;

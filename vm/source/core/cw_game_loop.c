@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//if (map->stack_color[position_on_the_map] != 5) cw_helpers != 5
 // 234 line -> 5 game loop;
 // 4894 <- write color trouble;
 // 5020 <- color if nothing on the map;
