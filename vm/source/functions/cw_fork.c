@@ -111,7 +111,7 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
 
     // clone = proc;
 
-    // ft_printf("%~.d", F_BACK_GRAY_BLACK, process_PC); // change the color;
+    ft_printf("%~.d", F_BACK_CYAN_BLACK, proc->process_PC); // change the color;
     // while (clone->next)
     // {
         // ft_printf("id -> %u\n", clone->id);
