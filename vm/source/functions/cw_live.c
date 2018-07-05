@@ -36,7 +36,7 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
 	champ = t_champ_find(cmd->arg1.av, g_cw.pd.champs);
 
-	ft_printf("here live\n");
+	// ft_printf("here live\n");
 
 
 	// maybe we have segfault here; who knows :)
@@ -47,7 +47,7 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 		champ->last_live = g_cw.cycle + 1;
 	}
 
-	ft_printf("here after\n");
+	// ft_printf("here after\n");
 
 	// ft_printf("champ_number -> %d\n", champ->champ_number);
 	// ft_printf("champ_number -> %u\n", champ->lives_number);
