@@ -16,10 +16,10 @@ int             cw_find_the_same_PC(t_champ *champs, int cur_PC, unsigned int id
             if (cur_PC == process_branch->process_PC && process_branch->id != id && cycles_till_execution < process_branch->cycles_till_execution)
             {
 
-                ft_putstr("here in\n");
-                ft_printf("cur_PC->%d process_branch->process_PC->%d\n",process_branch->process_PC,process_branch->process_PC);
-                ft_printf("proc id->%d\n", process_branch->id);
-                getchar();
+                // ft_putstr("here in\n");
+                // ft_printf("cur_PC->%d process_branch->process_PC->%d\n",process_branch->process_PC,process_branch->process_PC);
+                // ft_printf("proc id->%d\n", process_branch->id);
+                // getchar();
                return(1);
             }
 
@@ -45,10 +45,10 @@ int             cw_get_same_position_detection(t_champ *champs)
             // cur_PC = process_branch->process_PC;
             if (cw_find_the_same_PC(g_cw.pd.champs, process_branch->process_PC, process_branch->id, process_branch->cycles_till_execution))
             {
-                ft_putstr("here out\n");
-                ft_printf("cur_PC->%d process_branch->process_PC->%d\n",process_branch->process_PC,process_branch->process_PC);
-                ft_printf("proc id->%d\n", process_branch->id);
-                getchar();
+                // ft_putstr("here out\n");
+                // ft_printf("cur_PC->%d process_branch->process_PC->%d\n",process_branch->process_PC,process_branch->process_PC);
+                // ft_printf("proc id->%d\n", process_branch->id);
+                // getchar();
                 return(1);
             }
             process_branch = process_branch->next;
@@ -62,13 +62,14 @@ int             cw_get_same_position_detection(t_champ *champs)
 
 void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
 {
+    ft_printf("fork\n");
     int found_the_fork_with_same_process_PC = 0;
     t_champ *champs = g_cw.pd.champs;
 
-    if (g_cw.cycle >= 5314)
-    {
-        found_the_fork_with_same_process_PC = cw_get_same_position_detection(champs);
-    }
+    // if (g_cw.cycle >= 5314)
+    // {
+    found_the_fork_with_same_process_PC = cw_get_same_position_detection(champs);
+    // }
     
     int     position_on_the_map;
     t_champ *champ;
@@ -82,10 +83,9 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
 
     // position on the map will be a process_PC for the new process;
     if (!found_the_fork_with_same_process_PC)
-    map->stack_color[proc->process_PC] = proc->color;
+        map->stack_color[proc->process_PC] = proc->color;
     //     if (position_on_the_map > 4095 || position_on_the_map < 0)
     // {
-    //     ft_printf("fork\n");
     //     getchar();
     // }
 
@@ -111,6 +111,7 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
 
     // clone = proc;
 
+    // ft_printf("%~.d", F_BACK_GRAY_BLACK, process_PC); // change the color;
     // while (clone->next)
     // {
         // ft_printf("id -> %u\n", clone->id);
