@@ -172,8 +172,12 @@ void		cw_execute_corewar(t_processes *proc)
 	while (proc)
 	{
 		// ft_printf("cmd -----------> %d\n", proc->current_command);
-		// ft_printf("proc_PC --------------------------------------------------------------------> %d\n", proc->process_PC);
-		// ft_printf("cur cmd -----------> %d\n", proc->current_command);
+		ft_printf("proc id --------------------> %d\n", proc->id);
+		ft_printf("proc_PC -----------> %d\n", proc->process_PC);
+		ft_printf("cur cmd -----------> %d\n", proc->current_command);
+		ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
+		ft_printf("color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
+
 		// ft_printf("color -----------> %d\n", g_cw.map.stack_color[proc->process_PC]);
 
 		// cmd.cmd, do not include codage;
@@ -190,7 +194,7 @@ void		cw_execute_corewar(t_processes *proc)
 				// ft_printf("%s\n", "after get cmd");
 				// ft_printf("in -> %d\n", g_cw.map.stack_color[proc->process_PC]);
         		// ft_printf("stack_color not vali -> %d\n", g_cw.map.stack_color[proc->process_PC]);
-        		if (g_cw.map.stack_color[proc->process_PC ] != 0 && g_cw.map.stack_color[proc->process_PC ] != number_for_empty_signal && g_cw.map.cycle_stack[proc->process_PC] == 0)
+        		if (g_cw.map.stack_color[proc->process_PC] != 0 && g_cw.map.stack_color[proc->process_PC ] != number_for_empty_signal && g_cw.map.cycle_stack[proc->process_PC] == 0)
         		{
 					g_cw.map.stack_color[proc->process_PC] = proc->color; //check it;
         		}
@@ -222,7 +226,7 @@ void		cw_execute_corewar(t_processes *proc)
 			
 				}
 
-				if (g_cw.map.stack_color[proc->process_PC ] == 0)
+				if (g_cw.map.stack_color[proc->process_PC] == 0)
 				{
 					// g_cw.map.stack_color[proc->process_PC - 1] = 0;
 					g_cw.map.stack_color[proc->process_PC] = number_for_empty_signal;

@@ -46,6 +46,8 @@ static void	print_color(unsigned char data, int color_type)
 		ft_printf("%~.2x", F_BACK_BLUE_WHITE, data);
 	else if (color_type == 16)
 		ft_printf("%~.2x", F_BACK_CYAN_WHITE, data); // change the color;
+		else if (color_type == 100) // do a macor
+		ft_printf("%~.2x", F_BACK_GRAY_BLACK, data); // change the color;
 	else
 		ft_printf("%~.2x", F_WHITE, 0);
 }
