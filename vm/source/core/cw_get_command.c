@@ -120,7 +120,7 @@ static int	check_true_cdg(unsigned char cmd, int cdg)
 int			cw_get_command(t_command *cmd, unsigned int i,
 			unsigned char *map)
 {
-	int				bt; // byte 
+	int				bt; // byte
 	unsigned char	res[5]; // max is 4 bytes;
 	
 

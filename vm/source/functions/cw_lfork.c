@@ -12,19 +12,12 @@ void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc)
     if ((position_on_the_map = MEM_CORRECTION((proc->process_PC + cmd->arg1.av))) < 0)
 		position_on_the_map += MEM_SIZE;
 
-    if (position_on_the_map > 4095 || position_on_the_map < 0)
-    {
-        ft_printf("lfork position\n");
-        getchar();
-    }
-
     // ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 
     // position on the map will be a process_PC for the new process;
     map->stack_color[proc->process_PC] = proc->color;
 
     proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
-    ft_printf("process_PC -> %d\n", proc->process_PC);
 
 
     // ft_printf("process_PC -> %d\n", proc->process_PC);
@@ -40,13 +33,6 @@ void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc)
     // }
 
     t_processes_copy(&champ->proc_start, &champ->proc_end, &proc, position_on_the_map);
-    
-
-    if (proc->process_PC > 4095 || proc->process_PC < 0)
-    {
-        ft_printf("lfork\n");
-        getchar();
-    }
     // while (clone->next)
     // {
         // ft_printf("end id -> %u\n", g_cw.proc_end->id);
