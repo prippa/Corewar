@@ -17,7 +17,7 @@ void		t_processe_killer(t_champ *champs)
 				tmp = head->next;
 				t_processe_free_by_obj(&champs->proc_start, &champs->proc_end, head);
 				if (!tmp)
-					return;
+					break ;
 				head = tmp;
 				continue;
 			}
