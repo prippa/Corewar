@@ -191,7 +191,9 @@ void		cw_execute_corewar(t_processes *proc)
 		
 		if (cw_get_command(&cmd, proc->process_PC, g_cw.map.stack) ==  NOT_EXIST_CODE && proc->current_command == 0) // if no active command; // adopt here;
 		{
-				// ft_printf("%s\n", "after get cmd");
+				ft_printf("%~s\n", F_BACK_CYAN_BLACK, "after get cmd");
+				ft_printf("%~d\n", F_BACK_CYAN_BLACK, proc->id);
+
 				// ft_printf("in -> %d\n", g_cw.map.stack_color[proc->process_PC]);
         		// ft_printf("stack_color not vali -> %d\n", g_cw.map.stack_color[proc->process_PC]);
         		if (g_cw.map.stack_color[proc->process_PC] != 0 && g_cw.map.stack_color[proc->process_PC ] != number_for_empty_signal && g_cw.map.cycle_stack[proc->process_PC] == 0)
@@ -249,6 +251,8 @@ void		cw_execute_corewar(t_processes *proc)
 					g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // цвет кареткиж
 		
 				}
+				ft_printf("%~s\n", F_BACK_GREEN_BLACK, "after get cmd");
+
 				// else
 		}
 		else
@@ -517,8 +521,8 @@ void		cw_game_loop(void)
 
 	#define CYCLES 100000
 
+	// #define test1 798
 	#define test1 5312
-	// #define test1 100
 
 
 	// 4570;

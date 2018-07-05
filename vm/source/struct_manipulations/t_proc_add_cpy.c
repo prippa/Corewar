@@ -66,6 +66,7 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 
 
 
+
 	new_obj->live_color = (*current_proc)->live_color;
 
 	// what to do if command is not valid
@@ -81,17 +82,26 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	
 
 	// add to the map;
-	if (new_obj->color == 1)
+	if(g_cw.map.stack_color[new_obj->process_PC] != 0)
 	{
-		g_cw.map.stack_color[new_obj->process_PC] = 5;
+		if (new_obj->color == 1)
+		{
+			g_cw.map.stack_color[new_obj->process_PC] = 5;
+		}
+		else if (new_obj->color == 2)
+			g_cw.map.stack_color[new_obj->process_PC] = 6;
+		else if (new_obj->color == 3)
+			g_cw.map.stack_color[new_obj->process_PC] = 7;
+		else if (new_obj->color == 4)
+			g_cw.map.stack_color[new_obj->process_PC] = 8;
 	}
-	else if (new_obj->color == 2)
-		g_cw.map.stack_color[new_obj->process_PC] = 6;
-	else if (new_obj->color == 3)
-		g_cw.map.stack_color[new_obj->process_PC] = 7;
-	else if (new_obj->color == 4)
-		g_cw.map.stack_color[new_obj->process_PC] = 8;
+	else
+		g_cw.map.stack_color[new_obj->process_PC] = 0;
 
+	
+
+				// ft_printf("%~d\n", F_BACK_GREEN_BLACK, g_cw.map.stack_color[new_obj->process_PC]);
+				// getchar();
 
 
 	    if (new_obj->process_PC > 4095 || new_obj->process_PC < 0)
