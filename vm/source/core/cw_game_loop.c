@@ -448,24 +448,44 @@ void	cw_decrementor(unsigned int *write_to_the_map_stack, int *stack_color, unsi
 	{
 		if (write_to_the_map_stack[i] != 0)
 		{
-			if (write_to_the_map_stack[i] == 9 && cycle_stack[i] == 0 && stack_color[i] != 5) //sti
+			if (write_to_the_map_stack[i] == 9 && cycle_stack[i] == 0 && stack_color[i] != 5) //sti & live
 			{
 				stack_color[i] = 1;
 				write_to_the_map_stack[i] = 0;
 			}
-			else if (write_to_the_map_stack[i] == 10 && cycle_stack[i] == 0 && stack_color[i] != 6) //sti
+			else if (write_to_the_map_stack[i] == 10 && cycle_stack[i] == 0 && stack_color[i] != 6) //sti & live
 			{
 				stack_color[i] = 2;
 				write_to_the_map_stack[i] = 0;
 			}
-			else if (write_to_the_map_stack[i] == 11 && cycle_stack[i] == 0 && stack_color[i] != 7) //sti
+			else if (write_to_the_map_stack[i] == 11 && cycle_stack[i] == 0 && stack_color[i] != 7) //sti & live
 			{
 				stack_color[i] = 3;
 				write_to_the_map_stack[i] = 0;
 			}
-			else if (write_to_the_map_stack[i] == 12 && cycle_stack[i] == 0 && stack_color[i] != 8) //sti
+			else if (write_to_the_map_stack[i] == 12 && cycle_stack[i] == 0 && stack_color[i] != 8) //sti & live
 			{
 				stack_color[i] = 4;
+				write_to_the_map_stack[i] = 0;
+			}
+			else if (write_to_the_map_stack[i] == 13 && cycle_stack[i] == 0 && stack_color[i] != 5) //sti & live
+			{
+				stack_color[i] = 1;
+				write_to_the_map_stack[i] = 0;
+			}
+			else if (write_to_the_map_stack[i] == 14 && cycle_stack[i] == 0 && stack_color[i] != 6) //sti & live
+			{
+				stack_color[i] = 1;
+				write_to_the_map_stack[i] = 0;
+			}
+			else if (write_to_the_map_stack[i] == 15 && cycle_stack[i] == 0 && stack_color[i] != 7) //sti & live
+			{
+				stack_color[i] = 1;
+				write_to_the_map_stack[i] = 0;
+			}
+			else if (write_to_the_map_stack[i] == 16 && cycle_stack[i] == 0 && stack_color[i] != 8) //sti & live
+			{
+				stack_color[i] = 1;
 				write_to_the_map_stack[i] = 0;
 			}
 			else

@@ -64,11 +64,14 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
 	map->stack_color[proc->process_PC] = proc->live_color; // write to the 50 cycles;
 
+	map->write_to_the_map_stack[proc->process_PC] = proc->live_color + 50; // -> 59;
+
+	map->cycle_stack[proc->process_PC] = 50; // -
+
 	// ft_printf("live_color -> %d\n", map->stack_color[proc->process_PC]);
 
-
-
 	proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
+	
 	ft_printf("process_PC -> %d\n", proc->process_PC);
 
 
