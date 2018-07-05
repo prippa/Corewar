@@ -46,11 +46,18 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 	// ft_printf("champ_number -> %d\n", champ->champ_number);
 	// ft_printf("champ_number -> %u\n", champ->lives_number);
 
+	// here
+	if (champ)
+	{
 	map->stack_color[proc->process_PC] = proc->live_color; // write to the 50 cycles;
 
 	map->write_to_the_map_stack[proc->process_PC] = proc->live_color + 50; // -> 59;
 
 	map->cycle_stack[proc->process_PC] = 50; // -
+}
+else
+	map->stack_color[proc->process_PC] = 1; // write to the 50 cycles;
+
 
 	// ft_printf("live_color -> %d\n", map->stack_color[proc->process_PC]);
 

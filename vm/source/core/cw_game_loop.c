@@ -288,7 +288,6 @@ void		cw_execute_corewar(t_processes *proc)
 
 				if (proc->cycles_till_execution < g_cw.op[cmd.cmd - 1].cycles_price) // keep the current comman
 				{
-				ft_printf("%~s\n", F_BACK_CYAN_BLACK, "after get cmd");
 					// ft_printf("till exec normal -> %d\n", proc->cycles_till_execution);
 					// ft_printf("process_PC_normal -> %d\n", proc->process_PC);
 					proc->cycles_till_execution++;
@@ -298,11 +297,16 @@ void		cw_execute_corewar(t_processes *proc)
 					// ft_printf("execute\n");
 					// ft_printf("here ->*******************************************2\n");
 					// getchar();
-					if (!cw_get_command(&cmd, proc->process_PC, g_cw.map.stack))
+					if (!cw_get_command(&cmd, proc->process_PC, g_cw.map.stack)) // ! == correct execution;
 					{
 						g_cw.op[cmd.cmd - 1].func(&cmd, &g_cw.map, proc);
 						proc->current_command = 0;
 						proc->cycles_till_execution = 1;
+
+
+
+
+						ft_printf("%~s\n", F_BACK_CYAN_BLACK, "after get cmd");
 					}
 					else
 					{
