@@ -477,17 +477,17 @@ void	cw_decrementor(unsigned int *write_to_the_map_stack, int *stack_color, unsi
 			}
 			else if (write_to_the_map_stack[i] == 14 && cycle_stack[i] == 0 && stack_color[i] != 6) //sti & live
 			{
-				stack_color[i] = 1;
+				stack_color[i] = 2;
 				write_to_the_map_stack[i] = 0;
 			}
 			else if (write_to_the_map_stack[i] == 15 && cycle_stack[i] == 0 && stack_color[i] != 7) //sti & live
 			{
-				stack_color[i] = 1;
+				stack_color[i] = 3;
 				write_to_the_map_stack[i] = 0;
 			}
 			else if (write_to_the_map_stack[i] == 16 && cycle_stack[i] == 0 && stack_color[i] != 8) //sti & live
 			{
-				stack_color[i] = 1;
+				stack_color[i] = 4;
 				write_to_the_map_stack[i] = 0;
 			}
 			else
@@ -513,8 +513,8 @@ void		cw_game_loop(void)
 
 	#define CYCLES 100000
 
-	// #define test 5312
-	#define test 100
+	#define test 5312
+	// #define test 100
 
 
 	// 4570;
