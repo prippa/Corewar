@@ -10,18 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+// 234 line -> 5 game loop;
 // 4894 <- write color trouble;
 // 5020 <- color if nothing on the map;
-// cw_helpers write to map costello;
-// replace all constants like 5 or 9 to variable in game loop and zjmp;
 // каретка не должна менять цвет если один из процессов остался на том же месте
 
-// если у любого игрока было 21 лайвж
-// первый 6 байт + 2ж
+// ft_printf("%~.2x", F_BACK_GREEN_WHITE, data); // every 50 cycles
 
 #include "corewar.h"
 
-#define	DIR_CHECK(x) (x > 8 && x < 13) || x == 14 || x == 15
+#define	DIR_CHECK(x) (((x) > 8 && (x) < 13) || (x) == 14 || (x) == 15)
 
 
 static void		ft_zero_it(char *str)
@@ -46,7 +44,7 @@ static	int	ft_codage_for_counting(char *str, int cmd)
 
 // - get clear with proc carry;
 
-#define	IS_CMD(x) (x >= 1 && x <= 16)
+#define	IS_CMD(x) ((x) >= 1 && (x) <= 16)
 
 int			cw_move_PC_when_not_correct_cdg(int codage, int cmd) // read first 3 bytes; !!!!!!!!!!!!! amended
 {
@@ -106,22 +104,9 @@ int			cw_move_PC_when_not_correct_cdg(int codage, int cmd) // read first 3 bytes
 		j++;
 	}
 	i += 2;
-
-
-
-
-
 	free(binary);
 	free(buf_general);
 	free(buf_for_2_bytes);
-
-
-
-
-
-
-
-
 	// ft_printf("->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>%d\n", i);
 	// read(1,0,1);
 	return (i);
@@ -154,43 +139,40 @@ void		cw_color_start(t_champ *ch, t_stack *map)
 void		cw_execute_corewar(t_processes *proc)
 {
 	t_command cmd;
-	t_processes *head = proc;
-	
+	ft_bzero(&cmd, sizeof(t_command));
 
+	// t_processes *head = proc;
+	
 	// ft_printf("%s\n", "in corwar magic"); // 235 536 184
 	// exit(1);
 	// getchar();
 	// int		cycles = 0;
-	t_processes *tmp = head;
-	int i = 0;
+	// t_processes *tmp = head;
+	// int i = 0;
 
-			while (tmp)
-		{
-			// i = 0;
+		// 	while (tmp)
+		// {
+		// 	// i = 0;
 
-			if (tmp->process_PC > 4095 || tmp->process_PC < 0)
-			{
-				ft_printf("1\n");
-				ft_printf("Total ---------> %d\n", g_cw.proc_counter);
-				ft_printf("id ---------> %d\n", tmp->id);
+		// 	if (tmp->process_PC > 4095 || tmp->process_PC < 0)
+		// 	{
+		// 		ft_printf("1\n");
+		// 		ft_printf("Total ---------> %d\n", g_cw.proc_counter);
+		// 		ft_printf("id ---------> %d\n", tmp->id);
 
-				ft_printf("PC ---------> %d\n", tmp->process_PC);
-				ft_printf("i ---------> %d\n", i);
-
-
-				getchar();
-			}
-				i++;
-			tmp = tmp->next;
-		}
+		// 		ft_printf("PC ---------> %ld\n", tmp->process_PC);
+		// 		ft_printf("i ---------> %d\n", i);
+		// 		getchar();
+		// 	}
+		// 		i++;
+		// 	tmp = tmp->next;
+		// }
 	while (proc)
 	{
 		// ft_printf("cmd -----------> %d\n", proc->current_command);
 		// ft_printf("proc_PC --------------------------------------------------------------------> %d\n", proc->process_PC);
 		// ft_printf("cur cmd -----------> %d\n", proc->current_command);
 		// ft_printf("color -----------> %d\n", g_cw.map.stack_color[proc->process_PC]);
-
-
 
 		// cmd.cmd, do not include codage;
 		// ft_printf("%s\n", "before get cmd");
@@ -206,144 +188,65 @@ void		cw_execute_corewar(t_processes *proc)
 				// ft_printf("%s\n", "after get cmd");
 				// ft_printf("in -> %d\n", g_cw.map.stack_color[proc->process_PC]);
         		// ft_printf("stack_color not vali -> %d\n", g_cw.map.stack_color[proc->process_PC]);
-
         		if (g_cw.map.stack_color[proc->process_PC ] != 0 && g_cw.map.stack_color[proc->process_PC ] != 14 && g_cw.map.cycle_stack[proc->process_PC] == 0)
         		{
 					g_cw.map.stack_color[proc->process_PC] = proc->color; //check it;
-											if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 1---------> %d\n", proc->process_PC);
-							getchar();
-						}
         		}
 				else if (g_cw.map.stack_color[proc->process_PC ] == 0 || g_cw.map.stack_color[proc->process_PC ] == 14)
 				{
 					g_cw.map.stack_color[proc->process_PC] = 14;
-											if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 2---------> %d\n", proc->process_PC);
-							getchar();
-						}
 				}
 
 				static int zeta;
-										if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 3---------> %d\n", proc->process_PC);
-							getchar();
-						}
 
 				if (g_cw.map.stack_color[proc->process_PC] == zeta) // one process_PC is enough maybe;
 				{
 					// ft_putstr("here\n");
 					g_cw.map.stack_color[proc->process_PC] = 9;
-											if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 4---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
 				}
-
-
-
 				// ft_printf("%s\n", "woohoo");
 
 				proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
-
-				if (proc->process_PC > 4095 || proc->process_PC < 0)
-				{
-					ft_printf("here ->*******************************************1\n");
-					getchar();
-
-					// getch();
-					// sleep(60);
-				}
-
-
-
-
 
 				if (proc->process_PC != 0 && g_cw.map.stack_color[proc->process_PC - 1] == 14) // one process_PC is enough maybe;
 				{
 					// ft_putstr("here\n");
 					g_cw.map.stack_color[proc->process_PC - 1] = 0;
-																if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 5---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
+		
 				}
 				else if (proc->process_PC == 0 && g_cw.map.stack_color[MEM_SIZE - 1] == 14)
 				{
 					g_cw.map.stack_color[MEM_SIZE - 1] = 0;
-																if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 6---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
+			
 				}
-
 
 				if (g_cw.map.stack_color[proc->process_PC ] == 0)
 				{
 					// g_cw.map.stack_color[proc->process_PC - 1] = 0;
 					g_cw.map.stack_color[proc->process_PC] = 14;
-																if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 7---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
+			
 				}
 				else if (g_cw.map.stack_color[proc->process_PC] != 14 && g_cw.map.stack_color[proc->process_PC] != 0)
 				{
 					// g_cw.map.stack_color[proc->process_PC - 1] = 0;
 					// int color_before = g_cw.map.stack_color[proc->process_PC];
 
-											if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 8---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
 					if (g_cw.map.stack_color[proc->process_PC] == 5)
 					{
 						zeta = 5;
-																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 9---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
+			
 					}
 
 					// ft_printf("cycle_stack -> %d\n", g_cw.map.cycle_stack[proc->process_PC]);
 
 					// if (g_cw.map.cycle_stack[proc->process_PC] == 0)
-						g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // цвет кареткиж
-																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 10---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
+					g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // цвет кареткиж
+		
 				}
 				// else
-
-
 		}
 		else
 		{
-														if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 11---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
-
 			// cw_print_cmd_specifications(&cmd);
 
 			// decrement the cycles and then execute;
@@ -353,13 +256,6 @@ void		cw_execute_corewar(t_processes *proc)
 			if (proc->current_command == 0)
 			{
 				proc->current_command = cmd.cmd;
-
-															if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 12---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
 			}
 
 			// int detect deviation;
@@ -367,26 +263,15 @@ void		cw_execute_corewar(t_processes *proc)
 			if (proc->current_command != cmd.cmd/* && proc->current_command != 0*/) // 3910
 			{
 				// ft_printf("\nnot equal\n");
-				
 				// ft_printf("cur cmd -> %d\n", proc->current_command);
 				// ft_printf("cmd cmd -> %d\n", cmd.cmd);
-
 				// ft_printf("cycles done -> %d\n", proc->cycles_till_execution);
 				// ft_printf("necessary cycles -> %d\n", g_cw.op[proc->current_command - 1].cycles_price);
 				// ft_printf("PC -> %d\n", proc->process_PC);
 				// ft_printf("proc id -> %d\n", proc->process_PC);
-
 				proc->detect_deviation = 1;
-															if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 13---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
-				
 				// exit (0); // -> show the first deviation;
 			}
-
 
 			if (proc->detect_deviation == 0)
 			{
@@ -395,175 +280,54 @@ void		cw_execute_corewar(t_processes *proc)
 				{
 					// ft_printf("till exec normal -> %d\n", proc->cycles_till_execution);
 					// ft_printf("process_PC_normal -> %d\n", proc->process_PC);
-											if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 14---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
 					proc->cycles_till_execution++;
-																if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 15---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
-
 				}
 				else
 				{
 					// ft_printf("execute\n");
 					// ft_printf("here ->*******************************************2\n");
 					// getchar();
-											if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 16---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
 					if (!cw_get_command(&cmd, proc->process_PC, g_cw.map.stack))
 					{
-																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 17---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
 						g_cw.op[cmd.cmd - 1].func(&cmd, &g_cw.map, proc);
-						if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after func---------> %d\n", proc->id);
-							getchar();
-						}
 						proc->current_command = 0;
-																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 18---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
 						proc->cycles_till_execution = 1;
-																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 19---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
 					}
 					else
 					{
 						// ft_printf("not valid codage -------------------------------> %d\n", cmd.codage);
-																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 20---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
+	// ->>>>>>>>>>>>>>>>>>>>>>>// do smthing with lieve;
 						g_cw.map.stack_color[proc->process_PC] = proc->color;
-																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 21---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
 
 						proc->process_PC = MEM_CORRECTION((proc->process_PC + cw_move_PC_when_not_correct_cdg(cmd.codage, cmd.cmd)));
-																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 22---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
-
-				if (proc->process_PC > 4095 || proc->process_PC < 0)
-				{
-					ft_printf("here ->*******************************************3\n");
-					getchar();
-
-						// sleep(60);
-					// ft_printf("here ->2\n");
-				}
 
 						if (g_cw.map.stack_color[proc->process_PC] != 0 && g_cw.map.stack_color[proc->process_PC] != 14)
 						{
     						g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
-    																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 23---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
 						}
     					else
     					{
     						g_cw.map.stack_color[proc->process_PC] = 14;
-    																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 24---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
     					}
 
     					proc->cycles_till_execution = 1;
-    																if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 25---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
 
 						proc->current_command = 0;
-																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 26---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
-
 
 						//colors
-
-
 					}
 				}
 			}
 			else if (proc->detect_deviation == 1)
 			{
-															if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 27---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
-
 				ft_bzero(&cmd, sizeof(t_command));
-															if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 28---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
 
 				if (proc->cycles_till_execution < g_cw.op[proc->current_command - 1].cycles_price) // keep the current comman
 				{
-// 
 					// ft_printf("till exec dev-> %d\n", proc->cycles_till_execution);
 					// ft_printf("process_PC_dev -> %d\n", proc->process_PC);
 
-						if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 29---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
 					proc->cycles_till_execution++;											
-					if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 30---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
 				}
 				else
 				{
@@ -574,124 +338,37 @@ void		cw_execute_corewar(t_processes *proc)
 					ft_bzero(&cmd, sizeof(t_command));
 					if (!cw_get_command_2(&cmd, proc->process_PC, g_cw.map.stack, proc->current_command))
 					{
-																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 31---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
+
 						g_cw.op[proc->current_command - 1].func(&cmd, &g_cw.map, proc);
-						if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after func32---------> %d\n", proc->id);
-							getchar();
-						}
+
 						proc->current_command = 0;
-																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 33---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
+
 						proc->detect_deviation = 0;
-																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 34---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
+
 						proc->cycles_till_execution = 1;
-																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 35---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
+
 					}
 					else
 					{
 						// ft_printf("not valid codage -------------------------------> %d\n", "123456");//////////// ?
 					// ft_printf("here ->*******************************************4\n");
 					// getchar();
-																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 36---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
 						cw_get_command(&cmd, proc->process_PC, g_cw.map.stack); // to have the cmd.codage actual on the map; /////////////////// ?
-											if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 37---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
+
 						g_cw.map.stack_color[proc->process_PC] = proc->color;
-											if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 38---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
+
 						proc->process_PC += cw_move_PC_when_not_correct_cdg(cmd.codage, proc->current_command);
-																	if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 39---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
-
-
-				if (proc->process_PC > 4095 || proc->process_PC < 0)
-				{
-					ft_printf("here ->*******************************************5\n");
-					getchar();
-						// sleep(60);
-					// ft_printf("here ->3\n");
-				}
 
 						if (g_cw.map.stack_color[proc->process_PC] != 0 && g_cw.map.stack_color[proc->process_PC] != 14)
 						{
     						g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
-    																							if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 40---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
-
 						}
     					else
     					{
     						g_cw.map.stack_color[proc->process_PC] = 14;
-    																							if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 41---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
     					}
-
     					proc->cycles_till_execution = 1;
-    					    																							if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 42---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
-
 						proc->current_command = 0;
-						    																							if (proc->process_PC >4095 || proc->process_PC < 0)
-						{
-							ft_printf("id after 43---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
-
-
-						//colors
-
-
 					}
 					// else
 					// 	ft_printf("not valid codage -> %d", NOT_CORRECT_CODAGE);
@@ -700,11 +377,7 @@ void		cw_execute_corewar(t_processes *proc)
 			}
 			// else if (proc->cycles_till_execution != 0 && proc->cycles_till_execution != 1001)
 			// 	proc->cycles_till_execution--;
-
-
 			// if (proc->cycles_till_execution == 0)
-
-
 		}
 
 		// ft_bzero(&cmd, sizeof(t_command));
@@ -712,36 +385,30 @@ void		cw_execute_corewar(t_processes *proc)
 		// ft_printf("proc_PC -> %d", proc->process_PC);
 
 		proc = proc->next;
-		    			if (proc && (proc->process_PC >4095 || proc->process_PC < 0))
-						{
-							ft_printf("id after 44---------> %d\n", proc->process_PC);
-							ft_printf("PC mathafaka -> %d\n",proc->process_PC);
-							getchar();
-						}
 	}
-		tmp = head;
-		i = 0;
+		// tmp = head;
+		// i = 0;
 	
-			while (tmp)
-		{
-			// i = 0;
+		// 	while (tmp)
+		// {
+		// 	// i = 0;
 
-			if (tmp->process_PC > 4095 || tmp->process_PC < 0)
-			{
-				ft_printf("2\n");
+		// 	if (tmp->process_PC > 4095 || tmp->process_PC < 0)
+		// 	{
+		// 		ft_printf("2\n");
 
-				ft_printf("Total ---------> %d\n", g_cw.proc_counter);
-				ft_printf("id ---------> %d\n", tmp->id);
+		// 		ft_printf("Total ---------> %d\n", g_cw.proc_counter);
+		// 		ft_printf("id ---------> %d\n", tmp->id);
 
-				ft_printf("PC ---------> %d\n", tmp->process_PC);
-				ft_printf("i ---------> %d\n", i);
+		// 		ft_printf("PC ---------> %d\n", tmp->process_PC);
+		// 		ft_printf("i ---------> %d\n", i);
 
 
-				getchar();
-			}
-				i++;
-			tmp = tmp->next;
-		}
+		// 		getchar();
+		// 	}
+		// 		i++;
+		// 	tmp = tmp->next;
+		// }
 
 }
 
@@ -781,24 +448,44 @@ void	cw_decrementor(unsigned int *write_to_the_map_stack, int *stack_color, unsi
 	{
 		if (write_to_the_map_stack[i] != 0)
 		{
-			if (write_to_the_map_stack[i] == 9 && cycle_stack[i] == 0 && stack_color[i] != 5)
+			if (write_to_the_map_stack[i] == 9 && cycle_stack[i] == 0 && stack_color[i] != 5) //sti & live
 			{
 				stack_color[i] = 1;
 				write_to_the_map_stack[i] = 0;
 			}
-			else if (write_to_the_map_stack[i] == 10 && cycle_stack[i] == 0 && stack_color[i] != 6)
+			else if (write_to_the_map_stack[i] == 10 && cycle_stack[i] == 0 && stack_color[i] != 6) //sti & live
 			{
 				stack_color[i] = 2;
 				write_to_the_map_stack[i] = 0;
 			}
-			else if (write_to_the_map_stack[i] == 11 && cycle_stack[i] == 0 && stack_color[i] != 7)
+			else if (write_to_the_map_stack[i] == 11 && cycle_stack[i] == 0 && stack_color[i] != 7) //sti & live
 			{
 				stack_color[i] = 3;
 				write_to_the_map_stack[i] = 0;
 			}
-			else if (write_to_the_map_stack[i] == 12 && cycle_stack[i] == 0 && stack_color[i] != 8)
+			else if (write_to_the_map_stack[i] == 12 && cycle_stack[i] == 0 && stack_color[i] != 8) //sti & live
 			{
 				stack_color[i] = 4;
+				write_to_the_map_stack[i] = 0;
+			}
+			else if (write_to_the_map_stack[i] == 13 && cycle_stack[i] == 0 && stack_color[i] != 5) //sti & live
+			{
+				stack_color[i] = 1;
+				write_to_the_map_stack[i] = 0;
+			}
+			else if (write_to_the_map_stack[i] == 14 && cycle_stack[i] == 0 && stack_color[i] != 6) //sti & live
+			{
+				stack_color[i] = 1;
+				write_to_the_map_stack[i] = 0;
+			}
+			else if (write_to_the_map_stack[i] == 15 && cycle_stack[i] == 0 && stack_color[i] != 7) //sti & live
+			{
+				stack_color[i] = 1;
+				write_to_the_map_stack[i] = 0;
+			}
+			else if (write_to_the_map_stack[i] == 16 && cycle_stack[i] == 0 && stack_color[i] != 8) //sti & live
+			{
+				stack_color[i] = 1;
 				write_to_the_map_stack[i] = 0;
 			}
 			else
@@ -824,7 +511,7 @@ void		cw_game_loop(void)
 
 	#define CYCLES 100000
 
-	#define test 5000
+	#define test 5163
 
 	// 4570;
 
@@ -835,8 +522,6 @@ void		cw_game_loop(void)
 		// 	ft_printf("%-----u\n", g_cw.proc_counter);
 		// 	exit (0);
 		// }
-
-
 		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw.cycle);
 		// ft_printf("processes -> %d\n", g_cw.proc_counter);
 
@@ -866,11 +551,11 @@ void		cw_game_loop(void)
 
 		cw_decrementor(g_cw.map.write_to_the_map_stack, g_cw.map.stack_color, g_cw.map.cycle_stack);
 
-		// if (g_cw.cycle >= test)
-		// {
-		// 	cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
-		// // 	// cw_display_map_write(g_cw.map.stack_color);
-		// }
+		if (g_cw.cycle >= test)
+		{
+			cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
+		// 	// cw_display_map_write(g_cw.map.stack_color);
+		}
 
 		// FLAG -dump in work
 		if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
@@ -880,7 +565,7 @@ void		cw_game_loop(void)
 		if (!g_cw.cycle_to_die_check)
 			cw_cycles_new_period();
 		
-		// GAME END IF ALL PROCESSES IS DEAD !
+		// GAME END IF ALL PROCESSES ARE DEAD !
 		if (g_cw.proc_counter == 0)
 			return ;
 

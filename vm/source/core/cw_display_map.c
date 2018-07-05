@@ -38,8 +38,10 @@ static void	print_color(unsigned char data, int color_type)
 		ft_printf("%~.2x", F_BOLD_BLUE, data);
 	else if (color_type == 12)
 		ft_printf("%~.2x", F_BOLD_CYAN, data);
+	else if (color_type == 13)
+		ft_printf("%~.2x", F_BACK_GREEN_WHITE, data);
 	else if (color_type == 14)
-		ft_printf("%~.2x", F_BACK_GRAY_BLACK, data);
+		ft_printf("%~.2x", F_BACK_GREEN_WHITE, data); // change the color;
 	else
 		ft_printf("%~.2x", F_WHITE, 0);
 }

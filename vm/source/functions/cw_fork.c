@@ -9,6 +9,8 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
 	t_champ	*champ;
 
 	champ = t_champ_find(proc->champ_number, g_cw.pd.champs);
+    // ft_printf("champ live color -> %d\n", champ->proc_start->live_color);
+    // getchar();
     if ((position_on_the_map = MEM_CORRECTION((proc->process_PC + IDX_CORRECTION(cmd->arg1.av)))) < 0)
 		position_on_the_map += MEM_SIZE;
     // ft_printf("position_on_the_map -> %d\n", position_on_the_map);
@@ -16,7 +18,7 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     // position on the map will be a process_PC for the new process;
 
     map->stack_color[proc->process_PC] = proc->color;
-        if (proc->process_PC > 4095 || proc->process_PC < 0)
+        if (position_on_the_map > 4095 || position_on_the_map < 0)
     {
         ft_printf("fork\n");
         getchar();
@@ -52,6 +54,7 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     // }
 
     t_processes_copy(&champ->proc_start, &champ->proc_end, &proc, position_on_the_map);
+
         if (proc->process_PC > 4095 || proc->process_PC < 0)
     {
         ft_printf("fork\n");

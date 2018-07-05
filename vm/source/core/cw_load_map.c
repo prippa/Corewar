@@ -66,16 +66,25 @@ static void	cw_load_processes(t_champ *champ)
 	process_pc = 0;
 	while (champ)
 	{
-		t_processe_add(&champ->proc_start, &champ->proc_end);
-		champ->proc_start->color = color;
-		champ->proc_start->proc_process_PC_color = color + 4;
-		champ->proc_start->proc_color_write_to_map = champ->proc_start->proc_process_PC_color + 4;
+		t_processe_add(&champ->proc_start, &champ->proc_end); // ?;
+
+		champ->proc_start->color = color; //simple color - [1:4]
+		champ->proc_start->proc_process_PC_color = color + 4; // pc color - [5:8];
+		champ->proc_start->proc_color_write_to_map = champ->proc_start->proc_process_PC_color + 4; // for 50 cycles [9:12];
+		champ->proc_start->live_color = champ->proc_start->proc_color_write_to_map + 4; // for live lights [13:16];
 		champ->proc_start->process_PC = process_pc;
 		champ->proc_start->registers[0] = champ->champ_number;
 		champ->proc_start->champ_number = champ->champ_number;
 		color++;
 		process_pc += map_distance;
+		ft_printf("process_PC_color -> %d\n", champ->proc_start->proc_process_PC_color);
+		ft_printf("proc_color_write_to_map -> %d\n", champ->proc_start->proc_color_write_to_map);
+		ft_printf("live_color -> %d\n", champ->proc_start->live_color);
+		getchar();
 		champ = champ->next;
+
+	// ft_printf("live_color -> %d\n", proc->live_color);
+
 	}
 }
 

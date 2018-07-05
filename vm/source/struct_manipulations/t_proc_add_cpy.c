@@ -64,6 +64,10 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	new_obj->proc_process_PC_color = (*current_proc)->proc_process_PC_color;
 	new_obj->champ_number = (*current_proc)->champ_number;
 
+
+
+	new_obj->live_color = (*current_proc)->live_color;
+
 	// what to do if command is not valid
 	if (g_cw.map.stack[position] >= 1 && g_cw.map.stack[position] <= 16)
 		new_obj->current_command = g_cw.map.stack[position];
