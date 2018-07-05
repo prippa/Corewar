@@ -21,6 +21,8 @@
 
 #define	DIR_CHECK(x) (((x) > 8 && (x) < 13) || (x) == 14 || (x) == 15)
 
+#define number_for_empty_signal 100
+
 
 static void		ft_zero_it(char *str)
 {
@@ -188,13 +190,13 @@ void		cw_execute_corewar(t_processes *proc)
 				// ft_printf("%s\n", "after get cmd");
 				// ft_printf("in -> %d\n", g_cw.map.stack_color[proc->process_PC]);
         		// ft_printf("stack_color not vali -> %d\n", g_cw.map.stack_color[proc->process_PC]);
-        		if (g_cw.map.stack_color[proc->process_PC ] != 0 && g_cw.map.stack_color[proc->process_PC ] != 14 && g_cw.map.cycle_stack[proc->process_PC] == 0)
+        		if (g_cw.map.stack_color[proc->process_PC ] != 0 && g_cw.map.stack_color[proc->process_PC ] != number_for_empty_signal && g_cw.map.cycle_stack[proc->process_PC] == 0)
         		{
 					g_cw.map.stack_color[proc->process_PC] = proc->color; //check it;
         		}
-				else if (g_cw.map.stack_color[proc->process_PC ] == 0 || g_cw.map.stack_color[proc->process_PC ] == 14)
+				else if (g_cw.map.stack_color[proc->process_PC ] == 0 || g_cw.map.stack_color[proc->process_PC ] == number_for_empty_signal)
 				{
-					g_cw.map.stack_color[proc->process_PC] = 14;
+					g_cw.map.stack_color[proc->process_PC] = number_for_empty_signal;
 				}
 
 				static int zeta;
@@ -208,13 +210,13 @@ void		cw_execute_corewar(t_processes *proc)
 
 				proc->process_PC = MEM_CORRECTION((proc->process_PC + 1));
 
-				if (proc->process_PC != 0 && g_cw.map.stack_color[proc->process_PC - 1] == 14) // one process_PC is enough maybe;
+				if (proc->process_PC != 0 && g_cw.map.stack_color[proc->process_PC - 1] == number_for_empty_signal) // one process_PC is enough maybe;
 				{
 					// ft_putstr("here\n");
 					g_cw.map.stack_color[proc->process_PC - 1] = 0;
 		
 				}
-				else if (proc->process_PC == 0 && g_cw.map.stack_color[MEM_SIZE - 1] == 14)
+				else if (proc->process_PC == 0 && g_cw.map.stack_color[MEM_SIZE - 1] == number_for_empty_signal)
 				{
 					g_cw.map.stack_color[MEM_SIZE - 1] = 0;
 			
@@ -223,15 +225,15 @@ void		cw_execute_corewar(t_processes *proc)
 				if (g_cw.map.stack_color[proc->process_PC ] == 0)
 				{
 					// g_cw.map.stack_color[proc->process_PC - 1] = 0;
-					g_cw.map.stack_color[proc->process_PC] = 14;
+					g_cw.map.stack_color[proc->process_PC] = number_for_empty_signal;
 			
 				}
-				else if (g_cw.map.stack_color[proc->process_PC] != 14 && g_cw.map.stack_color[proc->process_PC] != 0)
+				else if (g_cw.map.stack_color[proc->process_PC] != number_for_empty_signal && g_cw.map.stack_color[proc->process_PC] != 0)
 				{
 					// g_cw.map.stack_color[proc->process_PC - 1] = 0;
 					// int color_before = g_cw.map.stack_color[proc->process_PC];
 
-					if (g_cw.map.stack_color[proc->process_PC] == 5)
+					if (g_cw.map.stack_color[proc->process_PC] == proc->proc_process_PC_color)
 					{
 						zeta = 5;
 			
@@ -301,13 +303,13 @@ void		cw_execute_corewar(t_processes *proc)
 
 						proc->process_PC = MEM_CORRECTION((proc->process_PC + cw_move_PC_when_not_correct_cdg(cmd.codage, cmd.cmd)));
 
-						if (g_cw.map.stack_color[proc->process_PC] != 0 && g_cw.map.stack_color[proc->process_PC] != 14)
+						if (g_cw.map.stack_color[proc->process_PC] != 0 && g_cw.map.stack_color[proc->process_PC] != number_for_empty_signal)
 						{
     						g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
 						}
     					else
     					{
-    						g_cw.map.stack_color[proc->process_PC] = 14;
+    						g_cw.map.stack_color[proc->process_PC] = number_for_empty_signal;
     					}
 
     					proc->cycles_till_execution = 1;
@@ -359,13 +361,13 @@ void		cw_execute_corewar(t_processes *proc)
 
 						proc->process_PC += cw_move_PC_when_not_correct_cdg(cmd.codage, proc->current_command);
 
-						if (g_cw.map.stack_color[proc->process_PC] != 0 && g_cw.map.stack_color[proc->process_PC] != 14)
+						if (g_cw.map.stack_color[proc->process_PC] != 0 && g_cw.map.stack_color[proc->process_PC] != number_for_empty_signal)
 						{
     						g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
 						}
     					else
     					{
-    						g_cw.map.stack_color[proc->process_PC] = 14;
+    						g_cw.map.stack_color[proc->process_PC] = number_for_empty_signal;
     					}
     					proc->cycles_till_execution = 1;
 						proc->current_command = 0;
@@ -511,7 +513,9 @@ void		cw_game_loop(void)
 
 	#define CYCLES 100000
 
-	#define test 5163
+	// #define test 5312
+	#define test 100
+
 
 	// 4570;
 

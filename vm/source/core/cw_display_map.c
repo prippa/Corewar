@@ -41,7 +41,11 @@ static void	print_color(unsigned char data, int color_type)
 	else if (color_type == 13)
 		ft_printf("%~.2x", F_BACK_GREEN_WHITE, data);
 	else if (color_type == 14)
-		ft_printf("%~.2x", F_BACK_GREEN_WHITE, data); // change the color;
+		ft_printf("%~.2x", F_BACK_RED_WHITE, data); // change the color;
+	else if (color_type == 15)
+		ft_printf("%~.2x", F_BACK_BLUE_WHITE, data);
+	else if (color_type == 16)
+		ft_printf("%~.2x", F_BACK_CYAN_WHITE, data); // change the color;
 	else
 		ft_printf("%~.2x", F_WHITE, 0);
 }

@@ -12,6 +12,8 @@
 
 #include "corewar.h"
 
+#define number_for_empty_signal 100
+
 //    Перемещает PC с текущей позиции на T_DIR % IDX_MOD если carry равен 1
 
 void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/) // one is enough maybe;
@@ -67,12 +69,12 @@ void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 // 
         // ft_printf("stack_color jmp == 0 -> %d\n", map->stack_color[proc->process_PC]);
 
-        map->stack_color[proc->process_PC] = 14;
+        map->stack_color[proc->process_PC] = number_for_empty_signal;
 
         // ft_printf("stack_color jmp == 0 -> %d\n", map->stack_color[proc->process_PC]);
         
     }
-    else if (map->stack_color[proc->process_PC] != 0 && map->stack_color[proc->process_PC] != 14)
+    else if (map->stack_color[proc->process_PC] != 0 && map->stack_color[proc->process_PC] != number_for_empty_signal)
     {
         // ft_putstr("****************************************2\n");
         // ft_printf("stack_color jmp != 0 -> %d\n", map->stack_color[proc->process_PC]);
