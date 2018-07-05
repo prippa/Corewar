@@ -513,7 +513,7 @@ void		cw_game_loop(void)
 
 	#define CYCLES 100000
 
-	#define test 5312
+	#define test 798
 	// #define test 100
 
 

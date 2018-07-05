@@ -77,10 +77,10 @@ static void	cw_load_processes(t_champ *champ)
 		champ->proc_start->champ_number = champ->champ_number;
 		color++;
 		process_pc += map_distance;
-		ft_printf("process_PC_color -> %d\n", champ->proc_start->proc_process_PC_color);
-		ft_printf("proc_color_write_to_map -> %d\n", champ->proc_start->proc_color_write_to_map);
-		ft_printf("live_color -> %d\n", champ->proc_start->live_color);
-		getchar();
+		// ft_printf("process_PC_color -> %d\n", champ->proc_start->proc_process_PC_color);
+		// ft_printf("proc_color_write_to_map -> %d\n", champ->proc_start->proc_color_write_to_map);
+		// ft_printf("live_color -> %d\n", champ->proc_start->live_color);
+		// getchar();
 		champ = champ->next;
 
 	// ft_printf("live_color -> %d\n", proc->live_color);
