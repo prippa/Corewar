@@ -171,19 +171,12 @@ void		cw_execute_corewar(t_processes *proc)
 		// }
 	while (proc)
 	{
-<<<<<<< HEAD
-		// ft_printf("cmd -----------> %d\n", proc->current_command);
-		// ft_printf("proc id --------------------> %d\n", proc->id);
-		// ft_printf("proc_PC -----------> %d\n", proc->process_PC);
-		// ft_printf("cur cmd -----------> %d\n", proc->current_command);
-		// ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
-=======
+
 		ft_printf("proc id --------------------> %d\n", proc->id);
 		ft_printf("proc_PC -----------> %d\n", proc->process_PC);
 		ft_printf("cur cmd -----------> %d\n", proc->current_command);
 		ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
->>>>>>> otimofie
-		// ft_printf("color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
+		ft_printf("color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
 
 		// ft_printf("color -----------> %d\n", g_cw.map.stack_color[proc->process_PC]);
 
@@ -524,8 +517,8 @@ void		cw_game_loop(void)
 
 	#define CYCLES 100000
 
-	#define test 6142
-	// #define test 100
+	#define test1 5312
+	// #define test1 100
 
 
 	// 4570;
@@ -567,7 +560,7 @@ void		cw_game_loop(void)
 
 		cw_decrementor(g_cw.map.write_to_the_map_stack, g_cw.map.stack_color, g_cw.map.cycle_stack);
 
-		if (g_cw.cycle >= test)
+		if (g_cw.cycle >= test1)
 		{
 			cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 		// 	// cw_display_map_write(g_cw.map.stack_color);
