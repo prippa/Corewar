@@ -18,14 +18,6 @@
 
 void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/) // one is enough maybe;
 {
-    ft_printf("zjmp\n");
-
-    if (proc->process_PC > 4095 || proc->process_PC < 0)
-    {
-        ft_printf("zjmp\n");
-        ft_printf("PC", proc->process_PC);
-        getchar();
-    }
 
 	map->stack_color[proc->process_PC] = proc->color;
 
@@ -53,7 +45,6 @@ void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
             // getchar();
     
     }
-    ft_printf("process_PC -> %d\n", proc->process_PC);
 
 
 
@@ -83,12 +74,6 @@ void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
         // ft_printf("stack_color jmp != 0 -> %d\n", map->stack_color[proc->process_PC]);
 
-    }
-    if (proc->process_PC > 4095 || proc->process_PC < 0)
-    {
-        ft_printf("zjmp\n");
-        ft_printf("PC -> %d", proc->process_PC);
-        getchar();
     }
 
   // ft_printf("stack_color jmp general -> %d\n", map->stack_color[proc->process_PC]);

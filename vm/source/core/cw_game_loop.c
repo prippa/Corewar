@@ -172,11 +172,11 @@ void		cw_execute_corewar(t_processes *proc)
 	while (proc)
 	{
 		// ft_printf("cmd -----------> %d\n", proc->current_command);
-		ft_printf("proc id --------------------> %d\n", proc->id);
-		ft_printf("proc_PC -----------> %d\n", proc->process_PC);
-		ft_printf("cur cmd -----------> %d\n", proc->current_command);
-		ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
-		ft_printf("color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
+		// ft_printf("proc id --------------------> %d\n", proc->id);
+		// ft_printf("proc_PC -----------> %d\n", proc->process_PC);
+		// ft_printf("cur cmd -----------> %d\n", proc->current_command);
+		// ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
+		// ft_printf("color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
 
 		// ft_printf("color -----------> %d\n", g_cw.map.stack_color[proc->process_PC]);
 
@@ -517,7 +517,7 @@ void		cw_game_loop(void)
 
 	#define CYCLES 100000
 
-	#define test 798
+	#define test 6142
 	// #define test 100
 
 
@@ -531,6 +531,7 @@ void		cw_game_loop(void)
 		// 	exit (0);
 		// }
 		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw.cycle);
+		ft_printf("PROC count -> %u\n", g_cw.proc_counter);
 		// ft_printf("processes -> %d\n", g_cw.proc_counter);
 
 		// GAME EDN IF PERIODS OF CYCLE_TO_DIE IS OWER !

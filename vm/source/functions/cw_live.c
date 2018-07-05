@@ -21,12 +21,6 @@
 
 void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
-	ft_printf("live\n");
-	if (proc->process_PC > 4095 || proc->process_PC < 0)
-	{
-		ft_printf("live\n");
-			getchar();
-	}
 
 	t_champ *champ;
 
@@ -52,16 +46,6 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 	// ft_printf("champ_number -> %d\n", champ->champ_number);
 	// ft_printf("champ_number -> %u\n", champ->lives_number);
 
-	ft_printf("process_PC_color -> %d\n", proc->proc_process_PC_color);
-
-	ft_printf("live_color -> %d\n", proc->live_color);
-
-	if (proc->live_color >16)
-	{
-		ft_printf("proc -> %d\n", proc->id);
-		getchar();
-	}
-
 	map->stack_color[proc->process_PC] = proc->live_color; // write to the 50 cycles;
 
 	map->write_to_the_map_stack[proc->process_PC] = proc->live_color + 50; // -> 59;
@@ -78,13 +62,6 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 //	 for testing;
 //	 map->stack[proc->process_PC] = 7;
 	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // move the color of the PC;
-
-
-	if (proc->process_PC > 4095 || proc->process_PC < 0)
-	{
-		ft_printf("live\n");
-			getchar();
-	}
 //
 //	 cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 

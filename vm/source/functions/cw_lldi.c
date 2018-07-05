@@ -14,13 +14,6 @@
 
 void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc)
 {
-	ft_printf("lldi\n");
-	if (proc->process_PC > 4095 || proc->process_PC < 0)
-	{
-		ft_printf("lldi\n");
-		getchar();
-	}
-
 	int arg;
 
 	if (cmd->arg1.tp == 2)
@@ -39,7 +32,6 @@ void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc)
 
 	proc->process_PC = MEM_CORRECTION(
 		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2));
-	ft_printf("process_PC -> %d\n", proc->process_PC);
 
 	// if(map->stack_color[proc->process_PC] != 0)
 	    if (map->stack_color[proc->process_PC] == 0)
@@ -65,12 +57,6 @@ void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc)
         // ft_printf("stack_color lldi != 0 -> %d\n", map->stack_color[proc->process_PC]);
 
     }
-	
-	if (proc->process_PC > 4095 || proc->process_PC < 0)
-	{
-		ft_printf("lldi\n");
-		getchar();
-	}
 		// map->stack[proc->process_PC] = 7;
 		// map->stack_color[proc->process_PC] = 5;
 		// ft_printf("process_carry -> %d\n\n", proc->carry);
