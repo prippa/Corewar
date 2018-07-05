@@ -172,11 +172,11 @@ void		cw_execute_corewar(t_processes *proc)
 	while (proc)
 	{
 
-		ft_printf("proc id --------------------> %d\n", proc->id);
-		ft_printf("proc_PC -----------> %d\n", proc->process_PC);
-		ft_printf("cur cmd -----------> %d\n", proc->current_command);
-		ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
-		ft_printf("color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
+		// ft_printf("proc id --------------------> %d\n", proc->id);
+		// ft_printf("proc_PC -----------> %d\n", proc->process_PC);
+		// ft_printf("cur cmd -----------> %d\n", proc->current_command);
+		// ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
+		// ft_printf("color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
 
 		// ft_printf("color -----------> %d\n", g_cw.map.stack_color[proc->process_PC]);
 
@@ -240,7 +240,7 @@ void		cw_execute_corewar(t_processes *proc)
 
 					if (g_cw.map.stack_color[proc->process_PC] == proc->proc_process_PC_color)
 					{
-						zeta = 5;
+						zeta = proc->proc_process_PC_color;
 			
 					}
 
@@ -303,10 +303,16 @@ void		cw_execute_corewar(t_processes *proc)
 						proc->current_command = 0;
 						proc->cycles_till_execution = 1;
 
+						if (g_cw.cycle >= 5447)
+						{
+							ft_printf("%~s", F_BACK_CYAN_WHITE, "here");
+							getchar();
+						}
 
 
 
-						ft_printf("%~s\n", F_BACK_CYAN_BLACK, "after get cmd");
+
+						// ft_printf("%~s\n", F_BACK_CYAN_BLACK, "after get cmd");//
 					}
 					else
 					{
@@ -500,6 +506,7 @@ void	cw_decrementor(unsigned int *write_to_the_map_stack, int *stack_color, unsi
 			}
 			else if (write_to_the_map_stack[i] == 16 && cycle_stack[i] == 0 && stack_color[i] != 8) //sti & live
 			{
+
 				stack_color[i] = 4;
 				write_to_the_map_stack[i] = 0;
 			}
@@ -527,7 +534,9 @@ void		cw_game_loop(void)
 	#define CYCLES 100000
 
 	// #define test1 798
-	#define test1 5323
+	// #define test1 5323
+	#define test1 5446
+
 
 
 	// 4570;
