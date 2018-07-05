@@ -171,18 +171,11 @@ void		cw_execute_corewar(t_processes *proc)
 		// }
 	while (proc)
 	{
-<<<<<<< HEAD
 		// ft_printf("cmd -----------> %d\n", proc->current_command);
 		// ft_printf("proc id --------------------> %d\n", proc->id);
 		// ft_printf("proc_PC -----------> %d\n", proc->process_PC);
 		// ft_printf("cur cmd -----------> %d\n", proc->current_command);
 		// ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
-=======
-		ft_printf("proc id --------------------> %d\n", proc->id);
-		ft_printf("proc_PC -----------> %d\n", proc->process_PC);
-		ft_printf("cur cmd -----------> %d\n", proc->current_command);
-		ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
->>>>>>> otimofie
 		// ft_printf("color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
 
 		// ft_printf("color -----------> %d\n", g_cw.map.stack_color[proc->process_PC]);
