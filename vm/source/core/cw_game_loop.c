@@ -514,7 +514,7 @@ void	cw_decrementor(unsigned int *write_to_the_map_stack, unsigned int *stack_co
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		if (write_to_the_map_stack[i] != 0)
+		if (write_to_the_map_stack[i] != 0) // think about it; add live - maybe
 		{
 			if (write_to_the_map_stack[i] == 9 && cycle_stack[i] == 0 && stack_color[i] != 5) //sti
 			{
