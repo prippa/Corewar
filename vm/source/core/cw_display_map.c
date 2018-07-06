@@ -41,9 +41,9 @@ static void	print_color(unsigned char data, int color_type)
 	else if (color_type == 13)
 		ft_printf("%~.2x", F_BACK_GREEN_WHITE, data);
 	else if (color_type == 14)
-		ft_printf("%~.2x", F_BACK_BLUE_WHITE, data);
+		ft_printf("%~.2x", F_BACK_BLUE_WHITE, data); // change the color;
 	else if (color_type == 15)
-		ft_printf("%~.2x", F_BACK_RED_WHITE, data); // change the color;
+		ft_printf("%~.2x", F_BACK_RED_WHITE, data);
 	else if (color_type == 16)
 		ft_printf("%~.2x", F_BACK_CYAN_WHITE, data); // change the color;
 		else if (color_type == 100) // do a macor
@@ -60,18 +60,22 @@ void		cw_display_map(unsigned char *map, unsigned int *color)
 
 	read(1, 0, 1); // this stuff may help with visualization;
 	system("clear"); // this stuff may help with visualization;
-	ft_putstr("\n\n   ");
 
+	ft_printf("\n\n   ");
 	i = 0;
 	spaces = 1;
 	lines = 0;
 	while (i < MEM_SIZE)
 	{
 		print_color(map[i], color[i]);
-		ft_putstr(" ");
+		ft_putchar(' ');
 		if (lines == NEWLINE_QUANTITY)
 		{
-			ft_putstr("\n   ");
+			ft_putchar('\n');
+			ft_putchar(' ');
+			ft_putchar(' ');
+			ft_putchar(' ');
+
 			lines = -1;
 		}
 		lines++;
@@ -95,7 +99,7 @@ void		cw_display_dump(void)
 			ft_printf("%.2x ", g_cw.map.stack[index]);
 			index++;
 		}
-		ft_putstr("\n");
+		ft_putchar('\n');
 		counter += CW_BIT;
 	}
 }
