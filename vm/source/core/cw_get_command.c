@@ -153,7 +153,7 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 	write_args(cmd, &i, bt, map);
 	// ft_printf("in cmd i -> %d\n",g_cw.i);
 	
-	return (0);
+	return (cw_command_filter(cmd));
 }
 
 int			cw_get_command_2(t_command *cmd, unsigned int i,
@@ -200,5 +200,5 @@ int			cw_get_command_2(t_command *cmd, unsigned int i,
 	write_args(cmd, &i, bt, map);
 	// ft_printf("in cmd i -> %d\n",g_cw.i);
 	
-	return (0);
+	return (cw_command_filter(cmd));
 }

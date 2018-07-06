@@ -13,7 +13,7 @@
 NAME		=	../corewar
 VIS_NAME	=	corewar
 
-FLAGS		= 	-Wall -Werror -Wextra
+# FLAGS		= 	-Wall -Werror -Wextra
 
 CC			=	gcc -g
 
@@ -75,7 +75,7 @@ C_SRUC_MP	=	t_champ_op.c t_champ_add_free_rev.c t_proc_free_srch.c\
 				t_proc_add_cpy.c t_proc_op.c
 
 C_CORE		=	cw_get_command.c cw_load_map.c cw_game_loop.c\
-				cw_display_map.c cw_cycles_new_period.c
+				cw_display_map.c cw_cycles_new_period.c cw_command_filter.c
 
 C_FUNC		=	cw_binary_and.c cw_binary_or.c cw_binary_xor.c\
 				cw_add.c cw_sub.c cw_sti.c cw_ld.c cw_live.c\

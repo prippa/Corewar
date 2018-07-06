@@ -41,9 +41,9 @@ void			cw_write_to_map(t_stack *map, t_processes *proc,
 int				cw_get_command(t_command *cmd, unsigned int i,
 					unsigned char *map);
 
-int			cw_get_command_2(t_command *cmd, unsigned int i,
+int				cw_get_command_2(t_command *cmd, unsigned int i,
 			unsigned char *map, int proc_current_command);
-
+int				cw_command_filter(t_command *cmd);
 
 
 

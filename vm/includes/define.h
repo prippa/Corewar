@@ -70,7 +70,8 @@ typedef enum	e_error_numbers
 	COMMENT,
 	PROG_SIZE_INVALID,
 	NOT_EXIST_CODE,
-	NOT_CORRECT_CODAGE
+	NOT_CORRECT_CODAGE,
+	INVALID_REG_AV
 }				t_error_numbers;
 
 # define ERR_MALLOC_MESSAGE		"malloc is failed"
