@@ -585,7 +585,7 @@ void		cw_game_loop(void)
 
 	// #define test1 798
 	// #define test1 5323
-	#define test1 20789
+	#define test1 2000
 
 
 
@@ -628,11 +628,11 @@ void		cw_game_loop(void)
 
 		cw_decrementor(g_cw.map.write_to_the_map_stack, g_cw.map.stack_color, g_cw.map.cycle_stack);
 
-		// if (g_cw.cycle >= test1)
-		// {
-		// 	cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
-		// // 	// cw_display_map_write(g_cw.map.stack_color);
-		// }
+		if (g_cw.cycle >= test1)
+		{
+			cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
+		// 	// cw_display_map_write(g_cw.map.stack_color);
+		}
 
 		// FLAG -dump in work
 		if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)

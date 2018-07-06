@@ -15,7 +15,7 @@ void		t_processe_killer(t_champ *champs)
 			else
 			{
 				tmp = head->next;
-				g_cw.map.stack_color[head->process_PC] = head->proc_process_PC_color - 4;
+				g_cw.map.stack_color[head->process_PC] = (g_cw.map.stack_color[head->process_PC] == 100 ? 0 : head->proc_process_PC_color - 4);
 				t_processe_free_by_obj(&champs->proc_start, &champs->proc_end, head);
 				if (!tmp)
 					break ;
