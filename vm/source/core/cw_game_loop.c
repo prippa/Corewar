@@ -171,7 +171,7 @@ void		cw_execute_corewar(t_processes *proc)
 		// }
 	while (proc)
 	{
-		if (proc->has_been_activated == 0)
+		if (proc->id == 17)
 		{
 
 			ft_printf("proc id --------------------> %d\n", proc->id);
@@ -182,8 +182,8 @@ void		cw_execute_corewar(t_processes *proc)
 			// ft_printf("process color ----> %d\n", proc->color);
 			ft_printf("cycle_stack ----> %d\n", g_cw.map.cycle_stack[proc->process_PC]);
 			ft_printf("write_to_the_map_stack ----> %d\n", g_cw.map.write_to_the_map_stack[proc->process_PC]);
-			ft_printf("proc_live ----> %d\n", proc->live_status);
-			ft_printf("has_been_activates ----> %d\n", proc->has_been_activated);
+		// 	ft_printf("proc_live ----> %d\n", proc->live_status);
+		// 	ft_printf("has_been_activates ----> %d\n", proc->has_been_activated);
 
 
 		}
@@ -201,8 +201,6 @@ void		cw_execute_corewar(t_processes *proc)
 		if (cw_get_command(&cmd, proc->process_PC, g_cw.map.stack) ==  NOT_EXIST_CODE && proc->current_command == 0) // if no active command; // adopt here;
 		{
 				// ft_printf("%~d\n", F_BACK_CYAN_BLACK, proc->id);
-				// if (proc->id == 17)
-				// 	ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
 
 				// ft_printf("in -> %d\n", g_cw.map.stack_color[proc->process_PC]);
         		// ft_printf("stack_color not vali -> %d\n", g_cw.map.stack_color[proc->process_PC]);
@@ -219,8 +217,10 @@ void		cw_execute_corewar(t_processes *proc)
 
 				if (g_cw.map.stack_color[proc->process_PC] == zeta) // one process_PC is enough maybe;
 				{
+				if (proc->id == 17)
+					ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
 					// ft_putstr("here\n");
-					g_cw.map.stack_color[proc->process_PC] = 9;
+					g_cw.map.stack_color[proc->process_PC] = 9; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				}
 				// ft_printf("%s\n", "woohoo");
 
@@ -229,11 +229,15 @@ void		cw_execute_corewar(t_processes *proc)
 				if (proc->process_PC != 0 && g_cw.map.stack_color[proc->process_PC - 1] == number_for_empty_signal) // one process_PC is enough maybe;
 				{
 					// ft_putstr("here\n");
+									if (proc->id == 17)
+					ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
 					g_cw.map.stack_color[proc->process_PC - 1] = 0;
 		
 				}
 				else if (proc->process_PC == 0 && g_cw.map.stack_color[MEM_SIZE - 1] == number_for_empty_signal)
 				{
+									if (proc->id == 17)
+					ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
 					g_cw.map.stack_color[MEM_SIZE - 1] = 0;
 			
 				}
@@ -241,6 +245,8 @@ void		cw_execute_corewar(t_processes *proc)
 				if (g_cw.map.stack_color[proc->process_PC] == 0)
 				{
 					// g_cw.map.stack_color[proc->process_PC - 1] = 0;
+									if (proc->id == 17)
+					ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
 					g_cw.map.stack_color[proc->process_PC] = number_for_empty_signal;
 			
 				}
@@ -248,7 +254,8 @@ void		cw_execute_corewar(t_processes *proc)
 				{
 					// g_cw.map.stack_color[proc->process_PC - 1] = 0;
 					// int color_before = g_cw.map.stack_color[proc->process_PC];
-
+				if (proc->id == 17)
+					ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
 					if (g_cw.map.stack_color[proc->process_PC] == proc->proc_process_PC_color)
 					{
 						zeta = proc->proc_process_PC_color;
@@ -259,15 +266,14 @@ void		cw_execute_corewar(t_processes *proc)
 
 					if (g_cw.map.cycle_stack[proc->process_PC] == 0)
 					{
-							// 					if (proc->id == 17)
-							// ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
+			
 						g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // цвет каретки
 						
 					}
 					else if (g_cw.map.cycle_stack[proc->process_PC] < (unsigned int)proc->proc_process_PC_color)
 					{
-						if (proc->id == 17)
-							ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
+						// if (proc->id == 17)
+						// 	ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
 						g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color; 
 					}
 			
@@ -280,8 +286,8 @@ void		cw_execute_corewar(t_processes *proc)
 		}
 		else
 		{
-			if (proc->id == 17)
-				ft_printf("%~s\n", F_BACK_GREEN_WHITE, "valid cmd");
+			// if (proc->id == 17)
+			// 	ft_printf("%~s\n", F_BACK_GREEN_WHITE, "valid cmd");
 			// cw_print_cmd_specifications(&cmd);
 
 			// decrement the cycles and then execute;
@@ -406,7 +412,11 @@ void		cw_execute_corewar(t_processes *proc)
 					// getchar();
 						cw_get_command(&cmd, proc->process_PC, g_cw.map.stack); // to have the cmd.codage actual on the map; /////////////////// ?
 
-						g_cw.map.stack_color[proc->process_PC] = proc->color;
+						// if (proc->current_command == 14)
+						if (g_cw.map.cycle_stack[proc->process_PC] == 0)
+							g_cw.map.stack_color[proc->process_PC] = proc->color;
+						else if (g_cw.map.cycle_stack[proc->process_PC] !=0)
+							g_cw.map.stack_color[proc->process_PC] = proc->proc_color_write_to_map;
 
 						proc->process_PC += cw_move_PC_when_not_correct_cdg(cmd.codage, proc->current_command);
 
@@ -568,7 +578,7 @@ void		cw_game_loop(void)
 
 	// #define test1 798
 	// #define test1 5323
-	#define test1 7376
+	#define test1 7999
 
 
 
