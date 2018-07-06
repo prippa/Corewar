@@ -24,7 +24,7 @@ static inline bool	init_window(t_arena *arena)
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Window init error", SDL_GetError(), NULL);
 		return (false);
 	}
-	arena->zoom = 1.0;
+	arena->zoom = 0.9;
 	if (!(arena->renderer = SDL_CreateRenderer(arena->window, -1, SDL_RENDERER_SOFTWARE)))
 	{
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Renderer init error", SDL_GetError(), NULL);
