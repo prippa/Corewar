@@ -171,7 +171,7 @@ void		cw_execute_corewar(t_processes *proc)
 		// }
 	while (proc)
 	{
-		if (proc->id == 17)
+		if (proc->has_been_activated == 0)
 		{
 
 			ft_printf("proc id --------------------> %d\n", proc->id);
@@ -182,6 +182,10 @@ void		cw_execute_corewar(t_processes *proc)
 			// ft_printf("process color ----> %d\n", proc->color);
 			ft_printf("cycle_stack ----> %d\n", g_cw.map.cycle_stack[proc->process_PC]);
 			ft_printf("write_to_the_map_stack ----> %d\n", g_cw.map.write_to_the_map_stack[proc->process_PC]);
+			ft_printf("proc_live ----> %d\n", proc->live_status);
+			ft_printf("has_been_activates ----> %d\n", proc->has_been_activated);
+
+
 		}
 		// ft_printf("color -----------> %d\n", g_cw.map.stack_color[proc->process_PC]);
 
@@ -564,7 +568,7 @@ void		cw_game_loop(void)
 
 	// #define test1 798
 	// #define test1 5323
-	#define test1 7317
+	#define test1 7376
 
 
 
