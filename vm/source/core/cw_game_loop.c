@@ -279,7 +279,7 @@ void		cw_execute_corewar(t_processes *proc)
 
 			// ft_bzero(&cmd, sizeof(t_command));
 
-			if (proc->current_command != 0 && g_cw.map.cycle_stack[proc->process_PC] < 9)
+			if (proc->current_command != 0 && g_cw.map.cycle_stack[proc->process_PC] < (unsigned intu)proc->proc_process_PC_color)
 			{
 				g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
 			}
