@@ -24,4 +24,5 @@ void	draw_fillrect(t_arena *arena,
 void	draw_outlinerect(t_arena *arena, SDL_Rect rect);
 void	draw_controls(t_arena *arena);
 void	draw_background(t_arena *arena);
+void	draw_infopanel(t_arena *arena);
 #endif

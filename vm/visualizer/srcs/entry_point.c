@@ -50,13 +50,13 @@ void	set_random(t_arena *arena)
 		arena->bytes[i] = rand() % 0x100;
 		int r = rand()%4;
 		if (r == 0)
-			arena->colors[i] = RED;
+			arena->colors[i] = RED_COLOR;
 		else if (r == 1)
-			arena->colors[i] = GREEN;
+			arena->colors[i] = GREEN_COLOR;
 		else if (r == 2)
-			arena->colors[i] = BLUE;
+			arena->colors[i] = BLUE_COLOR;
 		else
-			arena->colors[i] = CYAN;
+			arena->colors[i] = CYAN_COLOR;
 		//arena->colors[i] = (SDL_Color){.r = 0, .g = 0, .b = 0};
 	}
 }

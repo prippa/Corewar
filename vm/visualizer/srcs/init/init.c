@@ -50,7 +50,7 @@ static inline void	init_viewport(t_arena *arena)
 {
 	arena->viewport = get_rectangle(0,
 									0,
-									SCREEN_WIDTH - BUTTON_WIDTH - (SCREEN_WIDTH >> 5),
+									SCREEN_WIDTH - (BUTTON_WIDTH << 1) - (SCREEN_WIDTH >> 5),
 									SCREEN_HEIGHT);
 }
 
@@ -76,6 +76,7 @@ bool				init(t_arena *arena)
 	if (!init_window(arena))
 		return (false);
 	init_figures(arena);
+	init_infopanel(arena);
 	if (!init_controls(arena))
 		return (false);
 	if (!(arena->tile_block = load_from_file(TILEBLOCK_IMG, arena->renderer, (SDL_Color){})))

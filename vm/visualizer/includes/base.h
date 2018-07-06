@@ -35,6 +35,7 @@
 # define BACK_IMG "vm/visualizer/images/colosseum.jpg"
 # define GREY_PANEL_IMG "vm/visualizer/images/grey_panel.png"
 # define MAIN_THEME "music/10 Route 666.mp3"
+# define INFO_PANEL "vm/visualizer/images/panel2.jpg"
 # define GET_DMODE_SUCCESS 0
 # define SCREEN_WIDTH (arena->d_mode.w - 200)
 # define SCREEN_HEIGHT (arena->d_mode.h - 200)
@@ -64,10 +65,10 @@
 # define CANSEL_BUTTON {ESCAPE_KEY, CANSEL_BUTTON_ID, "Cansel"}
 # define DEFAULT_COLOR_KEY (SDL_Color){.r = 0xff, .g = 0xff, .b = 0xff}
 # define MOVE_BTN_WIDTH (((SCREEN_WIDTH >> 4) * 2) / 3)
-# define RED ((SDL_Color){.r = 0xff})
-# define GREEN ((SDL_Color){.g = 0xff})
-# define BLUE ((SDL_Color){.b = 0xff})
-# define CYAN ((SDL_Color){.g = 0xff, .b = 0xff})
+# define RED_COLOR ((SDL_Color){.r = 0xff})
+# define GREEN_COLOR ((SDL_Color){.g = 0xff})
+# define BLUE_COLOR ((SDL_Color){.b = 0xff})
+# define CYAN_COLOR ((SDL_Color){.g = 0xff, .b = 0xff})
 
 /*
 ** Number of message box buttons
@@ -187,6 +188,7 @@ typedef struct					s_button
 */
 typedef struct					s_arena
 {
+	t_ltexture					*infopanel;
 	/*
 	** The music that will be played
 	*/

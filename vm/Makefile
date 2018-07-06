@@ -101,7 +101,8 @@ DRAW_NAME		=	draw_arena.c				\
 					draw_fillrect.c				\
 					draw_outlinerect.c			\
 					draw_controls.c				\
-					draw_background.c
+					draw_background.c			\
+					draw_infopanel.c
 
 LOADER_NAME		=	load_surface.c				\
 					load_texture.c
@@ -131,7 +132,8 @@ INIT_NAME		=	init_devices.c				\
 					init_figures.c				\
 					init_move_buttons.c			\
 					init_background.c			\
-					init_music.c
+					init_music.c				\
+					init_infopanel.c
 
 ERROR_NAME		=	force_error.c
 #-------------------------------------------------------------------

@@ -9,5 +9,6 @@ bool	init_start_buttons(t_arena *arena);
 bool	init_figures(t_arena *arena);
 bool	init_move_buttons(t_arena *arena);
 bool	init_background(t_arena *arena);
+bool	init_infopanel(t_arena *arena);
 bool	init(t_arena *arena);
 #endif

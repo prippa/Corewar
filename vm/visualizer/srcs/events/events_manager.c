@@ -65,6 +65,7 @@ void				events_handler(t_arena *arena)
 		begin = clock();
 		clear_renderer(arena->renderer);
 		draw_background(arena);
+		draw_infopanel(arena);
 		dequeue_events(arena);
 		draw_controls(arena);
 		handle_arena_rendering(arena, begin, clock(), &tacts_before_render);	
