@@ -585,7 +585,7 @@ void		cw_game_loop(void)
 
 	// #define test1 798
 	// #define test1 5323
-	#define test1 20178
+	#define test1 20789
 
 
 
