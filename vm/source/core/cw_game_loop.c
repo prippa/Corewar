@@ -185,7 +185,7 @@ void		cw_execute_corewar(t_processes *proc)
 		// 	ft_printf("proc_live ----> %d\n", proc->live_status);
 		// 	ft_printf("has_been_activates ----> %d\n", proc->has_been_activated);
 
-
+// 
 		}
 		// ft_printf("color -----------> %d\n", g_cw.map.stack_color[proc->process_PC]);
 
@@ -514,7 +514,7 @@ void	cw_decrementor(unsigned int *write_to_the_map_stack, unsigned int *stack_co
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		if (write_to_the_map_stack[i] != 0)
+		if (write_to_the_map_stack[i] != 0) // think about it; add live - maybe
 		{
 			if (write_to_the_map_stack[i] == 9 && cycle_stack[i] == 0 && stack_color[i] != 5) //sti
 			{
