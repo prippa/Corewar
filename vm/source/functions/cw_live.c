@@ -71,7 +71,10 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
 //	 for testing;
 //	 map->stack[proc->process_PC] = 7;
-	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // move the color of the PC;
+	if (map->stack[proc->process_PC] != 0)
+		map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // move the color of the PC;
+	else if(map->stack[proc->process_PC] == 0 && map->stack_color[proc->process_PC] == 0)
+		map->stack_color[proc->process_PC] = number_for_empty_signal;
 //
 //	 cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 
