@@ -34,9 +34,6 @@ static int	arg_check(char *bn, int *j, char *tp, int bt)
 		return (2);
 	if (*tp == bt) // here;
 	{
-		// ft_putstr("here\n");
-		ft_printf("tp -> %d\n", *tp);
-		ft_printf("bt -> %d\n", bt);
 		return (bt);
 	}
 	if (*tp == T_REG) //o.k.
@@ -122,19 +119,6 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 {
 	int				bt; // byte
 	unsigned char	res[5]; // max is 4 bytes;
-	
-
-	if ( i > 4095)
-	{
-		ft_printf("in cmd 1\n");
-		ft_printf("in cmd %d\n", i);
-		cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
-		
-		getchar();
-	}
-
-
-
 
 	ft_bzero(res, 5); // +;
 

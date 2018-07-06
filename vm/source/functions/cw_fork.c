@@ -7,8 +7,8 @@ int             cw_find_the_same_PC(t_champ *champs, int cur_PC, unsigned int id
 {
     t_processes *process_branch = NULL;
 
-    ft_putstr("incoming to the function\n"); 
-    ft_printf("cur PC->%d id->%d\n", cur_PC,id);
+    // ft_putstr("incoming to the function\n"); 
+    // ft_printf("cur PC->%d id->%d\n", cur_PC,id);
     // ft_printf("proc id->%d\n", process_branch->id);
 
     while (champs)
@@ -20,9 +20,9 @@ int             cw_find_the_same_PC(t_champ *champs, int cur_PC, unsigned int id
             if (cur_PC == process_branch->process_PC && process_branch->id != id && cycles_till_execution < process_branch->cycles_till_execution)
             {
 
-                ft_putstr("found:\n");
-                ft_printf("PC->%d\n",process_branch->process_PC);
-                ft_printf("id->%d\n", process_branch->id);
+                // ft_putstr("found:\n");
+                // ft_printf("PC->%d\n",process_branch->process_PC);
+                // ft_printf("id->%d\n", process_branch->id);
                 // getchar();
 
                return(process_branch->id);
@@ -64,7 +64,7 @@ int             cw_get_same_position_detection(t_champ *champs)
 
 void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
 {
-    ft_printf("fork\n");
+    // ft_printf("fork\n");
     unsigned int found_the_fork_with_same_process_PC = 0;
     t_champ *champs = g_cw.pd.champs;
 
@@ -89,7 +89,7 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     //     if (position_on_the_map > 4095 || position_on_the_map < 0)
     // {
     //     getchar();
-    ft_printf("current -> %~.d\n", F_BACK_GREEN_BLACK, proc->process_PC); // change the color;
+    // ft_printf("current -> %~.d\n", F_BACK_GREEN_BLACK, proc->process_PC); // change the color;
     // }
 
     proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
@@ -117,7 +117,7 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
 
     // clone = proc;
 
-    ft_printf("next -> %~.d\n", F_BACK_CYAN_BLACK, position_on_the_map); // change the color;
+    // ft_printf("next -> %~.d\n", F_BACK_CYAN_BLACK, position_on_the_map); // change the color;
     // while (clone->next)
     // {
         // ft_printf("id -> %u\n", clone->id);

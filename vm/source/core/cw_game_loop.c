@@ -171,9 +171,6 @@ void		cw_execute_corewar(t_processes *proc)
 		// }
 	while (proc)
 	{
-		if (proc->id == 17)
-		{
-
 			ft_printf("proc id --------------------> %d\n", proc->id);
 			ft_printf("proc_PC -----------> %d\n", proc->process_PC);
 			ft_printf("cur cmd -----------> %d\n", proc->current_command);
@@ -186,7 +183,7 @@ void		cw_execute_corewar(t_processes *proc)
 		// 	ft_printf("has_been_activates ----> %d\n", proc->has_been_activated);
 
 
-		}
+		// }
 		// ft_printf("color -----------> %d\n", g_cw.map.stack_color[proc->process_PC]);
 
 		// cmd.cmd, do not include codage;
@@ -272,7 +269,7 @@ void		cw_execute_corewar(t_processes *proc)
 			
 
 		
-				}
+				// }
 				// ft_printf("%~s\n", F_BACK_GREEN_BLACK, "after get cmd");
 
 				// else
@@ -287,7 +284,7 @@ void		cw_execute_corewar(t_processes *proc)
 
 			// ft_bzero(&cmd, sizeof(t_command));
 
-			if (proc->current_command != 0 && g_cw.map.cycle_stack[proc->process_PC] < (unsigned int)proc->proc_process_PC_color)
+			if (proc->current_command != 0 && g_cw.map.cycle_stack[proc->process_PC] < proc->proc_process_PC_color)
 			{
 				g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
 			}
@@ -514,15 +511,15 @@ void	cw_decrementor(unsigned int *write_to_the_map_stack, unsigned int *stack_co
 			}
 			else if (write_to_the_map_stack[i] == 11 && cycle_stack[i] == 0 && stack_color[i] != 7 && stack_color[i] != 5) //sti
 			{
-				ft_printf("here blue");
-				getchar();
+				// ft_printf("here blue");
+				// getchar();
 				stack_color[i] = 3;
 				write_to_the_map_stack[i] = 0;
 			}
 			else if (write_to_the_map_stack[i] == 12 && cycle_stack[i] == 0 && stack_color[i] != 8 && stack_color[i] != 5) //sti
 			{
-				ft_printf("here cyan");
-				getchar();
+				// ft_printf("here cyan");
+				// getchar();
 				stack_color[i] = 4;
 				write_to_the_map_stack[i] = 0;
 			}
@@ -584,7 +581,9 @@ void		cw_game_loop(void)
 		// 	ft_printf("%-----u\n", g_cw.proc_counter);
 		// 	exit (0);
 		// }
-		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw.cycle);
+		ft_printf("*************************************************************************\n");
+		getchar();
+		ft_printf("cycle_main -> %d\n", g_cw.cycle);
 		ft_printf("PROC count -> %u\n", g_cw.proc_counter);
 		// ft_printf("processes -> %d\n", g_cw.proc_counter);
 
