@@ -21,11 +21,11 @@
 
 void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
-	ft_printf("proc id --------------------> %d\n", proc->id);
-	ft_printf("proc_PC -----------> %d\n", proc->process_PC);
-	ft_printf("cur cmd -----------> %d\n", proc->current_command);
-	ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
-	ft_printf("color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
+	// ft_printf("proc id --------------------> %d\n", proc->id);
+	// ft_printf("proc_PC -----------> %d\n", proc->process_PC);
+	// ft_printf("cur cmd -----------> %d\n", proc->current_command);
+	// ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
+	// ft_printf("color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
 
 	t_champ *champ;
 

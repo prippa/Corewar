@@ -92,7 +92,7 @@ void			t_processe_killer(t_champ *champs);
 
 void			cw_load_map(void);
 void			cw_game_loop(void);
-void			cw_display_map(unsigned char *map, int *color);
+void			cw_display_map(unsigned char *map, unsigned int *color);
 void			cw_display_dump(void);
 void			cw_cycles_new_period(void);
 void			cw_print_players(t_champ *champs);

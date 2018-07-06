@@ -42,7 +42,7 @@ typedef	struct			s_processes					// fork will create a process and will change t
 	int 				live_status;				// flag to detect the life of the process;
 	int 				has_been_activated;			// if the process has been used;
 	short				cycles_till_execution;		// will be decremented;
-	short				proc_process_PC_color;		// initial color;
+	unsigned int				proc_process_PC_color;		// initial color;
 	short				proc_color_write_to_map;	// color for writing on the map;
 	int					current_command;			// keep the current command;
 	int 				detect_deviation;			// cmd vs cur cmd;
@@ -55,7 +55,7 @@ typedef	struct			s_processes					// fork will create a process and will change t
 typedef struct			s_stack
 {
 	unsigned char		stack[MEM_SIZE];			// whole stack;
-	int					stack_color[MEM_SIZE];		// colors manipulation;
+	unsigned int					stack_color[MEM_SIZE];		// colors manipulation;
 	unsigned int		write_to_the_map_stack[MEM_SIZE];	// maintain color buf for sti;
 	unsigned int		cycle_stack[MEM_SIZE];		// to keep the 50 cycles;
 }						t_stack;

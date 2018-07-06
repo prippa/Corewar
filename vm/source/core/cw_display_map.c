@@ -52,7 +52,7 @@ static void	print_color(unsigned char data, int color_type)
 		ft_printf("%~.2x", F_WHITE, 0);
 }
 
-void		cw_display_map(unsigned char *map, int *color)
+void		cw_display_map(unsigned char *map, unsigned int *color)
 {
 	unsigned int i;
 	unsigned int spaces;
