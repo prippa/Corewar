@@ -201,6 +201,8 @@ void		cw_execute_corewar(t_processes *proc)
 		if (cw_get_command(&cmd, proc->process_PC, g_cw.map.stack) ==  NOT_EXIST_CODE && proc->current_command == 0) // if no active command; // adopt here;
 		{
 				// ft_printf("%~d\n", F_BACK_CYAN_BLACK, proc->id);
+				// if (proc->id == 17)
+				// 	ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
 
 				// ft_printf("in -> %d\n", g_cw.map.stack_color[proc->process_PC]);
         		// ft_printf("stack_color not vali -> %d\n", g_cw.map.stack_color[proc->process_PC]);
@@ -217,10 +219,8 @@ void		cw_execute_corewar(t_processes *proc)
 
 				if (g_cw.map.stack_color[proc->process_PC] == zeta) // one process_PC is enough maybe;
 				{
-				if (proc->id == 17)
-					ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
 					// ft_putstr("here\n");
-					g_cw.map.stack_color[proc->process_PC] = 9; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					g_cw.map.stack_color[proc->process_PC] = 9;
 				}
 				// ft_printf("%s\n", "woohoo");
 
@@ -229,15 +229,11 @@ void		cw_execute_corewar(t_processes *proc)
 				if (proc->process_PC != 0 && g_cw.map.stack_color[proc->process_PC - 1] == number_for_empty_signal) // one process_PC is enough maybe;
 				{
 					// ft_putstr("here\n");
-									if (proc->id == 17)
-					ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
 					g_cw.map.stack_color[proc->process_PC - 1] = 0;
 		
 				}
 				else if (proc->process_PC == 0 && g_cw.map.stack_color[MEM_SIZE - 1] == number_for_empty_signal)
 				{
-									if (proc->id == 17)
-					ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
 					g_cw.map.stack_color[MEM_SIZE - 1] = 0;
 			
 				}
@@ -245,8 +241,6 @@ void		cw_execute_corewar(t_processes *proc)
 				if (g_cw.map.stack_color[proc->process_PC] == 0)
 				{
 					// g_cw.map.stack_color[proc->process_PC - 1] = 0;
-									if (proc->id == 17)
-					ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
 					g_cw.map.stack_color[proc->process_PC] = number_for_empty_signal;
 			
 				}
@@ -254,8 +248,7 @@ void		cw_execute_corewar(t_processes *proc)
 				{
 					// g_cw.map.stack_color[proc->process_PC - 1] = 0;
 					// int color_before = g_cw.map.stack_color[proc->process_PC];
-				if (proc->id == 17)
-					ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
+
 					if (g_cw.map.stack_color[proc->process_PC] == proc->proc_process_PC_color)
 					{
 						zeta = proc->proc_process_PC_color;
