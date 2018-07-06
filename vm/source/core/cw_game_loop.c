@@ -257,8 +257,8 @@ void		cw_execute_corewar(t_processes *proc)
 					}
 					else if (g_cw.map.cycle_stack[proc->process_PC] < (unsigned int)proc->proc_process_PC_color)
 					{
-						if (proc->id == 17)
-							ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
+						// if (proc->id == 17)
+							// ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
 						g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color; 
 					}
 			
@@ -271,8 +271,8 @@ void		cw_execute_corewar(t_processes *proc)
 		}
 		else
 		{
-			if (proc->id == 17)
-				ft_printf("%~s\n", F_BACK_GREEN_WHITE, "valid cmd");
+			// if (proc->id == 17)
+				// ft_printf("%~s\n", F_BACK_GREEN_WHITE, "valid cmd");
 			// cw_print_cmd_specifications(&cmd);
 
 			// decrement the cycles and then execute;
@@ -502,15 +502,15 @@ void	cw_decrementor(unsigned int *write_to_the_map_stack, unsigned int *stack_co
 			}
 			else if (write_to_the_map_stack[i] == 11 && cycle_stack[i] == 0 && stack_color[i] != 7 && stack_color[i] != 5) //sti
 			{
-				ft_printf("here blue");
-				getchar();
+				// ft_printf("here blue");
+				// getchar();
 				stack_color[i] = 3;
 				write_to_the_map_stack[i] = 0;
 			}
 			else if (write_to_the_map_stack[i] == 12 && cycle_stack[i] == 0 && stack_color[i] != 8 && stack_color[i] != 5) //sti
 			{
-				ft_printf("here cyan");
-				getchar();
+				// ft_printf("here cyan");
+				// getchar();
 				stack_color[i] = 4;
 				write_to_the_map_stack[i] = 0;
 			}
@@ -559,7 +559,7 @@ void		cw_game_loop(void)
 
 	// #define test1 798
 	// #define test1 5323
-	#define test1 7317
+	#define test1 6152
 
 
 
@@ -572,7 +572,7 @@ void		cw_game_loop(void)
 		// 	ft_printf("%-----u\n", g_cw.proc_counter);
 		// 	exit (0);
 		// }
-		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw.cycle);
+		ft_printf("cycle_main -> %d\n", g_cw.cycle);
 		ft_printf("PROC count -> %u\n", g_cw.proc_counter);
 		// ft_printf("processes -> %d\n", g_cw.proc_counter);
 
@@ -602,11 +602,11 @@ void		cw_game_loop(void)
 
 		cw_decrementor(g_cw.map.write_to_the_map_stack, g_cw.map.stack_color, g_cw.map.cycle_stack);
 
-		// if (g_cw.cycle >= test1)
-		// {
-		// 	cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
-		// // 	// cw_display_map_write(g_cw.map.stack_color);
-		// }
+		if (g_cw.cycle >= test1)
+		{
+			cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
+		// 	// cw_display_map_write(g_cw.map.stack_color);
+		}
 
 		// FLAG -dump in work
 		if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
