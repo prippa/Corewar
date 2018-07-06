@@ -36,7 +36,7 @@ static void	cw_fill_map_with_bots(t_stack *stack, t_champ *champs)
 	}
 }
 
-static void	cw_init_map(unsigned char *stack, int *stack_color,
+static void	cw_init_map(unsigned char *stack, unsigned int *stack_color,
 						unsigned int *write_to_the_map_stack, unsigned int *cycle_stack)
 {
 	unsigned int i;

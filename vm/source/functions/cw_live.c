@@ -21,6 +21,11 @@
 
 void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
+	// ft_printf("proc id --------------------> %d\n", proc->id);
+	// ft_printf("proc_PC -----------> %d\n", proc->process_PC);
+	// ft_printf("cur cmd -----------> %d\n", proc->current_command);
+	// ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
+	// ft_printf("color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
 
 	t_champ *champ;
 
@@ -46,11 +51,16 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 	// ft_printf("champ_number -> %d\n", champ->champ_number);
 	// ft_printf("champ_number -> %u\n", champ->lives_number);
 
-	map->stack_color[proc->process_PC] = proc->live_color; // write to the 50 cycles;
+	// here
+	if (champ)
+	{
+		map->stack_color[proc->process_PC] = proc->live_color; // write to the 50 cycles;
+		map->write_to_the_map_stack[proc->process_PC] = proc->live_color + 50; // -> 59;
+		map->cycle_stack[proc->process_PC] = 50; // -
+	}
+	else
+		map->stack_color[proc->process_PC] = proc->color; // write to the 50 cycles;
 
-	map->write_to_the_map_stack[proc->process_PC] = proc->live_color + 50; // -> 59;
-
-	map->cycle_stack[proc->process_PC] = 50; // -
 
 	// ft_printf("live_color -> %d\n", map->stack_color[proc->process_PC]);
 
@@ -61,7 +71,10 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
 //	 for testing;
 //	 map->stack[proc->process_PC] = 7;
-	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // move the color of the PC;
+	if (map->stack[proc->process_PC] != 0)
+		map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // move the color of the PC;
+	else if(map->stack[proc->process_PC] == 0 && map->stack_color[proc->process_PC] == 0)
+		map->stack_color[proc->process_PC] = number_for_empty_signal;
 //
 //	 cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 

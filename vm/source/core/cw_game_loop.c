@@ -191,7 +191,10 @@ void		cw_execute_corewar(t_processes *proc)
 		
 		if (cw_get_command(&cmd, proc->process_PC, g_cw.map.stack) ==  NOT_EXIST_CODE && proc->current_command == 0) // if no active command; // adopt here;
 		{
-				// ft_printf("%s\n", "after get cmd");
+				// ft_printf("%~d\n", F_BACK_CYAN_BLACK, proc->id);
+				// if (proc->id == 17)
+				// 	ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
+
 				// ft_printf("in -> %d\n", g_cw.map.stack_color[proc->process_PC]);
         		// ft_printf("stack_color not vali -> %d\n", g_cw.map.stack_color[proc->process_PC]);
         		if (g_cw.map.stack_color[proc->process_PC] != 0 && g_cw.map.stack_color[proc->process_PC ] != number_for_empty_signal && g_cw.map.cycle_stack[proc->process_PC] == 0)
@@ -203,7 +206,7 @@ void		cw_execute_corewar(t_processes *proc)
 					g_cw.map.stack_color[proc->process_PC] = number_for_empty_signal;
 				}
 
-				static int zeta;
+				static unsigned int zeta;
 
 				if (g_cw.map.stack_color[proc->process_PC] == zeta) // one process_PC is enough maybe;
 				{
@@ -239,25 +242,47 @@ void		cw_execute_corewar(t_processes *proc)
 
 					if (g_cw.map.stack_color[proc->process_PC] == proc->proc_process_PC_color)
 					{
-						zeta = 5;
+						zeta = proc->proc_process_PC_color;
 			
 					}
 
 					// ft_printf("cycle_stack -> %d\n", g_cw.map.cycle_stack[proc->process_PC]);
 
-					// if (g_cw.map.cycle_stack[proc->process_PC] == 0)
-					g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // цвет кареткиж
+					if (g_cw.map.cycle_stack[proc->process_PC] == 0)
+					{
+							// 					if (proc->id == 17)
+							// ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
+						g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color; // цвет каретки
+						
+					}
+					else if (g_cw.map.cycle_stack[proc->process_PC] < (unsigned int)proc->proc_process_PC_color)
+					{
+						if (proc->id == 17)
+							ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
+						g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color; 
+					}
+			
+
 		
 				}
+				// ft_printf("%~s\n", F_BACK_GREEN_BLACK, "after get cmd");
+
 				// else
 		}
 		else
 		{
+			if (proc->id == 17)
+				ft_printf("%~s\n", F_BACK_GREEN_WHITE, "valid cmd");
 			// cw_print_cmd_specifications(&cmd);
 
 			// decrement the cycles and then execute;
 
 			// ft_bzero(&cmd, sizeof(t_command));
+
+			if (proc->current_command != 0 && g_cw.map.cycle_stack[proc->process_PC] < (unsigned int)proc->proc_process_PC_color)
+			{
+				g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
+			}
 
 			if (proc->current_command == 0)
 			{
@@ -293,11 +318,21 @@ void		cw_execute_corewar(t_processes *proc)
 					// ft_printf("execute\n");
 					// ft_printf("here ->*******************************************2\n");
 					// getchar();
-					if (!cw_get_command(&cmd, proc->process_PC, g_cw.map.stack))
+					if (!cw_get_command(&cmd, proc->process_PC, g_cw.map.stack)) // ! == correct execution;
 					{
 						g_cw.op[cmd.cmd - 1].func(&cmd, &g_cw.map, proc);
 						proc->current_command = 0;
 						proc->cycles_till_execution = 1;
+
+						// if (g_cw.cycle >= 5447)
+						// {
+						// 	getchar();
+						// }
+
+
+
+
+						// ft_printf("%~s\n", F_BACK_CYAN_BLACK, "after get cmd");//
 					}
 					else
 					{
@@ -342,6 +377,7 @@ void		cw_execute_corewar(t_processes *proc)
 					// cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 
 					ft_bzero(&cmd, sizeof(t_command));
+
 					if (!cw_get_command_2(&cmd, proc->process_PC, g_cw.map.stack, proc->current_command))
 					{
 
@@ -445,7 +481,7 @@ void cw_display_map_write(unsigned int *map)
 	}
 }
 
-void	cw_decrementor(unsigned int *write_to_the_map_stack, int *stack_color, unsigned int *cycle_stack) // for 50 cycles;
+void	cw_decrementor(unsigned int *write_to_the_map_stack, unsigned int *stack_color, unsigned int *cycle_stack) // for 50 cycles;
 {
 	int i;
 
@@ -454,42 +490,46 @@ void	cw_decrementor(unsigned int *write_to_the_map_stack, int *stack_color, unsi
 	{
 		if (write_to_the_map_stack[i] != 0)
 		{
-			if (write_to_the_map_stack[i] == 9 && cycle_stack[i] == 0 && stack_color[i] != 5) //sti & live
+			if (write_to_the_map_stack[i] == 9 && cycle_stack[i] == 0 && stack_color[i] != 5) //sti
 			{
 				stack_color[i] = 1;
 				write_to_the_map_stack[i] = 0;
 			}
-			else if (write_to_the_map_stack[i] == 10 && cycle_stack[i] == 0 && stack_color[i] != 6) //sti & live
+			else if (write_to_the_map_stack[i] == 10 && cycle_stack[i] == 0 && stack_color[i] != 6 && stack_color[i] != 5) //sti
 			{
 				stack_color[i] = 2;
 				write_to_the_map_stack[i] = 0;
 			}
-			else if (write_to_the_map_stack[i] == 11 && cycle_stack[i] == 0 && stack_color[i] != 7) //sti & live
+			else if (write_to_the_map_stack[i] == 11 && cycle_stack[i] == 0 && stack_color[i] != 7 && stack_color[i] != 5) //sti
 			{
+				ft_printf("here blue");
+				getchar();
 				stack_color[i] = 3;
 				write_to_the_map_stack[i] = 0;
 			}
-			else if (write_to_the_map_stack[i] == 12 && cycle_stack[i] == 0 && stack_color[i] != 8) //sti & live
+			else if (write_to_the_map_stack[i] == 12 && cycle_stack[i] == 0 && stack_color[i] != 8 && stack_color[i] != 5) //sti
 			{
+				ft_printf("here cyan");
+				getchar();
 				stack_color[i] = 4;
 				write_to_the_map_stack[i] = 0;
 			}
-			else if (write_to_the_map_stack[i] == 13 && cycle_stack[i] == 0 && stack_color[i] != 5) //sti & live
+			else if (write_to_the_map_stack[i] == 13 && cycle_stack[i] == 0 && stack_color[i] != 5) //live
 			{
 				stack_color[i] = 1;
 				write_to_the_map_stack[i] = 0;
 			}
-			else if (write_to_the_map_stack[i] == 14 && cycle_stack[i] == 0 && stack_color[i] != 6) //sti & live
+			else if (write_to_the_map_stack[i] == 14 && cycle_stack[i] == 0 && stack_color[i] != 6) //live
 			{
 				stack_color[i] = 2;
 				write_to_the_map_stack[i] = 0;
 			}
-			else if (write_to_the_map_stack[i] == 15 && cycle_stack[i] == 0 && stack_color[i] != 7) //sti & live
+			else if (write_to_the_map_stack[i] == 15 && cycle_stack[i] == 0 && stack_color[i] != 7) //live
 			{
 				stack_color[i] = 3;
 				write_to_the_map_stack[i] = 0;
 			}
-			else if (write_to_the_map_stack[i] == 16 && cycle_stack[i] == 0 && stack_color[i] != 8) //sti & live
+			else if (write_to_the_map_stack[i] == 16 && cycle_stack[i] == 0 && stack_color[i] != 8) // live
 			{
 				stack_color[i] = 4;
 				write_to_the_map_stack[i] = 0;
@@ -517,8 +557,10 @@ void		cw_game_loop(void)
 
 	#define CYCLES 100000
 
-	#define test1 2800
-	// #define test1 100
+	// #define test1 798
+	// #define test1 5323
+	#define test1 7317
+
 
 
 	// 4570;
