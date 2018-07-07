@@ -13,27 +13,27 @@
 #include "corewar.h"
 // TODO delete all comments
 
-int		cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -1 for registers; // TODO use IDX_CORRECTION for IDX_MOD
+static int	cw_arguments_value(t_command *cmd, t_stack *map, t_processes *process) // -1 for registers; // TODO use IDX_CORRECTION for IDX_MOD
 {
-	if (cmd->codage == 100) // o.k
+	if (cmd->codage == REG_DIR_REG) // o.k
 		return (process->process_PC + ((cmd->arg2.av + process->registers[cmd->arg3.av - 1]) % IDX_MOD));
-	else if (cmd->codage == 116) // o.k
+	else if (cmd->codage == REG_IND_REG) // o.k
 	{
 		// ft_printf("IND -> %d\n", cmd->arg2.av % IDX_MOD);
 		return (process->process_PC + ((cw_get_dec_from_the_point(map->stack, (cmd->arg2.av % IDX_MOD)) + process->registers[cmd->arg3.av - 1]) % IDX_MOD));
 	}
-	else if (cmd->codage == 84) // o.k.
+	else if (cmd->codage == REG_REG_REG) // o.k.
 	{
 		// ft_printf("r1 -> %d\n", process->registers[cmd->arg2.av - 1]);
 		// ft_printf("r1 -> %d\n", process->registers[cmd->arg3.av - 1]);
 		// ft_printf("res -> %d\n", ((process->registers[cmd->arg2.av - 1] + (process->process_PC + 1) + process->registers[cmd->arg3.av - 1]) % IDX_MOD));
 		return (process->process_PC + ((process->registers[cmd->arg2.av - 1] + process->registers[cmd->arg3.av - 1]) % IDX_MOD));
 	}
-	else if (cmd->codage == 104) // o.k
+	else if (cmd->codage == REG_DIR_DIR) // o.k
 		return (process->process_PC + ((cmd->arg2.av + cmd->arg3.av) % IDX_MOD));
-	else if (cmd->codage == 120) // o.k.
+	else if (cmd->codage == REG_IND_DIR) // o.k.
 		return (process->process_PC + ((cw_get_dec_from_the_point(map->stack, (cmd->arg2.av % IDX_MOD)) + cmd->arg3.av) % IDX_MOD)); // %idx_mod
-	else if (cmd->codage == 88) // o.k
+	else if (cmd->codage == REG_REG_DIR) // o.k
 		return (process->process_PC + ((process->registers[cmd->arg2.av - 1]  + cmd->arg3.av) % IDX_MOD));
 	return (0);
 }
@@ -123,7 +123,7 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	 // map->stack[proc->process_PC] = 7;
 	 // map->stack_color[proc->process_PC] = 5;
 
-	// TODO read(1, 0, 1);
+	 // TODO read(1, 0, 1);
 
 	 // cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 }

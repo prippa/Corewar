@@ -17,9 +17,9 @@ void			cw_st(t_command *cmd, t_stack *map, t_processes *proc)
 	int				index;
 	unsigned char	buf[4];
 
-	if (cmd->arg2.tp == 1)
+	if (cmd->codage == REG_REG)
 		proc->registers[cmd->arg2.av - 1] = proc->registers[cmd->arg1.av - 1];
-	else
+	else if (cmd->codage == REG_IND)
 	{
 		cw_write_bytes_to_buf(buf, proc->registers[cmd->arg1.av - 1]);
 		if ((index = MEM_CORRECTION((proc->process_PC + IDX_CORRECTION(cmd->arg2.av)))) < 0)

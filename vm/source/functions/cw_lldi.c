@@ -12,14 +12,28 @@
 
 #include "corewar.h"
 
+static int		cw_get_arguments_value_lldi(t_command *cmd, t_stack *map, t_processes *process)
+{
+	if (cmd->codage == REG_REG_REG)
+		return ((((process->registers[cmd->arg1.av - 1] + process->registers[cmd->arg2.av - 1])) + process->process_PC));
+	else if (cmd->codage == REG_DIR_REG)
+		return ((((process->registers[cmd->arg1.av - 1] + cmd->arg2.av)) + process->process_PC));
+	else if (cmd->codage == DIR_REG_REG)
+		return ((((cmd->arg1.av + process->registers[cmd->arg2.av - 1])) + process->process_PC));
+	else if (cmd->codage == DIR_DIR_REG)
+		return ((((cmd->arg1.av + cmd->arg2.av)) + process->process_PC));
+	else if (cmd->codage == IND_REG_REG)
+		return ((((cw_get_dec_from_the_point(map->stack, ((cmd->arg1.av % IDX_MOD) + process->process_PC)) + process->registers[cmd->arg2.av - 1])) + process->process_PC));
+	else if (cmd->codage == IND_DIR_REG)
+		return ((((cw_get_dec_from_the_point(map->stack, ((cmd->arg1.av % IDX_MOD) + process->process_PC)) + cmd->arg2.av)) + process->process_PC));
+	return (0);
+}
+
 void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc)
 {
 	int arg;
 
-	if (cmd->arg1.tp == 2)
-		arg = IDX_CORRECTION(cmd->arg1.av) + cmd->arg2.av + proc->process_PC;
-	else
-		arg = cmd->arg1.av + cmd->arg2.av + proc->process_PC;
+	arg = cw_get_arguments_value_lldi(cmd, map, proc);
 	proc->registers[cmd->arg3.av - 1] = cw_get_dec_from_the_point(
 		map->stack,
 		arg
@@ -36,7 +50,7 @@ void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc)
 		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2));
 
 	// if(map->stack_color[proc->process_PC] != 0)
-	    if (map->stack_color[proc->process_PC] == 0)
+	if (map->stack_color[proc->process_PC] == 0)
     {
         // ft_printf("stack_color lldi == 0 -> %d\n", map->stack_color[proc->process_PC]);
 

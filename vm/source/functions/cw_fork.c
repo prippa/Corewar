@@ -73,8 +73,8 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     found_the_fork_with_same_process_PC = cw_get_same_position_detection(champs);
     // }
     
-    int     position_on_the_map;
-    t_champ *champ;
+    int		position_on_the_map;
+    t_champ	*champ;
 
     champ = t_champ_find(proc->champ_number, g_cw.pd.champs);
     // ft_printf("champ live color -> %d\n", champ->proc_start->live_color);

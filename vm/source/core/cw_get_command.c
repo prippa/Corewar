@@ -144,7 +144,6 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 
 		return (NOT_EXIST_CODE);
 	}
-	bt = 1; // byte as default = 1, reghas 1 byte;
 	bt = (WHAT_DIR(map[i]) ? 2 : 4); // detect syze in bytes of the DIR;
 	cmd->cmd = map[i]; // set the command value from the first position on the map;
 	i = MEM_CORRECTION((i + 1)); // move the map pointer to the next byte;
@@ -191,7 +190,6 @@ int			cw_get_command_2(t_command *cmd, unsigned int i,
 		// ft_putstr("asdfasdfasdfasdfasdfasfasdfasdfasdf\n");
 		return (NOT_EXIST_CODE);
 	}
-	bt = 1; // byte as default = 1, reghas 1 byte;
 	bt = (WHAT_DIR(proc_current_command) ? 2 : 4); // detect syze in bytes of the DIR;
 	cmd->cmd = proc_current_command; // set the command value from the first position on the map;
 	i = MEM_CORRECTION((i + 1)); // move the map pointer to the next byte;
