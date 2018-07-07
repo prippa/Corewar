@@ -22,6 +22,7 @@
 #define	DIR_CHECK(x) (((x) > 8 && (x) < 13) || (x) == 14 || (x) == 15)
 
 
+	#define test1 20790
 
 
 static void		ft_zero_it(char *str)
@@ -143,60 +144,20 @@ void		cw_execute_corewar(t_processes *proc)
 	t_command cmd;
 	ft_bzero(&cmd, sizeof(t_command));
 
-	// t_processes *head = proc;
-	
-	// ft_printf("%s\n", "in corwar magic"); // 235 536 184
-	// exit(1);
-	// getchar();
-	// int		cycles = 0;
-	// t_processes *tmp = head;
-	// int i = 0;
-
-		// 	while (tmp)
-		// {
-		// 	// i = 0;
-
-		// 	if (tmp->process_PC > 4095 || tmp->process_PC < 0)
-		// 	{
-		// 		ft_printf("1\n");
-		// 		ft_printf("Total ---------> %d\n", g_cw.proc_counter);
-		// 		ft_printf("id ---------> %d\n", tmp->id);
-
-		// 		ft_printf("PC ---------> %ld\n", tmp->process_PC);
-		// 		ft_printf("i ---------> %d\n", i);
-		// 		getchar();
-		// 	}
-		// 		i++;
-		// 	tmp = tmp->next;
-		// }
 	while (proc)
 	{
-		if (proc->id == 17)
+		if (g_cw.cycle >= test1 && proc->current_command == 9)
 		{
-
 			ft_printf("proc id --------------------> %d\n", proc->id);
+			ft_printf("proc deviation --------------------> %d\n", proc->detect_deviation);
 			ft_printf("proc_PC -----------> %d\n", proc->process_PC);
-			ft_printf("cur cmd -----------> %d\n", proc->current_command);
+			ft_printf("cur cmd -----------> %~d\n", F_BACK_RED_WHITE, proc->current_command);
 			ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
 			ft_printf("stack color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
 			// ft_printf("process color ----> %d\n", proc->color);
 			ft_printf("cycle_stack ----> %d\n", g_cw.map.cycle_stack[proc->process_PC]);
 			ft_printf("write_to_the_map_stack ----> %d\n", g_cw.map.write_to_the_map_stack[proc->process_PC]);
-		// 	ft_printf("proc_live ----> %d\n", proc->live_status);
-		// 	ft_printf("has_been_activates ----> %d\n", proc->has_been_activated);
-
-// 
 		}
-		// ft_printf("color -----------> %d\n", g_cw.map.stack_color[proc->process_PC]);
-
-		// cmd.cmd, do not include codage;
-		// ft_printf("%s\n", "before get cmd");
-		
-		// if (proc->process_PC > 4095)
-		// {
-		// 	ft_printf("proc_id -> %d\n", proc->id);
-		// 	ft_printf("PC -> %d\n", proc->process_PC);
-		// }
 		
 		if (cw_get_command(&cmd, proc->process_PC, g_cw.map.stack) ==  NOT_EXIST_CODE && proc->current_command == 0) // if no active command; // adopt here;
 		{
@@ -301,7 +262,7 @@ void		cw_execute_corewar(t_processes *proc)
 
 			// ft_bzero(&cmd, sizeof(t_command));
 
-			if (proc->current_command != 0 && g_cw.map.cycle_stack[proc->process_PC] < (unsigned int)proc->proc_process_PC_color)
+			if (proc->current_command != 0 && g_cw.map.cycle_stack[proc->process_PC] < proc->proc_process_PC_color)
 			{
 				g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
 			}
@@ -585,7 +546,6 @@ void		cw_game_loop(void)
 
 	// #define test1 798
 	// #define test1 5323
-	#define test1 20809
 
 
 
