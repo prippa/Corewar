@@ -12,7 +12,7 @@
 
 #include "corewar.h"
 
-#define number_for_empty_signal 100
+
 
 //    Перемещает PC с текущей позиции на T_DIR % IDX_MOD если carry равен 1
 

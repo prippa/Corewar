@@ -36,7 +36,7 @@ void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc)
 		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2));
 
 	// if(map->stack_color[proc->process_PC] != 0)
-	    if (map->stack_color[proc->process_PC] == 0)
+	if (map->stack_color[proc->process_PC] == 0)
     {
         // ft_printf("stack_color lldi == 0 -> %d\n", map->stack_color[proc->process_PC]);
 
@@ -44,12 +44,12 @@ void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc)
 
         // ft_printf("stack_color lldi == 0 -> %d\n", map->stack_color[proc->process_PC]);
 
-        map->stack_color[proc->process_PC] = 14;
+        map->stack_color[proc->process_PC] = number_for_empty_signal; /// do something with i
 
         // ft_printf("stack_color lldi == 0 -> %d\n", map->stack_color[proc->process_PC]);
         
     }
-    else if (map->stack_color[proc->process_PC] != 0 && map->stack_color[proc->process_PC] != 14)
+    else if (map->stack_color[proc->process_PC] != 0 && map->stack_color[proc->process_PC] != number_for_empty_signal)
     {
         // ft_putstr("****************************************2\n");
         // ft_printf("stack_color lldi != 0 -> %d\n", map->stack_color[proc->process_PC]);

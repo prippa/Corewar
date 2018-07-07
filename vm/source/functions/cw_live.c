@@ -52,7 +52,7 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 	// ft_printf("champ_number -> %u\n", champ->lives_number);
 
 	// here
-	if (champ)
+	if (champ) // have the 50 cycles;
 	{
 		map->stack_color[proc->process_PC] = proc->live_color; // write to the 50 cycles;
 		map->write_to_the_map_stack[proc->process_PC] = proc->live_color + 50; // -> 59;
@@ -71,10 +71,13 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
 //	 for testing;
 //	 map->stack[proc->process_PC] = 7;
-	if (map->stack[proc->process_PC] != 0 || map->stack_color[proc->process_PC] != 0) 
+	if (map->stack[proc->process_PC] != 0 ) 
 	{
 										// if (proc->id == 23)
-		// ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 1");
+		ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 1");
+		ft_printf("PC ----> %d\n", proc->process_PC);
+		ft_printf("next stack color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
+
 		map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // move the color of the PC;
 	}
 	else if(map->stack[proc->process_PC] == 0 && map->stack_color[proc->process_PC] == 0)

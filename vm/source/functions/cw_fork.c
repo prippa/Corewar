@@ -68,7 +68,7 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     unsigned int found_the_fork_with_same_process_PC = 0;
     t_champ *champs = g_cw.pd.champs;
 
-    if (g_cw.cycle >= 5314)
+    // if (g_cw.cycle >= 5314)
     // {
     found_the_fork_with_same_process_PC = cw_get_same_position_detection(champs);
     // }
