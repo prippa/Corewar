@@ -67,10 +67,17 @@ void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
     }
     else if (map->stack_color[proc->process_PC] != 0 && map->stack_color[proc->process_PC] != number_for_empty_signal)
     {
-        // ft_putstr("****************************************2\n");
+        if (g_cw.cycle >= 21071 && proc->id == 18)
+        {
+            ft_putstr("****************************************2\n");
+            getchar();
+        }
         // ft_printf("stack_color jmp != 0 -> %d\n", map->stack_color[proc->process_PC]);
         if (map->write_to_the_map_stack[proc->process_PC] == 0)
-        map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
+            map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
+        if (map->stack_color[proc->process_PC] == 9)
+            map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
+
 
         // ft_printf("stack_color jmp != 0 -> %d\n", map->stack_color[proc->process_PC]);
 

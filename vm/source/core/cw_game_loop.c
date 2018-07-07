@@ -22,7 +22,7 @@
 #define	DIR_CHECK(x) (((x) > 8 && (x) < 13) || (x) == 14 || (x) == 15)
 
 
-	#define test1 21074
+	#define test1 21071
 
 
 static void		ft_zero_it(char *str)
@@ -146,7 +146,7 @@ void		cw_execute_corewar(t_processes *proc)
 
 	while (proc)
 	{
-		if (proc->id == 23)
+		if (g_cw.cycle >= test1 && proc->id == 18)
 		{
 			ft_printf("proc id --------------------> %d\n", proc->id);
 			ft_printf("proc deviation --------------------> %d\n", proc->detect_deviation);
