@@ -34,7 +34,7 @@ int			cw_parse_flags(char **argv)
 	i = 0;
 	while (argv[i])
 	{
-		if (!ft_strcmp(argv[i], "-dump") && !g_cw.pd.flags[DUMP])
+		if (!ft_strcmp(argv[i], "-d") && !g_cw.pd.flags[DUMP])
 			cw_valid_dump(argv, &i);
 		else if (!ft_strcmp(argv[i], "-visu") && !g_cw.pd.flags[VISU])
 			g_cw.pd.flags[VISU] = '1';

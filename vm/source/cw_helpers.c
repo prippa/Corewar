@@ -64,14 +64,10 @@ void		cw_write_to_map(t_stack *map, t_processes *proc, unsigned char *buf,
 	unsigned short i;
 
 	i = 0;
-	// buf[0] = 0x00;
-	// buf[1] = 0x30;
-	// buf[2] = 0x00;
-	// buf[3] = 0x00;
+	if ((position_on_the_map = MEM_CORRECTION(position_on_the_map)) < 0)
+		position_on_the_map += MEM_SIZE;
 	while (i < 4) // 2 || 4; // always take 4 bytes to the map;
 	{
-		if (position_on_the_map == MEM_SIZE)
-			position_on_the_map = 0;
 
 		// ft_printf("map[i] -> %d", buf[i]);
 
@@ -94,21 +90,22 @@ void		cw_write_to_map(t_stack *map, t_processes *proc, unsigned char *buf,
 
 
 		i++;
-		position_on_the_map++;
+		position_on_the_map = MEM_CORRECTION(position_on_the_map + 1);
 //		map->stack_process_id[position_on_the_map++] = proc->id;
 	}
 }
 
 int			cw_get_dec_from_the_point(unsigned char *str, int position)
 {
-	int res;
-	int i;
-	int j;
+	unsigned char	buf[4];
+	int				res;
+	int				i;
+	int				j;
 
 	res = 0;
 	i = 0;
-	j = MEM_CORRECTION(position);
-	j = (j < 0) ? MEM_SIZE + j : j;
+	if ((j = MEM_CORRECTION(position)) < 0)
+		j += MEM_SIZE;
 
 	// ft_printf("quantity -> %d\n", quantity);
 	// ft_printf("position -> %d\n", position);
@@ -122,7 +119,6 @@ int			cw_get_dec_from_the_point(unsigned char *str, int position)
 	// 	k++;
 	// }
 
-	unsigned char buf [4];
 
 	while (i < 4)
 	{
@@ -133,7 +129,7 @@ int			cw_get_dec_from_the_point(unsigned char *str, int position)
 		else
 			buf[i] = str[j];
 		i++;
-		j++;
+		j = MEM_CORRECTION((j + 1));
 	}
 	// i = 0;
 
