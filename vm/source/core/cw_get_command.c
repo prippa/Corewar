@@ -35,8 +35,8 @@ static int	arg_check(char *bn, int *j, char *tp, int bt)
 	if (*tp == bt) // here;
 	{
 		// ft_putstr("here\n");
-		ft_printf("tp -> %d\n", *tp);
-		ft_printf("bt -> %d\n", bt);
+		// ft_printf("tp -> %d\n", *tp);
+		// ft_printf("bt -> %d\n", bt);
 		return (bt);
 	}
 	if (*tp == T_REG) //o.k.
@@ -124,14 +124,14 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 	unsigned char	res[5]; // max is 4 bytes;
 	
 
-	if ( i > 4095)
-	{
-		ft_printf("in cmd 1\n");
-		ft_printf("in cmd %d\n", i);
-		cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
+	// if ( i > 4095)
+	// {
+	// 	ft_printf("in cmd 1\n");
+	// 	ft_printf("in cmd %d\n", i);
+	// 	cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 		
-		getchar();
-	}
+	// 	getchar();
+	// }
 
 
 
@@ -178,12 +178,12 @@ int			cw_get_command_2(t_command *cmd, unsigned int i,
 	int				bt; // byte 
 	unsigned char	res[5]; // max is 4 bytes;
 	
-	if ( i > 4095)
-	{
-		cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
-		ft_printf("2\n");
-		getchar();
-	}
+	// if ( i > 4095)
+	// {
+	// 	cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
+	// 	ft_printf("2\n");
+	// 	getchar();
+	// }
 
 	ft_bzero(res, 5); // +;
 	if (proc_current_command > 16 || proc_current_command < 1) // check if we have a correct command;

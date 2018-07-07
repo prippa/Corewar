@@ -80,7 +80,7 @@ typedef enum	e_error_numbers
 # define CW_USAGE	"Usage: ./corewar [-visu] [-dump nbr_cycles] \
 [[-n number] champion1.cor] ...\n\
 ######################## Flags Manual ########################\n\
--dump N		: Dumps memory after N cycles then exits\n\
+-d N		: Dumps memory after N cycles then exits\n\
 -n N		: Sets the number of the next player\n\
 -visu		: Big ass visualization\n\
 ##############################################################"

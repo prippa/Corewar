@@ -146,6 +146,7 @@ void		cw_execute_corewar(t_processes *proc)
 
 	while (proc)
 	{
+<<<<<<< HEAD
 		if (g_cw.cycle >= test1 && proc->id == 18)
 		{
 			ft_printf("proc id --------------------> %d\n", proc->id);
@@ -158,6 +159,34 @@ void		cw_execute_corewar(t_processes *proc)
 			ft_printf("cycle_stack ----> %d\n", g_cw.map.cycle_stack[proc->process_PC]);
 			ft_printf("write_to_the_map_stack ----> %d\n", g_cw.map.write_to_the_map_stack[proc->process_PC]);
 		}
+=======
+		// if (proc->id == 17)
+		// {
+
+		// 	ft_printf("proc id --------------------> %d\n", proc->id);
+		// 	ft_printf("proc_PC -----------> %d\n", proc->process_PC);
+		// 	ft_printf("cur cmd -----------> %d\n", proc->current_command);
+		// 	ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
+		// 	ft_printf("stack color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
+		// 	// ft_printf("process color ----> %d\n", proc->color);
+		// 	ft_printf("cycle_stack ----> %d\n", g_cw.map.cycle_stack[proc->process_PC]);
+		// 	ft_printf("write_to_the_map_stack ----> %d\n", g_cw.map.write_to_the_map_stack[proc->process_PC]);
+		// // 	ft_printf("proc_live ----> %d\n", proc->live_status);
+		// // 	ft_printf("has_been_activates ----> %d\n", proc->has_been_activated);
+
+
+		// }
+		// ft_printf("color -----------> %d\n", g_cw.map.stack_color[proc->process_PC]);
+
+		// cmd.cmd, do not include codage;
+		// ft_printf("%s\n", "before get cmd");
+		
+		// if (proc->process_PC > 4095)
+		// {
+		// 	ft_printf("proc_id -> %d\n", proc->id);
+		// 	ft_printf("PC -> %d\n", proc->process_PC);
+		// }
+>>>>>>> prippa
 		
 		if (cw_get_command(&cmd, proc->process_PC, g_cw.map.stack) ==  NOT_EXIST_CODE && proc->current_command == 0) // if no active command; // adopt here;
 		{
@@ -179,8 +208,8 @@ void		cw_execute_corewar(t_processes *proc)
 
 				if (g_cw.map.stack_color[proc->process_PC] == zeta) // one process_PC is enough maybe;
 				{
-					if (proc->id == 23)
-						ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 1");
+					// if (proc->id == 17)
+					// 	ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 1");
 					// ft_putstr("here\n");
 					g_cw.map.stack_color[proc->process_PC] = proc->proc_color_write_to_map; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				}
@@ -191,15 +220,15 @@ void		cw_execute_corewar(t_processes *proc)
 				if (proc->process_PC != 0 && g_cw.map.stack_color[proc->process_PC - 1] == number_for_empty_signal) // one process_PC is enough maybe;
 				{
 					// ft_putstr("here\n");
-									if (proc->id == 23)
-					ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 2");
+					// 				if (proc->id == 17)
+					// ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 2");
 					g_cw.map.stack_color[proc->process_PC - 1] = 0;
 		
 				}
 				else if (proc->process_PC == 0 && g_cw.map.stack_color[MEM_SIZE - 1] == number_for_empty_signal)
 				{
-									if (proc->id == 23)
-					ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 3");
+					// 				if (proc->id == 17)
+					// ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 3");
 					g_cw.map.stack_color[MEM_SIZE - 1] = 0;
 			
 				}
@@ -207,8 +236,8 @@ void		cw_execute_corewar(t_processes *proc)
 				if (g_cw.map.stack_color[proc->process_PC] == 0)
 				{
 					// g_cw.map.stack_color[proc->process_PC - 1] = 0;
-									if (proc->id == 23)
-					ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 4");
+					// 				if (proc->id == 17)
+					// ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 4");
 					g_cw.map.stack_color[proc->process_PC] = number_for_empty_signal;
 			
 				}
@@ -241,8 +270,8 @@ void		cw_execute_corewar(t_processes *proc)
 					{
 						// if (proc->id == 23)
 						// 	ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd");
-					if (proc->id == 23)
-						ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 5");
+							// 					if (proc->id == 17)
+							// ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 5");
 						g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color; 
 					}
 			
@@ -494,15 +523,15 @@ void	cw_decrementor(unsigned int *write_to_the_map_stack, unsigned int *stack_co
 			}
 			else if (write_to_the_map_stack[i] == 11 && cycle_stack[i] == 0 && stack_color[i] != 7 && stack_color[i] != 5) //sti
 			{
-				ft_printf("here blue");
-				getchar();
+				// ft_printf("here blue");
+				// getchar();
 				stack_color[i] = 3;
 				write_to_the_map_stack[i] = 0;
 			}
 			else if (write_to_the_map_stack[i] == 12 && cycle_stack[i] == 0 && stack_color[i] != 8 && stack_color[i] != 5) //sti
 			{
-				ft_printf("here cyan");
-				getchar();
+				// ft_printf("here cyan");
+				// getchar();
 				stack_color[i] = 4;
 				write_to_the_map_stack[i] = 0;
 			}
@@ -551,6 +580,7 @@ void		cw_game_loop(void)
 
 	// #define test1 798
 	// #define test1 5323
+	#define test1 4229
 
 
 
@@ -593,11 +623,11 @@ void		cw_game_loop(void)
 
 		cw_decrementor(g_cw.map.write_to_the_map_stack, g_cw.map.stack_color, g_cw.map.cycle_stack);
 
-		if (g_cw.cycle >= test1)
-		{
-			cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
-		// 	// cw_display_map_write(g_cw.map.stack_color);
-		}
+		// if (g_cw.cycle >= test1)
+		// {
+		// 	cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
+		// // 	// cw_display_map_write(g_cw.map.stack_color);
+		// }
 
 		// FLAG -dump in work
 		if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
