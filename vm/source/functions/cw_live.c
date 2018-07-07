@@ -71,8 +71,12 @@ void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
 //	 for testing;
 //	 map->stack[proc->process_PC] = 7;
-	if (map->stack[proc->process_PC] != 0)
+	if (map->stack[proc->process_PC] != 0 || map->stack_color[proc->process_PC] != 0) 
+	{
+										// if (proc->id == 23)
+		ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 1");
 		map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // move the color of the PC;
+	}
 	else if(map->stack[proc->process_PC] == 0 && map->stack_color[proc->process_PC] == 0)
 		map->stack_color[proc->process_PC] = number_for_empty_signal;
 //
