@@ -353,14 +353,16 @@ void		cw_execute_corewar(t_processes *proc)
 					{
 						// ft_printf("not valid codage -------------------------------> %d\n", cmd.codage);
 	// ->>>>>>>>>>>>>>>>>>>>>>>// do smthing with lieve;
-						ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 1");
 
 						g_cw.map.stack_color[proc->process_PC] = proc->color;
 
 						proc->process_PC = MEM_CORRECTION((proc->process_PC + cw_move_PC_when_not_correct_cdg(cmd.codage, cmd.cmd)));
 
+						g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
+
 						if (g_cw.map.stack_color[proc->process_PC] != 0 && g_cw.map.stack_color[proc->process_PC] != number_for_empty_signal)
 						{
+							ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 1");
     						g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
 						}
     					else
