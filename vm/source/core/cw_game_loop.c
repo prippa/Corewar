@@ -22,7 +22,7 @@
 #define	DIR_CHECK(x) (((x) > 8 && (x) < 13) || (x) == 14 || (x) == 15)
 
 
-	#define test1 21410
+	#define test1 21417
 
 
 static void		ft_zero_it(char *str)
@@ -177,7 +177,7 @@ void		cw_execute_corewar(t_processes *proc)
 
 		// }
 
-				if (g_cw.cycle >= test1 && (proc->id == 24 || proc->id == 20))
+		if (g_cw.cycle >= test1 && (proc->id == 24 || proc->id == 20))
 		{
 
 			ft_printf("proc id --------------------> %d\n", proc->id);
@@ -185,6 +185,8 @@ void		cw_execute_corewar(t_processes *proc)
 			ft_printf("cur cmd -----------> %d\n", proc->current_command);
 			ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
 			ft_printf("stack color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
+			ft_printf("carry ----> %d\n", proc->carry);
+
 			ft_printf("deviation ----> %d\n", proc->detect_deviation);
 			ft_printf("cycle_stack ----> %d\n", g_cw.map.cycle_stack[proc->process_PC]);
 			ft_printf("write_to_the_map_stack ----> %d\n", g_cw.map.write_to_the_map_stack[proc->process_PC]);
