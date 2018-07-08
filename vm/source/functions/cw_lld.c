@@ -14,9 +14,9 @@
 
 void			cw_lld(t_command *cmd, t_stack *map, t_processes *proc)
 {
-	if (cmd->arg1.tp == 4)
+	if (cmd->codage == DIR_REG)
 		proc->registers[cmd->arg2.av - 1] = cmd->arg1.av;
-	else
+	else if (cmd->codage == IND_REG)
 		proc->registers[cmd->arg2.av - 1] = cw_get_dec_from_the_point(
 			map->stack,
 			proc->process_PC + cmd->arg1.av

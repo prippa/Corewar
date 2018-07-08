@@ -90,7 +90,7 @@ void		cw_write_to_map(t_stack *map, t_processes *proc, unsigned char *buf,
 
 
 		i++;
-		position_on_the_map = MEM_CORRECTION(position_on_the_map + 1);
+		position_on_the_map = MEM_CORRECTION((position_on_the_map + 1));
 //		map->stack_process_id[position_on_the_map++] = proc->id;
 	}
 }

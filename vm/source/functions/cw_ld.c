@@ -18,9 +18,9 @@ void			cw_ld(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pro
 //	t_processes *proc;
 
 //	proc = t_processe_get_by_id(g_cw.proc_start, g_cw.proc_end, process_id);
-	if (cmd->arg1.tp == 4)
+	if (cmd->codage == DIR_REG)
 		proc->registers[cmd->arg2.av - 1] = cmd->arg1.av;
-	else
+	else if (cmd->codage == IND_REG)
 	{
 		cmd->arg1.av = IDX_CORRECTION(cmd->arg1.av);
 		proc->registers[cmd->arg2.av - 1] = cw_get_dec_from_the_point(

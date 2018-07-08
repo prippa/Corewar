@@ -49,6 +49,21 @@ typedef enum	e_op_code
 	AFF
 }				t_op_code;
 
+# define REG_REG_REG	84
+# define REG_DIR_REG	100
+# define DIR_REG_REG	148
+# define DIR_DIR_REG	164
+# define IND_REG_REG	212
+# define IND_DIR_REG	228
+# define REG_IND_REG	116
+# define REG_DIR_DIR	104
+# define REG_IND_DIR	120
+# define REG_REG_DIR	88
+# define DIR_REG		144
+# define IND_REG		208
+# define REG_REG		80
+# define REG_IND		112
+
 /*
 ******************************* Error management *******************************
 */
