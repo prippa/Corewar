@@ -22,7 +22,7 @@
 #define	DIR_CHECK(x) (((x) > 8 && (x) < 13) || (x) == 14 || (x) == 15)
 
 
-	#define test1 21418
+	#define test1 21410
 
 
 static void		ft_zero_it(char *str)

@@ -104,24 +104,24 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 				// getchar();
 
 
-	    if (new_obj->process_PC > 4095 || new_obj->process_PC < 0)
-        {
-        ft_printf("copy\n");
-            getchar();
-        }
+	    // if (new_obj->process_PC > 4095 || new_obj->process_PC < 0)
+     //    {
+     //    	ft_printf("copy\n");
+     //        getchar();
+     //    }
 
 
 	
 	// add to the head;
 		t_processes_add_to_head(proc_start, proc_end, &new_obj);
 
-	    if (new_obj->process_PC > 4095 || new_obj->process_PC < 0)
+	    // if (new_obj->process_PC > 4095 || new_obj->process_PC < 0)
 	        
-        {
-        ft_printf("copy\n");
-            getchar();
+     //    {
+     //    ft_printf("copy\n");
+     //        getchar();
             
-        }
+     //    }
 
 
 
