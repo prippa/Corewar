@@ -30,7 +30,7 @@ void			cw_ld(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pro
 	}
 
 
-	proc->carry = (proc->registers[cmd->arg2.av - 1] == 0 ? 1 : 0); // carry
+	proc->carry = (proc->registers[cmd->arg2.av - 1] == 0) ? 1 : 0; // carry
 
 
 	map->stack_color[proc->process_PC] = proc->color;

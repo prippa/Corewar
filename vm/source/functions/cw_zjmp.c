@@ -29,7 +29,7 @@ void			cw_zjmp(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int p
 
     if (proc->carry == 1)
         proc->process_PC = MEM_CORRECTION((proc->process_PC + (IDX_CORRECTION((cmd->arg1.av)))));
-    else
+    else if (proc->carry == 0)
         proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
     
 
