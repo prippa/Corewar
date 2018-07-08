@@ -30,6 +30,7 @@ static void		cw_proc_executer(t_processes *proc_start)
 {
 	while (proc_start)
 	{
+		
 		proc_start = proc_start->next;
 	}
 }
