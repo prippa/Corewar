@@ -46,8 +46,23 @@ void		cw_exit(char *message, int error_number)
 
 void		cw_print_dump_exit(void)
 {
+	int	counter;
+	int index;
+
 	cw_print_players(g_cw.pd.champs);
-	cw_display_dump();
+	counter = 0;
+	index = 0;
+	while (index < MEM_SIZE)
+	{
+		ft_printf("0x%.4x : ", counter);
+		while (index < (counter + CW_BIT))
+		{
+			ft_printf("%.2x ", g_cw.map[index]);
+			index++;
+		}
+		ft_putchar('\n');
+		counter += CW_BIT;
+	}
 	cw_free();
 	exit(0);
 }

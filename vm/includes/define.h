@@ -22,6 +22,8 @@ extern struct s_corewar	g_cw;
 # define FILE_NAME_MAX		4096
 # define CW_F_SIZE			2
 # define CW_BIT				64
+# define ALIVE				1
+# define DEAD				0
 
 typedef enum	e_flags
 {
@@ -104,12 +106,10 @@ typedef enum	e_error_numbers
 ************************************* Map **************************************
 */
 
-# define NEWLINE_QUANTITY 63
-# define SPACES_BYTES 2
-# define ALIVE 1
-# define DEAD 0
-# define LOOKING_FOR_THE_COMMAND 0
-# define WAITING_FOR_THE_EXECUTION 1
-#define number_for_empty_signal 100
+// # define NEWLINE_QUANTITY 63
+// # define SPACES_BYTES 2
+// # define LOOKING_FOR_THE_COMMAND 0
+// # define WAITING_FOR_THE_EXECUTION 1
+// #define number_for_empty_signal 100
 
 #endif

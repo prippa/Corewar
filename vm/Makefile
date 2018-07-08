@@ -66,7 +66,7 @@ HEAD_CW		=	op.h
 
 #-------------------------------VM----------------------------------
 C_VM		=	main.c cw_init.c cw_free.c cw_exit.c cw_helpers.c\
-				cw_helpers_2.c cw_end.c
+				cw_end.c
 
 C_PARSER	=	cw_parser.c cw_parse_args.c cw_get_basic_data.c\
 				cw_parse_flags.c
@@ -74,8 +74,7 @@ C_PARSER	=	cw_parser.c cw_parse_args.c cw_get_basic_data.c\
 C_SRUC_MP	=	t_champ_op.c t_champ_add_free_rev.c t_proc_free_srch.c\
 				t_proc_add_cpy.c t_proc_op.c
 
-C_CORE		=	cw_get_command.c cw_load_map.c cw_game_loop.c\
-				cw_display_map.c cw_cycles_new_period.c cw_command_filter.c
+C_CORE		=	cw_load_map.c cw_game_loop.c
 
 C_FUNC		=	cw_binary_and.c cw_binary_or.c cw_binary_xor.c\
 				cw_add.c cw_sub.c cw_sti.c cw_ld.c cw_live.c\

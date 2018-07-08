@@ -12,7 +12,7 @@
 
 #include "corewar.h"
 
-static char	*cw_get_string_for_conversion(int nbr)
+static char		*cw_get_string_for_conversion(int nbr)
 {
 	int i;
 	char *str;
@@ -36,18 +36,14 @@ static char	*cw_get_string_for_conversion(int nbr)
 	return (check);
 }
 
-void		cw_write_bytes_to_buf(unsigned char *buf, int nbr)
+void			cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 {
-	char *check;
-	int i;
-	int k;
-
-	// ft_printf("nbr -> %d\n", nbr);
+	char	*check;
+	int		i;
+	int		k;
 
 	i = 0;
-	check = cw_get_string_for_conversion(nbr); // o.k. +++
-
-	// ft_printf("check -> %s\n", check);
+	check = cw_get_string_for_conversion(nbr);
 	k = 7;
 	while (i < 4)
 	{
@@ -58,89 +54,42 @@ void		cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 	free(check);
 }
 
-void		cw_write_to_map(t_stack *map, t_processes *proc, unsigned char *buf,
-			int position_on_the_map)
+void			cw_write_to_map(unsigned char *map, t_processes *proc,
+					unsigned char *buf, int pc)
 {
-	unsigned short i;
+	int	i;
 
 	i = 0;
-	if ((position_on_the_map = MEM_CORRECTION(position_on_the_map)) < 0)
-		position_on_the_map += MEM_SIZE;
-	while (i < 4) // 2 || 4; // always take 4 bytes to the map;
+	if ((pc = MEM_CORRECTION(pc)) < 0)
+		pc += MEM_SIZE;
+	while (i < 4)
 	{
-
-		// ft_printf("map[i] -> %d", buf[i]);
-
-		map->stack[position_on_the_map] = buf[i];
-
-
-		if (map->stack_color[position_on_the_map] != proc->proc_process_PC_color) // maybe here for 4894;
-		{ ////////////////////////////////////////////// costello for not overwriting; // ? fork;
-		// ft_printf ("proc->proc_color_write_to_map -> %d\n", proc->proc_color_write_to_map);
-		map->stack_color[position_on_the_map] = proc->proc_color_write_to_map;
-		}
-
-
-
-
-
-		map->write_to_the_map_stack[position_on_the_map] = proc->proc_color_write_to_map + 50; // -> 59;
-		map->cycle_stack[position_on_the_map] = 50; // -> 0 -> execute;
-
-
-
+		map[pc] = buf[i];
 		i++;
-		position_on_the_map = MEM_CORRECTION((position_on_the_map + 1));
-//		map->stack_process_id[position_on_the_map++] = proc->id;
+		pc = MEM_CORRECTION((pc + 1));
 	}
 }
 
-int			cw_get_dec_from_the_point(unsigned char *str, int position)
+int			cw_get_dec_from_the_point(unsigned char *map, int pc)
 {
 	unsigned char	buf[4];
 	int				res;
 	int				i;
-	int				j;
 
 	res = 0;
 	i = 0;
-	if ((j = MEM_CORRECTION(position)) < 0)
-		j += MEM_SIZE;
-
-	// ft_printf("quantity -> %d\n", quantity);
-	// ft_printf("position -> %d\n", position);
-
-	// ft_printf("mod -> %d\n", (0 + (16777216 - 1) % IDX_MOD) % IDX_MOD);
-
-	// int k = 0;
-	// while (k < 4096)
-	// {
-	// 	ft_printf("d->%d\n", str[k]);
-	// 	k++;
-	// }
-
-
+	if ((pc = MEM_CORRECTION(pc)) < 0)
+		pc += MEM_SIZE;
 	while (i < 4)
 	{
-		// ft_printf("d->%d\n", str[j] - '0');
-		// ft_printf("c->%c\n", str[j]);
-		if (str[j] == 48)
+		if (map[pc] == 48)
 			buf[i] = 0;
 		else
-			buf[i] = str[j];
+			buf[i] = map[pc];
 		i++;
-		j = MEM_CORRECTION((j + 1));
+		pc = MEM_CORRECTION((pc + 1));
 	}
-	// i = 0;
-
-	// while (i < 4)
-	// {
-	// 	ft_printf("%.u", buf[i]);
-	// 	i++;
-	// }
-	// ft_printf("\n");
 	res = cw_hex_to_dec(buf, 4);
-	// ft_printf("res --> %d\n", res);
 	return (res);
 }
 

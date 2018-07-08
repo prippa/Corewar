@@ -18,22 +18,22 @@ static void cw_get_op(void)
 {
 	const t_op op_tab[] =
 	{
-		{&cw_live, 10, 1},
-		{&cw_ld, 5, 2},
-		{&cw_st, 5, 2},
-		{&cw_add, 10, 3},
-		{&cw_sub, 10, 3},
-		{&cw_binary_and, 6, 3},
-		{&cw_binary_or, 6, 3},
-		{&cw_binary_xor, 6, 3},
-		{&cw_zjmp, 20, 1},
-		{&cw_ldi, 25, 3},
-		{&cw_sti, 25, 3},
-		{&cw_fork, 800, 1},
-		{&cw_lld, 10, 2},
-		{&cw_lldi, 50, 3},
-		{&cw_lfork, 1000, 1},
-		{&cw_aff, 2, 1}
+		{&cw_live, 10},
+		{&cw_ld, 5},
+		{&cw_st, 5},
+		{&cw_add, 10},
+		{&cw_sub, 10},
+		{&cw_binary_and, 6},
+		{&cw_binary_or, 6},
+		{&cw_binary_xor, 6},
+		{&cw_zjmp, 20},
+		{&cw_ldi, 25},
+		{&cw_sti, 25},
+		{&cw_fork, 800},
+		{&cw_lld, 10},
+		{&cw_lldi, 50},
+		{&cw_lfork, 1000},
+		{&cw_aff, 2}
 	};
 	g_cw.op = op_tab;
 }
@@ -51,6 +51,7 @@ static void	cw_parse_data_init(t_parse_data *pd)
 void		cw_init(void)
 {
 	cw_parse_data_init(&g_cw.pd);
+	ft_bzero(g_cw.map, MEM_SIZE);
 	cw_get_op();
 	g_cw.cycle = 0;
 	g_cw.cycle_to_die = CYCLE_TO_DIE;
