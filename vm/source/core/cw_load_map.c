@@ -75,6 +75,7 @@ static void	cw_load_processes(t_champ *champ)
 		champ->proc_start->process_PC = process_pc;
 		champ->proc_start->registers[0] = champ->champ_number;
 		champ->proc_start->champ_number = champ->champ_number;
+		champ->proc_start->carry = 0;
 		color++;
 		process_pc += map_distance;
 		// ft_printf("process_PC_color -> %d\n", champ->proc_start->proc_process_PC_color);
