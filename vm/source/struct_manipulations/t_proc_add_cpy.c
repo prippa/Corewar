@@ -54,7 +54,7 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	// general variable;
 	new_obj->id = g_cw.id_counter++;
 
-	new_obj->carry = 0; // copy;
+	new_obj->carry = 0; // not a copy;
 	new_obj->color = (*current_proc)->color; // copy;
 	new_obj->process_PC = position; // not a copy;
 	new_obj->live_status = (*current_proc)->live_status; // copy;

@@ -148,41 +148,8 @@ void		cw_execute_corewar(t_processes *proc)
 
 	while (proc)
 	{
-// <<<<<<< HEAD
-			// if (g_cw.cycle >= test1 && proc->cycles_till_execution == 1)
-			// {
-			// 	ft_printf("proc id --------------------> %d\n", proc->id);
-			// 	ft_printf("proc deviation --------------------> %d\n", proc->detect_deviation);
-			// 	ft_printf("proc_PC -----------> %d\n", proc->process_PC);
-			// 	ft_printf("cur cmd -----------> %~d\n", F_BACK_RED_WHITE, proc->current_command);
-			// 	ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
-			// 	ft_printf("stack color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
-			// 	// ft_printf("process color ----> %d\n", proc->color);
-			// 	ft_printf("cycle_stack ----> %d\n", g_cw.map.cycle_stack[proc->process_PC]);
-			// 	ft_printf("write_to_the_map_stack ----> %d\n", g_cw.map.write_to_the_map_stack[proc->process_PC]);
-			// }
-// =======
-		// if (g_cw.cycle >= test1 && (proc->id == 13 || proc->id == 14 || proc->id == 11 || proc->id == 4))
-		// {
-
-		// 	ft_printf("proc id --------------------> %d\n", proc->id);
-		// 	ft_printf("proc_PC -----------> %d\n", proc->process_PC);
-		// 	ft_printf("cur cmd -----------> %d\n", proc->current_command);
-		// 	ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
-		// 	ft_printf("stack color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
-		// 	ft_printf("deviation ----> %d\n", proc->detect_deviation);
-		// 	ft_printf("cycle_stack ----> %d\n", g_cw.map.cycle_stack[proc->process_PC]);
-		// 	ft_printf("write_to_the_map_stack ----> %d\n", g_cw.map.write_to_the_map_stack[proc->process_PC]);
-		// // 	ft_printf("proc_live ----> %d\n", proc->live_status);
-		// // 	ft_printf("has_been_activates ----> %d\n", proc->has_been_activated);
-
-
-		// }
-
-		if ((proc->id == 20) && proc->carry == 0)
+		if (g_cw.cycle >= 20000 && (proc->id == 20) && proc->carry == 0)
 		{
-			// unsigned char
-
 			ft_printf("proc id --------------------> %d\n", proc->id);
 			ft_printf("proc_PC -----------> %d\n", proc->process_PC);
 			ft_printf("cur cmd -----------> %d\n", proc->current_command);
@@ -194,44 +161,7 @@ void		cw_execute_corewar(t_processes *proc)
 			ft_printf("cycle_stack ----> %d\n", g_cw.map.cycle_stack[proc->process_PC]);
 			ft_printf("write_to_the_map_stack ----> %d\n", g_cw.map.write_to_the_map_stack[proc->process_PC]);
 			getchar();
-			
-		// 	ft_printf("proc_live ----> %d\n", proc->live_status);
-		// 	ft_printf("has_been_activates ----> %d\n", proc->has_been_activated);
-
-
 		}
-		if ((proc->id == 20) && proc->carry == 1)
-		{
-			// unsigned char
-
-			ft_printf("proc id --------------------> %d\n", proc->id);
-			ft_printf("proc_PC -----------> %d\n", proc->process_PC);
-			ft_printf("cur cmd -----------> %d\n", proc->current_command);
-			ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
-			ft_printf("stack color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
-			ft_printf("carry ----> %d\n", proc->carry);
-
-			ft_printf("deviation ----> %d\n", proc->detect_deviation);
-			ft_printf("cycle_stack ----> %d\n", g_cw.map.cycle_stack[proc->process_PC]);
-			ft_printf("write_to_the_map_stack ----> %d\n", g_cw.map.write_to_the_map_stack[proc->process_PC]);
-			getchar();
-			
-		// 	ft_printf("proc_live ----> %d\n", proc->live_status);
-		// 	ft_printf("has_been_activates ----> %d\n", proc->has_been_activated);
-
-
-		}
-		// ft_printf("color -----------> %d\n", g_cw.map.stack_color[proc->process_PC]);
-
-		// cmd.cmd, do not include codage;
-		// ft_printf("%s\n", "before get cmd");
-		
-		// if (proc->process_PC > 4095)
-		// {
-		// 	ft_printf("proc_id -> %d\n", proc->id);
-		// 	ft_printf("PC -> %d\n", proc->process_PC);
-		// }
-// >>>>>>> prippa
 		
 		if (cw_get_command(&cmd, proc->process_PC, g_cw.map.stack) ==  NOT_EXIST_CODE && proc->current_command == 0) // if no active command; // adopt here;
 		{
