@@ -101,7 +101,7 @@ void			cw_fork(t_command *cmd, t_stack *map, t_processes *proc)
     // ft_printf("process_PC -> %d\n", proc->process_PC);
 
     // if (map->stack_color[proc->process_PC] != 0)
-        map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
+    map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
     // else
         // map->stack_color[proc->process_PC] = 100;
 

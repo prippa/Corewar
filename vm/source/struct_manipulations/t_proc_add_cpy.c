@@ -49,8 +49,6 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	if (!(new_obj = (t_processes *)malloc(sizeof(t_processes))))
 		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
 
-	ft_bzero(new_obj, sizeof(new_obj));
-
 	// general variable;
 	new_obj->id = g_cw.id_counter++;
 
@@ -77,7 +75,12 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 
 	new_obj->detect_deviation = 0; ////////////////////////// ?
 
-	ft_memcpy(new_obj->registers, (*current_proc)->registers, sizeof(int) * REG_NUMBER);
+	// ft_memcpy(new_obj->registers, (*current_proc)->registers, sizeof(int) * REG_NUMBER);
+	int i;
+
+	i = -1;
+	while (++i < REG_NUMBER)
+		new_obj->registers[i] = (*current_proc)->registers[i];
 
 	
 

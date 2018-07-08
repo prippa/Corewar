@@ -22,8 +22,8 @@
 #define	DIR_CHECK(x) (((x) > 8 && (x) < 13) || (x) == 14 || (x) == 15)
 
 
-	// #define test1 21417
-	// #define test1 21417
+// #define test1 21417
+// #define test1 21417
 
 
 
@@ -178,11 +178,9 @@ void		cw_execute_corewar(t_processes *proc)
 		// }
 		
 		if (cw_get_command(&cmd, proc->process_PC, g_cw.map.stack) ==  NOT_EXIST_CODE && proc->current_command == 0) // if no active command; // adopt here;
-		{
-				
-
+		{				
 				// ft_printf("in -> %d\n", g_cw.map.stack_color[proc->process_PC]);
-        		// ft_printf("stack_color not vali -> %d\n", g_cw.map.stack_color[proc->process_PC]);
+				// ft_printf("stack_color not vali -> %d\n", g_cw.map.stack_color[proc->process_PC]);
         		if (g_cw.map.stack_color[proc->process_PC] != 0 && g_cw.map.stack_color[proc->process_PC ] != number_for_empty_signal && g_cw.map.cycle_stack[proc->process_PC] == 0)
         		{
 					g_cw.map.stack_color[proc->process_PC] = proc->color; //check it;
@@ -316,9 +314,6 @@ void		cw_execute_corewar(t_processes *proc)
 				}
 				else
 				{
-					// ft_printf("execute\n");
-					// ft_printf("here ->*******************************************2\n");
-					// getchar();
 					if (!cw_get_command(&cmd, proc->process_PC, g_cw.map.stack)) // ! == correct execution;
 					{
 
@@ -326,21 +321,9 @@ void		cw_execute_corewar(t_processes *proc)
 						proc->current_command = 0;
 						proc->cycles_till_execution = 1;
 
-						// if (g_cw.cycle >= 5447)
-						// {
-						// 	getchar();
-						// }
-
-
-
-							// ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 1");
-
-						// ft_printf("%~s\n", F_BACK_CYAN_BLACK, "after get cmd");//
 					}
 					else
 					{
-						// ft_printf("not valid codage -------------------------------> %d\n", cmd.codage);
-	// ->>>>>>>>>>>>>>>>>>>>>>>// do smthing with lieve;
 
 						g_cw.map.stack_color[proc->process_PC] = proc->color;
 
@@ -356,8 +339,6 @@ void		cw_execute_corewar(t_processes *proc)
     					{
     						g_cw.map.stack_color[proc->process_PC] = number_for_empty_signal;
     					}
-    					// g_cw.map.stack_color[proc->process_PC] = proc->proc_process_PC_color;
-// proc->process_PC = 4;
     					proc->cycles_till_execution = 1;
 
 						proc->current_command = 0;
@@ -412,7 +393,7 @@ void		cw_execute_corewar(t_processes *proc)
 						else if (g_cw.map.cycle_stack[proc->process_PC] !=0)
 							g_cw.map.stack_color[proc->process_PC] = proc->proc_color_write_to_map;
 
-						proc->process_PC += cw_move_PC_when_not_correct_cdg(cmd.codage, proc->current_command);
+						proc->process_PC = MEM_CORRECTION((proc->process_PC + cw_move_PC_when_not_correct_cdg(cmd.codage, proc->current_command)));
 
 						if (g_cw.map.stack_color[proc->process_PC] != 0 && g_cw.map.stack_color[proc->process_PC] != number_for_empty_signal)
 						{
@@ -570,7 +551,7 @@ void		cw_game_loop(void)
 	// 4566 ?
 
 	#define CYCLES 100000
-	#define test1 21417
+	#define test1 25901
 	// #define test1 798
 	// #define test1 5323
 	// #define test1 4229
@@ -581,34 +562,14 @@ void		cw_game_loop(void)
 
 	while (1)
 	{
-		// if (g_cw.cycle >= 7708)
-		// {
-		// 	ft_printf("%-----u\n", g_cw.proc_counter);
-		// 	exit (0);
-		// }
-		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw.cycle);
-		ft_printf("PROC count -> %u\n", g_cw.proc_counter);
-		// ft_printf("processes -> %d\n", g_cw.proc_counter);
-
 		// GAME EDN IF PERIODS OF CYCLE_TO_DIE IS OWER !
 		if (g_cw.cycle_to_die <= 0)
-			return ;
+			break ;
 
 		//////////////////////////////////////////////////////////////
 		champs = g_cw.pd.champs;
 		while (champs)
 		{
-			// t_processes *tmp = champs->proc_start;
-			// while (tmp)
-			// {
-			// 	if (tmp->process_PC > MEM_SIZE || tmp->process_PC < 0)
-			// 	{
-			// 		ft_printf("%d\n", tmp->process_PC);
-			// 		// exit(-1);
-			// 		tmp->process_PC = 0;
-			// 	}
-			// 	tmp = tmp->next;
-			// }
 			cw_execute_corewar(champs->proc_start);
 			champs = champs->next;
 		}
@@ -616,11 +577,11 @@ void		cw_game_loop(void)
 
 		cw_decrementor(g_cw.map.write_to_the_map_stack, g_cw.map.stack_color, g_cw.map.cycle_stack);
 
-		if (g_cw.cycle >= test1)
-		{
-			cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
-		// 	// cw_display_map_write(g_cw.map.stack_color);
-		}
+		// if (g_cw.cycle >= test1)
+		// {
+		// 	cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
+		// // 	// cw_display_map_write(g_cw.map.stack_color);
+		// }
 
 		// FLAG -dump in work
 		if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
@@ -630,9 +591,15 @@ void		cw_game_loop(void)
 		if (!g_cw.cycle_to_die_check)
 			cw_cycles_new_period();
 		
+		ft_printf("\n******************************************\ncycle_main -> %d\n******************************************\n", g_cw.cycle);
+		ft_printf("PROC count -> %u\n", g_cw.proc_counter);
+		ft_printf("Last live : %u\n", g_cw.pd.champs->last_live);
+		ft_printf("Lives in current period : %u\n", g_cw.pd.champs->lives_number);
+		ft_printf("CYCLE_TO_DIE : %d\n", g_cw.cycle_to_die);
+
 		// GAME END IF ALL PROCESSES ARE DEAD !
 		if (g_cw.proc_counter == 0)
-			return ;
+			break ;
 
 		g_cw.cycle++;
 		g_cw.cycle_to_die_check--;

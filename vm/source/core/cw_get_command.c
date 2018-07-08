@@ -91,7 +91,7 @@ static void	write_args(t_command *cmd, unsigned int *i, int bt,
 	tmp_arg(res, rd, i, map);
 	cmd->arg3.av = cw_hex_to_dec(res, rd);
 
-	ft_str_free(&bn);
+	free(bn);
 }
 
 static int	check_true_cdg(unsigned char cmd, int cdg)
@@ -149,14 +149,14 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 	i = MEM_CORRECTION((i + 1)); // move the map pointer to the next byte;
 	// ft_printf("in cmd i -> %d\n",g_cw.i);
 	cmd->codage = ((IS_CDG(cmd->cmd)) ? 0 : map[i]); // set the command codage from the second position on the map;
-	if (IS_CDG(cmd->cmd)) // if commands: 1, 9, 2, 15;
+	if (IS_CDG(cmd->cmd)) // if commands: 1, 9, 12, 15;
 	{
 		tmp_arg(res, bt, &i, map); // get the data from the map for conversion;
 		cmd->arg1.av = cw_hex_to_dec(res, bt); // res - buf, bt == byte;
 		cmd->arg1.tp = (cmd->cmd == 1) ? 4 : T_DIR;
 		cmd->arg2.tp = 0;
 		cmd->arg3.tp = 0;
-		return (0);
+		return (cw_command_filter(cmd));
 	}
 	i = MEM_CORRECTION((i + 1)); // go to other commands;
 	if (check_true_cdg(cmd->cmd, cmd->codage)) // check if a specific cmd has the correct codage;
@@ -195,14 +195,14 @@ int			cw_get_command_2(t_command *cmd, unsigned int i,
 	i = MEM_CORRECTION((i + 1)); // move the map pointer to the next byte;
 	// ft_printf("in cmd i -> %d\n",g_cw.i);
 	cmd->codage = ((IS_CDG(cmd->cmd)) ? 0 : map[i]); // set the command codage from the second position on the map;
-	if (IS_CDG(cmd->cmd)) // if commands: 1, 9, 2, 15;
+	if (IS_CDG(cmd->cmd)) // if commands: 1, 9, 12, 15;
 	{
 		tmp_arg(res, bt, &i, map); // get the data from the map for conversion;
 		cmd->arg1.av = cw_hex_to_dec(res, bt); // res - buf, bt == byte;
 		cmd->arg1.tp = (cmd->cmd == 1) ? 4 : T_DIR;
 		cmd->arg2.tp = 0;
 		cmd->arg3.tp = 0;
-		return (0);
+		return (cw_command_filter(cmd));
 	}
 	i = MEM_CORRECTION((i + 1)); // go to other commands;
 	if (check_true_cdg(cmd->cmd, cmd->codage)) // check if a specific cmd has the correct codage;
