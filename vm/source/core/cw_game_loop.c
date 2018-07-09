@@ -53,9 +53,21 @@ static void		cw_cycles_new_period(void)
 	t_processe_killer(g_cw.pd.champs);
 }
 
+static void		cw_execute_function(t_processes *proc_start)
+{
+	g_cw.op[proc_start->cmd - 1].func(proc_start);
+	if (IS_COMMAND(g_cw.map[proc_start->pc]))
+	{
+		proc_start->cmd = g_cw.map[proc_start->pc];
+		proc_start->exec_cycles = g_cw.op[proc_start->cmd - 1].cycles_price - 1;
+	}
+	else
+		proc_start->exec_cycles = -1;
+}
+
 static void		cw_proc_executer(t_processes *proc_start)
 {
-	int cmd;
+	char cmd;
 
 	while (proc_start)
 	{
@@ -68,10 +80,7 @@ static void		cw_proc_executer(t_processes *proc_start)
 				proc_start->exec_cycles = g_cw.op[cmd - 1].cycles_price - 1;
 			}
 			else if (!proc_start->exec_cycles)
-			{
-				g_cw.op[proc_start->cmd - 1].func(proc_start);
-				proc_start->exec_cycles = -1;
-			}
+				cw_execute_function(proc_start);
 			else
 				proc_start->exec_cycles--;
 		}

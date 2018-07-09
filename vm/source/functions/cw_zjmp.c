@@ -14,5 +14,11 @@
 
 void			cw_zjmp(t_processes *proc)
 {
+	int av;
 
+	av = cw_get_dec_from_the_point(proc->pc + 1, g_cw.op[proc->cmd - 1].label);
+	if (proc->carry)
+		proc->pc = MEM_X((proc->pc + IDX_X(av)));
+	else
+		proc->pc = MEM_X((proc->pc + g_cw.op[proc->cmd - 1].label + 1));
 }

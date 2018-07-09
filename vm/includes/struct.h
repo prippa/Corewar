@@ -40,7 +40,7 @@ typedef	struct			s_processes
 	char 				is_alive;
 	short				champ_number;
 	short				exec_cycles;
-	char				cmd;
+	unsigned char		cmd;
 	struct s_processes	*next;
 	struct s_processes	*prev;
 }						t_processes;
