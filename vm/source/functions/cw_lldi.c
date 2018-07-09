@@ -35,7 +35,7 @@ void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc)
 	// {	
 		// ft_printf("lldi reg -> %d, ", proc->registers[cmd->arg3.av - 1]);
 		// ft_printf("carry -> %d\n", proc->carry);
-		// exit(0);
+	exit(0);
 	// }
 	int arg;
 

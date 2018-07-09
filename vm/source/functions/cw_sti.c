@@ -82,11 +82,6 @@ void			cw_sti(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	
 	// ft_printf("process_PC -> %d\n", proc->proc_process_PC_color);
 
-	// (cmd->arg2.tp == 2) ? proc->process_PC += 1 : 0;
-	// (cmd->arg2.tp == 1) ? proc->process_PC += 2 : 0;
-	// (cmd->arg2.tp == 2 && cmd->arg3.tp == 2) ? proc->process_PC += 1 : 0;
-	// (cmd->arg2.tp == 4 && cmd->arg3.tp == 2) ? proc->process_PC += 1 : 0;
-
 
 	// move the process_PC by the quantity of bytes;
 

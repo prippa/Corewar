@@ -18,12 +18,6 @@ int		main(int argc, char **argv)
 	cw_init();
 	cw_parse_args(argc, argv + 1);
 	cw_parser();
-	t_champ *tmp = g_cw.pd.champs;
-	while (tmp)
-	{
-		close(tmp->fd);
-		tmp = tmp->next;
-	}
 	cw_load_map();
 	t_champ_sort_by_order(&g_cw.pd.champs);
 	cw_game_loop();
