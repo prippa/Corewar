@@ -108,7 +108,7 @@ void			cw_game_loop(void)
 			cw_cycles_new_period();
 		if (g_cw.proc_counter == 0)
 			break ;
-		if (g_cw.cycle >= 26020)
+		if (g_cw.cycle >= 2890)
 		{
 			cw_refresh_colors();
 			cw_print_map(); // TRASH

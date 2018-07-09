@@ -47,8 +47,8 @@ static void		cw_execute_ldi(t_command *cmd, t_processes *proc)
 
 static int		cw_get_args_av_ldi(t_command *cmd, t_processes *proc)
 {
-	if (cmd->codage == RRR || cmd->codage == RRD || cmd->codage == RDR
-		|| cmd->codage == RDD || cmd->codage == RIR || cmd->codage == RID)
+	if (cmd->codage == RRR || cmd->codage == RDR || cmd->codage == DRR
+		|| cmd->codage == DDR || cmd->codage == IRR || cmd->codage == IDR)
 		cw_set_arg_av(cmd, proc->pc + CODAGE_SKIP);
 	else
 		return (0);
