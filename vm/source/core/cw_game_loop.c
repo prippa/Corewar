@@ -17,6 +17,10 @@
 
 // ft_printf("%~.2x", F_BACK_GREEN_WHITE, data); // every 50 cycles
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
 #include "corewar.h"
 
 #define	DIR_CHECK(x) (((x) > 8 && (x) < 13) || (x) == 14 || (x) == 15)
@@ -141,27 +145,49 @@ void		cw_color_start(t_champ *ch, t_stack *map)
 	// ft_printf("-----------------------------------\n");
 // }
 
-void		cw_execute_corewar(t_processes *proc)
+void		cw_execute_corewar(t_processes *proc, int fd)
 {
 	t_command cmd;
 	ft_bzero(&cmd, sizeof(t_command));
 
+
+	#include <stdio.h>
+	#include <stdlib.h>
+
+
+
 	while (proc)
 	{
-		if (g_cw.cycle >= 20000 && (proc->id == 20) && proc->carry == 0)
+		if (proc->id == 20 && g_cw.cycle <= 21421 && (proc->current_command == 2 || proc->current_command == 14))
 		{
-			ft_printf("proc id --------------------> %d\n", proc->id);
-			ft_printf("proc_PC -----------> %d\n", proc->process_PC);
-			ft_printf("cur cmd -----------> %d\n", proc->current_command);
-			ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
-			ft_printf("stack color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
-			ft_printf("carry ----> %d\n", proc->carry);
+			// ft_printf("proc id --------------------> %d\n", proc->id); // ? unique;
+			// ft_printf("proc_PC -----------> %d\n", proc->process_PC);
+			// ft_printf("cur cmd -----------> %d\n", proc->current_command);
+			// ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
+			// ft_printf("stack color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
+			// ft_printf("carry ----> %d\n", proc->carry);
+			// ft_printf("deviation ----> %d\n", proc->detect_deviation);
+			// ft_printf("cycle_stack ----> %d\n", g_cw.map.cycle_stack[proc->process_PC]);
+			// ft_printf("write_to_the_map_stack ----> %d\n", g_cw.map.write_to_the_map_stack[proc->process_PC]);
+			// getchar();
 
-			ft_printf("deviation ----> %d\n", proc->detect_deviation);
-			ft_printf("cycle_stack ----> %d\n", g_cw.map.cycle_stack[proc->process_PC]);
-			ft_printf("write_to_the_map_stack ----> %d\n", g_cw.map.write_to_the_map_stack[proc->process_PC]);
-			getchar();
+			ft_putstr_fd("cycles -> ",fd);			
+			ft_putstr_fd(ft_itoa(g_cw.cycle), fd);
+			ft_putstr_fd(", deviation -> ",fd);			
+			ft_putstr_fd(ft_itoa(proc->detect_deviation), fd);
+			ft_putstr_fd(", carry -> ",fd);	
+			ft_putstr_fd(ft_itoa(proc->carry), fd);
+			ft_putstr_fd(", func -> ",fd);	
+			ft_putstr_fd(ft_itoa(proc->current_command), fd);
+			ft_putstr_fd("\n",fd);
 		}
+
+		if (g_cw.cycle > 21423)
+		{
+			close(fd);
+			exit(0);
+		}
+
 		
 		if (cw_get_command(&cmd, proc->process_PC, g_cw.map.stack) ==  NOT_EXIST_CODE && proc->current_command == 0) // if no active command; // adopt here;
 		{
@@ -308,7 +334,12 @@ void		cw_execute_corewar(t_processes *proc)
 					// getchar();
 					if (!cw_get_command(&cmd, proc->process_PC, g_cw.map.stack)) // ! == correct execution;
 					{
-
+						if (proc->id == 20)
+						{
+						ft_putstr_fd("here -> ", fd);
+						ft_putstr_fd(ft_itoa(g_cw.cycle), fd);
+						ft_putstr_fd("\n",fd);
+					}
 						g_cw.op[cmd.cmd - 1].func(&cmd, &g_cw.map, proc);
 						proc->current_command = 0;
 						proc->cycles_till_execution = 1;
@@ -350,6 +381,8 @@ void		cw_execute_corewar(t_processes *proc)
 
 						proc->current_command = 0;
 
+
+
 						//colors
 					}
 				}
@@ -377,7 +410,8 @@ void		cw_execute_corewar(t_processes *proc)
 					{
 
 						g_cw.op[proc->current_command - 1].func(&cmd, &g_cw.map, proc);
-
+						ft_putstr_fd("here", fd);
+						ft_putstr_fd("\n",fd);
 			
 						proc->current_command = 0;
 
@@ -412,6 +446,8 @@ void		cw_execute_corewar(t_processes *proc)
     					}
 
     					proc->cycles_till_execution = 1;
+						proc->detect_deviation = 0; //? !!!!!!!!!!!!!!!!!!
+
 						proc->current_command = 0;
 					}
 					// else
@@ -453,6 +489,7 @@ void		cw_execute_corewar(t_processes *proc)
 		// 		i++;
 		// 	tmp = tmp->next;
 		// }
+
 
 }
 
@@ -567,6 +604,11 @@ void		cw_game_loop(void)
 
 	// 4570;
 
+	int fd = open("test.txt", O_WRONLY | O_CREAT | O_TRUNC);
+
+
+
+
 	while (1)
 	{
 		// if (g_cw.cycle >= 7708)
@@ -597,7 +639,7 @@ void		cw_game_loop(void)
 			// 	}
 			// 	tmp = tmp->next;
 			// }
-			cw_execute_corewar(champs->proc_start);
+			cw_execute_corewar(champs->proc_start, fd);
 			champs = champs->next;
 		}
 		//////////////////////////////////////////////////////////////

@@ -31,6 +31,12 @@ static int		cw_get_arguments_value_lldi(t_command *cmd, t_stack *map, t_processe
 
 void			cw_lldi(t_command *cmd, t_stack *map, t_processes *proc)
 {
+	// if (proc->id == 20)
+	// {	
+		// ft_printf("lldi reg -> %d, ", proc->registers[cmd->arg3.av - 1]);
+		// ft_printf("carry -> %d\n", proc->carry);
+		// exit(0);
+	// }
 	int arg;
 
 	arg = cw_get_arguments_value_lldi(cmd, map, proc);

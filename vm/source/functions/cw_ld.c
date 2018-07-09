@@ -29,8 +29,13 @@ void			cw_ld(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pro
 		);
 	}
 
-
 	proc->carry = (proc->registers[cmd->arg2.av - 1] == 0) ? 1 : 0; // carry
+	if (proc->id == 20)
+	{	
+		ft_printf("ld reg -> %d, ", proc->registers[cmd->arg2.av - 1]);
+		ft_printf("carry -> %d\n", proc->carry);
+		getchar();
+	}
 
 
 	map->stack_color[proc->process_PC] = proc->color;
