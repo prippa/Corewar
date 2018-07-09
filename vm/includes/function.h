@@ -81,6 +81,7 @@ void			cw_load_map(void);
 void			cw_game_loop(void);
 void			cw_print_players(t_champ *champs);
 void			cw_print_winer(t_champ *champs);
+void			cw_set_arg_tp(t_command *cmd, char lable);
 
 /*
 ********************************** Functions ***********************************

@@ -20,7 +20,7 @@ static void	cw_fill_map_with_bots(unsigned char *map, t_champ *champs)
 
 	while (champs)
 	{
-		map_index = champs->proc_start->process_PC;
+		map_index = champs->proc_start->pc;
 		champ_code_index = 0;
 		i = -1;
 		while (++i < champs->head.prog_size)
@@ -43,7 +43,7 @@ static void	cw_load_processes(t_champ *champ)
 	while (champ)
 	{
 		t_processe_add(&champ->proc_start, &champ->proc_end);
-		champ->proc_start->process_PC = process_pc;
+		champ->proc_start->pc = process_pc;
 		champ->proc_start->registers[0] = champ->champ_number;
 		champ->proc_start->champ_number = champ->champ_number;
 		process_pc += map_distance;

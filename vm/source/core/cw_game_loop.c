@@ -28,9 +28,28 @@ static void		cw_cycles_new_period(void)
 
 static void		cw_proc_executer(t_processes *proc_start)
 {
+	int cmd;
+
 	while (proc_start)
 	{
-		
+		cmd = g_cw.map[proc_start->pc];
+		if (IS_COMMAND(cmd))
+		{
+			if (proc_start->exec_cycles == -1)
+			{
+				proc_start->cmd = cmd;
+				proc_start->exec_cycles = g_cw.op[cmd - 1].cycles_price;
+			}
+			else if (!proc_start->exec_cycles)
+			{
+				g_cw.op[proc_start->cmd - 1].func(proc_start);
+				proc_start->exec_cycles = -1;
+			}
+			else
+				proc_start->exec_cycles--;
+		}
+		else
+			proc_start->pc = MEM_X((proc_start->pc + 1));
 		proc_start = proc_start->next;
 	}
 }

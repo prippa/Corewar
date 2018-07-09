@@ -18,22 +18,22 @@ static void cw_get_op(void)
 {
 	const t_op op_tab[] =
 	{
-		{&cw_live, 10},
-		{&cw_ld, 5},
-		{&cw_st, 5},
-		{&cw_add, 10},
-		{&cw_sub, 10},
-		{&cw_binary_and, 6},
-		{&cw_binary_or, 6},
-		{&cw_binary_xor, 6},
-		{&cw_zjmp, 20},
-		{&cw_ldi, 25},
-		{&cw_sti, 25},
-		{&cw_fork, 800},
-		{&cw_lld, 10},
-		{&cw_lldi, 50},
-		{&cw_lfork, 1000},
-		{&cw_aff, 2}
+		{&cw_live, 10, 0, 4},
+		{&cw_ld, 5, 1, 4},
+		{&cw_st, 5, 1, 4},
+		{&cw_add, 10, 1, 4},
+		{&cw_sub, 10, 1, 4},
+		{&cw_binary_and, 6, 1, 4},
+		{&cw_binary_or, 6, 1, 4},
+		{&cw_binary_xor, 6, 1, 4},
+		{&cw_zjmp, 20, 0, 2},
+		{&cw_ldi, 25, 1, 2},
+		{&cw_sti, 25, 1, 2},
+		{&cw_fork, 800, 0, 2},
+		{&cw_lld, 10, 1, 4},
+		{&cw_lldi, 50, 1, 2},
+		{&cw_lfork, 1000, 0, 2},
+		{&cw_aff, 2, 1, 4}
 	};
 	g_cw.op = op_tab;
 }

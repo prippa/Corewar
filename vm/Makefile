@@ -29,6 +29,7 @@ DIR_SRUC_MP	=	./source/struct_manipulations/
 DIR_CORE	=	./source/core/
 DIR_OBJ		= 	./obj/
 DIR_FUNC	=	./source/functions/
+DIR_FUNC	=	./source/conversions/
 DIR_VIS		=	./visualizer/
 #------------------------------------------
 
@@ -65,7 +66,7 @@ HEAD_VM		=	corewar.h define.h function.h struct.h
 HEAD_CW		=	op.h
 
 #-------------------------------VM----------------------------------
-C_VM		=	main.c cw_init.c cw_free.c cw_exit.c cw_helpers.c\
+C_VM		=	main.c cw_init.c cw_free.c cw_exit.c\
 				cw_end.c
 
 C_PARSER	=	cw_parser.c cw_parse_args.c cw_get_basic_data.c\
@@ -74,12 +75,14 @@ C_PARSER	=	cw_parser.c cw_parse_args.c cw_get_basic_data.c\
 C_SRUC_MP	=	t_champ_op.c t_champ_add_free_rev.c t_proc_free_srch.c\
 				t_proc_add_cpy.c t_proc_op.c
 
-C_CORE		=	cw_load_map.c cw_game_loop.c
+C_CORE		=	cw_load_map.c cw_game_loop.c cw_set_arg_tp.c
 
 C_FUNC		=	cw_binary_and.c cw_binary_or.c cw_binary_xor.c\
 				cw_add.c cw_sub.c cw_sti.c cw_ld.c cw_live.c\
 				cw_lld.c cw_ldi.c cw_zjmp.c cw_lldi.c cw_aff.c\
 				cw_st.c cw_fork.c cw_lfork.c
+
+C_CONV		=	cw_helpers.c cw_get_reg_dir_ind.c
 #-------------------------------------------------------------------
 
 #------------------------------Visualizer---------------------------
@@ -133,6 +136,7 @@ OBJ_PARSER	= 	$(C_PARSER:.c=.o)
 OBJ_SRUC_MP	= 	$(C_SRUC_MP:.c=.o)
 OBJ_CORE	= 	$(C_CORE:.c=.o)
 OBJ_FUNC	=	$(C_FUNC:.c=.o)
+OBJ_CONV	=	$(C_CONV:.c=.o)
 #---------------------------------------------------------------
 
 #-----------------------------Visualizer------------------------
@@ -149,7 +153,7 @@ OBJ_FUNC	=	$(C_FUNC:.c=.o)
 #---------------------Visualizer---------------------
 # OBJ			=	$(addprefix $(OBJ_PATH), $(OBJ_NAME))
 #----------------------------------------------------
-OBJ 		+= 	$(addprefix $(DIR_OBJ), $(OBJ_VM) $(OBJ_PARSER) $(OBJ_SRUC_MP) $(OBJ_CORE) $(OBJ_FUNC))
+OBJ 		+= 	$(addprefix $(DIR_OBJ), $(OBJ_VM) $(OBJ_PARSER) $(OBJ_SRUC_MP) $(OBJ_CORE) $(OBJ_FUNC) $(OBJ_CONV))
 INC_CW 		= 	$(addprefix -I, $(DIR_VM_INC) $(DIR_LIB_INC) $(DIR_CW_INC))
 INC_VM 		= 	$(addprefix $(DIR_VM_INC), $(HEAD_VM))
 INC_VM 		+= 	$(addprefix $(DIR_CW_INC), $(HEAD_CW))
@@ -186,6 +190,11 @@ $(DIR_OBJ)%.o: $(DIR_CORE)%.c $(INC_VM)
 
 #---functions---
 $(DIR_OBJ)%.o: $(DIR_FUNC)%.c $(INC_VM)
+	@$(CC) $(FLAGS) $(INC) $(INC_CW) -c -o $@ $<
+	@echo "Linking" [ $< ]
+
+#---conversions---
+$(DIR_OBJ)%.o: $(DIR_CONV)%.c $(INC_VM)
 	@$(CC) $(FLAGS) $(INC) $(INC_CW) -c -o $@ $<
 	@echo "Linking" [ $< ]
 #-----------------------------Visualizer------------------------

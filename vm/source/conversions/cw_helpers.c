@@ -60,13 +60,13 @@ void			cw_write_to_map(unsigned char *map, t_processes *proc,
 	int	i;
 
 	i = 0;
-	if ((pc = MEM_CORRECTION(pc)) < 0)
+	if ((pc = MEM_X(pc)) < 0)
 		pc += MEM_SIZE;
 	while (i < 4)
 	{
 		map[pc] = buf[i];
 		i++;
-		pc = MEM_CORRECTION((pc + 1));
+		pc = MEM_X((pc + 1));
 	}
 }
 
@@ -78,7 +78,7 @@ int			cw_get_dec_from_the_point(unsigned char *map, int pc)
 
 	res = 0;
 	i = 0;
-	if ((pc = MEM_CORRECTION(pc)) < 0)
+	if ((pc = MEM_X(pc)) < 0)
 		pc += MEM_SIZE;
 	while (i < 4)
 	{
@@ -87,7 +87,7 @@ int			cw_get_dec_from_the_point(unsigned char *map, int pc)
 		else
 			buf[i] = map[pc];
 		i++;
-		pc = MEM_CORRECTION((pc + 1));
+		pc = MEM_X((pc + 1));
 	}
 	res = cw_hex_to_dec(buf, 4);
 	return (res);

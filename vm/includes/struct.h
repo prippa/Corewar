@@ -35,11 +35,13 @@ typedef struct			s_command
 typedef	struct			s_processes
 {
 	unsigned int		id;
-	int					process_PC;
-	int					carry;
+	short				pc;
+	char				carry;
 	int					registers[REG_NUMBER];
-	int 				is_alive;
-	int					champ_number;
+	char 				is_alive;
+	short				champ_number;
+	short				exec_cycles;
+	char				cmd;
 	struct s_processes	*next;
 	struct s_processes	*prev;
 }						t_processes;
@@ -54,8 +56,8 @@ typedef struct			s_champ
 	char				file_name[FILE_NAME_MAX + 1];
 	int					fd;
 	unsigned char		code[CHAMP_MAX_SIZE];
-	int					champ_number;
-	int					order;
+	short				champ_number;
+	short				order;
 	unsigned int        lives_number;
 	unsigned int        last_live;
 	t_processes			*proc_start;
@@ -66,8 +68,8 @@ typedef struct			s_champ
 typedef struct			s_parse_data
 {
 	t_champ				*champs;
-	long long int		tmp;
-	int					champs_count;
+	long long			tmp;
+	unsigned int		champs_count;
 	unsigned int		dump_stop;
 	char				flags[CW_F_SIZE];
 	char				flag_champ_number[MAX_PLAYERS];
@@ -81,6 +83,8 @@ typedef struct			s_op
 {
 	void				(*func)(t_processes *proc);
 	short				cycles_price;
+	char				codage_octal;
+	char				label;
 }						t_op;
 
 /*
