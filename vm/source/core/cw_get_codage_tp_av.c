@@ -30,20 +30,18 @@ static void	cw_set_arg_tp_with_codage(t_command *cmd, char label)
 	cmd->arg3.tp = cw_what_tp(bn, j, label);
 }
 
-void		cw_set_arg_av(t_command *cmd, t_processes *proc)
+void		cw_set_arg_av(t_command *cmd, int pc)
 {
-	cmd->arg1.av = cw_get_dec_from_the_point(proc->pc, cmd->arg1.tp);
-	proc->pc = MEM_X((proc->pc + cmd->arg1.tp));
-	cmd->arg2.av = cw_get_dec_from_the_point(proc->pc, cmd->arg2.tp);
-	proc->pc = MEM_X((proc->pc + cmd->arg2.tp));
-	cmd->arg3.av = cw_get_dec_from_the_point(proc->pc, cmd->arg3.tp);
-	proc->pc = MEM_X((proc->pc + cmd->arg3.tp));
+	pc = MEM_X(pc);
+	cmd->arg1.av = cw_get_dec_from_the_point(pc, cmd->arg1.tp);
+	pc = MEM_X((pc + cmd->arg1.tp));
+	cmd->arg2.av = cw_get_dec_from_the_point(pc, cmd->arg2.tp);
+	pc = MEM_X((pc + cmd->arg2.tp));
+	cmd->arg3.av = cw_get_dec_from_the_point(pc, cmd->arg3.tp);
 }
 
 void		cw_get_codage_and_arg_tp(t_command *cmd, t_processes *proc)
 {
-	proc->pc = MEM_X((proc->pc + 1));
-	cmd->codage = g_cw.map[proc->pc];
+	cmd->codage = g_cw.map[MEM_X((proc->pc + 1))];
 	cw_set_arg_tp_with_codage(cmd, g_cw.op[proc->cmd - 1].label);
-	proc->pc = MEM_X((proc->pc + 1));
 }

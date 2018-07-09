@@ -27,7 +27,7 @@ static void		cw_execute_ld(t_command *cmd, t_processes *proc)
 static int		cw_get_args_av_ld(t_command *cmd, t_processes *proc)
 {
 	if (cmd->codage == DR || cmd->codage == IR)
-		cw_set_arg_av(cmd, proc);
+		cw_set_arg_av(cmd, proc->pc + CODAGE_SKIP);
 	else
 		return (0);
 	return (1);
@@ -35,10 +35,11 @@ static int		cw_get_args_av_ld(t_command *cmd, t_processes *proc)
 
 void			cw_ld(t_processes *proc)
 {
-	t_command cmd;
+	t_command	cmd;
 
 	ft_bzero(&cmd, sizeof(t_command));
 	cw_get_codage_and_arg_tp(&cmd, proc);
 	if (cw_get_args_av_ld(&cmd, proc) && cw_is_valid_reg(&cmd))
 		cw_execute_ld(&cmd, proc);
+	cw_move_pc(&cmd, proc);
 }

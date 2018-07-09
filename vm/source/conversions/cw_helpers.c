@@ -54,8 +54,7 @@ void			cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 	free(check);
 }
 
-void			cw_write_to_map(unsigned char *map, t_processes *proc,
-					unsigned char *buf, int pc)
+void			cw_write_to_map(unsigned char *buf, int pc)
 {
 	int	i;
 
@@ -64,7 +63,7 @@ void			cw_write_to_map(unsigned char *map, t_processes *proc,
 		pc += MEM_SIZE;
 	while (i < 4)
 	{
-		map[pc] = buf[i];
+		g_cw.map[pc] = buf[i];
 		i++;
 		pc = MEM_X((pc + 1));
 	}

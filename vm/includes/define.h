@@ -73,6 +73,8 @@ typedef enum	e_op_code
 # define DIR	2
 # define DIR_L	4
 
+# define CODAGE_SKIP 2
+
 /*
 ******************************* Error management *******************************
 */
