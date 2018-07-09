@@ -15,25 +15,25 @@
 static int		cw_get_pc_of_arg2_arg3_sti(t_command *cmd, t_processes *proc)
 {
 	if (cmd->codage == RRR)
-		return (proc->pc + ((proc->registers[cmd->arg2.av - 1] +
-			proc->registers[cmd->arg3.av - 1]) % IDX_MOD));
+		return (proc->pc + ((proc->registers[cmd->arg2.av - 1]
+			+ proc->registers[cmd->arg3.av - 1]) % IDX_MOD));
 	else if (cmd->codage == RRD)
-		return (proc->pc + ((proc->registers[cmd->arg2.av - 1] +
-			cmd->arg3.av) % IDX_MOD));
+		return (proc->pc + ((proc->registers[cmd->arg2.av - 1]
+			+ cmd->arg3.av) % IDX_MOD));
 	else if (cmd->codage == RDR)
-		return (proc->pc + ((cmd->arg2.av +
-			proc->registers[cmd->arg3.av - 1]) % IDX_MOD));
+		return (proc->pc + ((cmd->arg2.av
+		+ proc->registers[cmd->arg3.av - 1]) % IDX_MOD));
 	else if (cmd->codage == RDD)
-		return (proc->pc + ((cmd->arg2.av +
-			cmd->arg3.av) % IDX_MOD));
+		return (proc->pc + ((cmd->arg2.av
+		+ cmd->arg3.av) % IDX_MOD));
 	else if (cmd->codage == RIR)
 		return (proc->pc + (
-			(cw_get_dec_from_the_point((cmd->arg2.av % IDX_MOD), 4) +
-				proc->registers[cmd->arg3.av - 1]) % IDX_MOD));
+			(cw_get_dec_from_the_point((cmd->arg2.av % IDX_MOD), 4)
+			+ proc->registers[cmd->arg3.av - 1]) % IDX_MOD));
 	else if (cmd->codage == RID)
 		return (proc->pc + (
-			(cw_get_dec_from_the_point((cmd->arg2.av % IDX_MOD), 4) +
-				cmd->arg3.av) % IDX_MOD));
+			(cw_get_dec_from_the_point((cmd->arg2.av % IDX_MOD), 4)
+			+ cmd->arg3.av) % IDX_MOD));
 	return (0);
 }
 
