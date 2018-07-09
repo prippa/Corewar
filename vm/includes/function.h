@@ -33,6 +33,7 @@ void			cw_write_bytes_to_buf(unsigned char *buf, int nbr);
 void			cw_write_to_map(unsigned char *buf, int pc);
 int				cw_is_valid_reg(t_command *cmd);
 void			cw_move_pc(t_command *cmd, t_processes *proc);
+void			cw_init_proc_cmd(t_processes *proc, unsigned char cmd);
 
 /*
 ******************************* Parse file part ********************************

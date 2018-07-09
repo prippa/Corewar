@@ -57,10 +57,7 @@ static void		cw_execute_function(t_processes *proc_start)
 {
 	g_cw.op[proc_start->cmd - 1].func(proc_start);
 	if (IS_COMMAND(g_cw.map[proc_start->pc]))
-	{
-		proc_start->cmd = g_cw.map[proc_start->pc];
-		proc_start->exec_cycles = g_cw.op[proc_start->cmd - 1].cycles_price - 1;
-	}
+		cw_init_proc_cmd(proc_start, g_cw.map[proc_start->pc]);
 	else
 		proc_start->exec_cycles = -1;
 }
@@ -75,10 +72,7 @@ static void		cw_proc_executer(t_processes *proc_start)
 		if (IS_COMMAND(cmd))
 		{
 			if (proc_start->exec_cycles == -1)
-			{
-				proc_start->cmd = cmd;
-				proc_start->exec_cycles = g_cw.op[cmd - 1].cycles_price - 1;
-			}
+				cw_init_proc_cmd(proc_start, cmd);
 			else if (!proc_start->exec_cycles)
 				cw_execute_function(proc_start);
 			else
@@ -114,7 +108,7 @@ void			cw_game_loop(void)
 			cw_cycles_new_period();
 		if (g_cw.proc_counter == 0)
 			break ;
-		if (g_cw.cycle >= 48)
+		if (g_cw.cycle >= 2000)
 		{
 			cw_refresh_colors();
 			cw_print_map(); // TRASH

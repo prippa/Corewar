@@ -28,6 +28,7 @@ static void	cw_set_arg_tp_with_codage(t_command *cmd, char label)
 	cmd->arg2.tp = cw_what_tp(bn, j, label);
 	j += 2;
 	cmd->arg3.tp = cw_what_tp(bn, j, label);
+	free(bn);
 }
 
 void		cw_set_arg_av(t_command *cmd, int pc)

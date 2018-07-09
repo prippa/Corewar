@@ -15,3 +15,9 @@ void		cw_move_pc(t_command *cmd, t_processes *proc)
 		(proc->pc + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp +
 			g_cw.op[proc->cmd - 1].codage_octal + 1));
 }
+
+void		cw_init_proc_cmd(t_processes *proc, unsigned char cmd)
+{
+	proc->cmd = cmd;
+	proc->exec_cycles = g_cw.op[cmd - 1].cycles_price - 1;
+}

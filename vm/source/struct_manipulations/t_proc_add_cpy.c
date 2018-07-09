@@ -21,10 +21,10 @@ void		t_processe_add(t_processes **proc_start,
 	if (!(new_obj = (t_processes *)malloc(sizeof(t_processes))))
 		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
 	new_obj->id = g_cw.id_counter++;
-	new_obj->carry = 0;
 	new_obj->pc = 0;
-	new_obj->is_alive = DEAD;
+	new_obj->carry = 0;
 	ft_bzero(new_obj->registers, sizeof(int) * REG_NUMBER);
+	new_obj->is_alive = DEAD;
 	new_obj->champ_number = 0;
 	new_obj->exec_cycles = -1;
 	new_obj->cmd = 0;
@@ -41,14 +41,17 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	if (!(new_obj = (t_processes *)malloc(sizeof(t_processes))))
 		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
 	new_obj->id = g_cw.id_counter++;
-	new_obj->carry = copy->carry;
 	new_obj->pc = pc;
-	new_obj->is_alive = copy->is_alive;
-	new_obj->champ_number = copy->champ_number;
-	new_obj->exec_cycles = -1;
-	new_obj->cmd = 0;
+	new_obj->carry = copy->carry;
 	i = -1;
 	while (++i < REG_NUMBER)
 		new_obj->registers[i] = copy->registers[i];
+	new_obj->is_alive = copy->is_alive;
+	new_obj->champ_number = copy->champ_number;
+	new_obj->cmd = 0;
+	if (IS_COMMAND(g_cw.map[new_obj->pc]))
+		cw_init_proc_cmd(new_obj, g_cw.map[new_obj->pc]);
+	else
+		new_obj->exec_cycles = -1;
 	t_processes_add_to_head(proc_start, proc_end, new_obj);
 }
