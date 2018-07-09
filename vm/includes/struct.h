@@ -83,7 +83,6 @@ typedef struct			s_op
 {
 	void				(*func)(t_processes *proc);
 	short				cycles_price;
-	char				codage_octal;
 	char				label;
 }						t_op;
 

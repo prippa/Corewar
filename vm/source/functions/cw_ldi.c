@@ -63,5 +63,5 @@ void			cw_ldi(t_processes *proc)
 	cw_get_codage_and_arg_tp(&cmd, proc);
 	if (cw_get_args_av_ldi(&cmd, proc) && cw_is_valid_reg(&cmd))
 		cw_execute_ldi(&cmd, proc);
-	cw_move_pc(&cmd, proc);
+	cw_move_pc_with_codage(&cmd, proc);
 }
