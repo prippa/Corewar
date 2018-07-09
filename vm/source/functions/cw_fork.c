@@ -20,8 +20,8 @@ void			cw_fork(t_processes *proc)
 
     champ = t_champ_find(proc->champ_number, g_cw.pd.champs);
 	av = cw_get_dec_from_the_point(proc->pc + 1, g_cw.op[proc->cmd - 1].label);
-    if ((pc = MEM_CORRECTION((proc->pc + IDX_CORRECTION(av)))) < 0)
+    if ((pc = MEM_X((proc->pc + IDX_X(av)))) < 0)
         pc += MEM_SIZE;
     t_processes_copy(&champ->proc_start, &champ->proc_end, proc, pc);
-    proc->pc = MEM_CORRECTION((proc->pc + g_cw.op[proc->cmd - 1].label + 1));
+    proc->pc = MEM_X((proc->pc + g_cw.op[proc->cmd - 1].label + 1));
 }
