@@ -35,17 +35,21 @@ static void	cw_fill_map_with_bots(unsigned char *map, t_champ *champs)
 
 static void	cw_load_processes(t_champ *champ)
 {
-	int			process_pc;
-	int			map_distance;
+	int				process_pc;
+	int				map_distance;
+	unsigned char	color;
 
 	map_distance = MEM_SIZE / g_cw.pd.champs_count;
 	process_pc = 0;
+	color = F_BACK_GREEN_BLACK;
 	while (champ)
 	{
 		t_processe_add(&champ->proc_start, &champ->proc_end);
 		champ->proc_start->pc = process_pc;
 		champ->proc_start->registers[0] = champ->champ_number;
 		champ->proc_start->champ_number = champ->champ_number;
+		champ->color = color;
+		color++;
 		process_pc += map_distance;
 		champ = champ->next;
 	}

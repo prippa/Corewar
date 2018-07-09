@@ -59,6 +59,7 @@ typedef struct			s_champ
 	short				order;
 	unsigned int        lives_number;
 	unsigned int        last_live;
+	unsigned char		color;
 	t_processes			*proc_start;
 	t_processes			*proc_end;
 	struct s_champ		*next;
@@ -94,6 +95,7 @@ typedef struct			s_corewar
 {
 	t_parse_data		pd;
 	unsigned char		map[MEM_SIZE];
+	unsigned char		color_map[MEM_SIZE];
 	const t_op			*op;
 	unsigned int		cycle;
 	int					cycle_to_die;

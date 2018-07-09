@@ -115,6 +115,7 @@ void			t_champ_add(t_champ **champs)
 	new_obj->last_live = 0;
 	new_obj->champ_number = 0;
 	new_obj->order = 0;
+	new_obj->color = 0;
 	new_obj->proc_start = NULL;
 	new_obj->proc_end = NULL;
 	new_obj->next = *champs;

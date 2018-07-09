@@ -30,6 +30,7 @@ DIR_CORE	=	./source/core/
 DIR_OBJ		= 	./obj/
 DIR_FUNC	=	./source/functions/
 DIR_CONV	=	./source/conversions/
+DIR_COLOR	=	./source/color_manipulations/
 DIR_VIS		=	./visualizer/
 #------------------------------------------
 
@@ -83,6 +84,8 @@ C_FUNC		=	cw_binary_and.c cw_binary_or.c cw_binary_xor.c\
 				cw_st.c cw_fork.c cw_lfork.c
 
 C_CONV		=	cw_helpers.c cw_helpers_2.c
+
+C_COLOR		=	cw_refresh_colors.c
 #-------------------------------------------------------------------
 
 #------------------------------Visualizer---------------------------
@@ -137,6 +140,7 @@ OBJ_SRUC_MP	= 	$(C_SRUC_MP:.c=.o)
 OBJ_CORE	= 	$(C_CORE:.c=.o)
 OBJ_FUNC	=	$(C_FUNC:.c=.o)
 OBJ_CONV	=	$(C_CONV:.c=.o)
+OBJ_COLOR	=	$(C_COLOR:.c=.o)
 #---------------------------------------------------------------
 
 #-----------------------------Visualizer------------------------
@@ -153,7 +157,7 @@ OBJ_CONV	=	$(C_CONV:.c=.o)
 #---------------------Visualizer---------------------
 # OBJ			=	$(addprefix $(OBJ_PATH), $(OBJ_NAME))
 #----------------------------------------------------
-OBJ 		+= 	$(addprefix $(DIR_OBJ), $(OBJ_VM) $(OBJ_PARSER) $(OBJ_SRUC_MP) $(OBJ_CORE) $(OBJ_FUNC) $(OBJ_CONV))
+OBJ 		+= 	$(addprefix $(DIR_OBJ), $(OBJ_VM) $(OBJ_PARSER) $(OBJ_SRUC_MP) $(OBJ_CORE) $(OBJ_FUNC) $(OBJ_CONV) $(OBJ_COLOR))
 INC_CW 		= 	$(addprefix -I, $(DIR_VM_INC) $(DIR_LIB_INC) $(DIR_CW_INC))
 INC_VM 		= 	$(addprefix $(DIR_VM_INC), $(HEAD_VM))
 INC_VM 		+= 	$(addprefix $(DIR_CW_INC), $(HEAD_CW))
@@ -195,6 +199,11 @@ $(DIR_OBJ)%.o: $(DIR_FUNC)%.c $(INC_VM)
 
 #---conversions---
 $(DIR_OBJ)%.o: $(DIR_CONV)%.c $(INC_VM)
+	@$(CC) $(FLAGS) $(INC) $(INC_CW) -c -o $@ $<
+	@echo "Linking" [ $< ]
+
+#---color_manipulations---
+$(DIR_OBJ)%.o: $(DIR_COLOR)%.c $(INC_VM)
 	@$(CC) $(FLAGS) $(INC) $(INC_CW) -c -o $@ $<
 	@echo "Linking" [ $< ]
 #-----------------------------Visualizer------------------------

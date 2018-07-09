@@ -52,6 +52,7 @@
 # define BLUE   		"\x1B[34m"
 # define MAGENTA   		"\x1B[35m"
 # define WHITE 			"\x1B[37m"
+# define GRAY			"\e[90m"
 
 # define BOLD_GRAY 		"\033[1;30m"
 # define BOLD_RED 		"\033[1;31m"
@@ -76,13 +77,14 @@
 
 typedef enum	e_colors
 {
-	F_GREEN = 0,
+	F_GREEN = 1,
 	F_BLUE,
 	F_RED,
 	F_CYAN,
 	F_YELLOW,
 	F_MAGENTA,
 	F_WHITE,
+	F_GRAY,
 	F_BOLD_GRAY,
 	F_BOLD_RED,
 	F_BOLD_GREEN,

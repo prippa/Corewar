@@ -110,4 +110,10 @@ void			cw_st(t_processes *proc);
 void			cw_fork(t_processes *proc);
 void			cw_lfork(t_processes *proc);
 
+/*
+********************************** Colors ***********************************
+*/
+
+void			cw_refresh_colors(void);
+
 #endif

@@ -52,6 +52,7 @@ void		cw_init(void)
 {
 	cw_parse_data_init(&g_cw.pd);
 	ft_bzero(g_cw.map, MEM_SIZE);
+	ft_bzero(g_cw.color_map, MEM_SIZE);
 	cw_get_op();
 	g_cw.cycle = 0;
 	g_cw.cycle_to_die = CYCLE_TO_DIE;
