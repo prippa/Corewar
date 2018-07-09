@@ -42,7 +42,7 @@ static inline void	handle_arena_rendering(t_arena *arena,
 		*tacts_before_render -= (end - begin);
 		if (*tacts_before_render <= 0)
 		{
-			*tacts_before_render = 200000;
+			*tacts_before_render = 500000;
 			if (arena->pause == false)
 				set_random(arena);
 		}

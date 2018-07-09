@@ -14,8 +14,7 @@
 
 bool			init_background(t_arena *arena)
 {
-	arena->background = load_from_file(BACK_IMG,
-										arena->renderer,
-										(SDL_Color){});
-	return (true);
+	if ((arena->background = load_from_file(BACK_IMG, arena->renderer, BLACK_COLOR)))
+		return (true);
+	return (false);
 }

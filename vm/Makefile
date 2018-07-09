@@ -133,7 +133,8 @@ INIT_NAME		=	init_devices.c				\
 					init_move_buttons.c			\
 					init_background.c			\
 					init_music.c				\
-					init_infopanel.c
+					init_infopanel.c			\
+					init_checkboxes.c
 
 ERROR_NAME		=	force_error.c
 #-------------------------------------------------------------------

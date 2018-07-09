@@ -81,7 +81,5 @@ bool				init(t_arena *arena)
 	init_infopanel(arena);
 	if (!init_controls(arena))
 		return (false);
-	if (!(arena->tile_block = load_from_file(TILEBLOCK_IMG, arena->renderer, (SDL_Color){})))
-		return (false);
 	return (true);
 }

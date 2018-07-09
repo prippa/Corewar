@@ -16,6 +16,7 @@
 void	draw_background(t_arena *arena)
 {
 	SDL_Rect clip = get_rectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-	t_rposition pos = get_render_position(0, NULL, NULL, &clip);
-	render(&pos, arena->background, arena->renderer, SDL_FLIP_NONE);
+	SDL_RenderFillRect(arena->renderer, &clip);
+	//t_rposition pos = get_render_position(0, NULL, NULL, &clip);
+	//render(&pos, arena->background, arena->renderer, SDL_FLIP_NONE);
 }

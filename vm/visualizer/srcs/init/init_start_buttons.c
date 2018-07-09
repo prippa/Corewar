@@ -17,19 +17,19 @@ static inline bool	init_sprites(t_arena *arena)
 	if (!(arena->start_btn_sprites[BUTTON_MOUSE_OUT] =
 			load_from_file(MENU_OUT_IMG,
 							arena->renderer,
-							DEFAULT_COLOR_KEY)) ||
+							WHITE_COLOR)) ||
 		!(arena->start_btn_sprites[BUTTON_MOUSE_OVER_MOTION] =
 			load_from_file(MENU_ON_IMG,
 							arena->renderer,
-							DEFAULT_COLOR_KEY)) ||
+							WHITE_COLOR)) ||
 		!(arena->start_btn_sprites[BUTTON_MOUSE_DOWN] =
 			load_from_file(MENU_DOWN_IMG,
 							arena->renderer,
-							DEFAULT_COLOR_KEY)) ||
+							WHITE_COLOR)) ||
 		!(arena->start_btn_sprites[BUTTON_MOUSE_UP] =
 			load_from_file(MENU_UP_IMG,
 							arena->renderer,
-							DEFAULT_COLOR_KEY)))
+							WHITE_COLOR)))
 		return (false);
 	return (true);
 }

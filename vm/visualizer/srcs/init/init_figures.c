@@ -19,8 +19,8 @@ bool		init_figures(t_arena *arena)
 	char	buf[2];
 
 	buf[1] = 0;
-	font_weight = ARENA_TILE_WIDTH * MAX_ZOOM << 1;
 	i = -1;
+	font_weight = ARENA_TILE_WIDTH * MAX_ZOOM;
 	while (++i < 0x10)
 	{
 		buf[0] = (i < 0xa) ? i + 48 : 'F' - (0xf - i);
@@ -28,14 +28,14 @@ bool		init_figures(t_arena *arena)
 									ROBOTO,
 									font_weight,
 									buf,
-									(SDL_Color){.r = 0xff, .g = 0xff, .b = 0xff, .a = 0xff}),
+									WHITE_COLOR),
 									arena->renderer)))
 			return (false);
 		if (!(arena->bold_figures[i] = load_from_rendered_text(get_text_info(
 									ROBOTO_BLACK,
 									font_weight,
 									buf,
-									(SDL_Color){.r = 0xff, .g = 0xff, .b = 0xff, .a = 0xff}),
+									WHITE_COLOR),
 									arena->renderer)))
 			return (false);
 	}

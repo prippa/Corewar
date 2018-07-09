@@ -11,11 +11,7 @@ static inline void	create_button_text(t_button *btn,
 	{
 		txt_top_left.x = btn->position.x + btn->width / 4;
 		txt_top_left.y = btn->position.y;
-		texture = load_from_rendered_text(get_text_info(WESTERN_SWING,
-											btn->width,
-											text,
-											(SDL_Color){.r = 0, .g = 0, .b = 0, .a = 0}),
-											renderer);
+		texture = load_from_rendered_text(get_text_info(FUTURICA, btn->width, text, BLACK_COLOR), renderer);
 		btn->button_txt = texture;
 		btn->txt_position = txt_top_left;
 		btn->txt_clip.w = btn->clip.w >> 1;
@@ -23,9 +19,7 @@ static inline void	create_button_text(t_button *btn,
 		btn->txt_pos = get_render_position(0, &(btn->txt_position), NULL, &(btn->txt_clip));
 	}
 	else
-	{
 		btn->button_txt = NULL;
-	}
 }
 
 t_button		*create_button(double angle,

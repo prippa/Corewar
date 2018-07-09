@@ -112,10 +112,10 @@ void			draw_arena(t_arena *arena)
 												top_y + 1,
 												width - 2,
 												height - 2));
-			draw_outlinerect(arena, get_rectangle(top_x, 
+			/*draw_outlinerect(arena, get_rectangle(top_x, 
 													top_y,
 													width,
-													height));
+													height));*/
 			top_x += width;
 		}
 		top_y += height;

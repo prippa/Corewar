@@ -44,7 +44,7 @@
 # define MAX_ZOOM 10
 # define FIGURES_COUNT 16
 # define BUTTON_H
-# define BUTTON_WIDTH (SCREEN_WIDTH >> 3)
+# define BUTTON_WIDTH (SCREEN_WIDTH >> 4)
 # define BUTTON_HEIGHT (SCREEN_HEIGHT >> 4)
 # define CHECKBOX_WIDTH 50
 # define CHECKBOX_HEIGHT 50
@@ -63,12 +63,13 @@
 # define NO_BUTTON {NO_KEY, NO_BUTTON_ID, "No"}
 # define YES_BUTTON	{RETURN_KEY, YES_BUTTON_ID, "Yes"}
 # define CANSEL_BUTTON {ESCAPE_KEY, CANSEL_BUTTON_ID, "Cansel"}
-# define DEFAULT_COLOR_KEY (SDL_Color){.r = 0xff, .g = 0xff, .b = 0xff}
 # define MOVE_BTN_WIDTH (((SCREEN_WIDTH >> 4) * 2) / 3)
 # define RED_COLOR ((SDL_Color){.r = 0xff})
 # define GREEN_COLOR ((SDL_Color){.g = 0xff})
 # define BLUE_COLOR ((SDL_Color){.b = 0xff})
 # define CYAN_COLOR ((SDL_Color){.g = 0xff, .b = 0xff})
+# define WHITE_COLOR ((SDL_Color){.r = 0xff, .g = 0xff, .b = 0xff})
+# define BLACK_COLOR ((SDL_Color){0})
 
 /*
 ** Number of message box buttons
@@ -195,7 +196,11 @@ typedef struct					s_arena
 {
 	int							arena_tile_width;
 	int							arena_tile_height;
+	/*
+	** Infopanel texture
+	*/
 	t_ltexture					*infopanel;
+	t_ltexture					*infopanel_title;
 	/*
 	** The music that will be played
 	*/
@@ -268,5 +273,6 @@ typedef struct					s_arena
 	Uint8						new_bytes[MAP_SIZE];
 	SDL_Color					new_colors[MAP_SIZE];
 	bool						is_bold[MAP_SIZE];
+	t_ltexture					*pentagramma;
 }								t_arena;
 #endif

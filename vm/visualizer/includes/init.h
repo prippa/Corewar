@@ -11,4 +11,5 @@ bool	init_move_buttons(t_arena *arena);
 bool	init_background(t_arena *arena);
 bool	init_infopanel(t_arena *arena);
 bool	init(t_arena *arena);
+bool	init_checkboxes(t_arena *arena);
 #endif

@@ -21,19 +21,19 @@ bool	init_move_buttons(t_arena *arena)
 	bzero(arena->move_btn_sprites, sizeof(arena->move_btn_sprites));
 	arena->move_btn_sprites[MOVE_BUTTON_MOUSE_OUT] = load_from_file(ARROW_IMG,
 																arena->renderer,
-																DEFAULT_COLOR_KEY);
+																WHITE_COLOR);
 	set_alpha_mode(100, arena->move_btn_sprites[MOVE_BUTTON_MOUSE_OUT]);
 	arena->move_btn_sprites[MOVE_BUTTON_MOUSE_OVER_MOTION] = load_from_file(ARROW_IMG,
 																arena->renderer,
-																DEFAULT_COLOR_KEY);
+																WHITE_COLOR);
 	arena->move_btn_sprites[MOVE_BUTTON_MOUSE_DOWN] = load_from_file(ARROW_IMG,
 																arena->renderer,
-																DEFAULT_COLOR_KEY);
+																WHITE_COLOR);
 	set_color((SDL_Color){.g=0xff},
 				arena->move_btn_sprites[MOVE_BUTTON_MOUSE_DOWN]);
 	arena->move_btn_sprites[MOVE_BUTTON_MOUSE_UP] = load_from_file(ARROW_IMG,
 																arena->renderer,
-																DEFAULT_COLOR_KEY);
+																WHITE_COLOR);
 	if (!(arena->move_btns[UP_MENU_BTN] =
 			create_button(-90, (SDL_Point){.x = wd + (BUTTON_WIDTH >> 1) - (MOVE_BTN_WIDTH >> 1), .y = 10 * BUTTON_HEIGHT},
 							NULL, arena->renderer,
