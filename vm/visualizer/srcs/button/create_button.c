@@ -18,6 +18,9 @@ static inline void	create_button_text(t_button *btn,
 											renderer);
 		btn->button_txt = texture;
 		btn->txt_position = txt_top_left;
+		btn->txt_clip.w = btn->clip.w >> 1;
+		btn->txt_clip.x += btn->width >> 2;
+		btn->txt_pos = get_render_position(0, &(btn->txt_position), NULL, &(btn->txt_clip));
 	}
 	else
 	{

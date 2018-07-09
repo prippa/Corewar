@@ -42,7 +42,7 @@ static inline void	handle_arena_rendering(t_arena *arena,
 		*tacts_before_render -= (end - begin);
 		if (*tacts_before_render <= 0)
 		{
-			*tacts_before_render = 50000;
+			*tacts_before_render = 200000;
 			if (arena->pause == false)
 				set_random(arena);
 		}
@@ -59,7 +59,6 @@ void				events_handler(t_arena *arena)
 	tacts_before_render = 0;
 	init_background(arena);
 	Mix_PlayMusic(arena->theme, -1);
-	//draw_background(arena);
 	while (!arena->quit)
 	{
 		begin = clock();

@@ -18,13 +18,11 @@ void			render(t_rposition *position,
 						SDL_RendererFlip flip)
 {
 	SDL_Rect	render_quad;
-	SDL_Rect	*clip;
 
 	render_quad = get_rectangle(position->left_corner->x,
 								position->left_corner->y,
 								ltexture->width,
 								ltexture->height);
-	clip = NULL;
 	if (position->clip != NULL)
 	{
 		render_quad.w = position->clip->w;
@@ -32,7 +30,7 @@ void			render(t_rposition *position,
 	}
 	if (SDL_RenderCopyEx(renderer,
 						ltexture->texture,
-						clip,
+						NULL,
 						&render_quad,
 						position->angle,
 						position->center,

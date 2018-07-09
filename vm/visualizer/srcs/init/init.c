@@ -61,6 +61,8 @@ static inline bool	init_display_mode(t_arena *arena)
 		force_error(SDL_GetError());
         return (false);
 	}
+	arena->arena_tile_height = (SCREEN_HEIGHT >> 6) + 3;
+	arena->arena_tile_width = (((int)((0.9 * SCREEN_WIDTH) - BUTTON_WIDTH)) >> 6) + 1;
 	return (true);
 }
 

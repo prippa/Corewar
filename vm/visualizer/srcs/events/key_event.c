@@ -82,7 +82,7 @@ void	key_event(t_arena *arena, SDL_Keycode sym)
 	}
 	else if (sym == SDLK_q)
 	{
-		arena->zoom = 1.0;
+		arena->zoom = 0.9;
 		arena->top_left.x = 0;
 		arena->top_left.y = 0;
 	}

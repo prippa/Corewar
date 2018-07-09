@@ -93,6 +93,10 @@ typedef struct					s_ltexture
 	SDL_Texture					*texture;
 	int							width;
 	int							height;
+	double						angle;
+	SDL_Point					left_corner;
+	SDL_Point					center;
+	SDL_Rect					clip;
 }								t_ltexture;
 
 typedef enum					e_btnsprite
@@ -170,13 +174,14 @@ typedef struct					s_text
 
 typedef struct					s_button
 {
-	void						(*event_handler)(void *arena);
 	SDL_Rect					clip;
 	t_rposition					btn_pos;
+	t_rposition					txt_pos;
 	SDL_Point					position;
 	t_btnsprite					current_sprite;
 	t_ltexture					*button_txt;
 	SDL_Point					txt_position;
+	SDL_Rect					txt_clip;
 	int							width;
 	int							height;
 	void						*sprites;
@@ -188,6 +193,8 @@ typedef struct					s_button
 */
 typedef struct					s_arena
 {
+	int							arena_tile_width;
+	int							arena_tile_height;
 	t_ltexture					*infopanel;
 	/*
 	** The music that will be played
