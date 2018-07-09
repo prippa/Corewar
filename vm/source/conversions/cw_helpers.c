@@ -70,26 +70,25 @@ void			cw_write_to_map(unsigned char *map, t_processes *proc,
 	}
 }
 
-int			cw_get_dec_from_the_point(unsigned char *map, int pc)
+int			cw_get_dec_from_the_point(int pc, const int label)
 {
-	unsigned char	buf[4];
+	unsigned char	buf[label];
 	int				res;
 	int				i;
 
 	res = 0;
 	i = 0;
+	if (label == 0)
+		return (0);
 	if ((pc = MEM_X(pc)) < 0)
 		pc += MEM_SIZE;
-	while (i < 4)
+	while (i < label)
 	{
-		if (map[pc] == 48)
-			buf[i] = 0;
-		else
-			buf[i] = map[pc];
-		i++;
+		buf[i] = g_cw.map[pc];
 		pc = MEM_X((pc + 1));
+		i++;
 	}
-	res = cw_hex_to_dec(buf, 4);
+	res = cw_hex_to_dec(buf, label);
 	return (res);
 }
 

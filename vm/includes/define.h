@@ -50,24 +50,26 @@ typedef enum	e_op_code
 	LFORK,
 	AFF
 }				t_op_code;
+
 # define IS_COMMAND(x) (x > 0 && x < 17)
-# define RRR	84 //
-# define RDR	100 //
-# define DRR	148 //
-# define DDR	164 //
-# define IRR	212 //
-# define IDR	228 //
-# define RIR	116 //
-# define RDD	104 //
-# define RID	120 //
+# define IS_INVALID_REG(x) (x < 1 || x > REG_NUMBER)
+# define RRR	84
+# define RDR	100
+# define RIR	116
+# define RDD	104
+# define RID	120
 # define RRD	88
-# define DR		144 //
-# define IR		208 //
-# define RR		80 //
+# define DRR	148
+# define DDR	164
+# define IRR	212
+# define IDR	228
+# define DR		144
+# define IR		208
+# define RR		80
 # define RI		112
 
 # define REG	1
-# define IDX	2
+# define IND	2
 # define DIR	2
 # define DIR_L	4
 

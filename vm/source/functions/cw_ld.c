@@ -12,11 +12,25 @@
 
 #include "corewar.h"
 
-int				cw_read_command_ld(t_command *cmd, t_processes *proc)
+static void		cw_execute_ld(t_command *cmd, t_processes *proc)
 {
-	proc->pc = MEM_X((proc->pc + 1));
-	cmd->codage = g_cw.map[proc->pc];
-	cw_set_arg_tp(cmd, g_cw.op[proc->cmd - 1].label);
+	if (cmd->codage == DR)
+		proc->registers[cmd->arg2.av - 1] = cmd->arg1.av;
+	else if (cmd->codage == IR)
+		proc->registers[cmd->arg2.av - 1] = cw_get_dec_from_the_point(
+			(proc->pc + IDX_X(cmd->arg1.av)),
+			g_cw.op[proc->cmd - 1].label
+		);
+	proc->carry = (proc->registers[cmd->arg2.av - 1] == 0) ? 1 : 0;
+}
+
+static int		cw_get_args_av_ld(t_command *cmd, t_processes *proc)
+{
+	if (cmd->codage == DR || cmd->codage == IR)
+		cw_set_arg_av(cmd, proc);
+	else
+		return (0);
+	return (1);
 }
 
 void			cw_ld(t_processes *proc)
@@ -24,9 +38,7 @@ void			cw_ld(t_processes *proc)
 	t_command cmd;
 
 	ft_bzero(&cmd, sizeof(t_command));
-	if (cw_read_command_ld(&cmd, proc) != 0)
-	{
-
-	}
-	proc->pc = MEM_X(proc->pc + cmd.arg1.tp + cmd.arg2.tp + g_cw.op[proc->cmd - 1].codage_octal + 1);
+	cw_get_codage_and_arg_tp(&cmd, proc);
+	if (cw_get_args_av_ld(&cmd, proc) && cw_is_valid_reg(&cmd))
+		cw_execute_ld(&cmd, proc);
 }

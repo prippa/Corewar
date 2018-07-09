@@ -27,11 +27,12 @@ void			cw_free(void);
 ************************************ Helpers ***********************************
 */
 
-int				cw_get_dec_from_the_point(unsigned char *str, int position);
+int				cw_get_dec_from_the_point(int pc, const int label);
 int				cw_hex_to_dec(unsigned char *buf, int i);
 void			cw_write_bytes_to_buf(unsigned char *buf, int nbr);
 void			cw_write_to_map(unsigned char *map, t_processes *proc,
-					unsigned char *buf, int position_on_the_map);
+					unsigned char *buf, int pc);
+int				cw_is_valid_reg(t_command *cmd);
 
 /*
 ******************************* Parse file part ********************************
@@ -81,7 +82,8 @@ void			cw_load_map(void);
 void			cw_game_loop(void);
 void			cw_print_players(t_champ *champs);
 void			cw_print_winer(t_champ *champs);
-void			cw_set_arg_tp(t_command *cmd, char lable);
+void			cw_get_codage_and_arg_tp(t_command *cmd, t_processes *proc);
+void			cw_set_arg_av(t_command *cmd, t_processes *proc);
 
 /*
 ********************************** Functions ***********************************

@@ -38,7 +38,7 @@ static void		cw_proc_executer(t_processes *proc_start)
 			if (proc_start->exec_cycles == -1)
 			{
 				proc_start->cmd = cmd;
-				proc_start->exec_cycles = g_cw.op[cmd - 1].cycles_price;
+				proc_start->exec_cycles = g_cw.op[cmd - 1].cycles_price - 1;
 			}
 			else if (!proc_start->exec_cycles)
 			{
@@ -60,6 +60,10 @@ void			cw_game_loop(void)
 
 	while (1)
 	{
+		if (g_cw.cycle == 4)
+		{
+
+		}
 		if (g_cw.cycle_to_die <= 0)
 			break ;
 		champs = g_cw.pd.champs;

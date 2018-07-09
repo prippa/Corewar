@@ -25,7 +25,6 @@ typedef struct			s_arg
 
 typedef struct			s_command
 {
-	char				cmd;
 	int					codage;
 	t_arg				arg1;
 	t_arg				arg2;
@@ -35,7 +34,7 @@ typedef struct			s_command
 typedef	struct			s_processes
 {
 	unsigned int		id;
-	short				pc;
+	int					pc;
 	char				carry;
 	int					registers[REG_NUMBER];
 	char 				is_alive;
