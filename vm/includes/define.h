@@ -110,6 +110,6 @@ typedef enum	e_error_numbers
 # define DEAD 0
 # define LOOKING_FOR_THE_COMMAND 0
 # define WAITING_FOR_THE_EXECUTION 1
-#define number_for_empty_signal 100
+# define number_for_empty_signal 100
 
 #endif

@@ -152,7 +152,7 @@ void		cw_execute_corewar(t_processes *proc, int fd)
 
 	while (proc)
 	{
-		if (proc->id == 20 && g_cw.cycle <= 21421 && (proc->current_command == 2 || proc->current_command == 14))
+		if (proc->id == 20 && g_cw.cycle <= 21421 /*&& (proc->current_command == 2 || proc->current_command == 14)*/)
 		{
 			// ft_printf("proc id --------------------> %d\n", proc->id); // ? unique;
 			// ft_printf("proc_PC -----------> %d\n", proc->process_PC);
@@ -176,7 +176,7 @@ void		cw_execute_corewar(t_processes *proc, int fd)
 			ft_putstr_fd("\n",fd);
 		}
 
-		if (g_cw.cycle > 21423)
+		if (g_cw.cycle > 21421)
 		{
 			close(fd);
 			exit(0);
@@ -318,12 +318,7 @@ void		cw_execute_corewar(t_processes *proc, int fd)
 				{
 					if (!cw_get_command(&cmd, proc->process_PC, g_cw.map.stack)) // ! == correct execution;
 					{
-						if (proc->id == 20)
-						{
-							ft_putstr_fd("here -> ", fd);
-							ft_putstr_fd(ft_itoa(g_cw.cycle), fd);
-							ft_putstr_fd("\n",fd);
-						}
+
 						g_cw.op[cmd.cmd - 1].func(&cmd, &g_cw.map, proc);
 						proc->current_command = 0;
 						proc->cycles_till_execution = 1;
@@ -331,6 +326,7 @@ void		cw_execute_corewar(t_processes *proc, int fd)
 					}
 					else
 					{
+
 
 						g_cw.map.stack_color[proc->process_PC] = proc->color;
 
@@ -365,6 +361,7 @@ void		cw_execute_corewar(t_processes *proc, int fd)
 				}
 				else
 				{
+
 					// ft_printf("execute\n");
 
 					// cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
@@ -375,8 +372,7 @@ void		cw_execute_corewar(t_processes *proc, int fd)
 					{
 
 						g_cw.op[proc->current_command - 1].func(&cmd, &g_cw.map, proc);
-						ft_putstr_fd("here", fd);
-						ft_putstr_fd("\n",fd);
+
 			
 						proc->current_command = 0;
 
@@ -387,6 +383,7 @@ void		cw_execute_corewar(t_processes *proc, int fd)
 					}
 					else
 					{
+
 						// ft_printf("not valid codage -------------------------------> %d\n", "123456");//////////// ?
 					// ft_printf("here ->*******************************************4\n");
 						cw_get_command(&cmd, proc->process_PC, g_cw.map.stack); // to have the cmd.codage actual on the map; /////////////////// ?
