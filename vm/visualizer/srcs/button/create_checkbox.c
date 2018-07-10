@@ -13,8 +13,8 @@
 #include "visualizer.h"
 
 static inline void	create_checkbox_text(t_checkbox *cbx,
-										SDL_Renderer *renderer,
-										const char *text)
+										const char *text,
+										t_arena *arena)
 {
 	SDL_Point		txt_top_left;
 	t_ltexture		*texture;
@@ -26,8 +26,8 @@ static inline void	create_checkbox_text(t_checkbox *cbx,
 		texture = load_from_rendered_text(get_text_info(FUTURICA_ITALIC,
 											(CHECKBOX_HEIGHT << 2),
 											text,
-											(SDL_Color){.r = 0xff, .g = 0, .b = 0, .a = 0}),
-											renderer);
+											BLACK_COLOR),
+											arena->renderer);
 		cbx->checkbox_txt = texture;
 		cbx->txt_position = txt_top_left;
 	}
@@ -39,7 +39,7 @@ static inline void	create_checkbox_text(t_checkbox *cbx,
 
 t_checkbox		*create_checkbox(SDL_Point position,
 								const char *text,
-								SDL_Renderer *renderer)
+								t_arena *arena)
 {
 	t_checkbox	*new_checkbox;
 
@@ -54,7 +54,7 @@ t_checkbox		*create_checkbox(SDL_Point position,
 		new_checkbox->checked = false;
 		new_checkbox->position = position;
 		new_checkbox->current_sprite = CROSS_MOUSE_OUT;
-		create_checkbox_text(new_checkbox, renderer, text);
+		create_checkbox_text(new_checkbox, text, arena);
 	}
 	return (new_checkbox);
 }

@@ -46,8 +46,8 @@
 # define BUTTON_H
 # define BUTTON_WIDTH (SCREEN_WIDTH >> 4)
 # define BUTTON_HEIGHT (SCREEN_HEIGHT >> 4)
-# define CHECKBOX_WIDTH 50
-# define CHECKBOX_HEIGHT 50
+# define CHECKBOX_WIDTH BUTTON_HEIGHT
+# define CHECKBOX_HEIGHT BUTTON_HEIGHT
 # define TOTAL_BUTTONS 4
 # define TOTAL_SPRITES 4
 # define TOTAL_FULL_SPRITES 4
@@ -63,7 +63,7 @@
 # define NO_BUTTON {NO_KEY, NO_BUTTON_ID, "No"}
 # define YES_BUTTON	{RETURN_KEY, YES_BUTTON_ID, "Yes"}
 # define CANSEL_BUTTON {ESCAPE_KEY, CANSEL_BUTTON_ID, "Cansel"}
-# define MOVE_BTN_WIDTH (((SCREEN_WIDTH >> 4) * 2) / 3)
+# define MOVE_BTN_WIDTH ((SCREEN_HEIGHT - arena->abs_arena_height) >> 1)
 # define RED_COLOR ((SDL_Color){.r = 0xff})
 # define GREEN_COLOR ((SDL_Color){.g = 0xff})
 # define BLUE_COLOR ((SDL_Color){.b = 0xff})
@@ -188,14 +188,35 @@ typedef struct					s_button
 	void						*sprites;
 }								t_button;
 
+typedef struct					s_statusbar
+{
+	t_ltexture					*txt;
+	double						k;
+}								t_statusbar;
+
+typedef enum					e_champcolor
+{
+	RED_CHAMP,
+	BLUE_CHAMP,
+	GREEN_CHAMP,
+	CYAN_CHAMP,
+	TOTAL_CHAMP
+}								t_champcolor;
+
 /*
 ** Structure with information about
 ** graphical representation for Corewar Arena
 */
 typedef struct					s_arena
 {
+	int							champ_count;
+	t_statusbar					statuses[TOTAL_CHAMP];
+	int							territory[TOTAL_CHAMP];
 	int							arena_tile_width;
 	int							arena_tile_height;
+	int							abs_arena_height;
+	int							abs_arena_width;
+	t_ltexture					*btn_panel;
 	/*
 	** Infopanel texture
 	*/
@@ -273,6 +294,5 @@ typedef struct					s_arena
 	Uint8						new_bytes[MAP_SIZE];
 	SDL_Color					new_colors[MAP_SIZE];
 	bool						is_bold[MAP_SIZE];
-	t_ltexture					*pentagramma;
 }								t_arena;
 #endif

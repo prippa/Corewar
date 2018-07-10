@@ -35,22 +35,22 @@ bool	init_move_buttons(t_arena *arena)
 																arena->renderer,
 																WHITE_COLOR);
 	if (!(arena->move_btns[UP_MENU_BTN] =
-			create_button(-90, (SDL_Point){.x = wd + (BUTTON_WIDTH >> 1) - (MOVE_BTN_WIDTH >> 1), .y = 10 * BUTTON_HEIGHT},
+			create_button(-90, (SDL_Point){.x = MOVE_BTN_WIDTH >> 1, .y = SCREEN_HEIGHT - (MOVE_BTN_WIDTH << 1)},
 							NULL, arena->renderer,
 							(SDL_Point){.x = MOVE_BTN_WIDTH, .y = MOVE_BTN_WIDTH},
 							arena->move_btn_sprites)) ||
 		!(arena->move_btns[RIGHT_MENU_BTN] =
-			create_button(0, (SDL_Point){.x = wd + BUTTON_WIDTH - MOVE_BTN_WIDTH, .y = 10 * BUTTON_HEIGHT + (BUTTON_WIDTH >> 1) - (MOVE_BTN_WIDTH >> 1)},
+			create_button(0, (SDL_Point){.x = MOVE_BTN_WIDTH, .y = SCREEN_HEIGHT - 1.5 * MOVE_BTN_WIDTH},
 							NULL, arena->renderer,
 							(SDL_Point){.x = MOVE_BTN_WIDTH, .y = MOVE_BTN_WIDTH},
 							arena->move_btn_sprites)) ||
 		!(arena->move_btns[DOWN_MENU_BTN] =
-			create_button(90, (SDL_Point){.x = wd + (BUTTON_WIDTH >> 1) - (MOVE_BTN_WIDTH >> 1) , .y = 10 * BUTTON_HEIGHT + BUTTON_WIDTH - MOVE_BTN_WIDTH},
+			create_button(90, (SDL_Point){.x = MOVE_BTN_WIDTH >> 1, .y = SCREEN_HEIGHT - MOVE_BTN_WIDTH},
 							NULL, arena->renderer,
 							(SDL_Point){.x = MOVE_BTN_WIDTH, .y = MOVE_BTN_WIDTH},
 							arena->move_btn_sprites)) ||
 		!(arena->move_btns[LEFT_MENU_BTN] =
-			create_button(180, (SDL_Point){.x = wd, .y = 10 * BUTTON_HEIGHT + (BUTTON_WIDTH >> 1) - (MOVE_BTN_WIDTH >> 1)},
+			create_button(180, (SDL_Point){.x = 0, .y = SCREEN_HEIGHT - 1.5 * MOVE_BTN_WIDTH},
 							NULL, arena->renderer,
 							(SDL_Point){.x = MOVE_BTN_WIDTH, .y = MOVE_BTN_WIDTH},
 							arena->move_btn_sprites)))

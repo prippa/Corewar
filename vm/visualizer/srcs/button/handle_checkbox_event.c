@@ -20,7 +20,8 @@ static inline bool	is_mouse_event_happened(int type)
 }
 
 static inline bool	is_mouse_outside_checkbox(int x, int y,
-											SDL_Point position)
+											SDL_Point position,
+											t_arena *arena)
 {
 	return (x < position.x ||
 			x > position.x + CHECKBOX_WIDTH ||
@@ -38,7 +39,7 @@ void				handle_checkbox_event(SDL_Event *e,
 	if (is_mouse_event_happened(e->type))
 	{
 		SDL_GetMouseState(&x, &y);
-		if (is_mouse_outside_checkbox(x, y, cbx->position))
+		if (is_mouse_outside_checkbox(x, y, cbx->position, arena))
 		{
 			cbx->current_sprite = (cbx->checked) ? CHECK_MOUSE_OUT :
 													CROSS_MOUSE_OUT;

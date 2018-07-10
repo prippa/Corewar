@@ -14,6 +14,6 @@
 
 void	draw_outlinerect(t_arena *arena, SDL_Rect rect)
 {
-	SDL_SetRenderDrawColor(arena->renderer, 0x00, 0x00, 0x00, 0xff);
+	SDL_SetRenderDrawColor(arena->renderer, 0x0, 0x0, 0x0, 0xff);
 	SDL_RenderDrawRect(arena->renderer, &rect);
 }

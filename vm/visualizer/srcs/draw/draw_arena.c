@@ -34,8 +34,8 @@ static inline void	draw_numbers(t_arena *arena,
 										height - 2);
 		SDL_SetRenderDrawColor(arena->renderer, 0x0, 0x0, 0x0, 0xff);
 		SDL_RenderFillRect(arena->renderer, &rect);
-		set_color((SDL_Color){.r=0xff}, arena->bold_figures[sf]);
-		set_color((SDL_Color){.r=0xff}, arena->bold_figures[ff]);
+		set_color(WHITE_COLOR, arena->bold_figures[sf]);
+		set_color(WHITE_COLOR, arena->bold_figures[ff]);
 		rect.w /= 2;
 		t_rposition position = get_render_position(0, &top_left, NULL, &rect);
 		render(&position, arena->bold_figures[ff], arena->renderer, SDL_FLIP_NONE);
@@ -52,8 +52,8 @@ static inline void	draw_numbers(t_arena *arena,
 		int y_init = top_left.y;
 		int ff = (i >> 4);
 		int sf = ((ff << 4) ^ i);
-		set_color((SDL_Color){.r=0xff}, arena->bold_figures[sf]);
-		set_color((SDL_Color){.r=0xff}, arena->bold_figures[ff]);
+		set_color(WHITE_COLOR, arena->bold_figures[sf]);
+		set_color(WHITE_COLOR, arena->bold_figures[ff]);
 		SDL_Rect rect = get_rectangle(top_left.x,
 										top_left.y + 1,
 										width - 2,
@@ -115,8 +115,8 @@ void			draw_arena(t_arena *arena)
 			/*draw_outlinerect(arena, get_rectangle(top_x, 
 													top_y,
 													width,
-													height));*/
-			top_x += width;
+													height));
+			*/top_x += width;
 		}
 		top_y += height;
 	}

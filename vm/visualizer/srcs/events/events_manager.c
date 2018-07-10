@@ -42,7 +42,7 @@ static inline void	handle_arena_rendering(t_arena *arena,
 		*tacts_before_render -= (end - begin);
 		if (*tacts_before_render <= 0)
 		{
-			*tacts_before_render = 500000;
+			*tacts_before_render = 50000;
 			if (arena->pause == false)
 				set_random(arena);
 		}
@@ -65,8 +65,10 @@ void				events_handler(t_arena *arena)
 		clear_renderer(arena->renderer);
 		draw_background(arena);
 		draw_infopanel(arena);
+		draw_button_panel(arena);
 		dequeue_events(arena);
 		draw_controls(arena);
+		draw_statuses(arena);
 		handle_arena_rendering(arena, begin, clock(), &tacts_before_render);	
 		SDL_RenderPresent(arena->renderer);
 	}

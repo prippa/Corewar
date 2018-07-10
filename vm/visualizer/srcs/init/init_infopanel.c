@@ -9,5 +9,6 @@ bool		init_infopanel(t_arena *arena)
 	info = get_text_info(WESTERN_SWING, 0.15 * SCREEN_WIDTH, "COREWAR", RED_COLOR);
 	if (!(arena->infopanel_title = load_from_rendered_text(info, arena->renderer)))
 		return (false);
+	set_color(RED_COLOR, arena->infopanel);
 	return (true);
 }

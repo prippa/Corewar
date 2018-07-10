@@ -8,7 +8,7 @@
 */
 t_checkbox				*create_checkbox(SDL_Point position,
 										const char *text,
-										SDL_Renderer *renderer);
+										t_arena *arena);
 
 /*
 ** Handles mouse event for checkbox

@@ -27,9 +27,9 @@ bool			init_checkboxes(t_arena *arena)
 		!(arena->full_sprites[CROSS_MOUSE_IN] =
 			load_from_file(CROSS_IMG, arena->renderer, WHITE_COLOR)))
 		return (false);
-	if (!(arena->full_btn = create_checkbox((SDL_Point){.x = wd, .y = 20},
+	if (!(arena->full_btn = create_checkbox((SDL_Point){.x = 10 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - CHECKBOX_HEIGHT},
 									"FULLSCREEN",
-									arena->renderer)))
+									arena)))
 		return (false);
 	set_color(GREEN_COLOR, arena->full_sprites[CHECK_MOUSE_IN]);
 	set_color(GREEN_COLOR, arena->full_sprites[CROSS_MOUSE_IN]);

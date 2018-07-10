@@ -24,7 +24,7 @@ static inline bool	init_window(t_arena *arena)
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Window init error", SDL_GetError(), NULL);
 		return (false);
 	}
-	arena->zoom = 0.9;
+	arena->zoom = 1.0;
 	if (!(arena->renderer = SDL_CreateRenderer(arena->window, -1, SDL_RENDERER_SOFTWARE)))
 	{
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Renderer init error", SDL_GetError(), NULL);
@@ -48,10 +48,7 @@ static inline void	init_msg_buttons(t_arena *arena)
 
 static inline void	init_viewport(t_arena *arena)
 {
-	arena->viewport = get_rectangle(0,
-									0,
-									SCREEN_WIDTH - (BUTTON_WIDTH << 1) - (SCREEN_WIDTH >> 5),
-									SCREEN_HEIGHT);
+	arena->viewport = get_rectangle(0, 0, arena->abs_arena_width + 1, arena->abs_arena_height);
 }
 
 static inline bool	init_display_mode(t_arena *arena)
@@ -61,8 +58,10 @@ static inline bool	init_display_mode(t_arena *arena)
 		force_error(SDL_GetError());
         return (false);
 	}
-	arena->arena_tile_height = (SCREEN_HEIGHT >> 6) + 3;
-	arena->arena_tile_width = (((int)((0.9 * SCREEN_WIDTH) - BUTTON_WIDTH)) >> 6) + 1;
+	arena->arena_tile_height = ((int)(SCREEN_HEIGHT * 0.95) / 65);
+	arena->arena_tile_width = ((int)(SCREEN_WIDTH * 0.8) / 65);
+	arena->abs_arena_height = 65 * arena->arena_tile_height;
+	arena->abs_arena_width = 65 * arena->arena_tile_width;
 	return (true);
 }
 
@@ -79,7 +78,9 @@ bool				init(t_arena *arena)
 		return (false);
 	init_figures(arena);
 	init_infopanel(arena);
+	init_button_panel(arena);
 	if (!init_controls(arena))
 		return (false);
+	init_statuses(arena);
 	return (true);
 }
