@@ -38,7 +38,7 @@ typedef	struct			s_processes
 	char				carry;
 	int					registers[REG_NUMBER];
 	char 				is_alive;
-	short				champ_number;
+	int					champ_number;
 	short				exec_cycles;
 	unsigned char		cmd;
 	struct s_processes	*next;
@@ -55,7 +55,7 @@ typedef struct			s_champ
 	char				file_name[FILE_NAME_MAX + 1];
 	int					fd;
 	unsigned char		code[CHAMP_MAX_SIZE];
-	short				champ_number;
+	int					champ_number;
 	short				order;
 	unsigned int        lives_number;
 	unsigned int		real_lives_number;

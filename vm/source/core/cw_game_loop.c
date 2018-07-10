@@ -52,16 +52,16 @@ static void		cw_cycles_new_period(void)
 static void		cw_proc_executer(t_processes *proc)
 {
 	while (proc)
-{
-		if (proc->exec_cycles == -1 && IS_COMMAND(g_cw.map[proc->pc]))
 	{
+		if (proc->exec_cycles == -1 && IS_COMMAND(g_cw.map[proc->pc]))
+		{
 			proc->cmd = g_cw.map[proc->pc];
 			proc->exec_cycles = g_cw.op[proc->cmd - 1].cycles_price - 1;
-}
+		}
 		if (proc->exec_cycles != -1)
 		{
 			if (!proc->exec_cycles)
-	{
+			{
 				g_cw.op[proc->cmd - 1].func(proc);
 				proc->exec_cycles = -1;
 			}
@@ -80,32 +80,32 @@ void			cw_game_loop(void)
 
 	while (1)
 	{
-		// if (g_cw.cycle == 2831)
+		// if (g_cw.cycle == 6909)
 		// {
 
 		// }
-		// if (g_cw.cycle >= 24936 && !g_cw.pd.flags[DUMP])
-		// {
-		// 	cw_refresh_colors();
-		// 	cw_print_map(); // TRASH
-			// ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
-			// ft_printf("cycle to die: %d\n", g_cw.cycle_to_die);
-			// ft_printf("last live: %u\n", g_cw.pd.champs->last_live);
-			// ft_printf("Lives in current period: %u\n", g_cw.pd.champs->lives_number);
-		// }
+		if (g_cw.cycle >= 5612 && !g_cw.pd.flags[DUMP])
+		{
+			cw_refresh_colors();
+			cw_print_map(); // TRASH
+			ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
+			ft_printf("cycle to die: %d\n", g_cw.cycle_to_die);
+		}
 		if (g_cw.cycle_to_die <= 0)
 			break ;
 		champs = g_cw.pd.champs;
 		while (champs)
 		{
 			cw_proc_executer(champs->proc_start);
+			ft_printf("%d live cur period: %u last live: %u\n",
+				champs->champ_number, champs->lives_number, champs->last_live);
 			champs = champs->next;
 		}
 		if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
 			cw_print_dump_exit();
 		if (!g_cw.cycle_to_die_check)
 			cw_cycles_new_period();
-		// ft_printf("proc count: %u\n", g_cw.proc_counter);
+		ft_printf("proc count: %u\n", g_cw.proc_counter);
 		if (g_cw.proc_counter == 0)
 			break ;
 		g_cw.cycle++;
