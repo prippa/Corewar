@@ -10,7 +10,7 @@ void		t_processe_killer(t_champ *champs)
 		head = champs->proc_start;
 		while (head)
 		{
-			if (head->is_alive == LIVE)
+			if (head->is_alive == ALIVE)
 				head->is_alive = DEAD;
 			else
 			{

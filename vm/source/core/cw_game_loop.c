@@ -39,8 +39,7 @@ void		cw_print_map(void) // TRASH
 static void		cw_cycles_new_period(void)
 {
 	g_cw.max_checks_check--;
-	if (t_champ_get_lives_number(g_cw.pd.champs) >= NBR_LIVE
-		|| g_cw.max_checks_check == 0)
+	if (t_champ_is_nbr_live(g_cw.pd.champs) || !g_cw.max_checks_check)
 	{
 		g_cw.cycle_to_die -= CYCLE_DELTA;
 		g_cw.max_checks_check = MAX_CHECKS;
@@ -50,34 +49,28 @@ static void		cw_cycles_new_period(void)
 	t_processe_killer(g_cw.pd.champs);
 }
 
-static void		cw_execute_function(t_processes *proc_start)
+static void		cw_proc_executer(t_processes *proc)
 {
-	g_cw.op[proc_start->cmd - 1].func(proc_start);
-	if (IS_COMMAND(g_cw.map[proc_start->pc]))
-		cw_init_proc_cmd(proc_start, g_cw.map[proc_start->pc]);
-	else
-		proc_start->exec_cycles = -1;
-}
-
-static void		cw_proc_executer(t_processes *proc_start)
+	while (proc)
 {
-	char cmd;
-
-	while (proc_start)
+		if (proc->exec_cycles == -1 && IS_COMMAND(g_cw.map[proc->pc]))
 	{
-		cmd = g_cw.map[proc_start->pc];
-		if (IS_COMMAND(cmd))
+			proc->cmd = g_cw.map[proc->pc];
+			proc->exec_cycles = g_cw.op[proc->cmd - 1].cycles_price - 1;
+}
+		if (proc->exec_cycles != -1)
 		{
-			if (proc_start->exec_cycles == -1)
-				cw_init_proc_cmd(proc_start, cmd);
-			else if (!proc_start->exec_cycles)
-				cw_execute_function(proc_start);
+			if (!proc->exec_cycles)
+	{
+				g_cw.op[proc->cmd - 1].func(proc);
+				proc->exec_cycles = -1;
+			}
 			else
-				proc_start->exec_cycles--;
+				proc->exec_cycles--;
 		}
 		else
-			proc_start->pc = MEM_X((proc_start->pc + 1));
-		proc_start = proc_start->next;
+			proc->pc = MEM_X((proc->pc + 1));
+		proc = proc->next;
 	}
 }
 
@@ -91,6 +84,15 @@ void			cw_game_loop(void)
 		// {
 
 		// }
+		// if (g_cw.cycle >= 24936 && !g_cw.pd.flags[DUMP])
+		// {
+		// 	cw_refresh_colors();
+		// 	cw_print_map(); // TRASH
+			// ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
+			// ft_printf("cycle to die: %d\n", g_cw.cycle_to_die);
+			// ft_printf("last live: %u\n", g_cw.pd.champs->last_live);
+			// ft_printf("Lives in current period: %u\n", g_cw.pd.champs->lives_number);
+		// }
 		if (g_cw.cycle_to_die <= 0)
 			break ;
 		champs = g_cw.pd.champs;
@@ -103,16 +105,9 @@ void			cw_game_loop(void)
 			cw_print_dump_exit();
 		if (!g_cw.cycle_to_die_check)
 			cw_cycles_new_period();
+		// ft_printf("proc count: %u\n", g_cw.proc_counter);
 		if (g_cw.proc_counter == 0)
 			break ;
-		if (g_cw.cycle >= 11000)
-		{
-			cw_refresh_colors();
-			cw_print_map(); // TRASH
-			ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
-			ft_printf("proc count: %u\n", g_cw.proc_counter);
-			ft_printf("cycle to die: %d\n", g_cw.cycle_to_die);
-		}
 		g_cw.cycle++;
 		g_cw.cycle_to_die_check--;
 	}

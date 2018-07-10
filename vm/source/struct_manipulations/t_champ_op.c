@@ -1,16 +1,16 @@
 #include "corewar.h"
 
-unsigned int	t_champ_get_lives_number(t_champ *champs)
+int				t_champ_is_nbr_live(t_champ *champs)
 {
 	unsigned int count;
 
 	count = 0;
 	while (champs)
 	{
-		count += champs->lives_number;
+		count += champs->real_lives_number;
 		champs = champs->next;
 	}
-	return (count);
+	return ((count >= NBR_LIVE) ? 1 : 0);
 }
 
 t_champ			*t_champ_find(int champ_number, t_champ *list)
@@ -29,6 +29,7 @@ void		t_champ_zero_lives_number(t_champ *champs)
 	while (champs)
 	{
 		champs->lives_number = 0;
+		champs->real_lives_number = 0;
 		champs = champs->next;
 	}
 }

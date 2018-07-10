@@ -33,7 +33,7 @@ static void	ft_fpf_back_color(t_printf *fpf)
 	else if (fpf->color == F_BACK_CYAN_WHITE)
 		ft_pf_strjoin(fpf, BACK_CYAN_WHITE, ft_strlen(BACK_CYAN_WHITE));
 	else
-		ft_pf_strjoin(fpf, GRAY, ft_strlen(GRAY));
+		ft_pf_strjoin(fpf, BOLD_GRAY, ft_strlen(BOLD_GRAY));
 }
 
 static void	ft_fpf_bold_color(t_printf *fpf)

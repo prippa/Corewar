@@ -35,7 +35,6 @@ int				cw_is_valid_reg(t_command *cmd);
 void			cw_move_pc_with_codage(t_command *cmd, t_processes *proc);
 void			cw_move_pc_without_codage(t_processes *proc);
 void			cw_move_pc(t_processes *proc, int value);
-void			cw_init_proc_cmd(t_processes *proc, unsigned char cmd);
 
 /*
 ******************************* Parse file part ********************************
@@ -61,7 +60,7 @@ void			t_champ_rev(t_champ **champs);
 void			t_champ_add(t_champ **champs);
 void			t_champ_free(t_champ **champs);
 t_champ			*t_champ_find(int champ_number, t_champ *list);
-unsigned int	t_champ_get_lives_number(t_champ *champs);
+int				t_champ_is_nbr_live(t_champ *champs);
 int				t_champ_check_double_champ_number(t_champ *champs, int order);
 void			t_champ_zero_lives_number(t_champ *champs);
 
@@ -85,8 +84,9 @@ void			cw_load_map(void);
 void			cw_game_loop(void);
 void			cw_print_players(t_champ *champs);
 void			cw_print_winer(t_champ *champs);
-void			cw_get_codage_and_arg_tp(t_command *cmd, t_processes *proc);
-void			cw_set_arg_av(t_command *cmd, int pc);
+void			cw_set_arg_tp_with_codage(t_command *cmd,
+					char label, char comb);
+void			cw_set_arg_av(t_command *cmd, int pc, char comb);
 
 /*
 ********************************** Functions ***********************************

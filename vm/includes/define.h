@@ -61,19 +61,23 @@ typedef enum	e_op_code
 # define RRD	88
 # define DRR	148
 # define DDR	164
+# define DIR	180
 # define IRR	212
 # define IDR	228
+# define IIR 	244
 # define DR		144
 # define IR		208
 # define RR		80
 # define RI		112
+# define R 		64
 
 # define REG	1
 # define IND	2
-# define DIR	2
-# define DIR_L	4
 
 # define CODAGE_SKIP 2
+# define SINGLE_COMB 1
+# define DOUBLE_COMB 2
+# define TRIPLE_COMB 3
 
 /*
 ******************************* Error management *******************************

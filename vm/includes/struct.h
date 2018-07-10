@@ -58,6 +58,7 @@ typedef struct			s_champ
 	short				champ_number;
 	short				order;
 	unsigned int        lives_number;
+	unsigned int		real_lives_number;
 	unsigned int        last_live;
 	unsigned char		color;
 	t_processes			*proc_start;

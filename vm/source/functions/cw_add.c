@@ -22,7 +22,7 @@ static void		cw_execute_add(t_command *cmd, t_processes *proc)
 static int		cw_get_args_av_add(t_command *cmd, t_processes *proc)
 {
 	if (cmd->codage == RRR)
-		cw_set_arg_av(cmd, proc->pc + CODAGE_SKIP);
+		cw_set_arg_av(cmd, proc->pc + CODAGE_SKIP, TRIPLE_COMB);
 	else
 		return (0);
 	return (1);
@@ -33,7 +33,8 @@ void			cw_add(t_processes *proc)
 	t_command cmd;
 
 	ft_bzero(&cmd, sizeof(t_command));
-	cw_get_codage_and_arg_tp(&cmd, proc);
+	cmd.codage = g_cw.map[MEM_X((proc->pc + 1))];
+	cw_set_arg_tp_with_codage(&cmd, g_cw.op[proc->cmd - 1].label, TRIPLE_COMB);
 	if (cw_get_args_av_add(&cmd, proc) && cw_is_valid_reg(&cmd))
 		cw_execute_add(&cmd, proc);
 	cw_move_pc_with_codage(&cmd, proc);

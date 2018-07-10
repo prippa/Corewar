@@ -49,6 +49,7 @@ void		cw_print_dump_exit(void)
 	int	counter;
 	int index;
 
+	t_champ_sort_by_champ_number(&g_cw.pd.champs);
 	cw_print_players(g_cw.pd.champs);
 	counter = 0;
 	index = 0;

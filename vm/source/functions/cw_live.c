@@ -19,11 +19,12 @@ void			cw_live(t_processes *proc)
 
 	proc->is_alive = ALIVE;
 	av = cw_get_dec_from_the_point(proc->pc + 1, g_cw.op[proc->cmd - 1].label);
-	champ = t_champ_find(av, g_cw.pd.champs);
-	if (champ)
+	champ = t_champ_find(proc->champ_number, g_cw.pd.champs);
+	if (champ->champ_number == av)
 	{
 		champ->lives_number++;
 		champ->last_live = g_cw.cycle + 1;
 	}
+	champ->real_lives_number++;
 	cw_move_pc_without_codage(proc);
 }
