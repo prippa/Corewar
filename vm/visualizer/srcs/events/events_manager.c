@@ -19,11 +19,17 @@ static inline void	dequeue_events(t_arena *arena)
 		if (arena->e.type == SDL_QUIT)
 			exit_event(arena);
 		else if (arena->e.type == SDL_KEYDOWN)
+		{
 			key_event(arena, arena->e.key.keysym.sym);
+		}
 		else if (arena->e.type == SDL_MOUSEWHEEL)
+		{
 			wheel_event(arena, arena->e.wheel.y);
+		}
 		for (int i = 0; i < BUTTON_TOTAL; i++)
+		{
 			handle_button_event(&(arena->e), arena->start_btns[i], arena, i);
+		}
 		for (int i = 0; i < MOVE_BUTTON_TOTAL; i++)
 			handle_movebutton_event(&(arena->e), arena->move_btns[i], arena, i);
 		handle_checkbox_event(&(arena->e), arena->full_btn, arena);
@@ -33,13 +39,12 @@ static inline void	dequeue_events(t_arena *arena)
 }
 
 static inline void	handle_arena_rendering(t_arena *arena,
-											clock_t begin,
-											clock_t end,
+											clock_t diff,
 											int *tacts_before_render)
 {
 	if (arena->is_rendered)
 	{
-		*tacts_before_render -= (end - begin);
+		*tacts_before_render -= diff;
 		if (*tacts_before_render <= 0)
 		{
 			*tacts_before_render = 50000;
@@ -53,15 +58,19 @@ static inline void	handle_arena_rendering(t_arena *arena,
 void				events_handler(t_arena *arena)
 {
 	clock_t			begin;
+	clock_t			end;
 	int				tacts_before_render;
+	int				tacts_per_second;
 
 	begin = 0;
 	tacts_before_render = 0;
+	tacts_per_second = 1000000;
 	init_background(arena);
 	Mix_PlayMusic(arena->theme, -1);
 	while (!arena->quit)
 	{
 		begin = clock();
+		arena->fps++;
 		clear_renderer(arena->renderer);
 		draw_background(arena);
 		draw_infopanel(arena);
@@ -69,7 +78,16 @@ void				events_handler(t_arena *arena)
 		dequeue_events(arena);
 		draw_controls(arena);
 		draw_statuses(arena);
-		handle_arena_rendering(arena, begin, clock(), &tacts_before_render);	
+		draw_framerate(arena);
+		end = clock();
+		tacts_per_second -= (end - begin);
+		if (tacts_per_second <= 0)
+		{
+			tacts_per_second = 1000000;
+			arena->old_fps = arena->fps;
+			arena->fps = 0;
+		}
+		handle_arena_rendering(arena, end - begin, &tacts_before_render);	
 		SDL_RenderPresent(arena->renderer);
 	}
 }

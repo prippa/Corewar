@@ -20,7 +20,7 @@ bool		init_figures(t_arena *arena)
 
 	buf[1] = 0;
 	i = -1;
-	font_weight = ARENA_TILE_WIDTH * MAX_ZOOM;
+	font_weight = ARENA_TILE_WIDTH * MAX_ZOOM ;
 	while (++i < 0x10)
 	{
 		buf[0] = (i < 0xa) ? i + 48 : 'F' - (0xf - i);

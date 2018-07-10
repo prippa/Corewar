@@ -27,4 +27,5 @@ void	draw_background(t_arena *arena);
 void	draw_infopanel(t_arena *arena);
 void	draw_button_panel(t_arena *arena);
 void	draw_statuses(t_arena *arena);
+void	draw_framerate(t_arena *arena);
 #endif

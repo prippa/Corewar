@@ -36,6 +36,7 @@ static inline bool	init_window(t_arena *arena)
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Screen surface init error", SDL_GetError(), NULL);
 		return (false);
 	}
+	arena->fps = 0;
 	return (true);
 }
 

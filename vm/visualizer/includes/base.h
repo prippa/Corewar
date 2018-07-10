@@ -209,6 +209,8 @@ typedef enum					e_champcolor
 */
 typedef struct					s_arena
 {
+	int							fps;
+	int							old_fps;
 	int							champ_count;
 	t_statusbar					statuses[TOTAL_CHAMP];
 	int							territory[TOTAL_CHAMP];

@@ -88,7 +88,8 @@ SRC_NAME		=	entry_point.c
 UTIL_NAME		=	clear_renderer.c			\
 					exit_dialog.c				\
 					get_rectangle.c				\
-					get_digits.c
+					get_digits.c				\
+					change_screen_mode.c
 
 EVENT_NAME		=	events_manager.c			\
 					key_event.c					\
@@ -104,7 +105,8 @@ DRAW_NAME		=	draw_arena.c				\
 					draw_background.c			\
 					draw_infopanel.c			\
 					draw_button_panel.c			\
-					draw_statuses.c
+					draw_statuses.c				\
+					draw_framerate.c
 
 LOADER_NAME		=	load_surface.c				\
 					load_texture.c

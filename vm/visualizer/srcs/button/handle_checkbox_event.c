@@ -45,19 +45,16 @@ void				handle_checkbox_event(SDL_Event *e,
 													CROSS_MOUSE_OUT;
 		}
 		else if (e->type == SDL_MOUSEMOTION)
-		{
 			cbx->current_sprite = (cbx->checked) ? CHECK_MOUSE_IN : CROSS_MOUSE_IN;
-		}
 		else if (e->type == SDL_MOUSEBUTTONDOWN)
 		{
 			cbx->checked = (cbx->checked) ? false : true;
-			arena->is_fullscreen = !(arena->is_fullscreen);
 			cbx->current_sprite = (cbx->checked) ? CHECK_MOUSE_IN : CROSS_MOUSE_IN;
 		}
 		else if (e->type == SDL_MOUSEBUTTONUP)
 		{
 			cbx->current_sprite = (cbx->checked) ? CHECK_MOUSE_IN : CROSS_MOUSE_IN;
-			SDL_SetWindowFullscreen(arena->window, cbx->checked);
+			change_screen_mode(arena);
 		}
 	}
 }
