@@ -34,9 +34,6 @@ void		cw_print_map(void) // TRASH
 			new_line_flag++;
 		i++;
 	}
-	ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
-	ft_printf("proc count: %u\n", g_cw.proc_counter);
-	ft_printf("cycle to die: %d\n", g_cw.cycle_to_die);
 }
 
 static void		cw_cycles_new_period(void)
@@ -90,7 +87,7 @@ void			cw_game_loop(void)
 
 	while (1)
 	{
-		// if (g_cw.cycle == 4)
+		// if (g_cw.cycle == 2831)
 		// {
 
 		// }
@@ -108,10 +105,13 @@ void			cw_game_loop(void)
 			cw_cycles_new_period();
 		if (g_cw.proc_counter == 0)
 			break ;
-		if (g_cw.cycle >= 2890)
+		if (g_cw.cycle >= 11000)
 		{
 			cw_refresh_colors();
 			cw_print_map(); // TRASH
+			ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
+			ft_printf("proc count: %u\n", g_cw.proc_counter);
+			ft_printf("cycle to die: %d\n", g_cw.cycle_to_die);
 		}
 		g_cw.cycle++;
 		g_cw.cycle_to_die_check--;

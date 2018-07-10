@@ -18,7 +18,7 @@ void			cw_zjmp(t_processes *proc)
 
 	av = cw_get_dec_from_the_point(proc->pc + 1, g_cw.op[proc->cmd - 1].label);
 	if (proc->carry)
-		proc->pc = MEM_X((proc->pc + IDX_X(av)));
+		cw_move_pc(proc, IDX_X(av));
 	else
 		cw_move_pc_without_codage(proc);
 }
