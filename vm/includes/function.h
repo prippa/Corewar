@@ -76,6 +76,7 @@ int				t_processe_free_by_id(t_processes **proc_start,
 int				t_processe_free_by_obj(t_processes **proc_start,
 					t_processes **proc_end, t_processes *obj);
 void			t_processe_killer(t_champ *champs);
+void			t_processes_initer(t_champ *champs);
 
 /*
 ********************************** Core Part ***********************************
@@ -118,6 +119,7 @@ void			cw_lfork(t_processes *proc);
 ********************************** Colors ***********************************
 */
 
-void			cw_refresh_colors(void);
+void			cw_vis_print_map(char flag);
+void			cw_vis_write_new_color(unsigned char color, int pc, int len);
 
 #endif

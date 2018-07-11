@@ -119,10 +119,6 @@ typedef enum	e_error_numbers
 ************************************* Map **************************************
 */
 
-// # define NEWLINE_QUANTITY 63
-// # define SPACES_BYTES 2
-// # define LOOKING_FOR_THE_COMMAND 0
-// # define WAITING_FOR_THE_EXECUTION 1
-// #define number_for_empty_signal 100
+#define IS_BASE_COLOR(x) ((x) > 0 && (x) < 5)
 
 #endif

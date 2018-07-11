@@ -85,7 +85,7 @@ C_FUNC		=	cw_binary_and.c cw_binary_or.c cw_binary_xor.c\
 
 C_CONV		=	cw_helpers.c cw_helpers_2.c
 
-C_COLOR		=	cw_refresh_colors.c
+C_COLOR		=	cw_vis_refresh_colors.c cw_vis_print_map.c
 #-------------------------------------------------------------------
 
 #------------------------------Visualizer---------------------------

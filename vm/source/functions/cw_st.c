@@ -15,13 +15,16 @@
 static void		cw_execute_st(t_command *cmd, t_processes *proc)
 {
 	unsigned char	buf[4];
+	int				pc;
 
 	if (cmd->codage == RR)
 		proc->registers[cmd->arg2.av - 1] = proc->registers[cmd->arg1.av - 1];
 	else if (cmd->codage == RI)
 	{
+		pc = (proc->pc + IDX_X(cmd->arg2.av));
 		cw_write_bytes_to_buf(buf, proc->registers[cmd->arg1.av - 1]);
-		cw_write_to_map(buf, (proc->pc + IDX_X(cmd->arg2.av)));
+		cw_write_to_map(buf, pc);
+		cw_vis_write_new_color(proc->color, pc, 4);
 	}
 }
 

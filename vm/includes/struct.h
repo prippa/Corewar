@@ -41,6 +41,7 @@ typedef	struct			s_processes
 	int					champ_number;
 	short				exec_cycles;
 	unsigned char		cmd;
+	unsigned char		color;
 	struct s_processes	*next;
 	struct s_processes	*prev;
 }						t_processes;
@@ -96,6 +97,10 @@ typedef struct			s_corewar
 	t_parse_data		pd;
 	unsigned char		map[MEM_SIZE];
 	unsigned char		color_map[MEM_SIZE];
+	unsigned char		color_map_pc[MEM_SIZE];
+	unsigned char		color_map_bold[MEM_SIZE];
+	unsigned char		color_map_live[MEM_SIZE];
+	unsigned char		color_live_cycle_buf[MEM_SIZE];
 	const t_op			*op;
 	unsigned int		cycle;
 	int					cycle_to_die;
