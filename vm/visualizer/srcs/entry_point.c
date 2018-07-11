@@ -28,7 +28,6 @@ static inline void	close_all(t_arena arena)
 		free_ltexture(arena.start_btns[i]->button_txt);
 		free(arena.start_btns[i]);
 	}
-	free_ltexture(arena.full_btn->checkbox_txt);
 	i = -1;
 	while (++i < FULL_SPRITES)
 		free_ltexture(arena.full_sprites[i]);

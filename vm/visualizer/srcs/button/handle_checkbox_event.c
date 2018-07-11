@@ -31,7 +31,8 @@ static inline bool	is_mouse_outside_checkbox(int x, int y,
 
 void				handle_checkbox_event(SDL_Event *e,
 										t_checkbox *cbx,
-										t_arena *arena)
+										t_arena *arena,
+										t_checkboxid id)
 {
 	int				x;
 	int				y;
@@ -54,7 +55,8 @@ void				handle_checkbox_event(SDL_Event *e,
 		else if (e->type == SDL_MOUSEBUTTONUP)
 		{
 			cbx->current_sprite = (cbx->checked) ? CHECK_MOUSE_IN : CROSS_MOUSE_IN;
-			change_screen_mode(arena);
+			if (id == FULLSCREEN_CBX)
+				change_screen_mode(arena);
 		}
 	}
 }

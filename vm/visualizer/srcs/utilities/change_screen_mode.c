@@ -4,18 +4,18 @@ void	change_screen_mode(t_arena *arena)
 {
 	if (arena->is_fullscreen == false)
 	{
-		arena->full_btn->checked = true;
+		arena->checkboxes[FULLSCREEN_CBX]->checked = true;
 		arena->is_fullscreen = true;
-		arena->full_btn->current_sprite = CHECK_MOUSE_OUT;
+		arena->checkboxes[FULLSCREEN_CBX]->current_sprite = CHECK_MOUSE_OUT;
 		SDL_SetWindowFullscreen(arena->window, SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_FULLSCREEN_DESKTOP);
 		arena->d_mode.h += 200;
 		arena->d_mode.w += 200;
 	}
 	else
 	{
-		arena->full_btn->checked = false;
+		arena->checkboxes[FULLSCREEN_CBX]->checked = false;
 		arena->is_fullscreen = false;
-		arena->full_btn->current_sprite = CROSS_MOUSE_OUT;
+		arena->checkboxes[FULLSCREEN_CBX]->current_sprite = CROSS_MOUSE_OUT;
 		SDL_SetWindowFullscreen(arena->window, 0);
 		arena->d_mode.h -= 200;
 		arena->d_mode.w -= 200;
@@ -39,7 +39,7 @@ void	change_screen_mode(t_arena *arena)
 		arena->move_btns[i]->btn_pos.clip->w = MOVE_BTN_WIDTH;
 		arena->move_btns[i]->btn_pos.clip->h = MOVE_BTN_WIDTH;
 	}
-	arena->full_btn->position.y = SCREEN_HEIGHT - CHECKBOX_HEIGHT;
-	arena->full_btn->txt_position.y = SCREEN_HEIGHT - CHECKBOX_HEIGHT;
-	arena->full_btn->txt_position.x = arena->full_btn->position.x + CHECKBOX_WIDTH + 10;
+	arena->checkboxes[FULLSCREEN_CBX]->position.y = SCREEN_HEIGHT - CHECKBOX_HEIGHT;
+	arena->checkboxes[FULLSCREEN_CBX]->txt_position.y = SCREEN_HEIGHT - CHECKBOX_HEIGHT;
+	arena->checkboxes[FULLSCREEN_CBX]->txt_position.x = arena->checkboxes[FULLSCREEN_CBX]->position.x + CHECKBOX_WIDTH + 10;
 }

@@ -15,7 +15,8 @@ t_checkbox				*create_checkbox(SDL_Point position,
 */
 void					handle_checkbox_event(SDL_Event* e,
 										t_checkbox *btn,
-										t_arena *arena);
+										t_arena *arena,
+										t_checkboxid id);
 
 /*
 ** Shows checkbox sprite

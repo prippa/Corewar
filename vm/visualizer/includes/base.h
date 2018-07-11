@@ -70,6 +70,9 @@
 # define CYAN_COLOR ((SDL_Color){.g = 0xff, .b = 0xff})
 # define WHITE_COLOR ((SDL_Color){.r = 0xff, .g = 0xff, .b = 0xff})
 # define BLACK_COLOR ((SDL_Color){0})
+# define BUTTON_MOVE_SOUND "music/background_button.wav"
+# define BUTTON_PRESS_SOUND "music/button_main.wav"
+# define EXIT_SOUND "music/exit.wav"
 
 /*
 ** Number of message box buttons
@@ -142,6 +145,13 @@ typedef enum					e_movemenu
 	LEFT_MENU_BTN
 }								t_movemenu;
 
+typedef enum					e_checkboxid
+{
+	FULLSCREEN_CBX,
+	SOUND_CBX,
+	TOTAL_CHECKBOXES
+}								t_checkboxid;
+
 typedef struct					s_checkbox
 {
 	SDL_Point					position;
@@ -209,6 +219,9 @@ typedef enum					e_champcolor
 */
 typedef struct					s_arena
 {
+	Mix_Chunk					*exit_sound;
+	Mix_Chunk					*btn_move;
+	Mix_Chunk					*btn_press;
 	int							fps;
 	int							old_fps;
 	int							champ_count;
@@ -242,9 +255,9 @@ typedef struct					s_arena
 	*/
 	t_ltexture					*full_sprites[TOTAL_FULL_SPRITES];
 	/*
-	** Fullscreen checkbox
+	** Checkboxes
 	*/
-	t_checkbox					*full_btn;
+	t_checkbox					*checkboxes[TOTAL_CHECKBOXES];
 	/*
 	** Start menu buttons
 	*/

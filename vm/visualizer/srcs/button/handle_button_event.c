@@ -30,9 +30,14 @@ void				handle_button_event(SDL_Event *e,
 		if (is_mouse_outside_button(x, y, btn->position, arena))
 			btn->current_sprite = BUTTON_MOUSE_OUT;
 		else if (e->type == SDL_MOUSEMOTION)
+		{
+			if (btn->current_sprite != BUTTON_MOUSE_OVER_MOTION)
+				Mix_PlayChannel(-1, arena->btn_move, 0);
 			btn->current_sprite = BUTTON_MOUSE_OVER_MOTION;
+		}
 		else if (e->type == SDL_MOUSEBUTTONDOWN)
 		{
+			Mix_PlayChannel(-1, arena->btn_press, 0);
 			btn->current_sprite = BUTTON_MOUSE_DOWN;
 			if (id == START_MENU_BTN)
 				arena->pause = false;

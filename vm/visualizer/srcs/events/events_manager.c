@@ -26,20 +26,21 @@ static inline void	dequeue_events(t_arena *arena)
 			handle_button_event(&(arena->e), arena->start_btns[i], arena, i);
 		for (int i = 0; i < MOVE_BUTTON_TOTAL; i++)
 			handle_movebutton_event(&(arena->e), arena->move_btns[i], arena, i);
-		handle_checkbox_event(&(arena->e), arena->full_btn, arena);
+		for (int i = 0; i < TOTAL_CHECKBOXES - 1; i++)
+			handle_checkbox_event(&(arena->e), arena->checkboxes[i], arena, i);
 	}
 	for (int i = 0; i < MOVE_BUTTON_TOTAL; i++)
 		handle_movebutton_event(NULL, arena->move_btns[i], arena, i);
 }
 
-static inline void	handle_arena_rendering(t_arena *arena,
-											clock_t diff,
-											int *tacts_before_render)
+static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 {
-	*tacts_before_render -= diff;
-	if (*tacts_before_render <= 0)
+	static int		tacts_before_render = 0;
+
+	tacts_before_render -= diff;
+	if (tacts_before_render <= 0)
 	{
-		*tacts_before_render = 50000;
+		tacts_before_render = 50000;
 		if (arena->pause == false)
 			set_random(arena);
 	}
@@ -62,12 +63,8 @@ static inline void	handle_fps(t_arena *arena, clock_t diff)
 
 void				events_handler(t_arena *arena)
 {
-	int				tacts_before_render;
-	int				tacts_per_second;
 	clock_t			diff;
 
-	tacts_before_render = 0;
-	tacts_per_second = 1000000;
 	Mix_PlayMusic(arena->theme, -1);
 	while (!arena->quit)
 	{
@@ -82,7 +79,7 @@ void				events_handler(t_arena *arena)
 		draw_framerate(arena);
 		diff = clock() - diff;
 		handle_fps(arena, diff);
-		handle_arena_rendering(arena, diff, &tacts_before_render);	
+		handle_arena_rendering(arena, diff); //&tacts_before_render);	
 		SDL_RenderPresent(arena->renderer);
 	}
 }

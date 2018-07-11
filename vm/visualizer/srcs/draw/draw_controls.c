@@ -14,7 +14,8 @@
 
 void	draw_controls(t_arena *arena)
 {
-	render_checkbox_sprite(arena->full_btn, arena);
+	for (int i = 0; i < TOTAL_CHECKBOXES - 1; i++)
+		render_checkbox_sprite(arena->checkboxes[i], arena);
 	for (int i = 0; i < BUTTON_TOTAL; i++)
 		render_button_sprite(arena->start_btns[i], arena);
 	int panel_width = SCREEN_HEIGHT - arena->abs_arena_height;
