@@ -35,9 +35,9 @@ void				handle_button_event(SDL_Event *e,
 		{
 			btn->current_sprite = BUTTON_MOUSE_DOWN;
 			if (id == START_MENU_BTN)
-				arena->is_rendered = true;
+				arena->pause = false;
 			else if (id == STOP_MENU_BTN)
-				arena->is_rendered = false;
+				arena->pause = true;
 			else if (id == EXIT_MENU_BTN)
 				exit_event(arena);
 		}

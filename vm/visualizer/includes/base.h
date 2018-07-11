@@ -229,10 +229,6 @@ typedef struct					s_arena
 	*/
 	Mix_Music					*theme;
 	/*
-	** background texture
-	*/
-	t_ltexture					*background;
-	/*
 	** Sprites for move button states
 	** wraped in ltexture and prepare for rendering
 	*/
@@ -270,11 +266,8 @@ typedef struct					s_arena
 	** Panel for move arrows
 	*/
 	t_ltexture					*move_panel;
-	bool						inited;
-	bool						is_rendered;
 	bool						is_fullscreen;
 	bool						pause;
-	t_ltexture					*tile_block;
 	float						zoom;
 	SDL_Event					e;
 	SDL_Rect					viewport;
