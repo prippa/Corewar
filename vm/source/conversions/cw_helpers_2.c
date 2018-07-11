@@ -9,6 +9,13 @@ int			cw_is_valid_reg(t_command *cmd)
 	return (1);
 }
 
+int			cw_get_right_arg(t_processes *proc, char tp, int av)
+{
+	if (tp == REG)
+		return (proc->registers[av - 1]);
+	return (av);
+}
+
 void		cw_move_pc_with_codage(t_command *cmd, t_processes *proc)
 {
 	proc->pc = MEM_X(

@@ -12,13 +12,6 @@
 
 #include "corewar.h"
 
-static int		cw_get_right_arg(t_processes *proc, char tp, int av)
-{
-	if (tp == REG)
-		return (proc->registers[av - 1]);
-	return (av);
-}
-
 static void		cw_execute_xor(t_command *cmd, t_processes *proc)
 {
 	proc->registers[cmd->arg3.av - 1] =

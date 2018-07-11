@@ -81,28 +81,28 @@ void			cw_game_loop(void)
 
 	while (1)
 	{
-		if (g_cw.cycle >= 8801 && !g_cw.pd.flags[DUMP]) //(3 Gagnants) 8802 is not same with original
-		{
-			cw_refresh_colors();
-			cw_print_map(); // TRASH
-			ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
-			ft_printf("cycle to die: %d\n", g_cw.cycle_to_die);
-		}
+		// if (g_cw.cycle >= 8800 && !g_cw.pd.flags[DUMP]) //(3 Gagnants) 8802 is not same with original
+		// {
+		// 	cw_refresh_colors();
+		// 	cw_print_map(); // TRASH
+		// 	ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
+		// 	ft_printf("cycle to die: %d\n", g_cw.cycle_to_die);
+		// }
 		if (g_cw.cycle_to_die <= 0)
 			break ;
 		champs = g_cw.pd.champs;
 		while (champs)
 		{
 			cw_proc_executer(champs->proc_start);
-			ft_printf("%d live cur period: %u last live: %u\n",
-				champs->champ_number, champs->lives_number, champs->last_live);
+			// ft_printf("%d live cur period: %u last live: %u\n",
+			// 	champs->champ_number, champs->lives_number, champs->last_live);
 			champs = champs->next;
 		}
 		if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
 			cw_print_dump_exit();
 		if (!g_cw.cycle_to_die_check)
 			cw_cycles_new_period();
-		ft_printf("proc count: %u\n", g_cw.proc_counter);
+		// ft_printf("proc count: %u\n", g_cw.proc_counter);
 		if (g_cw.proc_counter == 0)
 			break ;
 		g_cw.cycle++;

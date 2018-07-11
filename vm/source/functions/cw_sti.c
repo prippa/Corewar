@@ -12,37 +12,18 @@
 
 #include "corewar.h"
 
-static int		cw_get_pc_of_arg2_arg3_sti(t_command *cmd, t_processes *proc)
-{
-	if (cmd->codage == RRR)
-		return (proc->pc + ((proc->registers[cmd->arg2.av - 1]
-			+ proc->registers[cmd->arg3.av - 1]) % IDX_MOD));
-	else if (cmd->codage == RRD)
-		return (proc->pc + ((proc->registers[cmd->arg2.av - 1]
-			+ cmd->arg3.av) % IDX_MOD));
-	else if (cmd->codage == RDR)
-		return (proc->pc + ((cmd->arg2.av
-		+ proc->registers[cmd->arg3.av - 1]) % IDX_MOD));
-	else if (cmd->codage == RDD)
-		return (proc->pc + ((cmd->arg2.av
-		+ cmd->arg3.av) % IDX_MOD));
-	else if (cmd->codage == RIR)
-		return (proc->pc + (
-			(cw_get_dec_from_the_point((cmd->arg2.av % IDX_MOD), 4)
-			+ proc->registers[cmd->arg3.av - 1]) % IDX_MOD));
-	else if (cmd->codage == RID)
-		return (proc->pc + (
-			(cw_get_dec_from_the_point((cmd->arg2.av % IDX_MOD), 4)
-			+ cmd->arg3.av) % IDX_MOD));
-	return (0);
-}
-
 static void		cw_execute_sti(t_command *cmd, t_processes *proc)
 {
 	int				pc;
 	unsigned char	buf[4];
 
-	pc = cw_get_pc_of_arg2_arg3_sti(cmd, proc);
+	if (cmd->codage == RIR || cmd->codage == RID)
+		pc = (proc->pc + (
+		((cw_get_dec_from_the_point(((cmd->arg2.av % IDX_MOD) + proc->pc), 4))
+		+ (cw_get_right_arg(proc, cmd->arg3.tp, cmd->arg3.av))) % IDX_MOD));
+	else
+		pc = (proc->pc + (((cw_get_right_arg(proc, cmd->arg2.tp, cmd->arg2.av))
+		+ (cw_get_right_arg(proc, cmd->arg3.tp, cmd->arg3.av))) % IDX_MOD));
 	cw_write_bytes_to_buf(buf, proc->registers[cmd->arg1.av - 1]);
 	cw_write_to_map(buf, pc);
 }

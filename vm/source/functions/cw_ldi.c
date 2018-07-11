@@ -12,36 +12,17 @@
 
 #include "corewar.h"
 
-static int		cw_get_pc_of_arg1_arg2_ldi(t_command *cmd, t_processes *proc)
-{
-	if (cmd->codage == RRR)
-		return (proc->pc + ((proc->registers[cmd->arg1.av - 1]
-			+ proc->registers[cmd->arg2.av - 1]) % IDX_MOD));
-	else if (cmd->codage == RDR)
-		return (proc->pc + ((proc->registers[cmd->arg1.av - 1]
-			+ cmd->arg2.av) % IDX_MOD));
-	else if (cmd->codage == DRR)
-		return (proc->pc + ((cmd->arg1.av
-			+ proc->registers[cmd->arg2.av - 1]) % IDX_MOD));
-	else if (cmd->codage == DDR)
-		return (proc->pc + ((cmd->arg1.av
-			+ cmd->arg2.av) % IDX_MOD));
-	else if (cmd->codage == IRR)
-		return (proc->pc + (
-			(cw_get_dec_from_the_point(((cmd->arg1.av % IDX_MOD) + proc->pc), 4)
-				+ proc->registers[cmd->arg2.av - 1]) % IDX_MOD));
-	else if (cmd->codage == IDR)
-		return (proc->pc + (
-			(cw_get_dec_from_the_point(((cmd->arg1.av % IDX_MOD) + proc->pc), 4)
-				+ cmd->arg2.av) % IDX_MOD));
-	return (0);
-}
-
 static void		cw_execute_ldi(t_command *cmd, t_processes *proc)
 {
 	int				pc;
 
-	pc = cw_get_pc_of_arg1_arg2_ldi(cmd, proc);
+	if (cmd->codage == IRR || cmd->codage == IDR)
+		pc = (proc->pc + (
+			(cw_get_dec_from_the_point(((cmd->arg1.av % IDX_MOD) + proc->pc), 4)
+				+ cw_get_right_arg(proc, cmd->arg2.tp, cmd->arg2.av)) % IDX_MOD));
+	else
+		pc = (proc->pc + (((cw_get_right_arg(proc, cmd->arg1.tp, cmd->arg1.av))
+			+ (cw_get_right_arg(proc, cmd->arg2.tp, cmd->arg2.av))) % IDX_MOD));
 	proc->registers[cmd->arg3.av - 1] = cw_get_dec_from_the_point(pc, 4);
 }
 
