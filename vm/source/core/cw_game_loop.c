@@ -53,7 +53,7 @@ void			cw_game_loop(void)
 
 	while (1)
 	{//6095
-		if (g_cw.cycle >= 5683 && !g_cw.pd.flags[DUMP]) //(3 Gagnants) 8802 is not same with original
+		if (g_cw.cycle >= 7100 && !g_cw.pd.flags[DUMP]) //(3 Gagnants) 8802 is not same with original
 		{
 			cw_vis_print_map(1); // TRASH
 			ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
