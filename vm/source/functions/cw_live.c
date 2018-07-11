@@ -24,7 +24,7 @@ void			cw_live(t_processes *proc)
 	av_champ = t_champ_find(av, g_cw.pd.champs);
 	if (av_champ)
 	{
-		g_cw.color_live_cycle_buf[proc->pc] = 50;
+		g_cw.color_live_cycle_buf[proc->pc] = CYCLES_LIGHT;
 		g_cw.color_map_live[proc->pc] =
 			(av_champ->color + (F_BACK_GREEN_WHITE - 1));
 		av_champ->lives_number++;

@@ -119,6 +119,7 @@ typedef enum	e_error_numbers
 ************************************* Map **************************************
 */
 
-#define IS_BASE_COLOR(x) ((x) > 0 && (x) < 5)
+# define IS_BASE_COLOR(x) ((x) > 0 && (x) < 5)
+# define CYCLES_LIGHT 49
 
 #endif
