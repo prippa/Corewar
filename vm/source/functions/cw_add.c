@@ -26,6 +26,7 @@
 void			cw_add(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
 //	t_processes *proc;
+//    sdfsadfsd
 	// int	arguments[3];
 	//process;
 //	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
