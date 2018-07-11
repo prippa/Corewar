@@ -34,5 +34,6 @@ int								exit_dialog(t_arena *arena)
 
 	init_msgbox_data(&msgboxdata, arena);
 	SDL_ShowMessageBox(&msgboxdata, &dialog_result);
+	Mix_PlayChannel(-1, arena->btn_press, 0);
 	return (dialog_result);
 }

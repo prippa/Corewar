@@ -29,11 +29,7 @@ static inline void	escape_catch(t_arena *arena)
 	int				buttonid;
 
 	if (arena->is_fullscreen == false)
-	{
-		buttonid = exit_dialog(arena);
-		if (buttonid == YES_BUTTON_ID)
-			arena->quit = true;
-	}
+		exit_event(arena);
 	else
 		change_screen_mode(arena);
 }
