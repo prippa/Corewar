@@ -1,5 +1,18 @@
 #include "corewar.h"
 
+void		t_processe_init(t_processes *proc)
+{
+	while (proc)
+	{
+		if (proc->exec_cycles == -1 && IS_COMMAND(g_cw.map[proc->pc]))
+		{
+			proc->cmd = g_cw.map[proc->pc];
+			proc->exec_cycles = g_cw.op[proc->cmd - 1].cycles_price - 1;
+		}
+		proc = proc->next;
+	}
+}
+
 void		t_processes_initer(t_champ *champs)
 {
 	t_processes *proc;

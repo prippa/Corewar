@@ -14,9 +14,9 @@
 
 static void	cw_fill_map_with_bots(t_champ *champs)
 {
-	int	map_index;
-	int	champ_code_index;
-	int	i;
+	int				map_index;
+	int				champ_code_index;
+	unsigned int	i;
 
 	while (champs)
 	{

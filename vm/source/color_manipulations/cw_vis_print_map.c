@@ -28,11 +28,10 @@ static void				cw_vis_down_cycles_color(int pc)
 
 void					cw_vis_print_map(char flag) // TRASH
 {
+	if (flag) system("clear");
 	int i;
 	int new_line_flag;
 
-	if (flag) read(1, 0, 1);
-	if (flag) system("clear");
 	i = 0;
 	new_line_flag = 1;
 	if (flag) ft_putstr("\n\n   ");
@@ -49,4 +48,9 @@ void					cw_vis_print_map(char flag) // TRASH
 			new_line_flag++;
 		i++;
 	}
+	ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
+	ft_printf("cycle to die: %d\n", g_cw.cycle_to_die);
+	ft_printf("proc count: %u\n", g_cw.proc_counter);
+	if (flag) read(1, 0, 1);
+	if (flag) system("clear");
 }

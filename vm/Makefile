@@ -13,7 +13,7 @@
 NAME		=	../corewar
 VIS_NAME	=	corewar
 
-# FLAGS		= 	-Wall -Werror -Wextra
+FLAGS		= 	-Wall -Werror -Wextra
 
 CC			=	gcc -g
 
