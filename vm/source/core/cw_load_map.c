@@ -29,6 +29,7 @@ static void	cw_fill_map_with_bots(unsigned char *map, t_champ *champs)
 			champ_code_index++;
 			map_index++;
 		}
+		champs->proc_start->cmd = g_cw.map[champs->proc_start->pc];
 		champs = champs->next;
 	}
 }

@@ -53,23 +53,24 @@ static void		cw_proc_executer(t_processes *proc)
 {
 	while (proc)
 	{
-		if (proc->exec_cycles == -1 && IS_COMMAND(g_cw.map[proc->pc]))
-		{
-			proc->cmd = g_cw.map[proc->pc];
+		if (proc->exec_cycles == -1 && IS_COMMAND(proc->cmd))
 			proc->exec_cycles = g_cw.op[proc->cmd - 1].cycles_price - 1;
-		}
 		if (proc->exec_cycles != -1)
 		{
 			if (!proc->exec_cycles)
 			{
 				g_cw.op[proc->cmd - 1].func(proc);
+				proc->cmd = g_cw.map[proc->pc];
 				proc->exec_cycles = -1;
 			}
 			else
 				proc->exec_cycles--;
 		}
 		else
+		{
 			proc->pc = MEM_X((proc->pc + 1));
+			proc->cmd = g_cw.map[proc->pc];
+		}
 		proc = proc->next;
 	}
 }
@@ -80,11 +81,7 @@ void			cw_game_loop(void)
 
 	while (1)
 	{
-		// if (g_cw.cycle == 6909)
-		// {
-
-		// }
-		if (g_cw.cycle >= 5612 && !g_cw.pd.flags[DUMP])
+		if (g_cw.cycle >= 8801 && !g_cw.pd.flags[DUMP]) //(3 Gagnants) 8802 is not same with original
 		{
 			cw_refresh_colors();
 			cw_print_map(); // TRASH

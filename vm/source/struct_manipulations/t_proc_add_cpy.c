@@ -48,7 +48,7 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 		new_obj->registers[i] = copy->registers[i];
 	new_obj->is_alive = copy->is_alive;
 	new_obj->champ_number = copy->champ_number;
-	new_obj->cmd = 0;
+	new_obj->cmd = g_cw.map[pc];
 	new_obj->exec_cycles = -1;
 	t_processes_add_to_head(proc_start, proc_end, new_obj);
 }
