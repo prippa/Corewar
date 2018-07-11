@@ -43,22 +43,22 @@ bool				init_start_buttons(t_arena *arena)
 	if (!init_sprites(arena))
 		return (false);
 	if (!(arena->start_btns[START_MENU_BTN] =
-			create_button(0, (SDL_Point){.x = 3 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
+			create_button(0, (SDL_Point){.x = 2 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
 							"START", arena->renderer,
 							(SDL_Point){.x= BUTTON_WIDTH, .y=BUTTON_HEIGHT},
 							arena->start_btn_sprites)) ||
 		!(arena->start_btns[STOP_MENU_BTN] =
-			create_button(0, (SDL_Point){.x = 4 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
+			create_button(0, (SDL_Point){.x = 3 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
 							"STOP", arena->renderer,
 							(SDL_Point){.x=BUTTON_WIDTH, .y=BUTTON_HEIGHT},
 							arena->start_btn_sprites)) ||
 		!(arena->start_btns[INFO_MENU_BTN] =
-			create_button(0, (SDL_Point){.x = 5 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
+			create_button(0, (SDL_Point){.x = 4 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
 							"INFO", arena->renderer,
 							(SDL_Point){.x=BUTTON_WIDTH, .y=BUTTON_HEIGHT},
 							arena->start_btn_sprites)) ||
 		!(arena->start_btns[EXIT_MENU_BTN] =
-			create_button(0, (SDL_Point){.x = 6 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
+			create_button(0, (SDL_Point){.x = 5 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
 							"EXIT", arena->renderer,
 							(SDL_Point){.x=BUTTON_WIDTH, .y=BUTTON_HEIGHT},
 							arena->start_btn_sprites)))

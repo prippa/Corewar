@@ -24,16 +24,6 @@ static inline void	move_arena(t_arena *arena, SDL_Keycode sym)
 		move_right(arena);
 }
 
-static inline void	escape_catch(t_arena *arena)
-{
-	int				buttonid;
-
-	if (arena->is_fullscreen == false)
-		exit_event(arena);
-	else
-		change_screen_mode(arena);
-}
-
 static inline void	zoom_event(t_arena *arena, SDL_Keycode sym)
 {
 	int				x;
@@ -53,8 +43,9 @@ static inline void	zoom_event(t_arena *arena, SDL_Keycode sym)
 
 void				key_event(t_arena *arena, SDL_Keycode sym)
 {
+	Mix_PlayChannel(-1, arena->btn_press, 0);
 	if (sym == SDLK_ESCAPE)
-		escape_catch(arena);
+		exit_event(arena);
 	else if (sym == SDLK_f)
 		change_screen_mode(arena);
 	else if (sym == SDLK_i || sym == SDLK_o)
@@ -65,9 +56,5 @@ void				key_event(t_arena *arena, SDL_Keycode sym)
 	else if (sym == SDLK_SPACE)
 		arena->pause = !(arena->pause);
 	else if (sym == SDLK_q)
-	{
-		arena->zoom = 1.0;
-		arena->top_left.x = 0;
-		arena->top_left.y = 0;
-	}
+		reset(arena);
 }

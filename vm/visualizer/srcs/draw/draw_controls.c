@@ -14,7 +14,7 @@
 
 void	draw_controls(t_arena *arena)
 {
-	for (int i = 0; i < TOTAL_CHECKBOXES - 1; i++)
+	for (int i = 0; i < TOTAL_CHECKBOXES; i++)
 		render_checkbox_sprite(arena->checkboxes[i], arena);
 	for (int i = 0; i < BUTTON_TOTAL; i++)
 		render_button_sprite(arena->start_btns[i], arena);

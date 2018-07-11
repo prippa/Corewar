@@ -26,7 +26,7 @@ static inline void	dequeue_events(t_arena *arena)
 			handle_button_event(&(arena->e), arena->start_btns[i], arena, i);
 		for (int i = 0; i < MOVE_BUTTON_TOTAL; i++)
 			handle_movebutton_event(&(arena->e), arena->move_btns[i], arena, i);
-		for (int i = 0; i < TOTAL_CHECKBOXES - 1; i++)
+		for (int i = 0; i < TOTAL_CHECKBOXES; i++)
 			handle_checkbox_event(&(arena->e), arena->checkboxes[i], arena, i);
 	}
 	for (int i = 0; i < MOVE_BUTTON_TOTAL; i++)

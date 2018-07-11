@@ -89,7 +89,8 @@ UTIL_NAME		=	clear_renderer.c			\
 					exit_dialog.c				\
 					get_rectangle.c				\
 					get_digits.c				\
-					change_screen_mode.c
+					change_screen_mode.c		\
+					reset.c
 
 EVENT_NAME		=	events_manager.c			\
 					key_event.c					\

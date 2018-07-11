@@ -27,6 +27,8 @@ void	change_screen_mode(t_arena *arena)
 	arena->viewport = get_rectangle(0, 0, SCREEN_WIDTH * 0.8, arena->abs_arena_height);
 	for (int i = 0; i < BUTTON_TOTAL; ++i)
 	{
+		arena->start_btns[i]->btn_pos.clip->h = BUTTON_HEIGHT;
+		arena->start_btns[i]->btn_pos.clip->w = BUTTON_WIDTH;
 		arena->start_btns[i]->position.y = SCREEN_HEIGHT - BUTTON_HEIGHT;
 		arena->start_btns[i]->txt_position.y = SCREEN_HEIGHT - BUTTON_HEIGHT;
 	}
@@ -39,7 +41,11 @@ void	change_screen_mode(t_arena *arena)
 		arena->move_btns[i]->btn_pos.clip->w = MOVE_BTN_WIDTH;
 		arena->move_btns[i]->btn_pos.clip->h = MOVE_BTN_WIDTH;
 	}
-	arena->checkboxes[FULLSCREEN_CBX]->position.y = SCREEN_HEIGHT - CHECKBOX_HEIGHT;
-	arena->checkboxes[FULLSCREEN_CBX]->txt_position.y = SCREEN_HEIGHT - CHECKBOX_HEIGHT;
-	arena->checkboxes[FULLSCREEN_CBX]->txt_position.x = arena->checkboxes[FULLSCREEN_CBX]->position.x + CHECKBOX_WIDTH + 10;
+	for (int i = 0; i < TOTAL_CHECKBOXES; ++i)
+	{
+		arena->checkboxes[i]->position.x = (8 + (i << 1)) * BUTTON_WIDTH;
+		arena->checkboxes[i]->position.y = SCREEN_HEIGHT - CHECKBOX_HEIGHT;
+		arena->checkboxes[i]->txt_position.y = SCREEN_HEIGHT - CHECKBOX_HEIGHT;
+		arena->checkboxes[i]->txt_position.x = arena->checkboxes[i]->position.x + CHECKBOX_WIDTH + 10;
+	}
 }

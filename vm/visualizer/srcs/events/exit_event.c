@@ -17,6 +17,8 @@ void	exit_event(t_arena *arena)
 	int	buttonid;
 
 	buttonid = exit_dialog(arena);
+	if (arena->is_fullscreen)
+		change_screen_mode(arena);
 	if (buttonid == YES_BUTTON_ID)
 	{
 		Mix_PauseMusic();

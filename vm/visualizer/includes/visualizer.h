@@ -33,6 +33,7 @@ void		set_random(t_arena *arena);
 void		force_error(const char *error);
 void		change_screen_mode(t_arena *arena);
 void		get_digits(unsigned char hex, int *ff, int *sf);
+void		reset(t_arena *arena);
 void		render_part(SDL_Rect clip,
 						SDL_Rect target,
 						SDL_Point top_left,

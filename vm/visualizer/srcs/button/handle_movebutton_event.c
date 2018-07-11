@@ -49,9 +49,16 @@ void				handle_movebutton_event(SDL_Event *e,
 		if (is_mouse_outside_movebtn(x, y, btn->position, arena))
 			btn->current_sprite = MOVE_BUTTON_MOUSE_OUT;
 		else if (e->type == SDL_MOUSEMOTION)
+		{
+			if (btn->current_sprite != BUTTON_MOUSE_OVER_MOTION)
+				Mix_PlayChannel(-1, arena->btn_move, 0);
 			btn->current_sprite = MOVE_BUTTON_MOUSE_OVER_MOTION;
+		}
 		else if (e->type == SDL_MOUSEBUTTONDOWN)
+		{
+			Mix_PlayChannel(-1, arena->btn_press, 0);
 			btn->current_sprite = MOVE_BUTTON_MOUSE_DOWN;
+		}
 		else if (e->type == SDL_MOUSEBUTTONUP)
 			btn->current_sprite = MOVE_BUTTON_MOUSE_UP;
 	}

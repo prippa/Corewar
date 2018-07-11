@@ -46,9 +46,15 @@ void				handle_checkbox_event(SDL_Event *e,
 													CROSS_MOUSE_OUT;
 		}
 		else if (e->type == SDL_MOUSEMOTION)
+		{
+			if (cbx->current_sprite != CHECK_MOUSE_IN &&
+				cbx->current_sprite != CROSS_MOUSE_IN)
+				Mix_PlayChannel(-1, arena->btn_move, 0);
 			cbx->current_sprite = (cbx->checked) ? CHECK_MOUSE_IN : CROSS_MOUSE_IN;
+		}
 		else if (e->type == SDL_MOUSEBUTTONDOWN)
 		{
+			Mix_PlayChannel(-1, arena->btn_press, 0);
 			cbx->checked = (cbx->checked) ? false : true;
 			cbx->current_sprite = (cbx->checked) ? CHECK_MOUSE_IN : CROSS_MOUSE_IN;
 		}
@@ -57,6 +63,13 @@ void				handle_checkbox_event(SDL_Event *e,
 			cbx->current_sprite = (cbx->checked) ? CHECK_MOUSE_IN : CROSS_MOUSE_IN;
 			if (id == FULLSCREEN_CBX)
 				change_screen_mode(arena);
+			else if (id == SOUND_CBX)
+			{
+				if (cbx->checked == false)
+					Mix_PauseMusic();
+				else
+					Mix_ResumeMusic();
+			}
 		}
 	}
 }
