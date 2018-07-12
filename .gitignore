@@ -55,3 +55,19 @@ dkms.conf
 *.DS_Store
 *asm
 *corewar
+
+#CLion
+*txt
+*iml
+*xml
+cmake-build-debug/
+
+test.s
+test.cor
+
+*json
+!CMakeLists.txt
+.idea
+
+#VS code
+*.vscode
