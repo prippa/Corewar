@@ -24,7 +24,7 @@ void	change_screen_mode(t_arena *arena)
 	arena->arena_tile_width = ((int)(SCREEN_WIDTH * 0.8) / 65);
 	arena->abs_arena_height = 65 * arena->arena_tile_height;
 	arena->abs_arena_width = 65 * arena->arena_tile_width;
-	arena->viewport = get_rectangle(0, 0, arena->abs_arena_width + 1, arena->abs_arena_height);
+	arena->viewport = get_rectangle(0, 0, arena->abs_arena_width + 1, arena->abs_arena_height + 1);
 	for (int i = 0; i < BUTTON_TOTAL; ++i)
 	{
 		arena->start_btns[i]->btn_pos.clip->h = BUTTON_HEIGHT;

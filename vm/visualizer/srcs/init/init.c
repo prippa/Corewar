@@ -49,7 +49,7 @@ static inline void	init_msg_buttons(t_arena *arena)
 
 static inline void	init_viewport(t_arena *arena)
 {
-	arena->viewport = get_rectangle(0, 0, arena->abs_arena_width + 1, arena->abs_arena_height);
+	arena->viewport = get_rectangle(0, 0, arena->abs_arena_width + 1, arena->abs_arena_height + 1);
 }
 
 static inline bool	init_display_mode(t_arena *arena)

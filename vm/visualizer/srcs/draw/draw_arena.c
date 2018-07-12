@@ -12,27 +12,34 @@
 
 #include "visualizer.h"
 
-static inline void	draw_numbers(t_arena *arena,
-									int width,
-									int height)
+static inline void	draw_top_raw(t_arena *arena, int width, int height)
 {
 	SDL_Point		top_left;
 	Uint8			i;
 	int				ff;
 	int				sf;
+	Uint8			high;
 
 	top_left = arena->top_left;
 	top_left.x += width;
 	i = -1;
-	while (++i < ARENA_WIDTH)
+	high = ARENA_WIDTH;
+	if (top_left.y < 0 || top_left.y >= arena->viewport.h - (height << 1))
 	{
+		i = 0;
+		high = 0;
+	}
+	while (++i < high)
+	{
+		if (top_left.x >= arena->viewport.w - width)
+			break ;
 		int x_init = top_left.x;
 		get_digits(i, &ff, &sf);
 		SDL_Rect rect = get_rectangle(top_left.x + 1,
 										top_left.y + 1,
 										width - 2,
 										height - 2);
-		SDL_SetRenderDrawColor(arena->renderer, 0x0, 0x0, 0x0, 0xff);
+		SDL_SetRenderDrawColor(arena->renderer, 0xff, 0x0, 0x0, 0xff);
 		SDL_RenderFillRect(arena->renderer, &rect);
 		set_color(WHITE_COLOR, arena->bold_figures[sf]);
 		set_color(WHITE_COLOR, arena->bold_figures[ff]);
@@ -44,6 +51,16 @@ static inline void	draw_numbers(t_arena *arena,
 		render(&position, arena->bold_figures[sf], arena->renderer, SDL_FLIP_NONE);
 		top_left.x = x_init + width;
 	}
+}
+
+static inline void	draw_numbers(t_arena *arena, int width, int height)
+{
+	SDL_Point		top_left;
+	Uint8			i;
+	int				ff;
+	int				sf;
+
+	draw_top_raw(arena, width, height);
 	top_left = arena->top_left;
 	top_left.y += height;
 	i = -1;
@@ -58,7 +75,7 @@ static inline void	draw_numbers(t_arena *arena,
 										top_left.y + 1,
 										width - 2,
 										height - 2);
-		SDL_SetRenderDrawColor(arena->renderer, 0x0, 0x0, 0x0, 0xff);
+		SDL_SetRenderDrawColor(arena->renderer, 0xff, 0x0, 0x0, 0xff);
 		SDL_RenderFillRect(arena->renderer, &rect);
 		rect.w /= 2;
 		t_rposition position = get_render_position(0,
@@ -95,7 +112,7 @@ void			draw_arena(t_arena *arena)
 			top_y += height;
 			continue ;
 		}
-		else if (top_y > arena->viewport.y + arena->viewport.h)
+		else if (top_y > arena->viewport.h - height)
 			break ;
 		j = -1;
 		top_x = arena->top_left.x + width + 1;

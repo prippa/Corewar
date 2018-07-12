@@ -79,7 +79,7 @@ void				events_handler(t_arena *arena)
 		draw_framerate(arena);
 		diff = clock() - diff;
 		handle_fps(arena, diff);
-		handle_arena_rendering(arena, diff); //&tacts_before_render);	
+		handle_arena_rendering(arena, diff);
 		SDL_RenderPresent(arena->renderer);
 	}
 }

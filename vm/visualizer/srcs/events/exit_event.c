@@ -23,7 +23,7 @@ void	exit_event(t_arena *arena)
 	{
 		Mix_PauseMusic();
 		Mix_PlayChannel(-1, arena->exit_sound, 0);
-		SDL_Delay(5000);
+		//SDL_Delay(5000);
 		arena->quit = true;
 	}
 }
