@@ -23,11 +23,13 @@
 # sti		r12,	%98, r2
 # sti		r13,	%96, r2
 
+# add data	adopt fork;
 
+
+live	%-1
 fork	%3
 zjmp	%1
-live	%-1
-fork	%5
+fork	%3
 
 
 
