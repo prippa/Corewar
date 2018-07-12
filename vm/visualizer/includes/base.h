@@ -22,6 +22,7 @@
 # include "SDL_ttf.h"
 # include "SDL_mixer.h"
 # include <stdio.h>
+# include "corewar.h"
 # define IMG_FOLDER "./vm/visualizer/images/"
 # define BTN_FOLDER "./vm/visualizer/images/buttons"
 # define ARROW_IMG "./vm/visualizer/images/buttons/arrow.png"

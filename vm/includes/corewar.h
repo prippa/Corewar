@@ -13,6 +13,7 @@
 #ifndef COREWAR_H
 # define COREWAR_H
 
+# include "visualizer.h"
 # include "op.h"
 # include "define.h"
 # include "struct.h"

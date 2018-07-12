@@ -35,33 +35,34 @@ DIR_VIS		=	./visualizer/
 #------------------------------------------
 
 #-------------------Visualizer-------------
-# DIR_VIS_INC		=	$(DIR_VIS)includes/
-# SRC_PATH		=	$(DIR_VIS)srcs/
-# ERROR_PATH		=	$(SRC_PATH)error/
-# INIT_PATH		=	$(SRC_PATH)init/
-# EVENT_PATH		=	$(SRC_PATH)events/
-# DRAW_PATH		=	$(SRC_PATH)draw/
-# LOADER_PATH		=	$(SRC_PATH)loader/
-# LTEXTURE_PATH	=	$(SRC_PATH)ltexture/
-# BUTTON_PATH		=	$(SRC_PATH)button/
-# SDL_PATH		=	$(DIR_VIS)SDL_framework/
-# MACOS_INC_PATH	=	$(DIR_VIS)includes/ $(SDL_PATH)Headers_macos/
-# LINUX_INC_PATH	=	$(DIR_VIS)includes/ $(SDL_PATH)Headers_linux/
-# OBJ_PATH		=	$(DIR_VIS)obj/
+DIR_VIS_INC		=	$(DIR_VIS)includes/
+SRC_PATH		=	$(DIR_VIS)srcs/
+ERROR_PATH		=	$(SRC_PATH)error/
+INIT_PATH		=	$(SRC_PATH)init/
+EVENT_PATH		=	$(SRC_PATH)events/
+DRAW_PATH		=	$(SRC_PATH)draw/
+LOADER_PATH		=	$(SRC_PATH)loader/
+LTEXTURE_PATH	=	$(SRC_PATH)ltexture/
+BUTTON_PATH		=	$(SRC_PATH)button/
+UTIL_PATH		=	$(SRC_PATH)utilities/
+SDL_PATH		=	$(DIR_VIS)SDL_framework/
+MACOS_INC_PATH	=	$(DIR_VIS)includes/ $(SDL_PATH)Headers_macos/
+LINUX_INC_PATH	=	$(DIR_VIS)includes/ $(SDL_PATH)Headers_linux/
+OBJ_PATH		=	$(DIR_VIS)obj/
 #------------------------------------------
 
-# UNAME		=	$(shell uname)
+UNAME		=	$(shell uname)
 
-# ifeq ($(UNAME),Linux)
-# 	INC	:= $(addprefix -I, $(LINUX_INC_PATH))
-# 	SDL_LIB_LINK := -lSDL2 -lSDL2main -lSDL2_image -lSDL2_ttf		\
-# 						-lSDL2_mixer -lpthread
-# else ifeq ($(UNAME),Darwin)
-# 	INC := $(addprefix -I, $(MACOS_INC_PATH))
-# 	SDL_LIB_LINK := -lm $(SDL_PATH)SDL2 $(SDL_PATH)SDL2_image		\
-# 						$(SDL_PATH)SDL2_ttf $(SDL_PATH)SDL2_mixer	\
-# 						-lpthread
-# endif
+ifeq ($(UNAME),Linux)
+	INC	:= $(addprefix -I, $(LINUX_INC_PATH))
+	SDL_LIB_LINK := -lSDL2 -lSDL2main -lSDL2_image -lSDL2_ttf		\
+						-lSDL2_mixer -lpthread
+else ifeq ($(UNAME),Darwin)
+	INC := $(addprefix -I, $(MACOS_INC_PATH))
+	SDL_LIB_LINK := -lm $(SDL_PATH)SDL2 $(SDL_PATH)SDL2_image		\
+						$(SDL_PATH)SDL2_ttf $(SDL_PATH)SDL2_mixer	\
+						-lpthread
+endif
 
 HEAD_VM		=	corewar.h define.h function.h struct.h
 HEAD_CW		=	op.h
@@ -89,48 +90,66 @@ C_COLOR		=	cw_vis_refresh_colors.c cw_vis_print_map.c
 #-------------------------------------------------------------------
 
 #------------------------------Visualizer---------------------------
-# SRC_NAME		=	init.c						\
-# 					clear_renderer.c			\
-# 					exit_dialog.c				\
-# 					get_rectangle.c				\
-# 					set_viewport.c				\
-# 					init_start_menu.c			\
-# 					create_figures.c			\
-# 					visualizer.c
+SRC_NAME		=	entry_point.c
 
-# EVENT_NAME		=	events_manager.c			\
-# 					key_event.c					\
-# 					exit_event.c				\
-# 					wheel_event.c				\
-# 					zoom.c
+UTIL_NAME		=	clear_renderer.c			\
+					exit_dialog.c				\
+					get_rectangle.c				\
+					get_digits.c				\
+					change_screen_mode.c		\
+					reset.c
 
-# DRAW_NAME		=	draw_arena.c				\
-# 					draw_fillrect.c				\
-# 					draw_outlinerect.c			\
-# 					draw_arena_split.c
+EVENT_NAME		=	events_manager.c			\
+					key_event.c					\
+					exit_event.c				\
+					wheel_event.c				\
+					zoom.c						\
+					move.c
 
-# LOADER_NAME		=	load_surface.c				\
-# 					load_texture.c
+DRAW_NAME		=	draw_arena.c				\
+					draw_fillrect.c				\
+					draw_outlinerect.c			\
+					draw_controls.c				\
+					draw_background.c			\
+					draw_infopanel.c			\
+					draw_button_panel.c			\
+					draw_statuses.c				\
+					draw_framerate.c
 
-# LTEXTURE_NAME	=	load_from_file.c			\
-# 					free_ltexture.c				\
-# 					render.c					\
-# 					set_color.c					\
-# 					set_blend_mode.c			\
-# 					set_alpha_mode.c			\
-# 					get_render_position.c		\
-# 					load_from_rendered_text.c
+LOADER_NAME		=	load_surface.c				\
+					load_texture.c
 
-# BUTTON_NAME		=	create_button.c				\
-# 					handle_button_event.c		\
-# 					render_button_sprite.c		\
-# 					create_checkbox.c			\
-# 					handle_checkbox_event.c		\
-# 					render_checkbox_sprite.c
+LTEXTURE_NAME	=	load_from_file.c			\
+					free_ltexture.c				\
+					render.c					\
+					render_part.c				\
+					set_color.c					\
+					set_blend_mode.c			\
+					set_alpha_mode.c			\
+					get_render_position.c		\
+					load_from_rendered_text.c
 
-# INIT_NAME		=	init_devices.c
+BUTTON_NAME		=	create_button.c				\
+					handle_button_event.c		\
+					render_button_sprite.c		\
+					create_checkbox.c			\
+					handle_checkbox_event.c		\
+					render_checkbox_sprite.c	\
+					handle_movebutton_event.c
 
-# ERROR_NAME		=	force_error.c
+INIT_NAME		=	init_devices.c				\
+					init.c 						\
+					init_controls.c				\
+					init_start_buttons.c		\
+					init_figures.c				\
+					init_move_buttons.c			\
+					init_music.c				\
+					init_infopanel.c			\
+					init_checkboxes.c			\
+					init_button_panel.c			\
+					init_statuses.c
+
+ERROR_NAME		=	force_error.c
 #-------------------------------------------------------------------
 
 #-----------------------------VM--------------------------------
@@ -144,18 +163,19 @@ OBJ_COLOR	=	$(C_COLOR:.c=.o)
 #---------------------------------------------------------------
 
 #-----------------------------Visualizer------------------------
-# OBJ_NAME		=	$(SRC_NAME:.c=.o)
-# OBJ_NAME		+=	$(EVENT_NAME:.c=.o)
-# OBJ_NAME		+=	$(DRAW_NAME:.c=.o)
-# OBJ_NAME		+=	$(LOADER_NAME:.c=.o)
-# OBJ_NAME		+=	$(LTEXTURE_NAME:.c=.o)
-# OBJ_NAME		+=	$(BUTTON_NAME:.c=.o)
-# OBJ_NAME		+=	$(INIT_NAME:.c=.o)
-# OBJ_NAME		+=	$(ERROR_NAME:.c=.o)
+OBJ_NAME		=	$(SRC_NAME:.c=.o)
+OBJ_NAME		+=	$(EVENT_NAME:.c=.o)
+OBJ_NAME		+=	$(DRAW_NAME:.c=.o)
+OBJ_NAME		+=	$(LOADER_NAME:.c=.o)
+OBJ_NAME		+=	$(LTEXTURE_NAME:.c=.o)
+OBJ_NAME		+=	$(BUTTON_NAME:.c=.o)
+OBJ_NAME		+=	$(INIT_NAME:.c=.o)
+OBJ_NAME		+=	$(ERROR_NAME:.c=.o)
+OBJ_NAME		+=	$(UTIL_NAME:.c=.o)
 #---------------------------------------------------------------
 
 #---------------------Visualizer---------------------
-# OBJ			=	$(addprefix $(OBJ_PATH), $(OBJ_NAME))
+OBJ			=	$(addprefix $(OBJ_PATH), $(OBJ_NAME))
 #----------------------------------------------------
 OBJ 		+= 	$(addprefix $(DIR_OBJ), $(OBJ_VM) $(OBJ_PARSER) $(OBJ_SRUC_MP) $(OBJ_CORE) $(OBJ_FUNC) $(OBJ_CONV) $(OBJ_COLOR))
 INC_CW 		= 	$(addprefix -I, $(DIR_VM_INC) $(DIR_LIB_INC) $(DIR_CW_INC))
@@ -207,58 +227,63 @@ $(DIR_OBJ)%.o: $(DIR_COLOR)%.c $(INC_VM)
 	@$(CC) $(FLAGS) $(INC) $(INC_CW) -c -o $@ $<
 	@echo "Linking" [ $< ]
 #-----------------------------Visualizer------------------------
-# $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
-# 				@mkdir -p $(OBJ_PATH)
-# 				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
-# 				@echo "Linking" [ $< ]
+$(OBJ_PATH)%.o:	$(SRC_PATH)%.c
+				@mkdir -p $(OBJ_PATH)
+				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
+				@echo "Linking" [ $< ]
 
-# $(OBJ_PATH)%.o:	$(EVENT_PATH)%.c
-# 				@mkdir -p $(OBJ_PATH)
-# 				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
-# 				@echo "Linking" [ $< ]
+$(OBJ_PATH)%.o:	$(EVENT_PATH)%.c
+				@mkdir -p $(OBJ_PATH)
+				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
+				@echo "Linking" [ $< ]
 
-# $(OBJ_PATH)%.o:	$(DRAW_PATH)%.c
-# 				@mkdir -p $(OBJ_PATH)
-# 				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
-# 				@echo "Linking" [ $< ]
+$(OBJ_PATH)%.o:	$(DRAW_PATH)%.c
+				@mkdir -p $(OBJ_PATH)
+				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
+				@echo "Linking" [ $< ]
 
-# $(OBJ_PATH)%.o:	$(LOADER_PATH)%.c
-# 				@mkdir -p $(OBJ_PATH)
-# 				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
-# 				@echo "Linking" [ $< ]
+$(OBJ_PATH)%.o:	$(LOADER_PATH)%.c
+				@mkdir -p $(OBJ_PATH)
+				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
+				@echo "Linking" [ $< ]
 
-# $(OBJ_PATH)%.o:	$(LTEXTURE_PATH)%.c
-# 				@mkdir -p $(OBJ_PATH)
-# 				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
-# 				@echo "Linking" [ $< ]
+$(OBJ_PATH)%.o:	$(LTEXTURE_PATH)%.c
+				@mkdir -p $(OBJ_PATH)
+				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
+				@echo "Linking" [ $< ]
 
-# $(OBJ_PATH)%.o:	$(BUTTON_PATH)%.c
-# 				@mkdir -p $(OBJ_PATH)
-# 				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
-# 				@echo "Linking" [ $< ]
+$(OBJ_PATH)%.o:	$(BUTTON_PATH)%.c
+				@mkdir -p $(OBJ_PATH)
+				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
+				@echo "Linking" [ $< ]
 
-# $(OBJ_PATH)%.o:	$(INIT_PATH)%.c
-# 				@mkdir -p $(OBJ_PATH)
-# 				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
-# 				@echo "Linking" [ $< ]
+$(OBJ_PATH)%.o:	$(INIT_PATH)%.c
+				@mkdir -p $(OBJ_PATH)
+				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
+				@echo "Linking" [ $< ]
 
-# $(OBJ_PATH)%.o:	$(ERROR_PATH)%.c
-# 				@mkdir -p $(OBJ_PATH)
-# 				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
-# 				@echo "Linking" [ $< ]
+$(OBJ_PATH)%.o:	$(ERROR_PATH)%.c
+				@mkdir -p $(OBJ_PATH)
+				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
+				@echo "Linking" [ $< ]
+				
+$(OBJ_PATH)%.o:	$(UTIL_PATH)%.c
+				@mkdir -p $(OBJ_PATH)
+				@$(CC) $(FLAGS) -o $@ -c $< $(INC) $(INC_CW)
+				@echo "Linking" [ $< ]
 #---------------------------------------------------------------
 #---------------------------------------------------------------
 clean:
 	@rm -rf $(DIR_OBJ)
 	@echo "Clean [ obj files VM ]"
-	# @rm -rf $(OBJ_PATH)
-	# @echo "Cleaning obj [ Visualizer ]..."
+	@rm -rf $(OBJ_PATH)
+	@echo "Cleaning obj [ Visualizer ]..."
 
 fclean:
 	@rm -rf $(DIR_OBJ)
 	@echo "Clean [ obj files VM ]"
-	# @rm -rf $(OBJ_PATH)
-	# @echo "Cleaning obj [ Visualizer ]..."
+	@rm -rf $(OBJ_PATH)
+	@echo "Cleaning obj [ Visualizer ]..."
 	@rm -f $(NAME)
 	@echo "Clean" [ $(VIS_NAME) ]
 
