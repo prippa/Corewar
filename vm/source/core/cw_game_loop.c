@@ -50,11 +50,11 @@ void			cw_game_loop(void)
 
 	while (1)
 	{//(2 heltrains) 6164 is ok 6165 is not
-	ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
-		if (g_cw.cycle >= 7402  && !g_cw.pd.flags[DUMP]) //(3 Gagnants) 8802 is not same with original
-			cw_vis_print_map(1); // TRASH
-		else
-			cw_vis_print_map(0);
+	// ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
+	// 	if (g_cw.cycle >= 241 && !g_cw.pd.flags[DUMP]) //(3 Gagnants) 8802 is not same with original
+	// 		cw_vis_print_map(1); // TRASH
+	// 	else
+	// 		cw_vis_print_map(0);
 		if (g_cw.cycle_to_die <= 0)
 			break ;
 		// t_processes_initer(g_cw.pd.champs);

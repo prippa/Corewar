@@ -15,7 +15,7 @@
 static void		cw_execute_add(t_command *cmd, t_processes *proc)
 {
 	proc->registers[cmd->arg3.av - 1] =
-		proc->registers[cmd->arg1.av - 1] + proc->registers[cmd->arg2.av - 1];
+		(proc->registers[cmd->arg1.av - 1] + proc->registers[cmd->arg2.av - 1]);
 	proc->carry = (proc->registers[cmd->arg3.av - 1] == 0) ? 1 : 0;
 }
 
@@ -30,6 +30,10 @@ static int		cw_get_args_av_add(t_command *cmd, t_processes *proc)
 
 void			cw_add(t_processes *proc)
 {
+	if (g_cw.cycle == 239)
+	{
+		
+	}
 	t_command cmd;
 
 	ft_bzero(&cmd, sizeof(t_command));

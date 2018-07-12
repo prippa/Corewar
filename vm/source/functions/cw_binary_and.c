@@ -15,8 +15,8 @@
 static void		cw_execute_and(t_command *cmd, t_processes *proc)
 {
 	proc->registers[cmd->arg3.av - 1] =
-		cw_get_right_arg(proc, cmd->arg1.tp, cmd->arg1.av) &
-		cw_get_right_arg(proc, cmd->arg2.tp, cmd->arg2.av);
+		((cw_get_right_arg(proc, cmd->arg1.tp, cmd->arg1.av)) &
+		(cw_get_right_arg(proc, cmd->arg2.tp, cmd->arg2.av)));
 	proc->carry = (proc->registers[cmd->arg3.av - 1] == 0) ? 1 : 0;
 }
 
