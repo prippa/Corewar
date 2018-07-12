@@ -26,6 +26,8 @@
 
 fork	%3
 zjmp	%1
+live	%-1
+fork	%5
 
 
 
