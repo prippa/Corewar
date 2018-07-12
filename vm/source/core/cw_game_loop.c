@@ -33,15 +33,12 @@ static void		cw_proc_executer(t_processes *proc)
 		if (proc->exec_cycles != -1)
 		{
 			if (!proc->exec_cycles)
-			{
 				g_cw.op[proc->cmd - 1].func(proc);
-				proc->exec_cycles = -1;
-			}
 			else
 				proc->exec_cycles--;
 		}
 		else
-			proc->pc = MEM_X((proc->pc + 1));
+			cw_move_pc(proc, 1);
 		g_cw.color_map_pc[proc->pc] = 1;
 		proc = proc->next;
 	}
@@ -52,14 +49,15 @@ void			cw_game_loop(void)
 	t_champ *champs;
 
 	while (1)
-	{//(2 heltrains) 6164 is ok 6165 is notR
-		if (g_cw.cycle >= 6164 && !g_cw.pd.flags[DUMP]) //(3 Gagnants) 8802 is not same with original
+	{//(2 heltrains) 6164 is ok 6165 is not
+	ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
+		if (g_cw.cycle >= 7402  && !g_cw.pd.flags[DUMP]) //(3 Gagnants) 8802 is not same with original
 			cw_vis_print_map(1); // TRASH
 		else
 			cw_vis_print_map(0);
 		if (g_cw.cycle_to_die <= 0)
 			break ;
-		t_processes_initer(g_cw.pd.champs);
+		// t_processes_initer(g_cw.pd.champs);
 		champs = g_cw.pd.champs;
 		while (champs)
 		{

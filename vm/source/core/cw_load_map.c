@@ -31,6 +31,7 @@ static void	cw_fill_map_with_bots(t_champ *champs)
 			champ_code_index++;
 			map_index++;
 		}
+		cw_move_pc(champs->proc_start, 0);
 		champs = champs->next;
 	}
 }

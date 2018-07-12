@@ -51,6 +51,7 @@ void					cw_vis_print_map(char flag) // TRASH
 	ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
 	ft_printf("cycle to die: %d\n", g_cw.cycle_to_die);
 	ft_printf("proc count: %u\n", g_cw.proc_counter);
+	ft_printf("live %u\n", g_cw.pd.champs->lives_number);
 	if (flag) read(1, 0, 1);
 	if (flag) system("clear");
 }
