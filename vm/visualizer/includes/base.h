@@ -9,7 +9,7 @@
 /*   Updated: 2018/05/24 16:18:03 by vkovsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+//g_cw.pd.champs
 #ifndef BASE_H
 # define BASE_H
 # include <stdbool.h>
@@ -23,6 +23,7 @@
 # include "SDL_mixer.h"
 # include <stdio.h>
 # include "corewar.h"
+# include "ft_printf.h"
 # define IMG_FOLDER "./vm/visualizer/images/"
 # define BTN_FOLDER "./vm/visualizer/images/buttons"
 # define ARROW_IMG "./vm/visualizer/images/buttons/arrow.png"
@@ -66,15 +67,17 @@
 # define CANSEL_BUTTON {ESCAPE_KEY, CANSEL_BUTTON_ID, "Cansel"}
 # define MOVE_BTN_WIDTH ((SCREEN_HEIGHT - arena->abs_arena_height) >> 1)
 # define RED_COLOR ((SDL_Color){.r = 0xff})
+# define YELLOW_COLOR ((SDL_Color){.r = 0xff, .g = 0xff})
+# define MAGENTA_COLOR ((SDL_Color){.r = 0xff, .b = 0xff})
 # define GREEN_COLOR ((SDL_Color){.g = 0xff})
 # define BLUE_COLOR ((SDL_Color){.b = 0xff})
 # define CYAN_COLOR ((SDL_Color){.g = 0xff, .b = 0xff})
 # define WHITE_COLOR ((SDL_Color){.r = 0xff, .g = 0xff, .b = 0xff})
 # define BLACK_COLOR ((SDL_Color){0})
+# define GRAY_COLOR ((SDL_Color){.r = 0xa9, .g = 0xa9, .b = 0xa9})
 # define BUTTON_MOVE_SOUND "music/background_button.wav"
 # define BUTTON_PRESS_SOUND "music/button_main.wav"
 # define EXIT_SOUND "music/exit.wav"
-
 /*
 ** Number of message box buttons
 */
@@ -89,6 +92,11 @@
 # define BTN_BACK {0x0, 0x0, 0xff}
 # define BTN_SEL {0xff, 0x0, 0xff}
 # define MESSAGE_BOX_COLOR_SCHEME {{WIN_BACK, TXT, BTN, BTN_BACK, BTN_SEL}}
+# define SPEED_TXT "(cycles per tact)"
+
+extern const bool		bold_states[25];
+extern const SDL_Color	back_colors[25];
+extern const SDL_Color	font_colors[25];
 
 /*
 ** Wrapper for SDL texture
@@ -207,9 +215,9 @@ typedef struct					s_statusbar
 
 typedef enum					e_champcolor
 {
-	RED_CHAMP,
-	BLUE_CHAMP,
 	GREEN_CHAMP,
+	BLUE_CHAMP,
+	RED_CHAMP,
 	CYAN_CHAMP,
 	TOTAL_CHAMP
 }								t_champcolor;
@@ -220,6 +228,9 @@ typedef enum					e_champcolor
 */
 typedef struct					s_arena
 {
+	t_ltexture					*speed_txt;
+	int							cycles_per_tact;
+	int							tact_duration;
 	Mix_Chunk					*exit_sound;
 	Mix_Chunk					*btn_move;
 	Mix_Chunk					*btn_press;

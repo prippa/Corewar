@@ -13,4 +13,11 @@ void	draw_infopanel(t_arena *arena)
 	pos = get_render_position(0, &bp, NULL, &clip);
 	SDL_RenderFillRect(arena->renderer, &clip);
 	render(&pos, arena->infopanel_title, arena->renderer, SDL_FLIP_NONE);
+	sdl_putnbr(arena->speed, get_rectangle(arena->viewport.w, arena->viewport.h - BUTTON_HEIGHT, BUTTON_HEIGHT, BUTTON_WIDTH), arena, MAGENTA_COLOR);
+	bp.x = arena->viewport.w + BUTTON_HEIGHT;
+	bp.y = arena->viewport.h - BUTTON_HEIGHT;
+	clip = get_rectangle(0, 0, BUTTON_WIDTH << 1, BUTTON_WIDTH);
+	t_rposition txt_pos = get_render_position(0, &bp, NULL, &clip);
+	set_color(WHITE_COLOR, arena->speed_txt);
+	render(&txt_pos, arena->speed_txt, arena->renderer, SDL_FLIP_NONE);
 }

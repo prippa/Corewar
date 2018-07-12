@@ -35,20 +35,19 @@ static inline void	dequeue_events(t_arena *arena)
 
 static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 {
-	static int		tacts_before_render = 0;
+	static int tacts_before_update;
 
-	tacts_before_render -= diff;
-	if (tacts_before_render <= 0)
+	if (arena->pause == false)
 	{
-		tacts_before_render = 50000;
-		if (arena->pause == false)
+		tacts_before_update += diff;
+		if (tacts_before_update >= 100000)
 		{
-			//cw_game_loop();
-			//cw_vis_update_map();
+			for (int i = 0; i < arena->cycles_per_tact; ++i)
+				cw_game_loop();
+			cw_vis_update_map();
+			tacts_before_update = 0;
 		}
-			//set_random(arena);
 	}
-	draw_arena(arena);
 }
 
 static inline void	handle_fps(t_arena *arena, clock_t diff)
@@ -70,6 +69,8 @@ void				events_handler(t_arena *arena)
 	clock_t			diff;
 
 	Mix_PlayMusic(arena->theme, -1);
+	arena->pause = true;
+	cw_vis_update_map();
 	while (!arena->quit)
 	{
 		diff = clock();
@@ -84,6 +85,7 @@ void				events_handler(t_arena *arena)
 		diff = clock() - diff;
 		handle_fps(arena, diff);
 		handle_arena_rendering(arena, diff);
+		draw_arena(arena);
 		SDL_RenderPresent(arena->renderer);
 	}
 }

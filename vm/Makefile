@@ -97,7 +97,8 @@ UTIL_NAME		=	clear_renderer.c			\
 					get_rectangle.c				\
 					get_digits.c				\
 					change_screen_mode.c		\
-					reset.c
+					reset.c						\
+					sdl_putnbr.c
 
 EVENT_NAME		=	events_manager.c			\
 					key_event.c					\
@@ -147,7 +148,7 @@ INIT_NAME		=	init_devices.c				\
 					init_infopanel.c			\
 					init_checkboxes.c			\
 					init_button_panel.c			\
-					init_statuses.c
+					init_statuses.c	
 
 ERROR_NAME		=	force_error.c
 #-------------------------------------------------------------------

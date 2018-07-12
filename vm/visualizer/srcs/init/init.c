@@ -37,6 +37,7 @@ static inline bool	init_window(t_arena *arena)
 		return (false);
 	}
 	arena->fps = 0;
+	arena->speed = 1;
 	return (true);
 }
 

@@ -57,4 +57,14 @@ void				key_event(t_arena *arena, SDL_Keycode sym)
 		arena->pause = !(arena->pause);
 	else if (sym == SDLK_q)
 		reset(arena);
+	else if (sym == SDLK_z)
+	{
+		if (arena->cycles_per_tact != 1024)
+			arena->cycles_per_tact <<= 1;
+	}
+	else if (sym == SDLK_x)
+	{
+		if (arena->cycles_per_tact != 1)
+			arena->cycles_per_tact >>= 1;
+	}
 }

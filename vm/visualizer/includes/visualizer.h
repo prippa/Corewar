@@ -34,6 +34,8 @@ void		force_error(const char *error);
 void		change_screen_mode(t_arena *arena);
 void		get_digits(unsigned char hex, int *ff, int *sf);
 void		reset(t_arena *arena);
+bool		get_colors(t_colors st, SDL_Color *back, SDL_Color *font_color);
+void		sdl_putnbr(int nbr, SDL_Rect clip, t_arena *arena, SDL_Color c);
 void		render_part(SDL_Rect clip,
 						SDL_Rect target,
 						SDL_Point top_left,

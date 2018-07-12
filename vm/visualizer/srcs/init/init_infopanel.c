@@ -10,5 +10,10 @@ bool		init_infopanel(t_arena *arena)
 	if (!(arena->infopanel_title = load_from_rendered_text(info, arena->renderer)))
 		return (false);
 	set_color(RED_COLOR, arena->infopanel);
+	arena->speed_txt = load_from_rendered_text(get_text_info(ROBOTO_REGULAR,
+											(ARENA_TILE_WIDTH * MAX_ZOOM << 1),
+											SPEED_TXT,
+											GREEN_COLOR),
+											arena->renderer);
 	return (true);
 }
