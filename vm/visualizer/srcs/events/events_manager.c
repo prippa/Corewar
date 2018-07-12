@@ -42,7 +42,11 @@ static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 	{
 		tacts_before_render = 50000;
 		if (arena->pause == false)
-			set_random(arena);
+		{
+			//cw_game_loop();
+			//cw_vis_update_map();
+		}
+			//set_random(arena);
 	}
 	draw_arena(arena);
 }

@@ -84,7 +84,7 @@ void			t_processe_init(t_processes *proc_start);
 */
 
 void			cw_load_map(void);
-void			cw_game_loop(void);
+int				cw_game_loop(void);
 void			cw_print_players(t_champ *champs);
 void			cw_print_winer(t_champ *champs);
 void			cw_set_arg_tp_with_codage(t_command *cmd,
@@ -120,7 +120,7 @@ void			cw_lfork(t_processes *proc);
 ********************************** Colors ***********************************
 */
 
-void			cw_vis_print_map(char flag);
+void			cw_vis_update_map(void);
 void			cw_vis_write_new_color(unsigned char color, int pc, int len);
 
 #endif

@@ -47,32 +47,26 @@ static void		cw_proc_executer(t_processes *proc)
 	}
 }
 
-void			cw_game_loop(void)
+int				cw_game_loop(void)
 {
 	t_champ *champs;
 
-	while (1)
-	{//(2 heltrains) 6164 is ok 6165 is notR
-		if (g_cw.cycle >= 6164 && !g_cw.pd.flags[DUMP]) //(3 Gagnants) 8802 is not same with original
-			cw_vis_print_map(1); // TRASH
-		else
-			cw_vis_print_map(0);
-		if (g_cw.cycle_to_die <= 0)
-			break ;
-		t_processes_initer(g_cw.pd.champs);
-		champs = g_cw.pd.champs;
-		while (champs)
-		{
-			cw_proc_executer(champs->proc_start);
-			champs = champs->next;
-		}
-		if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
-			cw_print_dump_exit();
-		if (!g_cw.cycle_to_die_check)
-			cw_cycles_new_period();
-		if (g_cw.proc_counter == 0)
-			break ;
-		g_cw.cycle++;
-		g_cw.cycle_to_die_check--;
+	if (g_cw.cycle_to_die <= 0)
+		return (0);
+	t_processes_initer(g_cw.pd.champs);
+	champs = g_cw.pd.champs;
+	while (champs)
+	{
+		cw_proc_executer(champs->proc_start);
+		champs = champs->next;
 	}
+	if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
+		cw_print_dump_exit();
+	if (!g_cw.cycle_to_die_check)
+		cw_cycles_new_period();
+	if (g_cw.proc_counter == 0)
+		return (0);
+	g_cw.cycle++;
+	g_cw.cycle_to_die_check--;
+	return (1);
 }

@@ -52,6 +52,7 @@ void		cw_init(void)
 {
 	cw_parse_data_init(&g_cw.pd);
 	ft_bzero(g_cw.map, MEM_SIZE);
+	ft_bzero(g_cw.colors, MEM_SIZE);
 	ft_bzero(g_cw.color_map, MEM_SIZE);
 	ft_bzero(g_cw.color_map_pc, MEM_SIZE);
 	ft_bzero(g_cw.color_map_bold, MEM_SIZE);

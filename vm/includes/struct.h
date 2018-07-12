@@ -96,6 +96,7 @@ typedef struct			s_corewar
 {
 	t_parse_data		pd;
 	unsigned char		map[MEM_SIZE];
+	unsigned char		colors[MEM_SIZE];
 	unsigned char		color_map[MEM_SIZE];
 	unsigned char		color_map_pc[MEM_SIZE];
 	unsigned char		color_map_bold[MEM_SIZE];
