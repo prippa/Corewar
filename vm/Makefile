@@ -74,7 +74,7 @@ C_PARSER	=	cw_parser.c cw_parse_args.c cw_get_basic_data.c\
 				cw_parse_flags.c
 
 C_SRUC_MP	=	t_champ_op.c t_champ_add_free_rev.c t_proc_free_srch.c\
-				t_proc_add_cpy.c t_proc_op.c
+				t_proc_add_cpy.c
 
 C_CORE		=	cw_load_map.c cw_game_loop.c cw_get_codage_tp_av.c\
 				cw_move_pc.c

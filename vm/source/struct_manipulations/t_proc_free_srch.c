@@ -12,30 +12,13 @@
 
 #include "corewar.h"
 
-t_processes	*t_processe_get_by_id(t_processes *proc_start,
-								t_processes *proc_end, unsigned int id)
-{
-	unsigned int i;
-
-	i = 0;
-	while (proc_start && proc_end && i <= (g_cw.proc_counter / 2))
-	{
-		if (proc_start->id == id)
-			return (proc_start);
-		else if (proc_end->id == id)
-			return (proc_end);
-		proc_start = proc_start->next;
-		proc_end = proc_end->prev;
-		i++;
-	}
-	return (NULL);
-}
-
 int			t_processe_free_by_obj(t_processes **proc_start,
 								t_processes **proc_end, t_processes *obj)
 {
 	if (!(*proc_start) || !(*proc_end) || !obj)
 		return (0);
+	g_cw.color_map_pc[obj->pc]--;
+	g_cw.proc_counter--;
 	if (obj == *proc_start)
 	{
 		*proc_start = (*proc_start)->next;
@@ -55,18 +38,32 @@ int			t_processe_free_by_obj(t_processes **proc_start,
 		obj->next->prev = obj->prev;
 	}
 	free(obj);
-	g_cw.proc_counter--;
 	return (1);
 }
 
-int			t_processe_free_by_id(t_processes **proc_start,
-								t_processes **proc_end, unsigned int id)
+void		t_processe_killer(void)
 {
-	t_processes *tmp;
+	t_processes	*head;
+	t_processes	*tmp;
 
-	if (!(tmp = t_processe_get_by_id(*proc_start, *proc_end, id)))
-		return (0);
-	if (!t_processe_free_by_obj(proc_start, proc_end, tmp))
-		return (0);
-	return (1);
+	head = g_cw.proc_start;
+	while (head)
+	{
+		if (head->is_alive == ALIVE)
+			head->is_alive = DEAD;
+		else
+		{
+			tmp = head->next;
+			t_processe_free_by_obj(&g_cw.proc_start, &g_cw.proc_end, head);
+			head = tmp;
+			continue;
+		}
+		head = head->next;
+	}
+}
+
+void		t_processes_free(t_processes **proc_start, t_processes **proc_end)
+{
+	while (*proc_start)
+		t_processe_free_by_obj(proc_start, proc_end, *proc_start);
 }

@@ -1,7 +1,7 @@
 #include "corewar.h"
 
 static void	t_processes_add_to_start(t_processes **proc_start,
-							t_processes **proc_end, t_processes *new_obj)
+				t_processes **proc_end, t_processes *new_obj)
 {
 	new_obj->next = *proc_start;
 	new_obj->prev = NULL;
@@ -13,7 +13,7 @@ static void	t_processes_add_to_start(t_processes **proc_start,
 }
 
 static void	t_processes_add_to_end(t_processes **proc_start,
-							t_processes **proc_end, t_processes *new_obj)
+				t_processes **proc_end, t_processes *new_obj)
 {
 	new_obj->next = NULL;
 	new_obj->prev = *proc_end;
@@ -25,14 +25,13 @@ static void	t_processes_add_to_end(t_processes **proc_start,
 }
 
 void		t_processe_add(t_processes **proc_start,
-							t_processes **proc_end)
+				t_processes **proc_end)
 {
 	t_processes	*new_obj;
 
 	g_cw.proc_counter++;
 	if (!(new_obj = (t_processes *)malloc(sizeof(t_processes))))
 		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
-	new_obj->id = g_cw.id_counter++;
 	new_obj->pc = 0;
 	new_obj->carry = 0;
 	ft_bzero(new_obj->registers, sizeof(int) * REG_NUMBER);
@@ -45,7 +44,7 @@ void		t_processe_add(t_processes **proc_start,
 }
 
 void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
-			t_processes *copy, int pc)
+				t_processes *copy, int pc)
 {
 	int			i;
 	t_processes	*new_obj;
@@ -53,7 +52,6 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	g_cw.proc_counter++;
 	if (!(new_obj = (t_processes *)malloc(sizeof(t_processes))))
 		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
-	new_obj->id = g_cw.id_counter++;
 	new_obj->pc = pc;
 	new_obj->carry = copy->carry;
 	i = -1;

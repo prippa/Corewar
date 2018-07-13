@@ -69,13 +69,10 @@ void			t_processe_add(t_processes **proc_start,
 					t_processes **proc_end);
 void			t_processes_copy(t_processes **proc_start,
 					t_processes **proc_end, t_processes *copy, int pc);
-t_processes		*t_processe_get_by_id(t_processes *proc_start,
-					t_processes *proc_end, unsigned int id);
-int				t_processe_free_by_id(t_processes **proc_start,
-					t_processes **proc_end, unsigned int id);
 int				t_processe_free_by_obj(t_processes **proc_start,
 					t_processes **proc_end, t_processes *obj);
-void			t_processes_initer(void);
+void			t_processes_free(t_processes **proc_start,
+					t_processes **proc_end);
 void			t_processe_killer(void);
 
 /*
@@ -94,26 +91,22 @@ void			cw_set_arg_av(t_command *cmd, int pc, char comb);
 ********************************** Functions ***********************************
 */
 
+void			cw_live(t_processes *proc);
+void			cw_ld(t_processes *proc);
+void			cw_st(t_processes *proc);
+void			cw_add(t_processes *proc);
+void			cw_sub(t_processes *proc);
 void			cw_binary_and(t_processes *proc);
 void			cw_binary_or(t_processes *proc);
 void			cw_binary_xor(t_processes *proc);
-
-void			cw_add(t_processes *proc);
-void			cw_sub(t_processes *proc);
-
-void			cw_sti(t_processes *proc);
-void			cw_live(t_processes *proc);
-
-void			cw_ld(t_processes *proc);
-void			cw_lld(t_processes *proc);
-void			cw_ldi(t_processes *proc);
-void			cw_lldi(t_processes *proc);
 void 			cw_zjmp(t_processes *proc);
-void			cw_aff(t_processes *proc);
-
-void			cw_st(t_processes *proc);
+void			cw_ldi(t_processes *proc);
+void			cw_sti(t_processes *proc);
 void			cw_fork(t_processes *proc);
+void			cw_lld(t_processes *proc);
+void			cw_lldi(t_processes *proc);
 void			cw_lfork(t_processes *proc);
+void			cw_aff(t_processes *proc);
 
 /*
 ********************************** Colors ***********************************
