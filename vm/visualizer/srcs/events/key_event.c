@@ -58,13 +58,11 @@ void				key_event(t_arena *arena, SDL_Keycode sym)
 	else if (sym == SDLK_q)
 		reset(arena);
 	else if (sym == SDLK_z)
-	{
-		if (arena->cycles_per_tact != 1024)
-			arena->cycles_per_tact <<= 1;
-	}
+		increase_cycles(arena);
 	else if (sym == SDLK_x)
-	{
-		if (arena->cycles_per_tact != 1)
-			arena->cycles_per_tact >>= 1;
-	}
+		decrease_cycles(arena);
+	else if (sym == SDLK_c)
+		increase_duration(arena);
+	else if (sym == SDLK_v)
+		decrease_duration(arena);
 }

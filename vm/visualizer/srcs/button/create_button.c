@@ -31,29 +31,20 @@ t_button		*create_button(double angle,
 {
 	t_button	*new_btn;
 
-	new_btn = NULL;
-	if (!(new_btn = (t_button *)malloc(sizeof(t_button))))
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,
-									"Error!",
-									"Bad allocation",
-									NULL);
-	else
-	{
-		new_btn->sprites = sprites;
-		new_btn->width = params.x;
-		new_btn->height = params.y;
-		new_btn->position = position;
-		new_btn->current_sprite = 0;
-		new_btn->clip = get_rectangle(new_btn->position.x,
+	new_btn = (t_button *)malloc(sizeof(t_button));
+	new_btn->sprites = sprites;
+	new_btn->width = params.x;
+	new_btn->height = params.y;
+	new_btn->position = position;
+	new_btn->current_sprite = 0;
+	new_btn->clip = get_rectangle(new_btn->position.x,
 									new_btn->position.y,
 									new_btn->width,
 									new_btn->height);
-		new_btn->btn_pos =
-			get_render_position(angle,
-								&(new_btn->position),
-								NULL,
-								&(new_btn->clip));
-		create_button_text(new_btn, renderer, text);
-	}
+	new_btn->btn_pos =	get_render_position(angle,
+									&(new_btn->position),
+									NULL,
+									&(new_btn->clip));
+	create_button_text(new_btn, renderer, text);
 	return (new_btn);
 }

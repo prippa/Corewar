@@ -63,5 +63,36 @@ bool				init_start_buttons(t_arena *arena)
 							(SDL_Point){.x=BUTTON_WIDTH, .y=BUTTON_HEIGHT},
 							arena->start_btn_sprites)))
 		return (false);
+	arena->start_btns[DUR_PLUS_BTN] =
+			create_button(0, (SDL_Point){.x = 6 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
+							"D+", arena->renderer,
+							(SDL_Point){.x=BUTTON_WIDTH, .y=BUTTON_HEIGHT},
+							arena->start_btn_sprites);
+	arena->start_btns[DUR_MIN_BTN] =
+			create_button(0, (SDL_Point){.x = 7 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
+							"D-", arena->renderer,
+							(SDL_Point){.x=BUTTON_WIDTH, .y=BUTTON_HEIGHT},
+							arena->start_btn_sprites);
+	arena->start_btns[CYCLE_PLUS_BTN] =
+			create_button(0, (SDL_Point){.x = 8 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
+							"C+", arena->renderer,
+							(SDL_Point){.x=BUTTON_WIDTH, .y=BUTTON_HEIGHT},
+							arena->start_btn_sprites);
+	arena->start_btns[CYCLE_MIN_BTN] =
+			create_button(0, (SDL_Point){.x = 9 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
+							"C-", arena->renderer,
+							(SDL_Point){.x=BUTTON_WIDTH, .y=BUTTON_HEIGHT},
+							arena->start_btn_sprites);
+	arena->start_btns[BACK_BTN] =
+			create_button(0, (SDL_Point){.x = 10 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
+							"BACK", arena->renderer,
+							(SDL_Point){.x=BUTTON_WIDTH, .y=BUTTON_HEIGHT},
+							arena->start_btn_sprites);
+	void (*action_funcs[TOTAL_START_BUTTONS])(void *) = {&start, &stop, &info, &exit_event,
+																&increase_duration, &decrease_duration,
+																&increase_cycles, &decrease_cycles, &reset};
+	int i = -1;
+	while (++i < (int)TOTAL_START_BUTTONS)
+		arena->start_btns[i]->action = action_funcs[i];
 	return (true);
 }

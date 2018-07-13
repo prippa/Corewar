@@ -12,10 +12,12 @@
 
 #include "visualizer.h"
 
-void	exit_event(t_arena *arena)
+void		exit_event(void *data)
 {
-	int	buttonid;
+	int		buttonid;
+	t_arena	*arena;
 
+	arena = (t_arena *)data;
 	buttonid = exit_dialog(arena);
 	if (arena->is_fullscreen)
 		change_screen_mode(arena);

@@ -16,7 +16,7 @@ void	draw_controls(t_arena *arena)
 {
 	for (int i = 0; i < TOTAL_CHECKBOXES; i++)
 		render_checkbox_sprite(arena->checkboxes[i], arena);
-	for (int i = 0; i < BUTTON_TOTAL; i++)
+	for (int i = 0; i < TOTAL_START_BUTTONS; i++)
 		render_button_sprite(arena->start_btns[i], arena);
 	int panel_width = SCREEN_HEIGHT - arena->abs_arena_height;
 	SDL_Point p = {.x = 0, .y = arena->abs_arena_height};

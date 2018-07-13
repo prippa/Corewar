@@ -55,5 +55,9 @@ bool	init_move_buttons(t_arena *arena)
 							(SDL_Point){.x = MOVE_BTN_WIDTH, .y = MOVE_BTN_WIDTH},
 							arena->move_btn_sprites)))
 		return (false);
+	arena->move_btns[UP_MENU_BTN]->action = &move_up;
+	arena->move_btns[RIGHT_MENU_BTN]->action = &move_right;
+	arena->move_btns[DOWN_MENU_BTN]->action = &move_down;
+	arena->move_btns[LEFT_MENU_BTN]->action = &move_left;
 	return (true);
 }

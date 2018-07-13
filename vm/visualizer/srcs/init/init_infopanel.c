@@ -15,5 +15,10 @@ bool		init_infopanel(t_arena *arena)
 											SPEED_TXT,
 											GREEN_COLOR),
 											arena->renderer);
+	arena->duration_txt = load_from_rendered_text(get_text_info(ROBOTO_REGULAR,
+											(ARENA_TILE_WIDTH * MAX_ZOOM << 1),
+											DURATION_TXT,
+											GREEN_COLOR),
+											arena->renderer);									
 	return (true);
 }

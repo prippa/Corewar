@@ -39,12 +39,7 @@ void				handle_button_event(SDL_Event *e,
 		{
 			Mix_PlayChannel(-1, arena->btn_press, 0);
 			btn->current_sprite = BUTTON_MOUSE_DOWN;
-			if (id == START_MENU_BTN)
-				arena->pause = false;
-			else if (id == STOP_MENU_BTN)
-				arena->pause = true;
-			else if (id == EXIT_MENU_BTN)
-				exit_event(arena);
+			btn->action(arena);
 		}
 		else if (e->type == SDL_MOUSEBUTTONUP)
 			btn->current_sprite = BUTTON_MOUSE_UP;

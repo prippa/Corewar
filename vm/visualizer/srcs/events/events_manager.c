@@ -22,7 +22,7 @@ static inline void	dequeue_events(t_arena *arena)
 			key_event(arena, arena->e.key.keysym.sym);
 		else if (arena->e.type == SDL_MOUSEWHEEL)
 			wheel_event(arena, arena->e.wheel.y);
-		for (int i = 0; i < BUTTON_TOTAL; i++)
+		for (int i = 0; i < TOTAL_START_BUTTONS; i++)
 			handle_button_event(&(arena->e), arena->start_btns[i], arena, i);
 		for (int i = 0; i < MOVE_BUTTON_TOTAL; i++)
 			handle_movebutton_event(&(arena->e), arena->move_btns[i], arena, i);
@@ -36,11 +36,11 @@ static inline void	dequeue_events(t_arena *arena)
 static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 {
 	static int tacts_before_update;
-
+	
 	if (arena->pause == false)
 	{
 		tacts_before_update += diff;
-		if (tacts_before_update >= 100000)
+		if (tacts_before_update >= arena->tact_duration)
 		{
 			for (int i = 0; i < arena->cycles_per_tact; ++i)
 				cw_game_loop();
@@ -74,9 +74,8 @@ void				events_handler(t_arena *arena)
 	while (!arena->quit)
 	{
 		diff = clock();
-		clear_renderer(arena->renderer);
+		clear_renderer(arena);
 		dequeue_events(arena);
-		draw_background(arena);
 		draw_infopanel(arena);
 		draw_button_panel(arena);
 		draw_controls(arena);

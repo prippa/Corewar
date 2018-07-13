@@ -93,6 +93,7 @@
 # define BTN_SEL {0xff, 0x0, 0xff}
 # define MESSAGE_BOX_COLOR_SCHEME {{WIN_BACK, TXT, BTN, BTN_BACK, BTN_SEL}}
 # define SPEED_TXT "(cycles per tact)"
+# define DURATION_TXT "(duration msec)"
 
 extern const bool		bold_states[25];
 extern const SDL_Color	back_colors[25];
@@ -144,6 +145,12 @@ typedef enum					e_startmenu
 	STOP_MENU_BTN,
 	INFO_MENU_BTN,
 	EXIT_MENU_BTN,
+	DUR_PLUS_BTN,
+	DUR_MIN_BTN,
+	CYCLE_PLUS_BTN,
+	CYCLE_MIN_BTN,
+	BACK_BTN,
+	TOTAL_START_BUTTONS
 }								t_startmenu;
 
 typedef enum					e_movemenu
@@ -194,6 +201,7 @@ typedef struct					s_text
 
 typedef struct					s_button
 {
+	void						(*action)(void *arena);
 	SDL_Rect					clip;
 	t_rposition					btn_pos;
 	t_rposition					txt_pos;
@@ -229,6 +237,7 @@ typedef enum					e_champcolor
 typedef struct					s_arena
 {
 	t_ltexture					*speed_txt;
+	t_ltexture					*duration_txt;
 	int							cycles_per_tact;
 	int							tact_duration;
 	Mix_Chunk					*exit_sound;
@@ -273,7 +282,7 @@ typedef struct					s_arena
 	/*
 	** Start menu buttons
 	*/
-	t_button					*start_btns[TOTAL_BUTTONS];
+	t_button					*start_btns[TOTAL_START_BUTTONS];
 	/*
 	** Sprites for start menu button states
 	** wraped in ltexture and prepare for rendering

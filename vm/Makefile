@@ -98,20 +98,23 @@ UTIL_NAME		=	clear_renderer.c			\
 					get_digits.c				\
 					change_screen_mode.c		\
 					reset.c						\
-					sdl_putnbr.c
+					sdl_putnbr.c				\
+					duration_change.c			\
+					cycles_change.c
 
 EVENT_NAME		=	events_manager.c			\
 					key_event.c					\
 					exit_event.c				\
 					wheel_event.c				\
 					zoom.c						\
-					move.c
+					move.c						\
+					start_stop.c				\
+					info_call.c
 
 DRAW_NAME		=	draw_arena.c				\
 					draw_fillrect.c				\
 					draw_outlinerect.c			\
 					draw_controls.c				\
-					draw_background.c			\
 					draw_infopanel.c			\
 					draw_button_panel.c			\
 					draw_statuses.c				\

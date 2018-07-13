@@ -33,14 +33,7 @@ void				handle_movebutton_event(SDL_Event *e,
 		else if (state)
 		{
 			btn->current_sprite = MOVE_BUTTON_MOUSE_DOWN;
-			if (id == UP_MENU_BTN)
-				move_up(arena);
-			else if (id == DOWN_MENU_BTN)
-				move_down(arena);
-			else if (id == LEFT_MENU_BTN)
-				move_left(arena);
-			else if (id == RIGHT_MENU_BTN)
-				move_right(arena);
+			btn->action(arena);
 		}
 	}
 	else if (is_mouse_event_happened(e->type))

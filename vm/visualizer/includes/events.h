@@ -27,7 +27,7 @@ void	key_event(t_arena *arena, SDL_Keycode sym);
 /*
 ** Events on exit actions
 */
-void	exit_event(t_arena *arena);
+void	exit_event(void *data);
 
 /*
 ** Events on wheel actions
@@ -48,8 +48,8 @@ void	zoom_out(const int x,
 				const int y,
 				t_arena *arena);
 
-void	move_up(t_arena *arena);
-void	move_down(t_arena *arena);
-void	move_left(t_arena *arena);
-void	move_right(t_arena *arena);
+void	move_up(void *data);
+void	move_down(void *data);
+void	move_left(void *data);
+void	move_right(void *data);
 #endif
