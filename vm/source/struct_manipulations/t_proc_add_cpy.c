@@ -1,6 +1,6 @@
 #include "corewar.h"
 
-static void	t_processes_add_to_head(t_processes **proc_start,
+static void	t_processes_add_to_start(t_processes **proc_start,
 							t_processes **proc_end, t_processes *new_obj)
 {
 	new_obj->next = *proc_start;
@@ -10,6 +10,18 @@ static void	t_processes_add_to_head(t_processes **proc_start,
 	else
 		*proc_end = new_obj;
 	*proc_start = new_obj;
+}
+
+static void	t_processes_add_to_end(t_processes **proc_start,
+							t_processes **proc_end, t_processes *new_obj)
+{
+	new_obj->next = NULL;
+	new_obj->prev = *proc_end;
+	if (*proc_end)
+		(*proc_end)->next = new_obj;
+	else
+		*proc_start = new_obj;
+	*proc_end = new_obj;
 }
 
 void		t_processe_add(t_processes **proc_start,
@@ -30,7 +42,7 @@ void		t_processe_add(t_processes **proc_start,
 	new_obj->cmd = 0;
 	new_obj->color = 0;
 	new_obj->last_live = 0;
-	t_processes_add_to_head(proc_start, proc_end, new_obj);
+	t_processes_add_to_end(proc_start, proc_end, new_obj);
 }
 
 void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
@@ -55,5 +67,5 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	new_obj->color = copy->color;
 	new_obj->last_live = 0;
 	g_cw.color_map_pc[pc]++;
-	t_processes_add_to_head(proc_start, proc_end, new_obj);
+	t_processes_add_to_start(proc_start, proc_end, new_obj);
 }

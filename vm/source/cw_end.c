@@ -38,7 +38,7 @@ void			cw_print_winer(t_champ *champs)
 		winer = proc;
 		while (proc)
 		{
-			if (proc->last_live >= winer->last_live)
+			if (winer->last_live <= proc->last_live)
 				winer = proc;
 			proc = proc->next;
 		}

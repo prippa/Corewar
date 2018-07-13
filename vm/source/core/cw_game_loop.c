@@ -62,7 +62,7 @@ void			cw_game_loop(void)
 			break ;
 		if (g_cw.cycle_to_die <= 0)
 			break ;
-		// if (g_cw.cycle >= 24584 && !g_cw.pd.flags[DUMP])
+		// if (g_cw.cycle >= 20000 && !g_cw.pd.flags[DUMP])
 		// 	cw_vis_print_map(1);
 		// else
 			cw_vis_print_map(0);

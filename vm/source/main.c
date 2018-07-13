@@ -12,7 +12,7 @@
 
 #include "corewar.h"
 
-int		main(int argc, char **argv)
+int		main2(int argc, char **argv)
 {
 	cw_init();
 	cw_parse_args(argc, argv + 1);
@@ -22,6 +22,12 @@ int		main(int argc, char **argv)
 	cw_game_loop();
 	cw_print_winer(g_cw.pd.champs);
 	cw_free();
-	// system("leaks -q corewar");
+	return (0);
+}
+
+int main(int argc, char **argv)
+{
+	main2(argc, argv);
+	system("leaks -q corewar");
 	return (0);
 }
