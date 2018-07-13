@@ -75,9 +75,8 @@ int				t_processe_free_by_id(t_processes **proc_start,
 					t_processes **proc_end, unsigned int id);
 int				t_processe_free_by_obj(t_processes **proc_start,
 					t_processes **proc_end, t_processes *obj);
-void			t_processe_killer(t_champ *champs);
-void			t_processes_initer(t_champ *champs);
-void			t_processe_init(t_processes *proc_start);
+void			t_processes_initer(void);
+void			t_processe_killer(void);
 
 /*
 ********************************** Core Part ***********************************

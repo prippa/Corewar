@@ -1,7 +1,10 @@
 #include "corewar.h"
 
-void		t_processe_init(t_processes *proc)
+void		t_processes_initer(void)
 {
+	t_processes *proc;
+
+	proc = g_cw.proc_start;
 	while (proc)
 	{
 		if (proc->exec_cycles == -1 && IS_COMMAND(g_cw.map[proc->pc]))
@@ -13,46 +16,24 @@ void		t_processe_init(t_processes *proc)
 	}
 }
 
-void		t_processes_initer(t_champ *champs)
-{
-	t_processes *proc;
-	while (champs)
-	{
-		proc = champs->proc_start;
-		while (proc)
-		{
-			if (proc->exec_cycles == -1 && IS_COMMAND(g_cw.map[proc->pc]))
-			{
-				proc->cmd = g_cw.map[proc->pc];
-				proc->exec_cycles = g_cw.op[proc->cmd - 1].cycles_price - 1;
-			}
-			proc = proc->next;
-		}
-		champs = champs->next;
-	}
-}
-
-void		t_processe_killer(t_champ *champs)
+void		t_processe_killer(void)
 {
 	t_processes	*head;
 	t_processes	*tmp;
 
-	while (champs)
+	head = g_cw.proc_start;
+	while (head)
 	{
-		head = champs->proc_start;
-		while (head)
+		if (head->is_alive == ALIVE)
+			head->is_alive = DEAD;
+		else
 		{
-			if (head->is_alive == ALIVE)
-				head->is_alive = DEAD;
-			else
-			{
-				tmp = head->next;
-				t_processe_free_by_obj(&champs->proc_start, &champs->proc_end, head);
-				head = tmp;
-				continue;
-			}
-			head = head->next;
+			tmp = head->next;
+			g_cw.color_map_pc[head->pc]--;
+			t_processe_free_by_obj(&g_cw.proc_start, &g_cw.proc_end, head);
+			head = tmp;
+			continue;
 		}
-		champs = champs->next;
+		head = head->next;
 	}
 }

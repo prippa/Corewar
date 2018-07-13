@@ -29,6 +29,7 @@ void		t_processe_add(t_processes **proc_start,
 	new_obj->exec_cycles = -1;
 	new_obj->cmd = 0;
 	new_obj->color = 0;
+	new_obj->last_live = 0;
 	t_processes_add_to_head(proc_start, proc_end, new_obj);
 }
 
@@ -52,7 +53,7 @@ void		t_processes_copy(t_processes **proc_start, t_processes **proc_end,
 	new_obj->cmd = 0;
 	new_obj->exec_cycles = -1;
 	new_obj->color = copy->color;
-	g_cw.color_map_pc[pc] = 1;
-	cw_move_pc(new_obj, 0);
+	new_obj->last_live = 0;
+	g_cw.color_map_pc[pc]++;
 	t_processes_add_to_head(proc_start, proc_end, new_obj);
 }

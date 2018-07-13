@@ -14,15 +14,19 @@ void		cw_print_players(t_champ *champs)
 
 void		cw_print_winer(t_champ *champs)
 {
-	t_champ	*winer;
+	t_champ		*champ;
+	t_processes	*winer;
+	t_processes	*proc;
 
-	winer = champs;
-	while (champs)
+	proc = g_cw.proc_start;
+	winer = proc;
+	while (proc)
 	{
-		if (winer->last_live < champs->last_live)
-			winer = champs;
-		champs = champs->next;
+		if (proc->last_live >= winer->last_live)
+			winer = proc;
+		proc = proc->next;
 	}
+	champ = t_champ_find(winer->champ_number, champs);
 	ft_printf("Contestant %d, \"%s\", has won !\n",
-		(winer->champ_number * (-1)), winer->head.prog_name);
+		(champ->champ_number * (-1)), champ->head.prog_name);
 }

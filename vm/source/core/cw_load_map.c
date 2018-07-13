@@ -17,11 +17,13 @@ static void	cw_fill_map_with_bots(t_champ *champs)
 	int				map_index;
 	int				champ_code_index;
 	unsigned int	i;
+	t_processes		*proc;
 
-	while (champs)
+	proc = g_cw.proc_end;
+	while (proc)
 	{
-		map_index = champs->proc_start->pc;
-		g_cw.color_map_pc[champs->proc_start->pc] = 1;
+		map_index = proc->pc;
+		g_cw.color_map_pc[proc->pc]++;
 		champ_code_index = 0;
 		i = -1;
 		while (++i < champs->head.prog_size)
@@ -31,8 +33,8 @@ static void	cw_fill_map_with_bots(t_champ *champs)
 			champ_code_index++;
 			map_index++;
 		}
-		cw_move_pc(champs->proc_start, 0);
 		champs = champs->next;
+		proc = proc->prev;
 	}
 }
 
@@ -47,11 +49,11 @@ static void	cw_load_processes(t_champ *champ)
 	color = 1;
 	while (champ)
 	{
-		t_processe_add(&champ->proc_start, &champ->proc_end);
-		champ->proc_start->pc = process_pc;
-		champ->proc_start->registers[0] = champ->champ_number;
-		champ->proc_start->champ_number = champ->champ_number;
-		champ->proc_start->color = color;
+		t_processe_add(&g_cw.proc_start, &g_cw.proc_end);
+		g_cw.proc_start->pc = process_pc;
+		g_cw.proc_start->registers[0] = champ->champ_number;
+		g_cw.proc_start->champ_number = champ->champ_number;
+		g_cw.proc_start->color = color;
 		champ->color = color;
 		color++;
 		process_pc += map_distance;
@@ -61,6 +63,8 @@ static void	cw_load_processes(t_champ *champ)
 
 void		cw_load_map(void)
 {
+	// t_champ_sort_by_order(&g_cw.pd.champs);
 	cw_load_processes(g_cw.pd.champs);
+	// t_champ_sort_by_champ_number(&g_cw.pd.champs);
 	cw_fill_map_with_bots(g_cw.pd.champs);
 }

@@ -58,6 +58,8 @@ void		cw_init(void)
 	ft_bzero(g_cw.color_map_live, MEM_SIZE);
 	ft_bzero(g_cw.color_live_cycle_buf, MEM_SIZE);
 	cw_get_op();
+	g_cw.proc_start = NULL;
+	g_cw.proc_end = NULL;
 	g_cw.cycle = 0;
 	g_cw.cycle_to_die = CYCLE_TO_DIE;
 	g_cw.cycle_to_die_check = CYCLE_TO_DIE;

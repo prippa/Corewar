@@ -31,5 +31,6 @@ void			cw_live(t_processes *proc)
 		av_champ->last_live = g_cw.cycle + 1;
 	}
 	proc_champ->real_lives_number++;
+	proc->last_live = g_cw.cycle + 1;
 	cw_move_pc_without_codage(proc);
 }

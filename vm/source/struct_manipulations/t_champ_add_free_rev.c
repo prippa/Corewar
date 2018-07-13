@@ -90,9 +90,6 @@ void			t_champ_free(t_champ **champs)
 {
 	while (*champs)
 	{
-		while ((*champs)->proc_start)
-			t_processe_free_by_obj(&(*champs)->proc_start, &(*champs)->proc_end,
-				(*champs)->proc_start);
 		free(*champs);
 		*champs = (*champs)->next;
 	}
@@ -117,8 +114,6 @@ void			t_champ_add(t_champ **champs)
 	new_obj->real_lives_number = 0;
 	new_obj->last_live = 0;
 	new_obj->color = 0;
-	new_obj->proc_start = NULL;
-	new_obj->proc_end = NULL;
 	new_obj->next = *champs;
 	*champs = new_obj;
 }

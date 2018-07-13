@@ -42,6 +42,7 @@ typedef	struct			s_processes
 	short				exec_cycles;
 	unsigned char		cmd;
 	unsigned char		color;
+	unsigned int		last_live;
 	struct s_processes	*next;
 	struct s_processes	*prev;
 }						t_processes;
@@ -62,8 +63,6 @@ typedef struct			s_champ
 	unsigned int		real_lives_number;
 	unsigned int        last_live;
 	unsigned char		color;
-	t_processes			*proc_start;
-	t_processes			*proc_end;
 	struct s_champ		*next;
 }						t_champ;
 
@@ -102,6 +101,8 @@ typedef struct			s_corewar
 	unsigned char		color_map_live[MEM_SIZE];
 	unsigned char		color_live_cycle_buf[MEM_SIZE];
 	const t_op			*op;
+	t_processes			*proc_start;
+	t_processes			*proc_end;
 	unsigned int		cycle;
 	int					cycle_to_die;
 	int					cycle_to_die_check;

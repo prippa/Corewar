@@ -22,55 +22,56 @@ static void		cw_cycles_new_period(void)
 	}
 	g_cw.cycle_to_die_check = g_cw.cycle_to_die;
 	t_champ_zero_lives_number(g_cw.pd.champs);
-	t_processe_killer(g_cw.pd.champs);
+	t_processe_killer();
 }
 
 static void		cw_proc_executer(t_processes *proc)
 {
 	while (proc)
 	{
-		g_cw.color_map_pc[proc->pc] = 0;
+		g_cw.color_map_pc[proc->pc]--;
+		if (proc->exec_cycles == -1 && IS_COMMAND(g_cw.map[proc->pc]))
+		{
+			proc->cmd = g_cw.map[proc->pc];
+			proc->exec_cycles = g_cw.op[proc->cmd - 1].cycles_price - 1;
+		}
 		if (proc->exec_cycles != -1)
 		{
 			if (!proc->exec_cycles)
+			{
 				g_cw.op[proc->cmd - 1].func(proc);
+				proc->exec_cycles = -1;
+			}
 			else
 				proc->exec_cycles--;
 		}
 		else
 			cw_move_pc(proc, 1);
-		g_cw.color_map_pc[proc->pc] = 1;
+		g_cw.color_map_pc[proc->pc]++;
 		proc = proc->next;
 	}
 }
 
 void			cw_game_loop(void)
 {
-	t_champ *champs;
-
 	while (1)
-	{//(2 heltrains) 6164 is ok 6165 is not
-	// ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
-	// 	if (g_cw.cycle >= 241 && !g_cw.pd.flags[DUMP]) //(3 Gagnants) 8802 is not same with original
-	// 		cw_vis_print_map(1); // TRASH
-	// 	else
-	// 		cw_vis_print_map(0);
-		if (g_cw.cycle_to_die <= 0)
-			break ;
-		// t_processes_initer(g_cw.pd.champs);
-		champs = g_cw.pd.champs;
-		while (champs)
-		{
-			cw_proc_executer(champs->proc_start);
-			champs = champs->next;
-		}
-		if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
-			cw_print_dump_exit();
+	{
 		if (!g_cw.cycle_to_die_check)
 			cw_cycles_new_period();
 		if (g_cw.proc_counter == 0)
 			break ;
+		if (g_cw.cycle_to_die <= 0)
+			break ;
+		// if (g_cw.cycle >= 24584 && !g_cw.pd.flags[DUMP])
+		// 	cw_vis_print_map(1);
+		// else
+			cw_vis_print_map(0);
+		cw_proc_executer(g_cw.proc_start);
+		if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
+			cw_print_dump_exit();
 		g_cw.cycle++;
 		g_cw.cycle_to_die_check--;
 	}
+	// t_processe_killer();
+	cw_vis_print_map(1);
 }
