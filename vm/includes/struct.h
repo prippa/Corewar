@@ -42,7 +42,6 @@ typedef	struct			s_processes
 	short				exec_cycles;
 	unsigned char		cmd;
 	unsigned char		color;
-	unsigned int		last_live;
 	struct s_processes	*next;
 	struct s_processes	*prev;
 }						t_processes;
@@ -109,6 +108,7 @@ typedef struct			s_corewar
 	unsigned int		max_checks_check;
 	unsigned int		proc_counter;
 	unsigned int		id_counter;
+	int					last_reported_to_be_alive;
 }						t_corewar;
 
 #endif

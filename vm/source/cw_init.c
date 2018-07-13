@@ -66,4 +66,5 @@ void		cw_init(void)
 	g_cw.max_checks_check = MAX_CHECKS;
 	g_cw.proc_counter = 0;
 	g_cw.id_counter = 1;
+	g_cw.last_reported_to_be_alive = -1;
 }

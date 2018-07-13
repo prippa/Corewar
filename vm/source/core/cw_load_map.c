@@ -86,6 +86,6 @@ void		cw_load_map(void)
 {
 	t_champ_sort_by_order(&g_cw.pd.champs);
 	cw_load_processes(g_cw.pd.champs);
-	t_champ_sort_by_champ_number(&g_cw.pd.champs);
 	cw_fill_map_with_bots(g_cw.pd.champs);
+	t_champ_sort_by_champ_number(&g_cw.pd.champs);
 }
