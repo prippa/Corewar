@@ -17,10 +17,8 @@
 /*
 ** Returns position for render function
 */
-t_rposition				get_render_position(double angle,
-											SDL_Point *left_corner,
-											SDL_Point *center,
-											SDL_Rect *clip);
+t_rposition		get_render_position(double angle, SDL_Point left_corner,
+									SDL_Point center, SDL_Point params);
 											
 /*
 ** Loads image at specified path
@@ -36,7 +34,7 @@ void					free_ltexture(t_ltexture *ltexture);
 /*
 ** Renders texture at given point
 */
-void					render(t_rposition *position,
+void					render(t_rposition position,
 								t_ltexture *ltexture,
 								SDL_Renderer *renderer,
 								SDL_RendererFlip flip);

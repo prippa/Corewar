@@ -21,8 +21,8 @@ void	draw_controls(t_arena *arena)
 	int panel_width = SCREEN_HEIGHT - arena->abs_arena_height;
 	SDL_Point p = {.x = 0, .y = arena->abs_arena_height};
 	SDL_Rect clip = get_rectangle(0, 0, panel_width, panel_width);
-	t_rposition pos = get_render_position(0, &p, NULL, &clip);
-	render(&pos, arena->move_panel, arena->renderer, SDL_FLIP_NONE);
+	t_rposition pos = get_render_position(0, p, p, (SDL_Point){.x = clip.w, .y = clip.h});
+	render(pos, arena->move_panel, arena->renderer, SDL_FLIP_NONE);
 	for (int i = 0; i < MOVE_BUTTON_TOTAL; i++)
 		render_button_sprite(arena->move_btns[i], arena);
 }

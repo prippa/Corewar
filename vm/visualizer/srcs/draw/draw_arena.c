@@ -14,81 +14,54 @@
 
 static inline void	draw_top_raw(t_arena *arena, int width, int height)
 {
-	SDL_Point		top_left;
 	Uint8			i;
-	int				ff;
-	int				sf;
-	Uint8			high;
+	SDL_Rect		rect;
 
-	top_left = arena->top_left;
-	top_left.x += width;
 	i = -1;
-	high = ARENA_WIDTH;
-	if (top_left.y < 0 || top_left.y >= arena->viewport.h - (height << 1))
+	SDL_SetRenderDrawColor(arena->renderer, 0xff, 0x0, 0x0, 0xff);
+	rect = get_rectangle(arena->top_left.x + width, arena->top_left.y, width - 2, height - 2);
+	if (rect.y < -height || rect.y >= arena->viewport.h - (height << 1))
+		return ;
+	while (++i < ARENA_WIDTH)
 	{
-		i = 0;
-		high = 0;
-	}
-	while (++i < high)
-	{
-		if (top_left.x >= arena->viewport.w - width)
+		if (rect.x > arena->viewport.w - width)
 			break ;
-		int x_init = top_left.x;
-		get_digits(i, &ff, &sf);
-		SDL_Rect rect = get_rectangle(top_left.x + 1,
-										top_left.y + 1,
-										width - 2,
-										height - 2);
-		SDL_SetRenderDrawColor(arena->renderer, 0xff, 0x0, 0x0, 0xff);
 		SDL_RenderFillRect(arena->renderer, &rect);
-		set_color(WHITE_COLOR, arena->bold_figures[sf]);
-		set_color(WHITE_COLOR, arena->bold_figures[ff]);
-		rect.w /= 2;
-		t_rposition position = get_render_position(0, &top_left, NULL, &rect);
-		render(&position, arena->bold_figures[ff], arena->renderer, SDL_FLIP_NONE);
-		top_left.x += rect.w;
-		rect.x += rect.w;
-		render(&position, arena->bold_figures[sf], arena->renderer, SDL_FLIP_NONE);
-		top_left.x = x_init + width;
+		if (i + 1 < 10)
+			sdl_putnbr(i + 1, get_rectangle(rect.x + (rect.w >> 2), rect.y, rect.w >> 1, rect.h), arena, WHITE_COLOR);
+		else
+			sdl_putnbr(i + 1, rect, arena, WHITE_COLOR);
+		rect.x += width;
+	}
+}
+
+static inline void	draw_left_column(t_arena *arena, int width, int height)
+{
+	Uint8			i;
+	SDL_Rect		rect;
+
+	i = -1;
+	SDL_SetRenderDrawColor(arena->renderer, 0xff, 0x0, 0x0, 0xff);
+	rect = get_rectangle(arena->top_left.x, arena->top_left.y + height, width - 2, height - 2);
+	if (rect.x < -width || rect.x >= arena->viewport.w - (width << 1))
+		return ;
+	while (++i < ARENA_HEIGHT)
+	{
+		if (rect.y > arena->viewport.h - height)
+			break ;
+		SDL_RenderFillRect(arena->renderer, &rect);
+		if (i + 1 < 10)
+			sdl_putnbr(i + 1, get_rectangle(rect.x + (rect.w >> 2), rect.y, rect.w >> 1, rect.h), arena, WHITE_COLOR);
+		else
+			sdl_putnbr(i + 1, rect, arena, WHITE_COLOR);
+		rect.y += height;
 	}
 }
 
 static inline void	draw_numbers(t_arena *arena, int width, int height)
 {
-	SDL_Point		top_left;
-	Uint8			i;
-	int				ff;
-	int				sf;
-
 	draw_top_raw(arena, width, height);
-	top_left = arena->top_left;
-	top_left.y += height;
-	i = -1;
-	while (++i < ARENA_HEIGHT)
-	{
-		int y_init = top_left.y;
-		int ff = (i >> 4);
-		int sf = ((ff << 4) ^ i);
-		set_color(WHITE_COLOR, arena->bold_figures[sf]);
-		set_color(WHITE_COLOR, arena->bold_figures[ff]);
-		SDL_Rect rect = get_rectangle(top_left.x,
-										top_left.y + 1,
-										width - 2,
-										height - 2);
-		SDL_SetRenderDrawColor(arena->renderer, 0xff, 0x0, 0x0, 0xff);
-		SDL_RenderFillRect(arena->renderer, &rect);
-		rect.w /= 2;
-		t_rposition position = get_render_position(0,
-												&top_left,
-												NULL,
-												&rect);
-		render(&position, arena->bold_figures[ff], arena->renderer, SDL_FLIP_NONE);
-		top_left.x += rect.w;
-		rect.x += rect.w;
-		render(&position, arena->bold_figures[sf], arena->renderer, SDL_FLIP_NONE);
-		top_left.x -= rect.w;
-		top_left.y = y_init + height;
-	}
+	draw_left_column(arena, width, height);
 }
 
 void			draw_arena(t_arena *arena)
@@ -107,7 +80,7 @@ void			draw_arena(t_arena *arena)
 	top_y = arena->top_left.y + height + 1;
 	while (++i < ARENA_HEIGHT)
 	{
-		if (top_y < arena->viewport.y - height)
+		if (top_y < arena->viewport.y - (height << 1))
 		{
 			top_y += height;
 			continue ;
@@ -118,7 +91,7 @@ void			draw_arena(t_arena *arena)
 		top_x = arena->top_left.x + width + 1;
 		while (++j < ARENA_WIDTH)
 		{
-			if (top_x < arena->viewport.x - width)
+			if (top_x < arena->viewport.x - (width << 1))
 			{
 				top_x += width;
 				continue ;

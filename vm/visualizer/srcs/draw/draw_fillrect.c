@@ -45,7 +45,6 @@ void			draw_fillrect(t_arena *arena,
 	int index = i * ARENA_HEIGHT + j;
 
 	SDL_Point	left_corner = {.x = rect.x, .y = rect.y};
-	//int	cell = arena->bytes[i * ARENA_TILE_HEIGHT + j];
 	int cell = g_cw.map[index];
 	int ff = 0;
 	int sf = 0;
@@ -66,16 +65,16 @@ void			draw_fillrect(t_arena *arena,
 		set_alpha_mode(200, f);
 		set_alpha_mode(200, s);
 	}
-	position = get_render_position(0, &left_corner, NULL, &rect);
+	position = get_render_position(0, left_corner, left_corner, (SDL_Point){.x = rect.w, .y = rect.h});
 	set_color(f_color, f);
 	set_color(f_color, s);
 	SDL_SetRenderDrawColor(arena->renderer, back.r, back.g, back.b, 0x0);
 	SDL_RenderFillRect(arena->renderer, &rect);
 	rect.w /= 2;
-	position = get_render_position(0, &left_corner, NULL, &rect);
-	render(&position, f, arena->renderer, SDL_FLIP_NONE);
+	position = get_render_position(0, left_corner, left_corner, (SDL_Point){.x = rect.w, .y = rect.h});
+	render(position, f, arena->renderer, SDL_FLIP_NONE);
 	rect.x += rect.w;
 	left_corner.x += rect.w;
-	position = get_render_position(0, &left_corner, NULL, &rect);
-	render(&position, s, arena->renderer, SDL_FLIP_NONE);
+	position = get_render_position(0, left_corner, left_corner, (SDL_Point){.x = rect.w, .y = rect.h});
+	render(position, s, arena->renderer, SDL_FLIP_NONE);
 }

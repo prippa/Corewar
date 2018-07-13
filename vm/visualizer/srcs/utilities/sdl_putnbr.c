@@ -21,9 +21,9 @@ void	sdl_putnbr(int nbr, SDL_Rect clip, t_arena *arena, SDL_Color c)
 		int figure = nbr % 10;
 		nbr /= 10;
 		SDL_Rect r = get_rectangle(0, 0, figure_width, figure_height);
-		t_rposition pos = get_render_position(0, &top_left, NULL, &r);
+		t_rposition pos = get_render_position(0, top_left, top_left, (SDL_Point){.x = r.w, .y = r.h});
 		set_color(c, arena->bold_figures[figure]);
-		render(&pos, arena->bold_figures[figure], arena->renderer, SDL_FLIP_NONE);
+		render(pos, arena->bold_figures[figure], arena->renderer, SDL_FLIP_NONE);
 		top_left.x -= figure_width;
 	}
 }

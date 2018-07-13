@@ -48,6 +48,7 @@ static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 			tacts_before_update = 0;
 		}
 	}
+	draw_arena(arena);
 }
 
 static inline void	handle_fps(t_arena *arena, clock_t diff)
@@ -62,6 +63,11 @@ static inline void	handle_fps(t_arena *arena, clock_t diff)
 		arena->old_fps = arena->fps;
 		arena->fps = 0;
 	}
+}
+
+static inline void	update_renderer(t_arena *arena, clock_t diff)
+{
+	SDL_RenderPresent(arena->renderer);
 }
 
 void				events_handler(t_arena *arena)
@@ -84,7 +90,6 @@ void				events_handler(t_arena *arena)
 		diff = clock() - diff;
 		handle_fps(arena, diff);
 		handle_arena_rendering(arena, diff);
-		draw_arena(arena);
-		SDL_RenderPresent(arena->renderer);
+		update_renderer(arena, diff);
 	}
 }

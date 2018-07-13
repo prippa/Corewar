@@ -12,23 +12,9 @@
 
 #include "visualizer.h"
 
-t_rposition		get_render_position(double angle,
-									SDL_Point *left_corner,
-									SDL_Point *center,
-									SDL_Rect *clip)
+t_rposition		get_render_position(double angle, SDL_Point left_corner,
+									SDL_Point center, SDL_Point params)
 {
-	t_rposition	rp;
-
-	rp.angle = angle;
-	if (left_corner == NULL)
-	{
-		rp.left_corner = (SDL_Point *)malloc(sizeof(SDL_Point));
-		rp.left_corner->x = 0;
-		rp.left_corner->y = 0;
-	}
-	else
-		rp.left_corner = left_corner;
-	rp.center = center;
-	rp.clip = clip;
-	return (rp);
+	return ((t_rposition){.angle = angle, .left_corner = left_corner,
+							.center = center, .width = params.x, .height = params.y});
 }

@@ -39,8 +39,8 @@ void	draw_statuses(t_arena *arena)
 	for (int i = 0; i < g_cw.pd.champs_count; ++i)
 	{
 		SDL_Point rp = {.x = top_left_x + (area / 8), .y = top_left_y};
-		t_rposition pos = get_render_position(0, &rp, NULL, &clip);
-		render(&pos, arena->statuses[i].txt, arena->renderer, SDL_FLIP_NONE);
+		t_rposition pos = get_render_position(0, rp, rp, (SDL_Point){.x = clip.w, .y = clip.h});
+		render(pos, arena->statuses[i].txt, arena->renderer, SDL_FLIP_NONE);
 		SDL_SetRenderDrawColor(arena->renderer, 100, 0, 0, 0xff);
 		SDL_Rect r = get_rectangle(top_left_x + (area / 4), top_left_y + 0.05 * SCREEN_HEIGHT, area >> 1, 0.4 * SCREEN_HEIGHT);
 		SDL_RenderFillRect(arena->renderer, &r);

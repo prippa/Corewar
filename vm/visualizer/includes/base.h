@@ -183,9 +183,10 @@ typedef struct					s_checkbox
 typedef struct					s_rposition
 {
 	double						angle;
-	SDL_Point					*left_corner;
-	SDL_Point					*center;
-	SDL_Rect					*clip;
+	SDL_Point					left_corner;
+	SDL_Point					center;
+	int							width;
+	int							height;
 }								t_rposition;
 
 /*
@@ -202,16 +203,10 @@ typedef struct					s_text
 typedef struct					s_button
 {
 	void						(*action)(void *arena);
-	SDL_Rect					clip;
 	t_rposition					btn_pos;
 	t_rposition					txt_pos;
-	SDL_Point					position;
 	t_btnsprite					current_sprite;
 	t_ltexture					*button_txt;
-	SDL_Point					txt_position;
-	SDL_Rect					txt_clip;
-	int							width;
-	int							height;
 	void						*sprites;
 }								t_button;
 
@@ -245,7 +240,6 @@ typedef struct					s_arena
 	Mix_Chunk					*btn_press;
 	int							fps;
 	int							old_fps;
-	int							champ_count;
 	t_statusbar					statuses[TOTAL_CHAMP];
 	int							territory[TOTAL_CHAMP];
 	int							arena_tile_width;
@@ -318,10 +312,5 @@ typedef struct					s_arena
 	** bold figures
 	*/
 	t_ltexture					*bold_figures[FIGURES_COUNT];
-	Uint8						bytes[MAP_SIZE];
-	SDL_Color					colors[MAP_SIZE];
-	Uint8						new_bytes[MAP_SIZE];
-	SDL_Color					new_colors[MAP_SIZE];
-	bool						is_bold[MAP_SIZE];
 }								t_arena;
 #endif

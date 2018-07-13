@@ -33,12 +33,10 @@ void					free_checkbox(t_checkbox *btn);
 ** Allocates memory for a new button
 ** and sets position
 */
-t_button				*create_button(double angle,
-										SDL_Point position,
-										const char *text,
-										SDL_Renderer *renderer,
-										SDL_Point params,
-										void *sprites);
+t_button				*create_button(t_rposition btn_position,
+								const char *text,
+								SDL_Renderer *renderer,
+								void *sprites);
 /*
 ** Handles mouse event for button
 */

@@ -12,12 +12,8 @@
 
 #include "visualizer.h"
 
-bool	init_move_buttons(t_arena *arena)
+static inline void	init_move_btn_sprites(t_arena *arena)
 {
-	int	wd;
-	
-	wd = SCREEN_WIDTH - BUTTON_WIDTH - ((SCREEN_WIDTH >> 6));
-	arena->move_panel = load_from_file(GREY_PANEL_IMG, arena->renderer, (SDL_Color){});
 	bzero(arena->move_btn_sprites, sizeof(arena->move_btn_sprites));
 	arena->move_btn_sprites[MOVE_BUTTON_MOUSE_OUT] = load_from_file(ARROW_IMG,
 																arena->renderer,
@@ -34,27 +30,32 @@ bool	init_move_buttons(t_arena *arena)
 	arena->move_btn_sprites[MOVE_BUTTON_MOUSE_UP] = load_from_file(ARROW_IMG,
 																arena->renderer,
 																WHITE_COLOR);
-	if (!(arena->move_btns[UP_MENU_BTN] =
-			create_button(-90, (SDL_Point){.x = MOVE_BTN_WIDTH >> 1, .y = SCREEN_HEIGHT - (MOVE_BTN_WIDTH << 1)},
-							NULL, arena->renderer,
-							(SDL_Point){.x = MOVE_BTN_WIDTH, .y = MOVE_BTN_WIDTH},
-							arena->move_btn_sprites)) ||
-		!(arena->move_btns[RIGHT_MENU_BTN] =
-			create_button(0, (SDL_Point){.x = MOVE_BTN_WIDTH, .y = SCREEN_HEIGHT - 1.5 * MOVE_BTN_WIDTH},
-							NULL, arena->renderer,
-							(SDL_Point){.x = MOVE_BTN_WIDTH, .y = MOVE_BTN_WIDTH},
-							arena->move_btn_sprites)) ||
-		!(arena->move_btns[DOWN_MENU_BTN] =
-			create_button(90, (SDL_Point){.x = MOVE_BTN_WIDTH >> 1, .y = SCREEN_HEIGHT - MOVE_BTN_WIDTH},
-							NULL, arena->renderer,
-							(SDL_Point){.x = MOVE_BTN_WIDTH, .y = MOVE_BTN_WIDTH},
-							arena->move_btn_sprites)) ||
-		!(arena->move_btns[LEFT_MENU_BTN] =
-			create_button(180, (SDL_Point){.x = 0, .y = SCREEN_HEIGHT - 1.5 * MOVE_BTN_WIDTH},
-							NULL, arena->renderer,
-							(SDL_Point){.x = MOVE_BTN_WIDTH, .y = MOVE_BTN_WIDTH},
-							arena->move_btn_sprites)))
-		return (false);
+}
+
+bool	init_move_buttons(t_arena *arena)
+{
+	arena->move_panel = load_from_file(GREY_PANEL_IMG, arena->renderer, (SDL_Color){0});
+	init_move_btn_sprites(arena);
+	arena->move_btns[UP_MENU_BTN] = create_button(get_render_position(-90,
+									(SDL_Point){.x = MOVE_BTN_WIDTH >> 1, .y = SCREEN_HEIGHT - (MOVE_BTN_WIDTH << 1)},
+									(SDL_Point){.x = MOVE_BTN_WIDTH >> 1, .y = SCREEN_HEIGHT - (MOVE_BTN_WIDTH << 1)},
+									(SDL_Point){.x = MOVE_BTN_WIDTH, .y = MOVE_BTN_WIDTH}),
+									NULL, arena->renderer, arena->move_btn_sprites);
+	arena->move_btns[RIGHT_MENU_BTN] = create_button(get_render_position(0,
+									(SDL_Point){.x = MOVE_BTN_WIDTH, .y = SCREEN_HEIGHT - 1.5 * MOVE_BTN_WIDTH},
+									(SDL_Point){.x = MOVE_BTN_WIDTH, .y = SCREEN_HEIGHT - 1.5 * MOVE_BTN_WIDTH},
+									(SDL_Point){.x = MOVE_BTN_WIDTH, .y = MOVE_BTN_WIDTH}),
+									NULL, arena->renderer, arena->move_btn_sprites);
+	arena->move_btns[DOWN_MENU_BTN] = create_button(get_render_position(90,
+									(SDL_Point){.x = MOVE_BTN_WIDTH >> 1, .y = SCREEN_HEIGHT - MOVE_BTN_WIDTH},
+									(SDL_Point){.x = MOVE_BTN_WIDTH >> 1, .y = SCREEN_HEIGHT - MOVE_BTN_WIDTH},
+									(SDL_Point){.x = MOVE_BTN_WIDTH, .y = MOVE_BTN_WIDTH}),
+									NULL, arena->renderer, arena->move_btn_sprites);
+	arena->move_btns[LEFT_MENU_BTN] = create_button(get_render_position(180,
+									(SDL_Point){.x = 0, .y = SCREEN_HEIGHT - 1.5 * MOVE_BTN_WIDTH},
+									(SDL_Point){.x = 0, .y = SCREEN_HEIGHT - 1.5 * MOVE_BTN_WIDTH},
+									(SDL_Point){.x = MOVE_BTN_WIDTH, .y = MOVE_BTN_WIDTH}),
+									NULL, arena->renderer, arena->move_btn_sprites);
 	arena->move_btns[UP_MENU_BTN]->action = &move_up;
 	arena->move_btns[RIGHT_MENU_BTN]->action = &move_right;
 	arena->move_btns[DOWN_MENU_BTN]->action = &move_down;

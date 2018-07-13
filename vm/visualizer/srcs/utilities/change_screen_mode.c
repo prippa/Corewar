@@ -27,19 +27,19 @@ void	change_screen_mode(t_arena *arena)
 	arena->viewport = get_rectangle(0, 0, arena->abs_arena_width + 1, arena->abs_arena_height + 1);
 	for (int i = 0; i < TOTAL_START_BUTTONS; ++i)
 	{
-		arena->start_btns[i]->btn_pos.clip->h = BUTTON_HEIGHT;
-		arena->start_btns[i]->btn_pos.clip->w = BUTTON_WIDTH;
-		arena->start_btns[i]->position.y = SCREEN_HEIGHT - BUTTON_HEIGHT;
-		arena->start_btns[i]->txt_position.y = SCREEN_HEIGHT - BUTTON_HEIGHT;
+		arena->start_btns[i]->btn_pos.height = BUTTON_HEIGHT;
+		arena->start_btns[i]->btn_pos.width = BUTTON_WIDTH;
+		arena->start_btns[i]->btn_pos.left_corner.y = SCREEN_HEIGHT - BUTTON_HEIGHT;
+		arena->start_btns[i]->txt_pos.left_corner.y = SCREEN_HEIGHT - BUTTON_HEIGHT;
 	}
-	arena->move_btns[UP_MENU_BTN]->position = (SDL_Point){.x = MOVE_BTN_WIDTH >> 1, .y = SCREEN_HEIGHT - (MOVE_BTN_WIDTH << 1)};
-	arena->move_btns[RIGHT_MENU_BTN]->position = (SDL_Point){.x = MOVE_BTN_WIDTH, .y = SCREEN_HEIGHT - 1.5 * MOVE_BTN_WIDTH};
-	arena->move_btns[DOWN_MENU_BTN]->position = (SDL_Point){.x = MOVE_BTN_WIDTH >> 1, .y = SCREEN_HEIGHT - MOVE_BTN_WIDTH};
-	arena->move_btns[LEFT_MENU_BTN]->position = (SDL_Point){.x = 0, .y = SCREEN_HEIGHT - 1.5 * MOVE_BTN_WIDTH};
+	arena->move_btns[UP_MENU_BTN]->btn_pos.left_corner = (SDL_Point){.x = MOVE_BTN_WIDTH >> 1, .y = SCREEN_HEIGHT - (MOVE_BTN_WIDTH << 1)};
+	arena->move_btns[RIGHT_MENU_BTN]->btn_pos.left_corner = (SDL_Point){.x = MOVE_BTN_WIDTH, .y = SCREEN_HEIGHT - 1.5 * MOVE_BTN_WIDTH};
+	arena->move_btns[DOWN_MENU_BTN]->btn_pos.left_corner = (SDL_Point){.x = MOVE_BTN_WIDTH >> 1, .y = SCREEN_HEIGHT - MOVE_BTN_WIDTH};
+	arena->move_btns[LEFT_MENU_BTN]->btn_pos.left_corner = (SDL_Point){.x = 0, .y = SCREEN_HEIGHT - 1.5 * MOVE_BTN_WIDTH};
 	for (int i = 0; i < MOVE_BUTTON_TOTAL; ++i)
 	{
-		arena->move_btns[i]->btn_pos.clip->w = MOVE_BTN_WIDTH;
-		arena->move_btns[i]->btn_pos.clip->h = MOVE_BTN_WIDTH;
+		arena->move_btns[i]->btn_pos.width = MOVE_BTN_WIDTH;
+		arena->move_btns[i]->btn_pos.height = MOVE_BTN_WIDTH;
 	}
 	for (int i = 0; i < TOTAL_CHECKBOXES; ++i)
 	{

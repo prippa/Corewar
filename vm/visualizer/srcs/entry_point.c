@@ -37,45 +37,6 @@ static inline void	close_all(t_arena arena)
 	SDL_Quit();
 }
 
-void	set_random(t_arena *arena)
-{
-	int	i;
-
-	i = -1;
-	bzero(arena->territory, sizeof(int) * TOTAL_CHAMP);
-	while (++i < MAP_SIZE)
-	{
-		arena->is_bold[i] = rand() % 2;
-		arena->bytes[i] = rand() % 0x100;
-		int r = rand() % 6;
-		if (r == 0 || r == 4 || r == 5)
-		{
-			arena->colors[i] = RED_COLOR;
-			arena->territory[RED_CHAMP]++;
-		}
-		else if (r == 1)
-		{
-			arena->colors[i] = GREEN_COLOR;
-			arena->territory[GREEN_CHAMP]++;
-		}
-		else if (r == 2)
-		{
-			arena->colors[i] = BLUE_COLOR;
-			arena->territory[BLUE_CHAMP]++;
-		}
-		else
-		{
-			arena->colors[i] = CYAN_COLOR;
-			arena->territory[CYAN_CHAMP]++;
-		}
-		//arena->colors[i] = (SDL_Color){.r = 0, .g = 0, .b = 0};
-	}
-	/*printf("%d %d %d %d\n", arena->territory[RED_CHAMP],
-		arena->territory[GREEN_CHAMP],
-		arena->territory[BLUE_CHAMP],
-		arena->territory[CYAN_CHAMP]);*/
-}
-
 int					visualizer_main(void)
 {
 	t_arena			arena;

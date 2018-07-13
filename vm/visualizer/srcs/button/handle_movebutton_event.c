@@ -28,7 +28,7 @@ void				handle_movebutton_event(SDL_Event *e,
 	if (e == NULL)
 	{
 		state = SDL_GetMouseState(&x, &y);
-		if (is_mouse_outside_movebtn(x, y, btn->position, arena))
+		if (is_mouse_outside_movebtn(x, y, btn->btn_pos.left_corner, arena))
 			btn->current_sprite = MOVE_BUTTON_MOUSE_OUT;
 		else if (state)
 		{
@@ -39,7 +39,7 @@ void				handle_movebutton_event(SDL_Event *e,
 	else if (is_mouse_event_happened(e->type))
 	{
 		SDL_GetMouseState(&x, &y);
-		if (is_mouse_outside_movebtn(x, y, btn->position, arena))
+		if (is_mouse_outside_movebtn(x, y, btn->btn_pos.left_corner, arena))
 			btn->current_sprite = MOVE_BUTTON_MOUSE_OUT;
 		else if (e->type == SDL_MOUSEMOTION)
 		{
