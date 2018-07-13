@@ -73,5 +73,5 @@ void			cw_game_loop(void)
 		g_cw.cycle_to_die_check--;
 	}
 	// t_processe_killer();
-	cw_vis_print_map(1);
+	// cw_vis_print_map(1);
 }
