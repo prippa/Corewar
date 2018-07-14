@@ -18,7 +18,7 @@ static inline void	draw_top_raw(t_arena *arena, int width, int height)
 	SDL_Rect		rect;
 
 	i = -1;
-	SDL_SetRenderDrawColor(arena->renderer, 0xff, 0x0, 0x0, 0xff);
+	//SDL_SetRenderDrawColor(arena->renderer, 0xff, 0x0, 0x0, 0xff);
 	rect = get_rectangle(arena->top_left.x + width, arena->top_left.y, width - 2, height - 2);
 	if (rect.y < -height || rect.y >= arena->viewport.h - (height << 1))
 		return ;
@@ -27,10 +27,10 @@ static inline void	draw_top_raw(t_arena *arena, int width, int height)
 		if (rect.x > arena->viewport.w - width)
 			break ;
 		SDL_RenderFillRect(arena->renderer, &rect);
-		if (i + 1 < 10)
-			sdl_putnbr(i + 1, get_rectangle(rect.x + (rect.w >> 2), rect.y, rect.w >> 1, rect.h), arena, WHITE_COLOR);
-		else
-			sdl_putnbr(i + 1, rect, arena, WHITE_COLOR);
+		/*if (i + 1 < 10)
+			sdl_putnbr(i + 1, get_rectangle(rect.x + (rect.w >> 2), rect.y, rect.w >> 1, rect.h), arena, WHITE_COLOR, 1);
+		else*/
+			sdl_putnbr(i + 1, rect, arena, WHITE_COLOR, 2);
 		rect.x += width;
 	}
 }
@@ -41,7 +41,7 @@ static inline void	draw_left_column(t_arena *arena, int width, int height)
 	SDL_Rect		rect;
 
 	i = -1;
-	SDL_SetRenderDrawColor(arena->renderer, 0xff, 0x0, 0x0, 0xff);
+	//SDL_SetRenderDrawColor(arena->renderer, 0xff, 0x0, 0x0, 0xff);
 	rect = get_rectangle(arena->top_left.x, arena->top_left.y + height, width - 2, height - 2);
 	if (rect.x < -width || rect.x >= arena->viewport.w - (width << 1))
 		return ;
@@ -50,10 +50,10 @@ static inline void	draw_left_column(t_arena *arena, int width, int height)
 		if (rect.y > arena->viewport.h - height)
 			break ;
 		SDL_RenderFillRect(arena->renderer, &rect);
-		if (i + 1 < 10)
-			sdl_putnbr(i + 1, get_rectangle(rect.x + (rect.w >> 2), rect.y, rect.w >> 1, rect.h), arena, WHITE_COLOR);
-		else
-			sdl_putnbr(i + 1, rect, arena, WHITE_COLOR);
+		//if (i + 1 < 10)
+		//	sdl_putnbr(i + 1, get_rectangle(rect.x + (rect.w >> 2), rect.y, rect.w >> 1, rect.h), arena, WHITE_COLOR, 1);
+		//else
+			sdl_putnbr(i + 1, rect, arena, WHITE_COLOR, 2);
 		rect.y += height;
 	}
 }
@@ -76,6 +76,7 @@ void			draw_arena(t_arena *arena)
 	i = -1;
 	width = ARENA_TILE_WIDTH * arena->zoom;
 	height = ARENA_TILE_HEIGHT * arena->zoom;
+	SDL_SetRenderDrawColor(arena->renderer, arena->leader_color.r, arena->leader_color.g, arena->leader_color.b, arena->leader_color.a);
 	draw_numbers(arena, width, height);
 	top_y = arena->top_left.y + height + 1;
 	while (++i < ARENA_HEIGHT)

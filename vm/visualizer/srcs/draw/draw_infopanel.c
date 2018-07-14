@@ -2,7 +2,7 @@
 
 void	draw_infopanel(t_arena *arena)
 {
-	draw_fillrect(INFOPANEL_RECTANGLE, LIGHT_RED, arena->renderer);
+	draw_fillrect(INFOPANEL_RECTANGLE, arena->leader_color, arena->renderer);
 	render(get_render_position(0, INFOPANEL_TOP_LEFT, INFOPANEL_TOP_LEFT, INFOPANEL_LABEL_PARAMS),
 			arena->infopanel_title, arena->renderer, SDL_FLIP_NONE);
 

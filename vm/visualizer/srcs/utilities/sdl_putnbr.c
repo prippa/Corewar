@@ -1,6 +1,6 @@
 #include "visualizer.h"
 
-void	sdl_putnbr(int nbr, SDL_Rect clip, t_arena *arena, SDL_Color c)
+void	sdl_putnbr(int nbr, SDL_Rect clip, t_arena *arena, SDL_Color c, int min_count)
 {
 	SDL_Point	top_left;
 	int			figure_count;
@@ -12,6 +12,8 @@ void	sdl_putnbr(int nbr, SDL_Rect clip, t_arena *arena, SDL_Color c)
 	figure_count = 1;
 	while ((tmp /= 10))
 		figure_count++;
+	if (figure_count < min_count)
+		figure_count = min_count;
 	figure_height = clip.h;
 	figure_width = clip.w / figure_count;
 	top_left.x = clip.x + clip.w - figure_width;

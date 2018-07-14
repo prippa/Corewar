@@ -39,6 +39,7 @@ static inline bool	init_window(t_arena *arena)
 	arena->fps = 0;
 	arena->cycles_per_tact = 1;
 	arena->tact_duration = 100000;
+	arena->leader_color = METALLIC_GOLD;
 	return (true);
 }
 

@@ -83,6 +83,10 @@
 # define INFOPANEL_TOP_LEFT (SDL_Point){.x = arena->abs_arena_width, .y = 0}
 # define INFOPANEL_LABEL_PARAMS (SDL_Point){.x = INFOPANEL_WIDTH, SCREEN_HEIGHT >> 2}
 # define LIGHT_RED (SDL_Color){.r=0x8b}
+# define LIGHT_BLUE (SDL_Color){.r=0x46, .g=0x82, .b=0xB4}
+# define LIGHT_GREEN (SDL_Color){.r=0x3c, .g=0xb3, .b=0x71}
+# define LIGHT_CYAN (SDL_Color){.g=0x8b, .b=0x8b}
+# define METALLIC_GOLD (SDL_Color){.r=0xD4, .g=0xAF, .b=0x37}
 /*
 ** Number of message box buttons
 */
@@ -236,6 +240,7 @@ typedef enum					e_champcolor
 */
 typedef struct					s_arena
 {
+	SDL_Color					leader_color;
 	t_ltexture					*speed_txt;
 	t_ltexture					*duration_txt;
 	int							cycles_per_tact;
