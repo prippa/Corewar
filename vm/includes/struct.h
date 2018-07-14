@@ -33,7 +33,6 @@ typedef struct			s_command
 
 typedef	struct			s_processes
 {
-	unsigned int		id;
 	int					pc;
 	char				carry;
 	int					registers[REG_NUMBER];
@@ -62,8 +61,6 @@ typedef struct			s_champ
 	unsigned int		real_lives_number;
 	unsigned int        last_live;
 	unsigned char		color;
-	t_processes			*proc_start;
-	t_processes			*proc_end;
 	struct s_champ		*next;
 }						t_champ;
 
@@ -103,12 +100,15 @@ typedef struct			s_corewar
 	unsigned char		color_map_live[MEM_SIZE];
 	unsigned char		color_live_cycle_buf[MEM_SIZE];
 	const t_op			*op;
+	t_processes			*proc_start;
+	t_processes			*proc_end;
 	unsigned int		cycle;
 	int					cycle_to_die;
 	int					cycle_to_die_check;
 	unsigned int		max_checks_check;
 	unsigned int		proc_counter;
-	unsigned int		id_counter;
+	int					last_reported_to_be_alive;
+	char				game_over;
 }						t_corewar;
 
 #endif

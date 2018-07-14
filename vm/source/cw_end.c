@@ -1,6 +1,6 @@
 #include "corewar.h"
 
-void		cw_print_players(t_champ *champs)
+void			cw_print_players(t_champ *champs)
 {
 	ft_putstr("Introducing contestants...\n");
 	while (champs)
@@ -12,17 +12,11 @@ void		cw_print_players(t_champ *champs)
 	}
 }
 
-void		cw_print_winer(t_champ *champs)
+void			cw_print_winer(t_champ *champs)
 {
-	t_champ	*winer;
+	t_champ *champ;
 
-	winer = champs;
-	while (champs)
-	{
-		if (winer->last_live < champs->last_live)
-			winer = champs;
-		champs = champs->next;
-	}
+	champ = t_champ_find(g_cw.last_reported_to_be_alive, champs);
 	ft_printf("Contestant %d, \"%s\", has won !\n",
-		(winer->champ_number * (-1)), winer->head.prog_name);
+		(champ->champ_number * (-1)), champ->head.prog_name);
 }

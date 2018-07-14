@@ -18,12 +18,13 @@ static void		cw_execute_sti(t_command *cmd, t_processes *proc)
 	unsigned char	buf[4];
 
 	if (cmd->codage == RIR || cmd->codage == RID)
-		pc = (proc->pc + (
-		((cw_get_dec_from_the_point((cmd->arg2.av % IDX_MOD), 4))
-		+ (cw_get_right_arg(proc, cmd->arg3.tp, cmd->arg3.av))) % IDX_MOD));
+		pc = (proc->pc + IDX_X(
+			((cw_get_dec_from_the_point(IDX_X(cmd->arg2.av), 4))
+				+ (cw_get_right_arg(proc, cmd->arg3.tp, cmd->arg3.av)))));
 	else
-		pc = (proc->pc + (((cw_get_right_arg(proc, cmd->arg2.tp, cmd->arg2.av))
-		+ (cw_get_right_arg(proc, cmd->arg3.tp, cmd->arg3.av))) % IDX_MOD));
+		pc = (proc->pc + IDX_X(
+			((cw_get_right_arg(proc, cmd->arg2.tp, cmd->arg2.av))
+				+ (cw_get_right_arg(proc, cmd->arg3.tp, cmd->arg3.av)))));
 	cw_write_bytes_to_buf(buf, proc->registers[cmd->arg1.av - 1]);
 	cw_write_to_map(buf, pc);
 	cw_vis_write_new_color(proc->color, pc, 4);

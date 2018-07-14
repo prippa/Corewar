@@ -59,10 +59,13 @@ void		cw_init(void)
 	ft_bzero(g_cw.color_map_live, MEM_SIZE);
 	ft_bzero(g_cw.color_live_cycle_buf, MEM_SIZE);
 	cw_get_op();
+	g_cw.proc_start = NULL;
+	g_cw.proc_end = NULL;
 	g_cw.cycle = 0;
 	g_cw.cycle_to_die = CYCLE_TO_DIE;
 	g_cw.cycle_to_die_check = CYCLE_TO_DIE;
 	g_cw.max_checks_check = MAX_CHECKS;
 	g_cw.proc_counter = 0;
-	g_cw.id_counter = 1;
+	g_cw.last_reported_to_be_alive = -1;
+	g_cw.game_over = 1;
 }

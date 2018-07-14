@@ -17,12 +17,13 @@ static void		cw_execute_ldi(t_command *cmd, t_processes *proc)
 	int				pc;
 
 	if (cmd->codage == IRR || cmd->codage == IDR)
-		pc = (proc->pc + (
-			(cw_get_dec_from_the_point(((cmd->arg1.av % IDX_MOD) + proc->pc), 4)
-				+ cw_get_right_arg(proc, cmd->arg2.tp, cmd->arg2.av)) % IDX_MOD));
+		pc = (proc->pc + IDX_X(
+			((cw_get_dec_from_the_point((IDX_X(cmd->arg1.av) + proc->pc), 4))
+				+ (cw_get_right_arg(proc, cmd->arg2.tp, cmd->arg2.av)))));
 	else
-		pc = (proc->pc + (((cw_get_right_arg(proc, cmd->arg1.tp, cmd->arg1.av))
-			+ (cw_get_right_arg(proc, cmd->arg2.tp, cmd->arg2.av))) % IDX_MOD));
+		pc = (proc->pc + IDX_X(
+			((cw_get_right_arg(proc, cmd->arg1.tp, cmd->arg1.av))
+				+ (cw_get_right_arg(proc, cmd->arg2.tp, cmd->arg2.av)))));
 	proc->registers[cmd->arg3.av - 1] = cw_get_dec_from_the_point(pc, 4);
 }
 

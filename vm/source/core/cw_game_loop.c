@@ -22,14 +22,19 @@ static void		cw_cycles_new_period(void)
 	}
 	g_cw.cycle_to_die_check = g_cw.cycle_to_die;
 	t_champ_zero_lives_number(g_cw.pd.champs);
-	t_processe_killer(g_cw.pd.champs);
+	t_processe_killer();
 }
 
 static void		cw_proc_executer(t_processes *proc)
 {
 	while (proc)
 	{
-		g_cw.color_map_pc[proc->pc] = 0;
+		g_cw.color_map_pc[proc->pc]--;
+		if (proc->exec_cycles == -1 && IS_COMMAND(g_cw.map[proc->pc]))
+		{
+			proc->cmd = g_cw.map[proc->pc];
+			proc->exec_cycles = g_cw.op[proc->cmd - 1].cycles_price - 1;
+		}
 		if (proc->exec_cycles != -1)
 		{
 			if (!proc->exec_cycles)
@@ -41,31 +46,23 @@ static void		cw_proc_executer(t_processes *proc)
 				proc->exec_cycles--;
 		}
 		else
-			proc->pc = MEM_X((proc->pc + 1));
-		g_cw.color_map_pc[proc->pc] = 1;
+			cw_move_pc(proc, 1);
+		g_cw.color_map_pc[proc->pc]++;
 		proc = proc->next;
 	}
 }
 
 int				cw_game_loop(void)
 {
-	t_champ *champs;
-
 	if (g_cw.cycle_to_die <= 0)
 		return (0);
-	t_processes_initer(g_cw.pd.champs);
-	champs = g_cw.pd.champs;
-	while (champs)
-	{
-		cw_proc_executer(champs->proc_start);
-		champs = champs->next;
-	}
-	if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
-		cw_print_dump_exit();
 	if (!g_cw.cycle_to_die_check)
 		cw_cycles_new_period();
 	if (g_cw.proc_counter == 0)
 		return (0);
+	cw_proc_executer(g_cw.proc_start);
+	if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
+		cw_print_dump_exit();
 	g_cw.cycle++;
 	g_cw.cycle_to_die_check--;
 	return (1);

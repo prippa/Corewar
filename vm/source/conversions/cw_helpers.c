@@ -75,10 +75,10 @@ int			cw_get_dec_from_the_point(int pc, const int label)
 	int				res;
 	int				i;
 
-	res = 0;
-	i = 0;
 	if (label == 0)
 		return (0);
+	res = 0;
+	i = 0;
 	if ((pc = MEM_X(pc)) < 0)
 		pc += MEM_SIZE;
 	while (i < label)

@@ -29,6 +29,7 @@ void			cw_live(t_processes *proc)
 			(av_champ->color + (F_BACK_GREEN_WHITE - 1));
 		av_champ->lives_number++;
 		av_champ->last_live = g_cw.cycle + 1;
+		g_cw.last_reported_to_be_alive = av_champ->champ_number;
 	}
 	proc_champ->real_lives_number++;
 	cw_move_pc_without_codage(proc);

@@ -43,7 +43,14 @@ static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 		if (tacts_before_update >= arena->tact_duration)
 		{
 			for (int i = 0; i < arena->cycles_per_tact; ++i)
-				cw_game_loop();
+			{
+				if (!cw_game_loop())
+				{
+					g_cw.game_over = 0;
+					t_processes_free(&g_cw.proc_start, &g_cw.proc_end);
+					break ;
+				}
+			}
 			cw_vis_update_map();
 			tacts_before_update = 0;
 		}

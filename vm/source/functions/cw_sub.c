@@ -15,7 +15,7 @@
 static void		cw_execute_sub(t_command *cmd, t_processes *proc)
 {
 	proc->registers[cmd->arg3.av - 1] =
-		proc->registers[cmd->arg1.av - 1] - proc->registers[cmd->arg2.av - 1];
+		(proc->registers[cmd->arg1.av - 1] - proc->registers[cmd->arg2.av - 1]);
 	proc->carry = (proc->registers[cmd->arg3.av - 1] == 0) ? 1 : 0;
 }
 

@@ -26,7 +26,7 @@ static void				cw_vis_down_cycles_color(int pc)
 		g_cw.color_live_cycle_buf[pc]--;
 }
 
-void					cw_vis_update_map(void) // TRASH
+void					cw_vis_update_map(void)
 {
 	int i;
 
@@ -41,6 +41,7 @@ void					cw_vis_update_map(void) // TRASH
 
 // void					cw_vis_print_map(char flag) // TRASH
 // {
+// 	if (flag) system("clear");
 // 	int i;
 // 	int new_line_flag;
 
@@ -60,9 +61,10 @@ void					cw_vis_update_map(void) // TRASH
 // 			new_line_flag++;
 // 		i++;
 // 	}
-// 	ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
-// 	ft_printf("cycle to die: %d\n", g_cw.cycle_to_die);
-// 	ft_printf("proc count: %u\n", g_cw.proc_counter);
+// 	if (flag) ft_printf("\n************\nCycle: %u\n************\n", g_cw.cycle);
+// 	if (flag) ft_printf("cycle to die: %d\n", g_cw.cycle_to_die);
+// 	if (flag) ft_printf("proc count: %u\n", g_cw.proc_counter);
+// 	if (flag) ft_printf("live %u\n", g_cw.pd.champs->lives_number);
 // 	if (flag) read(1, 0, 1);
 // 	if (flag) system("clear");
 // }

@@ -31,6 +31,10 @@ typedef enum	e_flags
 	VISU
 }				t_flags;
 
+/*
+******************************* Functions **************************************
+*/
+
 typedef enum	e_op_code
 {
 	LIVE = 1,
