@@ -20,7 +20,7 @@
 extern struct s_corewar	g_cw;
 
 # define FILE_NAME_MAX		4096
-# define CW_F_SIZE			2
+# define CW_F_SIZE			3
 # define CW_BIT				64
 # define CW_FUNC_NUMBER		16
 # define ALIVE				1
@@ -29,7 +29,8 @@ extern struct s_corewar	g_cw;
 typedef enum	e_flags
 {
 	DUMP = 0,
-	VISU
+	VISU,
+	AFF_F
 }				t_flags;
 
 /*

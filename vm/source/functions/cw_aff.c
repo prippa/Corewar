@@ -16,10 +16,13 @@ static void		cw_execute_aff(t_command *cmd, t_processes *proc)
 {
 	char c;
 
-	c = (proc->registers[cmd->arg1.av - 1] % 256);
-	ft_putstr("Aff: ");
-	ft_putchar(c);
-	ft_putchar('\n');
+	if (g_cw.pd.flags[AFF_F])
+	{
+		c = (proc->registers[cmd->arg1.av - 1] % 256);
+		ft_putstr("Aff: ");
+		ft_putchar(c);
+		ft_putchar('\n');
+	}
 }
 
 static int		cw_get_args_av_aff(t_command *cmd, t_processes *proc)
