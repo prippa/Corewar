@@ -12,6 +12,12 @@
 
 #include "corewar.h"
 
+void		cw_lseek_cur_skip(int fd, long size)
+{
+	if ((lseek(fd, size, SEEK_CUR)) < 0)
+		cw_perror_exit(ERR_LSEEK_CUR_MESSAGE, LSEEK);
+}
+
 static void	cw_parse_file(t_champ *champ)
 {
 	cw_check_magic(champ);
@@ -25,10 +31,11 @@ void		cw_parser(void)
 {
 	t_champ *champs;
 
-	champs = g_cw->pd.champs;
+	champs = g_cw.pd.champs;
 	while (champs)
 	{
 		cw_parse_file(champs);
+		close(champs->fd);
 		champs = champs->next;
 	}
 }
