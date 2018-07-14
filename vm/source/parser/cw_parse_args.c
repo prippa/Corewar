@@ -86,7 +86,7 @@ void		cw_parse_args(int argc, char **argv)
 	int i;
 
 	if (argc < 2)
-		cw_exit(CW_USAGE, USAGE);
+		cw_exit("", USAGE);
 	i = cw_parse_flags(argv);
 	while (argv[i])
 	{

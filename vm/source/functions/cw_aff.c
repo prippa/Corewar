@@ -14,7 +14,11 @@
 
 static void		cw_execute_aff(t_command *cmd, t_processes *proc)
 {
-	ft_putchar((proc->registers[cmd->arg1.av - 1] % 256));
+	char c;
+
+	c = (proc->registers[cmd->arg1.av - 1] % 256);
+	ft_putstr("Aff: ");
+	ft_putchar(c);
 	ft_putchar('\n');
 }
 

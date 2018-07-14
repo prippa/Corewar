@@ -3,16 +3,29 @@
         {
             "name": "Mac",
             "includePath": [
+<<<<<<< HEAD
                 "${workspaceFolder}/includes",
                 "${workspaceFolder}/libft/includes",
                 "${workspaceFolder}/assembler/includes",
                 "${workspaceFolder}/vm/includes",
                 "${workspaceFolder}/vm/visualizer/includes",
+=======
+                "${workspaceFolder}",
+>>>>>>> beta_vm
                 "/usr/local/include",
                 "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1",
                 "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include",
                 "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+<<<<<<< HEAD
                 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include"
+=======
+                "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include",
+                "${workspaceFolder}/vm/includes",
+				"${workspaceFolder}/vm/visualizer/includes",
+                "${workspaceFolder}/libft/includes",
+                "${workspaceFolder}/assembler/includes",
+                "${workspaceFolder}/includes"
+>>>>>>> beta_vm
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
@@ -52,20 +65,28 @@
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
+<<<<<<< HEAD
             },
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
             "cppStandard": "c++17"
+=======
+            }
+>>>>>>> beta_vm
         },
         {
             "name": "Win32",
             "includePath": [
                 "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include",
+<<<<<<< HEAD
                 "${workspaceFolder}",
                 "${workspaceFolder}/vm/includes",
                 "${workspaceFolder}/includes",
                 "${workspaceFolder}/libft/includes",
                 "${workspaceFolder}/assembler/includes"
+=======
+                "${workspaceFolder}"
+>>>>>>> beta_vm
             ],
             "defines": [
                 "_DEBUG",
@@ -80,10 +101,14 @@
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
+<<<<<<< HEAD
             },
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c11",
             "cppStandard": "c++17"
+=======
+            }
+>>>>>>> beta_vm
         }
     ],
     "version": 3

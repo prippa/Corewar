@@ -12,6 +12,17 @@
 
 #include "corewar.h"
 
+static void	cw_print_usage(void)
+{
+	ft_putstr("Usage: ./corewar [-visu] [-dump nbr_cycles] \
+[[-n number] champion1.cor] ...\n");
+	ft_putstr("####################### Flags Manual #######################\n");
+	ft_putstr("-d N		: Dumps memory after N cycles then exits\n");
+	ft_putstr("-n N		: Sets the number of the next player\n");
+	ft_putstr("-visu		: Big ass visualization\n");
+	ft_putstr("############################################################");
+}
+
 void		cw_perror_exit(char *message, int error_number)
 {
 	perror(message);
@@ -33,6 +44,8 @@ static void	cw_exit_print_message(char *message, int error_number)
 	else if (error_number == PROG_SIZE_INVALID)
 		ft_dprintf(2, "Error: File [%s] \
 has a code size that differ from what its header says\n", message);
+	else if (error_number == USAGE)
+		cw_print_usage();
 	else
 		ft_dprintf(2, "%s\n", message);
 }

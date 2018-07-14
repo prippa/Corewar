@@ -14,28 +14,66 @@
 
 struct s_corewar g_cw;
 
-static void cw_get_op(void)
+static void	cw_op_init_label(void)
 {
-	const t_op op_tab[] =
-	{
-		{&cw_live, 10, 4},
-		{&cw_ld, 5, 4},
-		{&cw_st, 5, 4},
-		{&cw_add, 10, 4},
-		{&cw_sub, 10, 4},
-		{&cw_binary_and, 6, 4},
-		{&cw_binary_or, 6, 4},
-		{&cw_binary_xor, 6, 4},
-		{&cw_zjmp, 20, 2},
-		{&cw_ldi, 25, 2},
-		{&cw_sti, 25, 2},
-		{&cw_fork, 800, 2},
-		{&cw_lld, 10, 4},
-		{&cw_lldi, 50, 2},
-		{&cw_lfork, 1000, 2},
-		{&cw_aff, 2, 4}
-	};
-	g_cw.op = op_tab;
+	g_cw.op[0].label = 4;
+	g_cw.op[1].label = 4;
+	g_cw.op[2].label = 4;
+	g_cw.op[3].label = 4;
+	g_cw.op[4].label = 4;
+	g_cw.op[5].label = 4;
+	g_cw.op[6].label = 4;
+	g_cw.op[7].label = 4;
+	g_cw.op[8].label = 2;
+	g_cw.op[9].label = 2;
+	g_cw.op[10].label = 2;
+	g_cw.op[11].label = 2;
+	g_cw.op[12].label = 4;
+	g_cw.op[13].label = 2;
+	g_cw.op[14].label = 2;
+	g_cw.op[15].label = 4;
+}
+
+static void	cw_op_init_cycles_price(void)
+{
+	g_cw.op[0].cycles_price = 10;
+	g_cw.op[1].cycles_price = 5;
+	g_cw.op[2].cycles_price = 5;
+	g_cw.op[3].cycles_price = 10;
+	g_cw.op[4].cycles_price = 10;
+	g_cw.op[5].cycles_price = 6;
+	g_cw.op[6].cycles_price = 6;
+	g_cw.op[7].cycles_price = 6;
+	g_cw.op[8].cycles_price = 20;
+	g_cw.op[9].cycles_price = 25;
+	g_cw.op[10].cycles_price = 25;
+	g_cw.op[11].cycles_price = 800;
+	g_cw.op[12].cycles_price = 10;
+	g_cw.op[13].cycles_price = 50;
+	g_cw.op[14].cycles_price = 1000;
+	g_cw.op[15].cycles_price = 2;
+}
+
+static void	cw_get_op(void)
+{
+	g_cw.op[0].func = &cw_live;
+	g_cw.op[1].func = &cw_ld;
+	g_cw.op[2].func = &cw_st;
+	g_cw.op[3].func = &cw_add;
+	g_cw.op[4].func = &cw_sub;
+	g_cw.op[5].func = &cw_binary_and;
+	g_cw.op[6].func = &cw_binary_or;
+	g_cw.op[7].func = &cw_binary_xor;
+	g_cw.op[8].func = &cw_zjmp;
+	g_cw.op[9].func = &cw_ldi;
+	g_cw.op[10].func = &cw_sti;
+	g_cw.op[11].func = &cw_fork;
+	g_cw.op[12].func = &cw_lld;
+	g_cw.op[13].func = &cw_lldi;
+	g_cw.op[14].func = &cw_lfork;
+	g_cw.op[15].func = &cw_aff;
+	cw_op_init_cycles_price();
+	cw_op_init_label();
 }
 
 static void	cw_parse_data_init(t_parse_data *pd)

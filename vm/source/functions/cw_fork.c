@@ -12,14 +12,14 @@
 
 #include "corewar.h"
 
-void			cw_fork(t_processes *proc)
+void	cw_fork(t_processes *proc)
 {
-    int		av;
-	int		pc;
+	int av;
+	int pc;
 
 	av = cw_get_dec_from_the_point(proc->pc + 1, g_cw.op[proc->cmd - 1].label);
-    if ((pc = MEM_X((proc->pc + IDX_X(av)))) < 0)
-        pc += MEM_SIZE;
-    t_processes_copy(&g_cw.proc_start, &g_cw.proc_end, proc, pc);
-    cw_move_pc_without_codage(proc);
+	if ((pc = MEM_X((proc->pc + IDX_X(av)))) < 0)
+		pc += MEM_SIZE;
+	t_processes_copy(&g_cw.proc_start, &g_cw.proc_end, proc, pc);
+	cw_move_pc_without_codage(proc);
 }

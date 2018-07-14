@@ -30,10 +30,6 @@ static int		cw_get_args_av_add(t_command *cmd, t_processes *proc)
 
 void			cw_add(t_processes *proc)
 {
-	if (g_cw.cycle == 239)
-	{
-		
-	}
 	t_command cmd;
 
 	ft_bzero(&cmd, sizeof(t_command));

@@ -19,8 +19,7 @@ static void		cw_execute_lld(t_command *cmd, t_processes *proc)
 	else if (cmd->codage == IR)
 		proc->registers[cmd->arg2.av - 1] = cw_get_dec_from_the_point(
 			(proc->pc + cmd->arg1.av),
-			g_cw.op[proc->cmd - 1].label
-		);
+			g_cw.op[proc->cmd - 1].label);
 	proc->carry = (proc->registers[cmd->arg2.av - 1] == 0) ? 1 : 0;
 }
 

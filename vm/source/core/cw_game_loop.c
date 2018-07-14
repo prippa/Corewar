@@ -52,6 +52,24 @@ static void		cw_proc_executer(t_processes *proc)
 	}
 }
 
+void			cw_game_loop_base(void)
+{
+	while (42)
+	{
+		if (g_cw.cycle_to_die <= 0)
+			break ;
+		if (!g_cw.cycle_to_die_check)
+			cw_cycles_new_period();
+		if (g_cw.proc_counter == 0)
+			break ;
+		cw_proc_executer(g_cw.proc_start);
+		if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
+			cw_print_dump_exit();
+		g_cw.cycle++;
+		g_cw.cycle_to_die_check--;
+	}
+}
+
 int				cw_game_loop(void)
 {
 	if (g_cw.cycle_to_die <= 0)
@@ -61,8 +79,6 @@ int				cw_game_loop(void)
 	if (g_cw.proc_counter == 0)
 		return (0);
 	cw_proc_executer(g_cw.proc_start);
-	if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
-		cw_print_dump_exit();
 	g_cw.cycle++;
 	g_cw.cycle_to_die_check--;
 	return (1);

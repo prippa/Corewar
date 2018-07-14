@@ -19,7 +19,10 @@ int		main(int argc, char **argv)
 	cw_parser();
 	cw_load_map();
 	cw_print_players(g_cw.pd.champs);
-	visualizer_main();
+	if (g_cw.pd.flags[VISU])
+		visualizer_main();
+	else
+		cw_game_loop_base();
 	cw_print_winer(g_cw.pd.champs);
 	cw_free();
 	return (0);

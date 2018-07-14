@@ -17,6 +17,7 @@
 ************************************ Basics ************************************
 */
 
+char			*cw_get_usage(void);
 void			cw_exit(char *message, int error_number);
 void			cw_perror_exit(char *message, int error_number);
 void			cw_print_dump_exit(void);
@@ -81,6 +82,7 @@ void			t_processe_killer(void);
 
 void			cw_load_map(void);
 int				cw_game_loop(void);
+void			cw_game_loop_base(void);
 void			cw_print_players(t_champ *champs);
 void			cw_print_winer(t_champ *champs);
 void			cw_set_arg_tp_with_codage(t_command *cmd,
@@ -99,7 +101,7 @@ void			cw_sub(t_processes *proc);
 void			cw_binary_and(t_processes *proc);
 void			cw_binary_or(t_processes *proc);
 void			cw_binary_xor(t_processes *proc);
-void 			cw_zjmp(t_processes *proc);
+void			cw_zjmp(t_processes *proc);
 void			cw_ldi(t_processes *proc);
 void			cw_sti(t_processes *proc);
 void			cw_fork(t_processes *proc);

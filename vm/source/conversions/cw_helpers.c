@@ -14,10 +14,10 @@
 
 static char		*cw_get_string_for_conversion(int nbr)
 {
-	int i;
-	char *str;
-	char *check;
-	
+	int		i;
+	char	*str;
+	char	*check;
+
 	i = 0;
 	if (!(str = ft_itoa_base(nbr, 2, 87)))
 		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
@@ -69,7 +69,7 @@ void			cw_write_to_map(unsigned char *buf, int pc)
 	}
 }
 
-int			cw_get_dec_from_the_point(int pc, const int label)
+int				cw_get_dec_from_the_point(int pc, const int label)
 {
 	unsigned char	buf[label];
 	int				res;
@@ -91,7 +91,7 @@ int			cw_get_dec_from_the_point(int pc, const int label)
 	return (res);
 }
 
-int			cw_hex_to_dec(unsigned char *buf, int i)
+int				cw_hex_to_dec(unsigned char *buf, int i)
 {
 	int res;
 
