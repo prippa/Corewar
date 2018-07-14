@@ -101,8 +101,8 @@
 # define BTN_BACK {0x0, 0x0, 0xff}
 # define BTN_SEL {0xff, 0x0, 0xff}
 # define MESSAGE_BOX_COLOR_SCHEME {{WIN_BACK, TXT, BTN, BTN_BACK, BTN_SEL}}
-# define SPEED_TXT "(cycles per tact)"
-# define DURATION_TXT "(duration msec)"
+# define SPEED_TXT "CYCLES PER TACT"
+# define DURATION_TXT "TACT DURATION(msec)"
 
 extern const bool		bold_states[25];
 extern const SDL_Color	back_colors[25];
