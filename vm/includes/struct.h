@@ -36,7 +36,7 @@ typedef	struct			s_processes
 	int					pc;
 	char				carry;
 	int					registers[REG_NUMBER];
-	char 				is_alive;
+	char				is_alive;
 	int					champ_number;
 	short				exec_cycles;
 	unsigned char		cmd;
@@ -57,9 +57,9 @@ typedef struct			s_champ
 	unsigned char		code[CHAMP_MAX_SIZE];
 	int					champ_number;
 	short				order;
-	unsigned int        lives_number;
+	unsigned int		lives_number;
 	unsigned int		real_lives_number;
-	unsigned int        last_live;
+	unsigned int		last_live;
 	unsigned char		color;
 	struct s_champ		*next;
 }						t_champ;
@@ -99,7 +99,7 @@ typedef struct			s_corewar
 	unsigned char		color_map_bold[MEM_SIZE];
 	unsigned char		color_map_live[MEM_SIZE];
 	unsigned char		color_live_cycle_buf[MEM_SIZE];
-	const t_op			*op;
+	t_op				op[CW_FUNC_NUMBER];
 	t_processes			*proc_start;
 	t_processes			*proc_end;
 	unsigned int		cycle;

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   t_champ_op.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/14 16:04:24 by prippa            #+#    #+#             */
+/*   Updated: 2018/07/14 16:04:25 by prippa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "corewar.h"
 
-int				t_champ_is_nbr_live(t_champ *champs)
+int			t_champ_is_nbr_live(t_champ *champs)
 {
 	unsigned int count;
 
@@ -13,7 +25,7 @@ int				t_champ_is_nbr_live(t_champ *champs)
 	return ((count >= NBR_LIVE) ? 1 : 0);
 }
 
-t_champ			*t_champ_find(int champ_number, t_champ *list)
+t_champ		*t_champ_find(int champ_number, t_champ *list)
 {
 	while (list)
 	{

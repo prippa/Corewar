@@ -12,7 +12,7 @@
 
 #include "corewar.h"
 
-static void	cw_fill_map_with_bots(t_champ *champs)
+static void		cw_fill_map_with_bots(t_champ *champs)
 {
 	int				map_index;
 	int				champ_code_index;
@@ -38,7 +38,7 @@ static void	cw_fill_map_with_bots(t_champ *champs)
 	}
 }
 
-static int cw_get_right_color_by_champ_number(int champ_number)
+static int		cw_get_right_color_by_champ_number(int champ_number)
 {
 	if (champ_number == -1)
 		return (F_GREEN);
@@ -51,7 +51,7 @@ static int cw_get_right_color_by_champ_number(int champ_number)
 	return (0);
 }
 
-static int cw_get_right_pc_by_color(int color, int map_distance)
+static int		cw_get_right_pc_by_color(int color, int map_distance)
 {
 	if (color == F_GREEN)
 		return (0);
@@ -64,7 +64,7 @@ static int cw_get_right_pc_by_color(int color, int map_distance)
 	return (0);
 }
 
-static void	cw_load_processes(t_champ *champs)
+static void		cw_load_processes(t_champ *champs)
 {
 	unsigned char	color;
 
@@ -82,7 +82,7 @@ static void	cw_load_processes(t_champ *champs)
 	}
 }
 
-void		cw_load_map(void)
+void			cw_load_map(void)
 {
 	t_champ_sort_by_order(&g_cw.pd.champs);
 	cw_load_processes(g_cw.pd.champs);

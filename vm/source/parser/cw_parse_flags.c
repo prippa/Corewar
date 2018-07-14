@@ -18,7 +18,8 @@ static void	cw_valid_dump(char **argv, int *i)
 
 	*i += 1;
 	if (!argv[*i] || !ft_str_is_digit(argv[*i]))
-		cw_exit("ERROR: Argument after -dump flag is not number", INV_DUMP_FLAG);
+		cw_exit("ERROR: Argument after -dump flag is not number",
+			INV_DUMP_FLAG);
 	tmp = ft_atoi_max(argv[*i]);
 	if (tmp < 0 || tmp > MAXINT)
 		cw_exit("ERROR: Number after -dump flag \
