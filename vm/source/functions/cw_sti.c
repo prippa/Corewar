@@ -19,7 +19,7 @@ static void		cw_execute_sti(t_command *cmd, t_processes *proc)
 
 	if (cmd->codage == RIR || cmd->codage == RID)
 		pc = (proc->pc + IDX_X(
-			((cw_get_dec_from_the_point(IDX_X(cmd->arg2.av), 4))
+			((cw_get_dec_from_the_point((IDX_X(cmd->arg2.av) + proc->pc), 4))
 				+ (cw_get_right_arg(proc, cmd->arg3.tp, cmd->arg3.av)))));
 	else
 		pc = (proc->pc + IDX_X(
