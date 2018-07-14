@@ -20,7 +20,7 @@ static void	cw_print_usage(void)
 	ft_putstr("-d N		: Dumps memory after N cycles then exits\n");
 	ft_putstr("-n N		: Sets the number of the next player\n");
 	ft_putstr("-visu		: Big ass visualization\n");
-	ft_putstr("############################################################");
+	ft_putstr("############################################################\n");
 }
 
 void		cw_perror_exit(char *message, int error_number)
