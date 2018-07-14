@@ -21,7 +21,8 @@ bool						init_statuses(t_arena *arena)
 		arena->statuses[i].txt =
 		load_from_rendered_text(get_text_info(ROBOTO_BOLD,
 											(ARENA_TILE_WIDTH * MAX_ZOOM << 1),
-											get_name(g_cw.pd.champs_count - i - 1),
+											//get_name(g_cw.pd.champs_count - i - 1),
+											get_name(i),
 											BLACK_COLOR),
 											arena->renderer);
 	}

@@ -81,7 +81,6 @@ bool				init(t_arena *arena)
 		return (false);
 	init_figures(arena);
 	init_infopanel(arena);
-	init_button_panel(arena);
 	if (!init_controls(arena))
 		return (false);
 	init_statuses(arena);

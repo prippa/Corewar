@@ -21,11 +21,9 @@ static inline int	get_live(int index)
 	t_champ					*tmp;
 	
 	tmp = g_cw.pd.champs;
-	depth = g_cw.pd.champs_count - index - 1;
+	depth = index;
 	while (depth--)
-	{
 		tmp = tmp->next;
-	}
 	return (tmp->lives_number);
 }
 

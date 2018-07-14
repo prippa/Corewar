@@ -35,22 +35,22 @@ static inline void	dequeue_events(t_arena *arena)
 
 static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 {
-	static int tacts_before_update;
+	static int		tacts_before_update;
+	int				i;
 	
 	if (arena->pause == false)
 	{
 		tacts_before_update += diff;
-		if (tacts_before_update >= arena->tact_duration)
+		if (tacts_before_update >= arena->tact_duration && g_cw.game_over)
 		{
-			for (int i = 0; i < arena->cycles_per_tact; ++i)
-			{
+			i = -1;
+			while (++i < arena->cycles_per_tact)
 				if (!cw_game_loop())
 				{
-					g_cw.game_over = 0;
+					g_cw.game_over = false;
 					t_processes_free(&g_cw.proc_start, &g_cw.proc_end);
 					break ;
 				}
-			}
 			cw_vis_update_map();
 			tacts_before_update = 0;
 		}

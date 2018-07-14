@@ -25,7 +25,7 @@ bool		init_figures(t_arena *arena)
 	{
 		buf[0] = (i < 0xa) ? i + 48 : 'F' - (0xf - i);
 		if (!(arena->figures[i] = load_from_rendered_text(get_text_info(
-									ROBOTO,
+									ROBOTO_REGULAR,
 									font_weight,
 									buf,
 									WHITE_COLOR),

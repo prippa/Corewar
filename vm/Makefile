@@ -113,6 +113,7 @@ EVENT_NAME		=	events_manager.c			\
 					info_call.c
 
 DRAW_NAME		=	draw_arena.c				\
+					draw_arena_cell.c			\
 					draw_fillrect.c				\
 					draw_outlinerect.c			\
 					draw_controls.c				\
@@ -151,7 +152,6 @@ INIT_NAME		=	init_devices.c				\
 					init_music.c				\
 					init_infopanel.c			\
 					init_checkboxes.c			\
-					init_button_panel.c			\
 					init_statuses.c	
 
 ERROR_NAME		=	force_error.c

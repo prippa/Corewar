@@ -43,7 +43,7 @@ void	change_screen_mode(t_arena *arena)
 	}
 	for (int i = 0; i < TOTAL_CHECKBOXES; ++i)
 	{
-		arena->checkboxes[i]->position.x = (20 + (i << 1)) * BUTTON_WIDTH;
+		arena->checkboxes[i]->position.x = (10.5 + i) * BUTTON_WIDTH;
 		arena->checkboxes[i]->position.y = SCREEN_HEIGHT - CHECKBOX_HEIGHT;
 		arena->checkboxes[i]->txt_position.y = SCREEN_HEIGHT - CHECKBOX_HEIGHT;
 		arena->checkboxes[i]->txt_position.x = arena->checkboxes[i]->position.x + CHECKBOX_WIDTH + 10;

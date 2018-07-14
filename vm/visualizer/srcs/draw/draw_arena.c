@@ -98,7 +98,7 @@ void			draw_arena(t_arena *arena)
 			}
 			else if (top_x > arena->viewport.x + arena->viewport.w - width)
 				break ;
-			draw_fillrect(arena, i, j, get_rectangle(top_x + 1,
+			draw_arena_cell(arena, i, j, get_rectangle(top_x + 1,
 												top_y + 1,
 												width - 2,
 												height - 2));

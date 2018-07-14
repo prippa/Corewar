@@ -46,12 +46,13 @@
 # define MAX_ZOOM 10
 # define FIGURES_COUNT 16
 # define BUTTON_H
-# define BUTTON_WIDTH (SCREEN_WIDTH >> 5)
+# define BUTTON_WIDTH (SCREEN_WIDTH >> 4)
 # define BUTTON_HEIGHT (SCREEN_HEIGHT >> 5)
-# define CHECKBOX_WIDTH BUTTON_HEIGHT
-# define CHECKBOX_HEIGHT BUTTON_HEIGHT
+# define CHECKBOX_WIDTH (BUTTON_WIDTH >> 1)
+# define CHECKBOX_HEIGHT (BUTTON_HEIGHT)
 # define TOTAL_BUTTONS 4
 # define TOTAL_SPRITES 4
+# define INFOPANEL_WIDTH (SCREEN_WIDTH - arena->abs_arena_width)
 # define TOTAL_FULL_SPRITES 4
 # define TOTAL_MOVE_BUTTONS 4
 # define TOTAL_MOVE_SPRITES 4
@@ -78,6 +79,10 @@
 # define BUTTON_MOVE_SOUND "music/background_button.wav"
 # define BUTTON_PRESS_SOUND "music/button_main.wav"
 # define EXIT_SOUND "music/exit.wav"
+# define INFOPANEL_RECTANGLE (SDL_Rect){.x = arena->abs_arena_width, .y = 0, .w = INFOPANEL_WIDTH, .h = SCREEN_HEIGHT}
+# define INFOPANEL_TOP_LEFT (SDL_Point){.x = arena->abs_arena_width, .y = 0}
+# define INFOPANEL_LABEL_PARAMS (SDL_Point){.x = INFOPANEL_WIDTH, SCREEN_HEIGHT >> 2}
+# define LIGHT_RED (SDL_Color){.r=0x8b}
 /*
 ** Number of message box buttons
 */
@@ -241,16 +246,13 @@ typedef struct					s_arena
 	int							fps;
 	int							old_fps;
 	t_statusbar					statuses[TOTAL_CHAMP];
-	int							territory[TOTAL_CHAMP];
 	int							arena_tile_width;
 	int							arena_tile_height;
 	int							abs_arena_height;
 	int							abs_arena_width;
-	t_ltexture					*btn_panel;
 	/*
 	** Infopanel texture
 	*/
-	t_ltexture					*infopanel;
 	t_ltexture					*infopanel_title;
 	/*
 	** The music that will be played

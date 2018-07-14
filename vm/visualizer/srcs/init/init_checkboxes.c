@@ -14,9 +14,6 @@
 
 bool			init_checkboxes(t_arena *arena)
 {
-	int			wd;
-	
-	wd = SCREEN_WIDTH - BUTTON_WIDTH - (SCREEN_WIDTH >> 6);
 	bzero(arena->full_sprites, sizeof(arena->full_sprites));
 	if (!(arena->full_sprites[CHECK_MOUSE_OUT] =
 			load_from_file(CHECK_IMG, arena->renderer, WHITE_COLOR)) ||
@@ -29,11 +26,11 @@ bool			init_checkboxes(t_arena *arena)
 		return (false);
 	set_color(GREEN_COLOR, arena->full_sprites[CHECK_MOUSE_IN]);
 	set_color(GREEN_COLOR, arena->full_sprites[CROSS_MOUSE_IN]);
-	if (!(arena->checkboxes[FULLSCREEN_CBX] = create_checkbox((SDL_Point){.x = 20 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - CHECKBOX_HEIGHT},
+	if (!(arena->checkboxes[FULLSCREEN_CBX] = create_checkbox((SDL_Point){.x = 10.5 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - CHECKBOX_HEIGHT},
 									"FULLSCREEN",
 									arena)))
 		return (false);
-	if (!(arena->checkboxes[SOUND_CBX] = create_checkbox((SDL_Point){.x = 22 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - CHECKBOX_HEIGHT},
+	if (!(arena->checkboxes[SOUND_CBX] = create_checkbox((SDL_Point){.x = 11.5 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - CHECKBOX_HEIGHT},
 									"SOUND",
 									arena)))
 		return (false);

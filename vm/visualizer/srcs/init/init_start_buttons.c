@@ -43,13 +43,13 @@ bool				init_start_buttons(t_arena *arena)
 	if (!init_sprites(arena))
 		return (false);
 	const char *labels[TOTAL_START_BUTTONS] = {"START", "STOP", "INFO", "EXIT",
-												"D+", "D-", "C+", "C-", "BACK"};
+												" D+ ", " D- ", " C+ ", " C- ", "BACK"};
 	void (*action_funcs[TOTAL_START_BUTTONS])(void *) = {&start, &stop, &info, &exit_event,
 																&increase_duration, &decrease_duration,
 															&increase_cycles, &decrease_cycles, &reset};
 	t_rposition btn_pos = get_render_position(0,
-											(SDL_Point){.x = 2 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
-											(SDL_Point){.x = 2 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
+											(SDL_Point){.x = BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
+											(SDL_Point){.x = BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
 											(SDL_Point){.x = BUTTON_WIDTH, .y = BUTTON_HEIGHT});
 	i = -1;
 	while (++i < TOTAL_START_BUTTONS)
