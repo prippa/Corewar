@@ -14,23 +14,29 @@
 
 void			cw_ld(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
+
 //	t_processes *proc;
 
-//	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
-	if (cmd->arg1.tp == 4)
+//	proc = t_processe_get_by_id(g_cw.proc_start, g_cw.proc_end, process_id);
+	if (cmd->codage == DIR_REG)
 		proc->registers[cmd->arg2.av - 1] = cmd->arg1.av;
-	else
+	else if (cmd->codage == IND_REG)
 	{
 		cmd->arg1.av = IDX_CORRECTION(cmd->arg1.av);
 		proc->registers[cmd->arg2.av - 1] = cw_get_dec_from_the_point(
 			map->stack,
-			4,
 			proc->process_PC + cmd->arg1.av
 		);
 	}
 
-
-	proc->carry = (proc->registers[cmd->arg2.av - 1] == 0 ? 1 : 0); // carry
+	proc->carry = (proc->registers[cmd->arg2.av - 1] == 0) ? 1 : 0; // carry
+	
+	// if (proc->id == 20)
+	// {	
+	// 	ft_printf("ld reg -> %d, ", proc->registers[cmd->arg2.av - 1]);
+	// 	ft_printf("carry -> %d\n", proc->carry);
+	// 	getchar();
+	// }
 
 
 	map->stack_color[proc->process_PC] = proc->color;
@@ -38,10 +44,11 @@ void			cw_ld(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pro
 	
 	proc->process_PC = MEM_CORRECTION(
 		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + 2));
+
 		// map->stack[proc->process_PC] = 7;
 		// map->stack_color[proc->process_PC] = 5;
 		// ft_printf("process_carry -> %d\n\n", proc->carry);
-		// cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+		// cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 
 		map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
 }

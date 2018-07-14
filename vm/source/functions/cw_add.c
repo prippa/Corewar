@@ -25,11 +25,12 @@
 
 void			cw_add(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
+
 //	t_processes *proc;
 //    sdfsadfsd
 	// int	arguments[3];
 	//process;
-//	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
+//	proc = t_processe_get_by_id(g_cw.proc_start, g_cw.proc_end, process_id);
 //	ft_printf("process_id-> %d\n\n", proc->id);
 
 //	ft_printf("proc->registers[cmd->arg1.av - 1]-> %d\n", proc->registers[cmd->arg1.av - 1]);
@@ -46,9 +47,11 @@ void			cw_add(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 	proc->process_PC = MEM_CORRECTION(
 		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2));
 
-	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
-   
+	// ft_printf("process_PC -> %d\n", proc->process_PC);
 
+
+
+	map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
 
 	// for testing;
 //	 map->stack[proc->process_PC] = 7;
@@ -56,5 +59,5 @@ void			cw_add(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int pr
 
 //	 ft_printf("process_carry -> %d\n\n", proc->carry);
 
-//	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+//	 cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 }

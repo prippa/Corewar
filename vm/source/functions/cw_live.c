@@ -21,34 +21,69 @@
 
 void			cw_live(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
+	// ft_printf("proc id --------------------> %d\n", proc->id);
+	// ft_printf("proc_PC -----------> %d\n", proc->process_PC);
+	// ft_printf("cur cmd -----------> %d\n", proc->current_command);
+	// ft_printf("till_execution ----> %d\n", proc->cycles_till_execution);
+	// ft_printf("color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
+
 	t_champ *champ;
 
-//   proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
+//   proc = t_processe_get_by_id(g_cw.proc_start, g_cw.proc_end, process_id);
 
 	proc->has_been_activated = ALIVE; // maybe for testing we can use += live, will see;
 
-	champ = t_champ_find(cmd->arg1.av, g_cw->pd.champs);
+	champ = t_champ_find(cmd->arg1.av, g_cw.pd.champs);
+
+	// ft_printf("here live\n");
+
+
+	// maybe we have segfault here; who knows :)
 
 	if (champ)
 	{
 		champ->lives_number += ALIVE;
-		champ->last_live = g_cw->cycle + 1;
+		champ->last_live = g_cw.cycle + 1;
 	}
 
+	// ft_printf("here after\n");
 
 	// ft_printf("champ_number -> %d\n", champ->champ_number);
 	// ft_printf("champ_number -> %u\n", champ->lives_number);
-	map->stack_color[proc->process_PC] = proc->color;
+
+	// here
+	if (champ) // have the 50 cycles;
+	{
+		map->stack_color[proc->process_PC] = proc->live_color; // write to the 50 cycles;
+		map->write_to_the_map_stack[proc->process_PC] = proc->live_color + 50; // -> 59;
+		map->cycle_stack[proc->process_PC] = 50; // -
+	}
+	else
+		map->stack_color[proc->process_PC] = proc->color; // write to the 50 cycles;
 
 
+	// ft_printf("live_color -> %d\n", map->stack_color[proc->process_PC]);
 
 	proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
+	
+	// ft_printf("process_PC -> %d\n", proc->process_PC);
+
 
 //	 for testing;
 //	 map->stack[proc->process_PC] = 7;
-	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!
+	if (map->stack[proc->process_PC] != 0 || g_cw.map.stack_color[proc->process_PC] != 0) 
+	{
+										// if (proc->id == 23)
+		// ft_printf("%~s\n", F_BACK_RED_WHITE, "not valid cmd 1");
+		// ft_printf("PC ----> %d\n", proc->process_PC);
+		// ft_printf("next stack color ----> %d\n", g_cw.map.stack_color[proc->process_PC]);
+
+		map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // move the color of the PC;
+	}
+	else if(map->stack[proc->process_PC] == 0 && map->stack_color[proc->process_PC] == 0)
+		map->stack_color[proc->process_PC] = number_for_empty_signal;
 //
-//	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+//	 cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 
 
 

@@ -17,6 +17,7 @@ void			cw_aff(t_command *cmd, t_stack *map, t_processes *proc)
 	map->stack_color[proc->process_PC] = proc->color;
 
 	ft_printf("Aff: %c\n", proc->registers[cmd->arg1.av - 1] % 256);
+
 	proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 2));
 
 	 map->stack_color[proc->process_PC] = proc->proc_process_PC_color; // !!!!!!!!!!!!!!!!!!!!

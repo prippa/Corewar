@@ -18,7 +18,7 @@ t_processes	*t_processe_get_by_id(t_processes *proc_start,
 	unsigned int i;
 
 	i = 0;
-	while (proc_start && proc_end && i <= (g_cw->proc_counter / 2))
+	while (proc_start && proc_end && i <= (g_cw.proc_counter / 2))
 	{
 		if (proc_start->id == id)
 			return (proc_start);
@@ -55,7 +55,7 @@ int			t_processe_free_by_obj(t_processes **proc_start,
 		obj->next->prev = obj->prev;
 	}
 	free(obj);
-	g_cw->proc_counter--;
+	g_cw.proc_counter--;
 	return (1);
 }
 

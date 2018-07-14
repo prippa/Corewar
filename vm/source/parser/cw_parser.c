@@ -31,10 +31,11 @@ void		cw_parser(void)
 {
 	t_champ *champs;
 
-	champs = g_cw->pd.champs;
+	champs = g_cw.pd.champs;
 	while (champs)
 	{
 		cw_parse_file(champs);
+		close(champs->fd);
 		champs = champs->next;
 	}
 }

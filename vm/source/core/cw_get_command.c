@@ -34,9 +34,9 @@ static int	arg_check(char *bn, int *j, char *tp, int bt)
 		return (2);
 	if (*tp == bt) // here;
 	{
-		ft_putstr("here\n");
-		ft_printf("tp -> %d\n", *tp);
-		ft_printf("bt -> %d\n", bt);
+		// ft_putstr("here\n");
+		// ft_printf("tp -> %d\n", *tp);
+		// ft_printf("bt -> %d\n", bt);
 		return (bt);
 	}
 	if (*tp == T_REG) //o.k.
@@ -91,7 +91,7 @@ static void	write_args(t_command *cmd, unsigned int *i, int bt,
 	tmp_arg(res, rd, i, map);
 	cmd->arg3.av = cw_hex_to_dec(res, rd);
 
-	ft_str_free(&bn);
+	free(bn);
 }
 
 static int	check_true_cdg(unsigned char cmd, int cdg)
@@ -120,32 +120,43 @@ static int	check_true_cdg(unsigned char cmd, int cdg)
 int			cw_get_command(t_command *cmd, unsigned int i,
 			unsigned char *map)
 {
-	int				bt; // byte 
+	int				bt; // byte
 	unsigned char	res[5]; // max is 4 bytes;
 	
 
+	// if ( i > 4095)
+	// {
+	// 	ft_printf("in cmd 1\n");
+	// 	ft_printf("in cmd %d\n", i);
+	// 	cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
+		
+	// 	getchar();
+	// }
+
+
+
 
 	ft_bzero(res, 5); // +;
+
 	if (map[i] > 16 || map[i] < 1) // check if we have a correct command;
 	{
 		// ft_putstr("rrrrrrrrrrrrrrrrrrrrrr -> 1\n");
 
 		return (NOT_EXIST_CODE);
 	}
-	bt = 1; // byte as default = 1, reghas 1 byte;
 	bt = (WHAT_DIR(map[i]) ? 2 : 4); // detect syze in bytes of the DIR;
 	cmd->cmd = map[i]; // set the command value from the first position on the map;
 	i = MEM_CORRECTION((i + 1)); // move the map pointer to the next byte;
-	// ft_printf("in cmd i -> %d\n",g_cw->i);
+	// ft_printf("in cmd i -> %d\n",g_cw.i);
 	cmd->codage = ((IS_CDG(cmd->cmd)) ? 0 : map[i]); // set the command codage from the second position on the map;
-	if (IS_CDG(cmd->cmd)) // if commands: 1, 9, 2, 15;
+	if (IS_CDG(cmd->cmd)) // if commands: 1, 9, 12, 15;
 	{
 		tmp_arg(res, bt, &i, map); // get the data from the map for conversion;
 		cmd->arg1.av = cw_hex_to_dec(res, bt); // res - buf, bt == byte;
 		cmd->arg1.tp = (cmd->cmd == 1) ? 4 : T_DIR;
 		cmd->arg2.tp = 0;
 		cmd->arg3.tp = 0;
-		return (0);
+		return (cw_command_filter(cmd));
 	}
 	i = MEM_CORRECTION((i + 1)); // go to other commands;
 	if (check_true_cdg(cmd->cmd, cmd->codage)) // check if a specific cmd has the correct codage;
@@ -155,9 +166,9 @@ int			cw_get_command(t_command *cmd, unsigned int i,
 	}
 
 	write_args(cmd, &i, bt, map);
-	// ft_printf("in cmd i -> %d\n",g_cw->i);
+	// ft_printf("in cmd i -> %d\n",g_cw.i);
 	
-	return (0);
+	return (cw_command_filter(cmd));
 }
 
 int			cw_get_command_2(t_command *cmd, unsigned int i,
@@ -166,7 +177,12 @@ int			cw_get_command_2(t_command *cmd, unsigned int i,
 	int				bt; // byte 
 	unsigned char	res[5]; // max is 4 bytes;
 	
-
+	// if ( i > 4095)
+	// {
+	// 	cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
+	// 	ft_printf("2\n");
+	// 	getchar();
+	// }
 
 	ft_bzero(res, 5); // +;
 	if (proc_current_command > 16 || proc_current_command < 1) // check if we have a correct command;
@@ -174,20 +190,19 @@ int			cw_get_command_2(t_command *cmd, unsigned int i,
 		// ft_putstr("asdfasdfasdfasdfasdfasfasdfasdfasdf\n");
 		return (NOT_EXIST_CODE);
 	}
-	bt = 1; // byte as default = 1, reghas 1 byte;
 	bt = (WHAT_DIR(proc_current_command) ? 2 : 4); // detect syze in bytes of the DIR;
 	cmd->cmd = proc_current_command; // set the command value from the first position on the map;
 	i = MEM_CORRECTION((i + 1)); // move the map pointer to the next byte;
-	// ft_printf("in cmd i -> %d\n",g_cw->i);
+	// ft_printf("in cmd i -> %d\n",g_cw.i);
 	cmd->codage = ((IS_CDG(cmd->cmd)) ? 0 : map[i]); // set the command codage from the second position on the map;
-	if (IS_CDG(cmd->cmd)) // if commands: 1, 9, 2, 15;
+	if (IS_CDG(cmd->cmd)) // if commands: 1, 9, 12, 15;
 	{
 		tmp_arg(res, bt, &i, map); // get the data from the map for conversion;
 		cmd->arg1.av = cw_hex_to_dec(res, bt); // res - buf, bt == byte;
 		cmd->arg1.tp = (cmd->cmd == 1) ? 4 : T_DIR;
 		cmd->arg2.tp = 0;
 		cmd->arg3.tp = 0;
-		return (0);
+		return (cw_command_filter(cmd));
 	}
 	i = MEM_CORRECTION((i + 1)); // go to other commands;
 	if (check_true_cdg(cmd->cmd, cmd->codage)) // check if a specific cmd has the correct codage;
@@ -197,7 +212,7 @@ int			cw_get_command_2(t_command *cmd, unsigned int i,
 	}
 
 	write_args(cmd, &i, bt, map);
-	// ft_printf("in cmd i -> %d\n",g_cw->i);
+	// ft_printf("in cmd i -> %d\n",g_cw.i);
 	
-	return (0);
+	return (cw_command_filter(cmd));
 }

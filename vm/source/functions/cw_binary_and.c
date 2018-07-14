@@ -25,23 +25,23 @@
 
 	// ft_strncpy(&y_stack[32 - (int)ft_strlen(y)], y, (int)ft_strlen(y));
 
-static void		cw_evil(char *var_stack, char*src)
-{
-	int limit = 32;
+// static void		cw_evil(char *var_stack, char*src)
+// {
+// 	int limit = 32;
 
-	limit -= (int)ft_strlen(src);
+// 	limit -= (int)ft_strlen(src);
 
-	int i = 0;
+// 	int i = 0;
 
-	ft_printf("stack -> %s\n", var_stack);
+// 	ft_printf("stack -> %s\n", var_stack);
 
-	while (src[i])
-	{
-		var_stack[limit] = src[i];
-		limit++;
-		i++;
-	}
-}
+// 	while (src[i])
+// 	{
+// 		var_stack[limit] = src[i];
+// 		limit++;
+// 		i++;
+// 	}
+// }
 
 static void		ft_zero_it(char *str)
 {
@@ -52,20 +52,20 @@ static void		ft_zero_it(char *str)
 		str[i++] = '0';
 }
 
-static void		binary_and_comparison(char *var_1, char *var_2, char *var_res)
-{
-	int i;
+// static void		binary_and_comparison(char *var_1, char *var_2, char *var_res)
+// {
+// 	int i;
 
-	i = 0;
-	while (i < 32)
-	{
-		if (var_1[i] == '1' && var_2[i] == '1')
-			var_res[i] = '1';
-		else
-			var_res[i] = '0';
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < 32)
+// 	{
+// 		if (var_1[i] == '1' && var_2[i] == '1')
+// 			var_res[i] = '1';
+// 		else
+// 			var_res[i] = '0';
+// 		i++;
+// 	}
+// }
 
 static int				cw_return_value_according_to_the_type_of_parameter_1(t_command *cmd, t_processes *process)
 {
@@ -138,19 +138,19 @@ static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc) // do the
 	// cw_evil(y_stack, y);
 
 	// testing
-	int i = 0;
-	while (i < 32)
-		ft_printf("%c", x_stack[i++]);
-	i = 0;
-	ft_printf("\n");
-	while (i < 32)
-		ft_printf("%c", y_stack[i++]);
-	ft_printf("\n");		
-	binary_and_comparison(x_stack, y_stack, res_of_comparison);
-	i = 0;
-	while (i < 32)
-		ft_printf("%c", res_of_comparison[i++]);
-	ft_printf("\n");
+	// int i = 0;
+	// while (i < 32)
+	// 	ft_printf("%c", x_stack[i++]);
+	// i = 0;
+	// ft_printf("\n");
+	// while (i < 32)
+	// 	ft_printf("%c", y_stack[i++]);
+	// ft_printf("\n");		
+	// binary_and_comparison(x_stack, y_stack, res_of_comparison);
+	// i = 0;
+	// while (i < 32)
+	// 	ft_printf("%c", res_of_comparison[i++]);
+	// ft_printf("\n");
 	
 
 	free(x);
@@ -160,11 +160,10 @@ static char			*cw_res_of_comparison(t_command *cmd, t_processes *proc) // do the
 
 void			cw_binary_and(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned int process_id*/)
 {
-
 //	t_processes *proc;
 	// int	arguments[3];
 	//process;
-//	proc = t_processe_get_by_id(g_cw->proc_start, g_cw->proc_end, process_id);
+//	proc = t_processe_get_by_id(g_cw.proc_start, g_cw.proc_end, process_id);
 
 	// process_cw;
 	char *res_of_comparison;
@@ -177,20 +176,22 @@ void			cw_binary_and(t_command *cmd, t_stack *map, t_processes *proc/*, unsigned
 	proc->registers[cmd->arg3.av - 1] = ft_atoi_base(res_of_comparison, 2);
 	free(res_of_comparison);
 
-	ft_printf("res of comparison->%d\n", proc->registers[cmd->arg3.av - 1]);
+	// ft_printf("res of comparison->%d\n", proc->registers[cmd->arg3.av - 1]);
 	proc->process_PC = MEM_CORRECTION(
 		(proc->process_PC + cmd->arg1.tp + cmd->arg2.tp + cmd->arg3.tp + 2));
+
+	
+
 	proc->carry = (proc->registers[cmd->arg3.av - 1] == 0) ? 1 : 0;
 
-	ft_printf("carry -> %d\n", proc->carry);
+	// ft_printf("carry -> %d\n", proc->carry);
 
 	map->stack_color[proc->process_PC] = proc->proc_process_PC_color;
-
 //	 //testing
 //	 map->stack[proc->process_PC] = 7;
 //	 map->stack_color[proc->process_PC] = 5;
 //
-//	 cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+//	 cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 
 
 	

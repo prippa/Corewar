@@ -5,17 +5,22 @@
 
 void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc)
 {
-    int				position_on_the_map;
+    int		position_on_the_map;
+	t_champ	*champ;
 
-    position_on_the_map = MEM_CORRECTION((proc->process_PC + cmd->arg1.av));
-    position_on_the_map = (position_on_the_map < 0) ? MEM_SIZE + position_on_the_map : position_on_the_map;
+	champ = t_champ_find(proc->champ_number, g_cw.pd.champs);
+
+    if ((position_on_the_map = MEM_CORRECTION((proc->process_PC + cmd->arg1.av))) < 0)
+		position_on_the_map += MEM_SIZE;
 
     // ft_printf("position_on_the_map -> %d\n", position_on_the_map);
 
     // position on the map will be a process_PC for the new process;
-    map->stack_color[proc->process_PC] = proc->color;
+    if (map->cycle_stack[proc->process_PC] == 0)
+        map->stack_color[proc->process_PC] = proc->color;
 
     proc->process_PC = MEM_CORRECTION((proc->process_PC + cmd->arg1.tp + 1));
+
 
     // ft_printf("process_PC -> %d\n", proc->process_PC);
 
@@ -29,13 +34,11 @@ void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc)
         // clone = clone->next;
     // }
 
-    t_processes_copy(&g_cw->proc_start, &g_cw->proc_end, proc, position_on_the_map);
-    
-
+    t_processes_copy(&champ->proc_start, &champ->proc_end, &proc, position_on_the_map);
     // while (clone->next)
     // {
-        // ft_printf("end id -> %u\n", g_cw->proc_end->id);
-        // ft_printf("process_PC -> %d\n", g_cw->proc_end->process_PC);
+        // ft_printf("end id -> %u\n", g_cw.proc_end->id);
+        // ft_printf("process_PC -> %d\n", g_cw.proc_end->process_PC);
 
         // clone = clone->next;
     // }
@@ -62,5 +65,5 @@ void			cw_lfork(t_command *cmd, t_stack *map, t_processes *proc)
 
     // TODO read(1, 0, 1);
 
-    // cw_display_map(g_cw->map.stack, g_cw->map.stack_color);
+    // cw_display_map(g_cw.map.stack, g_cw.map.stack_color);
 }

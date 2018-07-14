@@ -28,8 +28,7 @@ void			cw_free(void);
 */
 
 char			*cw_snoop_dogg(char *str);
-int				cw_get_dec_from_the_point(unsigned char *str,
-					int quantity, int position);
+int				cw_get_dec_from_the_point(unsigned char *str, int position);
 int				cw_hex_to_dec(unsigned char *buf, int i);
 void			cw_write_bytes_to_buf(unsigned char *buf, int nbr);
 void			cw_write_to_map(t_stack *map, t_processes *proc,
@@ -42,9 +41,9 @@ void			cw_write_to_map(t_stack *map, t_processes *proc,
 int				cw_get_command(t_command *cmd, unsigned int i,
 					unsigned char *map);
 
-int			cw_get_command_2(t_command *cmd, unsigned int i,
+int				cw_get_command_2(t_command *cmd, unsigned int i,
 			unsigned char *map, int proc_current_command);
-
+int				cw_command_filter(t_command *cmd);
 
 
 
@@ -63,19 +62,21 @@ void			cw_parser(void);
 ***************************** Struct Manipulations *****************************
 */
 
+void			t_champ_sort_by_order(t_champ **champs);
+void			t_champ_sort_by_champ_number(t_champ **champs);
 void			t_champ_rev(t_champ **champs);
 void			t_champ_add(t_champ **champs);
 void			t_champ_free(t_champ **champs);
 t_champ			*t_champ_find(int champ_number, t_champ *list);
 unsigned int	t_champ_get_lives_number(t_champ *champs);
-void			cw_print_players(t_champ *champs);
+int				t_champ_check_double_champ_number(t_champ *champs,
+					int order);
 void			t_champ_zero_lives_number(t_champ *champs);
-void			cw_print_winer(t_champ *champs);
 
 void			t_processe_add(t_processes **proc_start,
 					t_processes **proc_end);
 void			t_processes_copy(t_processes **proc_start,
-					t_processes **proc_end, t_processes *current_proc,
+					t_processes **proc_end, t_processes **current_proc,
 					int position);
 t_processes		*t_processe_get_by_id(t_processes *proc_start,
 					t_processes *proc_end, unsigned int id);
@@ -83,7 +84,7 @@ int				t_processe_free_by_id(t_processes **proc_start,
 					t_processes **proc_end, unsigned int id);
 int				t_processe_free_by_obj(t_processes **proc_start,
 					t_processes **proc_end, t_processes *obj);
-void			t_processe_killer(t_processes *head);
+void			t_processe_killer(t_champ *champs);
 
 /*
 ********************************** Core Part ***********************************
@@ -91,9 +92,11 @@ void			t_processe_killer(t_processes *head);
 
 void			cw_load_map(void);
 void			cw_game_loop(void);
-void			cw_display_map(unsigned char *map, int *color);
+void			cw_display_map(unsigned char *map, unsigned int *color);
 void			cw_display_dump(void);
 void			cw_cycles_new_period(void);
+void			cw_print_players(t_champ *champs);
+void			cw_print_winer(t_champ *champs);
 
 /*
 ********************************** Functions ***********************************

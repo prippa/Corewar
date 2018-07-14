@@ -1,0 +1,28 @@
+idea
+
+live and jump do not have codage;
+
+st	-> 4 bytes;
+sti	-> 2 bytes;
+
+ld 02 XX XXXX XX
+
+- load the killer (what will be written to the map): 
+
+	4 processes on the same position:
+
+	reg_x_1	->	01-ff-ff-ff;	-> 1. live;
+	reg_x_2	->	ff-ob-64-rx;	-> 2. sti;
+	reg_x_3	->	dx-dx-rx-09;	-> 3. zjmp;
+	reg_x_4	->	xx-xx-01-ff;	-> 4. garbage;
+
+1 process:
+
+1. load the value to the registers;
+2. 4 sti commands to write to the correspondent place on the map;
+3.
+
+st st st st zjmp to the first st;
+
+
+

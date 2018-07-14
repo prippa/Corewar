@@ -17,7 +17,7 @@
 ************************************ Basics ************************************
 */
 
-extern struct s_corewar	*g_cw;
+extern struct s_corewar	g_cw;
 
 # define FILE_NAME_MAX		4096
 # define CW_F_SIZE			2
@@ -49,6 +49,21 @@ typedef enum	e_op_code
 	AFF
 }				t_op_code;
 
+# define REG_REG_REG	84
+# define REG_DIR_REG	100
+# define DIR_REG_REG	148
+# define DIR_DIR_REG	164
+# define IND_REG_REG	212
+# define IND_DIR_REG	228
+# define REG_IND_REG	116
+# define REG_DIR_DIR	104
+# define REG_IND_DIR	120
+# define REG_REG_DIR	88
+# define DIR_REG		144
+# define IND_REG		208
+# define REG_REG		80
+# define REG_IND		112
+
 /*
 ******************************* Error management *******************************
 */
@@ -70,7 +85,8 @@ typedef enum	e_error_numbers
 	COMMENT,
 	PROG_SIZE_INVALID,
 	NOT_EXIST_CODE,
-	NOT_CORRECT_CODAGE
+	NOT_CORRECT_CODAGE,
+	INVALID_REG_AV
 }				t_error_numbers;
 
 # define ERR_MALLOC_MESSAGE		"malloc is failed"
@@ -79,7 +95,7 @@ typedef enum	e_error_numbers
 # define CW_USAGE	"Usage: ./corewar [-visu] [-dump nbr_cycles] \
 [[-n number] champion1.cor] ...\n\
 ######################## Flags Manual ########################\n\
--dump N		: Dumps memory after N cycles then exits\n\
+-d N		: Dumps memory after N cycles then exits\n\
 -n N		: Sets the number of the next player\n\
 -visu		: Big ass visualization\n\
 ##############################################################"
@@ -94,5 +110,6 @@ typedef enum	e_error_numbers
 # define DEAD 0
 # define LOOKING_FOR_THE_COMMAND 0
 # define WAITING_FOR_THE_EXECUTION 1
+# define number_for_empty_signal 100
 
 #endif
