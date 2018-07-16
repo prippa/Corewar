@@ -13,7 +13,6 @@
 #ifndef OP_H
 # define OP_H
 
-
 # define IND_SIZE				2
 # define REG_SIZE				4
 # define DIR_SIZE				REG_SIZE
