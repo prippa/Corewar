@@ -35,6 +35,7 @@ static int		cw_get_args_av_ld(t_command *cmd, t_processes *proc)
 void			cw_ld(t_processes *proc)
 {
 	t_command	cmd;
+
 	ft_bzero(&cmd, sizeof(t_command));
 	cmd.codage = g_cw.map[MEM_X((proc->pc + 1))];
 	cw_set_arg_tp_with_codage(&cmd, g_cw.op[proc->cmd - 1].label, DOUBLE_COMB);

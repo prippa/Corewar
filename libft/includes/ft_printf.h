@@ -74,7 +74,6 @@
 # define BACK_BLUE_WHITE	"\e[1;97;44m"
 # define BACK_CYAN_WHITE	"\e[1;97;46m"
 
-
 typedef enum	e_colors
 {
 	F_GREEN = 1,
