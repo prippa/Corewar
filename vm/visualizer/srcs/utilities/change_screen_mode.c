@@ -31,6 +31,10 @@ void	change_screen_mode(t_arena *arena)
 		arena->start_btns[i]->btn_pos.width = BUTTON_WIDTH;
 		arena->start_btns[i]->btn_pos.left_corner.y = SCREEN_HEIGHT - BUTTON_HEIGHT;
 		arena->start_btns[i]->txt_pos.left_corner.y = SCREEN_HEIGHT - BUTTON_HEIGHT;
+		arena->start_btns[i]->btn_pos.left_corner.x = (i + 1) * BUTTON_WIDTH;
+		arena->start_btns[i]->txt_pos.left_corner.x = arena->start_btns[i]->btn_pos.left_corner.x + (BUTTON_WIDTH >> 3);
+		arena->start_btns[i]->txt_pos.width = BUTTON_WIDTH - (BUTTON_WIDTH >> 2);
+		arena->start_btns[i]->txt_pos.height = BUTTON_HEIGHT;
 	}
 	arena->move_btns[UP_MENU_BTN]->btn_pos.left_corner = (SDL_Point){.x = MOVE_BTN_WIDTH >> 1, .y = SCREEN_HEIGHT - (MOVE_BTN_WIDTH << 1)};
 	arena->move_btns[RIGHT_MENU_BTN]->btn_pos.left_corner = (SDL_Point){.x = MOVE_BTN_WIDTH, .y = SCREEN_HEIGHT - 1.5 * MOVE_BTN_WIDTH};

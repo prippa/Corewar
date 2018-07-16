@@ -42,11 +42,77 @@ static inline int	get_max(void)
 	return (max);
 }
 
-void	draw_statuses(t_arena *arena)
+void			draw_statuses(t_arena *arena)
 {
+	int			i;
+	t_rposition	name_pos;
+
+	i = -1;
+	name_pos = get_render_position(0, (SDL_Point){.x = INFOPANEL_TOP_LEFT.x, .y = 0.12 * SCREEN_HEIGHT}, (SDL_Point){0}, (SDL_Point){.x = INFOPANEL_WIDTH, .y = BUTTON_HEIGHT});
+	int max = get_max();
+	int sum = get_live_sum();
+	while (++i < g_cw.pd.champs_count)
+	{
+		name_pos.width = INFOPANEL_WIDTH * (arena->statuses[i].wrap_length / (float)64);
+		render(name_pos, arena->statuses[i].left_wrapper, arena->renderer, SDL_FLIP_NONE);
+		name_pos.left_corner.x += name_pos.width;
+		name_pos.width = INFOPANEL_WIDTH * (arena->statuses[i].text_len / (float)64);
+		render(name_pos, arena->statuses[i].first_row, arena->renderer, SDL_FLIP_NONE);
+		name_pos.left_corner.x += name_pos.width;
+		name_pos.width = INFOPANEL_WIDTH * (arena->statuses[i].wrap_length / (float)64);
+		render(name_pos, arena->statuses[i].right_wrapper, arena->renderer, SDL_FLIP_NONE);
+		name_pos.left_corner.x = INFOPANEL_TOP_LEFT.x;
+		name_pos.left_corner.y += BUTTON_HEIGHT;
+		name_pos.width = INFOPANEL_WIDTH;
+		render(name_pos, arena->statuses[i].second_row, arena->renderer, SDL_FLIP_NONE);
+		SDL_Color c;
+		int live = get_live(i);
+		if (i == RED_CHAMP)
+		{
+			if (max == live && live)
+				arena->leader_color = LIGHT_RED;
+			c = RED_COLOR;
+			SDL_SetRenderDrawColor(arena->renderer, 0xff, 0, 0, 0xff);
+		}
+		else if (i == BLUE_CHAMP)
+		{
+			if (max == live && live)
+				arena->leader_color = LIGHT_BLUE;
+			c = BLUE_COLOR;
+			SDL_SetRenderDrawColor(arena->renderer, 0, 0, 0xff, 0xff);
+		}
+		else if (i == GREEN_CHAMP)
+		{
+			if (max == live && live)
+				arena->leader_color = LIGHT_GREEN;
+			c = GREEN_COLOR;
+			SDL_SetRenderDrawColor(arena->renderer, 0, 0xff, 0, 0xff);
+		}
+		else
+		{
+			if (max == live && live)
+				arena->leader_color = LIGHT_CYAN;
+			c = CYAN_COLOR;
+			SDL_SetRenderDrawColor(arena->renderer, 0, 0xff, 0xff, 0xff);
+		}
+		sdl_putnbr(live, get_rectangle(INFOPANEL_TOP_LEFT.x, name_pos.left_corner.y + BUTTON_HEIGHT, BUTTON_WIDTH >> 1, BUTTON_HEIGHT), arena, c, 6);
+		SDL_Rect r = get_rectangle(INFOPANEL_TOP_LEFT.x + (BUTTON_WIDTH * (float)2/3), name_pos.left_corner.y + BUTTON_HEIGHT, INFOPANEL_WIDTH - (BUTTON_WIDTH), BUTTON_HEIGHT);
+		draw_fillrect(r, (SDL_Color){.r = 100}, arena->renderer);
+		float p = live / (float)sum;
+		float w = r.w * p;
+		SDL_Rect in_rect = get_rectangle(r.x, r.y, w, r.h);
+		draw_fillrect(in_rect, c, arena->renderer);
+		draw_outlinerect(arena, r);
+		
+		name_pos.left_corner.y += BUTTON_HEIGHT * 3;
+
+
+	}
+}
+	/*
 	int top_left_x = arena->abs_arena_width;
 	int top_left_y = 0.25 * SCREEN_HEIGHT;
-	int area = (SCREEN_WIDTH - arena->abs_arena_width) / 4;
+	int area = INFOPANEL_WIDTH >> 2;
 	SDL_Rect clip = get_rectangle(0, 0, 3 * area / 4, 0.05 * SCREEN_HEIGHT);
 	int sum = get_live_sum();
 	int max = get_max();
@@ -97,4 +163,4 @@ void	draw_statuses(t_arena *arena)
 		sdl_putnbr(live, get_rectangle(r.x - (area >> 2), r.y - BUTTON_HEIGHT * 3, r.w << 1, BUTTON_HEIGHT * 2), arena, c, 6);
 		top_left_x += area;
 	}
-}
+}*/

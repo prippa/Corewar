@@ -45,14 +45,17 @@ static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 		{
 			i = -1;
 			while (++i < arena->cycles_per_tact)
+			{
 				if (!cw_game_loop())
 				{
 					g_cw.game_over = false;
 					t_processes_free(&g_cw.proc_start, &g_cw.proc_end);
+					cw_vis_update_map();
 					break ;
 				}
-			cw_vis_update_map();
+			}
 			tacts_before_update = 0;
+			cw_vis_update_map();
 		}
 	}
 	draw_arena(arena);
@@ -72,7 +75,7 @@ static inline void	handle_fps(t_arena *arena, clock_t diff)
 	}
 }
 
-static inline void	update_renderer(t_arena *arena, clock_t diff)
+static inline void	update_renderer(t_arena *arena)
 {
 	SDL_RenderPresent(arena->renderer);
 }
@@ -94,9 +97,8 @@ void				events_handler(t_arena *arena)
 		draw_controls(arena);
 		draw_statuses(arena);
 		draw_framerate(arena);
-		diff = clock() - diff;
-		handle_fps(arena, diff);
-		handle_arena_rendering(arena, diff);
-		update_renderer(arena, diff);
+		handle_arena_rendering(arena, clock() - diff);
+		handle_fps(arena, clock() - diff);
+		update_renderer(arena);
 	}
 }

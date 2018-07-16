@@ -81,7 +81,7 @@
 # define EXIT_SOUND "music/exit.wav"
 # define INFOPANEL_RECTANGLE (SDL_Rect){.x = arena->abs_arena_width, .y = 0, .w = INFOPANEL_WIDTH, .h = SCREEN_HEIGHT}
 # define INFOPANEL_TOP_LEFT (SDL_Point){.x = arena->abs_arena_width, .y = 0}
-# define INFOPANEL_LABEL_PARAMS (SDL_Point){.x = INFOPANEL_WIDTH, SCREEN_HEIGHT >> 2}
+# define INFOPANEL_LABEL_PARAMS (SDL_Point){.x = INFOPANEL_WIDTH, SCREEN_HEIGHT >> 3}
 # define LIGHT_RED (SDL_Color){.r=0x8b}
 # define LIGHT_BLUE (SDL_Color){.r=0x46, .g=0x82, .b=0xB4}
 # define LIGHT_GREEN (SDL_Color){.r=0x3c, .g=0xb3, .b=0x71}
@@ -103,6 +103,12 @@
 # define MESSAGE_BOX_COLOR_SCHEME {{WIN_BACK, TXT, BTN, BTN_BACK, BTN_SEL}}
 # define SPEED_TXT "CYCLES PER TACT"
 # define DURATION_TXT "TACT DURATION(msec)"
+# define CYCLES_TXT "CYCLES"
+# define CYCLES_TO_DIE_TXT "CYCLES TO DIE"
+# define NBR_TXT "NBR LIVE"
+# define CHECKS_TXT "MAX CHECKS"
+# define CYCLE_DELTA_TXT "CYCLE DELTA"
+# define PROCESSES_TXT "ALIVE PROCESSES"
 
 extern const bool		bold_states[25];
 extern const SDL_Color	back_colors[25];
@@ -221,8 +227,13 @@ typedef struct					s_button
 
 typedef struct					s_statusbar
 {
-	t_ltexture					*txt;
-	double						k;
+	int							wrap_length;
+	t_ltexture					*left_wrapper;
+	t_ltexture					*right_wrapper;
+	t_ltexture					*first_row;
+	t_ltexture					*second_row;
+	const char					*text;
+	int							text_len;
 }								t_statusbar;
 
 typedef enum					e_champcolor
@@ -240,7 +251,14 @@ typedef enum					e_champcolor
 */
 typedef struct					s_arena
 {
+	bool						show_fps;
 	SDL_Color					leader_color;
+	t_ltexture					*processes_txt;
+	t_ltexture					*delta_txt;
+	t_ltexture					*nbr_txt;
+	t_ltexture					*checks_txt;
+	t_ltexture					*cycles_txt;
+	t_ltexture					*cycles_to_die_txt;
 	t_ltexture					*speed_txt;
 	t_ltexture					*duration_txt;
 	int							cycles_per_tact;
