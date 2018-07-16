@@ -75,7 +75,7 @@ typedef struct			s_parse_data
 }						t_parse_data;
 
 /*
-*********************** Implementing a function pointer ************************
+*********************** Function and some info about it ************************
 */
 
 typedef struct			s_op

@@ -282,13 +282,13 @@ clean:
 	@rm -rf $(DIR_OBJ)
 	@echo "Clean [ obj files VM ]"
 	@rm -rf $(OBJ_PATH)
-	@echo "Cleaning obj [ Visualizer ]..."
+	@echo "Cleaning obj [ Visualizer ]"
 
 fclean:
 	@rm -rf $(DIR_OBJ)
 	@echo "Clean [ obj files VM ]"
 	@rm -rf $(OBJ_PATH)
-	@echo "Cleaning obj [ Visualizer ]..."
+	@echo "Cleaning obj [ Visualizer ]"
 	@rm -f $(NAME)
 	@echo "Clean" [ $(VIS_NAME) ]
 
