@@ -70,7 +70,7 @@ void			cw_game_loop_base(void)
 	}
 }
 
-int				cw_game_loop(void)
+int				cw_visu_game_loop(void)
 {
 	if (g_cw.cycle_to_die <= 0)
 		return (0);

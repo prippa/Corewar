@@ -81,7 +81,7 @@ void			t_processe_killer(void);
 */
 
 void			cw_load_map(void);
-int				cw_game_loop(void);
+int				cw_visu_game_loop(void);
 void			cw_game_loop_base(void);
 void			cw_print_players(t_champ *champs);
 void			cw_print_winer(t_champ *champs);
