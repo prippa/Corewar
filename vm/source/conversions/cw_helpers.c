@@ -12,46 +12,25 @@
 
 #include "corewar.h"
 
-static char		*cw_get_string_for_conversion(int nbr)
-{
-	int		i;
-	char	*str;
-	char	*check;
-
-	i = 0;
-	if (!(str = ft_itoa_base(nbr, 2, 87)))
-		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
-	if (!(check = ft_strnew(32)))
-		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
-	while (i < 32)
-	{
-		check[i] = '0';
-		i++;
-	}
-	if (nbr < 0)
-		ft_strncpy(&check[0], &str[32], ft_strlen(str) - 32);
-	else
-		ft_strncpy(&check[32 - ft_strlen(str)], &str[0], ft_strlen(str));
-	free(str);
-	return (check);
-}
-
 void			cw_write_bytes_to_buf(unsigned char *buf, int nbr)
 {
-	char	*check;
-	int		i;
-	int		k;
+	int tmp;
 
-	i = 0;
-	check = cw_get_string_for_conversion(nbr);
-	k = 7;
-	while (i < 4)
-	{
-		buf[i] = ft_bin_to_int(check, k);
-		k += 8;
-		i++;
-	}
-	free(check);
+	tmp = nbr;
+	tmp = tmp >> 24;
+	buf[0] = tmp;
+	tmp = nbr;
+	tmp = tmp << 8;
+	tmp = tmp >> 24;
+	buf[1] = tmp;
+	tmp = nbr;
+	tmp = tmp << 16;
+	tmp = tmp >> 24;
+	buf[2] = tmp;
+	tmp = nbr;
+	tmp = tmp << 24;
+	tmp = tmp >> 24;
+	buf[3] = tmp;
 }
 
 void			cw_write_to_map(unsigned char *buf, int pc)
