@@ -62,16 +62,16 @@ void			cw_game_loop(void)
 			cw_cycles_new_period();
 		if (g_cw.proc_counter == 0)
 			break ;
-		// if (g_cw.cycle >= 1 && !g_cw.pd.flags[DUMP])
+		if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
+			cw_print_dump_exit();
+		// if (g_cw.cycle >= 22164 && !g_cw.pd.flags[DUMP])
 		// 	cw_vis_print_map(1);
 		// else
 			cw_vis_print_map(0);
 		cw_proc_executer(g_cw.proc_start);
-		if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
-			cw_print_dump_exit();
 		g_cw.cycle++;
 		g_cw.cycle_to_die_check--;
 	}
 	t_processes_free(&g_cw.proc_start, &g_cw.proc_end);
-	// cw_vis_print_map(1); // print last cycle
+	cw_vis_print_map(1); // print last cycle
 }
