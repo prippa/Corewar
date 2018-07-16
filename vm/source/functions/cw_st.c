@@ -24,7 +24,8 @@ static void		cw_execute_st(t_command *cmd, t_processes *proc)
 		pc = (proc->pc + IDX_X(cmd->arg2.av));
 		cw_write_bytes_to_buf(buf, proc->registers[cmd->arg1.av - 1]);
 		cw_write_to_map(buf, pc);
-		cw_vis_write_new_color(proc->color, pc, 4);
+		if (g_cw.pd.flags[VISU])
+			cw_vis_write_new_color(proc->color, pc, 4);
 	}
 }
 

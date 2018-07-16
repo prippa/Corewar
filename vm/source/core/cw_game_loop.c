@@ -62,9 +62,9 @@ void			cw_game_loop_base(void)
 			cw_cycles_new_period();
 		if (g_cw.proc_counter == 0)
 			break ;
-		cw_proc_executer(g_cw.proc_start);
 		if (g_cw.pd.flags[DUMP] && g_cw.cycle == g_cw.pd.dump_stop)
 			cw_print_dump_exit();
+		cw_proc_executer(g_cw.proc_start);
 		g_cw.cycle++;
 		g_cw.cycle_to_die_check--;
 	}
