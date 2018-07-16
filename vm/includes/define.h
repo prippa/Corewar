@@ -75,8 +75,8 @@ typedef enum	e_op_code
 # define RI		112
 # define R 		64
 
-# define REG	1
-# define IND	2
+# define TP_REG	1
+# define TP_IND	2
 
 # define CODAGE_SKIP 2
 # define SINGLE_COMB 1

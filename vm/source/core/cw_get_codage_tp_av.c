@@ -1,40 +1,40 @@
 #include "corewar.h"
 
-static int	cw_what_tp(char *bn, int j, char label)
+static char	cw_what_tp(unsigned char tp, char label)
 {
-	if (bn[j] == '1' && bn[j + 1] == '1')
-		return (IND);
-	else if (bn[j] == '1' && bn[j + 1] == '0')
+	if (tp == REG_CODE)
+		return (TP_REG);
+	else if (tp == DIR_CODE)
 		return (label);
-	else if (bn[j] == '0' && bn[j + 1] == '1')
-		return (REG);
+	else if (tp == IND_CODE)
+		return (TP_IND);
 	else
 		return (0);
 }
 
 void		cw_set_arg_tp_with_codage(t_command *cmd, char label, char comb)
 {
-	char	*bn;
-	int		j;
+	unsigned char tp1;
+	unsigned char tp2;
+	unsigned char tp3;
 
-	j = 0;
-	if (!(bn = ft_itoabase(cmd->codage, 2, 0)))
-		cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
-	while (ft_strlen(bn) < 8)
-		if (!(bn = ft_joinfree("0", bn, 2)))
-			cw_perror_exit(ERR_MALLOC_MESSAGE, MALLOC);
-	cmd->arg1.tp = cw_what_tp(bn, j, label);
+	tp1 = cmd->codage;
+	tp1 = tp1 >> 6;
+	cmd->arg1.tp = cw_what_tp(tp1, label);
 	if (comb >= DOUBLE_COMB)
 	{
-		j += 2;
-		cmd->arg2.tp = cw_what_tp(bn, j, label);
+		tp2 = cmd->codage;
+		tp2 = tp2 << 2;
+		tp2 = tp2 >> 6;
+		cmd->arg2.tp = cw_what_tp(tp2, label);
 	}
 	if (comb == TRIPLE_COMB)
 	{
-		j += 2;
-		cmd->arg3.tp = cw_what_tp(bn, j, label);
+		tp3 = cmd->codage;
+		tp3 = tp3 << 4;
+		tp3 = tp3 >> 6;
+		cmd->arg3.tp = cw_what_tp(tp3, label);
 	}
-	free(bn);
 }
 
 void		cw_set_arg_av(t_command *cmd, int pc, char comb)
