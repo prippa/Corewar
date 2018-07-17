@@ -251,6 +251,8 @@ typedef enum					e_champcolor
 */
 typedef struct					s_arena
 {
+	t_ltexture					*hail;
+	t_ltexture					*comment;
 	bool						show_fps;
 	SDL_Color					leader_color;
 	t_ltexture					*processes_txt;

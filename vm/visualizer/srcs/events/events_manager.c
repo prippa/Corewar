@@ -37,6 +37,7 @@ static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 {
 	static int		tacts_before_update;
 	int				i;
+	t_champ			*champion;
 	
 	if (arena->pause == false)
 	{
@@ -49,6 +50,20 @@ static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 				if (!cw_visu_game_loop())
 				{
 					g_cw.game_over = false;
+					champion = t_champ_find(g_cw.last_reported_to_be_alive, g_cw.pd.champs);
+					printf("%d\n", g_cw.last_reported_to_be_alive);
+					char *hail = ft_strjoin(champion->head.prog_name, " won!");
+					SDL_Color c;
+					if (champion->color == 1)
+						c = LIGHT_GREEN;
+					else if (champion->color == 2)
+						c = LIGHT_BLUE;
+					else if (champion->color == 3)
+						c = LIGHT_RED;
+					else
+						c = CYAN_COLOR;
+					arena->hail = load_from_rendered_text(get_text_info(WESTERN_SWING, 600, hail, c), arena->renderer);
+					free(hail);
 					t_processes_free(&g_cw.proc_start, &g_cw.proc_end);
 					cw_vis_update_map();
 					break ;
@@ -56,7 +71,6 @@ static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 				cw_vis_update_map();
 			}
 			tacts_before_update = 0;
-			cw_vis_update_map();
 		}
 	}
 }
@@ -93,6 +107,10 @@ void				events_handler(t_arena *arena)
 		clear_renderer(arena);
 		dequeue_events(arena);
 		draw_arena(arena);
+		if (g_cw.game_over == false)
+		{
+			render(get_render_position(0, (SDL_Point){0}, (SDL_Point){0}, (SDL_Point){arena->viewport.w , arena->viewport.h >> 1}), arena->hail, arena->renderer, SDL_FLIP_NONE);
+		}
 		draw_infopanel(arena);
 		draw_button_panel(arena);
 		draw_controls(arena);
