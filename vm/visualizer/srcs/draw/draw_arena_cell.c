@@ -45,7 +45,7 @@ void			draw_arena_cell(t_arena *arena,
 	int index = i * ARENA_HEIGHT + j;
 
 	SDL_Point	left_corner = {.x = rect.x, .y = rect.y};
-	int cell = g_cw.map[index];
+	int cell = g_cw.mp.map[index];
 	int ff = 0;
 	int sf = 0;
 	get_digits(cell, &ff, &sf);
@@ -53,7 +53,7 @@ void			draw_arena_cell(t_arena *arena,
 	t_ltexture *s;
 	SDL_Color back;
 	SDL_Color f_color;
-	if (get_colors(g_cw.colors[index], &back, &f_color))
+	if (get_colors(g_cw.mp.colors[index], &back, &f_color))
 	{
 		f = arena->bold_figures[ff];
 		s = arena->bold_figures[sf];

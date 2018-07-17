@@ -23,13 +23,13 @@ static void		cw_fill_map_with_bots(t_champ *champs)
 	while (proc)
 	{
 		map_index = proc->pc;
-		g_cw.color_map_pc[proc->pc]++;
+		g_cw.mp.color_map_pc[proc->pc]++;
 		champ_code_index = 0;
 		i = -1;
 		while (++i < champs->head.prog_size)
 		{
-			g_cw.map[map_index] = champs->code[champ_code_index];
-			g_cw.color_map[map_index] = proc->color;
+			g_cw.mp.map[map_index] = champs->code[champ_code_index];
+			g_cw.mp.color_map[map_index] = proc->color;
 			champ_code_index++;
 			map_index++;
 		}

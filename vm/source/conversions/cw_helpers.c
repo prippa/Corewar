@@ -42,7 +42,7 @@ void			cw_write_to_map(unsigned char *buf, int pc)
 		pc += MEM_SIZE;
 	while (i < 4)
 	{
-		g_cw.map[pc] = buf[i];
+		g_cw.mp.map[pc] = buf[i];
 		i++;
 		pc = MEM_X((pc + 1));
 	}
@@ -62,7 +62,7 @@ int				cw_get_dec_from_the_point(int pc, const int label)
 		pc += MEM_SIZE;
 	while (i < label)
 	{
-		buf[i] = g_cw.map[pc];
+		buf[i] = g_cw.mp.map[pc];
 		pc = MEM_X((pc + 1));
 		i++;
 	}

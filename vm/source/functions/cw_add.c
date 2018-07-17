@@ -33,7 +33,7 @@ void			cw_add(t_processes *proc)
 	t_command cmd;
 
 	ft_bzero(&cmd, sizeof(t_command));
-	cmd.codage = g_cw.map[MEM_X((proc->pc + 1))];
+	cmd.codage = g_cw.mp.map[MEM_X((proc->pc + 1))];
 	cw_set_arg_tp_with_codage(&cmd, g_cw.op[proc->cmd - 1].label, TRIPLE_COMB);
 	if (cw_get_args_av_add(&cmd, proc) && cw_is_valid_reg(&cmd))
 		cw_execute_add(&cmd, proc);

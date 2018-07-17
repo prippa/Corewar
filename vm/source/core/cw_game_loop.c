@@ -29,10 +29,10 @@ static void		cw_proc_executer(t_processes *proc)
 {
 	while (proc)
 	{
-		g_cw.color_map_pc[proc->pc]--;
-		if (proc->exec_cycles == -1 && IS_COMMAND(g_cw.map[proc->pc]))
+		g_cw.mp.color_map_pc[proc->pc]--;
+		if (proc->exec_cycles == -1 && IS_COMMAND(g_cw.mp.map[proc->pc]))
 		{
-			proc->cmd = g_cw.map[proc->pc];
+			proc->cmd = g_cw.mp.map[proc->pc];
 			proc->exec_cycles = g_cw.op[proc->cmd - 1].cycles_price - 1;
 		}
 		if (proc->exec_cycles != -1)
@@ -47,7 +47,7 @@ static void		cw_proc_executer(t_processes *proc)
 		}
 		else
 			cw_move_pc(proc, 1);
-		g_cw.color_map_pc[proc->pc]++;
+		g_cw.mp.color_map_pc[proc->pc]++;
 		proc = proc->next;
 	}
 }
