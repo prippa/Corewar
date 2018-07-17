@@ -56,9 +56,9 @@ static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 				cw_vis_update_map();
 			}
 			tacts_before_update = 0;
+			cw_vis_update_map();
 		}
 	}
-	draw_arena(arena);
 }
 
 static inline void	handle_fps(t_arena *arena, clock_t diff)
@@ -75,7 +75,7 @@ static inline void	handle_fps(t_arena *arena, clock_t diff)
 	}
 }
 
-static inline void	update_renderer(t_arena *arena, clock_t diff)
+static inline void	update_renderer(t_arena *arena)
 {
 	SDL_RenderPresent(arena->renderer);
 }
@@ -92,14 +92,14 @@ void				events_handler(t_arena *arena)
 		diff = clock();
 		clear_renderer(arena);
 		dequeue_events(arena);
+		draw_arena(arena);
 		draw_infopanel(arena);
 		draw_button_panel(arena);
 		draw_controls(arena);
 		draw_statuses(arena);
 		draw_framerate(arena);
-		diff = clock() - diff;
-		handle_fps(arena, diff);
-		handle_arena_rendering(arena, diff);
-		update_renderer(arena, diff);
+		handle_arena_rendering(arena, clock() - diff);
+		handle_fps(arena, clock() - diff);
+		update_renderer(arena);
 	}
 }
