@@ -227,12 +227,12 @@ typedef struct					s_button
 
 typedef struct					s_statusbar
 {
-	int							wrap_length;
-	t_ltexture					*left_wrapper;
-	t_ltexture					*right_wrapper;
+	int							top_wrap_length;
+	t_ltexture					*top_wrapper;
+	t_ltexture					*bottom_wrapper;
 	t_ltexture					*first_row;
 	t_ltexture					*second_row;
-	const char					*text;
+	char					*text;
 	int							text_len;
 }								t_statusbar;
 

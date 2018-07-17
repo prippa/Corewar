@@ -51,8 +51,11 @@ static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 				{
 					g_cw.game_over = false;
 					champion = t_champ_find(g_cw.last_reported_to_be_alive, g_cw.pd.champs);
-					printf("%d\n", g_cw.last_reported_to_be_alive);
-					char *hail = ft_strjoin(champion->head.prog_name, " won!");
+					char buf[2];
+					buf[0] = champion->champ_number * (-1) + '0';
+					buf[1] = 0; 
+					char *hail = ft_strjoin("Contestant ", buf);
+					hail = ft_strjoin(hail, " won!");
 					SDL_Color c;
 					if (champion->color == 1)
 						c = LIGHT_GREEN;
@@ -62,7 +65,7 @@ static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 						c = LIGHT_RED;
 					else
 						c = CYAN_COLOR;
-					arena->hail = load_from_rendered_text(get_text_info(WESTERN_SWING, 600, hail, c), arena->renderer);
+					arena->hail = load_from_rendered_text(get_text_info(WESTERN_SWING, 1200, hail, c), arena->renderer);
 					free(hail);
 					t_processes_free(&g_cw.proc_start, &g_cw.proc_end);
 					cw_vis_update_map();
@@ -108,9 +111,7 @@ void				events_handler(t_arena *arena)
 		dequeue_events(arena);
 		draw_arena(arena);
 		if (g_cw.game_over == false)
-		{
-			render(get_render_position(0, (SDL_Point){0}, (SDL_Point){0}, (SDL_Point){arena->viewport.w , arena->viewport.h >> 1}), arena->hail, arena->renderer, SDL_FLIP_NONE);
-		}
+			render(get_render_position(0, (SDL_Point){.x = BUTTON_WIDTH}, (SDL_Point){0}, (SDL_Point){arena->viewport.w - (BUTTON_WIDTH << 1), SCREEN_WIDTH >> 2}), arena->hail, arena->renderer, SDL_FLIP_NONE);
 		draw_infopanel(arena);
 		draw_button_panel(arena);
 		draw_controls(arena);
