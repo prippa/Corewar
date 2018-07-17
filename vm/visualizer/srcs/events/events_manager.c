@@ -58,7 +58,6 @@ static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 			cw_vis_update_map();
 		}
 	}
-	draw_arena(arena);
 }
 
 static inline void	handle_fps(t_arena *arena, clock_t diff)
@@ -92,6 +91,7 @@ void				events_handler(t_arena *arena)
 		diff = clock();
 		clear_renderer(arena);
 		dequeue_events(arena);
+		draw_arena(arena);
 		draw_infopanel(arena);
 		draw_button_panel(arena);
 		draw_controls(arena);

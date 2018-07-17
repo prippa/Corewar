@@ -85,5 +85,6 @@ bool				init(t_arena *arena)
 	if (!init_controls(arena))
 		return (false);
 	init_statuses(arena);
+	change_screen_mode(arena);
 	return (true);
 }
