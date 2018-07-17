@@ -20,7 +20,7 @@
 extern struct s_corewar	g_cw;
 
 # define FILE_NAME_MAX		4096
-# define CW_F_SIZE			2
+# define CW_F_SIZE			3
 # define CW_BIT				64
 # define CW_FUNC_NUMBER		16
 # define ALIVE				1
@@ -29,7 +29,8 @@ extern struct s_corewar	g_cw;
 typedef enum	e_flags
 {
 	DUMP = 0,
-	VISU
+	VISU,
+	AFF_F
 }				t_flags;
 
 /*
@@ -76,8 +77,8 @@ typedef enum	e_op_code
 # define RI		112
 # define R 		64
 
-# define REG	1
-# define IND	2
+# define TP_REG	1
+# define TP_IND	2
 
 # define CODAGE_SKIP 2
 # define SINGLE_COMB 1
@@ -113,7 +114,7 @@ typedef enum	e_error_numbers
 # define ERR_LSEEK_CUR_MESSAGE	"lseek to current position failed"
 
 /*
-************************************* Map **************************************
+************************************* Colors **************************************
 */
 
 # define IS_BASE_COLOR(x) ((x) > 0 && (x) < 5)

@@ -50,36 +50,3 @@ void					cw_vis_update_map(void)
 		i++;
 	}
 }
-
-/*
-** void					cw_vis_print_map(char flag) // debug
-** {
-** 	if (flag) system("clear");
-** 	int i;
-** 	int new_line_flag;
-**
-** 	i = 0;
-** 	new_line_flag = 1;
-** 	if (flag) ft_putstr("\n\n   ");
-** 	while (i < MEM_SIZE)
-** 	{
-** 		if (flag) ft_printf("%~.2x ", cw_vis_get_color(i), g_cw.map[i]);
-** 		cw_vis_down_cycles_color(i);
-** 		if (new_line_flag == CW_BIT)
-** 		{
-** 			if (flag) ft_putstr("\n   ");
-** 			new_line_flag = 1;
-** 		}
-** 		else
-** 			new_line_flag++;
-** 		i++;
-** 	}
-** 	if (flag) ft_printf("\n************\nCycle: %u\n************\n",
-**				g_cw.cycle);
-** 	if (flag) ft_printf("cycle to die: %d\n", g_cw.cycle_to_die);
-** 	if (flag) ft_printf("proc count: %u\n", g_cw.proc_counter);
-** 	if (flag) ft_printf("live %u\n", g_cw.pd.champs->lives_number);
-** 	if (flag) read(1, 0, 1);
-** 	if (flag) system("clear");
-** }
-*/

@@ -74,7 +74,7 @@ C_VM		=	main.c cw_init.c cw_free.c cw_exit.c\
 C_PARSER	=	cw_parser.c cw_parse_args.c cw_get_basic_data.c\
 				cw_parse_flags.c
 
-C_SRUC_MP	=	t_champ_op.c t_champ_add_free_rev.c t_proc_free_srch.c\
+C_SRUC_MP	=	t_champ_op.c t_champ_add_free_rev.c t_proc_free.c\
 				t_proc_add_cpy.c
 
 C_CORE		=	cw_load_map.c cw_game_loop.c cw_get_codage_tp_av.c\
@@ -87,7 +87,7 @@ C_FUNC		=	cw_binary_and.c cw_binary_or.c cw_binary_xor.c\
 
 C_CONV		=	cw_helpers.c cw_helpers_2.c
 
-C_COLOR		=	cw_vis_refresh_colors.c cw_vis_print_map.c
+C_COLOR		=	cw_vis_refresh_colors.c cw_vis_update_map.c
 #-------------------------------------------------------------------
 
 #------------------------------Visualizer---------------------------
@@ -282,13 +282,13 @@ clean:
 	@rm -rf $(DIR_OBJ)
 	@echo "Clean [ obj files VM ]"
 	@rm -rf $(OBJ_PATH)
-	@echo "Cleaning obj [ Visualizer ]..."
+	@echo "Cleaning obj [ Visualizer ]"
 
 fclean:
 	@rm -rf $(DIR_OBJ)
 	@echo "Clean [ obj files VM ]"
 	@rm -rf $(OBJ_PATH)
-	@echo "Cleaning obj [ Visualizer ]..."
+	@echo "Cleaning obj [ Visualizer ]"
 	@rm -f $(NAME)
 	@echo "Clean" [ $(VIS_NAME) ]
 

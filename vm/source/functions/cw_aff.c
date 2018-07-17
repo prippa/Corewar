@@ -38,7 +38,8 @@ void			cw_aff(t_processes *proc)
 	ft_bzero(&cmd, sizeof(t_command));
 	cmd.codage = g_cw.map[MEM_X((proc->pc + 1))];
 	cw_set_arg_tp_with_codage(&cmd, g_cw.op[proc->cmd - 1].label, SINGLE_COMB);
-	if (cw_get_args_av_aff(&cmd, proc) && cw_is_valid_reg(&cmd))
+	if (cw_get_args_av_aff(&cmd, proc) && cw_is_valid_reg(&cmd)
+		&& g_cw.pd.flags[AFF_F])
 		cw_execute_aff(&cmd, proc);
 	cw_move_pc_with_codage(&cmd, proc);
 }

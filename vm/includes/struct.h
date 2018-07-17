@@ -25,7 +25,7 @@ typedef struct			s_arg
 
 typedef struct			s_command
 {
-	int					codage;
+	unsigned char		codage;
 	t_arg				arg1;
 	t_arg				arg2;
 	t_arg				arg3;
@@ -75,7 +75,7 @@ typedef struct			s_parse_data
 }						t_parse_data;
 
 /*
-*********************** Implementing a function pointer ************************
+*********************** Function and some info about it ************************
 */
 
 typedef struct			s_op

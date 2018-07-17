@@ -46,13 +46,14 @@ static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 			i = -1;
 			while (++i < arena->cycles_per_tact)
 			{
-				if (!cw_game_loop())
+				if (!cw_visu_game_loop())
 				{
 					g_cw.game_over = false;
 					t_processes_free(&g_cw.proc_start, &g_cw.proc_end);
 					cw_vis_update_map();
 					break ;
 				}
+				cw_vis_update_map();
 			}
 			tacts_before_update = 0;
 			cw_vis_update_map();

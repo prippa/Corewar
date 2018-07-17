@@ -35,10 +35,12 @@ int			cw_parse_flags(char **argv)
 	i = 0;
 	while (argv[i])
 	{
-		if (!ft_strcmp(argv[i], "-d") && !g_cw.pd.flags[DUMP])
+		if (!ft_strcmp(argv[i], "-d"))
 			cw_valid_dump(argv, &i);
-		else if (!ft_strcmp(argv[i], "-visu") && !g_cw.pd.flags[VISU])
+		else if (!ft_strcmp(argv[i], "-visu"))
 			g_cw.pd.flags[VISU] = '1';
+		else if (!ft_strcmp(argv[i], "-a"))
+			g_cw.pd.flags[AFF_F] = '1';
 		else
 			return (i);
 		i++;

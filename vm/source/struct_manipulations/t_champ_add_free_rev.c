@@ -88,10 +88,13 @@ void			t_champ_rev(t_champ **champs)
 
 void			t_champ_free(t_champ **champs)
 {
+	t_champ *tmp;
+
 	while (*champs)
 	{
-		free(*champs);
+		tmp = *champs;
 		*champs = (*champs)->next;
+		free(tmp);
 	}
 }
 
