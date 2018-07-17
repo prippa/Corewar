@@ -114,7 +114,7 @@ typedef enum	e_error_numbers
 # define ERR_LSEEK_CUR_MESSAGE	"lseek to current position failed"
 
 /*
-************************************* Colors **************************************
+************************************* Colors ***********************************
 */
 
 # define IS_BASE_COLOR(x) ((x) > 0 && (x) < 5)
