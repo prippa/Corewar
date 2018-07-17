@@ -114,9 +114,7 @@ void				events_handler(t_arena *arena)
 		dequeue_events(arena);
 		draw_arena(arena);
 		if (g_cw.game_over == false)
-		{
 			render(get_render_position(0, (SDL_Point){.x = BUTTON_WIDTH}, (SDL_Point){0}, (SDL_Point){arena->viewport.w - (BUTTON_WIDTH << 1), SCREEN_WIDTH >> 2}), arena->hail, arena->renderer, SDL_FLIP_NONE);
-		}
 		draw_infopanel(arena);
 		draw_button_panel(arena);
 		draw_controls(arena);
@@ -125,5 +123,6 @@ void				events_handler(t_arena *arena)
 		handle_arena_rendering(arena, clock() - diff);
 		handle_fps(arena, clock() - diff);
 		update_renderer(arena);
+		printf("%zu\n", clock() - diff);
 	}
 }
