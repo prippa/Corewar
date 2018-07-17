@@ -17,7 +17,7 @@ int			t_processe_free_by_obj(t_processes **proc_start,
 {
 	if (!(*proc_start) || !(*proc_end) || !obj)
 		return (0);
-	g_cw.color_map_pc[obj->pc]--;
+	g_cw.mp.color_map_pc[obj->pc]--;
 	g_cw.proc_counter--;
 	if (obj == *proc_start)
 	{

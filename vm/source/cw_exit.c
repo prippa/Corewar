@@ -70,7 +70,7 @@ void		cw_print_dump_exit(void)
 		ft_printf("0x%.4x : ", counter);
 		while (index < (counter + CW_BIT))
 		{
-			ft_printf("%.2x ", g_cw.map[index]);
+			ft_printf("%.2x ", g_cw.mp.map[index]);
 			index++;
 		}
 		ft_putchar('\n');

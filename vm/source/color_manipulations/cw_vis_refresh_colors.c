@@ -21,8 +21,8 @@ void		cw_vis_write_new_color(unsigned char color, int pc, int len)
 		pc += MEM_SIZE;
 	while (i < len)
 	{
-		g_cw.color_map[pc] = color;
-		g_cw.color_map_bold[pc] = CYCLES_LIGHT;
+		g_cw.mp.color_map[pc] = color;
+		g_cw.mp.color_map_bold[pc] = CYCLES_LIGHT;
 		pc = MEM_X((pc + 1));
 		i++;
 	}

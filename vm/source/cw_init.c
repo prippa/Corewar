@@ -89,13 +89,7 @@ static void	cw_parse_data_init(t_parse_data *pd)
 void		cw_init(void)
 {
 	cw_parse_data_init(&g_cw.pd);
-	ft_bzero(g_cw.map, MEM_SIZE);
-	ft_bzero(g_cw.colors, MEM_SIZE);
-	ft_bzero(g_cw.color_map, MEM_SIZE);
-	ft_bzero(g_cw.color_map_pc, MEM_SIZE);
-	ft_bzero(g_cw.color_map_bold, MEM_SIZE);
-	ft_bzero(g_cw.color_map_live, MEM_SIZE);
-	ft_bzero(g_cw.color_live_cycle_buf, MEM_SIZE);
+	ft_bzero(&g_cw.mp, sizeof(t_map));
 	cw_get_op();
 	g_cw.proc_start = NULL;
 	g_cw.proc_end = NULL;

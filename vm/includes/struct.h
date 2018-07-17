@@ -86,12 +86,11 @@ typedef struct			s_op
 }						t_op;
 
 /*
-*************************** Global Elite Structure *****************************
+*********************** Map and Color buffers **********************************
 */
 
-typedef struct			s_corewar
+typedef struct			s_map
 {
-	t_parse_data		pd;
 	unsigned char		map[MEM_SIZE];
 	unsigned char		colors[MEM_SIZE];
 	unsigned char		color_map[MEM_SIZE];
@@ -99,6 +98,16 @@ typedef struct			s_corewar
 	unsigned char		color_map_bold[MEM_SIZE];
 	unsigned char		color_map_live[MEM_SIZE];
 	unsigned char		color_live_cycle_buf[MEM_SIZE];
+}						t_map;
+
+/*
+*************************** Global Elite Structure *****************************
+*/
+
+typedef struct			s_corewar
+{
+	t_parse_data		pd;
+	t_map				mp;
 	t_op				op[CW_FUNC_NUMBER];
 	t_processes			*proc_start;
 	t_processes			*proc_end;
