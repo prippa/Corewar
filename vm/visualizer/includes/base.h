@@ -6,7 +6,7 @@
 /*   By: vkovsh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/24 16:18:01 by vkovsh            #+#    #+#             */
-/*   Updated: 2018/05/24 16:18:03 by vkovsh           ###   ########.fr       */
+/*   Updated: 2018/07/17 13:13:05 by vkovsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 //g_cw.pd.champs
@@ -74,7 +74,7 @@
 # define BLUE_COLOR ((SDL_Color){.b = 0xff})
 # define CYAN_COLOR ((SDL_Color){.g = 0xff, .b = 0xff})
 # define WHITE_COLOR ((SDL_Color){.r = 0xff, .g = 0xff, .b = 0xff})
-# define BLACK_COLOR ((SDL_Color){0})
+# define BLACK_COLOR ((SDL_Color){})
 # define GRAY_COLOR ((SDL_Color){.r = 0xa9, .g = 0xa9, .b = 0xa9})
 # define BUTTON_MOVE_SOUND "music/background_button.wav"
 # define BUTTON_PRESS_SOUND "music/button_main.wav"
