@@ -50,7 +50,7 @@ t_ltexture		*load_from_rendered_text(t_text info,
 		lt->width = surface->w;
     	lt->height = surface->h;
 		SDL_FreeSurface(surface);
-		free(font);
+		TTF_CloseFont(font);
 	}
 	return ((lt->texture) ? lt : NULL);
 }

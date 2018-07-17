@@ -22,17 +22,13 @@ bool						init_statuses(t_arena *arena)
 	{
 		SDL_Color c;
 		if (i == RED_CHAMP)
-		{
 			c = RED_COLOR;
-		}
 		else if (i == BLUE_CHAMP)
-		{
 			c = BLUE_COLOR;
-		}
 		else if (i == GREEN_CHAMP)
-		{
 			c = GREEN_COLOR;
-		}
+		else 
+			c = CYAN_COLOR;
 		ft_bzero(top, 64);
 		arena->statuses[i].text = ft_strdup(get_name(i));
 		arena->statuses[i].text_len = ft_strlen(arena->statuses[i].text);
@@ -62,6 +58,7 @@ bool						init_statuses(t_arena *arena)
 										"****************************************************************",
 										BLACK_COLOR),
 										arena->renderer);
+			free(arena->statuses[i].text);
 		}
 	}
 	return (true);

@@ -31,11 +31,6 @@ static inline bool	init_window(t_arena *arena)
 		return (false);
 	}
 	SDL_SetRenderDrawColor(arena->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-	if (!(arena->screen_surface = SDL_GetWindowSurface(arena->window)))
-	{
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Screen surface init error", SDL_GetError(), NULL);
-		return (false);
-	}
 	arena->fps = 0;
 	arena->cycles_per_tact = 1;
 	arena->tact_duration = 100000;

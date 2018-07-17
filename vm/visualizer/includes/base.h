@@ -232,7 +232,7 @@ typedef struct					s_statusbar
 	t_ltexture					*bottom_wrapper;
 	t_ltexture					*first_row;
 	t_ltexture					*second_row;
-	char					*text;
+	char						*text;
 	int							text_len;
 }								t_statusbar;
 
@@ -252,7 +252,6 @@ typedef enum					e_champcolor
 typedef struct					s_arena
 {
 	t_ltexture					*hail;
-	t_ltexture					*comment;
 	bool						show_fps;
 	SDL_Color					leader_color;
 	t_ltexture					*processes_txt;
@@ -328,7 +327,6 @@ typedef struct					s_arena
 	SDL_Rect					viewport;
 	SDL_Point					top_left;
 	SDL_Window					*window;
-	SDL_Surface					*screen_surface;
 	SDL_Renderer				*renderer;
 	SDL_DisplayMode				d_mode;
 	/*

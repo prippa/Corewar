@@ -50,12 +50,15 @@ static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
 				if (!cw_visu_game_loop())
 				{
 					g_cw.game_over = false;
+					g_cw.cycle_to_die = 0;
 					champion = t_champ_find(g_cw.last_reported_to_be_alive, g_cw.pd.champs);
 					char buf[2];
 					buf[0] = champion->champ_number * (-1) + '0';
 					buf[1] = 0; 
 					char *hail = ft_strjoin("Contestant ", buf);
+					char *tmp = hail;
 					hail = ft_strjoin(hail, " won!");
+					free(tmp);
 					SDL_Color c;
 					if (champion->color == 1)
 						c = LIGHT_GREEN;
@@ -111,7 +114,9 @@ void				events_handler(t_arena *arena)
 		dequeue_events(arena);
 		draw_arena(arena);
 		if (g_cw.game_over == false)
+		{
 			render(get_render_position(0, (SDL_Point){.x = BUTTON_WIDTH}, (SDL_Point){0}, (SDL_Point){arena->viewport.w - (BUTTON_WIDTH << 1), SCREEN_WIDTH >> 2}), arena->hail, arena->renderer, SDL_FLIP_NONE);
+		}
 		draw_infopanel(arena);
 		draw_button_panel(arena);
 		draw_controls(arena);
