@@ -42,8 +42,7 @@ t_button				*create_button(t_rposition btn_position,
 */
 void					handle_button_event(SDL_Event *e,
 										t_button *btn,
-										t_arena *arena,
-											t_startmenu id);
+										t_arena *arena);
 
 /*
 ** Shows button sprite
@@ -58,6 +57,5 @@ void					free_button(t_button *btn);
 
 void					handle_movebutton_event(SDL_Event *e,
 											t_button *btn,
-											t_arena *arena,
-											t_movemenu id);
+											t_arena *arena);
 #endif

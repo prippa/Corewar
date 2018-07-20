@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_button_event.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vkovsh <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/20 13:35:59 by vkovsh            #+#    #+#             */
+/*   Updated: 2018/07/20 13:36:02 by vkovsh           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "visualizer.h"
 
 static inline bool	is_mouse_event_happened(int type)
@@ -18,8 +30,7 @@ static inline bool	is_mouse_outside_button(int x, int y,
 
 void				handle_button_event(SDL_Event *e,
 										t_button *btn,
-										t_arena *arena,
-										t_startmenu id)
+										t_arena *arena)
 {
 	int				x;
 	int				y;

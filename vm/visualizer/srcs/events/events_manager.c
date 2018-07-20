@@ -23,14 +23,14 @@ static inline void	dequeue_events(t_arena *arena)
 		else if (arena->e.type == SDL_MOUSEWHEEL)
 			wheel_event(arena, arena->e.wheel.y);
 		for (int i = 0; i < TOTAL_START_BUTTONS; i++)
-			handle_button_event(&(arena->e), arena->start_btns[i], arena, i);
+			handle_button_event(&(arena->e), arena->start_btns[i], arena);
 		for (int i = 0; i < MOVE_BUTTON_TOTAL; i++)
-			handle_movebutton_event(&(arena->e), arena->move_btns[i], arena, i);
+			handle_movebutton_event(&(arena->e), arena->move_btns[i], arena);
 		for (int i = 0; i < TOTAL_CHECKBOXES; i++)
 			handle_checkbox_event(&(arena->e), arena->checkboxes[i], arena, i);
 	}
 	for (int i = 0; i < MOVE_BUTTON_TOTAL; i++)
-		handle_movebutton_event(NULL, arena->move_btns[i], arena, i);
+		handle_movebutton_event(NULL, arena->move_btns[i], arena);
 }
 
 static inline void	handle_arena_rendering(t_arena *arena, clock_t diff)
@@ -123,6 +123,5 @@ void				events_handler(t_arena *arena)
 		handle_arena_rendering(arena, clock() - diff);
 		handle_fps(arena, clock() - diff);
 		update_renderer(arena);
-		printf("%zu\n", clock() - diff);
 	}
 }

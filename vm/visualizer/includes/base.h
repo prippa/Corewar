@@ -220,7 +220,7 @@ typedef struct					s_button
 	void						(*action)(void *arena);
 	t_rposition					btn_pos;
 	t_rposition					txt_pos;
-	t_btnsprite					current_sprite;
+	int							current_sprite;
 	t_ltexture					*button_txt;
 	void						*sprites;
 }								t_button;

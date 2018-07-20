@@ -21,9 +21,9 @@ static inline void	create_checkbox_text(t_checkbox *cbx,
 
 	if (text != NULL)
 	{
-		txt_top_left.x = cbx->position.x + CHECKBOX_WIDTH + 10;
+		txt_top_left.x = cbx->position.x + CHECKBOX_WIDTH;
 		txt_top_left.y = cbx->position.y;
-		texture = load_from_rendered_text(get_text_info(FUTURICA_ITALIC,
+		texture = load_from_rendered_text(get_text_info(ROBOTO_BLACK,
 											(CHECKBOX_HEIGHT << 2),
 											text,
 											BLACK_COLOR),
@@ -32,16 +32,14 @@ static inline void	create_checkbox_text(t_checkbox *cbx,
 		cbx->txt_position = txt_top_left;
 	}
 	else
-	{
 		cbx->checkbox_txt = NULL;
-	}
 }
 
-t_checkbox		*create_checkbox(SDL_Point position,
-								const char *text,
-								t_arena *arena)
+t_checkbox			*create_checkbox(SDL_Point position,
+									const char *text,
+									t_arena *arena)
 {
-	t_checkbox	*new_checkbox;
+	t_checkbox		*new_checkbox;
 
 	new_checkbox = NULL;
 	if (!(new_checkbox = (t_checkbox *)malloc(sizeof(t_checkbox))))

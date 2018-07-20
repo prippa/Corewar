@@ -13,7 +13,7 @@
 NAME		=	../corewar
 VIS_NAME	=	corewar
 
-FLAGS		= 	-Wall -Werror -Wextra
+FLAGS		= 	-Wall -Werror -Wextra -Wno-error
 
 CC			=	gcc -g
 
@@ -43,7 +43,7 @@ EVENT_PATH		=	$(SRC_PATH)events/
 DRAW_PATH		=	$(SRC_PATH)draw/
 LOADER_PATH		=	$(SRC_PATH)loader/
 LTEXTURE_PATH	=	$(SRC_PATH)ltexture/
-BUTTON_PATH		=	$(SRC_PATH)button/
+CONTROL_PATH	=	$(SRC_PATH)controls/
 UTIL_PATH		=	$(SRC_PATH)utilities/
 SDL_PATH		=	$(DIR_VIS)SDL_framework/
 MACOS_INC_PATH	=	$(DIR_VIS)includes/ $(SDL_PATH)Headers_macos/
@@ -135,7 +135,7 @@ LTEXTURE_NAME	=	load_from_file.c			\
 					get_render_position.c		\
 					load_from_rendered_text.c
 
-BUTTON_NAME		=	create_button.c				\
+CONTROL_NAME	=	create_button.c				\
 					handle_button_event.c		\
 					render_button_sprite.c		\
 					create_checkbox.c			\
@@ -173,7 +173,7 @@ OBJ_NAME		+=	$(EVENT_NAME:.c=.o)
 OBJ_NAME		+=	$(DRAW_NAME:.c=.o)
 OBJ_NAME		+=	$(LOADER_NAME:.c=.o)
 OBJ_NAME		+=	$(LTEXTURE_NAME:.c=.o)
-OBJ_NAME		+=	$(BUTTON_NAME:.c=.o)
+OBJ_NAME		+=	$(CONTROL_NAME:.c=.o)
 OBJ_NAME		+=	$(INIT_NAME:.c=.o)
 OBJ_NAME		+=	$(ERROR_NAME:.c=.o)
 OBJ_NAME		+=	$(UTIL_NAME:.c=.o)
@@ -257,7 +257,7 @@ $(OBJ_PATH)%.o:	$(LTEXTURE_PATH)%.c
 				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
 				@echo "Linking" [ $< ]
 
-$(OBJ_PATH)%.o:	$(BUTTON_PATH)%.c
+$(OBJ_PATH)%.o:	$(CONTROL_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
 				@$(CC) $(CC_FLAGS) -o $@ -c $< $(INC) $(INC_CW)
 				@echo "Linking" [ $< ]

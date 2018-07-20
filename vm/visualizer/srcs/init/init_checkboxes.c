@@ -27,11 +27,11 @@ bool			init_checkboxes(t_arena *arena)
 	set_color(GREEN_COLOR, arena->full_sprites[CHECK_MOUSE_IN]);
 	set_color(GREEN_COLOR, arena->full_sprites[CROSS_MOUSE_IN]);
 	if (!(arena->checkboxes[FULLSCREEN_CBX] = create_checkbox((SDL_Point){.x = 10.5 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - CHECKBOX_HEIGHT},
-									" ",
+									"FULLSCREEN",
 									arena)))
 		return (false);
 	if (!(arena->checkboxes[SOUND_CBX] = create_checkbox((SDL_Point){.x = 11.5 * BUTTON_WIDTH, .y = SCREEN_HEIGHT - CHECKBOX_HEIGHT},
-									" ",
+									"MUSIC",
 									arena)))
 		return (false);
 	arena->checkboxes[SOUND_CBX]->checked = true;
