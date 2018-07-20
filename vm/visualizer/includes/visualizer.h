@@ -24,6 +24,7 @@
 # define ARENA_WIDTH 64
 # define ARENA_HEIGHT 64
 
+SDL_Point   get_point(int x, int y);
 void		info(void *data);
 void		start(void *data);
 void		stop(void *data);

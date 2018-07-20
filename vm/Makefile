@@ -101,7 +101,8 @@ UTIL_NAME		=	clear_renderer.c			\
 					reset.c						\
 					sdl_putnbr.c				\
 					duration_change.c			\
-					cycles_change.c
+					cycles_change.c				\
+					get_point.c
 
 EVENT_NAME		=	events_manager.c			\
 					key_event.c					\

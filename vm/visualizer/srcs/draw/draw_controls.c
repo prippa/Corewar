@@ -12,18 +12,30 @@
 
 #include "visualizer.h"
 
-void	draw_controls(t_arena *arena)
+static inline void	draw_move_panel(t_arena *arena)
 {
-	for (int i = 0; i < TOTAL_CHECKBOXES; i++)
-		render_checkbox_sprite(arena->checkboxes[i], arena);
-	for (int i = 0; i < TOTAL_START_BUTTONS; i++)
-		render_button_sprite(arena->start_btns[i], arena);
-	int panel_width = SCREEN_HEIGHT - arena->abs_arena_height;
-	SDL_Point p = {.x = 0, .y = arena->abs_arena_height};
-	SDL_Rect clip = get_rectangle(0, 0, panel_width, panel_width);
-	t_rposition pos = get_render_position(0, p, p, (SDL_Point){.x = clip.w, .y = clip.h});
+	int				panel_width;
+	t_rposition		pos;
+	SDL_Point		p;
+
+	panel_width = SCREEN_HEIGHT - arena->abs_arena_height;
+	p = get_point(0, arena->abs_arena_height);
+	pos = get_render_position(0, p, p, get_point(panel_width, panel_width));
 	render(pos, arena->move_panel, arena->renderer, SDL_FLIP_NONE);
-	for (int i = 0; i < MOVE_BUTTON_TOTAL; i++)
-		render_button_sprite(arena->move_btns[i], arena);
 }
 
+void				draw_controls(t_arena *arena)
+{
+	int				i;
+
+	i = -1;
+	while (++i < TOTAL_CHECKBOXES)
+		render_checkbox_sprite(arena->checkboxes[i], arena);
+	i = -1;
+	while (++i < TOTAL_START_BUTTONS)
+		render_button_sprite(arena->start_btns[i], arena);
+	draw_move_panel(arena);
+	i = -1;
+	while (++i < MOVE_BUTTON_TOTAL)
+		render_button_sprite(arena->move_btns[i], arena);
+}

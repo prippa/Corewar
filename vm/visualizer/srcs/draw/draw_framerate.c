@@ -15,7 +15,11 @@
 void	draw_framerate(t_arena *arena)
 {
 	if (arena->show_fps)
-		sdl_putnbr((t_nbrinfo){.nbr = arena->old_fps, .c = RED_COLOR, .min_width = 3},
-					get_rectangle(SCREEN_WIDTH - 90, SCREEN_HEIGHT - 60, 90, 60),
-					arena);
+		sdl_putnbr((t_nbrinfo){.nbr = arena->old_fps,
+						.c = RED_COLOR,
+						.min_width = 3},
+					get_rectangle(SCREEN_WIDTH - 90,
+						SCREEN_HEIGHT - 60,
+						90,
+						60), arena);
 }

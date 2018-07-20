@@ -12,69 +12,61 @@
 
 #include "visualizer.h"
 
-const bool	bold_states[25] = {0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-const SDL_Color	back_colors[25] = {BLACK_COLOR, BLACK_COLOR, BLACK_COLOR, BLACK_COLOR,
-									BLACK_COLOR, BLACK_COLOR, BLACK_COLOR, BLACK_COLOR,
-									BLACK_COLOR, BLACK_COLOR, BLACK_COLOR, BLACK_COLOR,
-									BLACK_COLOR, BLACK_COLOR, BLACK_COLOR, BLACK_COLOR,
-									GREEN_COLOR, BLUE_COLOR, RED_COLOR, CYAN_COLOR,
-									GRAY_COLOR, GREEN_COLOR, BLUE_COLOR, RED_COLOR, CYAN_COLOR};
-const SDL_Color	font_colors[25] = {GREEN_COLOR, BLUE_COLOR, RED_COLOR, CYAN_COLOR,
-									GREEN_COLOR, BLUE_COLOR, RED_COLOR, CYAN_COLOR,
-									YELLOW_COLOR, MAGENTA_COLOR, WHITE_COLOR, GRAY_COLOR,
-									GRAY_COLOR, YELLOW_COLOR, MAGENTA_COLOR, WHITE_COLOR,
-									BLACK_COLOR, BLACK_COLOR, BLACK_COLOR, BLACK_COLOR, BLACK_COLOR,
-									WHITE_COLOR, WHITE_COLOR, WHITE_COLOR, WHITE_COLOR};
+const bool			g_boldstates[25] = BOLD_STATES;
 
-bool			get_colors(t_colors st, SDL_Color *back, SDL_Color *font_color)
+const SDL_Color		g_backcolors[25] = BACK_COLORS;
+
+const SDL_Color		g_fontcolors[25] = FONT_COLORS;
+
+bool				get_colors(t_colors st,
+						SDL_Color *back,
+						SDL_Color *font_color)
 {
-	bool		result;
+	bool			result;
 
-	result = bold_states[st - 1];
-	*back = back_colors[st - 1];
-	*font_color = font_colors[st - 1];
+	result = g_boldstates[st - 1];
+	*back = g_backcolors[st - 1];
+	*font_color = g_fontcolors[st - 1];
 	return (result);
 }
 
-void			draw_arena_cell(t_arena *arena,
-								int i, int j,
-								SDL_Rect rect)
+static inline void	draw_number_in_cell(SDL_Color color[2],
+										t_ltexture *pair[2],
+										t_rposition position,
+										t_arena *arena)
 {
+	set_color(color[1], pair[0]);
+	set_color(color[1], pair[1]);
+	position.width >>= 1;
+	render(position, pair[0], arena->renderer, SDL_FLIP_NONE);
+	position.left_corner.x += position.width;
+	render(position, pair[1], arena->renderer, SDL_FLIP_NONE);
+}
 
-	t_rposition	position;
-	int index = i * ARENA_HEIGHT + j;
+void				draw_arena_cell(t_arena *arena, int i, int j, SDL_Rect r)
+{
+	t_rposition		position;
+	int				index;
+	int				digits[2];
+	t_ltexture		*pair[2];
+	SDL_Color		color[2];
 
-	SDL_Point	left_corner = {.x = rect.x, .y = rect.y};
-	int cell = g_cw.mp.map[index];
-	int ff = 0;
-	int sf = 0;
-	get_digits(cell, &ff, &sf);
-	t_ltexture *f;
-	t_ltexture *s;
-	SDL_Color back;
-	SDL_Color f_color;
-	if (get_colors(g_cw.mp.colors[index], &back, &f_color))
+	index = i * ARENA_HEIGHT + j;
+	get_digits(g_cw.mp.map[index], &digits[0], &digits[1]);
+	if (get_colors(g_cw.mp.colors[index], &color[0], &color[1]))
 	{
-		f = arena->bold_figures[ff];
-		s = arena->bold_figures[sf];
+		pair[0] = arena->bold_figures[digits[0]];
+		pair[1] = arena->bold_figures[digits[1]];
 	}
 	else
 	{
-		f = arena->figures[ff];
-		s = arena->figures[sf];
-		set_alpha_mode(200, f);
-		set_alpha_mode(200, s);
+		pair[0] = arena->figures[digits[0]];
+		pair[1] = arena->figures[digits[1]];
+		set_alpha_mode(200, pair[0]);
+		set_alpha_mode(200, pair[1]);
 	}
-	position = get_render_position(0, left_corner, left_corner, (SDL_Point){.x = rect.w, .y = rect.h});
-	set_color(f_color, f);
-	set_color(f_color, s);
-	SDL_SetRenderDrawColor(arena->renderer, back.r, back.g, back.b, 0x0);
-	SDL_RenderFillRect(arena->renderer, &rect);
-	rect.w /= 2;
-	position = get_render_position(0, left_corner, left_corner, (SDL_Point){.x = rect.w, .y = rect.h});
-	render(position, f, arena->renderer, SDL_FLIP_NONE);
-	rect.x += rect.w;
-	left_corner.x += rect.w;
-	position = get_render_position(0, left_corner, left_corner, (SDL_Point){.x = rect.w, .y = rect.h});
-	render(position, s, arena->renderer, SDL_FLIP_NONE);
+	position = get_render_position(0,
+				get_point(r.x, r.y), get_point(0, 0), get_point(r.w, r.h));
+	draw_fillrect(r, color[0], arena->renderer);
+	draw_number_in_cell(color, pair, position, arena);
 }
