@@ -125,10 +125,7 @@
 					BLACK_COLOR, BLACK_COLOR, BLACK_COLOR, BLACK_COLOR,\
 					BLACK_COLOR, WHITE_COLOR, WHITE_COLOR, WHITE_COLOR,\
 					WHITE_COLOR}
-
-//extern const bool		bold_states[25];
-//extern const SDL_Color	back_colors[25];
-//extern const SDL_Color	font_colors[25];
+# define INFO_TXT ""
 
 /*
 ** Wrapper for SDL texture

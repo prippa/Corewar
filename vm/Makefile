@@ -102,7 +102,8 @@ UTIL_NAME		=	clear_renderer.c			\
 					sdl_putnbr.c				\
 					duration_change.c			\
 					cycles_change.c				\
-					get_point.c
+					get_point.c					\
+					live_utils.c
 
 EVENT_NAME		=	events_manager.c			\
 					key_event.c					\
@@ -121,7 +122,9 @@ DRAW_NAME		=	draw_arena.c				\
 					draw_infopanel.c			\
 					draw_button_panel.c			\
 					draw_statuses.c				\
-					draw_framerate.c
+					draw_framerate.c			\
+					draw_constants.c			\
+					draw_winner.c
 
 LOADER_NAME		=	load_surface.c				\
 					load_texture.c

@@ -66,5 +66,5 @@ void				key_event(t_arena *arena, SDL_Keycode sym)
 	else if (sym == SDLK_v)
 		decrease_duration(arena);
 	else if (sym == SDLK_h)
-		arena->show_fps = !(arena->show_fps); 
+		arena->show_fps = !(arena->show_fps);
 }

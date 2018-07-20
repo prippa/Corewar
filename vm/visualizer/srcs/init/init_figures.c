@@ -24,20 +24,18 @@ bool		init_figures(t_arena *arena)
 	while (++i < 0x10)
 	{
 		buf[0] = (i < 0xa) ? i + 48 : 'F' - (0xf - i);
-		if (!(arena->figures[i] = load_from_rendered_text(get_text_info(
+		arena->figures[i] = load_from_rendered_text(get_text_info(
 									ROBOTO_REGULAR,
 									font_weight,
 									buf,
 									WHITE_COLOR),
-									arena->renderer)))
-			return (false);
-		if (!(arena->bold_figures[i] = load_from_rendered_text(get_text_info(
+									arena->renderer);
+		arena->bold_figures[i] = load_from_rendered_text(get_text_info(
 									ROBOTO_BLACK,
 									font_weight,
 									buf,
 									WHITE_COLOR),
-									arena->renderer)))
-			return (false);
+									arena->renderer);
 	}
 	return (true);
 }

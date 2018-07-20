@@ -1,72 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_statuses.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vkovsh <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/20 18:22:54 by vkovsh            #+#    #+#             */
+/*   Updated: 2018/07/20 18:22:56 by vkovsh           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "visualizer.h"
 
-static inline int	get_live_sum(void)
+static inline void	draw_status_txt(t_arena *arena,
+						t_rposition *name_pos,
+						int i)
 {
-	int						sum;
-	t_champ					*tmp;
-	
-	tmp = g_cw.pd.champs;
-	sum = 0;
-	while (tmp)
-	{
-		sum += tmp->lives_number;
-		tmp = tmp->next;
-	}
-	return ((sum == 0) ? 1 : sum);
-}
-
-static inline int	get_live(int index)
-{
-	int				depth;
-	t_champ			*tmp;
-	
-	tmp = g_cw.pd.champs;
-	while (index--)
-		tmp = tmp->next;
-	return (tmp->lives_number);
-}
-
-static inline int	get_max(void)
-{
-	int				max;
-	t_champ			*tmp;
-	
-	tmp = g_cw.pd.champs;
-	max = 0;
-	while (tmp)
-	{
-		if (tmp->lives_number > max)
-			max = tmp->lives_number;
-		tmp = tmp->next;
-	}
-	return (max);
+	name_pos->width = INFOPANEL_WIDTH * (arena->statuses[i].top_wrap_length / (float)64);
+	render(*name_pos, arena->statuses[i].top_wrapper, arena->renderer, SDL_FLIP_NONE);
+	name_pos->left_corner.x += name_pos->width;
+	name_pos->width = INFOPANEL_WIDTH * (arena->statuses[i].text_len / (float)64);
+	render(*name_pos, arena->statuses[i].first_row, arena->renderer, SDL_FLIP_NONE);
+	name_pos->left_corner.x += name_pos->width;
+	name_pos->width = INFOPANEL_WIDTH * (arena->statuses[i].top_wrap_length / (float)64);
+	render(*name_pos, arena->statuses[i].top_wrapper, arena->renderer, SDL_FLIP_NONE);
+	name_pos->left_corner.x = INFOPANEL_TOP_LEFT.x;
+	name_pos->left_corner.y += BUTTON_HEIGHT;
+	name_pos->width = INFOPANEL_WIDTH;
+	render(*name_pos, arena->statuses[i].second_row, arena->renderer, SDL_FLIP_NONE);
 }
 
 void			draw_statuses(t_arena *arena)
 {
 	int			i;
 	t_rposition	name_pos;
+	int			max;
+	int			sum;
+	SDL_Color	c;
+	int			live;
 
 	i = -1;
 	name_pos = get_render_position(0, (SDL_Point){.x = INFOPANEL_TOP_LEFT.x, .y = 0.12 * SCREEN_HEIGHT}, (SDL_Point){0}, (SDL_Point){.x = INFOPANEL_WIDTH, .y = BUTTON_HEIGHT});
-	int max = get_max();
-	int sum = get_live_sum();
+	max = get_max();
+	sum = get_live_sum();
 	while (++i < g_cw.pd.champs_count)
 	{
-		name_pos.width = INFOPANEL_WIDTH * (arena->statuses[i].top_wrap_length / (float)64);
-		render(name_pos, arena->statuses[i].top_wrapper, arena->renderer, SDL_FLIP_NONE);
-		name_pos.left_corner.x += name_pos.width;
-		name_pos.width = INFOPANEL_WIDTH * (arena->statuses[i].text_len / (float)64);
-		render(name_pos, arena->statuses[i].first_row, arena->renderer, SDL_FLIP_NONE);
-		name_pos.left_corner.x += name_pos.width;
-		name_pos.width = INFOPANEL_WIDTH * (arena->statuses[i].top_wrap_length / (float)64);
-		render(name_pos, arena->statuses[i].top_wrapper, arena->renderer, SDL_FLIP_NONE);
-		name_pos.left_corner.x = INFOPANEL_TOP_LEFT.x;
-		name_pos.left_corner.y += BUTTON_HEIGHT;
-		name_pos.width = INFOPANEL_WIDTH;
-		render(name_pos, arena->statuses[i].second_row, arena->renderer, SDL_FLIP_NONE);
-		SDL_Color c;
-		int live = get_live(i);
+		draw_status_txt(arena, &name_pos, i);
+		live = get_live(i);
 		if (i == RED_CHAMP)
 		{
 			if (max == live && live)

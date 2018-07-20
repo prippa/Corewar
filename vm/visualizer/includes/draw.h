@@ -17,7 +17,8 @@
 /*
 ** Rendering Corewar Arena
 */
-void	draw_fillrect(SDL_Rect rect, SDL_Color rgb, SDL_Renderer *renderer);
+void    draw_constants(t_arena *arena);
+void    draw_fillrect(SDL_Rect rect, SDL_Color rgb, SDL_Renderer *renderer);
 void	draw_arena(t_arena *arena);
 void	draw_arena_cell(t_arena *arena, int i, int j, SDL_Rect rect);
 void	draw_outlinerect(t_arena *arena, SDL_Rect rect);
@@ -27,4 +28,5 @@ void	draw_infopanel(t_arena *arena);
 void	draw_button_panel(t_arena *arena);
 void	draw_statuses(t_arena *arena);
 void	draw_framerate(t_arena *arena);
+void    draw_winner(t_arena *arena);
 #endif

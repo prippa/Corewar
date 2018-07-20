@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vkovsh <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/20 19:05:18 by vkovsh            #+#    #+#             */
+/*   Updated: 2018/07/20 19:05:20 by vkovsh           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "visualizer.h"
 
 static inline void	reset_move_sprites(t_arena *arena)
@@ -17,7 +29,8 @@ void				move_up(void *data)
 	arena = (t_arena *)data;
 	reset_move_sprites(arena);
 	arena->move_btns[UP_MENU_BTN]->current_sprite = MOVE_BUTTON_MOUSE_DOWN;
-	max_y = arena->top_left.y + (ARENA_TILE_HEIGHT * arena->zoom * ARENA_HEIGHT);
+	max_y = arena->top_left.y +
+		(ARENA_TILE_HEIGHT * arena->zoom * ARENA_HEIGHT);
 	if (max_y >= ARENA_TILE_HEIGHT * arena->zoom)
 		arena->top_left.y -= ARENA_TILE_HEIGHT * arena->zoom;
 }
@@ -29,7 +42,8 @@ void				move_down(void *data)
 	arena = (t_arena *)data;
 	reset_move_sprites(arena);
 	arena->move_btns[DOWN_MENU_BTN]->current_sprite = MOVE_BUTTON_MOUSE_DOWN;
-	if (arena->top_left.y < SCREEN_HEIGHT - (2 * ARENA_TILE_HEIGHT * arena->zoom))
+	if (arena->top_left.y <
+		SCREEN_HEIGHT - (2 * ARENA_TILE_HEIGHT * arena->zoom))
 		arena->top_left.y += ARENA_TILE_HEIGHT * arena->zoom;
 }
 
