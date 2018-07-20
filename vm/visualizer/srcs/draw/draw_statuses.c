@@ -95,7 +95,11 @@ void			draw_statuses(t_arena *arena)
 			c = CYAN_COLOR;
 			SDL_SetRenderDrawColor(arena->renderer, 0, 0xff, 0xff, 0xff);
 		}
-		sdl_putnbr(live, get_rectangle(INFOPANEL_TOP_LEFT.x, name_pos.left_corner.y + BUTTON_HEIGHT, BUTTON_WIDTH >> 1, BUTTON_HEIGHT), arena, c, 6);
+		sdl_putnbr((t_nbrinfo){.nbr = live, .c = c, .min_width = 6},
+			get_rectangle(INFOPANEL_TOP_LEFT.x,
+				name_pos.left_corner.y + BUTTON_HEIGHT,
+				BUTTON_WIDTH >> 1,
+				BUTTON_HEIGHT), arena);
 		SDL_Rect r = get_rectangle(INFOPANEL_TOP_LEFT.x + (BUTTON_WIDTH * (float)2/3), name_pos.left_corner.y + BUTTON_HEIGHT, INFOPANEL_WIDTH - (BUTTON_WIDTH), BUTTON_HEIGHT);
 		draw_fillrect(r, (SDL_Color){.r = 100}, arena->renderer);
 		float p = live / (float)sum;

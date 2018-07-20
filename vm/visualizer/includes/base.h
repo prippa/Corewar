@@ -245,6 +245,13 @@ typedef enum					e_champcolor
 	TOTAL_CHAMP
 }								t_champcolor;
 
+typedef struct					s_nbrinfo
+{
+	int							nbr;
+	SDL_Color					c;
+	int							min_width;
+}								t_nbrinfo;
+
 /*
 ** Structure with information about
 ** graphical representation for Corewar Arena

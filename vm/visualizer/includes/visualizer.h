@@ -41,7 +41,7 @@ void		change_screen_mode(t_arena *arena);
 void		get_digits(unsigned char hex, int *ff, int *sf);
 void		reset(void *data);
 bool		get_colors(t_colors st, SDL_Color *back, SDL_Color *font_color);
-void		sdl_putnbr(int nbr, SDL_Rect clip, t_arena *arena, SDL_Color c, int min_count);
+void		sdl_putnbr(t_nbrinfo rnbr, SDL_Rect clip, t_arena *arena);
 void		render_part(SDL_Rect clip,
 						SDL_Rect target,
 						SDL_Point top_left,

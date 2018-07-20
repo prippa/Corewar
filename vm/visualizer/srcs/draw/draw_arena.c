@@ -23,10 +23,10 @@ static inline void	draw_top_raw(t_arena *arena, int width, int height)
 		return ;
 	while (++i < ARENA_WIDTH)
 	{
-		if (rect.x > arena->viewport.w /*- width*/)
+		if (rect.x > arena->viewport.w)
 			break ;
 		SDL_RenderFillRect(arena->renderer, &rect);
-		sdl_putnbr(i + 1, rect, arena, WHITE_COLOR, 2);
+		sdl_putnbr((t_nbrinfo){.nbr = i + 1, .c = WHITE_COLOR, .min_width = 2}, rect, arena);
 		rect.x += width;
 	}
 }
@@ -42,10 +42,10 @@ static inline void	draw_left_column(t_arena *arena, int width, int height)
 		return ;
 	while (++i < ARENA_HEIGHT)
 	{
-		if (rect.y > arena->viewport.h /*- height*/)
+		if (rect.y > arena->viewport.h)
 			break ;
 		SDL_RenderFillRect(arena->renderer, &rect);
-		sdl_putnbr(i + 1, rect, arena, WHITE_COLOR, 2);
+		sdl_putnbr((t_nbrinfo){.nbr = i + 1, .c = WHITE_COLOR, .min_width = 2}, rect, arena);
 		rect.y += height;
 	}
 }
@@ -78,7 +78,7 @@ void			draw_arena(t_arena *arena)
 			top_y += height;
 			continue ;
 		}
-		else if (top_y > arena->viewport.h /*- height*/)
+		else if (top_y > arena->viewport.h)
 			break ;
 		j = -1;
 		top_x = arena->top_left.x + width + 1;
@@ -89,7 +89,7 @@ void			draw_arena(t_arena *arena)
 				top_x += width;
 				continue ;
 			}
-			else if (top_x > arena->viewport.x + arena->viewport.w /*- width*/)
+			else if (top_x > arena->viewport.x + arena->viewport.w)
 				break ;
 			draw_arena_cell(arena, i, j, get_rectangle(top_x + 1,
 												top_y + 1,
