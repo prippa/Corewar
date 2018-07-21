@@ -23,8 +23,6 @@ void		cw_separator_skip(char *file_name, int fd, const long size)
 	while (++i < size)
 		if (buf[i] != 0)
 			cw_exit(file_name, NOT_NULL_BITES);
-	// if ((lseek(fd, size, SEEK_CUR)) < 0)
-	// 	cw_perror_exit(ERR_LSEEK_CUR_MESSAGE, LSEEK);
 }
 
 static void	cw_parse_file(t_champ *champ)
