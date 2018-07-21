@@ -40,7 +40,7 @@ void		cw_get_prog_size(t_champ *champ)
 {
 	unsigned char	buf[REG_SIZE];
 
-	cw_lseek_cur_skip(champ->fd, REG_SIZE);
+	cw_separator_skip(champ->file_name, champ->fd, REG_SIZE);
 	ft_bzero(buf, REG_SIZE);
 	if ((read(champ->fd, buf, REG_SIZE)) < 0)
 		cw_perror_exit(champ->file_name, READ_FILE);
@@ -68,7 +68,7 @@ void		cw_get_prog_code(t_champ *champ)
 {
 	unsigned char	buf[champ->head.prog_size + 2];
 
-	cw_lseek_cur_skip(champ->fd, REG_SIZE);
+	cw_separator_skip(champ->file_name, champ->fd, REG_SIZE);
 	ft_bzero(buf, champ->head.prog_size + 2);
 	if ((g_cw.pd.tmp = read(champ->fd, buf, champ->head.prog_size + 1)) < 0)
 		cw_perror_exit(champ->file_name, READ_FILE);

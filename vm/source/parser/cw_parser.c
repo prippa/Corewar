@@ -12,10 +12,17 @@
 
 #include "corewar.h"
 
-void		cw_lseek_cur_skip(int fd, long size)
+void		cw_separator_skip(char *file_name, int fd, const long size)
 {
-	if ((lseek(fd, size, SEEK_CUR)) < 0)
-		cw_perror_exit(ERR_LSEEK_CUR_MESSAGE, LSEEK);
+	unsigned char	buf[size];
+	unsigned int	i;
+
+	if ((read(fd, buf, size)) < 0)
+		cw_perror_exit(file_name, READ_FILE);
+	i = -1;
+	while (++i < size)
+		if (buf[i] != 0)
+			cw_exit(file_name, NOT_NULL_BITES);
 }
 
 static void	cw_parse_file(t_champ *champ)
