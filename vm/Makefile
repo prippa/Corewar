@@ -103,7 +103,8 @@ UTIL_NAME		=	clear_renderer.c			\
 					duration_change.c			\
 					cycles_change.c				\
 					get_point.c					\
-					live_utils.c
+					live_utils.c				\
+					set_render_color.c
 
 EVENT_NAME		=	events_manager.c			\
 					key_event.c					\

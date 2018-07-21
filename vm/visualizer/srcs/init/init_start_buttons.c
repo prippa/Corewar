@@ -12,6 +12,9 @@
 
 #include "visualizer.h"
 
+const char *g_labels[TOTAL_START_BUTTONS] = LABELS;
+void (*g_actionfuncs[TOTAL_START_BUTTONS])(void *) = ACTIONS;
+
 static inline bool	init_sprites(t_arena *arena)
 {
 	if (!(arena->start_btn_sprites[BUTTON_MOUSE_OUT] =
@@ -37,25 +40,23 @@ static inline bool	init_sprites(t_arena *arena)
 bool				init_start_buttons(t_arena *arena)
 {
 	int				i;
-
+	t_rposition		btn_pos;
 
 	bzero(arena->start_btn_sprites, sizeof(arena->start_btn_sprites));
 	if (!init_sprites(arena))
 		return (false);
-	const char *labels[TOTAL_START_BUTTONS] = {"START", "STOP", "INFO", "EXIT",
-												" D+ ", " D- ", " C+ ", " C- ", "BACK"};
-	void (*action_funcs[TOTAL_START_BUTTONS])(void *) = {&start, &stop, &info, &exit_event,
-																&increase_duration, &decrease_duration,
-															&increase_cycles, &decrease_cycles, &reset};
-	t_rposition btn_pos = get_render_position(0,
-											(SDL_Point){.x = BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
-											(SDL_Point){.x = BUTTON_WIDTH, .y = SCREEN_HEIGHT - BUTTON_HEIGHT},
-											(SDL_Point){.x = BUTTON_WIDTH, .y = BUTTON_HEIGHT});
+	get_render_position(0,
+	get_point(BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT),
+	get_point(BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT),
+	get_point(BUTTON_WIDTH, BUTTON_HEIGHT));
 	i = -1;
 	while (++i < TOTAL_START_BUTTONS)
 	{
-		arena->start_btns[i] =	create_button(btn_pos, labels[i], arena->renderer, arena->start_btn_sprites);
-		arena->start_btns[i]->action = action_funcs[i];
+		arena->start_btns[i] = create_button(btn_pos,
+			g_labels[i],
+			arena->renderer,
+			arena->start_btn_sprites);
+		arena->start_btns[i]->action = g_actionfuncs[i];
 		btn_pos.left_corner.x += BUTTON_WIDTH;
 		btn_pos.center.x += BUTTON_WIDTH;
 	}
