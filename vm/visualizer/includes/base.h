@@ -123,7 +123,8 @@
 # define WC WHITE_COLOR,WHITE_COLOR,WHITE_COLOR,WHITE_COLOR
 # define B BLACK_COLOR
 # define FONT_COLORS {GBRC,GBRC,YMW,G,G,YMW,BC,B,B,WC}
-# define INFO_TXT ""
+# define CW_WHAT "A virtual “arena” in which programs fight against one another"
+# define INFO_TXT CW_WHAT ".\n\nAuthors:\nvkovsh\nprippa\nvgladush\notimofie"
 # define GP LIGHT_GREEN,GREEN_COLOR
 # define BP LIGHT_BLUE,BLUE_COLOR
 # define STATUS_PAIRS {GP,BP,LIGHT_RED,RED_COLOR,LIGHT_CYAN,CYAN_COLOR}

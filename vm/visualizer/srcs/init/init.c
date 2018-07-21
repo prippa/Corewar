@@ -76,7 +76,7 @@ bool				init(t_arena *arena)
 {
 	if (!init_devices())
 		return (false);
-	bzero(arena, sizeof(t_arena));
+	ft_bzero(arena, sizeof(t_arena));
 	if (!init_display_mode(arena) || !init_music(arena))
 		return (false);
 	init_viewport(arena);

@@ -42,7 +42,7 @@ bool				init_start_buttons(t_arena *arena)
 	int				i;
 	t_rposition		btn_pos;
 
-	bzero(arena->start_btn_sprites, sizeof(arena->start_btn_sprites));
+	ft_bzero(arena->start_btn_sprites, sizeof(arena->start_btn_sprites));
 	if (!init_sprites(arena))
 		return (false);
 	btn_pos = get_render_position(0,

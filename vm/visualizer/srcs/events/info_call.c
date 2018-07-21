@@ -15,7 +15,7 @@
 void	info(void *arena)
 {
 	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,
-	"Game info",
+	"Corewar project",
 	INFO_TXT,
 	((t_arena *)arena)->window);
 }

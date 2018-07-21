@@ -16,7 +16,7 @@ static inline void	init_move_btn_sprites(t_arena *arena)
 {
 	arena->move_panel =
 	load_from_file(GREY_PANEL_IMG, arena->renderer, (SDL_Color){0});
-	bzero(arena->move_btn_sprites, sizeof(arena->move_btn_sprites));
+	ft_bzero(arena->move_btn_sprites, sizeof(arena->move_btn_sprites));
 	arena->move_btn_sprites[MOVE_BUTTON_MOUSE_OUT] =
 	load_from_file(ARROW_IMG, arena->renderer, WHITE_COLOR);
 	set_alpha_mode(100, arena->move_btn_sprites[MOVE_BUTTON_MOUSE_OUT]);

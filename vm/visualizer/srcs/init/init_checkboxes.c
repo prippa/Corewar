@@ -14,7 +14,7 @@
 
 bool			init_checkboxes(t_arena *arena)
 {
-	bzero(arena->full_sprites, sizeof(arena->full_sprites));
+	ft_bzero(arena->full_sprites, sizeof(arena->full_sprites));
 	if (!(arena->full_sprites[CHECK_MOUSE_OUT] =
 			load_from_file(CHECK_IMG, arena->renderer, WHITE_COLOR)) ||
 		!(arena->full_sprites[CHECK_MOUSE_IN] =
