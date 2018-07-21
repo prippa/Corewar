@@ -33,10 +33,8 @@ t_ltexture		*load_from_rendered_text(t_text info,
 
 	surface = NULL;
 	font = NULL;
-	if (!(lt = (t_ltexture *)malloc(sizeof(t_ltexture))))
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!",
-									"Bad allocating", NULL);
-	else if (!(font = TTF_OpenFont(info.font_name, info.font_weight)))
+	lt = (t_ltexture *)malloc(sizeof(t_ltexture));
+	if (!(font = TTF_OpenFont(info.font_name, info.font_weight)))
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error1!",
 									TTF_GetError(), NULL);
 	else if (!(surface = TTF_RenderText_Solid(font, info.txt, info.txt_color)))
@@ -48,7 +46,7 @@ t_ltexture		*load_from_rendered_text(t_text info,
 	else
 	{
 		lt->width = surface->w;
-    	lt->height = surface->h;
+		lt->height = surface->h;
 		SDL_FreeSurface(surface);
 		TTF_CloseFont(font);
 	}

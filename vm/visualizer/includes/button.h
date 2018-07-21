@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   button.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vkovsh <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/21 16:50:39 by vkovsh            #+#    #+#             */
+/*   Updated: 2018/07/21 16:50:41 by vkovsh           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef BUTTON_H
+# define BUTTON_H
 # include "base.h"
 # include "ltexture.h"
 
@@ -13,7 +26,7 @@ t_checkbox				*create_checkbox(SDL_Point position,
 /*
 ** Handles mouse event for checkbox
 */
-void					handle_checkbox_event(SDL_Event* e,
+void					handle_checkbox_event(SDL_Event *e,
 										t_checkbox *btn,
 										t_arena *arena,
 										t_checkboxid id);

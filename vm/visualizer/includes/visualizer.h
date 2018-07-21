@@ -25,10 +25,10 @@
 # define ARENA_HEIGHT 64
 
 void		set_render_color(SDL_Renderer *renderer, SDL_Color c);
-int         get_live_sum(void);
-int         get_live(int index);
-int         get_max(void);
-SDL_Point   get_point(int x, int y);
+int			get_live_sum(void);
+int			get_live(int index);
+int			get_max(void);
+SDL_Point	get_point(int x, int y);
 void		info(void *data);
 void		start(void *data);
 void		stop(void *data);

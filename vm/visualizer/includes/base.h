@@ -9,7 +9,7 @@
 /*   Updated: 2018/07/17 13:13:05 by vkovsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-//g_cw.pd.champs
+
 #ifndef BASE_H
 # define BASE_H
 # include <stdbool.h>
@@ -79,14 +79,17 @@
 # define BUTTON_MOVE_SOUND "music/background_button.wav"
 # define BUTTON_PRESS_SOUND "music/button_main.wav"
 # define EXIT_SOUND "music/exit.wav"
-# define INFOPANEL_RECTANGLE (SDL_Rect){.x = arena->abs_arena_width, .y = 0, .w = INFOPANEL_WIDTH, .h = SCREEN_HEIGHT}
-# define INFOPANEL_TOP_LEFT (SDL_Point){.x = arena->abs_arena_width, .y = 0}
-# define INFOPANEL_LABEL_PARAMS (SDL_Point){.x = INFOPANEL_WIDTH, SCREEN_HEIGHT >> 3}
+# define IX (arena->abs_arena_width)
+# define IW (INFOPANEL_WIDTH)
+# define INFOPANEL_RECTANGLE (SDL_Rect){.x=IX, .w=IW, .h=SCREEN_HEIGHT}
+# define INFOPANEL_TOP_LEFT (SDL_Point){.x=arena->abs_arena_width, .y=0}
+# define INFOPANEL_LABEL_PARAMS (SDL_Point){.x=IW, .y=SCREEN_HEIGHT >> 3}
 # define LIGHT_RED (SDL_Color){.r=0x8b}
 # define LIGHT_BLUE (SDL_Color){.r=0x46, .g=0x82, .b=0xB4}
 # define LIGHT_GREEN (SDL_Color){.r=0x3c, .g=0xb3, .b=0x71}
 # define LIGHT_CYAN (SDL_Color){.g=0x8b, .b=0x8b}
 # define METALLIC_GOLD (SDL_Color){.r=0xD4, .g=0xAF, .b=0x37}
+
 /*
 ** Number of message box buttons
 */
@@ -109,30 +112,26 @@
 # define CHECKS_TXT "MAX CHECKS"
 # define CYCLE_DELTA_TXT "CYCLE DELTA"
 # define PROCESSES_TXT "ALIVE PROCESSES"
-# define BOLD_STATES {0, 0, 0, 0, 1, 1, 1, 1, 0, 0,0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-# define BACK_COLORS {BLACK_COLOR, BLACK_COLOR, BLACK_COLOR,\
-					BLACK_COLOR, BLACK_COLOR, BLACK_COLOR,\
-					BLACK_COLOR, BLACK_COLOR, BLACK_COLOR,\
-					BLACK_COLOR, BLACK_COLOR, BLACK_COLOR,\
-					BLACK_COLOR, BLACK_COLOR, BLACK_COLOR,\
-					BLACK_COLOR, GREEN_COLOR, BLUE_COLOR,\
-					RED_COLOR, CYAN_COLOR, GRAY_COLOR,\
-					GREEN_COLOR, BLUE_COLOR, RED_COLOR,CYAN_COLOR}
-# define FONT_COLORS {GREEN_COLOR, BLUE_COLOR, RED_COLOR, CYAN_COLOR,\
-					GREEN_COLOR, BLUE_COLOR, RED_COLOR, CYAN_COLOR,\
-					YELLOW_COLOR, MAGENTA_COLOR, WHITE_COLOR, GRAY_COLOR,\
-					GRAY_COLOR, YELLOW_COLOR, MAGENTA_COLOR, WHITE_COLOR,\
-					BLACK_COLOR, BLACK_COLOR, BLACK_COLOR, BLACK_COLOR,\
-					BLACK_COLOR, WHITE_COLOR, WHITE_COLOR, WHITE_COLOR,\
-					WHITE_COLOR}
-					
+# define BOLD_STATES {0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0}
+# define BC BLACK_COLOR, BLACK_COLOR, BLACK_COLOR
+# define BGB BLACK_COLOR, GREEN_COLOR, BLUE_COLOR
+# define RCG RED_COLOR, CYAN_COLOR, GRAY_COLOR
+# define GBRC GREEN_COLOR, BLUE_COLOR, RED_COLOR,CYAN_COLOR
+# define BACK_COLORS {BC,BC,BC,BC,BC,BGB,RCG,GBRC}
+# define YMW YELLOW_COLOR, MAGENTA_COLOR, WHITE_COLOR
+# define G GRAY_COLOR
+# define WC WHITE_COLOR,WHITE_COLOR,WHITE_COLOR,WHITE_COLOR
+# define B BLACK_COLOR
+# define FONT_COLORS {GBRC,GBRC,YMW,G,G,YMW,BC,B,B,WC}
 # define INFO_TXT ""
+# define GP LIGHT_GREEN,GREEN_COLOR
+# define BP LIGHT_BLUE,BLUE_COLOR
+# define STATUS_PAIRS {GP,BP,LIGHT_RED,RED_COLOR,LIGHT_CYAN,CYAN_COLOR}
+# define START "START","STOP","INFO","EXIT"
+# define LABELS {START," D+ "," D- "," C+ "," C- ","BACK"}
+# define A_S start, stop, info, exit_event, increase_duration
+# define ACTIONS {A_S,decrease_duration,increase_cycles,decrease_cycles,reset}
 
-# define STATUS_PAIRS {LIGHT_GREEN, GREEN_COLOR, LIGHT_BLUE, BLUE_COLOR, LIGHT_RED, RED_COLOR, LIGHT_CYAN, CYAN_COLOR}
-
-# define LABELS {"START", "STOP", "INFO", "EXIT", " D+ ", " D- ", " C+ ", " C- ", "BACK"}
-
-# define ACTIONS {start, stop, info, exit_event, increase_duration, decrease_duration, increase_cycles, decrease_cycles, reset}
 /*
 ** Wrapper for SDL texture
 */
@@ -163,7 +162,7 @@ typedef enum					e_movebtnsprite
 	MOVE_BUTTON_MOUSE_DOWN,
 	MOVE_BUTTON_MOUSE_UP,
 	MOVE_BUTTON_TOTAL
-}								t_movebtnsprite;				
+}								t_movebtnsprite;
 
 typedef enum					e_cbxsprite
 {
@@ -301,51 +300,16 @@ typedef struct					s_arena
 	int							arena_tile_height;
 	int							abs_arena_height;
 	int							abs_arena_width;
-	/*
-	** Infopanel texture
-	*/
 	t_ltexture					*infopanel_title;
-	/*
-	** The music that will be played
-	*/
 	Mix_Music					*theme;
-	/*
-	** Sprites for move button states
-	** wraped in ltexture and prepare for rendering
-	*/
 	t_ltexture					*move_btn_sprites[TOTAL_MOVE_SPRITES];
-	/*
-	** Move buttons
-	*/
 	t_button					*move_btns[TOTAL_MOVE_BUTTONS];
-	/*
-	** Sprites for fullscreen checkbox
-	*/
 	t_ltexture					*full_sprites[TOTAL_FULL_SPRITES];
-	/*
-	** Checkboxes
-	*/
 	t_checkbox					*checkboxes[TOTAL_CHECKBOXES];
-	/*
-	** Start menu buttons
-	*/
 	t_button					*start_btns[TOTAL_START_BUTTONS];
-	/*
-	** Sprites for start menu button states
-	** wraped in ltexture and prepare for rendering
-	*/
 	t_ltexture					*start_btn_sprites[TOTAL_SPRITES];
-	/*
-	** Dialog buttons Yes, No, Cansel
-	*/
 	SDL_MessageBoxButtonData	msgbox_buttons[MESSAGE_BOX_BUTTON_NBR];
-	/*
-	** If false quit state inits
-	*/
 	bool						quit;
-	/*
-	** Panel for move arrows
-	*/
 	t_ltexture					*move_panel;
 	bool						is_fullscreen;
 	bool						pause;
@@ -356,13 +320,7 @@ typedef struct					s_arena
 	SDL_Window					*window;
 	SDL_Renderer				*renderer;
 	SDL_DisplayMode				d_mode;
-	/*
-	** regular figures
-	*/
 	t_ltexture					*figures[FIGURES_COUNT];
-	/*
-	** bold figures
-	*/
 	t_ltexture					*bold_figures[FIGURES_COUNT];
 }								t_arena;
 #endif

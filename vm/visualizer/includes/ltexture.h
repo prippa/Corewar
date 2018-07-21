@@ -17,9 +17,8 @@
 /*
 ** Returns position for render function
 */
-t_rposition		get_render_position(double angle, SDL_Point left_corner,
+t_rposition				get_render_position(double angle, SDL_Point left_corner,
 									SDL_Point center, SDL_Point params);
-											
 /*
 ** Loads image at specified path
 */
@@ -62,8 +61,6 @@ void					set_alpha_mode(Uint8 alpha,
 */
 t_ltexture				*load_from_rendered_text(t_text text_info,
 													SDL_Renderer *renderer);
-
-
 /*
 ** Creates temporary context for rendering text
 */

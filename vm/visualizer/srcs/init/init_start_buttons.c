@@ -12,8 +12,8 @@
 
 #include "visualizer.h"
 
-const char *g_labels[TOTAL_START_BUTTONS] = {"START", "STOP", "INFO", "EXIT", " D+ ", " D- ", " C+ ", " C- ", "BACK"};
-void (*g_actionfuncs[TOTAL_START_BUTTONS])(void *) = {start, stop, info, exit_event, increase_duration, decrease_duration, increase_cycles, decrease_cycles, reset};
+const char *g_labels[TOTAL_START_BUTTONS] = LABELS;
+void (*g_actionfuncs[TOTAL_START_BUTTONS])(void *) = ACTIONS;
 
 static inline bool	init_sprites(t_arena *arena)
 {
