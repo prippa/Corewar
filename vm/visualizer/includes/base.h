@@ -125,14 +125,14 @@
 					BLACK_COLOR, BLACK_COLOR, BLACK_COLOR, BLACK_COLOR,\
 					BLACK_COLOR, WHITE_COLOR, WHITE_COLOR, WHITE_COLOR,\
 					WHITE_COLOR}
+					
 # define INFO_TXT ""
 
 # define STATUS_PAIRS {LIGHT_GREEN, GREEN_COLOR, LIGHT_BLUE, BLUE_COLOR, LIGHT_RED, RED_COLOR, LIGHT_CYAN, CYAN_COLOR}
 
 # define LABELS {"START", "STOP", "INFO", "EXIT", " D+ ", " D- ", " C+ ", " C- ", "BACK"}
 
-# define ACTIONS {&start, &stop, &info, &exit_event,\
-&increase_duration, &decrease_duration,	&increase_cycles, &decrease_cycles, &reset}
+# define ACTIONS {start, stop, info, exit_event, increase_duration, decrease_duration, increase_cycles, decrease_cycles, reset}
 /*
 ** Wrapper for SDL texture
 */

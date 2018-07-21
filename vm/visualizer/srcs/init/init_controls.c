@@ -14,9 +14,8 @@
 
 bool			init_controls(t_arena *arena)
 {
-	if (!init_checkboxes(arena) ||
-		!init_start_buttons(arena) ||
-		!init_move_buttons(arena))
-		return (false);
+	init_checkboxes(arena);
+	init_start_buttons(arena);
+	init_move_buttons(arena);
 	return (true);
 }

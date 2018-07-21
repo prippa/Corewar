@@ -37,13 +37,13 @@ t_ltexture		*load_from_rendered_text(t_text info,
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!",
 									"Bad allocating", NULL);
 	else if (!(font = TTF_OpenFont(info.font_name, info.font_weight)))
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!",
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error1!",
 									TTF_GetError(), NULL);
 	else if (!(surface = TTF_RenderText_Solid(font, info.txt, info.txt_color)))
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!",
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error2!",
 									TTF_GetError(), NULL);
 	else if (!(lt->texture = SDL_CreateTextureFromSurface(renderer, surface)))
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error!",
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error3!",
 									TTF_GetError(), NULL);
 	else
 	{

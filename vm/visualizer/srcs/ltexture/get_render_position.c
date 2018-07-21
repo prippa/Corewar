@@ -12,9 +12,14 @@
 
 #include "visualizer.h"
 
-t_rposition		get_render_position(double angle, SDL_Point left_corner,
-									SDL_Point center, SDL_Point params)
+t_rposition		get_render_position(double angle,
+					SDL_Point left_corner,
+					SDL_Point center,
+					SDL_Point params)
 {
-	return ((t_rposition){.angle = angle, .left_corner = left_corner,
-							.center = center, .width = params.x, .height = params.y});
+	return ((t_rposition){.angle = angle,
+				.left_corner = left_corner,
+				.center = center,
+				.width = params.x,
+				.height = params.y});
 }

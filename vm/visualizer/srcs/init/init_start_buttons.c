@@ -12,8 +12,8 @@
 
 #include "visualizer.h"
 
-const char *g_labels[TOTAL_START_BUTTONS] = LABELS;
-void (*g_actionfuncs[TOTAL_START_BUTTONS])(void *) = ACTIONS;
+const char *g_labels[TOTAL_START_BUTTONS] = {"START", "STOP", "INFO", "EXIT", " D+ ", " D- ", " C+ ", " C- ", "BACK"};
+void (*g_actionfuncs[TOTAL_START_BUTTONS])(void *) = {start, stop, info, exit_event, increase_duration, decrease_duration, increase_cycles, decrease_cycles, reset};
 
 static inline bool	init_sprites(t_arena *arena)
 {
@@ -45,7 +45,7 @@ bool				init_start_buttons(t_arena *arena)
 	bzero(arena->start_btn_sprites, sizeof(arena->start_btn_sprites));
 	if (!init_sprites(arena))
 		return (false);
-	get_render_position(0,
+	btn_pos = get_render_position(0,
 	get_point(BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT),
 	get_point(BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT),
 	get_point(BUTTON_WIDTH, BUTTON_HEIGHT));

@@ -24,5 +24,5 @@ void			render(t_rposition position,
 								position.width,
 								position.height);
 	SDL_RenderCopyEx(renderer, ltexture->texture, NULL,
-					&render_quad, position.angle, /*&(position.center)*/NULL, flip);
+					&render_quad, position.angle, NULL, flip);
 }

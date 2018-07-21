@@ -21,11 +21,6 @@ static inline void	create_button_text(t_button *btn,
 
 	if (text != NULL)
 	{
-		btn->button_txt = load_from_rendered_text(get_text_info(FUTURICA,
-													btn->btn_pos.width,
-													text,
-													BLACK_COLOR),
-													renderer);
 		top_left.x = btn->btn_pos.left_corner.x + (btn->btn_pos.width >> 3);
 		top_left.y = btn->btn_pos.left_corner.y;
 		params.x = btn->btn_pos.width - (btn->btn_pos.width >> 2);
@@ -34,6 +29,11 @@ static inline void	create_button_text(t_button *btn,
 											top_left,
 											top_left,
 											params);
+		btn->button_txt = load_from_rendered_text(get_text_info(FUTURICA,
+													btn->btn_pos.width,
+													text,
+													BLACK_COLOR),
+													renderer);
 	}
 	else
 		btn->button_txt = NULL;
