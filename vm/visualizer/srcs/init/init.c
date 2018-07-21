@@ -33,7 +33,7 @@ static inline bool	init_window(t_arena *arena)
 	SDL_SetRenderDrawColor(arena->renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	arena->fps = 0;
 	arena->cycles_per_tact = 1;
-	arena->tact_duration = 100000;
+	arena->tact_duration = 0;
 	arena->leader_color = METALLIC_GOLD;
 	arena->pause = true;
 	return (true);
