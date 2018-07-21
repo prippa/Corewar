@@ -45,6 +45,9 @@ static void	cw_exit_print_message(char *message, int error_number)
 	else if (error_number == PROG_SIZE_INVALID)
 		ft_dprintf(2, "Error: File [%s] \
 has a code size that differ from what its header says\n", message);
+	else if (error_number == NOT_NULL_BITES)
+		ft_dprintf(2, "Error: File [%s] separator bits are not NULL\n",
+			message);
 	else if (error_number == USAGE)
 		cw_print_usage();
 	else

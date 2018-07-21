@@ -42,7 +42,7 @@ int				cw_get_right_arg(t_processes *proc, char tp, int av);
 ******************************* Parse file part ********************************
 */
 
-void			cw_lseek_cur_skip(int fd, long size);
+void			cw_separator_skip(char *file_name, int fd, const long size);
 void			cw_check_magic(t_champ *champ);
 void			cw_get_prog_name(t_champ *champ);
 void			cw_get_prog_size(t_champ *champ);
