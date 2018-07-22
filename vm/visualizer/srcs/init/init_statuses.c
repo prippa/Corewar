@@ -45,7 +45,11 @@ static inline void			init_one_status(t_arena *arena,
 								int i)
 {
 	arena->statuses[i].top_wrapper = load_from_rendered_text(
-		get_text_info(ROBOTO_BOLD, 10, top, BLACK_COLOR), arena->renderer);
+		get_text_info(ROBOTO_BOLD,
+		(ARENA_TILE_WIDTH * MAX_ZOOM << 1),
+		top,
+		BLACK_COLOR),
+		arena->renderer);
 	arena->statuses[i].first_row =
 		load_from_rendered_text(get_text_info(ROBOTO_BOLD,
 		(ARENA_TILE_WIDTH * MAX_ZOOM << 1),
@@ -63,10 +67,10 @@ static inline void			init_one_status(t_arena *arena,
 void						check_over(t_arena *arena,
 							int i)
 {
-	if (arena->statuses[i].text_len > 60)
+	if (arena->statuses[i].text_len >= 51)
 	{
-		arena->statuses[i].text[59] = '*';
-		arena->statuses[i].text[60] = '\0';
+		arena->statuses[i].text[50] = '*';
+		arena->statuses[i].text[51] = '\0';
 		arena->statuses[i].text_len = ft_strlen(arena->statuses[i].text);
 	}
 }
