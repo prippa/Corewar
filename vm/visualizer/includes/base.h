@@ -248,7 +248,6 @@ typedef struct					s_statusbar
 {
 	int							top_wrap_length;
 	t_ltexture					*top_wrapper;
-	t_ltexture					*bottom_wrapper;
 	t_ltexture					*first_row;
 	t_ltexture					*second_row;
 	char						*text;
