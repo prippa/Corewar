@@ -40,7 +40,7 @@ static inline void		close_txt_textures(t_arena arena)
 	free_ltexture(arena.infopanel_title);
 }
 
-static inline void		close_all(t_arena arena)
+static inline void		free_buttons(t_arena arena)
 {
 	int					i;
 
@@ -60,8 +60,33 @@ static inline void		close_all(t_arena arena)
 		free(arena.start_btns[i]);
 	}
 	i = -1;
+	while (++i < MOVE_BUTTON_TOTAL)
+		free_ltexture(arena.move_btn_sprites[i]);
+	i = -1;
+	while (++i < MOVE_BUTTON_TOTAL)
+		free(arena.move_btns[i]);
+}
+
+static inline void		close_all(t_arena arena)
+{
+	int					i;
+
+	free_buttons(arena);
+	i = -1;
 	while (++i < FULL_SPRITES)
 		free_ltexture(arena.full_sprites[i]);
+	i = -1;
+	while (++i < g_cw.pd.champs_count)
+	{
+		free_ltexture(arena.statuses[i].first_row);
+		free_ltexture(arena.statuses[i].second_row);
+		free_ltexture(arena.statuses[i].top_wrapper);
+	}
+	free_ltexture(arena.checkboxes[FULLSCREEN_CBX]->checkbox_txt);
+	free_ltexture(arena.checkboxes[SOUND_CBX]->checkbox_txt);
+	free(arena.checkboxes[FULLSCREEN_CBX]);
+	free(arena.checkboxes[SOUND_CBX]);
+	free_ltexture(arena.move_panel);
 	close_txt_textures(arena);
 	quit(arena);
 }
