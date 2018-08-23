@@ -12,133 +12,95 @@
 
 #include "libft.h"
 
-static void		*ft_memjoin(void *des, int counter, void *add, int value)
+static int		gnl_sub_line(t_gnl *file, char **line)
 {
-	void	*join;
-	void	*tmp;
+	unsigned int start;
 
-	join = (void *)malloc((counter + value + 1));
-	if (!(des))
+	if (!file->s[file->i])
 	{
-		join = ft_memcpy(join, add, value);
-		((unsigned char *)join)[counter + value] = '\0';
-		return (join);
+		free(file->s);
+		file->s = NULL;
+		return (0);
 	}
-	else if (!add)
-	{
-		join = ft_memcpy(join, des, counter);
-		((unsigned char *)join)[counter] = '\0';
-	}
-	else
-	{
-		tmp = join;
-		ft_memcpy(join, des, counter);
-		tmp += counter;
-		ft_memcpy(tmp, add, value);
-		((unsigned char *)join)[counter + value] = '\0';
-	}
-	free(des);
-	return (join);
+	start = (unsigned int)file->i;
+	while (file->s[file->i] && file->s[file->i] != '\n')
+		++file->i;
+	if (!(*line = ft_strsub(file->s, start,  file->i - start)))
+		return (-1);
+	if (file->s[file->i])
+		++file->i;
+	return (1);
 }
 
-static int		is_nl(void **rest, int *rm, void **gline, int *counter)
+static int		gnl_remainder(t_gnl *file)
 {
-	int		dif;
-	void	*tmp;
+	char *tmp;
 
-	if (ft_memchr(*rest, '\n', *rm))
+	if (!file->s)
 	{
-		dif = ((ft_memchr(*rest, '\n', *rm) - *rest) + 1);
-		*gline = ft_memjoin(*gline, *counter, *rest, (dif - 1));
-		*counter += dif;
-		if ((*rm = (*rm - dif)))
-		{
-			tmp = *rest;
-			*rest = ft_memjoin(NULL, 0, (*rest + dif), *rm);
-			ft_bzero(tmp, (*rm + dif));
-			free(tmp);
-		}
-		else
-			ft_memdel(rest);
+		if (!(file->s = ft_strdup("")))
+			return (-1);
 		return (1);
 	}
-	*gline = ft_memjoin(*gline, *counter, *rest, *rm);
-	*counter += *rm;
-	ft_memdel(rest);
-	return (0);
+	tmp = file->s;
+	if (!(file->s = ft_strdup(&file->s[file->i])))
+		return (-1);
+	free(tmp);
+	file->i = 0;
+	return (1);
 }
 
-static t_gnl	*lst_fd(void *rest, int rm, int fd)
+static int		gnl_read_file(t_gnl *file, char **line)
 {
-	t_gnl	*newlist;
+	ssize_t	ret;
+	char	buf[BUFF_SIZE + 1];
 
-	newlist = (t_gnl *)malloc(sizeof(t_gnl));
-	if (newlist == NULL)
-		return (NULL);
-	if (rest == NULL)
+	while ((ret = read(file->fd, buf, BUFF_SIZE)) > 0)
 	{
-		newlist->rest = NULL;
-		newlist->rm = 0;
-		newlist->fd = fd;
-	}
-	else
-	{
-		newlist->rest = (void *)malloc(sizeof(rest));
-		if (newlist->rest == NULL)
-			return (NULL);
-		ft_memcpy((newlist->rest), rest, rm);
-		newlist->rm = rm;
-		newlist->fd = fd;
-	}
-	newlist->next = NULL;
-	return (newlist);
-}
-
-static t_gnl	*get_right_list(t_gnl *lst, int fd)
-{
-	t_gnl	*l;
-
-	while (lst)
-	{
-		if ((lst)->fd == fd)
-		{
-			l = lst;
-			return (l);
-		}
-		if ((lst)->next)
-			lst = (lst)->next;
-		else
+		buf[ret] = 0;
+		if (!(ft_strjoin_free(&file->s, buf, ft_strlen(file->s), ret)))
+			return (-1);
+		if (ft_strchr(buf, '\n'))
 			break ;
 	}
-	(lst)->next = lst_fd(NULL, 0, fd);
-	l = (lst)->next;
-	return (l);
+	if (ret == -1)
+		return (-1);
+	return (gnl_sub_line(file, line));
 }
 
-int				get_next_line(const int fd, char **line)
+static t_gnl	*gnl_add_or_get_file(t_gnl **g, int fd)
 {
-	static t_gnl	*pl;
-	t_gnl			*l;
-	int				counter;
-	unsigned char	tmp[BUFF_SIZE];
-	void			*gline;
+	t_gnl *file;
 
-	if ((fd < 0) || !(line) || read(fd, 0, 0) < 0 || BUFF_SIZE <= 0)
+	file = *g;
+	while (file)
+	{
+		if (file->fd == fd)
+			return (file);
+		file = file->next;
+	}
+	if (!(file = (t_gnl *)malloc(sizeof(t_gnl))))
+		return(NULL);
+	file->s = NULL;
+	file->i = 0;
+	file->fd = fd;
+	file->next = *g;
+	*g = file;
+	return (file);
+}
+
+int				get_next_line(int const fd, char **line)
+{
+	static t_gnl	*g;
+	t_gnl			*curent;
+
+	if (fd < 0 || !line || read(fd, NULL, 0) == -1)
 		return (-1);
-	if (!(pl))
-		pl = lst_fd(NULL, 0, fd);
-	l = get_right_list(pl, fd);
-	counter = 0;
-	gline = NULL;
-	if (!(l->rest && is_nl(&(l->rest), &(l->rm), &gline, &counter)))
-		while ((l->rm = read(fd, tmp, BUFF_SIZE)))
-		{
-			if (l->rm < 0)
-				return (-1);
-			l->rest = ft_memjoin(l->rest, 0, tmp, l->rm);
-			if (is_nl(&(l->rest), &(l->rm), &gline, &counter))
-				break ;
-		}
-	*line = (char *)gline;
-	return ((counter > 0) ? 1 : 0);
+	if (!(curent = gnl_add_or_get_file(&g, fd)))
+		return (-1);
+	if (curent->s && ft_strchr(&curent->s[curent->i], '\n'))
+		return (gnl_sub_line(curent, line));
+	if ((gnl_remainder(curent)) == -1)
+		return (-1);
+	return (gnl_read_file(curent, line));
 }

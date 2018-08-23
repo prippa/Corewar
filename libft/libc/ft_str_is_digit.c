@@ -14,20 +14,8 @@
 
 int	ft_str_is_digit(const char *str)
 {
-	size_t i;
-
-	if (str)
-	{
-		i = 0;
-		if ((str[i] == '-' || str[i] == '+') && str[i + 1])
-			i++;
-		while (str[i])
-		{
-			if (!(ft_isdigit(str[i])))
-				return (0);
-			i++;
-		}
-		return (1);
-	}
-	return (0);
+	while (*str)
+		if (!ft_isdigit(*str++))
+			return (0);
+	return (1);
 }

@@ -24,13 +24,13 @@ DIR_OBJ		= 	./obj/
 HEAD_LIBC	=	libft.h
 HEAD_FPF	=	ft_printf.h
 
-C_LIBC		= 	ft_atoi.c ft_bzero.c ft_isalpha.c ft_isascii.c ft_isspace.c\
-			ft_isdigit.c ft_str_is_digit.c ft_memchr.c ft_memcpy.c\
-			ft_memdel.c ft_memset.c ft_putchar.c ft_putstr.c ft_strcat.c\
-			ft_strchr.c ft_strcmp.c ft_strcpy.c ft_strdup.c ft_strlen.c ft_strncmp.c\
-			ft_strncpy.c ft_strnew.c ft_strjoin.c ft_itoa_base.c get_next_line.c\
-			ft_atoi_base.c ft_atoi_max.c ft_bin_to_int.c\
-			ft_memrev.c ft_itoa_max.c ft_itoabase.c ft_numlen.c ft_joinfree.c ft_pow.c
+C_LIBC		= 	ft_atoi.c ft_bzero.c ft_isascii.c ft_isspace.c\
+			ft_isdigit.c ft_str_is_digit.c ft_memcpy.c\
+			ft_putchar.c ft_putstr.c ft_strcat.c\
+			ft_strchr.c ft_strcmp.c ft_strcpy.c ft_strdup.c ft_strlen.c\
+			ft_strnew.c ft_strjoin.c ft_itoa_base.c get_next_line.c\
+			ft_bin_to_int.c ft_strsub.c ft_strncpy.c ft_strjoin_free.c\
+			ft_itoa_max.c ft_itoabase.c ft_numlen.c ft_joinfree.c ft_pow.c
 
 C_FPF		= 	ft_printf.c ft_dprintf.c\
 				ft_pf_strjoin.c ft_charjoin.c\

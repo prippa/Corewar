@@ -14,16 +14,14 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*fresh;
-	size_t	len;
+	char	*new_obj;
 
 	if (!s1 || !s2)
 		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2);
-	if ((fresh = ft_strnew(len)) == NULL)
+	if (!(new_obj = (char *)malloc(sizeof(char) *
+		(ft_strlen(s1) + ft_strlen(s2) + 1))))
 		return (NULL);
-	ft_strcpy(fresh, s1);
-	ft_strcat(fresh, s2);
-	fresh[len] = '\0';
-	return (fresh);
+	ft_strcpy(new_obj, s1);
+	ft_strcat(new_obj, s2);
+	return (new_obj);
 }
