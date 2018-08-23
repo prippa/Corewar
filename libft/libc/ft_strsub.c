@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/30 17:50:26 by prippa            #+#    #+#             */
-/*   Updated: 2017/10/30 17:50:31 by prippa           ###   ########.fr       */
+/*   Created: 2017/11/06 13:55:18 by prippa            #+#    #+#             */
+/*   Updated: 2017/11/06 13:55:21 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	unsigned char	*str;
-	unsigned char	tmp;
-	size_t			i;
+	char	*new_obj;
 
-	str = (unsigned char*)s;
-	tmp = (unsigned char)c;
-	i = 0;
-	while (n--)
-	{
-		if (str[i] == tmp)
-			return (str + i);
-		i++;
-	}
-	return (NULL);
+	if (!s)
+		return (NULL);
+	if (!(new_obj = (char *)malloc(sizeof(char) * len + 1)))
+		return (NULL);
+	ft_strncpy(new_obj, &s[start], len);
+	new_obj[len] = 0;
+	return (new_obj);
 }

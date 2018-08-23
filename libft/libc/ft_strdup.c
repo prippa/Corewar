@@ -14,17 +14,10 @@
 
 char	*ft_strdup(const char *s1)
 {
-	size_t	i;
-	char	*str;
+	char		*new_obj;
 
-	if ((str = (char*)malloc(sizeof(char) * (ft_strlen(s1) + 1))) == NULL)
+	if (!(new_obj = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1))))
 		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	ft_strcpy(new_obj, s1);
+	return (new_obj);
 }

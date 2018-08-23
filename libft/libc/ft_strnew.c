@@ -14,10 +14,10 @@
 
 char	*ft_strnew(size_t size)
 {
-	char *fresh;
+	char *new_obj;
 
-	fresh = (char*)malloc(sizeof(char) * (size + 1));
-	if (fresh)
-		fresh = ft_memset(fresh, '\0', size + 1);
-	return (fresh);
+	if (!(new_obj = (char*)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	ft_bzero(new_obj, size + 1);
+	return (new_obj);
 }
