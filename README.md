@@ -1,7 +1,7 @@
 # CoreWar
 Team Project from algorithms branch
 
-![](https://thumbs.gfycat.com/MedicalFlickeringHackee-size_restricted.gif)
+![](https://github.com/prippa/my-projects-media/blob/main/Coreware/MedicalFlickeringHackee-size_restricted.gif)
 
 Writen on C + SDL2 graphic library
 
